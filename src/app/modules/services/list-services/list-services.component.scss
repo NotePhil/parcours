@@ -5,22 +5,22 @@
     }
 }
 .searchBlock{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 10px;
-    margin-right: 8px;
-    button{
-        width: 7%;
-        background-color: #7ea97e;
-        color: white;
-    }
-    .inputSection{
-        width: 91%;
+    padding-left: 10px;
+    height: 42.5px;
+    box-shadow: 0 0 2px #7ea97e5c;
+   // border: 1px solid #7ea97e60;
+    border-radius: 5px;
+    .example-full-width{
         input{
-            border: none;
-            border: 1px solid #7ea97e21;
+            color: #7ea97e !important;
         }
+    }
+    button{
+        height: 43px;
+        opacity: 0.9;
+        box-shadow: 0 0 2px #7ea97e5c;
+        background-color: #7ea97e2c;
+        color: #7ea97e;
     }
 }
 .tableTools{

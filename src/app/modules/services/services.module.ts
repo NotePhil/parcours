@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ServicesRoutingModule } from './services-routing.module';
@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import { HttpLoaderFactory } from 'src/app/app.module';
         },
         extend:true
     }),
-    BrowserModule 
-  ]
+    BrowserModule,
+    AngularMaterialModule
+  ],
+schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ServicesModule { }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggle, MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MenuModule } from './modules/menu/menu.module';
+import { ServicesModule } from './modules/services/services.module';
+import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { MenuModule } from './modules/menu/menu.module';
     FormsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemDBService, {dataEncapsulation: false, passThruUnknownUrl: true}),
     PatientsModule,
+    ServicesModule,
     MenuModule,
+    AngularMaterialModule,
 
     // ngx-translate and the loader module
     HttpClientModule,
@@ -49,7 +53,8 @@ import { MenuModule } from './modules/menu/menu.module';
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 

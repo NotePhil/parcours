@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { EMPTY, Observable } from 'rxjs';
@@ -12,6 +13,9 @@ import { ServicesService } from 'src/app/services/services/services.service';
 })
 export class ListServicesComponent implements OnInit {
 
+  myControl = new FormControl();
+  options: string[] = ['Delhi', 'Mumbai', 'Banglore'];
+  
   services$:Observable<IService[]>=EMPTY;
 
   constructor(private translate: TranslateService, private router:Router, private serviceService:ServicesService) { }

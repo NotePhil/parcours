@@ -9,7 +9,17 @@ import { IPatient } from 'src/app/modele/Patient';
 })
 export class PatientsService {
 
-  constructor(private http:HttpClient) { }
+  iPatient : IPatient = {
+    id: 0,
+    adresse: '',
+    mail: '',
+    telephone: ''
+  };
+
+  constructor(private http:HttpClient) { 
+
+    this.iPatient.dateNaissance = new Date().toDateString()
+  }
 
   getAllPatients():Observable<IPatient[]>
   {
