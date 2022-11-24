@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,12 +16,11 @@ export class ListPatientsComponent implements OnInit {
 
   //titre:string="Patients retrouvé(e)s";
 
-  constructor(private translate: TranslateService,private router:Router, private servicePatient:PatientsService, private datePipe: DatePipe) { 
+  constructor(private translate: TranslateService,private router:Router, private servicePatient:PatientsService) { 
 
   }
 
   ngOnInit(): void {
-    this.patients$ = this.getAllPatients();
   }
 
   private getAllPatients(){

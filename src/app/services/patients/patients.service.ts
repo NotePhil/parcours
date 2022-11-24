@@ -9,23 +9,12 @@ import { IPatient } from 'src/app/modele/Patient';
 })
 export class PatientsService {
 
-  iPatient : IPatient = {
-    id: 0,
-    adresse: '',
-    mail: '',
-    telephone: ''
-  };
-
-  constructor(private http:HttpClient) { 
-
-    this.iPatient.dateNaissance = new Date().toDateString()
-  }
+  constructor(private http:HttpClient) {}
 
   getAllPatients():Observable<IPatient[]>
   {
     return this.http.get<IPatient[]>('api/patients').pipe(map(x=>x));
   }
-
   getPatientById(id:number):Observable<IPatient>{
     return this.getAllPatients().pipe(
       map(x=>
