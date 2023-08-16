@@ -129,11 +129,11 @@ private getAllFamilles(){
 private getAllDistributeurs(){
       return this.serviceDistributeur.getAllDistributeurs();
     }
- //fonction onSubmit debut
-onSubmit(){
-this.submitted=true;
-if(this.forme.invalid)
-  return;
+
+ /**
+  * 
+  */
+ enregistrerPreco(){
   let  precomvtTemp : IPrecoMvt={
     id: String(9),
     libelle:this.eltsPreco[0].libelle,
