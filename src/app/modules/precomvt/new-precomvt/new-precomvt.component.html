@@ -153,7 +153,7 @@
                 Fournisseurs
               </label>
               <select  formControlName="distributeur"  name="distributeur" id=" distributeur" class="form-control" (ngModelChange)="tabError.delete('distributeur')">
-                <option *ngFor="let fournisseur of distributeurs$ |async" [value]="fournisseur" >{{fournisseur.raisonSocial}}</option>
+                <option *ngFor=" let fournisseur of distributeurs$ |async" [value]="fournisseur" >{{fournisseur.raisonSocial}}</option>
               </select>
             </div>
              <div  *ngIf="tabError.get('distributeur')"  class="alert alert-danger" >

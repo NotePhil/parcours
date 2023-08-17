@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewPrecomvtComponent } from './new-precomvt/new-precomvt.component';
 import { ListPrecomvtsComponent } from './list-precomvts/list-precomvts.component';
+import { ViewPrecomvtComponent } from './view-precomvt/view-precomvt.component';
 
 const routes: Routes = [
 
@@ -19,6 +20,11 @@ const routes: Routes = [
     path: 'list-precomvts',
     title: 'Recherche de precomvts',
     component: ListPrecomvtsComponent
+  },
+  {
+    path: 'view-precomvt/:idprecomvt',
+    title: 'Voir la precomvt',
+    component: ViewPrecomvtComponent
   }
 ];
 
