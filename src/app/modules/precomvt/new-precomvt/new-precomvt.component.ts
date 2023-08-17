@@ -299,7 +299,7 @@ reset():void{
     else
     this.eltsPreco[this.indexModification]=this.creerPrecoMvtQteFamille(precomvtInput);
   }
-  else if(precomvtInput.distributeur != null && precomvtInput.distributeur.length>0) {
+  else if(precomvtInput.distributeur != null && precomvtInput.distributeur !="") {
     if(this.indexModification==-1)
       this.eltsPreco.push(this.creerPrecoMvtQteDistributeur(precomvtInput));
     else
@@ -339,7 +339,7 @@ reset():void{
       this.forme.controls["quantiteMin"].setValue(precoTmp.precomvtqte[0].quantiteMin);
       //TODO bug de l'affichage au premier clic. C'est le second qui affiche la bonne valeur
       //this.forme.controls["fournisseur"].setValue(precoTmp.precomvtqte[0].fournisseur);
-      this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
+     /// this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
     }
     else if(precoTmp.precomvtqte[0].famille!= undefined && precoTmp.precomvtqte[0].famille!=null && precoTmp.precomvtqte[0].famille.length>0){
       this.steps = 2;
@@ -352,9 +352,9 @@ reset():void{
       this.forme.controls["quantiteMin"].setValue(precoTmp.precomvtqte[0].quantiteMin);
       //TODO bug de l'affichage au premier clic. C'est le second qui affiche la bonne valeur
       //this.forme.controls["fournisseur"].setValue(precoTmp.precomvtqte[0].fournisseur);
-      this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
+     // this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
     }
-    else if(precoTmp.precomvtqte[0].distributeur!= undefined && precoTmp.precomvtqte[0].distributeur!=null && precoTmp.precomvtqte[0].distributeur.length>0){
+    else if(precoTmp.precomvtqte[0].distributeur!= undefined && precoTmp.precomvtqte[0].distributeur!=null && precoTmp.precomvtqte[0].distributeur){
       ('this.steps = 2 && this.steps = 3')
       this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
 
