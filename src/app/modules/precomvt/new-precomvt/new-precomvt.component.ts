@@ -131,7 +131,7 @@ private getAllDistributeurs(){
     }
 
  /**
-  * 
+  *
   */
  enregistrerPreco(){
   let  precomvtTemp : IPrecoMvt={
@@ -201,35 +201,35 @@ this.precoMvtService.ajouterPrecomvt(precomvtTemp).subscribe(
 
       if(valMontantMin== null || valMontantMin < 0){
         controleVerif = false;
-        this.tabError.set("montantMin","montantMin est obligatoire");
+        this.tabError.set("montantMin","montant Min est obligatoire");
       }
       let valMontantMax : number = this.forme.controls["montantMax"].value;
 
       if(valMontantMax==null || valMontantMax< 0){
         controleVerif = false;
-        this.tabError.set("montantMax","montantMax est  obligatoire");
+        this.tabError.set("montantMax","montant Max est  obligatoire");
       }
       if(valMontantMin > valMontantMax){
         controleVerif = false;
-        this.tabError.set("montantMax","montantMax doit être supérieur au montantMin");
+        this.tabError.set("montantMax","montant Max doit être supérieur au montant Min");
       }
 
       let valQuantiteMax : number = this.forme.controls["quantiteMax"].value;
 
       if(valQuantiteMax == null || valQuantiteMax < 0){
         controleVerif = false;
-        this.tabError.set("quantiteMax","QuantiteMax est obligatoire");
+        this.tabError.set("quantiteMax","Quantite Max est obligatoire");
       }
       let valQuantiteMin : number = this.forme.controls["quantiteMin"].value;
 
       if(valQuantiteMin == null || valQuantiteMin < 0){
         controleVerif = false;
-        this.tabError.set("quantiteMin","QuantiteMin est obligatoire");
+        this.tabError.set("quantiteMin","Quantite Min est obligatoire");
       }
 
       if(valQuantiteMin > valQuantiteMax){
         controleVerif = false;
-        this.tabError.set("quantiteMin","QuantiteMin doit être inférieur à QuantiteMax");
+        this.tabError.set("quantiteMin","Quantite Min doit être inférieur à Quantite Max");
       }
       let valDistributeur : string[] = this.forme.controls["distributeur"].value;
 
