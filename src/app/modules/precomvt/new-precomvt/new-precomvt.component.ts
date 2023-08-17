@@ -299,7 +299,12 @@ reset():void{
     else
     this.eltsPreco[this.indexModification]=this.creerPrecoMvtQteFamille(precomvtInput);
   }
-
+  else if(precomvtInput.distributeur != null && precomvtInput.distributeur.length>0) {
+    if(this.indexModification==-1)
+      this.eltsPreco.push(this.creerPrecoMvtQteDistributeur(precomvtInput));
+    else
+    this.eltsPreco[this.indexModification]=this.creerPrecoMvtQteDistributeur(precomvtInput);
+  }
   this.reset();
 }//fonction valPrecomvtqte fin
 
@@ -348,6 +353,11 @@ reset():void{
       //TODO bug de l'affichage au premier clic. C'est le second qui affiche la bonne valeur
       //this.forme.controls["fournisseur"].setValue(precoTmp.precomvtqte[0].fournisseur);
       this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
+    }
+    else if(precoTmp.precomvtqte[0].distributeur!= undefined && precoTmp.precomvtqte[0].distributeur!=null && precoTmp.precomvtqte[0].distributeur.length>0){
+      ('this.steps = 2 && this.steps = 3')
+      this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
+
     }
   }
 
@@ -429,14 +439,38 @@ reset():void{
     };
     let precomvtTemp : IPrecoMvt={
       id: uuidv4(),
-      libelle: precomvtInput.libelle,
+      //libelle: precomvtInput.libelle,
+      libelle: "Libelle : " + precomvtInput.libelle,
       etat: precomvtInput.etat,
-      type: precomvtInput.type,
+      type:"Type : " + precomvtInput.type,
       precomvtqte:[]
     }
     precomvtTemp.precomvtqte.push(premvtqte);
     return precomvtTemp;
   }
+  //essai
+  creerPrecoMvtQteDistributeur(precomvtInput:any):IPrecoMvt{
+    let premvtqte : IPrecoMvtQte={
+      distributeur: precomvtInput.distributeur,
+      quantiteMax: precomvtInput.quantiteMax,
+      quantiteMin: precomvtInput.quantiteMin,
+      montantMax: precomvtInput.montantMax,
+      montantMin: precomvtInput.montantMin,
+      id:"",
+      //fournisseur: precomvtInput.fournisseur,
+      //distributeur: precomvtInput.distributeur
+    };
+    let precomvtTemp : IPrecoMvt={
+      id: uuidv4(),
+      libelle: "Distributeur : " + precomvtInput.distributeur.libelle,
+      etat: false,
+      type: precomvtInput.TypeMvt,
+      precomvtqte:[]
+    }
+    precomvtTemp.precomvtqte.push(premvtqte);
+    return precomvtTemp;
+  }
+
   compareItem(famille1: IFamille, famille2: IFamille) {
     return famille2 && famille1 ? famille2.id === famille1.id : famille2 === famille1;
 }
