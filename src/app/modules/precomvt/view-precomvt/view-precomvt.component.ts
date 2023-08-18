@@ -7,7 +7,7 @@ import { PrecoMvtsService } from 'src/app/services/precomvts/precomvts.service';
 @Component({
   selector: 'app-view-precomvt',
   templateUrl: './view-precomvt.component.html',
-  styleUrls: ['./view-precomvt.component.css']
+  styleUrls: ['./view-precomvt.component.scss']
 })
 export class ViewPrecomvtComponent implements OnInit {
 
@@ -23,10 +23,10 @@ export class ViewPrecomvtComponent implements OnInit {
   constructor(private router:Router, private infosPath:ActivatedRoute, private precoMvtService:PrecoMvtsService) { }
 
   ngOnInit(): void {
-    let idPrecomvt = this.infosPath.snapshot.paramMap.get('idPrecomvt');
-    console.log("idPrecomvt :" + idPrecomvt);
-    if((idPrecomvt != null) && idPrecomvt!==''){
-      this.precoMvtService.getPrecomvtById(idPrecomvt).subscribe(
+    let idPrecoMvt = this.infosPath.snapshot.paramMap.get('idPrecoMvt');
+    console.log("idPrecoMvt :" + idPrecoMvt);
+    if((idPrecoMvt != null) && idPrecoMvt!==''){
+      this.precoMvtService.getPrecomvtById(idPrecoMvt).subscribe(
         x =>{
           this.PrecoMvt = x;
           console.log("Voici le precomvt", this.PrecoMvt);

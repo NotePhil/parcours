@@ -153,7 +153,7 @@
                 Fournisseurs
               </label>
               <select  formControlName="distributeur"  name="distributeur" id=" distributeur" class="form-control" (ngModelChange)="tabError.delete('distributeur')">
-                <option *ngFor=" let fournisseur of distributeurs$ |async" [value]="fournisseur" >{{fournisseur.raisonSocial}}</option>
+                <option *ngFor="let membre of distributeurs$ |async" [value]="membre" >{{membre.raisonSocial}}</option>
               </select>
             </div>
              <div  *ngIf="tabError.get('distributeur')"  class="alert alert-danger" >
@@ -182,8 +182,8 @@
       <div *ngFor="let elt of eltsPreco let i=index"  class="color" >
       <div>
         <label class="info"><input type="button" id="{{i}}" value="{{elt.libelle}}" (click)="chargerValeurPrecoMvt(i)" ><br/></label>
-        <label class="info"><input type="button" id="{{i}}" value="{{elt.type}}" (click)="chargerValeurPrecoMvt(i)"><br/></label>
-        <input type="button" id="{{i}}" value="{{elt.precomvtqte[i].distributeur}}" (click)="chargerValeurPrecoMvt(i)"><br/>
+                            <input type="button" id="{{i}}" value="{{elt.type}}" (click)="chargerValeurPrecoMvt(i)"><br/>
+                            <input type="button" id="{{i}}" value="{{elt.precomvtqte[i].distributeur}}" (click)="chargerValeurPrecoMvt(i)"><br/>
         <div class="suppression">
           <button class="" title=""  id="left" >
             <i class="fa fa-pen text-info" aria-hidden="true" (click)="chargerValeurPrecoMvt(i)"></i>

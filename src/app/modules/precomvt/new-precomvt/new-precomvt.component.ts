@@ -211,7 +211,7 @@ this.precoMvtService.ajouterPrecomvt(precomvtTemp).subscribe(
       }
       if(valMontantMin > valMontantMax){
         controleVerif = false;
-        this.tabError.set("montantMax","montant Max doit être supérieur au montant Min");
+        this.tabError.set("montantMax","montant Max doit être supérieur au montantMin");
       }
 
       let valQuantiteMax : number = this.forme.controls["quantiteMax"].value;
@@ -229,7 +229,7 @@ this.precoMvtService.ajouterPrecomvt(precomvtTemp).subscribe(
 
       if(valQuantiteMin > valQuantiteMax){
         controleVerif = false;
-        this.tabError.set("quantiteMin","Quantite Min doit être inférieur à Quantite Max");
+        this.tabError.set("quantiteMin","Quantite Min doit être inférieur à QuantiteMax");
       }
       let valDistributeur : string[] = this.forme.controls["distributeur"].value;
 
@@ -298,8 +298,8 @@ reset():void{
       this.eltsPreco.push(this.creerPrecoMvtQteFamille(precomvtInput));
     else
     this.eltsPreco[this.indexModification]=this.creerPrecoMvtQteFamille(precomvtInput);
-
   }
+
   this.reset();
 }//fonction valPrecomvtqte fin
 
@@ -349,7 +349,6 @@ reset():void{
       //this.forme.controls["fournisseur"].setValue(precoTmp.precomvtqte[0].fournisseur);
       this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
     }
-
   }
 
   /**
@@ -425,22 +424,19 @@ reset():void{
       montantMax: 0,
       montantMin: 0,
       id:"",
-      //fournisseur: "DCD",
+     // fournisseur: "DCD",
       distributeur: precomvtInput.distributeur
     };
     let precomvtTemp : IPrecoMvt={
       id: uuidv4(),
-      //libelle: precomvtInput.libelle,
-      libelle: "Libelle : " + precomvtInput.libelle,
+      libelle:"Libelle : "+ precomvtInput.libelle,
       etat: precomvtInput.etat,
-      type:"Type : " + precomvtInput.type,
+      type: "Type : "+ precomvtInput.type,
       precomvtqte:[]
     }
     precomvtTemp.precomvtqte.push(premvtqte);
     return precomvtTemp;
   }
-
-
   compareItem(famille1: IFamille, famille2: IFamille) {
     return famille2 && famille1 ? famille2.id === famille1.id : famille2 === famille1;
 }

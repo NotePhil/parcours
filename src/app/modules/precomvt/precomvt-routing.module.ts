@@ -12,7 +12,7 @@ const routes: Routes = [
     component: NewPrecomvtComponent
   },
   {
-    path: 'precomvt-nouvelle/:idprecomvt',
+    path: 'precomvt-nouvelle/:idPrecoMvt',
     title: 'Modifier une famille',
     component: NewPrecomvtComponent
   },
@@ -22,7 +22,7 @@ const routes: Routes = [
     component: ListPrecomvtsComponent
   },
   {
-    path: 'view-precomvt/:idprecomvt',
+    path: 'view-precomvt/:idPrecoMvt',
     title: 'Voir la precomvt',
     component: ViewPrecomvtComponent
   }

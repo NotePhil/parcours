@@ -1114,7 +1114,16 @@ export class InMemDBService implements InMemoryDbService {
                 {id:"1",libelle:"rachat",etat: true,type:'neutre',/*type:this.TypeMvtNeutre*/
                   precomvtqte:[{id:"1",quantiteMin:10,  quantiteMax:20,  montantMin:1000, montantMax:7000,/*fournisseur:'gc',*/
                               ressource:{id:"1", libelle:"transfusion",etat:true,quantite:10,unite:this.UnitesLitre,prix:1000,caracteristique:"souple", famille:{id:"4", libelle:"néonat", description:"nouveau-né", etat:"malade"}}
-                          }]},
+                          },
+                          {id:"2",quantiteMin:30,  quantiteMax:40,  montantMin:100, montantMax:7000,/*fournisseur:'gc',*/
+                              famille:[
+                                 {id:"1", libelle:"trans", description:"sang", etat:"gl"},
+                                 {id:"2", libelle:"néonat", description:"nouveau-né", etat:"malade"},
+                                 {id:"3", libelle:"pediatrie", description:"enfant", etat:"souffrant"}
+                             ]
+
+                      },
+                    ]},
                 {id:"2",libelle:"vente",etat: true,type:'reduire',/*type:this.TypeMvtReduire*/
                 precomvtqte:[{id:"1",quantiteMin:30,  quantiteMax:40,  montantMin:100, montantMax:7000,/*fournisseur:'gc',*/
                             famille:[
