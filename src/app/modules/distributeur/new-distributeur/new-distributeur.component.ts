@@ -36,8 +36,6 @@ export class NewDistributeurComponent implements OnInit {
     if((idDistributeur != null) && idDistributeur!==''){
 
       this.btnLibelle="Modifier";
-
-
       //trouver un autre moyen d'initialiser avec des valeurs
       this.distributeurService.getDistributeurById(idDistributeur).subscribe(x =>
       {
