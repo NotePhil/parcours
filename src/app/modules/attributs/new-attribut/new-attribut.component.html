@@ -65,7 +65,8 @@
                                     {{'attributs.table.title8' | translate}}
                                 </label>
                                 <p class="w-100 d-flex align-items-center choix" >
-                                    <input type="checkbox"checked value="true" formControlName="obligatoire" name="obligatoire" id="obligatoire" placeholder="{{'attributs.table.title5' | translate}}" class="ml-2" > oui
+                                    <input type="checkbox"checked value="true" formControlName="obligatoire" name="obligatoire" id="obligatoire" placeholder="{{'attributs.table.title5' | translate}}" class="ml-2"
+                                    > oui
                                 </p>
                             </div>
                         </div>
@@ -74,8 +75,12 @@
                                 <label  for="valeursParDefaut"  class="label" >
                                     {{'attributs.table.title9' | translate}}
                                 </label>
-                                <input type="text" formControlName="valeursParDefaut" name="valeursParDefaut" id="valeursParDefaut" placeholder="{{'attributs.table.title10' | translate}}" class="form-control">
+                                <input type="text" formControlName="valeursParDefaut" name="valeursParDefaut" id="valeursParDefaut" placeholder="{{'attributs.table.title10' | translate}}" class="form-control"
+                                (ngModelChange)="onValueChange"   >
                             </div>
+                            <p  *ngIf="tabError.get('valeursParDefaut')"  class="error"   >
+                              <span *ngIf="tabError.get('valeursParDefaut')">{{ tabError.get('valeursParDefaut') }}</span>
+                            </p>
                         </div>
                     </div>
                 </div>

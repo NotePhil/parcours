@@ -29,13 +29,13 @@ export class NewAttributComponent implements OnInit {
   initialDateCreation = new FormControl(new Date());
   initialDateModification = new FormControl(new Date());
 
+  tabError : Map<String,String> = new Map();
+
   constructor(private formBuilder:FormBuilder, private attributService:AttributService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
-      dateCreation: [''],
-      dateModification: [''],
       type: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       obligatoire:[true],
       valeursParDefaut:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -55,21 +55,31 @@ export class NewAttributComponent implements OnInit {
             titre: this.attribut.titre,
             description: this.attribut.description,
             etat: this.attribut.etat,
-            dateCreation: this.datePipe.transform(this.attribut.dateCreation,'yyyy-MM-dd'),
-            dateModification: this.datePipe.transform(this.attribut.dateModification,'yyyy-MM-dd'),
             type: this.attribut.type,
             obligatoire: this.attribut.obligatoire,
             valeursParDefaut:this.attribut.valeursParDefaut
           })
       });
     }
+
   }
 
   get f(){
     return this.forme.controls;
   }
-  
 
+  onValueChange(){
+    let valtype : any = this.forme.controls["type"].value;
+    let valvaleursParDefaut : string = this.forme.controls["valeursParDefaut"].value;
+    if(valtype == this.typeInt || valtype == this.typeDouble || valtype == this.typeFloat){
+      for( valtype=0; valtype<valvaleursParDefaut.length ; valtype++ )
+        valvaleursParDefaut += valtype.charAt(valtype)+" code : "+ valtype.charCodeAt(valtype)+"\valvaleursParDefaut";
+        if(valvaleursParDefaut == null || valvaleursParDefaut == ''){
+          this.tabError.set("valeursParDefaut","valeursParDefaut est obligatoire");
+        }
+    }else if(valtype == this.typeString || valtype==this.typeBoolean){
+    }
+  }
   onSubmit(attributInput:any){
 
     this.submitted=true;
@@ -80,16 +90,10 @@ export class NewAttributComponent implements OnInit {
       titre: attributInput.titre,
       description: attributInput.description,
       etat: attributInput.etat,
-      dateCreation: attributInput.dateCreation,
-      dateModification: attributInput.dateModification,
-      ordre: 0,
       type: attributInput.type,
       obligatoire: attributInput.obligatoire,
       valeursParDefaut: attributInput.valeursParDefaut
     }
-    attributTemp.dateCreation = this.initialDateCreation.value!
-    attributTemp.dateModification = this.initialDateModification.value!
-
     if(this.attribut != undefined){
       attributTemp.id = this.attribut.id
     }
