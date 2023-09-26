@@ -73,10 +73,7 @@ export class NewAttributComponent implements OnInit {
     let valvaleursParDefaut : string = this.forme.controls["valeursParDefaut"].value;
     if(valtype == this.typeInt || valtype == this.typeDouble || valtype == this.typeFloat){
       for( valtype=0; valtype<valvaleursParDefaut.length ; valtype++ )
-        valvaleursParDefaut += valtype.charAt(valtype)+" code : "+ valtype.charCodeAt(valtype)+"\valvaleursParDefaut";
-        if(valvaleursParDefaut == null || valvaleursParDefaut == ''){
-          this.tabError.set("valeursParDefaut","valeursParDefaut est obligatoire");
-        }
+      valvaleursParDefaut += valvaleursParDefaut.charAt(valtype)+" code : "+valvaleursParDefaut.charCodeAt(valtype)+"\valvaleursParDefaut";
     }else if(valtype == this.typeString || valtype==this.typeBoolean){
     }
   }
