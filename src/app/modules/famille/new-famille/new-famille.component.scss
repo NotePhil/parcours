@@ -52,3 +52,14 @@ select{
       font-size: 15px;
   }
 }
+
+input, #etat{
+  border: none;
+  box-shadow: none;
+}
+input[ type=checkbox ]{
+  border: none;
+  color: red;
+  margin-right: 265px;
+  height: 17px;
+  }

@@ -17,22 +17,22 @@ export class NewPatientComponent implements OnInit {
   patient : IPatient|undefined;
   forme: FormGroup;
   btnLibelle: string="Ajouter";
-  titre: string="Ajouter un nouveau Patient";
+  titre: string="Ajouter une nouvelle Personne";
   submitted: boolean=false;
   initialDate = new FormControl(new Date());
   //TODO validation du formulaire. particulièrment les mail; les dates
-  
-  constructor(private formBuilder:FormBuilder, private patientService:PatientsService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) { 
+
+  constructor(private formBuilder:FormBuilder, private patientService:PatientsService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme =  this.formBuilder.group({
       nom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       prenom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       sexe: [''],
       mail: ['', [Validators.required, Validators.email, Validators.pattern(".+@.+\.{1}[a-z]{2,3}")]],
-      //todo initialisation du composant à une date 
+      //todo initialisation du composant à une date
       dateNaissance: ['1980-01-01', Validators.required],
       telephone: [''],
       adresse: ['']
-    })    
+    })
   }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class NewPatientComponent implements OnInit {
 
       this.btnLibelle="Modifier";
       this.titre="Patient à Modifier";
-      
+
       //trouver un autre moyen d'initialiser avec des valeurs
       this.patientService.getPatientById(idPatient).subscribe(x =>
       {
@@ -57,7 +57,7 @@ export class NewPatientComponent implements OnInit {
           adresse: this.patient.adresse
         })
       });
-    }    
+    }
   }
 
   get f(){
@@ -83,7 +83,7 @@ export class NewPatientComponent implements OnInit {
     console.log("patientTemp.dateNaissance est  :" + patientTemp.dateNaissance);
 
     if(this.patient != undefined){
-      patientTemp.id = this.patient.id  
+      patientTemp.id = this.patient.id
     }
     this.patientService.ajouterPatient(patientTemp).subscribe(
       object => {

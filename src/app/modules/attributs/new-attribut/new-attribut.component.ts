@@ -61,7 +61,6 @@ export class NewAttributComponent implements OnInit {
           })
       });
     }
-
   }
 
   get f(){
@@ -72,8 +71,11 @@ export class NewAttributComponent implements OnInit {
     let valtype : any = this.forme.controls["type"].value;
     let valvaleursParDefaut : string = this.forme.controls["valeursParDefaut"].value;
     if(valtype == this.typeInt || valtype == this.typeDouble || valtype == this.typeFloat){
-      for( valtype=0; valtype<valvaleursParDefaut.length ; valtype++ )
-      valvaleursParDefaut += valvaleursParDefaut.charAt(valtype)+" code : "+valvaleursParDefaut.charCodeAt(valtype)+"\valvaleursParDefaut";
+      for(let i=0; i<valvaleursParDefaut.length ; i++ ){
+        if(valvaleursParDefaut.charCodeAt(i)<48 && valvaleursParDefaut.charCodeAt(i)>57){
+          alert('r');
+        }
+      }
     }else if(valtype == this.typeString || valtype==this.typeBoolean){
     }
   }

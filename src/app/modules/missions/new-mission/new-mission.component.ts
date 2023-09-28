@@ -22,7 +22,7 @@ export class NewMissionComponent implements OnInit {
   submitted: boolean=false;
   services$: Observable<IService[]>=EMPTY;
   idService: string = ""
-  service : IService | undefined 
+  service : IService | undefined
 
   initialDateCreation = new FormControl(new Date());
   initialDateModification = new FormControl(new Date());
@@ -31,7 +31,7 @@ export class NewMissionComponent implements OnInit {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      etat: ['False', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      etat: [true],
       service: ['', Validators.required]
     })
   }
@@ -101,7 +101,7 @@ export class NewMissionComponent implements OnInit {
     missionTemp.service = this.service!
 
     if(this.mission != undefined){
-      missionTemp.id = this.mission.id  
+      missionTemp.id = this.mission.id
     }
     console.log('le resultat est : ', missionTemp.service.libelle)
     this.missionService.ajouterMission(missionTemp).subscribe(

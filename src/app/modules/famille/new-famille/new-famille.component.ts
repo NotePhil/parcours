@@ -29,7 +29,7 @@ export class NewFamilleComponent implements OnInit {
     this.forme =  this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      etat: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      etat:[true],
 
     })
 

@@ -9,7 +9,7 @@
                           <div>
                               <div class="champs">
                                   <label for="libelle" class="label">
-                                    {{'ressource.table.title1' | translate}}
+                                    {{'ressource.table.title1' | translate}} <span style="color: red;" aria-label="required">*</span>
                                   </label>
                                   <input type="text" formControlName="libelle" name="libelle" id="libelle"  placeholder="{{'ressource.table.title1' | translate}}"  class="form-control">
                               </div>
@@ -24,7 +24,7 @@
                                   <label for="etat" class="label" >
                                     {{'ressource.table.title2' | translate}}
                                   </label>
-                                  <input  type="checkbox" formControlName="etat"  name="etat" id="etat" placeholder="" class="form-control" checked>
+                                  <input  type="checkbox" checked value="true" formControlName="etat"  name="etat" id="etat" placeholder="" class="form-control" checked>
                               </div>
 
                           </div>
@@ -32,7 +32,7 @@
                       <div class="form-group">
                           <div class="champs">
                               <label  for="quantite"  class="label" >
-                                {{'ressource.table.title3' | translate}}
+                                {{'ressource.table.title3' | translate}} <span style="color: red;" aria-label="required">*</span>
                               </label>
                               <input type="number" list="" formControlName="quantite" name="quantite" id="quantite" placeholder=" {{'ressource.table.title3' | translate}}" class="form-control" >
                           </div>
@@ -65,7 +65,7 @@
                       <div class="form-group">
                     <div class="champs">
                         <label  for="famille"  class="label" >
-                          {{'ressource.table.title6' | translate}}
+                          {{'ressource.table.title6' | translate}} <span style="color: red;" aria-label="required">*</span>
                         </label>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label class="famill">  </mat-label>

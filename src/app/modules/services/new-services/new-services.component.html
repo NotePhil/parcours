@@ -5,11 +5,11 @@
             <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
                 <div class="">
                     <div class="">
-                        <div class="form-group mt-5 mb-5">
+                        <div class="form-group ">
                             <div>
                                 <div class="champs">
                                     <label for="nom" class="label">
-                                        {{'services.form.label1' | translate}}
+                                        {{'services.form.label1' | translate}} <span style="color: red;" aria-label="required">*</span>
                                     </label>
                                     <input type="text" formControlName="libelle" name="libelle" id="libelle"  placeholder="{{'services.form.label1' | translate}}"  class="form-control" required>
                                 </div>
@@ -18,19 +18,39 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group mt-5 mb-5">
+                        <div class="form-group ">
                             <div>
                                 <div class="champs">
                                     <label for="etat" class="label" >
-                                        {{'services.form.label2' | translate}}
+                                        {{'services.form.label2' | translate}} <span style="color: red;" aria-label="required">*</span>
                                     </label>
-                                    <input  type="text" formControlName="etat"  name="etat" id="etat" placeholder="etat" value="" required class="form-control">
+                                    <input  type="checkbox" checked value="true" formControlName="etat"  name="etat" id="etat" placeholder="etat" value="" required class="form-control">
                                 </div>
                                 <div  *ngIf="submitted && f['etat'].errors"  class="alert alert-danger" >
                                     <div *ngIf="f['etat'].errors['required']">{{'services.form.text2' | translate}}</div>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group ">
+                          <div>
+                              <div class="champs">
+                                  <label for="etat" class="label" >
+                                      Localisation
+                                  </label>
+                                  <input  type="text" formControlName="localisation"  name="localisation" id="localisation" placeholder="localisation"  required class="form-control">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group ">
+                        <div>
+                            <div class="champs">
+                                <label for="etat" class="label" >
+                                    Description
+                                </label>
+                                <input  type="text" formControlName="description"  name="description"  id="description"  placeholder="description"   required class="form-control">
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="actionButton">

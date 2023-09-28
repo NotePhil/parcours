@@ -9,7 +9,7 @@
                             <div>
                                 <div class="champs">
                                     <label for="titre" class="label">
-                                        {{'document.table.title1' | translate}}
+                                        {{'document.table.title1' | translate}}<span style="color: red;" aria-label="required">*</span>
                                     </label>
                                     <input type="text" formControlName="titre" name="titre" id="titre"  placeholder="{{'document.table.title1' | translate}}" class="form-control" required>
                                 </div>
@@ -22,7 +22,7 @@
                             <div>
                                 <div class="champs">
                                     <label for="description" class="label" >
-                                        {{"document.table.title2" | translate}}
+                                        {{"document.table.title2" | translate}}<span style="color: red;" aria-label="required">*</span>
                                     </label>
                                     <textarea type="textarea" formControlName="description" name="description" id="description" placeholder="{{'document.table.title2' | translate}}" class="form-control"  required></textarea>
                                 </div>
