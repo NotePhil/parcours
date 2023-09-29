@@ -46,15 +46,13 @@ export class NewExemplaireComponent implements OnInit {
   idExemplaire : string | null = "";
   idPatientCourant: string | null= "";
   nomPatientCourant: string | null = "";
-  
-  // tableau de type map pour enregistrer les index 
+
+  // tableau de type map pour enregistrer les index
   // et valeurs des controls du formulaire
   tmpIndexValeursControls : Map<string, number> = new Map();
-  
+
   typeInt = TypeTicket.Int;
   typeString = TypeTicket.String;
-  typeDouble = TypeTicket.Double;
-  typeFloat = TypeTicket.Float;
   typeBoolean = TypeTicket.Boolean;
   typeDate = TypeTicket.Date;
   TypeBoolean = TypeTicket.Boolean
@@ -63,7 +61,7 @@ export class NewExemplaireComponent implements OnInit {
   compteur : number = -1
   tableauIndex : number[] = []
 
-  constructor(private router:Router, private formBuilder: FormBuilder, private infosPath:ActivatedRoute, private serviceDocument:DocumentService, private serviceExemplaire : ExemplaireDocumentService, private serviceMission:MissionsService, private serviceAttribut:AttributService) { 
+  constructor(private router:Router, private formBuilder: FormBuilder, private infosPath:ActivatedRoute, private serviceDocument:DocumentService, private serviceExemplaire : ExemplaireDocumentService, private serviceMission:MissionsService, private serviceAttribut:AttributService) {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([])
     });
@@ -78,13 +76,13 @@ export class NewExemplaireComponent implements OnInit {
 
     // recuperation de l'id du document
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument'); console.log("l'id du document", this.idDocument);
-    
+
     this.initialiseFormExemplaire()
   }
 
   addAttributs() {
    this._exemplaireDocument.push(this.formBuilder.control(''));
-   //this.tableauIndex.push(this.incrementeCompteur()) 
+   //this.tableauIndex.push(this.incrementeCompteur())
   }
   initialiseFormExemplaire(){
 
@@ -106,7 +104,7 @@ export class NewExemplaireComponent implements OnInit {
                   this.addAttributs()
 
                   const indice = exemplaireDocument.length;
-                  
+
                   exemplaireDocument.controls[0].setValue("ok")
                   console.log("le resultat est : ", exemplaireDocument.controls[0].value)
                   //creer la map avec id et indice
@@ -161,7 +159,7 @@ export class NewExemplaireComponent implements OnInit {
       }
     }
   }
-  enregistrerObjet(){ 
+  enregistrerObjet(){
     const exemplaireDocument = this._exemplaireDocument;
       this.document.attributs.forEach(
         a => {
@@ -192,7 +190,7 @@ export class NewExemplaireComponent implements OnInit {
   /**
    * methode qui permet d'extraire le premier element d'une chaine de caractere
    * Elle permettra d'afficher les valeurs par defaut des attributs un a un
-   * @param chaine 
+   * @param chaine
    */
   couperLaChaine(chaine : string){
     chaine.slice
@@ -219,7 +217,7 @@ export class NewExemplaireComponent implements OnInit {
       categories: this.document.categories
     }
     exemplaireTemp.objetEnregistre = this.exemplaire.objetEnregistre
-    
+
     console.log("les objets cles-valeur : " + exemplaireTemp.objetEnregistre)
     console.log("this._exemplaireDocument : ", this._exemplaireDocument.value)
     this.serviceExemplaire.ajouterExemplaireDocument(exemplaireTemp).subscribe(

@@ -2,7 +2,7 @@
     <div class="title">
         <h2>{{"lists.title" | translate}} attributs</h2>
     </div>
-    <div class="card container-fluid" >
+    <div class="card container-fluid" id="cardBlock">
         <div class='card-hearder pt-3' >
             <div class="d-flex align-items-center justify-content-end tableTools">
                 <div class="form-inline mr-3">
@@ -45,13 +45,6 @@
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title3' | translate}} </th>
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
                     </ng-container>
-
-                    <!-- ordre Column
-                    <ng-container matColumnDef="ordre">
-                        <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title7' | translate}} </th>
-                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.ordre}} </td>
-                    </ng-container>-->
-
                     <!-- obligatoire Column -->
                     <ng-container matColumnDef="obligatoire">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title8' | translate}} </th>
@@ -95,8 +88,8 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
                 <mat-paginator style="background-color: rgba(40, 167, 69, 0.79);" [pageSizeOptions]="[5, 10, 20]"
-                               showFirstLastButtons
-                               aria-label="Select page of periodic elements">
+                             showFirstLastButtons
+                             aria-label="Select page of periodic elements">
                 </mat-paginator>
             </div>
         </div>

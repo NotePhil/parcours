@@ -7,6 +7,7 @@ import { TypeTicket } from 'src/app/modele/type-ticket';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 import {v4 as uuidv4} from 'uuid';
 
+
 @Component({
   selector: 'app-new-attribut',
   templateUrl: './new-attribut.component.html',
@@ -21,8 +22,7 @@ export class NewAttributComponent implements OnInit {
 
   typeInt = TypeTicket.Int;
   typeString = TypeTicket.String;
-  typeDouble = TypeTicket.Double;
-  typeFloat = TypeTicket.Float;
+  typeRadio=  TypeTicket.Radio;
   typeBoolean = TypeTicket.Boolean;
   typeDate = TypeTicket.Date;
 
@@ -67,20 +67,31 @@ export class NewAttributComponent implements OnInit {
     return this.forme.controls;
   }
 
-  onValueChange(){
+  verifierValeurParDefaut(){
     let valtype : any = this.forme.controls["type"].value;
-    let valvaleursParDefaut : string = this.forme.controls["valeursParDefaut"].value;
-    if(valtype == this.typeInt || valtype == this.typeDouble || valtype == this.typeFloat){
+    let valvaleursParDefaut  = this.forme.controls["valeursParDefaut"].value;
+    if(valtype == this.typeInt){
       for(let i=0; i<valvaleursParDefaut.length ; i++ ){
-        if(valvaleursParDefaut.charCodeAt(i)<48 && valvaleursParDefaut.charCodeAt(i)>57){
-          alert('r');
+        if( isNaN(valvaleursParDefaut)){
+         alert('Faire les traitements .......');
         }
       }
-    }else if(valtype == this.typeString || valtype==this.typeBoolean){
+    }else if(valtype == this.typeString ){
+      if( !isNaN(valvaleursParDefaut)){
+         alert('ce sont des lettres ');
+       }
+    }else if(valtype==this.typeBoolean ){
+      if((valvaleursParDefaut)){
+       // alert('ce sont des lettres ');
+       }
+    }else if(valtype==this.typeRadio){
+      if((valvaleursParDefaut)){
+       // alert('ce sont des lettres ');
+       }
     }
   }
   onSubmit(attributInput:any){
-
+    this.verifierValeurParDefaut();
     this.submitted=true;
     if(this.forme.invalid) return;
 

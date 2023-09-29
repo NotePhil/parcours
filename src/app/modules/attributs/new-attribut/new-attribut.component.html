@@ -49,11 +49,10 @@
                                 <label  for="type" class="label">
                                     {{"attributs.table.title6" | translate}}
                                 </label>
-                                <select  class="form-control" formControlName="type" name="type" id="type" (ngModelChange)="onValueChange()">
+                                <select  class="form-control" formControlName="type" name="type" id="type">
                                     <option value="{{typeInt}}" >{{typeInt}}</option>
                                     <option value="{{typeString}}" >{{typeString}}</option>
-                                    <option value="{{typeDouble}}" >{{typeDouble}}</option>
-                                    <option value="{{typeFloat}}" >{{typeFloat}}</option>
+            
                                     <option value="{{typeBoolean}}" >{{typeBoolean}}</option>
                                     <option value="{{typeDate}}" >{{typeDate}}</option>
                                 </select>
@@ -76,10 +75,10 @@
                                     {{'attributs.table.title9' | translate}}
                                 </label>
                                 <input type="text" formControlName="valeursParDefaut" name="valeursParDefaut" id="valeursParDefaut" placeholder="{{'attributs.table.title10' | translate}}" class="form-control"
-                                (ngModelChange)="onValueChange()" >
+                                >
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
                 <div class="actionButton">

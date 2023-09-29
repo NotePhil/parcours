@@ -4,6 +4,9 @@
         color: #28a745;
     }
 }
+#cardBlock{
+  margin-top:-25px;
+}
 .searchBlock{
     width: 100%;
     display: flex;
@@ -35,6 +38,7 @@
 }
 #tableBlock{
     width: 100%;
+
     div{
         width: 100%;
     }
@@ -89,7 +93,7 @@ mat-form-field:focus{
         border: none;
         margin: 0;
     }
-}  
+}
 .example-full-width {
     height: 42px !important;
     border: 2px solid #28a745;
@@ -134,7 +138,7 @@ th{
 @media screen and (max-width: 1200px) {
     .title h2{
         font-size: 15px;
-    }  
+    }
     .example-full-width {
         height: 42px !important;
         border: 2px solid #28a745;
@@ -143,7 +147,7 @@ th{
 @media screen and (max-width: 1100px) {
     .title h2{
         font-size: 15px;
-    } 
+    }
 }
 @media screen and (max-width: 1060px) {
     td{
