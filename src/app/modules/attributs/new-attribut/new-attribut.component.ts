@@ -36,7 +36,6 @@ export class NewAttributComponent implements OnInit {
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
-      etat: [true],
       type: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       obligatoire:[true],
       valeursParDefaut:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -105,7 +104,7 @@ export class NewAttributComponent implements OnInit {
       obligatoire: attributInput.obligatoire,
       valeursParDefaut: attributInput.valeursParDefaut
     }
-   
+
     if(this.attribut != undefined){
       attributTemp.id = this.attribut.id
     }
