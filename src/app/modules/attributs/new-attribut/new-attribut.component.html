@@ -37,7 +37,7 @@
                                     <label for="etat" class="label" >
                                         {{'attributs.table.title3' | translate}}
                                     </label>
-                                    <input  type="checkbox"   formControlName="etat"  name="etat" id="etat" placeholder="{{'attributs.table.title3' | translate}}" checked value="true" class="form-control">
+                                    <input  type="checkbox" checked value="true"  formControlName="etat"  name="etat" id="etat" placeholder="{{'attributs.table.title3' | translate}}"  class="form-control">
                                 </div>
                                 <div  *ngIf="submitted && f['etat'].errors"  class="alert alert-danger" >
                                     <div *ngIf="f['etat'].errors['required']">{{'attributs.form.text3' | translate}}</div>
@@ -52,7 +52,7 @@
                                 <select  class="form-control" formControlName="type" name="type" id="type">
                                     <option value="{{typeInt}}" >{{typeInt}}</option>
                                     <option value="{{typeString}}" >{{typeString}}</option>
-
+                                    <option value="{{typeRadio}}" >{{typeRadio}}</option>
                                     <option value="{{typeBoolean}}" >{{typeBoolean}}</option>
                                     <option value="{{typeDate}}" >{{typeDate}}</option>
                                 </select>

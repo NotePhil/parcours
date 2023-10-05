@@ -26,9 +26,6 @@ export class NewAttributComponent implements OnInit {
   typeBoolean = TypeTicket.Boolean;
   typeDate = TypeTicket.Date;
 
-  /*initialDateCreation = new FormControl(new Date());
-  initialDateModification = new FormControl(new Date());*/
-
   tabError : Map<String,String> = new Map();
 
   constructor(private formBuilder:FormBuilder, private attributService:AttributService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
@@ -77,16 +74,15 @@ export class NewAttributComponent implements OnInit {
         }
       }
     }else if(valtype == this.typeString ){
-      if( !isNaN(valvaleursParDefaut)){
+      if( !isNaN(valvaleursParDefaut )){
          alert('ce sont des lettres ');
        }
-    }else if(valtype==this.typeBoolean ){
-      if((valvaleursParDefaut)){
-       // alert('ce sont des lettres ');
-       }
-    }else if(valtype==this.typeRadio){
-      if((valvaleursParDefaut)){
-       // alert('ce sont des lettres ');
+    }else if(valtype==this.typeBoolean || valtype==this.typeRadio){
+      if(valvaleursParDefaut.split(',')){
+       valvaleursParDefaut==confirm
+          ("l'utilisateur veut continuer !");
+      }else {
+          ("l'utilisateur ne veut plus continuer !");
        }
     }
   }
