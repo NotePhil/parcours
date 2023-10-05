@@ -42,7 +42,7 @@ export class NewServicesComponent implements OnInit {
       this.titre="service à Modifier";
       this.serviceService.getServiceById(idService).subscribe(x =>
         {
-          this.service = x; console.log(this.service);
+          this.service = x;
           this.forme.setValue({
             libelle: this.service.libelle,
             etat: this.service.etat,
@@ -84,9 +84,6 @@ export class NewServicesComponent implements OnInit {
     this.serviceService.ajouterService(serviceTemp).subscribe(
       object => {
         this.router.navigate(['/list-services']);
-      },
-      error =>{
-        console.log(error)
       }
     )
   }

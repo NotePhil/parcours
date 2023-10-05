@@ -26,8 +26,8 @@ export class NewAttributComponent implements OnInit {
   typeBoolean = TypeTicket.Boolean;
   typeDate = TypeTicket.Date;
 
-  initialDateCreation = new FormControl(new Date());
-  initialDateModification = new FormControl(new Date());
+  /*initialDateCreation = new FormControl(new Date());
+  initialDateModification = new FormControl(new Date());*/
 
   tabError : Map<String,String> = new Map();
 
@@ -35,6 +35,7 @@ export class NewAttributComponent implements OnInit {
     this.forme = this.formBuilder.group({
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      etat: [true],
       etat: [true],
       type: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       obligatoire:[true],
@@ -49,7 +50,7 @@ export class NewAttributComponent implements OnInit {
       this.titre="service à Modifier";
       this.attributService.getAttributById(idAttribut).subscribe(x =>
         {
-          this.attribut = x; console.log(this.attribut);
+          this.attribut = x;
           this.attribut.id = idAttribut!,
           this.forme.setValue({
             titre: this.attribut.titre,
@@ -104,6 +105,7 @@ export class NewAttributComponent implements OnInit {
       obligatoire: attributInput.obligatoire,
       valeursParDefaut: attributInput.valeursParDefaut
     }
+   
     if(this.attribut != undefined){
       attributTemp.id = this.attribut.id
     }

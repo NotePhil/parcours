@@ -40,6 +40,8 @@
     },
     "lists":{
         "title":"listing",
+        "text1": "Field Required",
+        "text2": "Field not Required",
         "button1":"Print",
         "button2":"Close",
         "button3":"Cancel",
@@ -74,6 +76,33 @@
             "text2":"Surname is requied",
             "text3":"Birthday is requied",
             "text4":"mail address is requied is requied"
+        }
+    },
+    "personnel":{
+        "text":"Personnels retrouvé(e)s",
+        "search-bar":"search",
+        "table":{
+            "title1":"Name",
+            "title2":"Surname",
+            "title3":"Birthday",
+            "title4":"Sex",
+            "title5":"Email",
+            "title6":"Date d'entrée",
+            "title7":"Phone",
+            "title8":"Date De Sortie",
+            "title9":"Actions",
+            "actions":{
+                "link2":"Update",
+                "link3":"View",
+                "link4":"Delete"
+            }
+        },
+        "form":{
+            "text1":"Name is requied",
+            "text2":"Surname is requied",
+            "text3":"Birthday is requied",
+            "text4":"email address is requied is requied",
+            "text5":"Day of entry is required."       
         }
     },
     "services":{
@@ -183,7 +212,7 @@
             "title14":"Category's range",
             "title15":"Categories",
             "title16":"libelle attribut",
-            "title17":"categories"
+            "title17":"Preconisations"
         },
         "form":{
             "text1":"Title is required.",
@@ -199,6 +228,7 @@
         },
         "exemplaire":{
             "title":"Document's instance ",
+            "title2":"Old datas",
             "text1":"composition of this instance"
         }      
     },
@@ -237,7 +267,7 @@
         }
     }
   },
-  "ressource":{
+    "ressource":{
     "table":{
         "title":"Add a New Resource",
         "title1":" Libel",
@@ -265,7 +295,7 @@
         "text15":"Select your Characteristics"
     },
     "lists":{
-      "button2":"Retour"
+        "button2":"Retour"
     },
     "title":" Resource Listing",
     "search-bar":"Research",
@@ -280,5 +310,18 @@
         "title8":"Category",
         "title9":"Actions "
     }
-}
+    },
+    "preconisation":{
+        "form":{
+            "title1":"Select preconisations"
+        },
+        "table":{
+            "title1":"Label",
+            "title2":"Status",
+            "title3":"Type"
+        },
+        "view":{
+            "text1":"Preconisations of this document"
+        }
+    }
 }
