@@ -14,13 +14,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import {MatRadioModule} from '@angular/material/radio';
 import { ListPersonnelsComponent } from './list-personnels/list-personnels.component';
+import { RolesPersonnelComponent } from './roles-personnel/roles-personnel.component';
 
 
 @NgModule({
   declarations: [
     NewPersonnelComponent,
-    ListPersonnelsComponent
+    ListPersonnelsComponent,
+    RolesPersonnelComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +37,7 @@ import { ListPersonnelsComponent } from './list-personnels/list-personnels.compo
     MatTableModule,
     MatSortModule,
     TicketsModule,
+    MatRadioModule,
     
     TranslateModule.forChild({
         loader: {
