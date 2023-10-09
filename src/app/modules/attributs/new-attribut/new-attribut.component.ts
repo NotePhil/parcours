@@ -27,6 +27,7 @@ export class NewAttributComponent implements OnInit {
   typeDate = TypeTicket.Date;
 
   tabError : Map<String,String> = new Map();
+  valeursParDefaut: any;
 
   constructor(private formBuilder:FormBuilder, private attributService:AttributService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
@@ -66,24 +67,36 @@ export class NewAttributComponent implements OnInit {
 
   verifierValeurParDefaut(){
     let valtype : any = this.forme.controls["type"].value;
-    let valvaleursParDefaut  = this.forme.controls["valeursParDefaut"].value;
+    //let valvaleursParDefaut = valtype.split(';');
+    //console.log(valvaleursParDefaut)
+    //let valtype = valvaleursParDefaut.split(";");
+    let valvaleursParDefaut = this.forme.controls["valeursParDefaut"].value;
+
     if(valtype == this.typeInt){
-      for(let i=0; i<valvaleursParDefaut.length ; i++ ){
         if( isNaN(valvaleursParDefaut)){
          alert('Faire les traitements .......');
         }
-      }
+
     }else if(valtype == this.typeString ){
       if( !isNaN(valvaleursParDefaut )){
          alert('ce sont des lettres ');
        }
     }else if(valtype==this.typeBoolean || valtype==this.typeRadio){
-      if(valvaleursParDefaut.split(',')){
-       valvaleursParDefaut==confirm
-          ("l'utilisateur veut continuer !");
-      }else {
-          ("l'utilisateur ne veut plus continuer !");
-       }
+
+    if(valvaleursParDefaut.length===0){
+        alert ('Au moins une valeurs doit être saisie pour ce type');
+      }
+
+    /*if(valtype==this.typeBoolean || valtype==this.typeRadio){
+      if(valvaleursParDefaut.length>1){
+        alert ('Au moins deux valeurs doit être saisie pour ce type');
+      return
+      }
+    }
+     if(valvaleursParDefaut.typeBoolean.length>1){
+      alert ('Au moins une valeurs doit être saisie pour ce type');
+      return
+     }*/
     }
   }
   onSubmit(attributInput:any){

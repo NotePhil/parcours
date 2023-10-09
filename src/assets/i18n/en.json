@@ -102,7 +102,7 @@
             "text2":"Surname is requied",
             "text3":"Birthday is requied",
             "text4":"email address is requied is requied",
-            "text5":"Day of entry is required."       
+            "text5":"Day of entry is required."
         }
     },
     "services":{
@@ -155,7 +155,7 @@
             "title7":"Order",
             "title8":"Is attribut required ?",
             "title9":"Defaut values ",
-            "title10":"Separeted values with a comma"
+            "title10":"Separeted values with a ;"
         },
         "form":{
             "text1":"Title is required.",
@@ -230,7 +230,7 @@
             "title":"Document's instance ",
             "title2":"Old datas",
             "text1":"composition of this instance"
-        }      
+        }
     },
     "theme":{
         "libelle":"theme"
