@@ -87,16 +87,6 @@ export class NewAttributComponent implements OnInit {
         alert ('Au moins une valeurs doit être saisie pour ce type');
       }
 
-    /*if(valtype==this.typeBoolean || valtype==this.typeRadio){
-      if(valvaleursParDefaut.length>1){
-        alert ('Au moins deux valeurs doit être saisie pour ce type');
-      return
-      }
-    }
-     if(valvaleursParDefaut.typeBoolean.length>1){
-      alert ('Au moins une valeurs doit être saisie pour ce type');
-      return
-     }*/
     }
   }
   onSubmit(attributInput:any){
