@@ -1,10 +1,5 @@
-#mainSection{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.block{
+
+/*.block{
   width: 60%;
 }
 .entete{
@@ -37,17 +32,18 @@ select{
 #dateCreation,#dateModification{
   visibility: hidden;
 }
-input[ type=checkbox ]{
-  border: none;
-  color: red;
-  margin-right: 250px;
-  height: 17px;
-  }
+
 
   input, #etat{
     border: none;
     box-shadow: none;
-  }
+  }*/
+  input[ type=checkbox ]{
+    border: none;
+    color: red;
+    margin-right: 250px;
+    height: 17px;
+    }
   input, #famille{
     border:none;
     box-shadow:none;
@@ -57,7 +53,7 @@ option{
   height: 200px;
   word-spacing: 3px;
 }
-.actionButton{
+/*.actionButton{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -68,7 +64,7 @@ option{
       padding: 0 10px;
       font-size: 15px;
   }
-}
+}*/
 mat-form-field{
   width: 570px;
   padding: 0;

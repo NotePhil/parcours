@@ -323,5 +323,32 @@
         "view":{
             "text1":"Preconisations of this document"
         }
+    },
+    "distributeur": {
+      "table": {
+        "title": "Add a new Distributor",
+        "title1": "Social Reason ",
+        "title2": "state",
+        "title3": "Address",
+        "title4": "phone",
+        "title5": "Email"
+      },
+      "form": {
+        "text1": "Field Required",
+        "text2": "Field Required"
+      },
+      "lists": {
+        "button1": "Cancel"
+      },
+      "title": "Distributor listing ",
+      "search-bar": "Research",
+      "table2": {
+        "title1": "Socialreason ",
+        "title2": "address",
+        "title3": "state",
+        "title4": "phone",
+        "title5": "Email",
+        "title9": "Actions "
+      }
     }
 }

@@ -66,33 +66,47 @@ export class NewAttributComponent implements OnInit {
   }
 
   verifierValeurParDefaut(){
-    let valtype : any = this.forme.controls["type"].value;
-    //let valvaleursParDefaut = valtype.split(';');
-    //console.log(valvaleursParDefaut)
-    //let valtype = valvaleursParDefaut.split(";");
+    let valtype : string = this.forme.controls["type"].value;
     let valvaleursParDefaut = this.forme.controls["valeursParDefaut"].value;
 
     if(valtype == this.typeInt){
         if( isNaN(valvaleursParDefaut)){
-         alert('Faire les traitements .......');
+         alert("la valeur de type number n'est un nombre ");
+         return false;
         }
 
-    }else if(valtype == this.typeString ){
-      if( !isNaN(valvaleursParDefaut )){
-         alert('ce sont des lettres ');
-       }
-    }else if(valtype==this.typeBoolean || valtype==this.typeRadio){
+      }else if(valtype==this.typeBoolean || valtype==this.typeRadio){
+        let val : string = this.forme.controls["valeursParDefaut"].value;
 
-    if(valvaleursParDefaut.length===0){
-        alert ('Au moins une valeurs doit être saisie pour ce type');
+        if(val ==null || val.length ==0){
+            alert ('Au moins une valeurs doit être saisie pour ce type');
+            return false;
+        }
+        let tabVal : string[] = val.split(";");
+        if(tabVal.length==1 && tabVal[0].trim().length!=0)
+        {
+          if(valtype==this.typeBoolean)
+            return true;
+          else{
+            alert ('Au moins une valeurs doit être saisie pour ce type');
+            return false;
+          }
+        }else{
+          for(const element of tabVal){
+            if(element.trim() == null || element.trim().length == 0){
+              return false;
+            }
+          }
+          return true;
+        }
+
       }
-
+      return true;
     }
-  }
-  onSubmit(attributInput:any){
-    this.verifierValeurParDefaut();
-    this.submitted=true;
-    if(this.forme.invalid) return;
+    onSubmit(attributInput:any){
+      ;
+      this.submitted=true;
+      if(this.forme.invalid && this.verifierValeurParDefaut()) return;
 
     let attributTemp : IAttributs={
       id:  uuidv4(),

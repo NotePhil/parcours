@@ -11,8 +11,6 @@
 }
 
 .titleBlock{
- // background-color: #f80a0a;
-  //color: white;
   text-align: center;
   font-size:8px;
   font-weight: bold;
@@ -22,15 +20,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
- /* div{
-    margin: 5px;
-    input{
-      padding: 5px;
-      border: none;
-      border-radius: 5px;
-      background: none;
-    }
-  }*/
   .infosBoitier{
     display: flex;
     flex-direction: column;
@@ -40,7 +29,6 @@
       flex-direction: column;
       p{
         width: 100%;
-
       }
     }
      .blockQuantite{
@@ -62,7 +50,6 @@
   padding-left: 8px;
 }
  .color{
-  //box-shadow: 0 0 6px #00FF00;
    border-radius: 5px;
    background-color:#17a2b8e1;
    width: 98%;
@@ -108,13 +95,11 @@ h4{
   flex-wrap: wrap;
   button{
       background-color: #28a745;
-      //background-color: #7ea97e;
       color: white;
       height: 30px;
       padding: 0 10px;
       margin: 5px;
       font-size: 14px;
-      //opacity: 0.8;
   }
   button:hover{
       opacity: 1;
@@ -123,24 +108,7 @@ h4{
 
 
 }
-.block{
-  width: 60%;
-}
-.entete{
-  //background-color: #7ea97e;
-  background-color: #28a745;;
-  color: white;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  //width:628px;
- // margin-left: -20px;
-  //margin-top: -20px;
-}.form-control{
-  border: none;
-  box-shadow: 0 0 2px rgb(220, 220, 220);
-  height: 35px;
-}
+
 .rigth{
    margin-top: -8px;
 }
@@ -152,59 +120,7 @@ h4{
   font-weight: bold;
   height: 65px;
 }
-.entete1{
-  background-color: #28a745;;
-  color: white;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  //width:620px;
-  //margin-left: -20px;
- // margin-top: -20px;
-}.form-control{
-  border: none;
-  box-shadow: 0 0 2px rgb(220, 220, 220);
-  height: 35px;
-}
-.entete2{
-  background-color: #28a745;;
-  color: white;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  //width:620px;
-  //margin-left: -20px;
-  //margin-top: -20px;
-}.form-control{
-  border: none;
-  box-shadow: 0 0 2px rgb(220, 220, 220);
-  height: 35px;
-}
-.entete3{
-  //background-color: #7ea97e;
-  color: black;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
 
-}.form-control{
-  border: none;
-  box-shadow: 0 0 2px rgb(220, 220, 220);
-  height: 35px;
-}
-.champs{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 10px 0;
-  label{
-      width: 300px;
-      font-weight: normal;
-  }
-}
-.champs, select,input{
-  font-size: 15px;
-}
 select{
   border: none;
   box-shadow: 0 0 2px rgb(220, 220, 220);
@@ -214,21 +130,12 @@ select{
   padding: 0 10px;
   border-radius: 5px;
 }
-/*.select{
-  border: none;
-  box-shadow: 0 0 2px rgb(220, 220, 220);
-  background-color: #7ea97e63;
-  color: rgb(108, 108, 108);
-  border-radius: 5px;
-  width: 100%;
-}*/
+
 .error{
- // margin-left: 20px;
   display: flex;
   font-style: italic;
   align-items:start;
   color: red;
-  //background-color: #28a745;
   width: 100%;
   padding-left: 5px;
   padding-top: 5px;
@@ -244,13 +151,11 @@ select{
   flex-wrap: wrap;
   button{
     background-color: #28a745;
- // background-color: #7ea97e;
       color: white;
       height: 30px;
       padding: 0 10px;
       margin: 5px;
       font-size: 14px;
-      //opacity: 0.8;
   }
   button:hover{
       opacity: 1;
@@ -292,20 +197,14 @@ select{
   color: red;
   margin-right: 265px;
   height: 17px;
-  //row-direction: row-reverse;
-  //justify-content:start;
   }
 
 
 input, #famille{
   border:none;
   box-shadow:none;
-  //margin-top: -23px;
  }
-input, #etat{
-  border: none;
-  box-shadow: none;
-}
+
 a{
   background-color: #7ea97e;
   width: 62px;
@@ -318,14 +217,12 @@ a{
 #next{
  display:flex;
  justify-content: space-between;
- //margin-left: 460px;
 }
 
 #essai{
   margin-top:25px;
 }
 .label3{
-//line-height:15px;
 margin-top: -8px;
 }
 #label3{

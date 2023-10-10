@@ -1,6 +1,6 @@
 <div id="mainSection">
   <div class="card block">
-      <div class="card-header pt-4 pb-4 entete"> {{'famille.header' | translate}}</div>
+      <div class="card-header" class="entete  pt-4 pb-4"> {{'famille.header' | translate}}</div>
       <div class="card-body">
         <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
               <div class="">
@@ -11,7 +11,7 @@
                                   <label for="libelle" class="label">
                                     {{'famille.table.title1' | translate}} <span style="color: red;" aria-label="required">*</span>
                                   </label>
-                                  <input type="text" formControlName="libelle" name="libelle" id="libelle"  placeholder="{{'famille.table.title1' | translate}}"  class="form-control" required>
+                                  <input class="form-control" type="text" formControlName="libelle" name="libelle" id="libelle"  placeholder="{{'famille.table.title1' | translate}}"   required>
                               </div>
                               <div  *ngIf="submitted && f['libelle'].errors"  class="alert alert-danger" >
                                   <div *ngIf="f['libelle'].errors['required']">{{'famille.form.text1' | translate}}</div>
