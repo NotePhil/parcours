@@ -27,22 +27,23 @@ export class RolesPersonnelComponent implements OnInit {
 
   myControl = new FormControl<string | IRole>('');
   //personnel$:Observable<personnel>=EMPTY;
-  personnel : IPersonnel|undefined;
+  personnel!: IPersonnel;
   forme: FormGroup;
   nomPersonnel = "";
   datas: any[] = []
   ELEMENTS_TABLE: any[] = [];
-  VALIDATE_ROLE: any = {};
   filteredOptions: IRole[] | undefined;
   displayedColumns: string[] = ['selection', 'titre', 'description', 'etat'];
   dataSource = new MatTableDataSource<IRole>(this.ELEMENTS_TABLE);
   dataSourceRoleResultat = new MatTableDataSource<any>();
   idRole: string = '';
+  submitted: boolean=false;
+
   constructor(private formBuilder:FormBuilder, private _liveAnnouncer: LiveAnnouncer, private personnelService:PersonnelsService, private serviceRole: RolesService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) { 
     this.forme =  this.formBuilder.group({
-      dateEntree: ['1980-01-01', Validators.required],
-      dateFin: [''],
-    })    
+      dateEntree: ['', Validators.required],
+      dateFin: ['']
+    })  
 
   }
 
@@ -63,6 +64,7 @@ export class RolesPersonnelComponent implements OnInit {
 
   ngOnInit(): void {
     let idPersonnel = this.infosPath.snapshot.paramMap.get('idPersonnel');
+
     if((idPersonnel != null) && idPersonnel!==''){     
       
       this.personnelService.getPersonnelById(idPersonnel).subscribe(x =>
@@ -71,7 +73,6 @@ export class RolesPersonnelComponent implements OnInit {
         this.nomPersonnel = this.personnel?.nom+" "+this.personnel?.prenom
         
       });
-
 
       this.getAllRoles().subscribe(valeurs => {
         this.dataSource.data = valeurs;
@@ -112,17 +113,24 @@ export class RolesPersonnelComponent implements OnInit {
     let listIdRolesTemp : any[] = []
     if (event.target.checked) {
       if (!listIdRolesTemp.includes(this.idRole)) {
+        this.submitted=true;
+
+        if(this.forme.invalid){
+          event.target.checked = false
+          return;
+        }
         this.ajoutSelectionRole(this.idRole);
         this.datas.push({id: this.idRole, event: event})
       }
       console.log("resultat :", this.datas);
       
     } else {
-      this.retirerSelectionRole(this.idRole);
       let i = 0;
       let res = false;
       while (res == false ) {
         if (this.datas[i].id == this.idRole) {
+
+            this.ELEMENTS_TABLE.splice(this.datas[i].id, 1); // je supprime un seul element du tableau a la position 'i'
             this.datas[i].splice(i, 1);
             res = true;
         }
@@ -131,42 +139,30 @@ export class RolesPersonnelComponent implements OnInit {
     }
   }
 
-  retirerSelectionRole(index: String) {
-    let i = 0;
-    let res = false;
+  retirerSelectionRole(index: number) {
+    console.log("index du tab :", index);
+    
     this.ELEMENTS_TABLE = this.dataSourceRoleResultat.data;
-    while (res == false ) {
-      if (this.ELEMENTS_TABLE[i].role.id == index) {
-          this.ELEMENTS_TABLE.splice(i, 1); // je supprime un seul element du tableau a la position 'i'
-          res = true;
-      }
-      i++;
-    }
+          this.ELEMENTS_TABLE.splice(index, 1); // je supprime un seul element du tableau a la position 'i'
     this.dataSourceRoleResultat.data = this.ELEMENTS_TABLE
   }
 
-  unchecked(index: String) {
-    let i = 0;
-    let res = false;
-    while (res == false ) {
-      if (this.datas[i].id == index) {
-        let find = false;
-        let j = 0;
-        while (find == false) {
-          if (this.dataSource.data[j].id == index) {
-            this.datas[i].event.target.checked = false;   
-          }
-        }
-        this.datas[i].splice(i, 1);
-        res = true;
-      }
-      i++
-    }
+  validateElement() {
+    this.dataSourceRoleResultat.data = this.ELEMENTS_TABLE;
+    this.datas.forEach((c) => (c.event.target.checked = false))
+    this.ELEMENTS_TABLE = []
+    this.datas = []
+  }
+
+  annullerElement() {
+    this.datas.forEach((c) => (c.event.target.checked = false))
+    this.ELEMENTS_TABLE = []
+    this.datas = []
   }
 
   ajoutSelectionRole(idrole: string) {
+
     this.serviceRole.getRoleById(idrole).subscribe((val) => {
-      if(this.forme.invalid) return;
       
       this.ELEMENTS_TABLE = this.dataSourceRoleResultat.data;
       this.ELEMENTS_TABLE.push({
@@ -174,7 +170,6 @@ export class RolesPersonnelComponent implements OnInit {
         dateEntree: this.forme.value.dateEntree,
         dateFin: this.forme.value.dateFin
       });
-      this.dataSourceRoleResultat.data = this.ELEMENTS_TABLE
     });
   }
   /** Announce the change in sort state for assistive technology. */
@@ -191,20 +186,36 @@ export class RolesPersonnelComponent implements OnInit {
   }
 
   onSubmit(personnelInput:any){
+    this.submitted = true
     //Todo la validation d'element non conforme passe
     if(this.forme.invalid) return;
+    
+    let idPersonnel = this.infosPath.snapshot.paramMap.get('idPersonnel');
 
+    if((idPersonnel != null) && idPersonnel!==''){     
+      
+      this.personnelService.getPersonnelById(idPersonnel).subscribe(x =>
+      {
+        this.personnel = x;
+
+      });
+    }
+
+    
     let personnelTemp : IPersonnel={
       id: uuidv4(),
-      nom:personnelInput.nom,
-      prenom:personnelInput.prenom,
-      sexe:personnelInput.sexe,
-      email:personnelInput.email,
-      telephone:personnelInput.telephone,
-      dateNaissance:personnelInput.dateNaissance,
-      dateEntree: personnelInput.dateEntree,
-      dateSortie: personnelInput.dateSortie
+      nom: this.personnel?.nom,
+      prenom:this.personnel?.prenom,
+      sexe:this.personnel?.sexe,
+      email:this.personnel?.email,
+      telephone:this.personnel?.telephone,
+      dateNaissance:this.personnel.dateNaissance,
+      dateEntree: this.personnel?.dateEntree,
+      dateSortie: this.personnel?.dateSortie,
+      roles: personnelInput.filteredData
     }
+
+    console.log("final personnel :", personnelTemp);
 
     if(this.personnel != undefined){
       personnelTemp.id = this.personnel.id  
