@@ -200,7 +200,7 @@
         "exemplaire":{
             "title":"Exemplaire du document",
             "text1":"Composition de l'exemplaire"
-        }      
+        }
     },
     "theme":{
         "libelle":"theme"
@@ -279,5 +279,34 @@
         "title8":"Catégorie",
         "title9":"Actions "
     }
+    },
+    "role":{
+      "header":"Ajouter un nouveau Role",
+      "table":{
+        "title1":"Titre",
+        "title2":"titre",
+        "title3":"Etat",
+        "title4":"Description",
+        "title5":"description"
+      },
+      "form":{
+        "text1":"Champ Obligatoire"
+    },
+    "lists":{
+      "button1":"Annuler"
+    },
+    
+    "title":"listing Role",
+    "search-bar":"Rechercher",
+    "table1":{
+        "title1":"Titre",
+        "title2":"Description",
+        "title3":"Etat",
+        "title4":"Actions",
+        "actions":{
+            "link2":"Modifier",
+            "link4":"Supprimer"
+        }
     }
+}
 }
