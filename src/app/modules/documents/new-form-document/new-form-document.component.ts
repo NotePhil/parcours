@@ -69,7 +69,7 @@ export class NewFormDocumentComponent implements OnInit {
   //tableau contenent les preconisations
   ELEMENTS_TABLE_PRECONISATIONS: IPrecoMvt[] = [];
 
-  
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -131,7 +131,8 @@ export class NewFormDocumentComponent implements OnInit {
                       dateCreation: new Date(),
                       dateModification: new Date(),
                       valeursParDefaut: '',
-                      type: TypeTicket.Int
+                      type: TypeTicket.Int,
+                      obligatoire:false,
                     }
                   }
                 }
@@ -162,7 +163,7 @@ export class NewFormDocumentComponent implements OnInit {
   openCategorieDialog(){
     //envoi des données à la fenetre enfant
 
-    const dialogRef = this.dialogDef.open(ModalCategoriesComponent, 
+    const dialogRef = this.dialogDef.open(ModalCategoriesComponent,
     {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -180,7 +181,7 @@ export class NewFormDocumentComponent implements OnInit {
   }
 
   openAttributDialog(){
-    const dialogRef = this.dialogDef.open(ModalChoixAttributsComponent, 
+    const dialogRef = this.dialogDef.open(ModalChoixAttributsComponent,
     {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -198,7 +199,7 @@ export class NewFormDocumentComponent implements OnInit {
   }
   openPrecoMvtDialog(){
 
-    const dialogRef = this.dialogDef.open(ModalChoixPreconisationsComponent, 
+    const dialogRef = this.dialogDef.open(ModalChoixPreconisationsComponent,
     {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -220,7 +221,7 @@ export class NewFormDocumentComponent implements OnInit {
    * ceci permet de former le tableau d'objets ICategoriesAttriut qui sera rattache au document lors de l'enregistrement
    */
   syntheseCategorieAttribut(){
-    let tmpCatAtt = new Map(); 
+    let tmpCatAtt = new Map();
     let categorieAttributsFinal : ICategoriesAttributs[] = [];
 
     //récupération des données du service
@@ -267,11 +268,11 @@ export class NewFormDocumentComponent implements OnInit {
       categories: [],
       preconisations: []
     }
-    
+
     if(this.document.id != ""){
       documentTemp.id = this.document.id
     }
-    
+
     this.ELEMENTS_TABLE_ATTRIBUTS.forEach(
       a => documentTemp.attributs.push(a)
     )

@@ -60,6 +60,7 @@ export class NewExemplaireComponent implements OnInit {
     dateModification: new Date(),
     valeursParDefaut: '',
     type: TypeTicket.Int,
+    obligatoire:false,
   };
 
   formeExemplaire: FormGroup;
@@ -138,7 +139,7 @@ export class NewExemplaireComponent implements OnInit {
       } else {
         this._exemplaireDocument.push(this.formBuilder.control(''));
       }
-    } 
+    }
   }
 
   /**
@@ -319,11 +320,11 @@ export class NewExemplaireComponent implements OnInit {
     return this.numerateur;
   }
   /**
-   * 
-   * @returns 
+   *
+   * @returns
    */
   evaluation():string{
-    
+
     this.estValide = true
     for (let index = 0; index < this.tempAttributsObbligatoires.size; index++) {
       if (this.f.controls[index].errors) {

@@ -32,15 +32,15 @@ export class ModalCategoriesComponent implements OnInit {
   validation: boolean=false;
 
   // structure du tableau presentant les categories creees avec leurs attributs
-  displayedCategoriesAttributsColumns: string[] = ['actions','nomCategorie', 'ordreCat', 'libelleAttribut', 'ordreAtrParCat', 'obligatoire']; 
+  displayedCategoriesAttributsColumns: string[] = ['actions','nomCategorie', 'ordreCat', 'libelleAttribut', 'ordreAtrParCat', 'obligatoire'];
   // structure du tableau presentant les choix des attributs lors de la creation des categories
-  displayedCategoriesColumns: string[] = ['actions','titre', 'description', 'type', 'ordreAtrParCat', 'obligatoire'];  
-  
+  displayedCategoriesColumns: string[] = ['actions','titre', 'description', 'type', 'ordreAtrParCat', 'obligatoire'];
+
   nomValide : boolean = false
-  
+
   //tableau de listing des attributs a affecter a chaque categorie
-  dataSourceAttributTemp = new MatTableDataSource<IAssociationCategorieAttributs>(); 
-  
+  dataSourceAttributTemp = new MatTableDataSource<IAssociationCategorieAttributs>();
+
   categorieAttributs : ICategoriesAttributs = {
     id: '',
     nom: '',
@@ -55,16 +55,17 @@ export class ModalCategoriesComponent implements OnInit {
     dateCreation: new Date,
     dateModification: new Date,
     valeursParDefaut: '',
-    type: TypeTicket.Int
+    type: TypeTicket.Int,
+    obligatoire: false,
   }
 
 // tableau contenant les categories creees a partir du premier tableau de la modal
-  TABLE_CATEGORIE_AFFICHAGE_TEMP: ICategorieAffichage[] = []; 
+  TABLE_CATEGORIE_AFFICHAGE_TEMP: ICategorieAffichage[] = [];
   tableResultatsCategoriesAffichage  = new MatTableDataSource<ICategorieAffichage>(this.TABLE_CATEGORIE_AFFICHAGE_TEMP);
 
   tableauAttributsTemp : IAssociationCategorieAttributs[] = []
-  tableauIndexSelectionner = new Map(); 
-  
+  tableauIndexSelectionner = new Map();
+
 // structure du tableau presentant les objets categoriesAttributs finaux formes en regroupant les categories
 // du meme nom avec ces attributs, a partir du deuuxieme tableau de la modal
   TABLE_FINAL_CATEGORIES_ATTRIBUTS: ICategoriesAttributs[] = [];
@@ -74,7 +75,7 @@ export class ModalCategoriesComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor( private router:Router, private formBuilder: FormBuilder, private infosPath:ActivatedRoute, private serviceDocument:DocumentService,
-     private serviceCategorieAttribut:CategorieAttributService, private serviceAttribut:AttributService,  
+     private serviceCategorieAttribut:CategorieAttributService, private serviceAttribut:AttributService,
      private donneeDocCatService:DonneesEchangeService, private _liveAnnouncer: LiveAnnouncer,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -83,7 +84,7 @@ export class ModalCategoriesComponent implements OnInit {
         nomCategorie: ['', [Validators.required, Validators.minLength(1)]]
       });
     }
-    
+
   ngOnInit(): void {
       this.TABLE_CATEGORIE_AFFICHAGE_TEMP = this.donneeDocCatService.dataDocumentCategorie
       this.TABLE_CATEGORIE_AFFICHAGE_TEMP.forEach(
@@ -127,7 +128,7 @@ export class ModalCategoriesComponent implements OnInit {
             TABLE_CATEGORIE_AFFICHAGE_TEMP.push(attCat);
             break;
           }
-        }    
+        }
       });
       this.tableResultatsCategoriesAffichage = new MatTableDataSource<ICategorieAffichage>(TABLE_CATEGORIE_AFFICHAGE_TEMP);
       this.tableauIndexSelectionner = new Map;
@@ -141,7 +142,7 @@ export class ModalCategoriesComponent implements OnInit {
   }
 
   creerTabAssociationCatAtr(tmpTab:any):IAssociationCategorieAttributs[]{
-    
+
     tmpTab.forEach(
       (att : IAttributs) =>{
         let jointureAttCat : IAssociationCategorieAttributs =
@@ -151,7 +152,7 @@ export class ModalCategoriesComponent implements OnInit {
           attribut: att
         }
         this.tableauAttributsTemp.push(jointureAttCat);
-        
+
     });
     return this.tableauAttributsTemp
   }
@@ -159,11 +160,11 @@ export class ModalCategoriesComponent implements OnInit {
   /**
    * fonction qui permet d'ajouter des categories au check dans un tableau temporaire
    * avant des les enregistrer dans le deuxieme tableau de la modale
-   * @param categorieAttributInput 
-   * @param attribut 
-   * @param index 
-   * @param event 
-   * @returns 
+   * @param categorieAttributInput
+   * @param attribut
+   * @param index
+   * @param event
+   * @returns
    */
   selectionnerCategorieCheck(categorieAttributInput:any,attribut : any, index : number, event: any){
 
@@ -196,14 +197,14 @@ export class ModalCategoriesComponent implements OnInit {
         event.target.checked=false;
         return;
       }else{
-        
+
         let categorieAttributsTemp : ICategorieAffichage ={
           id: uuidv4(),
           nom: categorieAttributInput.nomCategorie,
           ordre: categorieAttributInput.ordreCategorie,
           attributCategories: attribut
         }
-      
+
       this.tableauIndexSelectionner.set(index,categorieAttributsTemp);
       }
     } else if(event.target.checked == false) { //si pas de doublon, on sauvegarde l'information cochée
@@ -213,11 +214,11 @@ export class ModalCategoriesComponent implements OnInit {
 
  /**
   * vérifie que l'ordre de l'attribut nouvelle selectionnée n'existe pas dans le meme tableau
-  * @param ordre 
-  * @returns 
+  * @param ordre
+  * @returns
   */
   verifierSiOrdreExistePremierTableau(ordre : number): boolean{
-    
+
     let tmpTab =  this.tableauIndexSelectionner;
     let ordreAttributExiste = false
     tmpTab.forEach(
@@ -232,10 +233,10 @@ export class ModalCategoriesComponent implements OnInit {
   /**
    * Methode qui permet de vérifier dans le second tableau si chaque catégorie a un ordre distinct
    * et si tous les attributs d'une même catégorie ont des ordres distincts
-   * @param ordreAttribut 
-   * @param nomCategorie 
-   * @param ordreCategorie 
-   * @returns 
+   * @param ordreAttribut
+   * @param nomCategorie
+   * @param ordreCategorie
+   * @returns
    */
   verifierSiExisteCategorieAttributOrdre(ordreAttribut : number, nomCategorie : string, ordreCategorie : number) : number{
     let tmpTab =  this.tableResultatsCategoriesAffichage.data;
@@ -255,7 +256,7 @@ export class ModalCategoriesComponent implements OnInit {
            break;
          }
        }
-       else{ //si c'est une nouvelle catégorie dans le tableau  
+       else{ //si c'est une nouvelle catégorie dans le tableau
          if(element.ordre == ordreCategorie){ //si la même catégorie a un ordre différent
            ordreAttributExiste = 3;
            break;
@@ -269,7 +270,7 @@ export class ModalCategoriesComponent implements OnInit {
     this.validation = true
     if(this.formeCategorieAttribut.invalid) return;
 
-    //Ajout des valeurs dans le second tableau 
+    //Ajout des valeurs dans le second tableau
 
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP=this.tableResultatsCategoriesAffichage.data;
     this.tableauIndexSelectionner.forEach((valeur, cle)=>{
@@ -277,8 +278,8 @@ export class ModalCategoriesComponent implements OnInit {
     });
     this.tableResultatsCategoriesAffichage.data = this.TABLE_CATEGORIE_AFFICHAGE_TEMP;
     this.donneeDocCatService.dataDocumentCategorie = this.TABLE_CATEGORIE_AFFICHAGE_TEMP;
-    
-    //récupération des id attributs selectionnés 
+
+    //récupération des id attributs selectionnés
 
     let listAtt : String[] = [];
     let listOrdre : number[] = [];
@@ -292,7 +293,7 @@ export class ModalCategoriesComponent implements OnInit {
     this.tableauAttributsTemp = [];
     let tmpTab =  this.dataSourceAttributTemp.data;
     tmpTab.forEach(
-      (att : IAssociationCategorieAttributs) =>{ 
+      (att : IAssociationCategorieAttributs) =>{
         if(!listAtt.includes(att.attribut.id) ){
           this.tableauAttributsTemp.push(att);
         }
@@ -303,12 +304,12 @@ export class ModalCategoriesComponent implements OnInit {
 
   /**
    * methode de suppression des categories deja enregistrees dans le deuxieme tableau
-   * @param categorieAffichage 
-   * @param index 
+   * @param categorieAffichage
+   * @param index
    */
   supprimerCategorieAffiche(categorieAffichage : ICategorieAffichage, index : number){
 
-    //suppression des valeurs dans le second tableau 
+    //suppression des valeurs dans le second tableau
 
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP=this.tableResultatsCategoriesAffichage.data;
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP.splice(index, 1);
@@ -327,7 +328,7 @@ export class ModalCategoriesComponent implements OnInit {
     if(indexASupprimer>=0)
       this.tableauIndexSelectionner.delete(indexASupprimer);
   }
-  
+
   retirerSelectionCategorieAttribut(index: number){
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP.splice(index, 1)
   }
@@ -348,13 +349,14 @@ export class ModalCategoriesComponent implements OnInit {
              description: '',
              etat: false,
              valeursParDefaut: '',
-             type: TypeTicket.Int
+             type: TypeTicket.Int,
+             obligatoire: false,
            }
          }
        }
        categorieAttributs.attributCategories = element
         this.TABLE_CATEGORIE_AFFICHAGE_TEMP.push(categorieAttributs)
-        
+
         // ajout d'une categorie par defaut à la fermeture de la modale
         this.donneeDocCatService.dataDocumentCategorie = this.TABLE_CATEGORIE_AFFICHAGE_TEMP;
     });
@@ -371,7 +373,7 @@ export class ModalCategoriesComponent implements OnInit {
     this.dataSourceAttributTemp.paginator = this.paginator;
     this.dataSourceAttributTemp.sort = this.sort;
   }
-  
+
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);

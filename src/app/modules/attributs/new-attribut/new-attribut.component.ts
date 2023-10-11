@@ -53,7 +53,8 @@ export class NewAttributComponent implements OnInit {
             description: this.attribut.description,
             etat: this.attribut.etat,
             type: this.attribut.type,
-            valeursParDefaut:this.attribut.valeursParDefaut
+            valeursParDefaut:this.attribut.valeursParDefaut,
+            obligatoire:this.attribut.obligatoire
           })
       });
     }
@@ -112,7 +113,8 @@ export class NewAttributComponent implements OnInit {
       description: attributInput.description,
       etat: attributInput.etat,
       type: attributInput.type,
-      valeursParDefaut: attributInput.valeursParDefaut
+      valeursParDefaut: attributInput.valeursParDefaut,
+      obligatoire:attributInput.obligatoire,
     }
 
     if(this.attribut != undefined){
