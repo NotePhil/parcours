@@ -8,8 +8,6 @@ export interface IAttributs {
     etat:boolean,
     dateCreation?:Date,
     dateModification?:Date,
-    ordre?: number,
-    obligatoire: boolean,
     valeursParDefaut: string,
     type:TypeTicket
     //ressource:IRessource
