@@ -7,6 +7,7 @@ import { TypeTicket } from 'src/app/modele/type-ticket';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 import {v4 as uuidv4} from 'uuid';
 
+
 @Component({
   selector: 'app-new-attribut',
   templateUrl: './new-attribut.component.html',
@@ -21,13 +22,12 @@ export class NewAttributComponent implements OnInit {
 
   typeInt = TypeTicket.Int;
   typeString = TypeTicket.String;
-  typeDouble = TypeTicket.Double;
-  typeFloat = TypeTicket.Float;
+  typeRadio=  TypeTicket.Radio;
   typeBoolean = TypeTicket.Boolean;
   typeDate = TypeTicket.Date;
 
-  /*initialDateCreation = new FormControl(new Date());
-  initialDateModification = new FormControl(new Date());*/
+  tabError : Map<String,String> = new Map();
+  valeursParDefaut: any;
 
   constructor(private formBuilder:FormBuilder, private attributService:AttributService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
@@ -35,6 +35,7 @@ export class NewAttributComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
       type: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      obligatoire: [true],
       valeursParDefaut:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
     })
   }
@@ -53,7 +54,8 @@ export class NewAttributComponent implements OnInit {
             description: this.attribut.description,
             etat: this.attribut.etat,
             type: this.attribut.type,
-            valeursParDefaut:this.attribut.valeursParDefaut
+            valeursParDefaut:this.attribut.valeursParDefaut,
+            obligatoire:this.attribut.obligatoire
           })
       });
     }
@@ -63,10 +65,48 @@ export class NewAttributComponent implements OnInit {
     return this.forme.controls;
   }
 
-  onSubmit(attributInput:any){
+  verifierValeurParDefaut(){
+    let valtype : string = this.forme.controls["type"].value;
+    let valvaleursParDefaut = this.forme.controls["valeursParDefaut"].value;
 
-    this.submitted=true;
-    if(this.forme.invalid) return;
+    if(valtype == this.typeInt){
+        if( isNaN(valvaleursParDefaut)){
+         alert("la valeur de type number n'est un nombre ");
+         return false;
+        }
+
+      }else if(valtype==this.typeBoolean || valtype==this.typeRadio){
+        let val : string = this.forme.controls["valeursParDefaut"].value;
+
+        if(val ==null || val.length ==0){
+            alert ('Au moins une valeurs doit être saisie pour ce type');
+            return false;
+        }
+        let tabVal : string[] = val.split(";");
+        if(tabVal.length==1 && tabVal[0].trim().length!=0)
+        {
+          if(valtype==this.typeBoolean)
+            return true;
+          else{
+            alert ('Au moins une valeurs doit être saisie pour ce type');
+            return false;
+          }
+        }else{
+          for(const element of tabVal){
+            if(element.trim() == null || element.trim().length == 0){
+              return false;
+            }
+          }
+          return true;
+        }
+
+      }
+      return true;
+    }
+    onSubmit(attributInput:any){
+      ;
+      this.submitted=true;
+      if(this.forme.invalid && this.verifierValeurParDefaut()) return;
 
     let attributTemp : IAttributs={
       id:  uuidv4(),
@@ -74,9 +114,10 @@ export class NewAttributComponent implements OnInit {
       description: attributInput.description,
       etat: attributInput.etat,
       type: attributInput.type,
-      valeursParDefaut: attributInput.valeursParDefaut
+      valeursParDefaut: attributInput.valeursParDefaut,
+      obligatoire:attributInput.obligatoire,
     }
-   
+
     if(this.attribut != undefined){
       attributTemp.id = this.attribut.id
     }

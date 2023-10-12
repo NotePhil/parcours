@@ -584,20 +584,20 @@ export class InMemDBService implements InMemoryDbService {
       },
     ];
     let attributs: IAttributs[] = [
-      { id: '1', titre: 'taille',description: "taille de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String, valeursParDefaut: '',},
-      {id: '2',titre: 'poids',description: "poids de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Double, valeursParDefaut: '',},
-      {id: '3', titre: 'sexe',description: "sexe de l'individu", etat: true, dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,valeursParDefaut: 'Homme, Femme, Autre',},
-      {id: '4',titre: 'age',description: "age de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Double, valeursParDefaut: '',},
-      { id: '5', titre: 'allergies',description: "allergies de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String,valeursParDefaut: '',},
-      { id: '6', titre: 'teint',description: "teint de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.String, valeursParDefaut: '',},
-      {id: '7', titre: 'Groupe sangin', description: "Groupe sangin de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',},
-      { id: '8',titre: 'cicatrice',description: "cicatrice de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean, valeursParDefaut: 'oui, non',},
-      {id: '9', titre: 'date admission', description: "date admission de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Date,valeursParDefaut: '',},
-      {id: '10', titre: 'date decharge', description: 'date decharge',etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Date,valeursParDefaut: '',},
-      {id: '11', titre: 'date prochain rendez-vous',description: "date prochain rendez-vous de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Date, valeursParDefaut: '',},
-      { id: '12', titre: 'aprobation du medecin', description: 'aprobation du medecin', etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean, valeursParDefaut: 'oui, non',},
-      {id: '13',titre: 'motif de la decharge',description: 'motif de la decharge ',etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Textarea,valeursParDefaut: '',},
-      {id: '14',titre: 'nom',description: "nom de l'individu", etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String, valeursParDefaut: '',},
+      { id: '1', titre: 'taille',description: "taille de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.String, valeursParDefaut: '',},
+      {id: '2',titre: 'poids',description: "poids de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Int, valeursParDefaut: '',},
+      {id: '3', titre: 'sexe',description: "sexe de l'individu", etat: true, dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Boolean,valeursParDefaut: 'Homme, Femme, Autre',},
+      {id: '4',titre: 'age',description: "age de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Int, valeursParDefaut: '',},
+      { id: '5', titre: 'allergies',description: "allergies de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.String,valeursParDefaut: '',},
+      { id: '6', titre: 'teint',description: "teint de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.String, valeursParDefaut: '',},
+      {id: '7', titre: 'Groupe sangin', description: "Groupe sangin de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Boolean,valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',},
+      { id: '8',titre: 'cicatrice',description: "cicatrice de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Boolean, valeursParDefaut: 'oui, non',},
+      {id: '9', titre: 'date admission', description: "date admission de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Date,valeursParDefaut: '',},
+      {id: '10', titre: 'date decharge', description: 'date decharge',etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Date,valeursParDefaut: '',},
+      {id: '11', titre: 'date prochain rendez-vous',description: "date prochain rendez-vous de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Date, valeursParDefaut: '',},
+      { id: '12', titre: 'aprobation du medecin', description: 'aprobation du medecin', etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Boolean, valeursParDefaut: 'oui, non',},
+      {id: '13',titre: 'motif de la decharge',description: 'motif de la decharge ',etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.Textarea,valeursParDefaut: '',},
+      {id: '14',titre: 'nom',description: "nom de l'individu", etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),obligatoire: true,type: TypeTicket.String, valeursParDefaut: '',},
     ];
     let documents: IDocument[] = [
       {
@@ -669,6 +669,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -679,7 +680,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            obligatoire: true,
+            type: TypeTicket.Int,
             valeursParDefaut: '',
           },
           {
@@ -689,6 +691,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -699,6 +702,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -709,6 +713,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
           },
@@ -719,6 +724,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'oui, non',
           },
@@ -740,12 +746,13 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.String,
                 valeursParDefaut: '',
                 }
               },
               {
-                
+
                 id: '1',
                 ordre: 12,
                 obligatoire: false,
@@ -755,6 +762,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Int,
                 valeursParDefaut: '',}
               },
@@ -768,6 +776,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.String,
                 valeursParDefaut: '',}
               },
@@ -788,6 +797,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.String,
                 valeursParDefaut: '',}
               },
@@ -801,6 +811,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Boolean,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
@@ -815,6 +826,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Boolean,
                 valeursParDefaut: 'oui, non',}
               },
@@ -878,7 +890,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource: 
+                ressource:
                 {
                   id: '3',
                   libelle: 'pediatrie',
@@ -1092,7 +1104,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            obligatoire: true,
+            type: TypeTicket.Int,
             valeursParDefaut: '',
           },
           {
@@ -1102,6 +1115,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -1112,6 +1126,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'true, false',
           },
@@ -1122,7 +1137,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            obligatoire: true,
+            type: TypeTicket.Int,
             valeursParDefaut: '',
           },
           {
@@ -1132,6 +1148,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
           },
@@ -1142,6 +1159,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -1162,7 +1180,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                obligatoire: true,
+                type: TypeTicket.Int,
                 valeursParDefaut: '',}
               },
               {
@@ -1175,7 +1194,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                obligatoire: true,
+                type: TypeTicket.Int,
                 valeursParDefaut: '',}
               },
               {
@@ -1188,6 +1208,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.String,
                 valeursParDefaut: '',}
               },
@@ -1208,6 +1229,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.String,
                 valeursParDefaut: '',}
               },
@@ -1221,6 +1243,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Boolean,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
@@ -1235,6 +1258,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Boolean,
                 valeursParDefaut: 'oui, non',}
               },
@@ -1298,7 +1322,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource: 
+                ressource:
                 {
                   id: '3',
                   libelle: 'pediatrie',
@@ -1512,6 +1536,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -1522,7 +1547,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            obligatoire: true,
+            type: TypeTicket.Int,
             valeursParDefaut: '',
           },
           {
@@ -1532,6 +1558,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -1542,6 +1569,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'true, false',
           },
@@ -1562,7 +1590,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                obligatoire: true,
+                type: TypeTicket.Int,
                 valeursParDefaut: '',}
               },
               {
@@ -1575,7 +1604,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                obligatoire: true,
+                type: TypeTicket.Int,
                 valeursParDefaut: '',}
               },
             ],
@@ -1595,6 +1625,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.String,
                 valeursParDefaut: '',}
               },
@@ -1608,6 +1639,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Boolean,
                 valeursParDefaut: 'oui, non',}
               },
@@ -1671,7 +1703,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource: 
+                ressource:
                 {
                   id: '3',
                   libelle: 'pediatrie',
@@ -1885,6 +1917,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -1895,7 +1928,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            obligatoire: true,
+            type: TypeTicket.Int,
             valeursParDefaut: '',
           },
           {
@@ -1905,6 +1939,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Textarea,
             valeursParDefaut: '',
           },
@@ -1915,7 +1950,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            obligatoire: true,
+            type: TypeTicket.Int,
             valeursParDefaut: '',
           },
           {
@@ -1925,6 +1961,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
           },
@@ -1935,6 +1972,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'oui, non',
           },
@@ -1945,6 +1983,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Date,
             valeursParDefaut: '',
           },
@@ -1955,6 +1994,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Date,
             valeursParDefaut: '',
           },
@@ -1965,6 +2005,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Date,
             valeursParDefaut: '',
           },
@@ -1975,6 +2016,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'oui, non',
           },
@@ -1985,6 +2027,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Textarea,
             valeursParDefaut: '',
           },
@@ -2005,6 +2048,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.String,
                 valeursParDefaut: '',}
               },
@@ -2018,7 +2062,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                obligatoire: true,
+                type: TypeTicket.Int,
                 valeursParDefaut: '',}
               },
               {
@@ -2031,7 +2076,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                obligatoire: true,
+                type: TypeTicket.Int,
                 valeursParDefaut: '',}
               },
             ],
@@ -2051,6 +2097,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.String,
                 valeursParDefaut: '',}
               },
@@ -2064,6 +2111,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Boolean,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
@@ -2078,6 +2126,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Boolean,
                 valeursParDefaut: 'oui, non',}
               },
@@ -2098,6 +2147,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Date,
                 valeursParDefaut: '',}
               },
@@ -2111,6 +2161,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Date,
                 valeursParDefaut: '',}
               },
@@ -2124,6 +2175,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Date,
                 valeursParDefaut: '',}
               },
@@ -2137,6 +2189,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Boolean,
                 valeursParDefaut: 'oui, non',}
               },
@@ -2150,6 +2203,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+                obligatoire: true,
                 type: TypeTicket.Textarea,
                 valeursParDefaut: '',}
               },
@@ -2213,7 +2267,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource: 
+                ressource:
                 {
                   id: '3',
                   libelle: 'pediatrie',
@@ -2427,7 +2481,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            obligatoire: true,
+            type: TypeTicket.Int,
             valeursParDefaut: '',
           },
           {
@@ -2437,6 +2492,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -2447,6 +2503,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'oui, non',
           },
@@ -2457,7 +2514,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            obligatoire: true,
+            type: TypeTicket.Int,
             valeursParDefaut: '',
           },
           {
@@ -2467,6 +2525,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.Boolean,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
           },
@@ -2477,6 +2536,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+            obligatoire: true,
             type: TypeTicket.String,
             valeursParDefaut: '',
           },
@@ -2497,7 +2557,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                obligatoire: true,
+                type: TypeTicket.Int,
                 valeursParDefaut: '',}
               },
               {
@@ -2510,7 +2571,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                obligatoire: true,
+                type: TypeTicket.Int,
                 valeursParDefaut: '',}
               },
               {
@@ -2524,6 +2586,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.String,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
             ],
@@ -2544,6 +2607,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.String,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -2557,6 +2621,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Boolean,
+                obligatoire: true,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
               },
@@ -2571,6 +2636,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Boolean,
+                obligatoire: true,
                 valeursParDefaut: 'oui, non',}
               },
             ],
@@ -2633,7 +2699,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource: 
+                ressource:
                 {
                   id: '3',
                   libelle: 'pediatrie',
@@ -2851,6 +2917,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.String,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -2860,7 +2927,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            type: TypeTicket.Int,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -2871,6 +2939,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Textarea,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -2880,7 +2949,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            type: TypeTicket.Int,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -2891,6 +2961,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Boolean,
+            obligatoire: true,
             valeursParDefaut: 'A,A+,A-,B,B+,B-,AB,AB+,AB-,O,O+,O-',
           },
           {
@@ -2901,6 +2972,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Boolean,
+            obligatoire: true,
             valeursParDefaut: 'oui,non',
           },
           {
@@ -2911,6 +2983,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Date,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -2921,6 +2994,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Date,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -2931,6 +3005,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Date,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -2941,6 +3016,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Boolean,
+            obligatoire: true,
             valeursParDefaut: 'oui,non',
           },
           {
@@ -2951,6 +3027,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Textarea,
+            obligatoire: true,
             valeursParDefaut: '',
           },
         ],
@@ -2971,6 +3048,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.String,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -2983,7 +3061,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                type: TypeTicket.Int,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -2996,7 +3075,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                type: TypeTicket.Int,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
             ],
@@ -3017,6 +3097,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.String,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -3030,6 +3111,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Boolean,
+                obligatoire: true,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
               },
@@ -3044,6 +3126,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Boolean,
+                obligatoire: true,
                 valeursParDefaut: 'oui, non',}
               },
             ],
@@ -3064,6 +3147,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Date,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -3077,6 +3161,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Date,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -3090,6 +3175,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Date,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -3103,6 +3189,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Boolean,
+                obligatoire: true,
                 valeursParDefaut: 'oui, non',}
               },
               {
@@ -3116,6 +3203,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Textarea,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
             ],
@@ -3178,7 +3266,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource: 
+                ressource:
                 {
                   id: '3',
                   libelle: 'pediatrie',
@@ -3332,7 +3420,7 @@ export class InMemDBService implements InMemoryDbService {
               etat: true,
               dateCreation: new Date('07/03/2000'),
               dateModification: new Date('07/03/1990'),
-              type: TypeTicket.Double,
+              type: TypeTicket.Int,
               ordre: 0,
               obligatoire: false,
               valeursParDefaut: '',
@@ -3482,7 +3570,7 @@ export class InMemDBService implements InMemoryDbService {
               etat: true,
               dateCreation: new Date('07/03/2000'),
               dateModification: new Date('07/03/1990'),
-              type: TypeTicket.Double,
+              type: TypeTicket.Int,
               ordre: 0,
               obligatoire: false,
               valeursParDefaut: '',
@@ -3591,7 +3679,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            type: TypeTicket.Int,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -3602,6 +3691,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.String,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -3612,6 +3702,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Boolean,
+            obligatoire: true,
             valeursParDefaut: 'oui, non',
           },
           {
@@ -3621,7 +3712,8 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-            type: TypeTicket.Double,
+            type: TypeTicket.Int,
+            obligatoire: true,
             valeursParDefaut: '',
           },
           {
@@ -3632,6 +3724,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.Boolean,
+            obligatoire: true,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
           },
           {
@@ -3642,6 +3735,7 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
             type: TypeTicket.String,
+            obligatoire: true,
             valeursParDefaut: '',
           },
         ],
@@ -3661,7 +3755,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                type: TypeTicket.Int,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -3674,7 +3769,8 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
+                type: TypeTicket.Int,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -3688,6 +3784,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.String,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
             ],
@@ -3708,6 +3805,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.String,
+                obligatoire: true,
                 valeursParDefaut: '',}
               },
               {
@@ -3721,6 +3819,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Boolean,
+                obligatoire: true,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
               },
@@ -3735,6 +3834,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: TypeTicket.Boolean,
+                obligatoire: true,
                 valeursParDefaut: 'oui, non',}
               },
             ],
@@ -3797,7 +3897,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource: 
+                ressource:
                 {
                   id: '3',
                   libelle: 'pediatrie',
@@ -3942,7 +4042,7 @@ export class InMemDBService implements InMemoryDbService {
           }
         ],
         objetEnregistre: [
-          { key: 
+          { key:
             {
               id: '1',
               titre: 'taille',
@@ -3954,9 +4054,9 @@ export class InMemDBService implements InMemoryDbService {
               ordre: 0,
               obligatoire: false,
               valeursParDefaut: '',
-            }, 
+            },
             value: '1.70' },
-          { key: 
+          { key:
             {
               id: '6',
               titre: 'teint',
@@ -3968,9 +4068,9 @@ export class InMemDBService implements InMemoryDbService {
               ordre: 0,
               obligatoire: false,
               valeursParDefaut: '',
-            }, 
+            },
             value: 'noir' },
-          { key: 
+          { key:
             {
               id: '8',
               titre: 'cicatrice',
@@ -3982,9 +4082,9 @@ export class InMemDBService implements InMemoryDbService {
               ordre: 0,
               obligatoire: false,
               valeursParDefaut: 'oui, non',
-            }, 
+            },
             value: 'oui' },
-          { key: 
+          { key:
             {
               id: '4',
               titre: 'age',
@@ -3992,13 +4092,13 @@ export class InMemDBService implements InMemoryDbService {
               etat: true,
               dateCreation: new Date('07/03/2000'),
               dateModification: new Date('07/03/1990'),
-              type: TypeTicket.Double,
+              type: TypeTicket.Int,
               ordre: 0,
               obligatoire: false,
               valeursParDefaut: '',
-            }, 
+            },
             value: '23' },
-          { key: 
+          { key:
             {
               id: '7',
               titre: 'Groupe sangin',
@@ -4010,9 +4110,9 @@ export class InMemDBService implements InMemoryDbService {
               ordre: 0,
               obligatoire: false,
               valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-            }, 
+            },
             value: 'A+' },
-          { key: 
+          { key:
             {
               id: '5',
               titre: 'allergies',
@@ -4024,7 +4124,7 @@ export class InMemDBService implements InMemoryDbService {
               ordre: 0,
               obligatoire: false,
               valeursParDefaut: '',
-            }, 
+            },
             value: 'oignon, lait, mangue' },
         ],
       },
@@ -4171,7 +4271,7 @@ export class InMemDBService implements InMemoryDbService {
             quantiteMax: 40,
             montantMin: 100,
             montantMax: 7000,
-            ressource: 
+            ressource:
             {
               id: '3',
               libelle: 'pediatrie',
