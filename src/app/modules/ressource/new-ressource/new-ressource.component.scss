@@ -1,39 +1,3 @@
-#mainSection{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.block{
-  width: 60%;
-}
-.entete{
-  background-color: #7ea97e;
-  color: white;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-}.form-control{
-  border: none;
-  box-shadow: 0 0 2px rgb(220, 220, 220);
-  height: 35px;
-}
-.champs{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 10px 0;
-  label{
-      width: 300px;
-      font-weight: normal;
-  }
-}
-select{
-  margin: 20px 0;
-}
-.champs, select, input{
-  font-size: 15px;
-}
 #dateCreation,#dateModification{
   visibility: hidden;
 }
@@ -42,11 +6,6 @@ input[ type=checkbox ]{
   color: red;
   margin-right: 250px;
   height: 17px;
-  }
-
-  input, #etat{
-    border: none;
-    box-shadow: none;
   }
   input, #famille{
     border:none;
@@ -57,18 +16,7 @@ option{
   height: 200px;
   word-spacing: 3px;
 }
-.actionButton{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  button{
-      background-color: #7ea97e;
-      color: white;
-      height: 30px;
-      padding: 0 10px;
-      font-size: 15px;
-  }
-}
+
 mat-form-field{
   width: 570px;
   padding: 0;
