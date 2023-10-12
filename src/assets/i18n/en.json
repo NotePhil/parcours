@@ -104,7 +104,7 @@
             "text2":"Surname is requied",
             "text3":"Birthday is requied",
             "text4":"email address is requied is requied",
-            "text5":"Day of entry is required."       
+            "text5":"Day of entry is required."
         }
     },
     "services":{
@@ -236,7 +236,7 @@
             "title":"Document's instance ",
             "title2":"Old datas",
             "text1":"composition of this instance"
-        }      
+        }
     },
     "theme":{
         "libelle":"theme"
@@ -331,5 +331,63 @@
         "view":{
             "text1":"Preconisations of this document"
         }
+    },
+    "precomvt": {
+      "header": "New Préconisation",
+      "header1": "Assign to Families",
+      "header2": "Assign a Resource",
+      "table": {
+        "title1": "libel",
+        "title2": "State",
+        "title3": "Typ",
+        "title4": "Family",
+        "title5": "Resource ",
+        "title6": "Max Quantity",
+        "title7": "Enter maximum quantity",
+        "title8": "Min Quantity",
+        "title9": "Enter minimum quantity",
+        "title10": "Max Amount",
+        "title11": "Enter minimum Amount",
+        "title12": "Min Amount ",
+        "title13": "Enter maximum Amount",
+        "title14": "Fournisseurs ",
+        "title15": "Back",
+        "title16": "Cancel",
+        "title17": "Family",
+        "title18": "Resource",
+        "title19": "Stage",
+        "title20": "Typ:",
+        "title21": "Max Qtity :",
+        "title22": "Min Qtity : ",
+        "title23": "Max Amount : ",
+        "title24": "Min Amount : ",
+        "title25": "Save"
+      },
+      "title": "Listing PrecoMvt",
+      "search-bar": "Search",
+      "table2": {
+        "title1": "libel",
+        "title2": "state",
+        "title3": "typ",
+        "title4": "Actions"
+      },
+      "title0": "table of operations carried out",
+      "table3": {
+        "title1": "Libel",
+        "title2": "State",
+        "title3": "Typ",
+        "title4": "Resource",
+        "title5": "Max Quantity",
+        "title6": "Min Quantity",
+        "title7": "Amount Max",
+        "title8": "Min Amount",
+        "title9": "Distributor",
+        "title10": "families",
+        "title11": "Max Quantity",
+        "title12": "Min Quantity",
+        "title13": "Amount Max",
+        "title14": "Min Amount",
+        "title15": "Distributor"
+      }
     }
 }
