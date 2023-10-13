@@ -1,4 +1,6 @@
+import { IRessource } from "./ressource";
 import { TypeTicket } from "./type-ticket";
+
 
 export interface IAttributs {
     id:string,
@@ -10,4 +12,5 @@ export interface IAttributs {
     valeursParDefaut: string,
     type:TypeTicket,
     obligatoire:boolean,
+   // ressource:IRessource
 }
