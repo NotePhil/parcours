@@ -43,6 +43,7 @@
         "text1": "Field Required",
         "text2": "Field not Required",
         "text3": "is a required field",
+        "text4": "entrer value here",
         "button1":"Print",
         "button2":"Back",
         "button3":"Cancel",
@@ -235,6 +236,7 @@
         "exemplaire":{
             "title":"Document's instance ",
             "title2":"Old datas",
+            "title3": "Add ressources",
             "text1":"composition of this instance"
         }      
     },
@@ -282,7 +284,8 @@
         "title4":"Unit",
         "title5":"Price",
         "title6":"Category",
-        "title7":"Caracteristic"
+        "title7":"Caracteristic",
+        "title8": "Ressources"
 
     },
     "form":{
@@ -298,7 +301,8 @@
         "text12":"soft",
         "text13":"hard",
         "text14":"light",
-        "text15":"Select your Characteristics"
+        "text15":"Select your Characteristics",
+        "text16": "Search a ressource"
     },
     "lists":{
         "button2":"Retour"
@@ -314,7 +318,8 @@
         "title6":" Unit",
         "title7":"price",
         "title8":"Category",
-        "title9":"Actions "
+        "title9":"Actions ",
+        "title10": "Total amont"
     }
     },
     "preconisation":{

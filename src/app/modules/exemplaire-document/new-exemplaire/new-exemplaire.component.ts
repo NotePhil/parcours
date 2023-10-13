@@ -1,3 +1,4 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -7,6 +8,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {
   Router,
   ActivatedRoute,
@@ -17,11 +20,14 @@ import { IAttributs } from 'src/app/modele/attributs';
 import { IDocument } from 'src/app/modele/document';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
 import { ObjetCleValeur } from 'src/app/modele/objet-cle-valeur';
+import { IPrecoMvt } from 'src/app/modele/precomvt';
+import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
+import { IRessource } from 'src/app/modele/ressource';
 import { TypeTicket } from 'src/app/modele/type-ticket';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
-import { MissionsService } from 'src/app/services/missions/missions.service';
+import { RessourcesService } from 'src/app/services/ressources/ressources.service';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -93,12 +99,28 @@ export class NewExemplaireComponent implements OnInit {
   tempAttributsObbligatoires = new Map()
   estValide : boolean = true
   eValvalide : string = "";
+  
+  RessourceControl = new FormControl<string | IRessource>('');
+  idRessource : string = "";
+  ELEMENTS_TABLE_RESSOURCE: IRessource[] = [];
+  dataSourceRessources = new MatTableDataSource<IRessource>(this.ELEMENTS_TABLE_RESSOURCE);
+  filteredOptionsPreco: IRessource[] | undefined;
+  displayedRessourcesColumns: string[] = [
+    'actions',
+    'libelle',
+    'prix',
+    'quantite',
+    'montant total'
+  ]; // structure du tableau presentant les Ressources
+  TABLE_PRECONISATION_RESSOURCES: IPrecoMvt[] = [];
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private infosPath: ActivatedRoute,
+    private serviceRessource: RessourcesService,
     private serviceDocument: DocumentService,
+    private _liveAnnouncer: LiveAnnouncer,
     private serviceExemplaire: ExemplaireDocumentService,
     private datePipe: DatePipe,
     private serviceAttribut: AttributService
@@ -120,6 +142,18 @@ export class NewExemplaireComponent implements OnInit {
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
 
     this.initialiseFormExemplaire();
+    this.RessourceControl.valueChanges.subscribe((value) => {
+      const libelle = typeof value === 'string' ? value : value?.libelle;
+      if (libelle != undefined && libelle?.length > 0) {
+        this.serviceRessource
+          .getRessourcesByLibelle(libelle.toLowerCase() as string)
+          .subscribe((reponse) => {
+            this.filteredOptionsPreco = reponse;
+          });
+      } else {
+        this.filteredOptionsPreco = [];
+      }
+    });
   }
 
   /**
@@ -321,8 +355,8 @@ export class NewExemplaireComponent implements OnInit {
     return this.numerateur;
   }
   /**
-   * 
-   * @returns 
+   * Methode qui permet de parcourir le formulaire lors de la validation et de repérer les chapms obligatoires non remplis
+   * @returns le titre du premier attribut obligatoire non remplis
    */
   evaluation():string{
     
@@ -363,6 +397,24 @@ export class NewExemplaireComponent implements OnInit {
       preconisations: this.document.preconisations
     };
     exemplaireTemp.objetEnregistre = this.exemplaire.objetEnregistre;
+    this.ELEMENTS_TABLE_RESSOURCE.forEach(
+      ressource => {
+      let precoMvt : IPrecoMvt = {
+        id: '',
+        libelle: '',
+        etat: false,
+        type: '',
+        precomvtqte: []
+      }
+      let precoMvtQte : IPrecoMvtQte = {
+        id: '',
+        quantiteMin: 0,
+        quantiteMax: 0,
+        montantMin: 0,
+        montantMax: 0,
+        ressource:ressource
+      }
+    });
 
     if (this.exemplaire.id != '') {
       exemplaireTemp.id = this.exemplaire.id;
@@ -373,5 +425,39 @@ export class NewExemplaireComponent implements OnInit {
       .subscribe((object) => {
         this.router.navigate(['/list-exemplaire']);
       });
+  }
+  public rechercherListingPreco(option: IRessource) {
+    let tabIdRessource : string[] = []
+    this.ELEMENTS_TABLE_RESSOURCE = this.dataSourceRessources.data
+    this.ELEMENTS_TABLE_RESSOURCE.forEach(
+      Ressource => {
+      tabIdRessource.push(Ressource.id)
+    });
+    if (!tabIdRessource.includes(option.id)) {
+      this.ELEMENTS_TABLE_RESSOURCE.unshift(option)
+      this.dataSourceRessources.data = this.ELEMENTS_TABLE_RESSOURCE
+    }
+  }
+
+  displayFn(Ressource: IRessource): string {
+    return Ressource && Ressource.libelle ? Ressource.libelle : '';
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+  getRessourceId(idRessource: string) {
+    this.idRessource = idRessource;
+  }
+
+  retirerSelectionRessource(index: number) {
+    this.ELEMENTS_TABLE_RESSOURCE = this.dataSourceRessources.data;
+    this.ELEMENTS_TABLE_RESSOURCE.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
+    this.dataSourceRessources.data = this.ELEMENTS_TABLE_RESSOURCE;
   }
 }

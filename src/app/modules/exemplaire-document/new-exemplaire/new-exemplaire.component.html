@@ -18,8 +18,8 @@
                     <div class="contentBlock">
                         <div formArrayName="_exemplaireDocument" class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories; let i = index" [ngClass]="{'inputSpecial':(attribut.type == TypeRadio) || (attribut.type == TypeBoolean)}"> 
                             <label [for]="attributParCategorie.attribut.id" class="form-label">{{attributParCategorie.attribut.titre}}<span *ngIf="attributParCategorie.obligatoire == true"> *</span></label>
-                            <input  *ngIf="(attribut.type != 'textarea') && (attribut.type != TypeRadio) && (attribut.type != TypeBoolean)" [formControlName]="incrementeCompteur(compteur,attributParCategorie)" [type]="attribut.type" class="form-control" placeholder="entrer la valeur ici">
-                            <textarea *ngIf="attribut.type == 'textarea'" class="form-control"  [formControlName]="incrementeCompteur(compteur,attributParCategorie)" placeholder="entrer la valeur ici"></textarea>
+                            <input  *ngIf="(attribut.type != 'textarea') && (attribut.type != TypeRadio) && (attribut.type != TypeBoolean)" [formControlName]="incrementeCompteur(compteur,attributParCategorie)" [type]="attribut.type" class="form-control" placeholder="{{'lists.text4' | translate}}">
+                            <textarea *ngIf="attribut.type == 'textarea'" class="form-control"  [formControlName]="incrementeCompteur(compteur,attributParCategorie)" placeholder="{{'lists.text4' | translate}}"></textarea>
                             <select class="form-control" *ngIf="(attribut.type == TypeRadio) || (attribut.type == TypeBoolean)" [formControlName]="incrementeCompteur(compteur,attributParCategorie)">
                                 <option value="{{val.trim()}}" *ngFor="let val of attribut.valeursParDefaut.trim().split(',')" >{{val}}</option>
                             </select>
@@ -33,11 +33,87 @@
                     <div formArrayName="_controlsSupprime" *ngFor="let attributSupprime of objetCleValeurSupprime" class="inputBlock" [ngClass]="{'inputSpecial':(attributSupprime.key.type == TypeRadio) || (attributSupprime.key.type == TypeBoolean)}"> 
                         <label class="form-label">{{attributSupprime.key.titre}}</label>
                         
-                        <input *ngIf="(attributSupprime.key.type != 'textarea') && (attributSupprime.key.type != TypeRadio) && (attributSupprime.key.type != TypeBoolean)" [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)" [type]="attributSupprime.key.type" class="form-control" placeholder="entrer la valeur ici" [required]="true">
-                        <textarea *ngIf="attributSupprime.key.type == 'textarea'" class="form-control"  [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)" placeholder="entrer la valeur ici"></textarea>
+                        <input *ngIf="(attributSupprime.key.type != 'textarea') && (attributSupprime.key.type != TypeRadio) && (attributSupprime.key.type != TypeBoolean)" [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)" [type]="attributSupprime.key.type" class="form-control" placeholder="{{'lists.text4' | translate}}" [required]="true">
+                        <textarea *ngIf="attributSupprime.key.type == 'textarea'" class="form-control"  [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)" placeholder="{{'lists.text4' | translate}}"></textarea>
                         <select class="form-control" *ngIf="(attributSupprime.key.type == TypeRadio) || (attributSupprime.key.type == TypeBoolean)" [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)">
                             <option value="{{val.trim()}}" *ngFor="let val of attributSupprime.key.valeursParDefaut.trim().split(',')" >{{val}}</option>
                         </select>
+                    </div>
+                </div>
+            </div>
+            <div class="block card mt-2 pt-1" id="sectionAjoutPreco">
+                <div class="sarchBlock">
+                    <h3>{{'document.exemplaire.title3' | translate}} :</h3>
+                    <form class="example-form">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label class="searchBar">{{'ressource.form.text16' | translate}}</mat-label>
+                            <input type="text" matInput aria-label="Rechercher" [formControl]="RessourceControl" [matAutocomplete]="auto">
+                            <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option class="options" *ngFor="let option of filteredOptionsPreco" [value]="option" (onSelectionChange)="rechercherListingPreco(option)">
+                                    {{option.libelle}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </form>
+                </div>
+
+                <!-- tableau listing des Ressources -->
+
+                <div class="card-body p-0 tableBlock" id="tableList">
+                    <div class='table-responsive w-100'>
+                        <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceRessources" matSort (matSortChange)="announceSortChange($event)">
+
+                            <!-- libelle Column -->
+                            <ng-container matColumnDef="libelle">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'preconisation.table.title1' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+                            </ng-container>
+
+                            <!-- prix Column -->
+                            <ng-container matColumnDef="prix">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table2.title7' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    <label class="custom-control" for="element.prix">
+                                        <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}" value="true">
+                                    </label> 
+                                </td>
+                            </ng-container>
+
+                            <!-- quantite Column -->
+                            <ng-container matColumnDef="quantite">
+                                  <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table2.title5' | translate}} </th>
+                                  <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    <label class="custom-control" for="element.quantite">
+                                        <input class="form-control" type="number" [(ngModel)]="element.quantite" [ngModelOptions]="{standalone: true}" value="true">
+                                    </label> 
+                                  </td>
+                            </ng-container>
+
+                            <!-- montant total Column -->
+                            <ng-container matColumnDef="montant total">
+                                  <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table2.title10' | translate}} </th>
+                                  <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.quantite*element.prix}}</td>
+                            </ng-container>
+
+                            <!-- Actions column -->
+                            <ng-container matColumnDef="actions">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
+                                    <div class="actions">
+                                        <button class="btn p-0" [value]="element.id" title="clicker pour annuler la selection" (click)="retirerSelectionRessource(i)">
+                                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                        </button>
+                                        <span><i class="fa fa-info-circle text-info" (click)="getRessourceId(element.id)" aria-hidden="true" title="{{'preconisation.table.title4' | translate}}"></i></span>
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedRessourcesColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedRessourcesColumns;"></tr>
+                        </table>
+                        <mat-paginator style="background-color: rgba(40, 167, 69, 0.79);" [pageSizeOptions]="[2, 5, 10, 20]"
+                                       showFirstLastButtons
+                                       aria-label="Select page of periodic elements">
+                        </mat-paginator>
                     </div>
                 </div>
             </div>
