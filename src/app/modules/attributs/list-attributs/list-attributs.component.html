@@ -2,7 +2,7 @@
     <div class="title">
         <h2>{{"lists.title" | translate}} attributs</h2>
     </div>
-    <div class="card container-fluid" >
+    <div class="card container-fluid" id="cardBlock">
         <div class='card-hearder pt-3' >
             <div class="d-flex align-items-center justify-content-end tableTools">
                 <div class="form-inline mr-3">
@@ -45,7 +45,6 @@
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title3' | translate}} </th>
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
                     </ng-container>
-                    
                     <!-- obligatoire Column -->
                     <ng-container matColumnDef="obligatoire">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title8' | translate}} </th>
@@ -77,7 +76,7 @@
                                         <i class="fa fa-pen text-info" aria-hidden="true"></i>
                                         <span>{{'patient.table.actions.link2' | translate}}</span>
                                     </button>
-                                    <button class="dropdown-item nav-link" [routerLink]="['/attribut-nouveau',element.id]" title="{{'patient.table.actions.link4' | translate}}">
+                                    <button class="dropdown-item nav-link" [routerLink]="['/attribut-nouveau',element.id]"  disabled  title="{{'patient.table.actions.link4' | translate}}">
                                         <i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
                                         <span>{{'patient.table.actions.link4' | translate}}</span>
                                     </button>
@@ -89,8 +88,8 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
                 <mat-paginator style="background-color: rgba(40, 167, 69, 0.79);" [pageSizeOptions]="[5, 10, 20]"
-                               showFirstLastButtons
-                               aria-label="Select page of periodic elements">
+                             showFirstLastButtons
+                             aria-label="Select page of periodic elements">
                 </mat-paginator>
             </div>
         </div>

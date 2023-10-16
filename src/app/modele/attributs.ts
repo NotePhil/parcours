@@ -11,6 +11,7 @@ export interface IAttributs {
     dateModification?:Date,
     valeursParDefaut: string,
     type:TypeTicket,
-    obligatoire:boolean,
-   // ressource:IRessource
+    ordre?:number,
+    obligatoire: boolean,
+    //ressource:IRessource
 }

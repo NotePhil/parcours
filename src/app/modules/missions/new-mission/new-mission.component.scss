@@ -55,3 +55,14 @@ select{
         background-color: #1473e6;
     }
 }
+
+input, #etat{
+  border: none;
+  box-shadow: none;
+}
+input[ type=checkbox ]{
+  border: none;
+  color: red;
+  margin-right: 265px;
+  height: 17px;
+  }

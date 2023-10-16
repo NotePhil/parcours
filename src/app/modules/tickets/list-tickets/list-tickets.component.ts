@@ -33,14 +33,14 @@ export class ListTicketsComponent implements OnInit, AfterViewInit {
   statutTicketActif = StatutTicket.actif
   statutTicketAttente = StatutTicket.attente
   statutTicketTraite = StatutTicket.traite
-  
+
   myControl = new FormControl<string | ITicket>('');
- 
+
   ELEMENTS_TABLE: ITicket[] = [];
   filteredOptions: ITicket[] | undefined;
 
-  displayedColumns: string[] = ['id', 'idUnique', 'idFileAttente', 'idPersonne', 'statut', 'actions'];
-  
+  displayedColumns: string[] = ['idUnique', 'idFileAttente', 'idPersonne', 'statut', 'actions'];
+
   dataSource = new MatTableDataSource<ITicket>(this.ELEMENTS_TABLE);
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -62,13 +62,13 @@ export class ListTicketsComponent implements OnInit, AfterViewInit {
 
     this.getAllTickets().subscribe(valeurs => {
       this.dataSource.data = valeurs;
-      
+
     this.myControl.valueChanges.subscribe(
       value => {
         const uniqueId = typeof value === 'string' ? value : value?.idUnique;
         if(uniqueId != undefined && uniqueId?.length >0){
           this.serviceTicket.getTicketByIdUnique(uniqueId.toLowerCase() as string).subscribe(
-            reponse => { 
+            reponse => {
               this.filteredOptions = reponse;
             }
           )
@@ -76,7 +76,7 @@ export class ListTicketsComponent implements OnInit, AfterViewInit {
         else{
           this.filteredOptions = [];
         }
-        
+
       }
     );
     });
@@ -96,7 +96,7 @@ export class ListTicketsComponent implements OnInit, AfterViewInit {
         valeurs => {this.dataSource.data = valeurs;}
     )
   }
-  
+
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
@@ -115,7 +115,7 @@ export class ListTicketsComponent implements OnInit, AfterViewInit {
         this.ticketImpression = objet;
         if(this.ticketImpression?.idPersonne){
           this.servicePatient.getPatientById(this.ticketImpression?.idPersonne).subscribe(
-            valeur =>{this.patientCorrespondant= valeur;} 
+            valeur =>{this.patientCorrespondant= valeur;}
           );
         }
       }

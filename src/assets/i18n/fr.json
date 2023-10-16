@@ -157,8 +157,7 @@
       "title7": "Ordre",
       "title8": "Attribut obligatoire ?",
       "title9": "Valeurs par defaut",
-      "title10": "Separer les valeurs par une virgule",
-      "title11": "Obligatoire ?"
+      "title10": "Separer les valeurs par un ;"
     },
     "form": {
       "text1": "Le titre est obligatoire.",
@@ -328,6 +327,33 @@
       "view":{
           "text1":"Les préconisations du document"
       }
+  },
+  "distributeur": {
+    "table": {
+      "title": "Ajouter un nouveau Distributeur",
+      "title1": "Raison Social ",
+      "title2": "Etat",
+      "title3": "Adresse",
+      "title4": "Telephone",
+      "title5": "Mail"
+    },
+    "form": {
+      "text1": "Champ Obligatoire",
+      "text2": "Champ Obligatoire"
+    },
+    "lists": {
+      "button1": "Annuler"
+    },
+    "title": "listing Distributeur",
+    "search-bar": "Rechercher",
+    "table2": {
+      "title1": "raisonSocial",
+      "title2": "adresse",
+      "title3": "etat",
+      "title4": "telephone",
+      "title5": "mail",
+      "title9": "Actions "
+    }
   },
   "precomvt": {
     "header": "Nouvelle Préconisation",

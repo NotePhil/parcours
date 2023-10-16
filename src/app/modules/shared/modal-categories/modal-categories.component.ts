@@ -350,6 +350,7 @@ export class ModalCategoriesComponent implements OnInit {
              etat: false,
              valeursParDefaut: '',
              type: TypeTicket.Int,
+             obligatoire: false,,
              obligatoire:false,
            }
          }

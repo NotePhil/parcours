@@ -5,5 +5,7 @@ export interface IService {
     dateDerniereModification?: Date,
     dateAttribution?: Date,
     dateFin: Date,
-    nombreTotalAttributions:number
+    nombreTotalAttributions:number,
+    description:string,
+    localisation:string,
 }
