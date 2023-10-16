@@ -315,6 +315,33 @@
         "title8":"Category",
         "title9":"Actions "
     }
+},
+
+"role":{
+  "header":"Add a New Role",
+  "table":{
+    "title1":"Title",
+    "title2":"title",
+    "title3":"State",
+    "title4":"Description",
+    "title5":"description"
+  },
+  "form":{
+    "text1":"Field Required"
+},
+"lists":{
+  "button1":"Cancel",
+  "btnLibelle":"Add"
+},
+"title":"Role listing",
+"search-bar":"Research",
+"table1":{
+    "title1":"Title",
+    "title2":"Description",
+    "title3":"State",
+    "title4":"Actions"
+
+}
     },
     "preconisation":{
         "title1":"Add a new preconisation",
