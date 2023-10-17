@@ -42,22 +42,22 @@
                         <table class='table w-100' mat-table [dataSource]="dataSourceAttributTemp" matSort (matSortChange)="announceSortChange($event)">
                             <!-- titre Column -->
                             <ng-container matColumnDef="titre">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title1' | translate}} </th>
+                                <th class="text-dark containHead"style="width: 100px;" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title1' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attribut.titre}} </td>
                             </ng-container>
                             <!-- description Column -->
                             <ng-container matColumnDef="description">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title2' | translate}} </th>
+                                <th class="text-dark containHead"style="width: 100px;" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title2' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attribut.description}} </td>
                             </ng-container>
                             <!-- type Column -->
                             <ng-container matColumnDef="type">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title6' | translate}} </th>
+                                <th class="text-dark containHead" style="width: 100px;" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title6' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attribut.type}} </td>
                             </ng-container>
                             <!-- ordre Column -->
                             <ng-container matColumnDef="ordreAtrParCat">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title13' | translate}} </th>
+                                <th class="text-dark containHead" style="width: 15px;" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title13' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                     <mat-form-field class="blockOrdreAttribut p-0" appearance="fill">
                                         <mat-label>ordre</mat-label>
@@ -79,8 +79,8 @@
 
                             <!-- actions Column -->
                             <ng-container matColumnDef="actions">
-                                <th class="text-dark text-left containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
-                                <td class="text-dark containCell"  mat-cell *matCellDef="let element;  let i=index">
+                                <th class="text-dark text-left containHead" style="width: 5px;" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element;  let i=index">
                                     <div class="actions">
                                         <button class="btn p-0" name=""  [value]="element.attribut.id" id="" title="clicker pour ajouter un attributs a la categorie"  (change)="selectionnerCategorieCheck(formeCategorieAttribut.value,this.element, i, $event);">
                                             <span><input type="checkbox" [disabled] = "((formeCategorieAttribut.value.ordreCategorie < 0 ) || (formeCategorieAttribut.value.ordreCategorie == 0 )  || (formeCategorieAttribut.value.nomCategorie == '' ) )" name="" id="" class=""></span>
@@ -126,7 +126,7 @@
                             <!-- ordre par categorie Column -->
                             <ng-container matColumnDef="ordreAtrParCat">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title13' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attributCategories.ordre}} </td>
+                                <td class="text-dark containCell" style="width: 15px;" mat-cell *matCellDef="let element"> {{element.attributCategories.ordre}} </td>
                             </ng-container>
                             <!-- ordre Column -->
                             <ng-container matColumnDef="ordreCat">
@@ -140,7 +140,7 @@
                             </ng-container>
                             <!-- actions Column -->
                             <ng-container matColumnDef="actions">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
+                                <th class="text-dark containHead" style="width: 5px;"  mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element;  let i=index">
                                     <div class="actions">
                                         <button class="btn p-0" name="attributs"  [value]="element" id="attributs" title="clicker pour annuler la selection"
@@ -159,6 +159,6 @@
         </div>
         <div class="actionButton">
             <button mat-button [mat-dialog-close]="tableResultatsCategoriesAffichage.data" cdkFocusInitial class="btn btnValidation" (click)="ajouterCategorieParDefaut()">{{'lists.button6' | translate}}</button>
-        </div>       
+        </div>
     </div>
 </div>

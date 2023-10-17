@@ -77,3 +77,42 @@ select{
         margin-right: 5px;
     }
 }
+
+mat-form-field:focus{
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-top: none;
+  input{
+      padding: 0;
+      color: #7ea97e;
+      border: none;
+      margin: 0;
+      top: -10px;
+
+  }
+}
+
+.example-full-width {
+  height: 35px !important;
+  border: 1px solid #28a745;
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+
+  width: 100%;
+  position: relative;
+  color: #7ea97e;
+  line-height: normal;
+  box-sizing: initial;
+  input{
+    position: absolute;
+    padding: 0;
+    border: 2px;
+    margin: 0;
+    top: -12px;
+
+  }
+}

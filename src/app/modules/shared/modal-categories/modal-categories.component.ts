@@ -17,6 +17,7 @@ import {v4 as uuidv4} from 'uuid';
 import { map } from 'rxjs';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { IAssociationCategorieAttributs } from 'src/app/modele/association-categorie-attributs';
+import { Unites } from 'src/app/modele/unites';
 
 @Component({
   selector: 'app-modal-categories',
@@ -57,6 +58,21 @@ export class ModalCategoriesComponent implements OnInit {
     valeursParDefaut: '',
     type: TypeTicket.Int,
     obligatoire:false,
+    ressource:{
+      id:'',
+      libelle:'',
+      etat:false,
+      quantite:0,
+      prix:0,
+      unite:Unites.litre,
+      caracteristique:'',
+      famille:{
+        id:'',
+        libelle:'',
+        description:'',
+        etat:'',
+      }
+    }
   }
 
 // tableau contenant les categories creees a partir du premier tableau de la modal
@@ -351,6 +367,21 @@ export class ModalCategoriesComponent implements OnInit {
              valeursParDefaut: '',
              type: TypeTicket.Int,
              obligatoire: false,
+             ressource:{
+              id:'',
+              libelle:'',
+              etat:false,
+              quantite:0,
+              prix:0,
+              unite:Unites.litre,
+              caracteristique:'',
+              famille:{
+                id:'',
+                libelle:'',
+                description:'',
+                etat:'',
+              }
+            }
            }
          }
        }

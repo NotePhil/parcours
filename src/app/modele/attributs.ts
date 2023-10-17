@@ -13,5 +13,5 @@ export interface IAttributs {
     type:TypeTicket,
     ordre?:number,
     obligatoire: boolean,
-    //ressource:IRessource
+    ressource:IRessource
 }

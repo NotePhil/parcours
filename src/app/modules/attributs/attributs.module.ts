@@ -16,6 +16,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { NewAttributComponent } from './new-attribut/new-attribut.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     MatInputModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    MatSelectModule,
+    MatCheckboxModule,
     MatTableModule,
     MatSortModule,
     TranslateModule.forChild({

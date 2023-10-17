@@ -56,8 +56,11 @@ h3{
     flex-wrap: wrap;
     padding: 0 0 10px 10px;
 }
-.block{
+/*.block{
     background-color: #28a7452b !important;
+}*/
+.block{
+  background-color: #28a746a1 !important;
 }
 .block .inputBlock{
     display: flex;
@@ -117,7 +120,7 @@ h3{
         font-size: 15px;
     }
     .btnValidation{
-        background-color: #1473e6;
+        background-color: #28a745;
     }
 }
 .inputSpecial{

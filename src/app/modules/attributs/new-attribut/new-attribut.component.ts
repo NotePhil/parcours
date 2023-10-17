@@ -2,10 +2,16 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EMPTY, Observable } from 'rxjs';
 import { IAttributs } from 'src/app/modele/attributs';
+import { IRessource } from 'src/app/modele/ressource';
 import { TypeTicket } from 'src/app/modele/type-ticket';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
+import { RessourcesService } from 'src/app/services/ressources/ressources.service';
 import {v4 as uuidv4} from 'uuid';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 
 @Component({
@@ -29,7 +35,9 @@ export class NewAttributComponent implements OnInit {
   tabError : Map<String,String> = new Map();
   valeursParDefaut: any;
 
-  constructor(private formBuilder:FormBuilder, private attributService:AttributService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  ressource$:Observable<IRessource[]>=EMPTY;
+
+  constructor(private formBuilder:FormBuilder,private ressourceService:RessourcesService, private attributService:AttributService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -37,10 +45,13 @@ export class NewAttributComponent implements OnInit {
       type: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       obligatoire: [true],
       valeursParDefaut:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      ressource: [''],
     })
   }
 
   ngOnInit(): void {
+    this.ressource$ = this.getAllRessources();
+
     let idAttribut = this.infosPath.snapshot.paramMap.get('idAttribut');
     if((idAttribut != null) && idAttribut!==''){
       this.btnLibelle="Modifier";
@@ -55,10 +66,15 @@ export class NewAttributComponent implements OnInit {
             etat: this.attribut.etat,
             type: this.attribut.type,
             valeursParDefaut:this.attribut.valeursParDefaut,
-            obligatoire:this.attribut.obligatoire
+            obligatoire:this.attribut.obligatoire,
+            ressource:this.attribut.ressource
           })
       });
     }
+  }
+
+  private getAllRessources(){
+    return this.ressourceService.getAllRessources();
   }
 
   get f(){
@@ -116,6 +132,7 @@ export class NewAttributComponent implements OnInit {
       type: attributInput.type,
       valeursParDefaut: attributInput.valeursParDefaut,
       obligatoire:attributInput.obligatoire,
+      ressource:attributInput.ressource,
     }
 
     if(this.attribut != undefined){
@@ -131,4 +148,7 @@ export class NewAttributComponent implements OnInit {
       }
     )
   }
+ compareItem(ressource1: IRessource, ressource2: IRessource) {
+    return ressource2 && ressource1 ? ressource2.id === ressource1.id : ressource2 === ressource1;
+}
 }

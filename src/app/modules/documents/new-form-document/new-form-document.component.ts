@@ -23,6 +23,7 @@ import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-
 import { ModalChoixAttributsComponent } from '../../shared/modal-choix-attributs/modal-choix-attributs.component';
 import { ModalChoixPreconisationsComponent } from '../../shared/modal-choix-preconisations/modal-choix-preconisations.component';
 import { IPrecoMvt } from 'src/app/modele/precomvt';
+import { Unites } from 'src/app/modele/unites';
 
 
 @Component({
@@ -133,6 +134,21 @@ export class NewFormDocumentComponent implements OnInit {
                       valeursParDefaut: '',
                       type: TypeTicket.Int,
                       obligatoire:false,
+                      ressource:{
+                        id:'',
+                        libelle:'',
+                        etat:false,
+                        quantite:0,
+                        prix:0,
+                        unite:Unites.litre,
+                        caracteristique:'',
+                        famille:{
+                          id:'',
+                          libelle:'',
+                          description:'',
+                          etat:'',
+                        }
+                      }
                     }
                   }
                 }

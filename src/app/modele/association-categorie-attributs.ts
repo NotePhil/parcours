@@ -4,5 +4,6 @@ export interface IAssociationCategorieAttributs {
     id?:string,
     ordre: number,
     obligatoire: boolean,
-    attribut : IAttributs
+    attribut : IAttributs,
+    
 }

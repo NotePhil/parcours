@@ -18,6 +18,7 @@ import { IDocument } from 'src/app/modele/document';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
 import { ObjetCleValeur } from 'src/app/modele/objet-cle-valeur';
 import { TypeTicket } from 'src/app/modele/type-ticket';
+import { Unites } from 'src/app/modele/unites';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
@@ -61,6 +62,21 @@ export class NewExemplaireComponent implements OnInit {
     valeursParDefaut: '',
     type: TypeTicket.Int,
     obligatoire:false,
+    ressource:{
+      id:'',
+      libelle:'',
+      etat:false,
+      quantite:0,
+      prix:0,
+      unite:Unites.litre,
+      caracteristique:'',
+      famille:{
+        id:'',
+        libelle:'',
+        description:'',
+        etat:'',
+      }
+    }
   };
 
   formeExemplaire: FormGroup;

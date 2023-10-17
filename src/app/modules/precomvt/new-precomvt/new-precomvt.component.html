@@ -13,7 +13,7 @@
                   <div>
                     <div class="champs">
                       <label for="libelle" class="label" class="libe">
-                        {{'precomvt.table.title1' | translate}}
+                        {{'precomvt.table.title1' | translate}}<span style="color: red;" aria-label="required">*</span>
                       </label>
                       <div class="w-100">
                         <input type="text" formControlName="libelle" name="libelle" id="libelle"  placeholder="{{'precomvt.table.title1' | translate}}"  class="form-control"
@@ -41,7 +41,7 @@
                 <div class="form-group">
                   <div class="champs">
                     <label  for="type"  class="label" >
-                     {{'precomvt.table.title3' | translate}}
+                     {{'precomvt.table.title3' | translate}}<span style="color: red;" aria-label="required">*</span>
                     </label>
                     <div class="errorPls w-100">
                       <select class="form-control" formControlName="type" (ngModelChange)="tabError.delete('type')" (ngModelChange)="tabError.delete('typeo')">
@@ -63,7 +63,7 @@
         <div *ngIf="steps == 2" class="form-group pt-0 pl-2 pr-2 pb-0">
           <div class="champs">
             <label for="famille" class="label">
-               {{'precomvt.table.title4' | translate}}
+               {{'precomvt.table.title4' | translate}}<span style="color: red;" aria-label="required">*</span>
             </label>
             <div class="w-100">
               <mat-form-field  style="background-color:#28a745;" class="example-full-width" appearance="fill" >
@@ -80,7 +80,7 @@
         <div  *ngIf="steps==3" class="form-group pt-0 pl-2 pr-2 pb-0">
           <div class="champs"  id="ressource">
               <label  for="ressource"  class="label" id="label3">
-                {{'precomvt.table.title5' | translate}}
+                {{'precomvt.table.title5' | translate}}<span style="color: red;" aria-label="required">*</span>
               </label>
               <div class="w-100">
                 <mat-form-field class="example-full-width" appearance="fill">
@@ -103,7 +103,7 @@
           <div class="form-group">
             <div class="champs">
                 <label  for="quantiteMax"  class="label" >
-                  {{'precomvt.table.title6' | translate}}
+                  {{'precomvt.table.title6' | translate}}<span style="color: red;" aria-label="required">*</span>
                 </label>
                 <div class="w-100">
                   <input type="number"  formControlName="quantiteMax" name="quantiteMax" class="form-control" id="quantiteMax" placeholder=" {{'precomvt.table.title7' | translate}}"
@@ -122,7 +122,7 @@
           <div class="form-group">
             <div class="champs">
                 <label  for="quantiteMin"  class="label" >
-                  {{'precomvt.table.title8' | translate}}
+                  {{'precomvt.table.title8' | translate}}<span style="color: red;" aria-label="required">*</span>
                 </label>
                 <div class="w-100">
                   <input  type="number" formControlName="quantiteMin" name="quantiteMin" class="form-control" id="quantiteMin" placeholder="{{'precomvt.table.title9' | translate}}"
@@ -141,7 +141,7 @@
           <div class="form-group">
             <div class="champs">
               <label  for="montantMax"  class="label" >
-                {{'precomvt.table.title10' | translate}}
+                {{'precomvt.table.title10' | translate}}<span style="color: red;" aria-label="required">*</span>
               </label>
               <div class="w-100"><input  type="number"  formControlName="montantMax" name="montantMax" id="montantMax" placeholder="{{'precomvt.table.title11' | translate}}" class="form-control"
                 (ngModelChange)="tabError.delete('montantMinMax')" (ngModelChange)="tabError.delete('montantMax')">
@@ -159,7 +159,7 @@
           <div class="form-group">
             <div class="champs">
                 <label  for="montantMin"  class="label" >
-                  {{'precomvt.table.title12' | translate}}
+                  {{'precomvt.table.title12' | translate}}<span style="color: red;" aria-label="required">*</span>
                 </label>
                 <div class="w-100">
                   <input type="number" formControlName="montantMin" name="montantMin" class="form-control" id="montantMin" placeholder="{{'precomvt.table.title13' | translate}}"
