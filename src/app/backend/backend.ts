@@ -3373,6 +3373,100 @@ export class InMemDBService implements InMemoryDbService {
             },
           ],
         }],
+        mouvements:[
+          {
+            id: '1',
+            description: 'Ici la description de ce mouvement',
+            quantite: 20,
+            prix: 10000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '1',
+              libelle: 'transfusion',
+              etat: true,
+              quantite: 10,
+              unite: this.UnitesLitre,
+              prix: 1000,
+              caracteristique: 'souple',
+              famille: {
+                id: '4',
+                libelle: 'néonat',
+                description: 'nouveau-né',
+                etat: 'malade',
+              },
+            }
+          },
+          {
+            id: '2',
+            description: 'Ici la description de ce mouvement',
+            quantite: 50,
+            prix: 300,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '5',
+              libelle: 'eau distillée',
+              etat: true,
+              quantite: 20,
+              unite: this.UnitesLitre,
+              prix: 500,
+              caracteristique: 'désinfictant',
+              famille: {
+                id: '3',
+                libelle: 'pediatrie',
+                description: 'enfant',
+                etat: 'souffrant',
+              },
+            }
+          },
+          {
+            id: '3',
+            description: 'Ici la description de ce mouvement',
+            quantite: 10,
+            prix: 5000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '3',
+              libelle: 'pediatrie',
+              etat: true,
+              quantite: 30,
+              unite: this.UnitesLitre,
+              prix: 3000,
+              caracteristique: 'souple',
+              famille: {
+                id: '4',
+                libelle: 'néonat',
+                description: 'nouveau-né',
+                etat: 'malade',
+              }
+            }
+          },
+          {
+            id: '4',
+            description: 'Ici la description de ce mouvement',
+            quantite: 20,
+            prix: 1000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '2',
+              libelle: 'néonat',
+              etat: true,
+              quantite: 20,
+              unite: this.UnitesLitre,
+              prix: 2000,
+              caracteristique: 'souple',
+              famille: {
+                id: '2',
+                libelle: 'néonat',
+                description: 'nouveau-né',
+                etat: 'malade',
+              }
+            }
+          },
+        ]
       },
       {
         id: '2',
@@ -3755,7 +3849,78 @@ export class InMemDBService implements InMemoryDbService {
                 }
               }
             ]
-          }]
+          }],
+        mouvements:[
+          {
+            id: '1',
+            description: 'Ici la description de ce mouvement',
+            quantite: 20,
+            prix: 10000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '2',
+              libelle: 'néonat',
+              etat: true,
+              quantite: 20,
+              unite: this.UnitesLitre,
+              prix: 2000,
+              caracteristique: 'souple',
+              famille: {
+                id: '2',
+                libelle: 'néonat',
+                description: 'nouveau-né',
+                etat: 'malade',
+              }
+            }
+          },
+          {
+            id: '2',
+            description: 'Ici la description de ce mouvement',
+            quantite: 2,
+            prix: 10000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '4',
+              libelle: 'paracetamols',
+              etat: true,
+              quantite: 40,
+              unite: this.UnitesKg,
+              prix: 100,
+              caracteristique: 'Appaise les douleurs légères',
+              famille: {
+                id: '5',
+                libelle: 'transfusion',
+                description: 'sang',
+                etat: 'gl',
+              }
+            }
+          },
+          {
+            id: '3',
+            description: 'Ici la description de ce mouvement',
+            quantite: 15,
+            prix: 4500,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '5',
+              libelle: 'eau distillée',
+              etat: true,
+              quantite: 20,
+              unite: this.UnitesLitre,
+              prix: 500,
+              caracteristique: 'désinfictant',
+              famille: {
+                id: '3',
+                libelle: 'pediatrie',
+                description: 'enfant',
+                etat: 'souffrant',
+              }
+            }
+          }
+        ],
       }
     ];
     let ressource: IRessource[] = [
@@ -3785,21 +3950,6 @@ export class InMemDBService implements InMemoryDbService {
         },
       },
       {
-        id: '2',
-        libelle: 'néonat',
-        etat: true,
-        quantite: 20,
-        unite: this.UnitesLitre,
-        prix: 2000,
-        caracteristique: 'souple',
-        famille: {
-          id: '3',
-          libelle: 'pediatrie',
-          description: 'enfant',
-          etat: 'souffrant',
-        },
-      },
-      {
         id: '3',
         libelle: 'pediatrie',
         etat: true,
@@ -3816,17 +3966,32 @@ export class InMemDBService implements InMemoryDbService {
       },
       {
         id: '4',
-        libelle: 'néonat',
+        libelle: 'paracetamols',
         etat: true,
         quantite: 40,
-        unite: this.UnitesLitre,
-        prix: 4000,
-        caracteristique: 'souple',
+        unite: this.UnitesKg,
+        prix: 100,
+        caracteristique: 'Appaise les douleurs légères',
         famille: {
           id: '5',
           libelle: 'transfusion',
           description: 'sang',
           etat: 'gl',
+        },
+      },
+      {
+        id: '5',
+        libelle: 'eau distillée',
+        etat: true,
+        quantite: 20,
+        unite: this.UnitesLitre,
+        prix: 500,
+        caracteristique: 'désinfictant',
+        famille: {
+          id: '3',
+          libelle: 'pediatrie',
+          description: 'enfant',
+          etat: 'souffrant',
         },
       },
     ];

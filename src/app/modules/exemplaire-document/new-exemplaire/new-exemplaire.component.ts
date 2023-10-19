@@ -19,6 +19,7 @@ import { IAssociationCategorieAttributs } from 'src/app/modele/association-categ
 import { IAttributs } from 'src/app/modele/attributs';
 import { IDocument } from 'src/app/modele/document';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
+import { IMouvement } from 'src/app/modele/mouvement';
 import { ObjetCleValeur } from 'src/app/modele/objet-cle-valeur';
 import { IPrecoMvt } from 'src/app/modele/precomvt';
 import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
@@ -45,7 +46,8 @@ export class NewExemplaireComponent implements OnInit {
     attributs: [],
     objetEnregistre: [],
     categories: [],
-    preconisations: []
+    preconisations: [],
+    mouvements: []
   };
   document: IDocument = {
     id: '',
@@ -102,12 +104,13 @@ export class NewExemplaireComponent implements OnInit {
   
   RessourceControl = new FormControl<string | IRessource>('');
   idRessource : string = "";
-  ELEMENTS_TABLE_RESSOURCE: IRessource[] = [];
-  dataSourceRessources = new MatTableDataSource<IRessource>(this.ELEMENTS_TABLE_RESSOURCE);
+  ELEMENTS_TABLE_MOUVEMENTS: IMouvement[] = [];
+  dataSourceMouvements = new MatTableDataSource<IMouvement>(this.ELEMENTS_TABLE_MOUVEMENTS);
   filteredOptionsPreco: IRessource[] | undefined;
   displayedRessourcesColumns: string[] = [
     'actions',
     'libelle',
+    'description',
     'prix',
     'quantite',
     'montant total'
@@ -225,6 +228,8 @@ export class NewExemplaireComponent implements OnInit {
         .subscribe((x) => {
           this.exemplaire = x;
           this.document = x;
+          this.ELEMENTS_TABLE_MOUVEMENTS = this.exemplaire.mouvements;
+          this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
           this.totalAttribut = x.attributs.length - 1;
           this.rechercherAttributsAbsants();
         });
@@ -392,29 +397,11 @@ export class NewExemplaireComponent implements OnInit {
       description: this.document.description,
       missions: this.document.missions,
       attributs: this.document.attributs,
-      objetEnregistre: [],
+      objetEnregistre: this.exemplaire.objetEnregistre,
       categories: this.document.categories,
-      preconisations: this.document.preconisations
+      preconisations: this.document.preconisations,
+      mouvements: this.ELEMENTS_TABLE_MOUVEMENTS
     };
-    exemplaireTemp.objetEnregistre = this.exemplaire.objetEnregistre;
-    this.ELEMENTS_TABLE_RESSOURCE.forEach(
-      ressource => {
-      let precoMvt : IPrecoMvt = {
-        id: '',
-        libelle: '',
-        etat: false,
-        type: '',
-        precomvtqte: []
-      }
-      let precoMvtQte : IPrecoMvtQte = {
-        id: '',
-        quantiteMin: 0,
-        quantiteMax: 0,
-        montantMin: 0,
-        montantMax: 0,
-        ressource:ressource
-      }
-    });
 
     if (this.exemplaire.id != '') {
       exemplaireTemp.id = this.exemplaire.id;
@@ -426,16 +413,24 @@ export class NewExemplaireComponent implements OnInit {
         this.router.navigate(['/list-exemplaire']);
       });
   }
-  public rechercherListingPreco(option: IRessource) {
+  public rechercherListingRessources(option: IRessource) {
     let tabIdRessource : string[] = []
-    this.ELEMENTS_TABLE_RESSOURCE = this.dataSourceRessources.data
-    this.ELEMENTS_TABLE_RESSOURCE.forEach(
-      Ressource => {
-      tabIdRessource.push(Ressource.id)
+    this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
+      mouvement => {
+      tabIdRessource.push(mouvement.ressource.id)
     });
     if (!tabIdRessource.includes(option.id)) {
-      this.ELEMENTS_TABLE_RESSOURCE.unshift(option)
-      this.dataSourceRessources.data = this.ELEMENTS_TABLE_RESSOURCE
+      let mvt : IMouvement = {
+        id: '',
+        description: '',
+        quantite: option.quantite,
+        prix: option.prix,
+        dateCreation: new Date(),
+        datePeremption:  new Date(),
+        ressource: option
+      }
+      this.ELEMENTS_TABLE_MOUVEMENTS.unshift(mvt)
+      this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS
     }
   }
 
@@ -456,8 +451,8 @@ export class NewExemplaireComponent implements OnInit {
   }
 
   retirerSelectionRessource(index: number) {
-    this.ELEMENTS_TABLE_RESSOURCE = this.dataSourceRessources.data;
-    this.ELEMENTS_TABLE_RESSOURCE.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
-    this.dataSourceRessources.data = this.ELEMENTS_TABLE_RESSOURCE;
+    this.ELEMENTS_TABLE_MOUVEMENTS = this.dataSourceMouvements.data;
+    this.ELEMENTS_TABLE_MOUVEMENTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
+    this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
   }
 }

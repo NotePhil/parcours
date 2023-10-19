@@ -237,7 +237,9 @@
             "title":"Document's instance ",
             "title2":"Old datas",
             "title3": "Add ressources",
-            "text1":"composition of this instance"
+            "title4": "list of mouvements",
+            "text1":"composition of this instance",
+            "text2": "Expiration's date"
         }      
     },
     "theme":{

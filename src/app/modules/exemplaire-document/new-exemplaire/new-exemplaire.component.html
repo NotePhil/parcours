@@ -49,7 +49,7 @@
                             <mat-label class="searchBar">{{'ressource.form.text16' | translate}}</mat-label>
                             <input type="text" matInput aria-label="Rechercher" [formControl]="RessourceControl" [matAutocomplete]="auto">
                             <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
-                                <mat-option class="options" *ngFor="let option of filteredOptionsPreco" [value]="option" (onSelectionChange)="rechercherListingPreco(option)">
+                                <mat-option class="options" *ngFor="let option of filteredOptionsPreco" [value]="option" (onSelectionChange)="rechercherListingRessources(option)">
                                     {{option.libelle}}
                                 </mat-option>
                             </mat-autocomplete>
@@ -57,16 +57,26 @@
                     </form>
                 </div>
 
-                <!-- tableau listing des Ressources -->
+                <!-- tableau listing des mouvements -->
 
                 <div class="card-body p-0 tableBlock" id="tableList">
                     <div class='table-responsive w-100'>
-                        <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceRessources" matSort (matSortChange)="announceSortChange($event)">
+                        <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceMouvements" matSort (matSortChange)="announceSortChange($event)">
 
                             <!-- libelle Column -->
                             <ng-container matColumnDef="libelle">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'preconisation.table.title1' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.ressource.libelle}} </td>
+                            </ng-container>
+
+                            <!-- description Column -->
+                            <ng-container matColumnDef="description">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title2' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    <label class="custom-control" for="element.prix">
+                                        <input class="form-control" type="text" [(ngModel)]="element.description" [ngModelOptions]="{standalone: true}" value="true">
+                                    </label> 
+                                </td>
                             </ng-container>
 
                             <!-- prix Column -->

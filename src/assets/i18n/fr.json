@@ -235,7 +235,9 @@
       "title": "Exemplaire du document",
       "title2": "Donnees obsoletes",
       "title3": "Ajouter des ressources",
-      "text1": "Composition de l'exemplaire"
+      "title4": "liste des mouvements",
+      "text1": "Composition de l'exemplaire",
+      "text2": "date de peremption"
     }
   },
   "theme": {

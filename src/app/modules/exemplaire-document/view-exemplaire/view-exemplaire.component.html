@@ -44,17 +44,21 @@
                 <thead class="thead-inverse">
                     <tr>
                         <th>{{'ressource.table.title8' | translate}}</th>
+                        <th>{{'attributs.table.title2' | translate}}</th>
                         <th>{{'ressource.table2.title7' | translate}}</th>
                         <th>{{'ressource.table2.title5' | translate}}</th>
                         <th>{{'ressource.table2.title10' | translate}}</th>
+                        <th>{{'document.exemplaire.text2' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let ressourcesExemplaire of ressourcesExemplaire">
-                        <td>{{ressourcesExemplaire.libelle}}</td>
+                    <tr *ngFor="let ressourcesExemplaire of exemplaire.mouvements">
+                        <td>{{ressourcesExemplaire.ressource.libelle}}</td>
+                        <td>{{ressourcesExemplaire.description}}</td>
                         <td>{{ressourcesExemplaire!.prix}}</td>
                         <td>{{ressourcesExemplaire!.quantite}}</td>
                         <td>{{ressourcesExemplaire!.quantite*ressourcesExemplaire!.prix}}</td>
+                        <td>{{ressourcesExemplaire!.datePeremption}}</td>
                     </tr>
                 </tbody>
             </table>
