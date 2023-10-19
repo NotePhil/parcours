@@ -108,18 +108,19 @@
         }
     },
     "services":{
-        "title1":"Add a new service",
+      "title1":"Add a new service",
         "table":{
             "title1":"Libel",
             "title2":"Status",
-            "title3":"Last modification's date",
-            "title4":"Allocation's date",
+            "title3": "Location",
+            "title4": "Description",
             "title5":"Date end"
         },
         "form":{
             "label1":"Libel",
             "label2":"Status",
-            "label3":"Last modification's date",
+            "label3": "Location",
+            "label4": "Description",
             "text1":"Libel is requied",
             "text2":"Status is requied",
             "text3":"the Last modification's date is requied"
@@ -164,7 +165,7 @@
         "form":{
             "text1":"Title is required.",
             "text2":"Description is required.",
-            "text3":"Status is requied",
+            "text3":"Type is requied",
             "text4":"Type is required.",
             "text5":"This field is required."
         }

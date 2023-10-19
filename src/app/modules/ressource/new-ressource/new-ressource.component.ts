@@ -31,7 +31,7 @@ export class NewRessourceComponent implements OnInit {
     id: '',
     libelle: '',
     description: '',
-    etat: ''
+    etat: true
   };
 
   constructor(private formBuilder:FormBuilder,private familleService:FamillesService,private ressourceService:RessourcesService,private serviceRessource:RessourcesService,private serviceFamille:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {

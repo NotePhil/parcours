@@ -58,18 +58,12 @@
                               <span>...</span>
                           </button>
                           <div class="dropdown-menu" aria-labelledby="triggerId">
-                              <button class="dropdown-item nav-link" [routerLink]="['new-famille']" title="{{'famille.table1.actions.link3' | translate}}">
-                                  <i class="fa fa-eye text-secondary" aria-hidden="true"></i>
-                                  <span>{{'famille.table1.actions.link3' | translate}}</span>
-                              </button>
-                              <button class="dropdown-item nav-link" [routerLink]="['/nouvelle-famille',element.id]" title="{{'famille.table1.actions.link2' | translate}}">
+
+                              <button class="dropdown-item nav-link" [routerLink]="['/famille-nouvelle',element.id]" title="{{'famille.table1.actions.link2' | translate}}">
                                   <i class="fa fa-pen text-info" aria-hidden="true"></i>
-                                  <span> {{'famille.table1.actions.link2' | translate}}</span>
+                                  <span>{{'patient.table.actions.link2' | translate}}</span>
                               </button>
-                              <button class="dropdown-item nav-link" [routerLink]="['/nouvelle-famille',element.id]"  disabled  title="{{'famille.table1.actions.link4' | translate}}">
-                                  <i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-                                  <span>{{'famille.table1.actions.link4' | translate}}</span>
-                              </button>
+                              
                           </div>
                       </div>
                   </td>

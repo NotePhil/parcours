@@ -62,21 +62,7 @@ export class NewExemplaireComponent implements OnInit {
     valeursParDefaut: '',
     type: TypeTicket.Int,
     obligatoire:false,
-    ressource:{
-      id:'',
-      libelle:'',
-      etat:false,
-      quantite:0,
-      prix:0,
-      unite:Unites.litre,
-      caracteristique:'',
-      famille:{
-        id:'',
-        libelle:'',
-        description:'',
-        etat:'',
-      }
-    }
+   
   };
 
   formeExemplaire: FormGroup;

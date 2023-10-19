@@ -110,14 +110,15 @@
     "table": {
       "title1": "Libelle",
       "title2": "Etat",
-      "title3": "date de derniere modification",
-      "title4": "date d'attribution",
+      "title3": "Localisation",
+      "title4": "Description",
       "title5": "date de fin"
     },
     "form": {
       "label1": "libelle",
       "label2": "etat",
-      "label3": "date derniere modification",
+      "label3": "Localisation",
+      "label4": "Description",
       "text1": "Le libelle est obligatoire.",
       "text2": "L'etat est obligatoire.",
       "text3": "La date de derniere modification est obligatoire."
@@ -162,7 +163,7 @@
     "form": {
       "text1": "Le titre est obligatoire.",
       "text2": "La description est obligatoire.",
-      "text3": "L'etat est obligatoire.",
+      "text3": "Un type est obligatoire.",
       "text4": "Le type est obligatoire.",
       "text5": "Ce champs est obligatoire."
     }

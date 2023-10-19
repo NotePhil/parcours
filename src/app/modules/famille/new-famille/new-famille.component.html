@@ -11,20 +11,10 @@
                                   <label for="libelle" class="label">
                                     {{'famille.table.title1' | translate}} <span style="color: red;" aria-label="required">*</span>
                                   </label>
-                                  <input class="form-control" type="text" formControlName="libelle" name="libelle" id="libelle"  placeholder="{{'famille.table.title1' | translate}}"   required>
+                                  <input  type="text" formControlName="libelle"class="form-control" name="libelle" id="libelle"  placeholder="{{'famille.table.title1' | translate}}"   required>
                               </div>
                               <div  *ngIf="submitted && f['libelle'].errors"  class="alert alert-danger" >
                                   <div *ngIf="f['libelle'].errors['required']">{{'famille.form.text1' | translate}}</div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <div>
-                              <div class="champs">
-                                  <label for="description" class="label" >
-                                    {{'famille.table.title2' | translate}}
-                                  </label>
-                                  <input  type="text" formControlName="description" name="description" id="description" placeholder=" {{'famille.table.title2' | translate}}" class="form-control"  required  >
                               </div>
                           </div>
                       </div>
@@ -32,15 +22,24 @@
                         <div>
                             <div class="champs">
                                 <label for="etat" class="label" >
-                                  {{'famille.table.title3' | translate}} <span style="color: red;" aria-label="required">*</span>
+                                  {{'famille.table.title3' | translate}}
                                 </label>
-                                <input   type="checkbox" checked value="true"  formControlName="etat" name="etat" id="etat" placeholder="{{'famille.table.title3' | translate}}" class="form-control"  required  >
+                                <input   type="checkbox" checked value="true"  formControlName="etat" class="form-control" name="etat" id="etat" placeholder="" >
                             </div>
-                            <div  *ngIf="submitted && f['etat'].errors"  class="alert alert-danger" >
-                                <div *ngIf="f['etat'].errors['required']">{{'famille.form.text2' | translate}}</div>
-                            </div>
+
                         </div>
                     </div>
+                      <div class="form-group">
+                          <div>
+                              <div class="champs">
+                                  <label for="description" class="label" >
+                                    {{'famille.table.title2' | translate}}
+                                  </label>
+                                  <input  type="text" formControlName="description" class="form-control"  name="description" id="description" placeholder="{{'famille.table.title2' | translate}}" >
+                              </div>
+                          </div>
+                      </div>
+
                   </div>
               </div>
               <div class="actionButton">

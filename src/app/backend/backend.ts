@@ -123,7 +123,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '1',
         libelle: 'Pharmacie',
-        etat: 'non attribue',
+        etat: true,
         dateDerniereModification: new Date('07/03/2000'),
         dateAttribution: new Date('07/03/1990'),
         dateFin: new Date('07/03/1990'),
@@ -134,7 +134,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '2',
         libelle: 'Laboratoire',
-        etat: 'non attribue',
+        etat: true,
         dateDerniereModification: new Date('06/08/1990'),
         dateAttribution: new Date('07/03/1990'),
         dateFin: new Date('07/03/1990'),
@@ -145,7 +145,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '3',
         libelle: 'Consultation',
-        etat: 'non attribue',
+        etat: true,
         dateDerniereModification: new Date('12/06/1972'),
         dateAttribution: new Date('07/03/1990'),
         dateFin: new Date('07/03/1990'),
@@ -491,7 +491,7 @@ export class InMemDBService implements InMemoryDbService {
         service: {
           id: '1',
           libelle: 'Pharmacie',
-          etat: 'non attribue',
+          etat: true,
           dateDerniereModification: new Date('07/03/2000'),
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
@@ -511,7 +511,7 @@ export class InMemDBService implements InMemoryDbService {
         service: {
           id: '2',
           libelle: 'Laboratoire',
-          etat: 'non attribue',
+          etat: true,
           dateDerniereModification: new Date('06/08/1990'),
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
@@ -531,7 +531,7 @@ export class InMemDBService implements InMemoryDbService {
         service: {
           id: '3',
           libelle: 'Consultation',
-          etat: 'non attribue',
+          etat: true,
           dateDerniereModification: new Date('12/06/1972'),
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
@@ -551,7 +551,7 @@ export class InMemDBService implements InMemoryDbService {
         service: {
           id: '1',
           libelle: 'Pharmacie',
-          etat: 'non attribue',
+          etat: true,
           dateDerniereModification: new Date('07/03/2000'),
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
@@ -571,7 +571,7 @@ export class InMemDBService implements InMemoryDbService {
         service: {
           id: '3',
           libelle: 'Consultation',
-          etat: 'non attribue',
+          etat: true,
           dateDerniereModification: new Date('12/06/1972'),
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
@@ -591,7 +591,7 @@ export class InMemDBService implements InMemoryDbService {
         service: {
           id: '1',
           libelle: 'Pharmacie',
-          etat: 'non attribue',
+          etat: true,
           dateDerniereModification: new Date('07/03/2000'),
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
@@ -602,160 +602,20 @@ export class InMemDBService implements InMemoryDbService {
       },
     ];
     let attributs: IAttributs[] = [
-      { id: '1', titre: 'taille',description: "taille de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String,ordre: 0,obligatoire: false, valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      {id: '2',titre: 'poids',description: "poids de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Int,ordre: 0,obligatoire: false, valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      {id: '3', titre: 'sexe',description: "sexe de l'individu", etat: true, dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,ordre: 0,obligatoire: false,valeursParDefaut: 'Homme, Femme, Autre',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      {id: '4',titre: 'age',description: "age de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Int,ordre: 0,obligatoire: false, valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      { id: '5', titre: 'allergies',description: "allergies de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String,ordre: 0,obligatoire: false,valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      { id: '6', titre: 'teint',description: "teint de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.String,ordre: 0,obligatoire: false, valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      {id: '7', titre: 'Groupe sangin', description: "Groupe sangin de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,ordre: 0,obligatoire: false,valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      { id: '8',titre: 'cicatrice',description: "cicatrice de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,ordre: 0,obligatoire: false, valeursParDefaut: 'oui, non',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      {id: '9', titre: 'date admission', description: "date admission de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Date,ordre: 0,obligatoire: false,valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      {id: '10', titre: 'date decharge', description: 'date decharge',etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Date,ordre: 0,obligatoire: false,valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      {id: '11', titre: 'date prochain rendez-vous',description: "date prochain rendez-vous de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Date,ordre: 0,obligatoire: false, valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      { id: '12', titre: 'aprobation du medecin', description: 'aprobation du medecin', etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,ordre: 0,obligatoire: false, valeursParDefaut: 'oui, non',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      {id: '13',titre: 'motif de la decharge',description: 'motif de la decharge ',etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Textarea,ordre: 0,obligatoire: false,valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
-      {id: '14',titre: 'nom',description: "nom de l'individu", etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String,ordre: 0, obligatoire: false, valeursParDefaut: '',
-      ressource:{
-        id: '1',
-        libelle: 'transfusion',
-        etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-        unite: this.UnitesLitre,
-        prix: 1000,
-        caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      },},
+      { id: '1', titre: 'taille',description: "taille de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String,ordre: 0,obligatoire: false, valeursParDefaut: '',},
+      {id: '2',titre: 'poids',description: "poids de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Int,ordre: 0,obligatoire: false, valeursParDefaut: '',},
+      {id: '3', titre: 'sexe',description: "sexe de l'individu", etat: true, dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,ordre: 0,obligatoire: false,valeursParDefaut: 'Homme, Femme, Autre',},
+      {id: '4',titre: 'age',description: "age de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Int,ordre: 0,obligatoire: false, valeursParDefaut: '',},
+      { id: '5', titre: 'allergies',description: "allergies de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String,ordre: 0,obligatoire: false,valeursParDefaut: '',},
+      { id: '6', titre: 'teint',description: "teint de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.String,ordre: 0,obligatoire: false, valeursParDefaut: '',},
+      {id: '7', titre: 'Groupe sangin', description: "Groupe sangin de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,ordre: 0,obligatoire: false,valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',},
+      { id: '8',titre: 'cicatrice',description: "cicatrice de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,ordre: 0,obligatoire: false, valeursParDefaut: 'oui, non',},
+      {id: '9', titre: 'date admission', description: "date admission de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Date,ordre: 0,obligatoire: false,valeursParDefaut: '',},
+      {id: '10', titre: 'date decharge', description: 'date decharge',etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Date,ordre: 0,obligatoire: false,valeursParDefaut: '',},
+      {id: '11', titre: 'date prochain rendez-vous',description: "date prochain rendez-vous de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Date,ordre: 0,obligatoire: false, valeursParDefaut: '',},
+      { id: '12', titre: 'aprobation du medecin', description: 'aprobation du medecin', etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,ordre: 0,obligatoire: false, valeursParDefaut: 'oui, non',},
+      {id: '13',titre: 'motif de la decharge',description: 'motif de la decharge ',etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Textarea,ordre: 0,obligatoire: false,valeursParDefaut: '',},
+      {id: '14',titre: 'nom',description: "nom de l'individu", etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String,ordre: 0, obligatoire: false, valeursParDefaut: '',},
     ];
     let documents: IDocument[] = [
       {
@@ -775,7 +635,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '1',
               libelle: 'Pharmacie',
-              etat: 'non attribue',
+              etat: false,
               dateDerniereModification: new Date('07/03/2000'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -795,7 +655,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '2',
               libelle: 'Laboratoire',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('06/08/1990'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -815,7 +675,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '3',
               libelle: 'Consultation',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('12/06/1972'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -837,17 +697,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
             },
-          },
           {
             id: '4',
             titre: 'age',
@@ -858,16 +708,6 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },
           },
           {
             id: '5',
@@ -880,16 +720,6 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },
           },
           {
             id: '6',
@@ -902,16 +732,6 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },
           },
           {
             id: '7',
@@ -924,16 +744,6 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },
           },
           {
             id: '8',
@@ -946,16 +756,6 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'oui, non',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },
           },
         ],
         categories: [
@@ -979,16 +779,6 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },
                 }
               },
               {
@@ -1006,16 +796,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
 
               },
               {
@@ -1032,16 +813,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -1064,16 +836,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+              }
               },
               {
                 id: '1',
@@ -1090,16 +853,7 @@ export class InMemDBService implements InMemoryDbService {
                 ordre: 0,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-                  ressource:{
-                    id: '1',
-                    libelle: 'transfusion',
-                    etat: true,
-                    /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                    unite: this.UnitesLitre,
-                    prix: 1000,
-                    caracteristique: 'souple',
-                    famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                  },}
+                 }
               },
               {
                 id: '1',
@@ -1115,16 +869,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Boolean,
                 ordre: 0,
                 valeursParDefaut: 'oui, non',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
             ],
           },
@@ -1154,7 +899,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
               },
@@ -1165,18 +910,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -1199,7 +944,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 }
               },
@@ -1222,7 +967,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       description: 'enfant',
-                      etat: 'souffrant',
+                      etat: true,
                     },
                   },
               },
@@ -1241,18 +986,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -1271,18 +1016,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
                 ressource: {
@@ -1297,7 +1042,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
                 distributeur: [
@@ -1348,7 +1093,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '1',
               libelle: 'Pharmacie',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('07/03/2000'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -1368,7 +1113,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '3',
               libelle: 'Consultation',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('12/06/1972'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -1388,7 +1133,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '2',
               libelle: 'Laboratoire',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('06/08/1990'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -1409,16 +1154,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '6',
             titre: 'teint',
@@ -1430,16 +1166,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '8',
             titre: 'cicatrice',
@@ -1451,16 +1178,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'true, false',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '4',
             titre: 'age',
@@ -1471,16 +1189,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+          },
           {
             id: '7',
             titre: 'Groupe sangin',
@@ -1492,16 +1201,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '5',
             titre: 'allergies',
@@ -1513,16 +1213,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
         ],
         categories: [
           {
@@ -1543,16 +1234,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id: '2',
@@ -1567,16 +1249,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id: '3',
@@ -1592,16 +1265,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+              }
               },
             ],
           },
@@ -1624,16 +1288,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+              }
               },
               {
                 id: '',
@@ -1650,16 +1305,7 @@ export class InMemDBService implements InMemoryDbService {
                 ordre: 0,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-                  ressource:{
-                    id: '1',
-                    libelle: 'transfusion',
-                    etat: true,
-                    /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                    unite: this.UnitesLitre,
-                    prix: 1000,
-                    caracteristique: 'souple',
-                    famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                  },}
+                 }
               },
               {
                 id: '',
@@ -1675,16 +1321,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Boolean,
                 ordre: 0,
                 valeursParDefaut: 'oui, non',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -1714,7 +1351,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
               },
@@ -1725,18 +1362,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -1759,7 +1396,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 }
               },
@@ -1782,7 +1419,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       description: 'enfant',
-                      etat: 'souffrant',
+                      etat: true,
                     },
                   },
               },
@@ -1801,18 +1438,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -1831,18 +1468,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
                 ressource: {
@@ -1857,7 +1494,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
                 distributeur: [
@@ -1908,7 +1545,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '2',
               libelle: 'Laboratoire',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('06/08/1990'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -1928,7 +1565,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '3',
               libelle: 'Consultation',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('12/06/1972'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -1948,7 +1585,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '1',
               libelle: 'Pharmacie',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('07/03/2000'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -1970,16 +1607,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '4',
             titre: 'age',
@@ -1990,16 +1618,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '5',
             titre: 'allergies',
@@ -2011,16 +1630,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '8',
             titre: 'cicatrice',
@@ -2032,16 +1642,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'true, false',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
         ],
         categories: [
           {
@@ -2062,16 +1663,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id: '',
@@ -2086,16 +1678,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -2118,16 +1701,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id: '',
@@ -2143,16 +1717,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Boolean,
                 ordre: 0,
                 valeursParDefaut: 'oui, non',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -2182,7 +1747,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
               },
@@ -2193,18 +1758,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -2227,7 +1792,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 }
               },
@@ -2250,7 +1815,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       description: 'enfant',
-                      etat: 'souffrant',
+                      etat: true,
                     },
                   },
               },
@@ -2269,18 +1834,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -2299,18 +1864,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
                 ressource: {
@@ -2325,7 +1890,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
                 distributeur: [
@@ -2376,7 +1941,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '2',
               libelle: 'Laboratoire',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('06/08/1990'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -2396,7 +1961,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '3',
               libelle: 'Consultation',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('12/06/1972'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -2416,7 +1981,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '1',
               libelle: 'Pharmacie',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('07/03/2000'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -2438,16 +2003,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '4',
             titre: 'age',
@@ -2458,16 +2014,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '5',
             titre: 'allergies',
@@ -2479,16 +2026,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Textarea,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '1',
             titre: 'taille',
@@ -2499,16 +2037,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+          },
           {
             id: '7',
             titre: 'Groupe sangin',
@@ -2520,16 +2049,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '8',
             titre: 'cicatrice',
@@ -2541,16 +2061,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'oui, non',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '9',
             titre: 'date admission',
@@ -2562,16 +2073,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Date,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '10',
             titre: 'date decharge',
@@ -2583,16 +2085,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Date,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '11',
             titre: 'date prochain rendez-vous',
@@ -2604,16 +2097,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Date,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '12',
             titre: 'aprobation du medecin',
@@ -2625,16 +2109,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'oui, non',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '13',
             titre: 'motif de la decharge',
@@ -2646,16 +2121,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Textarea,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
         ],
         categories: [
           {
@@ -2677,16 +2143,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id: '',
@@ -2701,16 +2158,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id: '',
@@ -2725,16 +2173,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -2757,16 +2196,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id: '',
@@ -2783,16 +2213,7 @@ export class InMemDBService implements InMemoryDbService {
                 ordre: 0,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-                  ressource:{
-                    id: '1',
-                    libelle: 'transfusion',
-                    etat: true,
-                    /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                    unite: this.UnitesLitre,
-                    prix: 1000,
-                    caracteristique: 'souple',
-                    famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                  },}
+                 }
               },
               {
                 id: '',
@@ -2808,16 +2229,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Boolean,
                 ordre: 0,
                 valeursParDefaut: 'oui, non',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -2840,16 +2252,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Date,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id: '',
@@ -2865,16 +2268,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Date,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id: '',
@@ -2890,16 +2284,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Date,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id: '',
@@ -2914,16 +2299,7 @@ export class InMemDBService implements InMemoryDbService {
                 obligatoire: true,
                 type: TypeTicket.Boolean,
                 ordre: 0,
-                valeursParDefaut: 'oui, non', ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                valeursParDefaut: 'oui, non', }
               },
               {
                 id: '',
@@ -2939,16 +2315,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Textarea,
                 ordre: 0,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -2978,7 +2345,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
               },
@@ -2989,18 +2356,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -3023,7 +2390,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 }
               },
@@ -3046,7 +2413,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       description: 'enfant',
-                      etat: 'souffrant',
+                      etat: true,
                     },
                   },
               },
@@ -3065,18 +2432,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -3095,18 +2462,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
                 ressource: {
@@ -3121,7 +2488,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
                 distributeur: [
@@ -3172,7 +2539,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '1',
               libelle: 'Pharmacie',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('07/03/2000'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -3192,7 +2559,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '2',
               libelle: 'Laboratoire',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('06/08/1990'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -3212,7 +2579,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '3',
               libelle: 'Consultation',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('12/06/1972'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -3233,16 +2600,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '6',
             titre: 'teint',
@@ -3254,16 +2612,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '8',
             titre: 'cicatrice',
@@ -3275,16 +2624,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'oui, non',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            }, },
+           },
           {
             id: '4',
             titre: 'age',
@@ -3295,16 +2635,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '7',
             titre: 'Groupe sangin',
@@ -3316,16 +2647,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '5',
             titre: 'allergies',
@@ -3337,16 +2659,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
         ],
         categories: [
           {
@@ -3367,16 +2680,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id: '',
@@ -3391,16 +2695,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id: '',
@@ -3415,16 +2710,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -3446,16 +2732,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id: '',
@@ -3471,16 +2748,7 @@ export class InMemDBService implements InMemoryDbService {
                 ordre: 0,obligatoire: false,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-                  ressource:{
-                    id: '1',
-                    libelle: 'transfusion',
-                    etat: true,
-                    /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                    unite: this.UnitesLitre,
-                    prix: 1000,
-                    caracteristique: 'souple',
-                    famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                  },}
+                  }
               },
               {
                 id: '',
@@ -3495,16 +2763,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Boolean,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: 'oui, non',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
             ],
           },
@@ -3534,7 +2793,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
               },
@@ -3545,18 +2804,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -3579,7 +2838,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 }
               },
@@ -3602,7 +2861,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       description: 'enfant',
-                      etat: 'souffrant',
+                      etat: true,
                     },
                   },
               },
@@ -3621,18 +2880,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -3651,18 +2910,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
                 ressource: {
@@ -3677,7 +2936,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
                 distributeur: [
@@ -3731,7 +2990,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '2',
               libelle: 'Laboratoire',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('06/08/1990'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -3751,7 +3010,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '3',
               libelle: 'Consultation',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('12/06/1972'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -3771,7 +3030,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '1',
               libelle: 'Pharmacie',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('07/03/2000'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -3792,16 +3051,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '4',
             titre: 'age',
@@ -3812,16 +3062,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+          },
           {
             id: '5',
             titre: 'allergies',
@@ -3832,16 +3073,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Textarea,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '1',
             titre: 'taille',
@@ -3852,16 +3084,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '7',
             titre: 'Groupe sangin',
@@ -3872,16 +3095,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,obligatoire: false,
             valeursParDefaut: 'A,A+,A-,B,B+,B-,AB,AB+,AB-,O,O+,O-',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '8',
             titre: 'cicatrice',
@@ -3892,16 +3106,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,obligatoire: false,
             valeursParDefaut: 'oui,non',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '9',
             titre: 'date admission',
@@ -3912,16 +3117,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Date,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '10',
             titre: 'date decharge',
@@ -3932,16 +3128,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Date,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '11',
             titre: 'date prochain rendez-vous',
@@ -3952,16 +3139,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Date,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '12',
             titre: 'aprobation du medecin',
@@ -3972,16 +3150,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,obligatoire: false,
             valeursParDefaut: 'oui,non',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '13',
             titre: 'motif de la decharge',
@@ -3992,16 +3161,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Textarea,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
         ],
         categories: [
           {
@@ -4022,16 +3182,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id:'',
@@ -4046,16 +3197,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id:'',
@@ -4070,16 +3212,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -4101,16 +3234,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+              }
               },
               {
                 id:'',
@@ -4126,16 +3250,7 @@ export class InMemDBService implements InMemoryDbService {
                 ordre: 0,obligatoire: false,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-                  ressource:{
-                    id: '1',
-                    libelle: 'transfusion',
-                    etat: true,
-                    /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                    unite: this.UnitesLitre,
-                    prix: 1000,
-                    caracteristique: 'souple',
-                    famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                  },}
+                  }
               },
               {
                 id:'',
@@ -4150,16 +3265,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Boolean,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: 'oui, non',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
             ],
           },
@@ -4181,16 +3287,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Date,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id:'',
@@ -4205,16 +3302,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Date,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+              }
               },
               {
                 id:'',
@@ -4229,16 +3317,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Date,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id:'',
@@ -4253,16 +3332,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Boolean,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: 'oui, non',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id:'',
@@ -4277,16 +3347,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Textarea,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -4316,7 +3377,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
               },
@@ -4327,18 +3388,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -4361,7 +3422,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 }
               },
@@ -4384,7 +3445,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       description: 'enfant',
-                      etat: 'souffrant',
+                      etat: true,
                     },
                   },
               },
@@ -4403,18 +3464,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -4433,18 +3494,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
                 ressource: {
@@ -4459,7 +3520,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
                 distributeur: [
@@ -4709,7 +3770,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '1',
               libelle: 'Pharmacie',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('07/03/2000'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -4729,7 +3790,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '2',
               libelle: 'Laboratoire',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('06/08/1990'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -4749,7 +3810,7 @@ export class InMemDBService implements InMemoryDbService {
             service: {
               id: '3',
               libelle: 'Consultation',
-              etat: 'non attribue',
+              etat: true,
               dateDerniereModification: new Date('12/06/1972'),
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
@@ -4770,16 +3831,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '6',
             titre: 'teint',
@@ -4790,16 +3842,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '8',
             titre: 'cicatrice',
@@ -4810,16 +3853,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,obligatoire: false,
             valeursParDefaut: 'oui, non',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '4',
             titre: 'age',
@@ -4830,16 +3864,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Int,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+           },
           {
             id: '7',
             titre: 'Groupe sangin',
@@ -4850,16 +3875,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.Boolean,
             ordre: 0,obligatoire: false,
             valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
           {
             id: '5',
             titre: 'allergies',
@@ -4870,16 +3886,7 @@ export class InMemDBService implements InMemoryDbService {
             type: TypeTicket.String,
             ordre: 0,obligatoire: false,
             valeursParDefaut: '',
-            ressource:{
-              id: '1',
-              libelle: 'transfusion',
-              etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-              unite: this.UnitesLitre,
-              prix: 1000,
-              caracteristique: 'souple',
-              famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-            },},
+            },
         ],
         categories: [
           {
@@ -4900,16 +3907,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id:'',
@@ -4924,16 +3922,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Int,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
               {
                 id:'',
@@ -4948,16 +3937,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
             ],
           },
@@ -4979,16 +3959,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.String,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: '',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+               }
               },
               {
                 id:'',
@@ -5004,16 +3975,7 @@ export class InMemDBService implements InMemoryDbService {
                 ordre: 0,obligatoire: false,
                 valeursParDefaut:
                   'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-                  ressource:{
-                    id: '1',
-                    libelle: 'transfusion',
-                    etat: true,
-                    /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                    unite: this.UnitesLitre,
-                    prix: 1000,
-                    caracteristique: 'souple',
-                    famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                  },}
+                }
               },
               {
                 id:'',
@@ -5028,16 +3990,7 @@ export class InMemDBService implements InMemoryDbService {
                 type: TypeTicket.Boolean,
                 ordre: 0,obligatoire: false,
                 valeursParDefaut: 'oui, non',
-                ressource:{
-                  id: '1',
-                  libelle: 'transfusion',
-                  etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
-                  unite: this.UnitesLitre,
-                  prix: 1000,
-                  caracteristique: 'souple',
-                  famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-                },}
+                }
               },
             ],
           },
@@ -5067,7 +4020,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
               },
@@ -5078,18 +4031,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
               },
@@ -5112,7 +4065,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 }
               },
@@ -5135,7 +4088,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       description: 'enfant',
-                      etat: 'souffrant',
+                      etat: true,
                     },
                   },
               },
@@ -5154,18 +4107,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat:true,
                   },
                 ],
               },
@@ -5184,18 +4137,18 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+                  { id: '1', libelle: 'trans', description: 'sang', etat:true },
                   {
                     id: '2',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: false,
                   },
                   {
                     id: '3',
                     libelle: 'pediatrie',
                     description: 'enfant',
-                    etat: 'souffrant',
+                    etat: true,
                   },
                 ],
                 ressource: {
@@ -5210,7 +4163,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '4',
                     libelle: 'néonat',
                     description: 'nouveau-né',
-                    etat: 'malade',
+                    etat: true,
                   },
                 },
                 distributeur: [
@@ -5340,7 +4293,7 @@ export class InMemDBService implements InMemoryDbService {
         unite: this.UnitesLitre,
         prix: 1000,
         caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+        famille: { id: '1', libelle: 'trans', description: 'sang', etat: true },
       },
       {
         id: '2',
@@ -5354,7 +4307,7 @@ export class InMemDBService implements InMemoryDbService {
           id: '2',
           libelle: 'néonat',
           description: 'nouveau-né',
-          etat: 'malade',
+          etat: true,
         },
       },
       {
@@ -5369,7 +4322,7 @@ export class InMemDBService implements InMemoryDbService {
           id: '3',
           libelle: 'pediatrie',
           description: 'enfant',
-          etat: 'souffrant',
+          etat: true,
         },
       },
       {
@@ -5384,7 +4337,7 @@ export class InMemDBService implements InMemoryDbService {
           id: '4',
           libelle: 'néonat',
           description: 'nouveau-né',
-          etat: 'malade',
+          etat: true,
         },
       },
       {
@@ -5399,21 +4352,21 @@ export class InMemDBService implements InMemoryDbService {
           id: '5',
           libelle: 'transfusion',
           description: 'sang',
-          etat: 'gl',
+          etat: true,
         },
       },
     ];
     let famille: IFamille[] = [
-      { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
-      { id: '2', libelle: 'néonat', description: 'nouveau-né', etat: 'malade' },
+      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+      { id: '2', libelle: 'néonat', description: 'nouveau-né', etat: false },
       {
         id: '3',
         libelle: 'pediatrie',
         description: 'enfant',
-        etat: 'souffrant',
+        etat: true,
       },
-      { id: '4', libelle: 'néonat', description: 'nouveau-né', etat: 'malade' },
-      { id: '5', libelle: 'transfusion', description: 'sang', etat: 'gl' },
+      { id: '4', libelle: 'néonat', description: 'nouveau-né', etat: true },
+      { id: '5', libelle: 'transfusion', description: 'sang', etat: true },
     ];
 
     let precomvt: IPrecoMvt[] = [
@@ -5441,7 +4394,7 @@ export class InMemDBService implements InMemoryDbService {
                 id: '4',
                 libelle: 'néonat',
                 description: 'nouveau-né',
-                etat: 'malade',
+                etat: true,
               },
             },
           },
@@ -5452,18 +4405,18 @@ export class InMemDBService implements InMemoryDbService {
             montantMin: 100,
             montantMax: 7000,
             famille: [
-              { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+              { id: '1', libelle: 'trans', description: 'sang', etat: true },
               {
                 id: '2',
                 libelle: 'néonat',
                 description: 'nouveau-né',
-                etat: 'malade',
+                etat: true,
               },
               {
                 id: '3',
                 libelle: 'pediatrie',
                 description: 'enfant',
-                etat: 'souffrant',
+                etat: true,
               },
             ],
           },
@@ -5486,7 +4439,7 @@ export class InMemDBService implements InMemoryDbService {
                 id: '4',
                 libelle: 'néonat',
                 description: 'nouveau-né',
-                etat: 'malade',
+                etat: true,
               },
             }
           },
@@ -5509,7 +4462,7 @@ export class InMemDBService implements InMemoryDbService {
                   id: '3',
                   libelle: 'pediatrie',
                   description: 'enfant',
-                  etat: 'souffrant',
+                  etat: true,
                 },
               },
           },
@@ -5528,18 +4481,18 @@ export class InMemDBService implements InMemoryDbService {
             montantMin: 100,
             montantMax: 7000,
             famille: [
-              { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+              { id: '1', libelle: 'trans', description: 'sang', etat: true },
               {
                 id: '2',
                 libelle: 'néonat',
                 description: 'nouveau-né',
-                etat: 'malade',
+                etat: true,
               },
               {
                 id: '3',
                 libelle: 'pediatrie',
                 description: 'enfant',
-                etat: 'souffrant',
+                etat: true,
               },
             ],
           },
@@ -5558,18 +4511,18 @@ export class InMemDBService implements InMemoryDbService {
             montantMin: 100,
             montantMax: 7000,
             famille: [
-              { id: '1', libelle: 'trans', description: 'sang', etat: 'gl' },
+              { id: '1', libelle: 'trans', description: 'sang', etat: true },
               {
                 id: '2',
                 libelle: 'néonat',
                 description: 'nouveau-né',
-                etat: 'malade',
+                etat: true,
               },
               {
                 id: '3',
                 libelle: 'pediatrie',
                 description: 'enfant',
-                etat: 'souffrant',
+                etat: true,
               },
             ],
             ressource: {
@@ -5584,7 +4537,7 @@ export class InMemDBService implements InMemoryDbService {
                 id: '4',
                 libelle: 'néonat',
                 description: 'nouveau-né',
-                etat: 'malade',
+                etat: true,
               },
             },
             distributeur: [

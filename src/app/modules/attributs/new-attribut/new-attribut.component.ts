@@ -35,7 +35,7 @@ export class NewAttributComponent implements OnInit {
   tabError : Map<String,String> = new Map();
   valeursParDefaut: any;
 
-  ressource$:Observable<IRessource[]>=EMPTY;
+
 
   constructor(private formBuilder:FormBuilder,private ressourceService:RessourcesService, private attributService:AttributService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
@@ -45,12 +45,10 @@ export class NewAttributComponent implements OnInit {
       type: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       obligatoire: [true],
       valeursParDefaut:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      ressource: [''],
     })
   }
 
   ngOnInit(): void {
-    this.ressource$ = this.getAllRessources();
 
     let idAttribut = this.infosPath.snapshot.paramMap.get('idAttribut');
     if((idAttribut != null) && idAttribut!==''){
@@ -67,14 +65,9 @@ export class NewAttributComponent implements OnInit {
             type: this.attribut.type,
             valeursParDefaut:this.attribut.valeursParDefaut,
             obligatoire:this.attribut.obligatoire,
-            ressource:this.attribut.ressource
           })
       });
     }
-  }
-
-  private getAllRessources(){
-    return this.ressourceService.getAllRessources();
   }
 
   get f(){
@@ -87,7 +80,7 @@ export class NewAttributComponent implements OnInit {
 
     if(valtype == this.typeInt){
         if( isNaN(valvaleursParDefaut)){
-         alert("la valeur de type number n'est un nombre ");
+         alert("la valeur de type number est un nombre ");
          return false;
         }
 
@@ -124,6 +117,7 @@ export class NewAttributComponent implements OnInit {
       this.submitted=true;
       if(this.forme.invalid && this.verifierValeurParDefaut()) return;
 
+
     let attributTemp : IAttributs={
       id:  uuidv4(),
       titre: attributInput.titre,
@@ -132,7 +126,6 @@ export class NewAttributComponent implements OnInit {
       type: attributInput.type,
       valeursParDefaut: attributInput.valeursParDefaut,
       obligatoire:attributInput.obligatoire,
-      ressource:attributInput.ressource,
     }
 
     if(this.attribut != undefined){
@@ -148,7 +141,5 @@ export class NewAttributComponent implements OnInit {
       }
     )
   }
- compareItem(ressource1: IRessource, ressource2: IRessource) {
-    return ressource2 && ressource1 ? ressource2.id === ressource1.id : ressource2 === ressource1;
-}
+
 }

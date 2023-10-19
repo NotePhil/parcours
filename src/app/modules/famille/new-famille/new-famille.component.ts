@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { FormGroup, FormBuilder, MaxLengthValidator,MinLengthValidator,ReactiveFormsModule, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EMPTY, Observable, isEmpty } from 'rxjs';
+import {v4 as uuidv4} from 'uuid';
 import { IService } from 'src/app/modele/service';
 import { ServicesService } from 'src/app/services/services/services.service';
 import { IFamille } from 'src/app/modele/famille';
@@ -20,7 +21,7 @@ export class NewFamilleComponent implements OnInit {
 
   famille : IFamille|undefined;
   forme: FormGroup;
-  btnLibelle: string="Envoyer";
+  btnLibelle: string="Ajouter";
   submitted: boolean=false;
 
 
@@ -28,29 +29,24 @@ export class NewFamilleComponent implements OnInit {
   constructor(private formBuilder:FormBuilder, private familleService:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme =  this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat:[true],
-
+      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
     })
-
   }
 
   ngOnInit() {
-    let idFamille = this.infosPath.snapshot.paramMap.get('idFamille');
+    let idFamille= this.infosPath.snapshot.paramMap.get('idFamille');
     if((idFamille != null) && idFamille!==''){
 
-      this.btnLibelle="Envoyer";
-
-
+      this.btnLibelle="Modifier";
       //trouver un autre moyen d'initialiser avec des valeurs
       this.familleService.getFamilleById(idFamille).subscribe(x =>
         {
           this.famille = x;
           this.forme.setValue({
             libelle: this.famille.libelle,
-            description: this.famille.description,
             etat: this.famille.etat,
-
+            description: this.famille.description,
           })
         });
     }
@@ -66,13 +62,12 @@ export class NewFamilleComponent implements OnInit {
     //Todo la validation d'element non conforme passe
     if(this.forme.invalid) return;
 
-
-
     let familleTemp : IFamille={
-      id: String(9),
+      id: uuidv4(),
       libelle:familleInput.libelle,
-      description:familleInput.description,
       etat:familleInput.etat,
+      description:familleInput.description,
+
     }
 
     if(this.famille != undefined){
@@ -83,8 +78,6 @@ export class NewFamilleComponent implements OnInit {
         this.router.navigate(['/list-familles']);
       }
     )
-
-
 
 }
 }

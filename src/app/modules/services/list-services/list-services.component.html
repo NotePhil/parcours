@@ -41,6 +41,18 @@
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
                     </ng-container>
 
+                     <!-- Localisation Column -->
+                     <ng-container matColumnDef="localisation">
+                        <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'services.table.title3' | translate}}</th>
+                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.localisation}} </td>
+                    </ng-container>
+
+                   <!-- Description Column -->
+                   <ng-container matColumnDef="description">
+                    <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'services.table.title4' | translate}}</th>
+                    <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.description}} </td>
+                  </ng-container>
+
                     <ng-container matColumnDef="actions">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element">
@@ -53,10 +65,6 @@
                                     <button class="dropdown-item nav-link" [routerLink]="['/service-nouveau',element.id]" title="{{'patient.table.actions.link2' | translate}}">
                                         <i class="fa fa-pen text-info" aria-hidden="true"></i>
                                         <span>{{'patient.table.actions.link2' | translate}}</span>
-                                    </button>
-                                    <button class="dropdown-item nav-link" [routerLink]="['/service-nouveau',element.id]" disabled title="{{'patient.table.actions.link4' | translate}}">
-                                        <i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-                                        <span>{{'patient.table.actions.link4' | translate}}</span>
                                     </button>
                                 </div>
                             </div>

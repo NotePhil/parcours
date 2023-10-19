@@ -1,6 +1,6 @@
 <div id="mainSection">
     <div class="card block">
-        <div class="card-header pt-4 pb-4 entete">{{ titre }}</div>
+        <div class="card-header" class="entete pt-4 pb-4 ">{{ titre }}</div>
         <div class="card-body">
             <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
                 <div class="">
@@ -18,36 +18,34 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group " id="eta">
                             <div>
                                 <div class="champs">
                                     <label for="etat" class="label" >
-                                        {{'services.form.label2' | translate}} <span style="color: red;" aria-label="required">*</span>
+                                        {{'services.form.label2' | translate}}
                                     </label>
-                                    <input  type="checkbox" checked value="true" formControlName="etat"  name="etat" id="etat" placeholder="etat" value="" required class="form-control">
+                                    <input  type="checkbox" checked value="true" formControlName="etat" class="form-control" name="etat" id="etat" placeholder="" >
                                 </div>
-                                <div  *ngIf="submitted && f['etat'].errors"  class="alert alert-danger" >
-                                    <div *ngIf="f['etat'].errors['required']">{{'services.form.text2' | translate}}</div>
-                                </div>
+
                             </div>
                         </div>
                         <div class="form-group ">
                           <div>
                               <div class="champs">
-                                  <label for="etat" class="label" >
-                                      Localisation
+                                  <label for="localisation" class="label" >
+                                    {{'services.form.label3' | translate}}
                                   </label>
-                                  <input  type="text" formControlName="localisation"  name="localisation" id="localisation" placeholder="localisation"  required class="form-control">
+                                  <input  type="text" formControlName="localisation"  name="localisation" id="localisation" placeholder="{{'services.form.label3' | translate}}"  required class="form-control">
                               </div>
                           </div>
                       </div>
                       <div class="form-group ">
                         <div>
                             <div class="champs">
-                                <label for="etat" class="label" >
-                                    Description
+                                <label for="description" class="label" >
+                                  {{'services.form.label4' | translate}}
                                 </label>
-                                <input  type="text" formControlName="description"  name="description"  id="description"  placeholder="description"   required class="form-control">
+                                <input  type="text" formControlName="description"  name="description"  id="description"  placeholder="{{'services.form.label4' | translate}}"   required class="form-control">
                             </div>
                         </div>
                     </div>

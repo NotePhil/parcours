@@ -47,7 +47,7 @@
                       <div class="form-group">
                           <div class="champs">
                               <label  for="type" class="label">
-                                  {{"attributs.table.title6" | translate}}
+                                  {{"attributs.table.title6" | translate}}<span style="color: red;" aria-label="required">*</span>
                               </label>
                               <select  class="form-control" formControlName="type" name="type" id="type">
                                   <option value="{{typeInt}}" >{{typeInt}}</option>
@@ -57,6 +57,9 @@
                                   <option value="{{typeDate}}" >{{typeDate}}</option>
                               </select>
                           </div>
+                          <div  *ngIf="submitted && f['type'].errors"  class="alert alert-danger" >
+                            <div *ngIf="f['type'].errors['required']">{{'attributs.form.text3' | translate}}</div>
+                        </div>
                       </div>
                       <div class="form-group">
                           <div class="champs">
@@ -78,18 +81,7 @@
                               >
                           </div>
                       </div>
-                      <div class="form-group">
-                        <div class="champs">
-                            <label  for="caracteristique"  class="label" >
-                              {{'ressource.table.title7' | translate}}
-                            </label>
-                            <mat-form-field  style="background-color:#28a745;" class="example-full-width" appearance="fill" >
-                              <mat-select formControlName="ressource" multiple [compareWith]="compareItem">
-                                <mat-option  *ngFor="let membre of ressource$ |async" [value]="membre">{{membre.caracteristique}}</mat-option>
-                              </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>
+
 
                   </div>
               </div>
