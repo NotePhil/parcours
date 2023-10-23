@@ -36,6 +36,7 @@ export class NewFormDocumentComponent implements OnInit {
     id: '',
     titre: '',
     description: '',
+    etat: false,
     missions: [],
     attributs: [],
     categories: [],
@@ -81,7 +82,8 @@ export class NewFormDocumentComponent implements OnInit {
       _missions :  new FormControl<string | IMission[]>(''),
       _attributs :  new FormArray([]),
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      description: ['']
+      description: [''],
+      etat: new FormControl(true)
     });
   }
   ngOnInit(): void {
@@ -98,6 +100,7 @@ export class NewFormDocumentComponent implements OnInit {
         this.forme.setValue({
           titre: this.document.titre,
           description: this.document.description,
+          etat: this.document.etat,
           _missions: this.document.missions,
           _attributs: []
           })
@@ -262,6 +265,7 @@ export class NewFormDocumentComponent implements OnInit {
       id: uuidv4(),
       titre: documentInput.titre,
       description: documentInput.description,
+      etat: documentInput.etat,
       missions: documentInput._missions,
       attributs: [],
       categories: [],
@@ -286,10 +290,6 @@ export class NewFormDocumentComponent implements OnInit {
         ordre: 100,
         listAttributsParCategories: []
       }
-      this.ELEMENTS_TABLE_ATTRIBUTS.forEach(
-        element => {
-          // categorieAttributs.listAttributsParCategories.push(element)
-      });
       // ajout d'une categorie par defaut dans le document
       documentTemp.categories.push(categorieAttributs)
     }else{

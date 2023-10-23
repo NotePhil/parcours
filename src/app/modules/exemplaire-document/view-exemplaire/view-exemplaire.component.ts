@@ -22,7 +22,8 @@ export class ViewExemplaireComponent implements OnInit {
     objetEnregistre: [],
     categories: [],
     preconisations: [],
-    mouvements: []
+    mouvements: [],
+    etat: false
   }; 
   document : IDocument = {
     id: '',
@@ -31,7 +32,8 @@ export class ViewExemplaireComponent implements OnInit {
     missions: [],
     attributs: [],
     categories: [],
-    preconisations: []
+    preconisations: [],
+    etat: false
   };
 
   constructor(private router:Router, private infosPath:ActivatedRoute, private serviceDocument:DocumentService, private serviceExemplaire:ExemplaireDocumentService) {}

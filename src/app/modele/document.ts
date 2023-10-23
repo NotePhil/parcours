@@ -7,6 +7,7 @@ export interface IDocument {
     id:string,
     titre:string,
     description:string,
+    etat:boolean,
     missions : IMission[],
     attributs : IAttributs[],
     categories : ICategoriesAttributs[]

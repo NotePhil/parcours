@@ -42,6 +42,7 @@ export class NewExemplaireComponent implements OnInit {
     idDocument: '',
     titre: '',
     description: '',
+    etat: false,
     missions: [],
     attributs: [],
     objetEnregistre: [],
@@ -53,6 +54,7 @@ export class NewExemplaireComponent implements OnInit {
     id: '',
     titre: '',
     description: '',
+    etat: false,
     missions: [],
     attributs: [],
     categories: [],
@@ -400,7 +402,8 @@ export class NewExemplaireComponent implements OnInit {
       objetEnregistre: this.exemplaire.objetEnregistre,
       categories: this.document.categories,
       preconisations: this.document.preconisations,
-      mouvements: this.ELEMENTS_TABLE_MOUVEMENTS
+      mouvements: this.ELEMENTS_TABLE_MOUVEMENTS,
+      etat: false
     };
 
     if (this.exemplaire.id != '') {

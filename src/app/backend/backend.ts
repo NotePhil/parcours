@@ -605,6 +605,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Note intervention',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:true,
         missions: [
           {
             id: '1',
@@ -1028,6 +1029,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Fiche de suivi',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:false,
         missions: [
           {
             id: '1',
@@ -1448,6 +1450,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Fiche de soin',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:true,
         missions: [
           {
             id: '2',
@@ -1821,6 +1824,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Formulaire de sortie',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:true,
         missions: [
           {
             id: '2',
@@ -2363,6 +2367,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'ordonnance',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:true,
         missions: [
           {
             id: '1',
@@ -2786,6 +2791,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Formulaire de sortie',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:false,
         missions: [
           {
             id: '2',
@@ -3474,6 +3480,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'ordonnance',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:false,
         missions: [
           {
             id: '1',
