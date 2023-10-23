@@ -4,8 +4,6 @@ import { FormGroup, FormBuilder, MaxLengthValidator,MinLengthValidator,ReactiveF
 import { Router, ActivatedRoute } from '@angular/router';
 import { EMPTY, Observable, isEmpty } from 'rxjs';
 import {v4 as uuidv4} from 'uuid';
-import { IService } from 'src/app/modele/service';
-import { ServicesService } from 'src/app/services/services/services.service';
 import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
 
@@ -26,27 +24,27 @@ export class NewFamilleComponent implements OnInit {
 
 
 
-  constructor(private formBuilder:FormBuilder, private familleService:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private formBuilder:FormBuilder, private familleService:FamillesService,private router:Router, private infosPath:ActivatedRoute, ) {
     this.forme =  this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      etat:[true],
-      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      etat: [true],
+      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
     })
   }
 
-  ngOnInit() {
-    let idFamille= this.infosPath.snapshot.paramMap.get('idFamille');
+  ngOnInit(): void{
+
+    let idFamille = this.infosPath.snapshot.paramMap.get('idFamille');
     if((idFamille != null) && idFamille!==''){
 
       this.btnLibelle="Modifier";
-      //trouver un autre moyen d'initialiser avec des valeurs
       this.familleService.getFamilleById(idFamille).subscribe(x =>
         {
           this.famille = x;
           this.forme.setValue({
             libelle: this.famille.libelle,
             etat: this.famille.etat,
-            description: this.famille.description,
+            description: this.famille.description
           })
         });
     }
@@ -64,10 +62,9 @@ export class NewFamilleComponent implements OnInit {
 
     let familleTemp : IFamille={
       id: uuidv4(),
-      libelle:familleInput.libelle,
-      etat:familleInput.etat,
-      description:familleInput.description,
-
+      libelle: familleInput.libelle,
+      etat: familleInput.etat,
+      description: familleInput.description
     }
 
     if(this.famille != undefined){

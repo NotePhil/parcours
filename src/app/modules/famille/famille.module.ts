@@ -27,6 +27,7 @@ import { ListFamillesComponent } from './list-familles/list-familles.component';
   ],
   imports: [
     CommonModule,
+    FamilleRoutingModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,

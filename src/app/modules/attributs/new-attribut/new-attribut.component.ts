@@ -33,7 +33,8 @@ export class NewAttributComponent implements OnInit {
   typeDate = TypeTicket.Date;
 
   tabError : Map<String,String> = new Map();
-  valeursParDefaut: any;
+
+
 
 
 
@@ -79,7 +80,7 @@ export class NewAttributComponent implements OnInit {
     let valvaleursParDefaut = this.forme.controls["valeursParDefaut"].value;
 
     if(valtype == this.typeInt){
-        if( isNaN(valvaleursParDefaut)){
+        if(isNaN(valvaleursParDefaut)){
          alert("la valeur de type number est un nombre ");
          return false;
         }
@@ -111,6 +112,7 @@ export class NewAttributComponent implements OnInit {
 
       }
       return true;
+
     }
     onSubmit(attributInput:any){
       ;

@@ -35,12 +35,9 @@
                             <div>
                                 <div class="champs">
                                     <label for="etat" class="label" >
-                                        {{'missions.table.title3' | translate}}<span style="color: red;" aria-label="required">*</span>
+                                        {{'missions.table.title3' | translate}}
                                     </label>
-                                    <input  type="checkbox" checked value="true" formControlName="etat"  name="etat" id="etat" placeholder="{{'missions.table.title3' | translate}}" value="" required class="form-control">
-                                </div>
-                                <div  *ngIf="submitted && f['etat'].errors"  class="alert alert-danger" >
-                                    <div *ngIf="f['etat'].errors['required']">{{'missions.form.text3' | translate}}</div>
+                                    <input  type="checkbox" checked value="true" formControlName="etat"  name="etat" id="etat" placeholder="{{'missions.table.title3' | translate}}"  class="form-control">
                                 </div>
                             </div>
                         </div>
