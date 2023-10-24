@@ -2,13 +2,13 @@
 
 <div id="mainSection">
     <div class="card block">
-        <div class="card-header pt-4 pb-4 entete">Affecter Roles</div>
+        <div class="card-header pt-2 pb-2 entete">Affecter Roles</div>
     <div class="card-body">
         <div class='card-hearder'>
             <h2 class="modal-title">Personnel: {{ nomPersonnel }}</h2>
         </div>
         <form [formGroup]="forme" *ngIf="forme">
-            <div class="form-group mt-5">
+            <div class="form-group mt-3">
                 
                 <div class="newAttSection">
                     <div class="div-date">
@@ -70,7 +70,7 @@
                                         <div id="actions" class="dropdown open">
                                             
                                             <label style="width: 2px;" for="role">
-                                                <input type="checkbox" [value]="element" name="role" id="role" (click)="getRoleId(element)" (change)="onCheckRoleChange($event)">
+                                                <input type="checkbox" [value]="element" name="role" id="role" (change)="onCheckRoleChange($event, element)">
                                             </label>
                                             
                                         </div>
@@ -119,23 +119,23 @@
                             <div class="card-body p-0 tableBlock" id="tableResultats">
                                 <div class='table-responsive w-100 m-0'>
                                     <table class='table table-sm table-centered table-striped w-100' mat-table [dataSource]="dataSourceRoleResultat" matSort (matSortChange)="announceSortChange($event)">
-                                       <!-- titre Column -->
-                              <ng-container matColumnDef="titre">
-                                <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>titre</th>
-                                <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.role.titre}} </td>
-                              </ng-container>
-              
-                              <!-- description Column -->
-                              <ng-container matColumnDef="description">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>Date Entree</th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateEntree}} </td>
-                              </ng-container>
-              
-                              <!-- ete Column -->
-                              <ng-container matColumnDef="etat">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>Date Fin</th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateFin}} </td>
-                              </ng-container>
+                                        <!-- titre Column -->
+                                        <ng-container matColumnDef="titre">
+                                            <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>titre</th>
+                                            <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.role.titre}} </td>
+                                        </ng-container>
+                        
+                                        <!-- date entree Column -->
+                                        <ng-container matColumnDef="description">
+                                            <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>Date Entree</th>
+                                            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateEntree}} </td>
+                                        </ng-container>
+                        
+                                        <!-- date fin Column -->
+                                        <ng-container matColumnDef="etat">
+                                            <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>Date Fin</th>
+                                            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateFin}} </td>
+                                        </ng-container>
     
                               
                                         <!-- actions Column -->
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="actionButton">
-                            <button type="submit" class="btn btnValidation" (click)="onSubmit(dataSourceRoleResultat)">Ajouter</button>
+                            <button type="submit" class="btn btnfinal btnValidation" (click)="onSubmit(dataSourceRoleResultat)">Ajouter</button>
                         </div>
                     </div>
                     </div>

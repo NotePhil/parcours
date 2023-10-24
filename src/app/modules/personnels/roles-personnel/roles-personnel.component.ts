@@ -34,7 +34,7 @@ export class RolesPersonnelComponent implements OnInit {
   ELEMENTS_TABLE: any[] = [];
   filteredOptions: IRole[] | undefined;
   displayedColumns: string[] = ['selection', 'titre', 'description', 'etat'];
-  dataSource = new MatTableDataSource<IRole>(this.ELEMENTS_TABLE);
+  dataSource = new MatTableDataSource<IRole>();
   dataSourceRoleResultat = new MatTableDataSource<any>();
   idRole: string = '';
   submitted: boolean=false;
@@ -42,6 +42,7 @@ export class RolesPersonnelComponent implements OnInit {
   constructor(private formBuilder:FormBuilder, private _liveAnnouncer: LiveAnnouncer, private personnelService:PersonnelsService, private serviceRole: RolesService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) { 
     this.forme =  this.formBuilder.group({
       dateEntree: ['', Validators.required],
+      status: [0],
       dateFin: ['']
     })  
 
@@ -70,8 +71,8 @@ export class RolesPersonnelComponent implements OnInit {
       this.personnelService.getPersonnelById(idPersonnel).subscribe(x =>
       {
         this.personnel = x;
-        this.nomPersonnel = this.personnel?.nom+" "+this.personnel?.prenom
-        
+        this.nomPersonnel = this.personnel?.nom+" "+this.personnel?.prenom;
+        this.dataSourceRoleResultat.data = this.personnel?.roles!
       });
 
       this.getAllRoles().subscribe(valeurs => {
@@ -95,7 +96,7 @@ export class RolesPersonnelComponent implements OnInit {
         }
       );
   }
-}    
+} 
 
   private getAllRoles(){
     return this.serviceRole.getAllRoles();
@@ -105,11 +106,7 @@ export class RolesPersonnelComponent implements OnInit {
     return this.forme.controls;
   }
 
-  getRoleId(idrol: IRole) {
-    this.idRole = idrol.id;
-  }
-
-  onCheckRoleChange(event: any) {
+  onCheckRoleChange(event: any, element:IRole) {
     let listIdRolesTemp : any[] = []
     if (event.target.checked) {
       if (!listIdRolesTemp.includes(this.idRole)) {
@@ -119,8 +116,8 @@ export class RolesPersonnelComponent implements OnInit {
           event.target.checked = false
           return;
         }
-        this.ajoutSelectionRole(this.idRole);
-        this.datas.push({id: this.idRole, event: event})
+        this.ajoutSelectionRole(element);
+        this.datas.push({id: element.id, event: event})
       }
       console.log("resultat :", this.datas);
       
@@ -142,13 +139,15 @@ export class RolesPersonnelComponent implements OnInit {
   retirerSelectionRole(index: number) {
     console.log("index du tab :", index);
     
-    this.ELEMENTS_TABLE = this.dataSourceRoleResultat.data;
-          this.ELEMENTS_TABLE.splice(index, 1); // je supprime un seul element du tableau a la position 'i'
-    this.dataSourceRoleResultat.data = this.ELEMENTS_TABLE
+    let temp = this.dataSourceRoleResultat.data;
+    temp.splice(index, 1); // je supprime un seul element du tableau a la position 'i'
+    this.dataSourceRoleResultat.data = temp;
   }
 
   validateElement() {
-    this.dataSourceRoleResultat.data = this.ELEMENTS_TABLE;
+    let tabTemp  = this.dataSourceRoleResultat.data;
+    this.ELEMENTS_TABLE.forEach(elt => tabTemp.push(elt));
+    this.dataSourceRoleResultat.data = tabTemp ;
     this.datas.forEach((c) => (c.event.target.checked = false))
     this.ELEMENTS_TABLE = []
     this.datas = []
@@ -160,17 +159,13 @@ export class RolesPersonnelComponent implements OnInit {
     this.datas = []
   }
 
-  ajoutSelectionRole(idrole: string) {
+  ajoutSelectionRole(rol: IRole) {
 
-    this.serviceRole.getRoleById(idrole).subscribe((val) => {
-      
-      this.ELEMENTS_TABLE = this.dataSourceRoleResultat.data;
       this.ELEMENTS_TABLE.push({
-        role: val,
+        role: rol,
         dateEntree: this.forme.value.dateEntree,
         dateFin: this.forme.value.dateFin
       });
-    });
   }
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
@@ -189,38 +184,10 @@ export class RolesPersonnelComponent implements OnInit {
     this.submitted = true
     //Todo la validation d'element non conforme passe
     if(this.forme.invalid) return;
-    
-    let idPersonnel = this.infosPath.snapshot.paramMap.get('idPersonnel');
 
-    if((idPersonnel != null) && idPersonnel!==''){     
-      
-      this.personnelService.getPersonnelById(idPersonnel).subscribe(x =>
-      {
-        this.personnel = x;
+      this.personnel.roles = personnelInput.filteredData
 
-      });
-    }
-
-    
-    let personnelTemp : IPersonnel={
-      id: uuidv4(),
-      nom: this.personnel?.nom,
-      prenom:this.personnel?.prenom,
-      sexe:this.personnel?.sexe,
-      email:this.personnel?.email,
-      telephone:this.personnel?.telephone,
-      dateNaissance:this.personnel.dateNaissance,
-      dateEntree: this.personnel?.dateEntree,
-      dateSortie: this.personnel?.dateSortie,
-      roles: personnelInput.filteredData
-    }
-
-    console.log("final personnel :", personnelTemp);
-
-    if(this.personnel != undefined){
-      personnelTemp.id = this.personnel.id  
-    }
-    this.personnelService.ajouterPersonnel(personnelTemp).subscribe(
+    this.personnelService.ajouterPersonnel(this.personnel).subscribe(
       object => {
         this.router.navigate(['/list-personnels']);
       }

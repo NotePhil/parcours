@@ -5,7 +5,7 @@
     justify-content: center;
 }
 .block{
-    width: 80%;
+    width: 70%;
     height: auto;
 }
 .example-radio-group {
@@ -22,7 +22,7 @@
     background-color: #28a745;
     color: white;
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
 }
 .example-form {
@@ -235,5 +235,8 @@ th{
 @media screen and (max-width: 1060px) {
     td{
         font-size: 12px;
+    }
+    .div-date{
+        display: block;
     }
 }
