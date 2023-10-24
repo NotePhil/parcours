@@ -33,18 +33,14 @@
                       <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>libelle</th>
                       <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
                   </ng-container>
-                    <!-- libellé Column -->
-                    <ng-container matColumnDef="etat">
-                      <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>etat</th>
-                      <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
-                  </ng-container>
-                    <!-- libellé Column -->
+
+                    <!-- type Column -->
                     <ng-container matColumnDef="type">
                       <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>type</th>
                       <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.type}} </td>
-                  </ng-container>
+                    </ng-container>
 
-                  <ng-container matColumnDef="actions">
+                    <ng-container matColumnDef="actions">
                       <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>Actions</th>
                       <td class="text-dark text-center containCell" mat-cell *matCellDef="let element">
                           <div id="actions" class="dropdown open">

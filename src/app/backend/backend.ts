@@ -826,7 +826,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -924,7 +923,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -954,7 +952,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -1247,7 +1244,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -1345,7 +1341,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -1375,7 +1370,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -1621,7 +1615,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -1719,7 +1712,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -1749,7 +1741,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -2164,7 +2155,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -2262,7 +2252,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -2292,7 +2281,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -2585,7 +2573,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -2683,7 +2670,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -2713,7 +2699,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
             type: 'reduire',
             precomvtqte: [
               {
@@ -3329,7 +3314,6 @@ export class InMemDBService implements InMemoryDbService {
         {
           id: '1',
           libelle: 'rachat',
-          etat: true,
           type: 'neutre',
           precomvtqte: [
             {
@@ -3784,7 +3768,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -4019,7 +4002,6 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '1',
         libelle: 'rachat',
-        etat: true,
         type: 'neutre',
         precomvtqte: [
           {
@@ -4117,7 +4099,6 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '2',
         libelle: 'vente',
-        etat: true,
         type: 'reduire',
         precomvtqte: [
           {
@@ -4147,7 +4128,6 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '3',
         libelle: 'vente',
-        etat: true,
         type: 'reduire',
         precomvtqte: [
           {

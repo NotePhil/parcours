@@ -90,14 +90,12 @@
                     <tr>
                         <th>{{'preconisation.table.title1' | translate}}</th>
                         <th>{{'preconisation.table.title2' | translate}}</th>
-                        <th>{{'preconisation.table.title3' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let preconisation of document.preconisations">
                         <td>{{preconisation.libelle}}</td>
                         <td>{{preconisation.type}}</td>
-                        <td>{{preconisation.etat}}</td>
                     </tr>
                 </tbody>
             </table>
