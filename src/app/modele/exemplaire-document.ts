@@ -5,6 +5,6 @@ import { ObjetCleValeur } from "./objet-cle-valeur";
 export interface IExemplaireDocument extends IDocument{
     id : string,
     idDocument : string,
-    mouvements: IMouvement[]
+    mouvements?: IMouvement[]
     objetEnregistre : ObjetCleValeur[]
 }

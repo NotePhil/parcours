@@ -63,7 +63,6 @@ h3{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // background-color: #28a7452b;
     width: 24% !important;
     margin: 2px 5px;
     padding: 5px;
@@ -151,12 +150,10 @@ mat-form-field{
     color: #28a745;
     line-height: 0;
     box-sizing: initial;
-    // width: 50px;
     input{
         padding: 0;
         border: none;
         margin: 0;
-        // height: 25px;
     }
 }
 .searchBar {
@@ -171,13 +168,15 @@ mat-form-field{
 }
 .mat-header-cell {
     padding-top: 0;
-    width: 20%;
+    width: max-content;
+    text-align: center;
 }
 .mat-cell {
     height: 0;
+    text-align: center;
 }
 .mat-row, .mat-cell {
-    padding: 2px 0 0 0;
+    padding: 0;
     margin: 0;
 }
 .mat-form-field-infix {
@@ -189,7 +188,6 @@ mat-form-field{
 }
 .containCell{
     label{
-        width: 100%;
         display: flex;
         margin: auto;
         padding: 0;
@@ -215,7 +213,6 @@ td{
 th{
     background-color: rgba(40, 167, 69, 0.2);
     color: #28a745 !important;
-    width: max-content;
     text-align: center;
 }
 .tableBlock{
@@ -225,11 +222,11 @@ th{
     }
     table{
         .actions{
+            margin: 0;
             font-size: 12px;
-            width: 40px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: start;
         }
     }
 }
@@ -238,6 +235,15 @@ th{
 }
 .actions span{
     font-size: 10px;
+}
+.total{
+    width: 100%;
+    text-align: right;
+    input{
+        width: 14%;
+        position: relative;
+        bottom: 8px;
+    }
 }
 @media screen and (max-width: 1040px) {
     .block .inputBlock{

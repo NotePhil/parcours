@@ -8,6 +8,8 @@ export interface IDocument {
     titre:string,
     description:string,
     etat:boolean,
+    affichagePrix:boolean,
+    contientRessources:boolean,
     missions : IMission[],
     attributs : IAttributs[],
     categories : ICategoriesAttributs[]

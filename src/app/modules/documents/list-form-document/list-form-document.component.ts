@@ -48,7 +48,9 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     listCategories: '',
     listPreconisations: '',
     preconisations: [],
-    etat: false
+    etat: false,
+    affichagePrix: false,
+    contientRessources: false
   }
 
 
@@ -65,6 +67,8 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
             titre: '',
             description: '',
             etat: false,
+            affichagePrix: false,
+            contientRessources: false,
             missions: [],
             attributs: [],
             categories: [],

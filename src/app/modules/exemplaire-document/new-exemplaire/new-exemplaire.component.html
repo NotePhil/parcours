@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="block card mt-2 pt-1" id="sectionAjoutPreco">
+            <div *ngIf="document.contientRessources == true" class="block card mt-2 pt-1" id="sectionAjoutPreco">
                 <div class="sarchBlock">
                     <h3>{{'document.exemplaire.title3' | translate}} :</h3>
                     <form class="example-form">
@@ -61,29 +61,29 @@
 
                 <div class="card-body p-0 tableBlock" id="tableList">
                     <div class='table-responsive w-100'>
-                        <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceMouvements" matSort (matSortChange)="announceSortChange($event)">
+                        <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceMouvements">
 
                             <!-- libelle Column -->
                             <ng-container matColumnDef="libelle">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'preconisation.table.title1' | translate}} </th>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'preconisation.table.title1' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.ressource.libelle}} </td>
                             </ng-container>
 
                             <!-- description Column -->
                             <ng-container matColumnDef="description">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title2' | translate}} </th>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'attributs.table.title2' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                    <label class="custom-control" for="element.prix">
+                                    <label class="custom-control">
                                         <input class="form-control" type="text" [(ngModel)]="element.description" [ngModelOptions]="{standalone: true}" value="true">
                                     </label> 
                                 </td>
                             </ng-container>
 
                             <!-- prix Column -->
-                            <ng-container matColumnDef="prix">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table2.title7' | translate}} </th>
+                            <ng-container *ngIf="document.affichagePrix == true"  matColumnDef="prix">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title7' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                    <label class="custom-control" for="element.prix">
+                                    <label class="custom-control">
                                         <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}" value="true">
                                     </label> 
                                 </td>
@@ -91,17 +91,24 @@
 
                             <!-- quantite Column -->
                             <ng-container matColumnDef="quantite">
-                                  <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table2.title5' | translate}} </th>
-                                  <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                    <label class="custom-control" for="element.quantite">
-                                        <input class="form-control" type="number" [(ngModel)]="element.quantite" [ngModelOptions]="{standalone: true}" value="true">
-                                    </label> 
-                                  </td>
-                            </ng-container>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title5' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                  <label class="custom-control">
+                                      <input class="form-control" type="number" [(ngModel)]="element.quantite" [ngModelOptions]="{standalone: true}" value="true">
+                                  </label> 
+                                </td>
+                          </ng-container>
+
+                          <!-- unite Column -->
+                          <ng-container matColumnDef="unite">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title4' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                  {{element.ressource.unite}}
+                          </ng-container>
 
                             <!-- montant total Column -->
-                            <ng-container matColumnDef="montant total">
-                                  <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table2.title10' | translate}} </th>
+                            <ng-container *ngIf="document.affichagePrix == true" matColumnDef="montant total">
+                                  <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title10' | translate}} </th>
                                   <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.quantite*element.prix}}</td>
                             </ng-container>
 
@@ -113,13 +120,14 @@
                                         <button class="btn p-0" [value]="element.id" title="clicker pour annuler la selection" (click)="retirerSelectionRessource(i)">
                                             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                         </button>
-                                        <span><i class="fa fa-info-circle text-info" (click)="getRessourceId(element.id)" aria-hidden="true" title="{{'preconisation.table.title4' | translate}}"></i></span>
+                                        <span><i class="fa fa-info-circle text-info ml-1" (click)="getRessourceId(element.id)" aria-hidden="true" title="{{'preconisation.table.title4' | translate}}"></i></span>
                                     </div>
                                 </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="displayedRessourcesColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedRessourcesColumns;"></tr>
                         </table>
+                        <div class="total"><input type="text" value="" disabled></div>
                         <mat-paginator style="background-color: rgba(40, 167, 69, 0.79);" [pageSizeOptions]="[2, 5, 10, 20]"
                                        showFirstLastButtons
                                        aria-label="Select page of periodic elements">

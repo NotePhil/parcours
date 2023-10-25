@@ -18,7 +18,9 @@ export class ViewFormDocumentComponent implements OnInit {
     attributs: [],
     categories: [],
     preconisations: [],
-    etat: false
+    etat: false,
+    affichagePrix: false,
+    contientRessources: false
   };
 
   constructor(private router:Router, private infosPath:ActivatedRoute, private serviceDocument:DocumentService) {}

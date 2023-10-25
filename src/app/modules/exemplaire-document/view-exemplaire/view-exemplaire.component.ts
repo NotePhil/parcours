@@ -23,7 +23,9 @@ export class ViewExemplaireComponent implements OnInit {
     categories: [],
     preconisations: [],
     mouvements: [],
-    etat: false
+    etat: false,
+    affichagePrix: false,
+    contientRessources: false
   }; 
   document : IDocument = {
     id: '',
@@ -33,7 +35,9 @@ export class ViewExemplaireComponent implements OnInit {
     attributs: [],
     categories: [],
     preconisations: [],
-    etat: false
+    etat: false,
+    affichagePrix: false,
+    contientRessources: false
   };
 
   constructor(private router:Router, private infosPath:ActivatedRoute, private serviceDocument:DocumentService, private serviceExemplaire:ExemplaireDocumentService) {}

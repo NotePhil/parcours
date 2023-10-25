@@ -1,3 +1,4 @@
+import { IDistributeur } from "./distributeur";
 import { IRessource } from "./ressource";
 
 export interface IMouvement {
@@ -7,5 +8,6 @@ export interface IMouvement {
     prix:number,
     dateCreation:Date,
     datePeremption:Date,
-    ressource:IRessource,
+    ressource?:IRessource,
+    distributeur?:IDistributeur,
 }

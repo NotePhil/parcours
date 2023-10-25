@@ -40,7 +40,9 @@ export class NewFormDocumentComponent implements OnInit {
     missions: [],
     attributs: [],
     categories: [],
-    preconisations: []
+    preconisations: [],
+    affichagePrix: false,
+    contientRessources: false
   };
   mission$:Observable<IMission[]>=EMPTY;
   forme: FormGroup;
@@ -83,7 +85,9 @@ export class NewFormDocumentComponent implements OnInit {
       _attributs :  new FormArray([]),
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: [''],
-      etat: new FormControl(true)
+      etat: new FormControl(true),
+      affichagePrix: new FormControl(true),
+      contientRessources: new FormControl(true)
     });
   }
   ngOnInit(): void {
@@ -101,6 +105,8 @@ export class NewFormDocumentComponent implements OnInit {
           titre: this.document.titre,
           description: this.document.description,
           etat: this.document.etat,
+          affichagePrix: this.document.affichagePrix,
+          contientRessources: this.document.contientRessources,
           _missions: this.document.missions,
           _attributs: []
           })
@@ -269,7 +275,9 @@ export class NewFormDocumentComponent implements OnInit {
       missions: documentInput._missions,
       attributs: [],
       categories: [],
-      preconisations: []
+      preconisations: [],
+      affichagePrix: documentInput.affichagePrix,
+      contientRessources: documentInput.contientRessources
     }
     
     if(this.document.id != ""){

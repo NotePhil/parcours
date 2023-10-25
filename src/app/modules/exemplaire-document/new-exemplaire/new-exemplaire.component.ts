@@ -48,7 +48,9 @@ export class NewExemplaireComponent implements OnInit {
     objetEnregistre: [],
     categories: [],
     preconisations: [],
-    mouvements: []
+    mouvements: [],
+    affichagePrix: false,
+    contientRessources: false
   };
   document: IDocument = {
     id: '',
@@ -58,7 +60,9 @@ export class NewExemplaireComponent implements OnInit {
     missions: [],
     attributs: [],
     categories: [],
-    preconisations: []
+    preconisations: [],
+    affichagePrix: false,
+    contientRessources: false
   };
 
   attribut: IAttributs = {
@@ -112,10 +116,9 @@ export class NewExemplaireComponent implements OnInit {
   displayedRessourcesColumns: string[] = [
     'actions',
     'libelle',
-    'description',
-    'prix',
     'quantite',
-    'montant total'
+    'unite',
+    'description'
   ]; // structure du tableau presentant les Ressources
   TABLE_PRECONISATION_RESSOURCES: IPrecoMvt[] = [];
 
@@ -230,10 +233,13 @@ export class NewExemplaireComponent implements OnInit {
         .subscribe((x) => {
           this.exemplaire = x;
           this.document = x;
-          this.ELEMENTS_TABLE_MOUVEMENTS = this.exemplaire.mouvements;
+          if (this.exemplaire.mouvements != undefined) {
+            this.ELEMENTS_TABLE_MOUVEMENTS = this.exemplaire.mouvements;
+          }
           this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
           this.totalAttribut = x.attributs.length - 1;
           this.rechercherAttributsAbsants();
+          this.formerEnteteTableauMissions()
         });
     }
     if (this.idDocument) {
@@ -242,10 +248,21 @@ export class NewExemplaireComponent implements OnInit {
         .subscribe((document) => {
           this.document = document;
           this.totalAttribut = document.attributs.length - 1;
+          this.formerEnteteTableauMissions()
         });
     }
   }
-
+  /**
+   * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
+   */
+  formerEnteteTableauMissions(){
+    if (this.document.affichagePrix == true) {
+      let prix : string = "prix"
+      let montant : string = "montant total"
+      this.displayedRessourcesColumns.push(prix)
+      this.displayedRessourcesColumns.push(montant)
+    }
+  }
   /**
    * methode permettant de renvoyer la valeur de l'attribut
    */
@@ -403,7 +420,9 @@ export class NewExemplaireComponent implements OnInit {
       categories: this.document.categories,
       preconisations: this.document.preconisations,
       mouvements: this.ELEMENTS_TABLE_MOUVEMENTS,
-      etat: false
+      etat: this.document.etat,
+      affichagePrix: this.document.affichagePrix,
+      contientRessources: this.document.contientRessources
     };
 
     if (this.exemplaire.id != '') {
@@ -420,7 +439,9 @@ export class NewExemplaireComponent implements OnInit {
     let tabIdRessource : string[] = []
     this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
       mouvement => {
-      tabIdRessource.push(mouvement.ressource.id)
+        if (mouvement.ressource != undefined) {
+          tabIdRessource.push(mouvement.ressource.id)
+        }
     });
     if (!tabIdRessource.includes(option.id)) {
       let mvt : IMouvement = {

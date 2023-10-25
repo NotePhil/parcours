@@ -219,13 +219,17 @@
             "title14":"Category's range",
             "title15":"Categories",
             "title16":"libelle attribut",
-            "title17":"Preconisations"
+            "title17":"Preconisations",
+            "title18": "price visibility ?",
+            "title19": "link resources ?"
         },
         "form":{
             "text1":"Title is required.",
             "text2":"Description is required.",
             "text3":"Missions are required.",
-            "text4":"Attributs are required."
+            "text4":"Attributs are required.",
+            "text5": "If this box is checked, the price column will be visible when creating the movement of a copy of this document",
+            "text6": "If this box is unchecked, there will be no possibility of creating movements when creating a copy of the document"
         },
         "view":{
             "title":"Document's Model",

@@ -606,6 +606,8 @@ export class InMemDBService implements InMemoryDbService {
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
         etat:true,
+        affichagePrix:true,
+        contientRessources:true,
         missions: [
           {
             id: '1',
@@ -1027,6 +1029,8 @@ export class InMemDBService implements InMemoryDbService {
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
         etat:false,
+        affichagePrix:true,
+        contientRessources:false,
         missions: [
           {
             id: '1',
@@ -1445,6 +1449,8 @@ export class InMemDBService implements InMemoryDbService {
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
         etat:true,
+        affichagePrix:false,
+        contientRessources:true,
         missions: [
           {
             id: '2',
@@ -1816,6 +1822,8 @@ export class InMemDBService implements InMemoryDbService {
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
         etat:true,
+        affichagePrix:true,
+        contientRessources:true,
         missions: [
           {
             id: '2',
@@ -2356,6 +2364,8 @@ export class InMemDBService implements InMemoryDbService {
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
         etat:true,
+        affichagePrix:false,
+        contientRessources:true,
         missions: [
           {
             id: '1',
@@ -2777,6 +2787,8 @@ export class InMemDBService implements InMemoryDbService {
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
         etat:false,
+        affichagePrix:true,
+        contientRessources:true,
         missions: [
           {
             id: '2',
@@ -3465,6 +3477,8 @@ export class InMemDBService implements InMemoryDbService {
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
         etat:false,
+        affichagePrix:true,
+        contientRessources:true,
         missions: [
           {
             id: '1',
