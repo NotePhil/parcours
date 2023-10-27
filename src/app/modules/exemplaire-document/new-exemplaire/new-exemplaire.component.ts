@@ -62,12 +62,12 @@ export class NewExemplaireComponent implements OnInit {
     valeursParDefaut: '',
     type: TypeTicket.Int,
     obligatoire:false,
-   
+
   };
 
   formeExemplaire: FormGroup;
   btnLibelle: string = 'Ajouter';
-  titre: string = 'Ajouter un nouvel exemplaire de document';
+  titre: string = 'Ajouter exemplaire de document';
   submitted: boolean = false;
   controlExemplaire = new FormControl();
   typeAttribut: string = '';

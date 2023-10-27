@@ -55,7 +55,7 @@
         "button10":"Close"
     },
     "patient":{
-        "title1":"Add a new patient",
+        "title1":"Add patient",
         "search-bar":"search",
         "table":{
             "title1":"Name",
@@ -81,7 +81,7 @@
         }
     },
     "personnel":{
-        "title1":"Add a new staff",
+        "title1":"Add staff",
         "search-bar":"search",
         "table":{
             "title1":"Name",
@@ -108,7 +108,7 @@
         }
     },
     "services":{
-      "title1":"Add a new service",
+      "title1":"Add service",
         "table":{
             "title1":"Libel",
             "title2":"Status",
@@ -149,7 +149,7 @@
         }
     },
     "attributs":{
-        "title1":"Add a new attribut",
+        "title1":"Add attribut",
         "table":{
             "title1":"title",
             "title2":"Description",
@@ -171,7 +171,7 @@
         }
     },
     "missions":{
-        "title1":"Add a new mission",
+        "title1":"Add mission",
         "table":{
             "title1":"Label",
             "title2":"Description",
@@ -196,7 +196,7 @@
         }
     },
     "document":{
-        "title3":"Add a new document",
+        "title3":"Add document",
         "search-bar":"Rechercher",
         "title1":"View resuts",
         "title2":"Select attributs of this category",
@@ -245,7 +245,7 @@
         "libelle":"langages"
     },
     "famille":{
-      "header":"Add a New Category of resource",
+      "header":"Add family",
       "table":{
         "title1":"Libel",
         "title2":"Description",
@@ -258,7 +258,7 @@
     "lists":{
       "button1":"Feedback"
     },
-    "title":"Resource Category Listing",
+    "title":"Family Listing",
     "search-bar":"Research",
     "table1":{
         "title1":"Libel",
@@ -275,7 +275,7 @@
   },
     "ressource":{
     "table":{
-        "title":"Add a New Resource",
+        "title":"Add Resource",
         "title1":" Libel",
         "title2":"State",
         "title3":"Quantity",
@@ -319,7 +319,7 @@
 },
 
 "role":{
-  "header":"Add a New Role",
+  "header":"Add Role",
   "table":{
     "title1":"Title",
     "title2":"title",
@@ -345,7 +345,7 @@
 }
     },
     "preconisation":{
-        "title1":"Add a new preconisation",
+        "title1":"Add preconisation",
         "form":{
             "title1":"Select preconisations"
         },
@@ -361,7 +361,7 @@
     },
     "distributeur": {
       "table": {
-        "title": "Add a new Distributor",
+        "title": "Add Distributor",
         "title1": "Social Reason ",
         "title2": "state",
         "title3": "Address",
@@ -388,8 +388,8 @@
     },
     "precomvt": {
       "header": "New Préconisation",
-      "header1": "Assign to Families",
-      "header2": "Assign a Resource",
+      "header1": "Assign Families",
+      "header2": "Assign Resource",
       "table": {
         "title1": "libel",
         "title2": "State",

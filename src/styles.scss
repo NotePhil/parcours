@@ -119,15 +119,31 @@ select{
     background-color:#28a745;// #1473e6;
 }
 }
-input, #etat{
+/*input, #etat{
   border: none !important;
   box-shadow: none !important;
+}*/
+.choix{
+  color: #28a745;
+  font-size: 18px;
+  font-weight: 500;
+  input{
+      font-size: 200px;
+      height: 15px;
+      width: 15px;
+      color: #28a745;
+      margin-right: 5px;
+  }
+}
+#top2{
+  margin-top: -40px;
 }
 //ICI COMMENCE LE LISTING
 .title{
   height: 100px;
   h2{
       color: #28a745;
+      text-transform: uppercase;
   }
 }
 .searchBlock{
@@ -232,10 +248,17 @@ mat-form-field:focus{
 td{
   font-size: 13px!important;
 }
+#top1{
+  margin-top: -45px;
+}
+#top{
+  margin-top: -70px;
+}
 
 @media screen and (max-width: 1200px) {
   .title h2{
       font-size: 15px;
+      text-transform: uppercase;
   }
   .example-full-width {
       height: 42px !important;
@@ -245,6 +268,7 @@ td{
 @media screen and (max-width: 1100px) {
   .title h2{
       font-size: 15px;
+      text-transform: uppercase;
   }
 }
 @media screen and (max-width: 1060px) {
