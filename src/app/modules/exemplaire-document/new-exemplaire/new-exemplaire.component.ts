@@ -124,7 +124,8 @@ export class NewExemplaireComponent implements OnInit {
     'distributeur'
   ]; // structure du tableau presentant les Ressources
   TABLE_PRECONISATION_RESSOURCES: IPrecoMvt[] = [];
-  montantTotal : number = 0
+  montantTotal : number = 0;
+  soustotal : number = 0;
 
   constructor(
     private router: Router,
@@ -421,8 +422,14 @@ export class NewExemplaireComponent implements OnInit {
    * Methodr qui permet de faire la somme des montants du tableau de mouvements
    * pour afficher le resultat dans la case montant total
    */
-  sommeMontans(nombre : number):number{
-    this.montantTotal += nombre
+  sommeMontants():number{
+    this.montantTotal = 0;
+    this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
+      mouvement => {
+        if (mouvement.ressource != undefined && mouvement.quantite!=null && mouvement.prix!=null) {
+          this.montantTotal += mouvement.prix*mouvement.quantite;
+        }
+    });
     return this.montantTotal
   }
 

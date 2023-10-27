@@ -101,7 +101,7 @@
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title7' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                     <label class="custom-control">
-                                        <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}" value="true">
+                                        <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}" (ngModelChange)="sommeMontants()" value="true">
                                     </label> 
                                 </td>
                             </ng-container>
@@ -151,7 +151,7 @@
                         <!-- montant total -->
                         <div class="total" *ngIf="document.affichagePrix == true">
                             <span class="mr-2">{{'ressource.table2.title11' | translate}}</span>
-                            <input type="text" [value]="montantTotal" disabled>
+                            <input type="text" [value]="montantTotal" [(ngModel)]="montantTotal" disabled>
                         </div>
 
                         <mat-paginator style="background-color: rgba(40, 167, 69, 0.79);" [pageSizeOptions]="[2, 5, 10, 20]"
