@@ -8,6 +8,6 @@ export interface IMouvement {
     prix:number,
     dateCreation:Date,
     datePeremption:Date,
-    ressource?:IRessource,
+    ressource:IRessource,
     distributeur?:IDistributeur,
 }

@@ -47,9 +47,9 @@
                     <form class="example-form">
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label class="searchBar">{{'ressource.form.text16' | translate}}</mat-label>
-                            <input type="text" matInput aria-label="Rechercher" [formControl]="RessourceControl" [matAutocomplete]="auto">
+                            <input type="text" matInput aria-label="Rechercher" [formControl]="ressourceControl" [matAutocomplete]="auto">
                             <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
-                                <mat-option class="options" *ngFor="let option of filteredOptionsPreco" [value]="option" (onSelectionChange)="rechercherListingRessources(option)">
+                                <mat-option class="options" *ngFor="let option of filteredOptionsRessource" [value]="option" (onSelectionChange)="rechercherListingRessources(option)">
                                     {{option.libelle}}
                                 </mat-option>
                             </mat-autocomplete>
@@ -69,26 +69,6 @@
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.ressource.libelle}} </td>
                             </ng-container>
 
-                            <!-- description Column -->
-                            <ng-container matColumnDef="description">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'attributs.table.title2' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                    <label class="custom-control">
-                                        <input class="form-control" type="text" [(ngModel)]="element.description" [ngModelOptions]="{standalone: true}" value="true">
-                                    </label> 
-                                </td>
-                            </ng-container>
-
-                            <!-- prix Column -->
-                            <ng-container *ngIf="document.affichagePrix == true"  matColumnDef="prix">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title7' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                    <label class="custom-control">
-                                        <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}" value="true">
-                                    </label> 
-                                </td>
-                            </ng-container>
-
                             <!-- quantite Column -->
                             <ng-container matColumnDef="quantite">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title5' | translate}} </th>
@@ -106,11 +86,51 @@
                                   {{element.ressource.unite}}
                           </ng-container>
 
+                            <!-- description Column -->
+                            <ng-container matColumnDef="description">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'attributs.table.title2' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    <label class="custom-control">
+                                        <input class="form-control" type="text" [(ngModel)]="element.description" [ngModelOptions]="{standalone: true}" value="true">
+                                    </label> 
+                                </td>
+                            </ng-container>
+
+                            <!-- prix Column -->
+                            <ng-container *ngIf="document.affichagePrix == true" matColumnDef="prix">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title7' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    <label class="custom-control">
+                                        <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}" value="true">
+                                    </label> 
+                                </td>
+                            </ng-container>
+
                             <!-- montant total Column -->
                             <ng-container *ngIf="document.affichagePrix == true" matColumnDef="montant total">
-                                  <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title10' | translate}} </th>
-                                  <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.quantite*element.prix}}</td>
+                                  <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title10' | translate}}</th>
+                                  <td class="text-dark containCell" mat-cell *matCellDef="let element"><input type="number" value="{{element.quantite*element.prix}}" [(ngModel)]="montantTotal" disabled> </td>
                             </ng-container>
+
+                          <!-- distributeur Column -->
+                          <ng-container matColumnDef="distributeur">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'preconisation.table.title5' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    <div class="sarchBlock" id="distributeurBlock">
+                                        <form class="example-form">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label class="searchBar">{{'ressource.form.text16' | translate}}</mat-label>
+                                                <input  [(ngModel)]="element.distributeur" type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="auto">
+                                                <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayDistributeurFn">
+                                                    <mat-option class="options" *ngFor="let optionDistributeur of filteredDistributeurOptions" [value]="optionDistributeur">
+                                                        {{optionDistributeur.raisonSocial}}
+                                                    </mat-option>
+                                                </mat-autocomplete>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                </td>
+                        </ng-container>
 
                             <!-- Actions column -->
                             <ng-container matColumnDef="actions">
@@ -127,7 +147,13 @@
                             <tr mat-header-row *matHeaderRowDef="displayedRessourcesColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedRessourcesColumns;"></tr>
                         </table>
-                        <div class="total"><input type="text" value="" disabled></div>
+
+                        <!-- montant total -->
+                        <div class="total" *ngIf="document.affichagePrix == true">
+                            <span class="mr-2">{{'ressource.table2.title11' | translate}}</span>
+                            <input type="text" [value]="montantTotal" disabled>
+                        </div>
+
                         <mat-paginator style="background-color: rgba(40, 167, 69, 0.79);" [pageSizeOptions]="[2, 5, 10, 20]"
                                        showFirstLastButtons
                                        aria-label="Select page of periodic elements">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IDocument } from 'src/app/modele/document';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
+import { IMouvement } from 'src/app/modele/mouvement';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
 
@@ -26,19 +27,8 @@ export class ViewExemplaireComponent implements OnInit {
     etat: false,
     affichagePrix: false,
     contientRessources: false
-  }; 
-  document : IDocument = {
-    id: '',
-    titre: '',
-    description: '',
-    missions: [],
-    attributs: [],
-    categories: [],
-    preconisations: [],
-    etat: false,
-    affichagePrix: false,
-    contientRessources: false
   };
+  mouvements : IMouvement[] = []
 
   constructor(private router:Router, private infosPath:ActivatedRoute, private serviceDocument:DocumentService, private serviceExemplaire:ExemplaireDocumentService) {}
 
@@ -48,6 +38,9 @@ export class ViewExemplaireComponent implements OnInit {
       this.serviceExemplaire.getExemplaireDocumentById(idExemplaire).subscribe(
         x =>{
           this.exemplaire = x;
+          if (this.exemplaire.mouvements != undefined) {
+            this.mouvements = this.exemplaire.mouvements
+          }
         });
     }
   }

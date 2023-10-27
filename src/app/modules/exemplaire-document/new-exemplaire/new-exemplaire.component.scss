@@ -137,6 +137,24 @@ h3{
     justify-content: space-between;
     width: 100%;
 } 
+#distributeurBlock{
+    width: 100px;
+    .example-full-width{
+        width: 100%;
+        height: 20px !important;
+        border: 1px solid #28a746c0;
+        // position: absolute;
+    }
+    .example-form {
+        width: 100%;
+        height: 20px !important;
+    }
+    .mat-input{
+        position: absolute;
+        bottom: 100px;
+        height: 20px !important;
+    }
+} 
 .example-full-width {
     height: 42px !important;
     border: 2px solid #28a745;
@@ -150,6 +168,7 @@ mat-form-field{
     color: #28a745;
     line-height: 0;
     box-sizing: initial;
+    font-family: inherit;
     input{
         padding: 0;
         border: none;
@@ -241,6 +260,15 @@ th{
     text-align: right;
     input{
         width: 14%;
+        position: relative;
+        bottom: 8px;
+        background-color: #28a7464e;
+        border: none;
+        border-radius: 2px;
+        margin-right: 1px;
+    }
+    span{
+        color: #28a745;
         position: relative;
         bottom: 8px;
     }

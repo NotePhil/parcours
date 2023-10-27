@@ -13,19 +13,19 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   Router,
   ActivatedRoute,
-  withDisabledInitialNavigation,
 } from '@angular/router';
 import { IAssociationCategorieAttributs } from 'src/app/modele/association-categorie-attributs';
 import { IAttributs } from 'src/app/modele/attributs';
+import { IDistributeur } from 'src/app/modele/distributeur';
 import { IDocument } from 'src/app/modele/document';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
 import { IMouvement } from 'src/app/modele/mouvement';
 import { ObjetCleValeur } from 'src/app/modele/objet-cle-valeur';
 import { IPrecoMvt } from 'src/app/modele/precomvt';
-import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
 import { IRessource } from 'src/app/modele/ressource';
 import { TypeTicket } from 'src/app/modele/type-ticket';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
+import { DistributeursService } from 'src/app/services/distributeurs/distributeurs.service';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
 import { RessourcesService } from 'src/app/services/ressources/ressources.service';
@@ -108,30 +108,34 @@ export class NewExemplaireComponent implements OnInit {
   estValide : boolean = true
   eValvalide : string = "";
   
-  RessourceControl = new FormControl<string | IRessource>('');
+  ressourceControl = new FormControl<string | IRessource>('');
+  distributeurControl = new FormControl<string | IDistributeur>('');
   idRessource : string = "";
   ELEMENTS_TABLE_MOUVEMENTS: IMouvement[] = [];
   dataSourceMouvements = new MatTableDataSource<IMouvement>(this.ELEMENTS_TABLE_MOUVEMENTS);
-  filteredOptionsPreco: IRessource[] | undefined;
+  filteredOptionsRessource: IRessource[] | undefined;
+  filteredDistributeurOptions: IDistributeur[] | undefined;
   displayedRessourcesColumns: string[] = [
     'actions',
     'libelle',
     'quantite',
     'unite',
-    'description'
+    'description',
+    'distributeur'
   ]; // structure du tableau presentant les Ressources
   TABLE_PRECONISATION_RESSOURCES: IPrecoMvt[] = [];
+  montantTotal : number = 0
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private infosPath: ActivatedRoute,
     private serviceRessource: RessourcesService,
+    private serviceDistributeur: DistributeursService,
     private serviceDocument: DocumentService,
     private _liveAnnouncer: LiveAnnouncer,
     private serviceExemplaire: ExemplaireDocumentService,
-    private datePipe: DatePipe,
-    private serviceAttribut: AttributService
+    private datePipe: DatePipe
   ) {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
@@ -150,16 +154,30 @@ export class NewExemplaireComponent implements OnInit {
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
 
     this.initialiseFormExemplaire();
-    this.RessourceControl.valueChanges.subscribe((value) => {
+    
+    this.ressourceControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
       if (libelle != undefined && libelle?.length > 0) {
         this.serviceRessource
           .getRessourcesByLibelle(libelle.toLowerCase() as string)
           .subscribe((reponse) => {
-            this.filteredOptionsPreco = reponse;
+            this.filteredOptionsRessource = reponse;
           });
       } else {
-        this.filteredOptionsPreco = [];
+        this.filteredOptionsRessource = [];
+      }
+    });
+    
+    this.distributeurControl.valueChanges.subscribe((value) => {
+      const raisonSocial = typeof value === 'string' ? value : value?.raisonSocial;
+      if (raisonSocial != undefined && raisonSocial?.length > 0) {
+        this.serviceDistributeur
+          .getDistributeursByraisonSocial(raisonSocial.toLowerCase() as string)
+          .subscribe((reponse) => {
+            this.filteredDistributeurOptions = reponse;
+          });
+      } else {
+        this.filteredDistributeurOptions = [];
       }
     });
   }
@@ -400,6 +418,15 @@ export class NewExemplaireComponent implements OnInit {
   }
 
   /**
+   * Methodr qui permet de faire la somme des montants du tableau de mouvements
+   * pour afficher le resultat dans la case montant total
+   */
+  sommeMontans(nombre : number):number{
+    this.montantTotal += nombre
+    return this.montantTotal
+  }
+
+  /**
    * methode de validation du formulaire (enregistrement des donnees du formulaire)
    */
   onSubmit() {
@@ -460,6 +487,10 @@ export class NewExemplaireComponent implements OnInit {
 
   displayFn(Ressource: IRessource): string {
     return Ressource && Ressource.libelle ? Ressource.libelle : '';
+  }
+
+  displayDistributeurFn(distributeur: IDistributeur): string {
+    return distributeur && distributeur.raisonSocial ? distributeur.raisonSocial : '';
   }
 
   announceSortChange(sortState: Sort) {

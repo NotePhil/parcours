@@ -322,7 +322,8 @@
       "title7": "Prix",
       "title8": "Catégorie",
       "title9": "Actions",
-      "title10": "Montant total "
+      "title10": "Total ",
+      "title11": "Montant total "
     }
   },
   "preconisation":{
@@ -334,7 +335,8 @@
           "title1":"Libellé",
           "title2":"Etat",
           "title3":"Type",
-          "title4":"Voir le detail"
+          "title4":"Voir le detail",
+          "title5":"Distributeur"
       },
       "view":{
           "text1":"Les préconisations du document"

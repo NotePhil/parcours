@@ -325,7 +325,8 @@
         "title7":"price",
         "title8":"Category",
         "title9":"Actions ",
-        "title10": "Total amont"
+        "title10": "Total",
+        "title11": "Total amont"
     }
     },
     "preconisation":{
@@ -337,7 +338,8 @@
             "title1":"Label",
             "title2":"Status",
             "title3":"Type",
-            "title4":"View more infos"
+            "title4":"View more infos",
+            "title5":"Distributor"
         },
         "view":{
             "text1":"Preconisations of this document"
