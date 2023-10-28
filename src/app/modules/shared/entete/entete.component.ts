@@ -7,7 +7,7 @@ import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-
   styleUrls: ['./entete.component.scss']
 })
 export class EnteteComponent implements OnInit {
-titre:string|undefined;
+titre:string='';
   constructor(private dataEnteteMenuService:DonneesEchangeService) { }
 
   ngOnInit(): void {
