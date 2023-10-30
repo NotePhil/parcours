@@ -85,25 +85,6 @@ select{
         color: #28a745;
     }
 }
-.searchBlock{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 10px;
-    margin-right: 8px;
-    button{
-        width: 7%;
-        background-color: #28a745;
-        color: white;
-    }
-    .inputSection{
-        width: 91%;
-        input{
-            border: none;
-            border: 1px solid #28a74521;
-        }
-    }
-}
 .tableTools{
     padding-bottom: 15px;
     #addUserBotton{
@@ -238,5 +219,13 @@ th{
     }
     .div-date{
         display: block;
+    }
+    .block{
+        width: 100%;
+        margin: 4px;
+    }
+    .example-form{
+        width: 100%;
+        justify-content: space-evenly;
     }
 }

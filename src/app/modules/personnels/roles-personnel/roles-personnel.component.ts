@@ -34,10 +34,12 @@ export class RolesPersonnelComponent implements OnInit {
   ELEMENTS_TABLE: any[] = [];
   filteredOptions: IRole[] | undefined;
   displayedColumns: string[] = ['selection', 'titre', 'description', 'etat'];
+  displayedrolesColumns: string[] = ['annuler', 'role', 'date debut', 'date fin', 'status'];
   dataSource = new MatTableDataSource<IRole>();
   dataSourceRoleResultat = new MatTableDataSource<any>();
   idRole: string = '';
   submitted: boolean=false;
+  verif: boolean=false;
 
   constructor(private formBuilder:FormBuilder, private _liveAnnouncer: LiveAnnouncer, private personnelService:PersonnelsService, private serviceRole: RolesService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) { 
     this.forme =  this.formBuilder.group({
@@ -106,6 +108,18 @@ export class RolesPersonnelComponent implements OnInit {
     return this.forme.controls;
   }
 
+  changeStatus(event: any, element: any){
+    if (event.target.checked) {
+      element.status = true
+    } else {
+      element.status = false
+    }
+
+    console.log("valeur final:", this.dataSourceRoleResultat.data);
+    
+    return element
+  }
+
   onCheckRoleChange(event: any, element:IRole) {
     let listIdRolesTemp : any[] = []
     if (event.target.checked) {
@@ -116,8 +130,24 @@ export class RolesPersonnelComponent implements OnInit {
           event.target.checked = false
           return;
         }
-        this.ajoutSelectionRole(element);
-        this.datas.push({id: element.id, event: event})
+        var j = 0;
+        this.verif = false
+        this.dataSourceRoleResultat.data.forEach(ele => {
+          while (j < this.dataSourceRoleResultat.data.length) {
+            if (ele.role.id == element.id) {
+              if (ele.dateEntree >= this.forme.value.dateEntree) {
+                this.verif = true
+                event.target.checked = false
+              }
+            }
+            j++
+          }
+        })
+        if (event.target.checked) {
+          this.ajoutSelectionRole(element);
+          this.datas.push({id: element.id, event: event})
+        }
+        
       }
       console.log("resultat :", this.datas);
       
@@ -125,7 +155,7 @@ export class RolesPersonnelComponent implements OnInit {
       let i = 0;
       let res = false;
       while (res == false ) {
-        if (this.datas[i].id == this.idRole) {
+        if (this.datas[i].id == element.id) {
 
             this.ELEMENTS_TABLE.splice(this.datas[i].id, 1); // je supprime un seul element du tableau a la position 'i'
             this.datas[i].splice(i, 1);
@@ -163,6 +193,7 @@ export class RolesPersonnelComponent implements OnInit {
 
       this.ELEMENTS_TABLE.push({
         role: rol,
+        status: false,
         dateEntree: this.forme.value.dateEntree,
         dateFin: this.forme.value.dateFin
       });
