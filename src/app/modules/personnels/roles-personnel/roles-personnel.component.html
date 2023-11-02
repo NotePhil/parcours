@@ -23,7 +23,7 @@
                                 <div *ngIf="f['dateEntree'].errors['required']">{{'personnel.form.text1' | translate}}</div>
                             </div>
                             <div *ngIf="verif" class="alert alert-danger" >
-                                <div>La date d'entrée de se nouveau role doit etre supperieur a l'encient</div>
+                                <div>{{textError}}</div>
                             </div>
                         </div>
                         <div class="form-group">

@@ -30,6 +30,7 @@ export class RolesPersonnelComponent implements OnInit {
   personnel!: IPersonnel;
   forme: FormGroup;
   nomPersonnel = "";
+  textError = "";
   datas: any[] = []
   ELEMENTS_TABLE: any[] = [];
   filteredOptions: IRole[] | undefined;
@@ -115,8 +116,6 @@ export class RolesPersonnelComponent implements OnInit {
       element.status = false
     }
 
-    console.log("valeur final:", this.dataSourceRoleResultat.data);
-    
     return element
   }
 
@@ -132,43 +131,57 @@ export class RolesPersonnelComponent implements OnInit {
         }
         var j = 0;
         this.verif = false
-        this.dataSourceRoleResultat.data.forEach(ele => {
           while (j < this.dataSourceRoleResultat.data.length) {
-            if (ele.role.id == element.id) {
-              if (ele.dateEntree >= this.forme.value.dateEntree) {
+            console.log("Id elements  :", this.dataSourceRoleResultat.data[j].role.id, element.id);
+            
+            if (this.dataSourceRoleResultat.data[j].role.id == element.id) {
+              if (this.forme.value.dateFin == "" && this.dataSourceRoleResultat.data[j].dateFin == "") {
                 this.verif = true
                 event.target.checked = false
+                this.textError = "Vous ne pouvez plus ajouter ce role !"
+              }
+            } else if (this.dataSourceRoleResultat.data[j].dateFin != "" && this.forme.value.dateFin != "") {
+              if (this.dataSourceRoleResultat.data[j].dateFin < this.forme.value.dateEntree) {
+                this.verif = false
+              } else {
+                this.verif = true
+                event.target.checked = false
+                this.textError = "Les intervalles de date ne correspondent pas !"
+              }
+            } else if (this.dataSourceRoleResultat.data[j].dateFin != "" || this.forme.value.dateFin != "") {
+              if (this.forme.value.dateEntree < this.dataSourceRoleResultat.data[j].dateFin) {
+                this.verif = true
+                event.target.checked = false
+                this.textError = "La date n'es pas valide !"
               }
             }
             j++
           }
-        })
         if (event.target.checked) {
           this.ajoutSelectionRole(element);
           this.datas.push({id: element.id, event: event})
         }
         
       }
-      console.log("resultat :", this.datas);
       
     } else {
       let i = 0;
       let res = false;
+      
       while (res == false ) {
         if (this.datas[i].id == element.id) {
 
-            this.ELEMENTS_TABLE.splice(this.datas[i].id, 1); // je supprime un seul element du tableau a la position 'i'
-            this.datas[i].splice(i, 1);
+            this.ELEMENTS_TABLE.splice(i, 1); // je supprime un seul element du tableau a la position 'i'
+            this.datas.splice(i, 1);
             res = true;
         }
         i++;
       }
+
     }
   }
 
   retirerSelectionRole(index: number) {
-    console.log("index du tab :", index);
-    
     let temp = this.dataSourceRoleResultat.data;
     temp.splice(index, 1); // je supprime un seul element du tableau a la position 'i'
     this.dataSourceRoleResultat.data = temp;
