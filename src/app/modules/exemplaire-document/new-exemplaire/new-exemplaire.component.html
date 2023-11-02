@@ -116,12 +116,12 @@
                           <!-- distributeur Column -->
                           <ng-container matColumnDef="distributeur">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'preconisation.table.title5' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                     <div class="sarchBlock" id="distributeurBlock">
                                         <form class="example-form">
                                             <mat-form-field class="example-full-width" appearance="fill">
                                                 <mat-label class="searchBar">{{'ressource.form.text16' | translate}}</mat-label>
-                                                <input  [(ngModel)]="element.distributeur" type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="auto">
+                                                <input [(ngModel)]="element.distributeur" type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="auto">
                                                 <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayDistributeurFn">
                                                     <mat-option class="options" *ngFor="let optionDistributeur of filteredDistributeurOptions" [value]="optionDistributeur">
                                                         {{optionDistributeur.raisonSocial}}

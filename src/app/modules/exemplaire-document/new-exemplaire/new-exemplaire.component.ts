@@ -141,6 +141,7 @@ export class NewExemplaireComponent implements OnInit {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
       _controlsSupprime: new FormArray([]),
+      // _controlsAutocomplateDistributeur: new FormArray([])
     });
   }
 
@@ -178,7 +179,11 @@ export class NewExemplaireComponent implements OnInit {
             this.filteredDistributeurOptions = reponse;
           });
       } else {
-        this.filteredDistributeurOptions = [];
+        this.serviceDistributeur.getAllDistributeurs().subscribe(
+          (reponse) =>{
+            this.filteredDistributeurOptions=reponse
+          }
+        )
       }
     });
   }
@@ -203,6 +208,37 @@ export class NewExemplaireComponent implements OnInit {
       }
     } 
   }
+  
+  /**
+   * Methode pour l'initialisation des controls autocompletion de distributeur
+   */
+  // initialiseDistributeurControls(valParDefaut: any) {
+  //   if (this.exemplaire.mouvements != undefined) {
+  //     this.exemplaire.mouvements.forEach(
+  //       element => {
+  //         this._exemplaireDocument.push(this.formBuilder.control(element.distributeur?.raisonSocial));
+  //         this._exemplaireDocument.controls[this._exemplaireDocument.length].valueChanges.subscribe((value) => {
+  //           const raisonSocial = typeof value === 'string' ? value : value?.raisonSocial;
+  //           if (raisonSocial != undefined && raisonSocial?.length > 0) {
+  //             this.serviceDistributeur
+  //               .getDistributeursByraisonSocial(raisonSocial.toLowerCase() as string)
+  //               .subscribe((reponse) => {
+  //                 this.filteredDistributeurOptions = reponse;
+  //               });
+  //           } else {
+  //             this.filteredDistributeurOptions = [];
+  //           }
+  //         });
+  //     });
+  //   } 
+  // }
+  
+  /**
+   * Methode pour ajouter des controls autocompletion de distributeur
+   */
+  // addDistributeurControl() {
+  //   this._exemplaireDocument.push(this.formBuilder.control(''));
+  // }
 
   /**
    * Methode pour l'initialisation d'un control avec une valeur
@@ -347,6 +383,13 @@ export class NewExemplaireComponent implements OnInit {
    */
   get _controlsSupprime(): FormArray {
     return this.formeExemplaire.get('_controlsSupprime') as FormArray;
+  }
+
+  /**
+   * recuperation du formArray qui servira à initialiser les controls d'autocompletion des didtributeurs.
+   */
+  get _controlsAutocomplateDistributeur(): FormArray {
+    return this.formeExemplaire.get('_controlsAutocomplateDistributeur') as FormArray;
   }
 
   /**
