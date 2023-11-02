@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IDocument } from 'src/app/modele/document';
 import { DocumentService } from 'src/app/services/documents/document.service';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 
 @Component({
   selector: 'app-view-form-document',
@@ -19,8 +20,8 @@ export class ViewFormDocumentComponent implements OnInit {
     categories: [],
     preconisations: []
   };
-
-  constructor(private router:Router, private infosPath:ActivatedRoute, private serviceDocument:DocumentService) {}
+  titre:string='';
+  constructor(private router:Router,private dataEnteteMenuService:DonneesEchangeService, private infosPath:ActivatedRoute, private serviceDocument:DocumentService) {}
 
   ngOnInit(): void {
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
@@ -30,6 +31,8 @@ export class ViewFormDocumentComponent implements OnInit {
           this.document = x;
         });
     }
+
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
 }

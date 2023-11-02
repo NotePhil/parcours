@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, MaxLengthValidator,MinLengthValidator,ReactiveF
 import { Router, ActivatedRoute } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { IService } from 'src/app/modele/service';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ServicesService } from 'src/app/services/services/services.service';
 import {v4 as uuidv4} from 'uuid';
 
@@ -17,14 +18,13 @@ export class NewServicesComponent implements OnInit {
   service : IService|undefined;
   forme: FormGroup;
   btnLibelle: string="Ajouter";
-  titre: string="Ajouter un nouveau service";
   submitted: boolean=false;
 
   initialDateDerniereModification = new FormControl(new Date());
   initialDateAttribution = new FormControl(new Date());
   initialDateFin = new FormControl(new Date());
-
-  constructor(private formBuilder:FormBuilder, private serviceService:ServicesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  titre:string='';
+  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private serviceService:ServicesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: ['Non assigne', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -50,12 +50,13 @@ export class NewServicesComponent implements OnInit {
           })
       });
     }
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
   get f(){
     return this.forme.controls;
   }
-  
+
   onSubmit(serviceInput:any){
     this.submitted=true;
     //Todo la validation d'element non conforme passe

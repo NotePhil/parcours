@@ -20,6 +20,7 @@ import { ObjetCleValeur } from 'src/app/modele/objet-cle-valeur';
 import { TypeTicket } from 'src/app/modele/type-ticket';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 import { DocumentService } from 'src/app/services/documents/document.service';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
 import { MissionsService } from 'src/app/services/missions/missions.service';
 import { v4 as uuidv4 } from 'uuid';
@@ -64,7 +65,7 @@ export class NewExemplaireComponent implements OnInit {
 
   formeExemplaire: FormGroup;
   btnLibelle: string = 'Ajouter';
-  titre: string = 'Ajouter un nouvel exemplaire de document';
+  //titre: string = 'Ajouter un nouvel exemplaire de document';
   submitted: boolean = false;
   controlExemplaire = new FormControl();
   typeAttribut: string = '';
@@ -93,10 +94,11 @@ export class NewExemplaireComponent implements OnInit {
   tempAttributsObbligatoires = new Map()
   estValide : boolean = true
   eValvalide : string = "";
-
+  titre:string='';
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
+    private dataEnteteMenuService:DonneesEchangeService,
     private infosPath: ActivatedRoute,
     private serviceDocument: DocumentService,
     private serviceExemplaire: ExemplaireDocumentService,
@@ -120,6 +122,7 @@ export class NewExemplaireComponent implements OnInit {
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
 
     this.initialiseFormExemplaire();
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
   /**
@@ -140,7 +143,7 @@ export class NewExemplaireComponent implements OnInit {
       } else {
         this._exemplaireDocument.push(this.formBuilder.control(''));
       }
-    } 
+    }
   }
 
   /**
@@ -292,7 +295,7 @@ export class NewExemplaireComponent implements OnInit {
       let dateAtt = new Date();
       if(valAttribut != "PARCOURS_NOT_FOUND_404")
          dateAtt = new Date(valAttribut); // creatoion d'une nouvelle date avec la valeur de valAttribut
-      
+
       let dateReduite = this.datePipe.transform(dateAtt, 'yyyy-MM-dd'); // changer le format de la date de naissance pour pouvoir l'afficher dans mon input type date
       this.addAttributs(dateReduite, attributCategories.obligatoire);
     } else {
@@ -321,11 +324,11 @@ export class NewExemplaireComponent implements OnInit {
     return this.numerateur;
   }
   /**
-   * 
-   * @returns 
+   *
+   * @returns
    */
   evaluation():string{
-    
+
     this.estValide = true
     for (let index = 0; index < this.tempAttributsObbligatoires.size; index++) {
       if (this.f.controls[index].errors) {

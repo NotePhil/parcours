@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { IService } from 'src/app/modele/service';
 import { ITicket } from 'src/app/modele/ticket';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ServicesService } from 'src/app/services/services/services.service';
 import { TicketsService } from 'src/app/services/tickets/tickets.service';
 
@@ -20,7 +21,7 @@ export class NewTicketComponent implements OnInit {
   ticket : ITicket|undefined;
   forme: FormGroup;
   btnLibelle: string="Enregister";
-  titre: string="Ajouter un nouveau ticket";
+  //titre: string="Ajouter un nouveau ticket";
   submitted: boolean=false;
   currentDate = new Date;
   strIidPersonne: string = "";
@@ -42,9 +43,9 @@ export class NewTicketComponent implements OnInit {
     idPersonne: null,
     statut: ''
   };
-
-  constructor(private formBuilder:FormBuilder, private ticketsService:TicketsService,private router:Router, private infosPath:ActivatedRoute,
-    private serviceService:ServicesService, private datePipe: DatePipe) { 
+  titre:string='';
+  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService,private ticketsService:TicketsService,private router:Router, private infosPath:ActivatedRoute,
+    private serviceService:ServicesService, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({})
   }
 
@@ -67,11 +68,12 @@ export class NewTicketComponent implements OnInit {
           })
       });
     }
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
   get f(){
     return this.forme.controls;
   }
-  
+
   onSubmit(ticketInput:any){
     this.submitted=true;
 
@@ -79,7 +81,7 @@ export class NewTicketComponent implements OnInit {
     this.libelleService = sessionStorage.getItem("libelle_service");
     //Todo la validation d'element non conforme passe
     if(this.forme.invalid) return;
-        
+
       this.ticketsService.attribuerTicket(sessionStorage.getItem("id_patient"),sessionStorage.getItem("id_service")).subscribe(
         object => {
           this._ticket = object;

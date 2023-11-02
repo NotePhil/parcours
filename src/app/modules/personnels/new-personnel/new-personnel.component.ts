@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IPersonnel } from 'src/app/modele/personnel';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { PersonnelsService } from 'src/app/services/personnels/personnels.service';
 import {v4 as uuidv4} from 'uuid';
 
@@ -17,32 +18,31 @@ export class NewPersonnelComponent implements OnInit {
    personnel : IPersonnel|undefined;
    forme: FormGroup;
    btnLibelle: string="Ajouter";
-   titre: string="Ajouter un nouveau Personnel";
    submitted: boolean=false;
-   
-   constructor(private formBuilder:FormBuilder, private personnelService:PersonnelsService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) { 
+   titre:string='';
+   constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private personnelService:PersonnelsService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
      this.forme =  this.formBuilder.group({
        nom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
        prenom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
        sexe: ['', Validators.required],
        email: ['', [Validators.required, Validators.email, Validators.pattern(".+@.+\.{1}[a-z]{2,3}")]],
-       //todo initialisation du composant à une date 
+       //todo initialisation du composant à une date
        dateNaissance: ['1980-01-01', Validators.required],
        dateEntree: ['2023-01-01', Validators.required],
        dateSortie: ['0000-00-00'],
        telephone: ['', Validators.required]
-     })    
+     })
    }
- 
+
    ngOnInit() {
      let idPersonnel = this.infosPath.snapshot.paramMap.get('idPersonnel');
      console.log("idPersonnel:" + idPersonnel);
      if((idPersonnel != null) && idPersonnel!==''){
- 
+
        this.btnLibelle="Modifier";
        this.titre="Personnel à Modifier";
-       
-       
+
+
        this.personnelService.getPersonnelById(idPersonnel).subscribe(x =>
        {
          this.personnel = x; console.log(this.personnel);
@@ -57,18 +57,19 @@ export class NewPersonnelComponent implements OnInit {
            telephone: this.personnel?.telephone
          })
        });
-     }    
+     }
+     this.titre=this.dataEnteteMenuService.dataEnteteMenu
    }
- 
+
    get f(){
      return this.forme.controls;
    }
- 
+
    onSubmit(personnelInput:any){
      this.submitted=true;
      //Todo la validation d'element non conforme passe
      if(this.forme.invalid) return;
- 
+
      let personnelTemp : IPersonnel={
        id: uuidv4(),
        nom:personnelInput.nom,
@@ -80,9 +81,9 @@ export class NewPersonnelComponent implements OnInit {
        dateEntree: personnelInput.dateEntree,
        dateSortie: personnelInput.dateSortie
      }
- 
+
      if(this.personnel != undefined){
-       personnelTemp.id = this.personnel.id  
+       personnelTemp.id = this.personnel.id
      }
      this.personnelService.ajouterPersonnel(personnelTemp).subscribe(
        object => {
