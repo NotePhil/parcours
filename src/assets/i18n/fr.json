@@ -198,6 +198,8 @@
     "search-bar": "Rechercher",
     "title1": "Affichage des resultats",
     "title2": "Selectionner les attributs de la categories",
+    "title4": "Associer des sous documents",
+    "title5": "Selectionner les documents à associer",
     "table": {
       "title0": "Id",
       "title1": "Titre",
@@ -216,7 +218,8 @@
       "title14": "Ordre de la categorie",
       "title15": "Categories",
       "title16": "libelle attribut",
-      "title17": "Preconisations"
+      "title17": "Preconisations",
+      "title18": "Sous documents"
     },
     "form": {
       "text1": "Le Titre est obligatoire.",

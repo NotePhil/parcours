@@ -18,17 +18,20 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalChoixAttributsComponent } from './modal-choix-attributs/modal-choix-attributs.component';
 import { ModalChoixPreconisationsComponent } from './modal-choix-preconisations/modal-choix-preconisations.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ModalChoixSousDocumentComponent } from './modal-choix-sous-document/modal-choix-sous-document.component';
 
 
 @NgModule({
   declarations: [
     ModalCategoriesComponent,
     ModalChoixAttributsComponent,
-    ModalChoixPreconisationsComponent
+    ModalChoixPreconisationsComponent,
+    ModalChoixSousDocumentComponent
   ],
   exports: [
     ModalCategoriesComponent,
-    ModalChoixAttributsComponent
+    ModalChoixAttributsComponent,
+    ModalChoixSousDocumentComponent
   ],
   imports: [
     CommonModule,

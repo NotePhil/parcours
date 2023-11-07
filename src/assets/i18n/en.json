@@ -201,6 +201,8 @@
         "search-bar":"Rechercher",
         "title1":"View resuts",
         "title2":"Select attributs of this category",
+        "title4": "Pair other documents",
+        "title5": "Select documents to pair",
         "table":{
             "title0":"Id",
             "title1":"Title",
@@ -219,7 +221,8 @@
             "title14":"Category's range",
             "title15":"Categories",
             "title16":"libelle attribut",
-            "title17":"Preconisations"
+            "title17":"Preconisations",
+            "title18": "Paired documents"
         },
         "form":{
             "text1":"Title is required.",

@@ -11,4 +11,5 @@ export interface IDocument {
     attributs : IAttributs[],
     categories : ICategoriesAttributs[]
     preconisations : IPrecoMvt[]
+    sousDocuments? : IDocument[]
 }
