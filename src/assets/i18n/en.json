@@ -81,7 +81,8 @@
         }
     },
     "personnel":{
-        "title1":"Add staff",
+        "title1":"Add a new staff",
+        "text":"Personnels retrouvé(e)s",
         "search-bar":"search",
         "table":{
             "title1":"Name",
