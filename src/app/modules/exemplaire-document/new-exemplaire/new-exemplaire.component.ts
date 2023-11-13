@@ -278,12 +278,12 @@ export class NewExemplaireComponent implements OnInit {
           this.totalAttribut = x.attributs.length - 1;
           this.rechercherAttributsAbsants();
           this.formerEnteteTableauMissions()
+          this.serviceDocument.getDocumentById(this.exemplaire.idDocument).subscribe(
+            value=>{
+              this.documentModelInitialDeExemplaire = value
+              this.modifierMouvementExemplaire(this.documentModelInitialDeExemplaire)
+            })
         });
-        this.serviceDocument.getDocumentById(this.exemplaire.idDocument).subscribe(
-          value=>{
-            this.documentModelInitialDeExemplaire = value
-          })
-          this.modifierMouvementExemplaire(this.documentModelInitialDeExemplaire)
     }
     if (this.idDocument) {
       this.serviceDocument
@@ -297,12 +297,12 @@ export class NewExemplaireComponent implements OnInit {
   }
 /**
  * Methode permettant de former la nouvelle structure du tableau de mouvement de l'exemplaire
- * si les données affiche prix et affiche ressourse sont modifié dans le document initial 
- * @param document est le model de document inital dont l'exemplaire a été tiré
+ * si les données affiche prix et affiche ressourse sont modifiées dans le document initial 
+ * @param document est le model de document inital duquel l'exemplaire a été tiré
  */
   modifierMouvementExemplaire(document:IDocument){
     if (document.affichagePrix==false) {
-      this.ELEMENTS_TABLE_MOUVEMENTS.splice(6,2)
+      this.displayedRessourcesColumns.splice(6,2)
     }
   }
 
