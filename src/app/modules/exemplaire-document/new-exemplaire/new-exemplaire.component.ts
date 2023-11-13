@@ -52,7 +52,21 @@ export class NewExemplaireComponent implements OnInit {
     affichagePrix: false,
     contientRessources: false
   };
+  
   document: IDocument = {
+    id: '',
+    titre: '',
+    description: '',
+    etat: false,
+    missions: [],
+    attributs: [],
+    categories: [],
+    preconisations: [],
+    affichagePrix: false,
+    contientRessources: false
+  };
+  
+  documentModelInitialDeExemplaire: IDocument = {
     id: '',
     titre: '',
     description: '',
@@ -210,37 +224,6 @@ export class NewExemplaireComponent implements OnInit {
   }
   
   /**
-   * Methode pour l'initialisation des controls autocompletion de distributeur
-   */
-  // initialiseDistributeurControls(valParDefaut: any) {
-  //   if (this.exemplaire.mouvements != undefined) {
-  //     this.exemplaire.mouvements.forEach(
-  //       element => {
-  //         this._exemplaireDocument.push(this.formBuilder.control(element.distributeur?.raisonSocial));
-  //         this._exemplaireDocument.controls[this._exemplaireDocument.length].valueChanges.subscribe((value) => {
-  //           const raisonSocial = typeof value === 'string' ? value : value?.raisonSocial;
-  //           if (raisonSocial != undefined && raisonSocial?.length > 0) {
-  //             this.serviceDistributeur
-  //               .getDistributeursByraisonSocial(raisonSocial.toLowerCase() as string)
-  //               .subscribe((reponse) => {
-  //                 this.filteredDistributeurOptions = reponse;
-  //               });
-  //           } else {
-  //             this.filteredDistributeurOptions = [];
-  //           }
-  //         });
-  //     });
-  //   } 
-  // }
-  
-  /**
-   * Methode pour ajouter des controls autocompletion de distributeur
-   */
-  // addDistributeurControl() {
-  //   this._exemplaireDocument.push(this.formBuilder.control(''));
-  // }
-
-  /**
    * Methode pour l'initialisation d'un control avec une valeur
    * @param valParDefaut valeur recuperer dans objetEnregistre et qui servira de valeur du control cree
    */
@@ -296,6 +279,11 @@ export class NewExemplaireComponent implements OnInit {
           this.rechercherAttributsAbsants();
           this.formerEnteteTableauMissions()
         });
+        this.serviceDocument.getDocumentById(this.exemplaire.idDocument).subscribe(
+          value=>{
+            this.documentModelInitialDeExemplaire = value
+          })
+          this.modifierMouvementExemplaire(this.documentModelInitialDeExemplaire)
     }
     if (this.idDocument) {
       this.serviceDocument
@@ -307,11 +295,22 @@ export class NewExemplaireComponent implements OnInit {
         });
     }
   }
+/**
+ * Methode permettant de former la nouvelle structure du tableau de mouvement de l'exemplaire
+ * si les données affiche prix et affiche ressourse sont modifié dans le document initial 
+ * @param document est le model de document inital dont l'exemplaire a été tiré
+ */
+  modifierMouvementExemplaire(document:IDocument){
+    if (document.affichagePrix==false) {
+      this.ELEMENTS_TABLE_MOUVEMENTS.splice(6,2)
+    }
+  }
+
   /**
    * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
    */
   formerEnteteTableauMissions(){
-    if (this.document.affichagePrix == true) {
+    if ((this.document.affichagePrix == true)||(this.documentModelInitialDeExemplaire.affichagePrix == true)) {
       let prix : string = "prix"
       let montant : string = "montant total"
       this.displayedRessourcesColumns.push(prix)
