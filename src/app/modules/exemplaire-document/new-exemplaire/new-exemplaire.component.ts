@@ -66,18 +66,18 @@ export class NewExemplaireComponent implements OnInit {
     contientRessources: false
   };
   
-  documentModelInitialDeExemplaire: IDocument = {
-    id: '',
-    titre: '',
-    description: '',
-    etat: false,
-    missions: [],
-    attributs: [],
-    categories: [],
-    preconisations: [],
-    affichagePrix: false,
-    contientRessources: false
-  };
+  // documentModelInitialDeExemplaire: IDocument = {
+  //   id: '',
+  //   titre: '',
+  //   description: '',
+  //   etat: false,
+  //   missions: [],
+  //   attributs: [],
+  //   categories: [],
+  //   preconisations: [],
+  //   affichagePrix: false,
+  //   contientRessources: false
+  // };
 
   attribut: IAttributs = {
     id: '',
@@ -278,14 +278,10 @@ export class NewExemplaireComponent implements OnInit {
           this.totalAttribut = x.attributs.length - 1;
           this.rechercherAttributsAbsants();
           this.formerEnteteTableauMissions()
-          this.serviceDocument.getDocumentById(this.exemplaire.idDocument).subscribe(
-            value=>{
-              this.documentModelInitialDeExemplaire = value
-              this.modifierMouvementExemplaire(this.documentModelInitialDeExemplaire)
-            })
+          this.modifierMouvementExemplaire(x.idDocument)
         });
     }
-    if (this.idDocument) {
+    if (this.idDocument != null && this.idDocument !== '') {
       this.serviceDocument
         .getDocumentById(this.idDocument)
         .subscribe((document) => {
@@ -300,17 +296,22 @@ export class NewExemplaireComponent implements OnInit {
  * si les données affiche prix et affiche ressourse sont modifiées dans le document initial 
  * @param document est le model de document inital duquel l'exemplaire a été tiré
  */
-  modifierMouvementExemplaire(document:IDocument){
-    if (document.affichagePrix==false) {
-      this.displayedRessourcesColumns.splice(6,2)
-    }
+  modifierMouvementExemplaire(idDocument:string){
+    this.serviceDocument.getDocumentById(idDocument).subscribe(
+      value=>{
+        this.document.affichagePrix = value.affichagePrix
+        this.document.contientRessources = value.contientRessources
+        if (this.document.affichagePrix==false) {
+          this.displayedRessourcesColumns.splice(6,2)
+        }
+      })
   }
 
   /**
    * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
    */
   formerEnteteTableauMissions(){
-    if ((this.document.affichagePrix == true)||(this.documentModelInitialDeExemplaire.affichagePrix == true)) {
+    if ((this.document.affichagePrix == true)) {
       let prix : string = "prix"
       let montant : string = "montant total"
       this.displayedRessourcesColumns.push(prix)
