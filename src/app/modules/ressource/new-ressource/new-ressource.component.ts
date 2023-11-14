@@ -38,11 +38,11 @@ export class NewRessourceComponent implements OnInit {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
-      quantite: ['', [Validators.required]],
-      unite: ['', [Validators.required]],
-      prix: ['', [Validators.required]],
+      quantite: [''],
+      unite: [''],
+      prix: [''],
       famille: [''],
-      caracteristique:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
+      caracteristique:['']
     })
   };
 
@@ -74,7 +74,7 @@ export class NewRessourceComponent implements OnInit {
           this.ressource = x; console.log(this.ressource);
           this.ressource.id = idRessource!,
           this.forme.setValue({
-            libelle: this.ressource?.libelle,
+            libelle: this.ressource.libelle,
             etat: this.ressource.etat,
             quantite: this.ressource.quantite,
             unite: this.ressource.unite,
