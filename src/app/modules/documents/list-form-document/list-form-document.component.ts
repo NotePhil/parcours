@@ -20,11 +20,11 @@ import { DocumentService } from 'src/app/services/documents/document.service';
 export class ListFormDocumentComponent implements OnInit, AfterViewInit {
 
   myControl = new FormControl<string | IDocument>('');
- 
+
   ELEMENTS_TABLE: IDocument[] = [];
   filteredOptions: IDocument[] | undefined;
 
-  displayedColumns: string[] = ['id', 'titre', 'description', 'missions', 'attributs', 'categories', 'preconisations', 'actions'];
+  displayedColumns: string[] = ['titre', 'description', 'missions', 'attributs', 'categories', 'preconisations', 'actions'];
 
   dataSource = new MatTableDataSource<IDocument>(this.ELEMENTS_TABLE);
 
@@ -34,8 +34,8 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   tableDocuments : IAfficheDocument[] = []
-  
-  
+
+
   afficheDocument : IAfficheDocument = {
     id: '',
     titre: '',
@@ -56,7 +56,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAllDocuments().subscribe(valeurs => {
      const tableDocuments : IAfficheDocument[] = this.tableDocuments
-     
+
       valeurs.forEach(
         x =>{
           this.afficheDocument  = {
@@ -80,17 +80,17 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
             x.missions.forEach(
               m => {
                 this.afficheDocument.listeMissions += m.libelle + ", ";
-              } 
+              }
             )
             x.attributs.forEach(
               a => this.afficheDocument.listAttributs += a.titre + ", "
             )
             x.categories.forEach(
               c => this.afficheDocument.listCategories += c.nom + ", "
-            ) 
+            )
             x.preconisations.forEach(
               p => this.afficheDocument.listPreconisations += p.libelle + ", "
-            ) 
+            )
           tableDocuments.push(this.afficheDocument)
         }
       )
@@ -102,7 +102,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
         const titre = typeof value === 'string' ? value : value?.titre;
         if(titre != undefined && titre?.length >0){
           this.serviceDocument.getDocumentByTitre(titre.toLowerCase() as string).subscribe(
-            reponse => { 
+            reponse => {
               this.filteredOptions = reponse;
             }
           )
