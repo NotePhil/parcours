@@ -12,6 +12,7 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {FormControl} from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
+import { compareAsc, format } from 'date-fns';
 
 @Component({
   selector: 'app-roles-personnel',
@@ -133,26 +134,28 @@ export class RolesPersonnelComponent implements OnInit {
         this.verif = false
           while (j < this.dataSourceRoleResultat.data.length) {
             console.log("Id elements  :", this.dataSourceRoleResultat.data[j].role.id, element.id);
+
+            const res = compareAsc(this.forme.value.dateEntree, this.dataSourceRoleResultat.data[j].dateFin)
+            console.log("Test compare :", res);
+            
             
             if (this.dataSourceRoleResultat.data[j].role.id == element.id) {
-              if (this.forme.value.dateFin == "" && this.dataSourceRoleResultat.data[j].dateFin == "") {
-                this.verif = true
-                event.target.checked = false
-                this.textError = "Vous ne pouvez plus ajouter ce role !"
-              }
-            } else if (this.dataSourceRoleResultat.data[j].dateFin != "" && this.forme.value.dateFin != "") {
-              if (this.dataSourceRoleResultat.data[j].dateFin < this.forme.value.dateEntree) {
-                this.verif = false
-              } else {
-                this.verif = true
-                event.target.checked = false
-                this.textError = "Les intervalles de date ne correspondent pas !"
-              }
-            } else if (this.dataSourceRoleResultat.data[j].dateFin != "" || this.forme.value.dateFin != "") {
-              if (this.forme.value.dateEntree < this.dataSourceRoleResultat.data[j].dateFin) {
-                this.verif = true
-                event.target.checked = false
-                this.textError = "La date n'es pas valide !"
+              if (this.dataSourceRoleResultat.data[j].dateFin == "" && this.forme.value.dateFin == "") {
+                  this.verif = true
+                  event.target.checked = false
+                  this.textError = "Les intervalles de dates ne correspondent pas !"
+              } else if (this.dataSourceRoleResultat.data[j].dateFin != "" && this.forme.value.dateFin != "") {
+                if (this.forme.value.dateEntree < this.dataSourceRoleResultat.data[j].dateFin) {
+                  this.verif = true
+                  event.target.checked = false
+                  this.textError = "Intervalle de dates incorrectes !"
+                }
+              } else if (this.dataSourceRoleResultat.data[j].dateFin != "" || this.forme.value.dateFin != "") {
+                if (this.forme.value.dateEntree < this.dataSourceRoleResultat.data[j].dateFin || this.dataSourceRoleResultat.data[j].dateEntree >= this.forme.value.dateEntree) {
+                  this.verif = true
+                  event.target.checked = false
+                  this.textError = "La date n'es pas valide !"
+                }
               }
             }
             j++
