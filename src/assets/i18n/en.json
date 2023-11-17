@@ -340,7 +340,8 @@
             "title2":"Status",
             "title3":"Type",
             "title4":"View more infos",
-            "title5":"Distributor"
+            "title5":"Distributor",
+            "title6":"pair a distributor"
         },
         "view":{
             "text1":"Preconisations of this document"

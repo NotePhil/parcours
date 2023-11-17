@@ -154,8 +154,7 @@ export class NewExemplaireComponent implements OnInit {
   ) {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
-      _controlsSupprime: new FormArray([]),
-      // _controlsAutocomplateDistributeur: new FormArray([])
+      _controlsSupprime: new FormArray([])
     });
   }
 
@@ -176,11 +175,15 @@ export class NewExemplaireComponent implements OnInit {
       if (libelle != undefined && libelle?.length > 0) {
         this.serviceRessource
           .getRessourcesByLibelle(libelle.toLowerCase() as string)
-          .subscribe((reponse) => {
-            this.filteredOptionsRessource = reponse;
+          .subscribe((resultat) => {
+            this.filteredOptionsRessource = resultat;
           });
       } else {
-        this.filteredOptionsRessource = [];
+        this.serviceRessource.getAllRessources().subscribe(
+          (resultat) =>{
+            this.filteredOptionsRessource = resultat
+          }
+        )
       }
     });
     
@@ -530,6 +533,9 @@ export class NewExemplaireComponent implements OnInit {
         datePeremption:  new Date(),
         ressource: option
       }
+      // if(this.distributeurControl.value != undefined || this.distributeurControl.value != ''){
+      //   mvt.distributeur = this.distributeurControl.value
+      // }
       this.ELEMENTS_TABLE_MOUVEMENTS.unshift(mvt)
       this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS
     }
