@@ -3372,8 +3372,8 @@ export class InMemDBService implements InMemoryDbService {
                   etat: 'malade',
                 },
               }
-            },
-          ],
+            }
+          ]
         }],
         mouvements:[
           {
@@ -3397,7 +3397,16 @@ export class InMemDBService implements InMemoryDbService {
                 description: 'nouveau-né',
                 etat: 'malade',
               },
-            }
+            },
+            distributeur: 
+            {
+              id: '1',
+              raisonSocial: 'cgb',
+              etat: true,
+              adresse: 'Dla',
+              telephone: '655554488',
+              mail: 'ngong@yad.fr',
+            },
           },
           {
             id: '2',
@@ -3443,6 +3452,14 @@ export class InMemDBService implements InMemoryDbService {
                 description: 'nouveau-né',
                 etat: 'malade',
               }
+            },
+            distributeur: {
+              id: '3',
+              raisonSocial: 'cvc',
+              etat: true,
+              adresse: 'Buéa',
+              telephone: '655554486',
+              mail: 'ngong@yad.fr',
             }
           },
           {
@@ -3466,8 +3483,16 @@ export class InMemDBService implements InMemoryDbService {
                 description: 'nouveau-né',
                 etat: 'malade',
               }
+            },
+            distributeur: {
+              id: '2',
+              raisonSocial: 'bgb',
+              etat: true,
+              adresse: 'Ydé',
+              telephone: '655554481',
+              mail: 'ngong@yad.fr',
             }
-          },
+          }
         ]
       },
       {
@@ -3876,6 +3901,14 @@ export class InMemDBService implements InMemoryDbService {
                 description: 'nouveau-né',
                 etat: 'malade',
               }
+            },
+            distributeur: {
+              id: '2',
+              raisonSocial: 'bgb',
+              etat: true,
+              adresse: 'Ydé',
+              telephone: '655554481',
+              mail: 'ngong@yad.fr',
             }
           },
           {
@@ -3922,6 +3955,14 @@ export class InMemDBService implements InMemoryDbService {
                 description: 'enfant',
                 etat: 'souffrant',
               }
+            },
+            distributeur: {
+              id: '1',
+              raisonSocial: 'cgb',
+              etat: true,
+              adresse: 'Dla',
+              telephone: '655554488',
+              mail: 'ngong@yad.fr',
             }
           }
         ],

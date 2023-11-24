@@ -137,9 +137,23 @@ h3{
     justify-content: space-between;
     width: 100%;
     padding: 0 2px;
-} 
+}
+.blockAutoRessources, .blockAutoDistributeurs{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    margin: 2px;
+    h4{
+        width: fit-content;
+        margin: auto 0;
+        margin-right: 2px;
+    }
+}
+.blockAutoRessources form{
+    justify-content: end;
+}
 .example-form{
-    width: 40%;
+    width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -309,11 +323,17 @@ th{
     .example-form{
         width: 50%;
     }
-}
-@media screen and (max-width: 800px) {
     .example-form{
         flex-wrap: wrap;
         width: 50%;
+    }
+    .blockAutoRessources form{
+        justify-content: start;
+    }
+}
+@media screen and (max-width: 800px) {
+    .searchBlock h4{
+        white-space: noWrap;
     }
 }
 @media screen and (max-width: 700px) {
@@ -366,6 +386,7 @@ th{
 @media screen and (max-width: 520px) {
     .searchBlock{
         flex-direction: column;
+        align-items: flex-start;
         width: 100%;
         .example-form{
             width: 100%;

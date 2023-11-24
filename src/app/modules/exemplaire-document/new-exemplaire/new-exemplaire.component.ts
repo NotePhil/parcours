@@ -65,19 +65,6 @@ export class NewExemplaireComponent implements OnInit {
     affichagePrix: false,
     contientRessources: false
   };
-  
-  // documentModelInitialDeExemplaire: IDocument = {
-  //   id: '',
-  //   titre: '',
-  //   description: '',
-  //   etat: false,
-  //   missions: [],
-  //   attributs: [],
-  //   categories: [],
-  //   preconisations: [],
-  //   affichagePrix: false,
-  //   contientRessources: false
-  // };
 
   attribut: IAttributs = {
     id: '',
@@ -140,6 +127,7 @@ export class NewExemplaireComponent implements OnInit {
   TABLE_PRECONISATION_RESSOURCES: IPrecoMvt[] = [];
   montantTotal : number = 0;
   soustotal : number = 0;
+  distributeur : IDistributeur | undefined
 
   constructor(
     private router: Router,
@@ -515,6 +503,15 @@ export class NewExemplaireComponent implements OnInit {
         this.router.navigate(['/list-exemplaire']);
       });
   }
+
+  /**
+   * Methode permettant de récupérer un distributeur dans le template et de l'assicier à 
+   * une ressource avant de la mettre dans le tablau de mouvement
+   * @param distributeur valeur du distributeur récupéré dans l'autocomplate distributeur sur le template
+   */
+  public associerDistributeur(distributeur : IDistributeur){
+    this.distributeur = distributeur
+  }
   public rechercherListingRessources(option: IRessource) {
     let tabIdRessource : string[] = []
     this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
@@ -533,11 +530,14 @@ export class NewExemplaireComponent implements OnInit {
         datePeremption:  new Date(),
         ressource: option
       }
-      // if(this.distributeurControl.value != undefined || this.distributeurControl.value != ''){
-      //   mvt.distributeur = this.distributeurControl.value
-      // }
+      if(this.distributeur != undefined){
+        mvt.distributeur = this.distributeur
+      }
       this.ELEMENTS_TABLE_MOUVEMENTS.unshift(mvt)
       this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS
+      
+      // On reinitialise le distributeur
+      this.distributeur = undefined
     }
   }
 

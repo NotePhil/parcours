@@ -41,34 +41,38 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="document.contientRessources == true" class="block card mt-2 pt-1" id="sectionAjoutPreco">
+            <div class="block card mt-2 pt-1" id="sectionAjoutPreco">
                 <div>
-                    <h3>{{'document.exemplaire.title3' | translate}} :</h3>
+                    <h3 *ngIf="document.contientRessources == true">{{'document.exemplaire.title3' | translate}} :</h3>
                     <div class="searchBlock">
-                        <form class="example-form">
-                            <h4>{{'ressource.form.text16' | translate}}</h4>
-                            <mat-form-field class="example-full-width" appearance="fill">
-                                <mat-label class="searchBar"></mat-label>
-                                <input type="text" matInput [formControl]="ressourceControl" [matAutocomplete]="auto">
-                                <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
-                                    <mat-option class="options" *ngFor="let option of filteredOptionsRessource" [value]="option" (onSelectionChange)="rechercherListingRessources(option)">
-                                        {{option.libelle}}
-                                    </mat-option>
-                                </mat-autocomplete>
-                            </mat-form-field>
-                        </form>
-                        <form class="example-form">
-                            <h4>{{'preconisation.table.title6' | translate}}</h4>
-                            <mat-form-field class="example-full-width" appearance="fill">
-                                <mat-label class="searchBar"></mat-label>
-                                <input type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="auto">
-                                <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayDistributeurFn">
-                                    <mat-option class="options" *ngFor="let optionDistributeur of filteredDistributeurOptions" [value]="optionDistributeur">
-                                        {{optionDistributeur.raisonSocial}}
-                                    </mat-option>
-                                </mat-autocomplete>
-                            </mat-form-field>
-                        </form>
+                        <div *ngIf="document.contientRessources == true" class="blockAutoDistributeurs">
+                            <form class="example-form">
+                                <h4>{{'preconisation.table.title6' | translate}}</h4>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label class="searchBar"></mat-label>
+                                    <input type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayDistributeurFn">
+                                        <mat-option class="options" *ngFor="let optionDistributeur of filteredDistributeurOptions" [value]="optionDistributeur" (onSelectionChange)="associerDistributeur(optionDistributeur)">
+                                            {{optionDistributeur.raisonSocial}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
+                        </div>
+                        <div *ngIf="document.contientRessources == true" class="blockAutoRessources">
+                            <form class="example-form">
+                                <h4>{{'ressource.form.text16' | translate}}</h4>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label class="searchBar"></mat-label>
+                                    <input type="text" matInput [formControl]="ressourceControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
+                                        <mat-option class="options" *ngFor="let option of filteredOptionsRessource" [value]="option" (onSelectionChange)="rechercherListingRessources(option)">
+                                            {{option.libelle}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
