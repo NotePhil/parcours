@@ -49,7 +49,7 @@
                         <th>{{'ressource.table2.title10' | translate}}</th>
                         <th>{{'attributs.table.title2' | translate}}</th>
                         <th>{{'document.exemplaire.text2' | translate}}</th>
-                        <th>{{'preconisation.table.title5' | translate}}</th>
+                        <th *ngIf="exemplaire.contientDistributeurs == true">{{'preconisation.table.title5' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +60,7 @@
                         <td>{{ressourcesExemplaire.quantite*ressourcesExemplaire.prix}}</td>
                         <td>{{ressourcesExemplaire.description}}</td>
                         <td>{{ressourcesExemplaire.datePeremption}}</td>
-                        <td>{{ressourcesExemplaire.distributeur?.raisonSocial!}}</td>
+                        <td *ngIf="exemplaire.contientDistributeurs == true">{{ressourcesExemplaire.distributeur?.raisonSocial!}}</td>
                     </tr>
                 </tbody>
             </table>

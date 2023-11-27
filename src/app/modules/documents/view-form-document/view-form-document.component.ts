@@ -20,7 +20,8 @@ export class ViewFormDocumentComponent implements OnInit {
     preconisations: [],
     etat: false,
     affichagePrix: false,
-    contientRessources: false
+    contientRessources: false,
+    contientDistributeurs: false
   };
 
   constructor(private router:Router, private infosPath:ActivatedRoute, private serviceDocument:DocumentService) {}

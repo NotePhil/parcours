@@ -197,7 +197,7 @@
             "text3":"No Document Available For Mission"
         }
     },
-    "document":{
+    "document": {
         "title3":"Add a new document",
         "search-bar":"Rechercher",
         "title1":"View resuts",
@@ -222,7 +222,8 @@
             "title16":"libelle attribut",
             "title17":"Preconisations",
             "title18": "price visibility ?",
-            "title19": "link resources ?"
+            "title19": "link resources ?",
+            "title20": "Distributor visibility ?"
         },
         "form":{
             "text1":"Title is required.",
@@ -230,7 +231,8 @@
             "text3":"Missions are required.",
             "text4":"Attributs are required.",
             "text5": "If this box is checked, the price column will be visible when creating the movement of a copy of this document",
-            "text6": "If this box is unchecked, there will be no possibility of creating movements when creating a copy of the document"
+            "text6": "If this box is unchecked, there will be no possibility of creating movements when creating a copy of the document",
+            "text7": "If this box is checked, the distributor column will be visible when creating the movement of a copy of this document"
         },
         "view":{
             "title":"Document's Model",
@@ -238,13 +240,14 @@
             "text2":"attributs's list of document",
             "text3":"attributs's list by categories"
         },
-        "exemplaire":{
+        "exemplaire": {
             "title":"Document's instance ",
             "title2":"Old datas",
             "title3": "Add ressources",
             "title4": "list of mouvements",
             "text1":"composition of this instance",
-            "text2": "Expiration's date"
+            "text2": "Expiration's date",
+            "text3": "Update distributor"
         }      
     },
     "theme":{

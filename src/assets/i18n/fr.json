@@ -219,7 +219,8 @@
       "title16": "libelle attribut",
       "title17": "Preconisations",
       "title18": "visibilité du prix ?",
-      "title19": "lier des ressources ?"
+      "title19": "lier des ressources ?",
+      "title20": "visibilité du distributeur ?"
     },
     "form": {
       "text1": "Le Titre est obligatoire.",
@@ -227,7 +228,8 @@
       "text3": "Les Missions sont obligatoires.",
       "text4": "Les attributs sont obligatoires.",
       "text5": "Si cette case est cochée, la colone du prix sera visible lors de la creation des mouvement d'un exemplaire de ce document",
-      "text6": "Si cette case est décochée, il n'y aura pas la possibilité de creer des mouvement lors de la creation d'un exemplaire du document"
+      "text6": "Si cette case est décochée, il n'y aura pas la possibilité de creer des mouvement lors de la creation d'un exemplaire du document",
+      "text7": "Si cette case est cochée, la colone du distributeur sera visible lors de la creation des mouvement d'un exemplaire de ce document"
     },
     "view": {
       "title": "Modele du document",
@@ -241,7 +243,8 @@
       "title3": "Ajouter des ressources",
       "title4": "liste des mouvements",
       "text1": "Composition de l'exemplaire",
-      "text2": "date de peremption"
+      "text2": "date de peremption",
+      "text3": "Modifier le distributeur"
     }
   },
   "theme": {

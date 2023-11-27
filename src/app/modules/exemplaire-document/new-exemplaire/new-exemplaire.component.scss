@@ -138,8 +138,24 @@ h3{
     width: 100%;
     padding: 0 2px;
 }
+.searchBlockUnique{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0 2px;
+    .blockAutoRessources{
+        width: 100%;
+    }
+    .blockAutoRessources form{
+        justify-content: start;
+    }
+}
+.searchBlockUnique h4{
+    white-space: noWrap;
+}
 .blockAutoRessources, .blockAutoDistributeurs{
-    width: 50%;
+    width: 48%;
     display: flex;
     align-items: center;
     margin: 2px;
@@ -218,6 +234,9 @@ mat-form-field{
 .mat-form-field-wrapper {
     padding-bottom: 0 !important;
 }
+.mat-form-field-appearance-fill .mat-form-field-flex{
+    padding: 0;
+}
 .containCell{
     label{
         display: flex;
@@ -285,6 +304,19 @@ th{
         position: relative;
         bottom: 8px;
     }
+}
+.modifierDistributeurBlock{
+    height: 100%;
+    position: relative;
+    span{
+        position: absolute;
+        right: 2px;
+    }
+}
+.btnModifierDistributeurBlock{
+    border: 1px solid #28a745;
+    height: 46px;
+    font-size: 10px;
 }
 @media screen and (max-width: 1040px) {
     .block .inputBlock{

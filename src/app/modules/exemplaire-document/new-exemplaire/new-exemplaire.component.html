@@ -41,32 +41,33 @@
                     </div>
                 </div>
             </div>
-            <div class="block card mt-2 pt-1" id="sectionAjoutPreco">
+            <div *ngIf="document.contientRessources == true" class="block card mt-2 pt-1" id="sectionAjoutPreco">
                 <div>
-                    <h3 *ngIf="document.contientRessources == true">{{'document.exemplaire.title3' | translate}} :</h3>
-                    <div class="searchBlock">
-                        <div *ngIf="document.contientRessources == true" class="blockAutoDistributeurs">
+                    <h3>{{'document.exemplaire.title3' | translate}} :</h3>
+                    <div class="searchBlock" [ngClass]="{'searchBlock': document.contientDistributeurs, 'searchBlockUnique': !document.contientDistributeurs}">
+                        <div *ngIf="document.contientDistributeurs == true" class="blockAutoDistributeurs">
                             <form class="example-form">
                                 <h4>{{'preconisation.table.title6' | translate}}</h4>
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label class="searchBar"></mat-label>
-                                    <input type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="auto">
-                                    <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayDistributeurFn">
-                                        <mat-option class="options" *ngFor="let optionDistributeur of filteredDistributeurOptions" [value]="optionDistributeur" (onSelectionChange)="associerDistributeur(optionDistributeur)">
+                                    <input type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="autoDistributeur">
+                                    <mat-autocomplete class="blockAutocomplate" #autoDistributeur="matAutocomplete" [displayWith]="displayDistributeurFn">
+                                        <mat-option class="options" *ngFor="let optionDistributeur of filteredDistributeurOptions" [value]="optionDistributeur" (click)="associerDistributeur(optionDistributeur)">
                                             {{optionDistributeur.raisonSocial}}
                                         </mat-option>
                                     </mat-autocomplete>
                                 </mat-form-field>
+                                <button *ngIf="modificationDistributeurActive == true" class="btn btnModifierDistributeurBlock" type="button" (click)="modifierDistributeur()">{{'lists.button6' | translate}}</button>
                             </form>
                         </div>
-                        <div *ngIf="document.contientRessources == true" class="blockAutoRessources">
+                        <div class="blockAutoRessources">
                             <form class="example-form">
                                 <h4>{{'ressource.form.text16' | translate}}</h4>
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label class="searchBar"></mat-label>
                                     <input type="text" matInput [formControl]="ressourceControl" [matAutocomplete]="auto">
                                     <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
-                                        <mat-option class="options" *ngFor="let option of filteredOptionsRessource" [value]="option" (onSelectionChange)="rechercherListingRessources(option)">
+                                        <mat-option class="options" *ngFor="let option of filteredOptionsRessource" [value]="option" (click)="rechercherListingRessources(option); reinitialliseRessourceControl()">
                                             {{option.libelle}}
                                         </mat-option>
                                     </mat-autocomplete>
@@ -132,9 +133,9 @@
                             </ng-container>
 
                           <!-- distributeur Column -->
-                          <ng-container matColumnDef="distributeur">
+                          <ng-container *ngIf="document.contientDistributeurs == true" matColumnDef="distributeur">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'preconisation.table.title5' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">{{element.distributeur?.raisonSocial}}</td>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index"><div class="modifierDistributeurBlock">{{element.distributeur?.raisonSocial}}<span role="button" title="{{'document.exemplaire.text3' | translate}}" (click)="InitialiseDistributeurControlPourModufication(i)"><i class="fa fa-pen-alt text-warning" aria-hidden="true"></i></span></div></td>
                         </ng-container>
 
                             <!-- Actions column -->

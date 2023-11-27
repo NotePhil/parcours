@@ -26,7 +26,8 @@ export class ViewExemplaireComponent implements OnInit {
     mouvements: [],
     etat: false,
     affichagePrix: false,
-    contientRessources: false
+    contientRessources: false,
+    contientDistributeurs: false
   };
   mouvements : IMouvement[] = []
 

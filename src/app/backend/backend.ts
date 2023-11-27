@@ -608,6 +608,7 @@ export class InMemDBService implements InMemoryDbService {
         etat:true,
         affichagePrix:true,
         contientRessources:true,
+        contientDistributeurs:true,
         missions: [
           {
             id: '1',
@@ -1031,6 +1032,7 @@ export class InMemDBService implements InMemoryDbService {
         etat:false,
         affichagePrix:true,
         contientRessources:false,
+        contientDistributeurs:false,
         missions: [
           {
             id: '1',
@@ -1451,6 +1453,7 @@ export class InMemDBService implements InMemoryDbService {
         etat:true,
         affichagePrix:false,
         contientRessources:true,
+        contientDistributeurs:false,
         missions: [
           {
             id: '2',
@@ -1824,6 +1827,7 @@ export class InMemDBService implements InMemoryDbService {
         etat:true,
         affichagePrix:true,
         contientRessources:true,
+        contientDistributeurs:false,
         missions: [
           {
             id: '2',
@@ -2366,6 +2370,7 @@ export class InMemDBService implements InMemoryDbService {
         etat:true,
         affichagePrix:false,
         contientRessources:true,
+        contientDistributeurs:true,
         missions: [
           {
             id: '1',
@@ -2789,6 +2794,7 @@ export class InMemDBService implements InMemoryDbService {
         etat:false,
         affichagePrix:true,
         contientRessources:true,
+        contientDistributeurs:false,
         missions: [
           {
             id: '2',
@@ -3504,6 +3510,7 @@ export class InMemDBService implements InMemoryDbService {
         etat:false,
         affichagePrix:true,
         contientRessources:true,
+        contientDistributeurs:true,
         missions: [
           {
             id: '1',

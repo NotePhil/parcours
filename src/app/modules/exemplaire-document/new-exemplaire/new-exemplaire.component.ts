@@ -50,7 +50,8 @@ export class NewExemplaireComponent implements OnInit {
     preconisations: [],
     mouvements: [],
     affichagePrix: false,
-    contientRessources: false
+    contientRessources: false,
+    contientDistributeurs: false
   };
   
   document: IDocument = {
@@ -63,7 +64,8 @@ export class NewExemplaireComponent implements OnInit {
     categories: [],
     preconisations: [],
     affichagePrix: false,
-    contientRessources: false
+    contientRessources: false,
+    contientDistributeurs: false
   };
 
   attribut: IAttributs = {
@@ -127,7 +129,9 @@ export class NewExemplaireComponent implements OnInit {
   TABLE_PRECONISATION_RESSOURCES: IPrecoMvt[] = [];
   montantTotal : number = 0;
   soustotal : number = 0;
-  distributeur : IDistributeur | undefined
+  distributeur : IDistributeur | undefined;
+  modificationDistributeurActive : boolean = false
+  indexmodificationDistributeur : number = -1
 
   constructor(
     private router: Router,
@@ -292,8 +296,12 @@ export class NewExemplaireComponent implements OnInit {
       value=>{
         this.document.affichagePrix = value.affichagePrix
         this.document.contientRessources = value.contientRessources
+        this.document.contientDistributeurs = value.contientDistributeurs
         if (this.document.affichagePrix==false) {
           this.displayedRessourcesColumns.splice(6,2)
+        }
+        if (this.document.contientDistributeurs==false) {
+          this.displayedRessourcesColumns.splice(5,1)
         }
       })
   }
@@ -490,7 +498,8 @@ export class NewExemplaireComponent implements OnInit {
       mouvements: this.ELEMENTS_TABLE_MOUVEMENTS,
       etat: this.document.etat,
       affichagePrix: this.document.affichagePrix,
-      contientRessources: this.document.contientRessources
+      contientRessources: this.document.contientRessources,
+      contientDistributeurs: this.document.contientDistributeurs
     };
 
     if (this.exemplaire.id != '') {
@@ -513,10 +522,12 @@ export class NewExemplaireComponent implements OnInit {
     this.distributeur = distributeur
   }
   public rechercherListingRessources(option: IRessource) {
+    this.modificationDistributeurActive = false
+    this.indexmodificationDistributeur = -1
     let tabIdRessource : string[] = []
     this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
       mouvement => {
-        if (mouvement.ressource != undefined) {
+        if ((mouvement.ressource.id == option.id && mouvement.distributeur?.id == this.distributeur?.id) ) {
           tabIdRessource.push(mouvement.ressource.id)
         }
     });
@@ -530,15 +541,47 @@ export class NewExemplaireComponent implements OnInit {
         datePeremption:  new Date(),
         ressource: option
       }
+      if (this.distributeurControl.value == undefined || this.distributeurControl.value == '') {
+        this.distributeur = undefined
+      }
       if(this.distributeur != undefined){
         mvt.distributeur = this.distributeur
       }
       this.ELEMENTS_TABLE_MOUVEMENTS.unshift(mvt)
       this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS
-      
-      // On reinitialise le distributeur
-      this.distributeur = undefined
     }
+  }
+
+  /**
+   * Methode qui permet d'effacer la valeur du control ressource lorsqu'on a
+   * déjà choisi la ressource en cliquant dessus
+   */
+  reinitialliseRessourceControl(){
+    this.serviceRessource.getAllRessources().subscribe(
+      (resultat) =>{
+        this.filteredOptionsRessource = resultat
+      }
+    )
+    this.ressourceControl.reset()
+  }
+
+  InitialiseDistributeurControlPourModufication(index : number){
+    this.modificationDistributeurActive = true
+    this.indexmodificationDistributeur = index
+    let mouvement = this.ELEMENTS_TABLE_MOUVEMENTS[index]
+    this.distributeurControl.setValue(mouvement.distributeur!)
+    console.log("flag : ", this.modificationDistributeurActive)
+    console.log("index : ", this.indexmodificationDistributeur)
+  }
+
+  modifierDistributeur(){
+    if (this.modificationDistributeurActive == true && this.indexmodificationDistributeur != -1) {
+      let mouvement = this.ELEMENTS_TABLE_MOUVEMENTS[this.indexmodificationDistributeur]
+      mouvement.distributeur = this.distributeur
+      this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS
+    }
+    this.modificationDistributeurActive = false
+    this.indexmodificationDistributeur = -1
   }
 
   displayFn(Ressource: IRessource): string {
