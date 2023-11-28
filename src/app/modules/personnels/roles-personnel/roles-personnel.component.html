@@ -109,7 +109,7 @@
                         </div>
                         <div class="actionButton">
                             <button class="btn" (click)="annullerElement()">{{"personnel.table.actions.link6" | translate}}</button>
-                            <button type="submit" class="btn btnValidation" (click)="validateElement()">Valider</button>
+                            <button type="submit" class="btn btnValidation" (click)="validateElement()">{{"personnel.table.actions.link1" | translate}}</button>
                         </div>
                     </div>
 
@@ -127,18 +127,30 @@
                                             <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"personnel.table.title16" | translate}}</th>
                                             <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.role.titre}} </td>
                                         </ng-container>
-                        
-                                        <!-- date entree Column -->
+                                        
+                                        <form [formGroup]="modifForm" *ngIf="modifForm">
+                                            <!-- date entree Column -->
                                         <ng-container matColumnDef="date debut">
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"personnel.table.title6" | translate}}</th>
-                                            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateEntree}} </td>
+                                            <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                                <input *ngIf="modif; else debut" type="date" [(ngModel)]="element.dateDebut" formControlName="dateEntreeM" name="dateEntreeM" id="dateEntreeM" class="form-control">
+                                                <ng-template #debut>
+                                                    <p>{{ element.dateDebut }}</p>
+                                                </ng-template>
+                                            </td>
                                         </ng-container>
                         
                                         <!-- date fin Column -->
                                         <ng-container matColumnDef="date fin">
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"personnel.table.title11" | translate}}</th>
-                                            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateFin}} </td>
+                                            <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                                <input *ngIf="modif; else fin" type="date" [(ngModel)]="element.dateFin" formControlName="dateFinM" name="dateFinM" id="dateFinM" class="form-control">
+                                                <ng-template #fin>
+                                                    <p>{{ element.dateFin }}</p>
+                                                </ng-template>
+                                            </td>
                                         </ng-container>
+                                        </form>
 
                                         <!-- selection Column -->
                                  <ng-container matColumnDef="status">
@@ -147,7 +159,11 @@
                                         <div id="actions" class="dropdown open">
                                             
                                             <label style="width: 2px;" for="role">
-                                                <input type="checkbox" (change)="changeStatus($event, element)">
+                                                <input type="checkbox" *ngIf="element.status && modif; else notSelect" checked (change)="changeStatus($event, element)">
+                                               
+                                                  <ng-template #notSelect>
+                                                    <input type="checkbox" (change)="changeStatus($event, element)">
+                                                  </ng-template>
                                             </label>
                                             
                                         </div>
@@ -177,7 +193,7 @@
                             </div>
                         </div>
                         <div class="actionButton">
-                            <button type="submit" class="btn btnfinal btnValidation" (click)="onSubmit(dataSourceRoleResultat)">{{"personnel.table.actions.link1" | translate}}</button>
+                            <button type="submit" class="btn btnfinal btnValidation" (click)="onSubmit(dataSourceRoleResultat)">Valider</button>
                         </div>
                     </div>
                     </div>

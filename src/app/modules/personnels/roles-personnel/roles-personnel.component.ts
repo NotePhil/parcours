@@ -7,7 +7,6 @@ import { IPersonnel } from 'src/app/modele/personnel';
 import { IRole } from 'src/app/modele/role';
 import { PersonnelsService } from 'src/app/services/personnels/personnels.service';
 import { RolesService } from 'src/app/services/roles/roles.service';
-import {v4 as uuidv4} from 'uuid';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {FormControl} from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
@@ -30,6 +29,7 @@ export class RolesPersonnelComponent implements OnInit {
   //personnel$:Observable<personnel>=EMPTY;
   personnel!: IPersonnel;
   forme: FormGroup;
+  modifForm: FormGroup;
   nomPersonnel = "";
   textError = "";
   datas: any[] = []
@@ -42,13 +42,18 @@ export class RolesPersonnelComponent implements OnInit {
   idRole: string = '';
   submitted: boolean=false;
   verif: boolean=false;
+  modif: boolean=false;
 
   constructor(private formBuilder:FormBuilder, private _liveAnnouncer: LiveAnnouncer, private personnelService:PersonnelsService, private serviceRole: RolesService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) { 
     this.forme =  this.formBuilder.group({
       dateEntree: ['', Validators.required],
       status: [0],
       dateFin: ['']
-    })  
+    }) ;
+    this.modifForm = formBuilder.group({
+      dateEntreeM: ['', Validators.required],
+      dateFinM: ['']
+    }) 
 
   }
 
@@ -70,6 +75,10 @@ export class RolesPersonnelComponent implements OnInit {
   ngOnInit(): void {
     let idPersonnel = this.infosPath.snapshot.paramMap.get('idPersonnel');
 
+    if (this.forme.value.dateEntree) {
+      this.verif = false
+    }
+
     if((idPersonnel != null) && idPersonnel!==''){     
       
       this.personnelService.getPersonnelById(idPersonnel).subscribe(x =>
@@ -77,6 +86,17 @@ export class RolesPersonnelComponent implements OnInit {
         this.personnel = x;
         this.nomPersonnel = this.personnel?.nom+" "+this.personnel?.prenom;
         this.dataSourceRoleResultat.data = this.personnel?.roles!
+        console.log('modification :', this.dataSourceRoleResultat.data);
+        if (this.personnel?.roles) {
+          this.modif = true
+          this.dataSourceRoleResultat.data.forEach(elt => {
+            this.modifForm.setValue({
+              dateEntreeM: this.datePipe.transform(elt?.dateDebut,'yyyy-MM-dd'),
+              
+              dateFinM: this.datePipe.transform(elt?.dateFin,'yyyy-MM-dd')
+            })
+          })
+        }
       });
 
       this.getAllRoles().subscribe(valeurs => {
@@ -206,11 +226,12 @@ export class RolesPersonnelComponent implements OnInit {
   }
 
   ajoutSelectionRole(rol: IRole) {
-
+    console.log('element selectionne :', this.ELEMENTS_TABLE);
+    
       this.ELEMENTS_TABLE.push({
         role: rol,
         status: false,
-        dateEntree: this.forme.value.dateEntree,
+        dateDebut: this.forme.value.dateEntree,
         dateFin: this.forme.value.dateFin
       });
   }
@@ -228,9 +249,6 @@ export class RolesPersonnelComponent implements OnInit {
   }
 
   onSubmit(personnelInput:any){
-    this.submitted = true
-    //Todo la validation d'element non conforme passe
-    if(this.forme.invalid) return;
 
       this.personnel.roles = personnelInput.filteredData
 
