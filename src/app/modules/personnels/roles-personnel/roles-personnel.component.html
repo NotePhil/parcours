@@ -127,16 +127,12 @@
                                             <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"personnel.table.title16" | translate}}</th>
                                             <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.role.titre}} </td>
                                         </ng-container>
-                                        
-                                        <form [formGroup]="modifForm" *ngIf="modifForm">
                                             <!-- date entree Column -->
                                         <ng-container matColumnDef="date debut">
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"personnel.table.title6" | translate}}</th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                                <input *ngIf="modif; else debut" type="date" [(ngModel)]="element.dateDebut" formControlName="dateEntreeM" name="dateEntreeM" id="dateEntreeM" class="form-control">
-                                                <ng-template #debut>
-                                                    <p>{{ element.dateDebut }}</p>
-                                                </ng-template>
+                                                <input type="date" [(ngModel)]="element.dateDebut" [ngModelOptions]="{standalone: true}" [value]="element.dateDebut" name="dateEntreeM" id="dateEntreeM" class="form-control">
+                                                
                                             </td>
                                         </ng-container>
                         
@@ -144,13 +140,10 @@
                                         <ng-container matColumnDef="date fin">
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"personnel.table.title11" | translate}}</th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                                <input *ngIf="modif; else fin" type="date" [(ngModel)]="element.dateFin" formControlName="dateFinM" name="dateFinM" id="dateFinM" class="form-control">
-                                                <ng-template #fin>
-                                                    <p>{{ element.dateFin }}</p>
-                                                </ng-template>
+                                                <input type="date" [(ngModel)]="element.dateFin" [ngModelOptions]="{standalone: true}" [value]="element.dateFin" name="dateFinM" id="dateFinM" class="form-control">
+                                              
                                             </td>
                                         </ng-container>
-                                        </form>
 
                                         <!-- selection Column -->
                                  <ng-container matColumnDef="status">

@@ -29,7 +29,6 @@ export class RolesPersonnelComponent implements OnInit {
   //personnel$:Observable<personnel>=EMPTY;
   personnel!: IPersonnel;
   forme: FormGroup;
-  modifForm: FormGroup;
   nomPersonnel = "";
   textError = "";
   datas: any[] = []
@@ -50,10 +49,6 @@ export class RolesPersonnelComponent implements OnInit {
       status: [0],
       dateFin: ['']
     }) ;
-    this.modifForm = formBuilder.group({
-      dateEntreeM: ['', Validators.required],
-      dateFinM: ['']
-    }) 
 
   }
 
@@ -89,13 +84,6 @@ export class RolesPersonnelComponent implements OnInit {
         console.log('modification :', this.dataSourceRoleResultat.data);
         if (this.personnel?.roles) {
           this.modif = true
-          this.dataSourceRoleResultat.data.forEach(elt => {
-            this.modifForm.setValue({
-              dateEntreeM: this.datePipe.transform(elt?.dateDebut,'yyyy-MM-dd'),
-              
-              dateFinM: this.datePipe.transform(elt?.dateFin,'yyyy-MM-dd')
-            })
-          })
         }
       });
 
