@@ -11,7 +11,6 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {FormControl} from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
-import { compareAsc, format } from 'date-fns';
 
 @Component({
   selector: 'app-roles-personnel',
@@ -35,7 +34,7 @@ export class RolesPersonnelComponent implements OnInit {
   ELEMENTS_TABLE: any[] = [];
   filteredOptions: IRole[] | undefined;
   displayedColumns: string[] = ['selection', 'titre', 'description', 'etat'];
-  displayedrolesColumns: string[] = ['annuler', 'role', 'date debut', 'date fin', 'status'];
+  displayedrolesColumns: string[] = ['annuler', 'role', 'date debut', 'date fin'];
   dataSource = new MatTableDataSource<IRole>();
   dataSourceRoleResultat = new MatTableDataSource<any>();
   idRole: string = '';
@@ -118,16 +117,6 @@ export class RolesPersonnelComponent implements OnInit {
     return this.forme.controls;
   }
 
-  changeStatus(event: any, element: any){
-    if (event.target.checked) {
-      element.status = true
-    } else {
-      element.status = false
-    }
-
-    return element
-  }
-
   onCheckRoleChange(event: any, element:IRole) {
     let listIdRolesTemp : any[] = []
     if (event.target.checked) {
@@ -141,11 +130,6 @@ export class RolesPersonnelComponent implements OnInit {
         var j = 0;
         this.verif = false
           while (j < this.dataSourceRoleResultat.data.length) {
-            console.log("Id elements  :", this.dataSourceRoleResultat.data[j].role.id, element.id);
-
-            const res = compareAsc(this.forme.value.dateEntree, this.dataSourceRoleResultat.data[j].dateFin)
-            console.log("Test compare :", res);
-            
             
             if (this.dataSourceRoleResultat.data[j].role.id == element.id) {
               if (this.dataSourceRoleResultat.data[j].dateFin == "" && this.forme.value.dateFin == "") {

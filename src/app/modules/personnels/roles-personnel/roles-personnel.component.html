@@ -45,10 +45,10 @@
                     <div class="form-group">
                         <div class="form-inline mr-3">
                             <form class="example-form label">
-                                <label>{{"personnel.table.title10" | translate}}</label>
+                                <label id="search">{{"personnel.table.title10" | translate}}</label>
                                 <mat-form-field class="example-full-width" appearance="fill">
                                   <mat-label class="searchBar">{{'personnel.search-bar' | translate}}</mat-label>
-                                  <input type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
+                                  <input type="text" matInput placeholder="{{'personnel.search-bar' | translate}}" aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
                                   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                                     <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingRole(option)">
                                       {{option.titre}}
@@ -131,7 +131,7 @@
                                         <ng-container matColumnDef="date debut">
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"personnel.table.title6" | translate}}</th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                                <input type="date" [(ngModel)]="element.dateDebut" [ngModelOptions]="{standalone: true}" [value]="element.dateDebut" name="dateEntreeM" id="dateEntreeM" class="form-control">
+                                                <input type="date" [(ngModel)]="element.dateDebut" [ngModelOptions]="{standalone: true}" [value]="element.dateDebut" name="dateEntreeM" id="dateEntreeM" class="form-control modifDate">
                                                 
                                             </td>
                                         </ng-container>
@@ -140,28 +140,10 @@
                                         <ng-container matColumnDef="date fin">
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"personnel.table.title11" | translate}}</th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                                <input type="date" [(ngModel)]="element.dateFin" [ngModelOptions]="{standalone: true}" [value]="element.dateFin" name="dateFinM" id="dateFinM" class="form-control">
+                                                <input type="date" [(ngModel)]="element.dateFin" [ngModelOptions]="{standalone: true}" [value]="element.dateFin" name="dateFinM" id="dateFinM" class="form-control modifDate">
                                               
                                             </td>
                                         </ng-container>
-
-                                        <!-- selection Column -->
-                                 <ng-container matColumnDef="status">
-                                    <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"personnel.table.title16" | translate}}</th>
-                                    <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                        <div id="actions" class="dropdown open">
-                                            
-                                            <label style="width: 2px;" for="role">
-                                                <input type="checkbox" *ngIf="element.status && modif; else notSelect" checked (change)="changeStatus($event, element)">
-                                               
-                                                  <ng-template #notSelect>
-                                                    <input type="checkbox" (change)="changeStatus($event, element)">
-                                                  </ng-template>
-                                            </label>
-                                            
-                                        </div>
-                                    </td>
-                                  </ng-container>
     
                               
                                         <!-- actions Column -->
@@ -169,7 +151,7 @@
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"personnel.table.actions.link6" | translate}}</th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                                 <div class="actions">
-                                                    <button class="btn p-0" name="role" id="role" title="clicker pour annuler la selection" (click)="retirerSelectionRole(i)">
+                                                    <button style="font-size: 10px;"  class="btn p-0" name="role" id="role" title="clicker pour annuler la selection" (click)="retirerSelectionRole(i)">
                                                         <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                                     </button>
                                                 </div>

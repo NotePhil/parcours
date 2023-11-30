@@ -26,7 +26,6 @@
     font-weight: bold;
 }
 .example-form {
-    width: 30%;
     display: flex;
     justify-content: space-around;
 }
@@ -34,6 +33,10 @@
     border: none;
     box-shadow: 0 0 2px rgb(220, 220, 220);
     height: 35px;
+}
+.modifDate{
+    width: 80%;
+    font-size: 15px;
 }
 .champs{
     display: flex;
@@ -44,23 +47,19 @@
         font-weight: normal;
     }
 }
+#search{
+    width: 114px;
+    justify-content: flex-start;
+}
 .div-date {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 10px 0;
+    flex-wrap: wrap;
 }
-.champs, select, input{
+.champs, input{
     font-size: 15px;
-}
-select{
-    border: none;
-    box-shadow: 0 0 2px rgb(220, 220, 220);
-    height: 24px;
-    background-color: #28a74563;
-    color: rgb(108, 108, 108);
-    padding: 0 10px;
-    border-radius: 5px;
 }
 .actionButton{
     display: flex;
@@ -168,6 +167,7 @@ mat-form-field:focus{
 }
 .searchBar {
     position: relative;
+    width: 170px;
     top: -2px;
     padding: 0;
     margin: 0;
@@ -217,15 +217,20 @@ th{
     td{
         font-size: 12px;
     }
-    .div-date{
-        display: block;
-    }
     .block{
         width: 100%;
         margin: 4px;
     }
-    .example-form{
-        width: 100%;
-        justify-content: space-evenly;
+}
+@media screen and (max-width: 600px) {
+    .example-form, .champs{
+        flex-direction: column;
+        justify-content: flex-start;
+        label{
+            align-items: flex-start;
+        }
+    }
+    mat-form-field{
+        flex-direction: column;
     }
 }
