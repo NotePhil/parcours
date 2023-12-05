@@ -11,6 +11,8 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {FormControl} from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
+import { VerificationsdatesrolesService } from 'src/app/services/verifications/verificationsdatesroles.service';
+import { IObjetDates } from 'src/app/modele/objet-dates';
 
 @Component({
   selector: 'app-roles-personnel',
@@ -37,12 +39,14 @@ export class RolesPersonnelComponent implements OnInit {
   displayedrolesColumns: string[] = ['annuler', 'role', 'date debut', 'date fin'];
   dataSource = new MatTableDataSource<IRole>();
   dataSourceRoleResultat = new MatTableDataSource<any>();
+  newdates: IObjetDates | undefined;
+  olddates: IObjetDates | undefined;
   idRole: string = '';
   submitted: boolean=false;
   verif: boolean=false;
   modif: boolean=false;
 
-  constructor(private formBuilder:FormBuilder, private _liveAnnouncer: LiveAnnouncer, private personnelService:PersonnelsService, private serviceRole: RolesService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) { 
+  constructor(private formBuilder:FormBuilder, private _liveAnnouncer: LiveAnnouncer, private personnelService:PersonnelsService, private verificationsServices: VerificationsdatesrolesService, private serviceRole: RolesService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) { 
     this.forme =  this.formBuilder.group({
       dateEntree: ['', Validators.required],
       status: [0],
@@ -132,6 +136,7 @@ export class RolesPersonnelComponent implements OnInit {
           while (j < this.dataSourceRoleResultat.data.length) {
             
             if (this.dataSourceRoleResultat.data[j].role.id == element.id) {
+              /* console.log("date service :", this.dataSourceRoleResultat.data[j].dateDebut);
               if (this.dataSourceRoleResultat.data[j].dateFin == "" && this.forme.value.dateFin == "") {
                   this.verif = true
                   event.target.checked = false
@@ -148,7 +153,14 @@ export class RolesPersonnelComponent implements OnInit {
                   event.target.checked = false
                   this.textError = "La date n'es pas valide !"
                 }
-              }
+              } */
+              console.log("date service :", this.dataSourceRoleResultat.data[j].dateDebut);
+
+              this.newdates = {dateDebut: this.forme.value.dateEntree, dateFin: this.forme.value.dateFin};
+              this.olddates = {dateDebut: this.dataSourceRoleResultat.data[j].dateDebut, dateFin: this.dataSourceRoleResultat.data[j].dateFin};
+              let res = this.verificationsServices.OncheckedDatesRoles(this.olddates, this.newdates);
+              console.log("reponse service :", res);
+              
             }
             j++
           }
