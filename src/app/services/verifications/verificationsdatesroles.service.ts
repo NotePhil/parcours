@@ -15,27 +15,27 @@ export class VerificationsdatesrolesService {
    * @param nouvelleDate objet que l'on veut enregistrer dans le système
    * @returns 
    */
-  OncheckedDatesRoles(ancienneDate : IObjetDates, nouvelleDate: IObjetDates){
+  OncheckedDatesRoles(ancienneDate : IObjetDates, nouvelleDate: IObjetDates):String {
 
-    let result: any;
+    let result: String;
 
     // si l'objet existant ou le nouvel objet n'a pas de date de fin
     if (ancienneDate.dateFin == undefined || nouvelleDate.dateFin == undefined) {
 
       // si la date de debut du nouvel objet commence après celle de l'objet existant
       if (ancienneDate.dateDebut < nouvelleDate.dateDebut) {
-        result = {verif: true, textError: "OK"}
+        result = "OK"
       }
-      else return
+      else return result = "La nouvelle date doit etre supperieur à "+ ancienneDate.dateDebut
     }
     else if (ancienneDate.dateDebut > ancienneDate.dateFin || nouvelleDate.dateDebut > nouvelleDate.dateFin) {
-        result = {verif: false, textError: "La date de fin ne peut pas etre plus petite que la date de debut"}
+      result = "La date de fin ne peut pas etre plus petite que la date de debut"
     }
     else if (ancienneDate.dateDebut > nouvelleDate.dateDebut) { // si la date de debut du nouvel objet commence avant celle de l'objet existant
  
       // si la date de fin du nouvel objet se termine avant la date de debut de l'ancien objet
       if (nouvelleDate.dateFin < ancienneDate.dateDebut) {
-        result = "la nouvelle date se termine avant le debut de l'ancienne"
+          result = "OK"
       }else{ // si la date de fin du nouvel objet se termine après la date de debut de l'ancien objet
         result = "la nouvelle date doit se terminer avant le debut de l'ancienne"
       }       
@@ -43,7 +43,7 @@ export class VerificationsdatesrolesService {
       
       // si la date de debut du nouvel objet commence après la date de fin de l'objet existant
       if (ancienneDate.dateFin < nouvelleDate.dateDebut) {
-        result = "la nouvelle date commence apres la date de fin de l'ancienne"
+        result = "OK"
       }
       else{ // si la date de fin du nouvel objet se termine après celle de l'objet existant
         result = "la nouvelle date doit commencer apres la date de fin de l'ancienne"
