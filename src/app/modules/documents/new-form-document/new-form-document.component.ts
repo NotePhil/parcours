@@ -36,15 +36,19 @@ export class NewFormDocumentComponent implements OnInit {
     id: '',
     titre: '',
     description: '',
+    etat: false,
     missions: [],
     attributs: [],
     categories: [],
-    preconisations: []
+    preconisations: [],
+    affichagePrix: false,
+    contientRessources: false,
+    contientDistributeurs: false
   };
   mission$:Observable<IMission[]>=EMPTY;
   forme: FormGroup;
   btnLibelle: string="Ajouter";
-  titre: string="Ajouter un nouveau document";
+  titre: string="Ajouter document";
   submitted: boolean=false;
   validation: boolean=false;
   serviceDeMission!: IService;
@@ -61,7 +65,7 @@ export class NewFormDocumentComponent implements OnInit {
     id: '',
     nom: '',
     ordre: 0,
-    listAttributs: []
+    listAttributsParCategories: []
   }
   TABLE_CATEGORIE_AFFICHAGE_TEMP: ICategoriesAttributs[] = []; // tableau qui doit contenir la synthese des categories du doc
   TABLE_CATEGORIE_AFFICHAGE_TEMPO: ICategorieAffichage[] = []; // tableau contenant les categories creees dans la modale
@@ -81,7 +85,11 @@ export class NewFormDocumentComponent implements OnInit {
       _missions :  new FormControl<string | IMission[]>(''),
       _attributs :  new FormArray([]),
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      description: ['']
+      description: [''],
+      etat: new FormControl(true),
+      affichagePrix: new FormControl(true),
+      contientRessources: new FormControl(true),
+      contientDistributeurs: new FormControl(true)
     });
   }
   ngOnInit(): void {
@@ -98,6 +106,10 @@ export class NewFormDocumentComponent implements OnInit {
         this.forme.setValue({
           titre: this.document.titre,
           description: this.document.description,
+          etat: this.document.etat,
+          affichagePrix: this.document.affichagePrix,
+          contientRessources: this.document.contientRessources,
+          contientDistributeurs: this.document.contientDistributeurs,
           _missions: this.document.missions,
           _attributs: []
           })
@@ -114,29 +126,31 @@ export class NewFormDocumentComponent implements OnInit {
         let categorieAfficheFinal : ICategorieAffichage[] = [];
         this.document.categories.forEach(
           catAttribut => {
-            catAttribut.listAttributs.forEach(
+            catAttribut.listAttributsParCategories.forEach(
               att => {
                 let categorieAfficheTemp : ICategorieAffichage = {
                   id: '',
                   nom: '',
                   ordre: 0,
-                  attribut: {
-                    id: '',
-                    titre: '',
-                    description: '',
-                    etat: false,
-                    dateCreation: new Date(),
-                    dateModification: new Date(),
+                  attributCategories: {
                     ordre: 0,
                     obligatoire: false,
-                    valeursParDefaut: '',
-                    type: TypeTicket.Int
+                    attribut: {
+                      id: '',
+                      titre: '',
+                      description: '',
+                      etat: false,
+                      dateCreation: new Date(),
+                      dateModification: new Date(),
+                      valeursParDefaut: '',
+                      type: TypeTicket.Int
+                    }
                   }
                 }
                 categorieAfficheTemp.id = catAttribut.id
                 categorieAfficheTemp.nom = catAttribut.nom
                 categorieAfficheTemp.ordre = catAttribut.ordre
-                categorieAfficheTemp.attribut = att
+                categorieAfficheTemp.attributCategories = att
                 categorieAfficheFinal.push(categorieAfficheTemp)
               }
             )
@@ -162,8 +176,10 @@ export class NewFormDocumentComponent implements OnInit {
 
     const dialogRef = this.dialogDef.open(ModalCategoriesComponent, 
     {
-      width:'100%',
-      height:'100%',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
       enterAnimationDuration:'1000ms',
       exitAnimationDuration:'1000ms',
       data:{}
@@ -178,13 +194,13 @@ export class NewFormDocumentComponent implements OnInit {
   openAttributDialog(){
     const dialogRef = this.dialogDef.open(ModalChoixAttributsComponent, 
     {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       width:'100%',
       height:'100%',
       enterAnimationDuration:'1000ms',
       exitAnimationDuration:'1000ms',
-      data:{
-        // tableauAttributsDocumentResultat : this.ELEMENTS_TABLE_ATTRIBUTS
-      }
+      data:{}
     }
     )
 
@@ -196,13 +212,13 @@ export class NewFormDocumentComponent implements OnInit {
 
     const dialogRef = this.dialogDef.open(ModalChoixPreconisationsComponent, 
     {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       width:'100%',
       height:'100%',
       enterAnimationDuration:'1000ms',
       exitAnimationDuration:'1000ms',
-      data:{
-        // dataSourcePreco : this.dataSourcePreco
-      }
+      data:{}
     }
     )
 
@@ -227,14 +243,14 @@ export class NewFormDocumentComponent implements OnInit {
           id: '',
           nom: '',
           ordre: 0,
-          listAttributs: []
+          listAttributsParCategories: []
         }
           //si la map ne contient pas la catégorie courante
           if(tmpCatAtt.get(objet.nom)== null){
             categorieAttributTemp.id = objet.id;
             categorieAttributTemp.nom = objet.nom;
             categorieAttributTemp.ordre = objet.ordre;
-            categorieAttributTemp.listAttributs.push(objet.attribut);
+            categorieAttributTemp.listAttributsParCategories.push(objet.attributCategories);
 
             // sauvegarde de l'indice de l'élément enregistré
             let index : number  = categorieAttributsFinal.push(categorieAttributTemp);
@@ -244,7 +260,7 @@ export class NewFormDocumentComponent implements OnInit {
             //si la valeur est trouvée dans la map
             let index : number = tmpCatAtt.get(objet.nom); // récuperation de l'indice de l'élément enregistré
             categorieAttributTemp = categorieAttributsFinal[index];
-            categorieAttributTemp.listAttributs.push(objet.attribut);
+            categorieAttributTemp.listAttributsParCategories.push(objet.attributCategories);
             categorieAttributsFinal[index] = categorieAttributTemp;
           }
         }
@@ -258,10 +274,14 @@ export class NewFormDocumentComponent implements OnInit {
       id: uuidv4(),
       titre: documentInput.titre,
       description: documentInput.description,
+      etat: documentInput.etat,
       missions: documentInput._missions,
       attributs: [],
       categories: [],
-      preconisations: []
+      preconisations: [],
+      affichagePrix: documentInput.affichagePrix,
+      contientRessources: documentInput.contientRessources,
+      contientDistributeurs: documentInput.contientDistributeurs
     }
     
     if(this.document.id != ""){
@@ -280,12 +300,8 @@ export class NewFormDocumentComponent implements OnInit {
         id: '',
         nom: "Autres",
         ordre: 100,
-        listAttributs: []
+        listAttributsParCategories: []
       }
-      this.ELEMENTS_TABLE_ATTRIBUTS.forEach(
-        element => {
-          categorieAttributs.listAttributs.push(element)
-      });
       // ajout d'une categorie par defaut dans le document
       documentTemp.categories.push(categorieAttributs)
     }else{
