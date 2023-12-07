@@ -271,8 +271,11 @@ export class NewExemplaireComponent implements OnInit {
           this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
           this.totalAttribut = x.attributs.length - 1;
           this.rechercherAttributsAbsants();
+         //Bug du mocker apiMemory qui ne met pas à jour les données du document dans exemplaire
+         //pour avoir la donnée fraiche on refait un appel à document
+         //à supprimer lorsqu'on aura un vrai back connecté
           this.modifierMouvementExemplaire(x.idDocument)
-          this.formerEnteteTableauMissions()
+          //this.formerEnteteTableauMissions()
         });
     }
     if (this.idDocument != null && this.idDocument !== '') {
@@ -296,16 +299,7 @@ export class NewExemplaireComponent implements OnInit {
         this.document.affichagePrix = value.affichagePrix
         this.document.contientRessources = value.contientRessources
         this.document.contientDistributeurs = value.contientDistributeurs
-        if (this.document.contientDistributeurs==false) {
-          this.displayedRessourcesColumns.splice(5,1)
-        }
-        if (this.document.affichagePrix==false) {
-          if (this.document.contientDistributeurs==false) {
-            this.displayedRessourcesColumns.splice(5,2) 
-          } else {
-            this.displayedRessourcesColumns.splice(6,2)           
-          }
-        }
+        this.formerEnteteTableauMissions();
       })
   }
 
