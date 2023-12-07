@@ -33,7 +33,8 @@ import { EnteteComponent } from './entete/entete.component';
   ],
   exports: [
     ModalCategoriesComponent,
-    ModalChoixAttributsComponent
+    ModalChoixAttributsComponent,
+    EnteteComponent
   ],
   imports: [
     CommonModule,
