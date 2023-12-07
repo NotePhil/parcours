@@ -47,7 +47,11 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     listAttributs: '',
     listCategories: '',
     listPreconisations: '',
-    preconisations: []
+    preconisations: [],
+    etat: false,
+    affichagePrix: false,
+    contientRessources: false,
+    contientDistributeurs: false
   }
 
 
@@ -63,6 +67,10 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
             id: '',
             titre: '',
             description: '',
+            etat: false,
+            affichagePrix: false,
+            contientRessources: false,
+            contientDistributeurs: false,
             missions: [],
             attributs: [],
             categories: [],
@@ -75,6 +83,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
           this.afficheDocument.id = x.id;
           this.afficheDocument.titre = x.titre;
           this.afficheDocument.description = x.description;
+          this.afficheDocument.etat = x.etat;
           this.afficheDocument.missions = x.missions;
           this.afficheDocument.attributs = x.attributs;
             x.missions.forEach(
