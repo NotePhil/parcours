@@ -272,7 +272,7 @@ export class NewExemplaireComponent implements OnInit {
           this.totalAttribut = x.attributs.length - 1;
           this.rechercherAttributsAbsants();
           this.modifierMouvementExemplaire(x.idDocument)
-          this.formerEnteteTableauMissions()
+          // this.formerEnteteTableauMissions()
         });
     }
     if (this.idDocument != null && this.idDocument !== '') {
@@ -296,16 +296,17 @@ export class NewExemplaireComponent implements OnInit {
         this.document.affichagePrix = value.affichagePrix
         this.document.contientRessources = value.contientRessources
         this.document.contientDistributeurs = value.contientDistributeurs
-        if (this.document.contientDistributeurs==false) {
-          this.displayedRessourcesColumns.splice(5,1)
-        }
-        if (this.document.affichagePrix==false) {
-          if (this.document.contientDistributeurs==false) {
-            this.displayedRessourcesColumns.splice(5,2) 
-          } else {
-            this.displayedRessourcesColumns.splice(6,2)           
-          }
-        }
+        // if (this.document.contientDistributeurs==false) {
+        //   this.displayedRessourcesColumns.splice(5,1)
+        // }
+        // if (this.document.affichagePrix==false) {
+        //   if (this.document.contientDistributeurs==false) {
+        //     this.displayedRessourcesColumns.splice(5,2) 
+        //   } else {
+        //     this.displayedRessourcesColumns.splice(6,2)           
+        //   }
+        // }
+        this.formerEnteteTableauMissions()
       })
   }
 
