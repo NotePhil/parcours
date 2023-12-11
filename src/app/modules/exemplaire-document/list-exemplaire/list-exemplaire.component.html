@@ -1,6 +1,7 @@
 <div id="" class="d-flex flex-column justify-content-around">
     <div class="title" id="top1">
-        <h2>{{"lists.title" | translate}} exemplaires</h2>
+      <!--<h2>{{"lists.title" | translate}} exemplaires</h2>-->
+        <app-entete class="title"></app-entete>
     </div>
     <div class="card container-fluid" id="top">
         <div class='card-hearder pt-3' >
@@ -23,7 +24,7 @@
         <div class="card-body p-0" id="tableBlock">
             <div class='table-responsive w-100'>
                 <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
-  
+
                     <!-- titre Column -->
                     <ng-container matColumnDef="titre">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title1' | translate}} </th>

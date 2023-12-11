@@ -1,6 +1,7 @@
 <div id="" class="d-flex flex-column justify-content-around">
     <div class="title" id="top1">
-        <h2>{{"lists.title" | translate}} services</h2>
+      <!-- <h2>{{"lists.title" | translate}} services</h2>-->
+        <app-entete class="title"></app-entete>
     </div>
     <div class="card container-fluid" id="top">
         <div class='card-hearder pt-3' >
@@ -60,7 +61,7 @@
                                     <span>...</span>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    
+
                                     <button class="dropdown-item nav-link" [routerLink]="['/service-nouveau',element.id]" title="{{'patient.table.actions.link2' | translate}}">
                                         <i class="fa fa-pen text-info" aria-hidden="true"></i>
                                         <span>{{'patient.table.actions.link2' | translate}}</span>

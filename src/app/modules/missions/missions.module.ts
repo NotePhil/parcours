@@ -19,6 +19,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { ExecuterMissionComponent } from './executer-mission/executer-mission.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSortModule,
     MatSelectModule,
     MatCheckboxModule,
+    SharedModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,

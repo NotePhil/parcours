@@ -1,6 +1,9 @@
 <div id="mainSection">
     <div class="card block" id="top2">
-        <div class="card-header" class="entete pt-4 pb-4">{{ titre }}</div>
+      <!--<div class="card-header" class="entete pt-4 pb-4">{{ titre }}</div>-->
+        <div class="card-header" class="entete pt-4 pb-2">
+          <h2>{{"personnel.title1" | translate}} {{titre}}</h2>
+        </div>
         <div class="card-body" >
             <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
                 <div class="">
@@ -82,7 +85,7 @@
                             <div>
                                 <div class="champs">
                                     <label for="email" class="label" >
-                                        {{"personnel.table.title5" | translate}}
+                                        {{"personnel.table.title5" | translate}}<span style="color: red;" aria-label="required">*</span>
                                     </label>
                                     <input type="email" formControlName="email"  name="email"  id="email" placeholder="{{'personnel.table.title5' | translate}}"   required  class="form-control" >
                                 </div>

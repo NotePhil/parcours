@@ -1,6 +1,7 @@
 <div id="" class="d-flex flex-column justify-content-around">
     <div class="title" id="top1">
-        <h2>{{"lists.title" | translate}} document</h2>
+      <!--<h2>{{"lists.title" | translate}} document</h2>-->
+        <app-entete class="title"></app-entete>
     </div>
     <div class="card container-fluid" id="top" >
         <div class='card-hearder pt-3' >
@@ -40,7 +41,7 @@
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title2' | translate}} </th>
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.description}} </td>
                     </ng-container>
-                    
+
                     <!-- etat Column -->
                     <ng-container matColumnDef="etat">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'services.form.label2' | translate}} </th>

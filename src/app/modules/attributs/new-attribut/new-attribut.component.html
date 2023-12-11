@@ -1,6 +1,9 @@
 <div id="mainSection">
   <div class="card block" id="top2">
-      <div class="card-header" class="entete pt-4 pb-4">{{ titre }}</div>
+    <!--<div class="card-header" class="entete pt-4 pb-4">{{ titre }}</div>-->
+      <div class="card-header" class="entete pt-4 pb-2">
+        <h2>{{"attributs.title1" | translate}} {{titre}}</h2>
+      </div>
       <div class="card-body">
           <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
               <div class="">
@@ -16,7 +19,7 @@
                               <div  *ngIf="submitted && f['titre'].errors"  class="alert alert-danger" >
                                   <div *ngIf="f['titre'].errors['required']">{{'attributs.form.text1' | translate}}</div>
                               </div>
-                              
+
                           </div>
                       </div>
                       <div class="form-group">

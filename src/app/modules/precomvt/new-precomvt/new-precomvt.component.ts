@@ -18,6 +18,7 @@ import { TypeMvt } from 'src/app/modele/type-mvt';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { IDistributeur } from 'src/app/modele/distributeur';
 import { DistributeursService } from 'src/app/services/distributeurs/distributeurs.service';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 
 @Component({
   selector: 'app-new-precomvt',
@@ -57,9 +58,9 @@ export class NewPrecomvtComponent implements OnInit {
 
   formDirective!: FormGroupDirective;
   //settings: { idField: string; textField: string; allowSearchFilter: boolean; } | undefined;
-
+  titre:string='';
   btnLibelle: string="Ajouter";
-  constructor(private formBuilder:FormBuilder,private serviceFamille:FamillesService,private serviceDistributeur:DistributeursService,private ressourceService:RessourcesService ,private precoMvtService:PrecoMvtsService,private serviceRessource:RessourcesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private formBuilder:FormBuilder,private serviceFamille:FamillesService,private dataEnteteMenuService:DonneesEchangeService,private serviceDistributeur:DistributeursService,private ressourceService:RessourcesService ,private precoMvtService:PrecoMvtsService,private serviceRessource:RessourcesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       id: new FormControl(),
       libelle: new FormControl(),
@@ -149,6 +150,7 @@ export class NewPrecomvtComponent implements OnInit {
      );
         })
     }
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
 get formeControls():any{

@@ -6,6 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import { DatePipe } from '@angular/common';
 import { IRole } from 'src/app/modele/role';
 import { RolesService } from 'src/app/services/roles/roles.service';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 
 @Component({
   selector: 'app-new-role',
@@ -19,8 +20,9 @@ export class NewRoleComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string="Ajouter";
   submitted: boolean=false;
+  titre:string='';
   //TODO validation du formulaire. particulièrment les mail
-  constructor(private formBuilder:FormBuilder, private roleService:RolesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe){
+  constructor(private formBuilder:FormBuilder, private roleService:RolesService,private dataEnteteMenuService:DonneesEchangeService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe){
     this.forme = this.formBuilder.group({
     titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
     etat: [true],
@@ -48,6 +50,7 @@ export class NewRoleComponent implements OnInit {
         })
       });
     }
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
 
