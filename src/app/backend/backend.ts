@@ -623,6 +623,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Note intervention',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:true,
+        affichagePrix:true,
+        contientRessources:true,
+        contientDistributeurs:true,
         missions: [
           {
             id: '1',
@@ -849,7 +853,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -907,7 +910,7 @@ export class InMemDBService implements InMemoryDbService {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                  quantite: 30,
                   unite: this.UnitesLitre,
                   prix: 3000,
                   caracteristique: 'souple',
@@ -930,7 +933,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'néonat',
                     etat: true,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                    quantite: 20,
                     unite: this.UnitesLitre,
                     prix: 2000,
                     caracteristique: 'souple',
@@ -947,8 +950,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -977,8 +979,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -1052,6 +1053,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Note intervention',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -1278,7 +1283,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -1336,7 +1340,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -1359,7 +1363,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -1376,8 +1380,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -1406,8 +1409,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -1481,6 +1483,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de suivi',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -1704,7 +1710,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -1762,7 +1767,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -1785,7 +1790,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -1802,8 +1807,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -1832,8 +1836,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -1907,6 +1910,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de soin',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '2',
@@ -2083,7 +2090,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -2141,7 +2147,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -2164,7 +2170,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -2181,8 +2187,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -2211,8 +2216,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -2286,6 +2290,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '2',
@@ -2631,7 +2639,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -2689,7 +2696,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -2712,7 +2719,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -2729,8 +2736,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -2759,8 +2765,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -2834,6 +2839,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'ordonnance',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -3057,7 +3066,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -3115,7 +3123,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -3138,7 +3146,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -3155,8 +3163,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -3185,8 +3192,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -3262,6 +3268,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Fiche de suivi',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:false,
+        affichagePrix:true,
+        contientRessources:false,
+        contientDistributeurs:false,
         missions: [
           {
             id: '1',
@@ -3485,7 +3495,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -3543,7 +3552,7 @@ export class InMemDBService implements InMemoryDbService {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                  quantite: 30,
                   unite: this.UnitesLitre,
                   prix: 3000,
                   caracteristique: 'souple',
@@ -3566,7 +3575,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'néonat',
                     etat: true,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                    quantite: 20,
                     unite: this.UnitesLitre,
                     prix: 2000,
                     caracteristique: 'souple',
@@ -3583,8 +3592,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -3613,8 +3621,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -3681,1242 +3688,6 @@ export class InMemDBService implements InMemoryDbService {
               },
             ],
           }
-        ],
-        sousDocuments:[
-          {
-            id: '1',
-            titre: 'Note intervention',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
-            missions: [
-              {
-                id: '1',
-                libelle: 'Consultation',
-                description: 'Consultation faite par une infirmière',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '1',
-                  libelle: 'Pharmacie',
-                  etat: true,
-                  dateDerniereModification: new Date('07/03/2000'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 6,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '2',
-                libelle: 'Consultation Spécialiste',
-                description: 'Consultation faite par un médecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '2',
-                  libelle: 'Laboratoire',
-                  etat: true,
-                  dateDerniereModification: new Date('06/08/1990'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 20,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '3',
-                libelle: 'Prelevement Labo',
-                description: 'Prélévement fait par laboratoire',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '3',
-                  libelle: 'Consultation',
-                  etat: true,
-                  dateDerniereModification: new Date('12/06/1972'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 50,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-            ],
-            attributs: [
-              {
-                id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',
-              },
-              {
-                id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '6',
-                titre: 'teint',
-                description: "teint de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-              },
-              {
-                id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',
-              },
-            ],
-            categories: [
-              {
-                id: '1',
-                nom: 'informations personelles',
-                ordre: 1,
-                listAttributsParCategories: [
-                  {
-                    id: '1',
-                    ordre: 11,
-                    obligatoire: false,
-                    attribut:{
-                    id: '1',
-                    titre: 'taille',
-                    description: "taille de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',
-                    }
-                  },
-                  {
-                    
-                    id: '1',
-                    ordre: 12,
-                    obligatoire: false,
-                    attribut:{id: '4',
-                    titre: 'age',
-                    description: "age de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Int,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '1',
-                    ordre: 13,
-                    obligatoire: false,
-                    attribut:{id: '6',
-                    titre: 'teint',
-                    description: "teint de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',}
-                  },
-                ],
-              },
-              {
-                id: '2',
-                nom: 'informations de sante',
-                ordre: 2,
-                listAttributsParCategories: [
-                  {
-                    id: '1',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '5',
-                    titre: 'allergies',
-                    description: "allergies de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '1',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '7',
-                    titre: 'Groupe sangin',
-                    description: "Groupe sangin de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut:
-                      'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
-                  },
-                  {
-                    id: '1',
-                    ordre: 3,
-                    obligatoire: false,
-                    attribut:{id: '8',
-                    titre: 'cicatrice',
-                    description: "cicatrice de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut: 'oui, non',}
-                  },
-                ],
-              },
-            ],
-            preconisations:[
-              {
-                id: '1',
-                libelle: 'rachat',
-                etat: true,
-                type: 'neutre',
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 10,
-                    quantiteMax: 20,
-                    montantMin: 1000,
-                    montantMax: 7000,
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                  },
-                  {
-                    id: '2',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                  {
-                    id: '3',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource: 
-                    {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
-                      unite: this.UnitesLitre,
-                      prix: 3000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    }
-                  },
-                  {
-                    id: '4',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource:
-                    {
-                        id: '2',
-                        libelle: 'néonat',
-                        etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-                        unite: this.UnitesLitre,
-                        prix: 2000,
-                        caracteristique: 'souple',
-                        famille: {
-                          id: '3',
-                          libelle: 'pediatrie',
-                          description: 'enfant',
-                          etat: true,
-                        },
-                      },
-                  },
-                ],
-              },
-              {
-                id: '2',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                id: '3',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                    distributeur: [
-                      {
-                        id: '1',
-                        raisonSocial: 'brasserie1',
-                        etat: true,
-                        adresse: 'Dla',
-                        telephone: '655554488',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '2',
-                        raisonSocial: 'guinness',
-                        etat: true,
-                        adresse: 'Ydé',
-                        telephone: '655554481',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        etat: true,
-                        adresse: 'Buéa',
-                        telephone: '655554486',
-                        mail: 'ngong@yad.fr',
-                      },
-                    ],
-                  },
-                ],
-              }
-            ]
-          },
-          {
-            id: '3',
-            titre: 'Fiche de soin',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
-            missions: [
-              {
-                id: '2',
-                libelle: 'Consultation Spécialiste',
-                description: 'Consultation faite par un médecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '2',
-                  libelle: 'Laboratoire',
-                  etat: true,
-                  dateDerniereModification: new Date('06/08/1990'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 20,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '3',
-                libelle: 'Prelevement Labo',
-                description: 'Prélévement fait par laboratoire',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '3',
-                  libelle: 'Consultation',
-                  etat: true,
-                  dateDerniereModification: new Date('12/06/1972'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 50,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '4',
-                libelle: 'Encaissement',
-                description: 'recu de paiement lié à une mission',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '1',
-                  libelle: 'Pharmacie',
-                  etat: true,
-                  dateDerniereModification: new Date('07/03/2000'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 6,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-            ],
-            attributs: [
-              {
-                id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',
-              },
-              {
-                id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'true, false',
-              },
-            ],
-            categories: [
-              {
-                id: '1',
-                nom: 'informations personelles',
-                ordre: 1,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '1',
-                    titre: 'taille',
-                    description: "taille de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Double,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '4',
-                    titre: 'age',
-                    description: "age de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Double,
-                    valeursParDefaut: '',}
-                  },
-                ],
-              },
-              {
-                id: '2',
-                nom: 'informations de sante',
-                ordre: 2,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '5',
-                    titre: 'allergies',
-                    description: "allergies de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '8',
-                    titre: 'cicatrice',
-                    description: "cicatrice de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut: 'oui, non',}
-                  },
-                ],
-              },
-            ],
-            preconisations:[
-              {
-                id: '1',
-                libelle: 'rachat',
-                etat: true,
-                type: 'neutre',
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 10,
-                    quantiteMax: 20,
-                    montantMin: 1000,
-                    montantMax: 7000,
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                  },
-                  {
-                    id: '2',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                  {
-                    id: '3',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource: 
-                    {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
-                      unite: this.UnitesLitre,
-                      prix: 3000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    }
-                  },
-                  {
-                    id: '4',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource:
-                    {
-                        id: '2',
-                        libelle: 'néonat',
-                        etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-                        unite: this.UnitesLitre,
-                        prix: 2000,
-                        caracteristique: 'souple',
-                        famille: {
-                          id: '3',
-                          libelle: 'pediatrie',
-                          description: 'enfant',
-                          etat: true,
-                        },
-                      },
-                  },
-                ],
-              },
-              {
-                id: '2',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                id: '3',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                    distributeur: [
-                      {
-                        id: '1',
-                        raisonSocial: 'brasserie1',
-                        etat: true,
-                        adresse: 'Dla',
-                        telephone: '655554488',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '2',
-                        raisonSocial: 'guinness',
-                        etat: true,
-                        adresse: 'Ydé',
-                        telephone: '655554481',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        etat: true,
-                        adresse: 'Buéa',
-                        telephone: '655554486',
-                        mail: 'ngong@yad.fr',
-                      },
-                    ],
-                  },
-                ],
-              }
-            ]
-          },
-          {
-            id: '5',
-            titre: 'ordonnance',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
-            missions: [
-              {
-                id: '1',
-                libelle: 'Consultation',
-                description: 'Consultation faite par une infirmière',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '1',
-                  libelle: 'Pharmacie',
-                  etat: true,
-                  dateDerniereModification: new Date('07/03/2000'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 6,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '2',
-                libelle: 'Consultation Spécialiste',
-                description: 'Consultation faite par un médecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '2',
-                  libelle: 'Laboratoire',
-                  etat: true,
-                  dateDerniereModification: new Date('06/08/1990'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 20,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '5',
-                libelle: 'Resultat Labo',
-                description: 'Communiquer les résultats du labo aux patients',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '3',
-                  libelle: 'Consultation',
-                  etat: true,
-                  dateDerniereModification: new Date('12/06/1972'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 50,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-            ],
-            attributs: [
-              {
-                id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',
-              },
-              {
-                id: '6',
-                titre: 'teint',
-                description: "teint de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',
-              },
-              {
-                id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',
-              },
-              {
-                id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-              },
-              {
-                id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-            ],
-            categories: [
-              {
-                id: '1',
-                nom: 'informations personelles',
-                ordre: 1,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '1',
-                    titre: 'taille',
-                    description: "taille de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Double,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '4',
-                    titre: 'age',
-                    description: "age de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Double,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 3,
-                    obligatoire: false,
-                    attribut:{id: '6',
-                    titre: 'teint',
-                    description: "teint de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',}
-                  },
-                ],
-              },
-              {
-                id: '2',
-                nom: 'informations de sante',
-                ordre: 2,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '5',
-                    titre: 'allergies',
-                    description: "allergies de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 0,
-                    obligatoire: false,
-                    attribut:{id: '7',
-                    titre: 'Groupe sangin',
-                    description: "Groupe sangin de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut:
-                      'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
-                  },
-                  {
-                    id: '',
-                    ordre: 3,
-                    obligatoire: false,
-                    attribut:{id: '8',
-                    titre: 'cicatrice',
-                    description: "cicatrice de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut: 'oui, non',}
-                  },
-                ],
-              },
-            ],
-            preconisations:[
-              {
-                id: '1',
-                libelle: 'rachat',
-                etat: true,
-                type: 'neutre',
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 10,
-                    quantiteMax: 20,
-                    montantMin: 1000,
-                    montantMax: 7000,
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                  },
-                  {
-                    id: '2',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                  {
-                    id: '3',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource: 
-                    {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
-                      unite: this.UnitesLitre,
-                      prix: 3000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    }
-                  },
-                  {
-                    id: '4',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource:
-                    {
-                        id: '2',
-                        libelle: 'néonat',
-                        etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-                        unite: this.UnitesLitre,
-                        prix: 2000,
-                        caracteristique: 'souple',
-                        famille: {
-                          id: '3',
-                          libelle: 'pediatrie',
-                          description: 'enfant',
-                          etat: true,
-                        },
-                      },
-                  },
-                ],
-              },
-              {
-                id: '2',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                id: '3',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                    distributeur: [
-                      {
-                        id: '1',
-                        raisonSocial: 'brasserie1',
-                        etat: true,
-                        adresse: 'Dla',
-                        telephone: '655554488',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '2',
-                        raisonSocial: 'guinness',
-                        etat: true,
-                        adresse: 'Ydé',
-                        telephone: '655554481',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        etat: true,
-                        adresse: 'Buéa',
-                        telephone: '655554486',
-                        mail: 'ngong@yad.fr',
-                      },
-                    ],
-                  },
-                ],
-              }
-            ]
-          }
         ]
       },
       {
@@ -4924,6 +3695,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Fiche de soin',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:true,
+        affichagePrix:false,
+        contientRessources:true,
+        contientDistributeurs:false,
         missions: [
           {
             id: '2',
@@ -5100,7 +3875,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -5158,7 +3932,7 @@ export class InMemDBService implements InMemoryDbService {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                  quantite: 30,
                   unite: this.UnitesLitre,
                   prix: 3000,
                   caracteristique: 'souple',
@@ -5181,7 +3955,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'néonat',
                     etat: true,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                    quantite: 20,
                     unite: this.UnitesLitre,
                     prix: 2000,
                     caracteristique: 'souple',
@@ -5198,8 +3972,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -5228,8 +4001,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -5303,6 +4075,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Note intervention',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -5529,7 +4305,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -5587,7 +4362,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -5610,7 +4385,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -5627,8 +4402,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -5657,8 +4431,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -5732,6 +4505,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de suivi',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -5955,7 +4732,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -6013,7 +4789,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -6036,7 +4812,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -6053,8 +4829,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -6083,8 +4858,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -6158,6 +4932,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de soin',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '2',
@@ -6334,7 +5112,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -6392,7 +5169,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -6415,7 +5192,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -6432,8 +5209,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -6462,8 +5238,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -6537,6 +5312,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '2',
@@ -6882,7 +5661,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -6940,7 +5718,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -6963,7 +5741,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -6980,8 +5758,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -7010,8 +5787,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -7085,6 +5861,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'ordonnance',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -7308,7 +6088,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -7366,7 +6145,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -7389,7 +6168,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -7406,8 +6185,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -7436,8 +6214,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -7513,6 +6290,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Formulaire de sortie',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:true,
+        affichagePrix:true,
+        contientRessources:true,
+        contientDistributeurs:false,
         missions: [
           {
             id: '2',
@@ -7858,7 +6639,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -7916,7 +6696,7 @@ export class InMemDBService implements InMemoryDbService {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                  quantite: 30,
                   unite: this.UnitesLitre,
                   prix: 3000,
                   caracteristique: 'souple',
@@ -7939,7 +6719,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'néonat',
                     etat: true,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                    quantite: 20,
                     unite: this.UnitesLitre,
                     prix: 2000,
                     caracteristique: 'souple',
@@ -7956,8 +6736,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -7986,8 +6765,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -8054,985 +6832,6 @@ export class InMemDBService implements InMemoryDbService {
               },
             ],
           }
-        ],
-        sousDocuments:[
-          {
-            id: '1',
-            titre: 'Note intervention',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
-            missions: [
-              {
-                id: '1',
-                libelle: 'Consultation',
-                description: 'Consultation faite par une infirmière',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '1',
-                  libelle: 'Pharmacie',
-                  etat: true,
-                  dateDerniereModification: new Date('07/03/2000'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 6,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '2',
-                libelle: 'Consultation Spécialiste',
-                description: 'Consultation faite par un médecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '2',
-                  libelle: 'Laboratoire',
-                  etat: true,
-                  dateDerniereModification: new Date('06/08/1990'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 20,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '3',
-                libelle: 'Prelevement Labo',
-                description: 'Prélévement fait par laboratoire',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '3',
-                  libelle: 'Consultation',
-                  etat: true,
-                  dateDerniereModification: new Date('12/06/1972'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 50,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-            ],
-            attributs: [
-              {
-                id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',
-              },
-              {
-                id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '6',
-                titre: 'teint',
-                description: "teint de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-              },
-              {
-                id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',
-              },
-            ],
-            categories: [
-              {
-                id: '1',
-                nom: 'informations personelles',
-                ordre: 1,
-                listAttributsParCategories: [
-                  {
-                    id: '1',
-                    ordre: 11,
-                    obligatoire: false,
-                    attribut:{
-                    id: '1',
-                    titre: 'taille',
-                    description: "taille de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',
-                    }
-                  },
-                  {
-                    
-                    id: '1',
-                    ordre: 12,
-                    obligatoire: false,
-                    attribut:{id: '4',
-                    titre: 'age',
-                    description: "age de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Int,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '1',
-                    ordre: 13,
-                    obligatoire: false,
-                    attribut:{id: '6',
-                    titre: 'teint',
-                    description: "teint de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',}
-                  },
-                ],
-              },
-              {
-                id: '2',
-                nom: 'informations de sante',
-                ordre: 2,
-                listAttributsParCategories: [
-                  {
-                    id: '1',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '5',
-                    titre: 'allergies',
-                    description: "allergies de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '1',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '7',
-                    titre: 'Groupe sangin',
-                    description: "Groupe sangin de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut:
-                      'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
-                  },
-                  {
-                    id: '1',
-                    ordre: 3,
-                    obligatoire: false,
-                    attribut:{id: '8',
-                    titre: 'cicatrice',
-                    description: "cicatrice de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut: 'oui, non',}
-                  },
-                ],
-              },
-            ],
-            preconisations:[
-              {
-                id: '1',
-                libelle: 'rachat',
-                etat: true,
-                type: 'neutre',
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 10,
-                    quantiteMax: 20,
-                    montantMin: 1000,
-                    montantMax: 7000,
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                  },
-                  {
-                    id: '2',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                  {
-                    id: '3',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource: 
-                    {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
-                      unite: this.UnitesLitre,
-                      prix: 3000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    }
-                  },
-                  {
-                    id: '4',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource:
-                    {
-                        id: '2',
-                        libelle: 'néonat',
-                        etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-                        unite: this.UnitesLitre,
-                        prix: 2000,
-                        caracteristique: 'souple',
-                        famille: {
-                          id: '3',
-                          libelle: 'pediatrie',
-                          description: 'enfant',
-                          etat: true,
-                        },
-                      },
-                  },
-                ],
-              },
-              {
-                id: '2',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                id: '3',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                    distributeur: [
-                      {
-                        id: '1',
-                        raisonSocial: 'brasserie1',
-                        etat: true,
-                        adresse: 'Dla',
-                        telephone: '655554488',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '2',
-                        raisonSocial: 'guinness',
-                        etat: true,
-                        adresse: 'Ydé',
-                        telephone: '655554481',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        etat: true,
-                        adresse: 'Buéa',
-                        telephone: '655554486',
-                        mail: 'ngong@yad.fr',
-                      },
-                    ],
-                  },
-                ],
-              }
-            ]
-          },
-          {
-            id: '4',
-            titre: 'Formulaire de sortie',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
-            missions: [
-              {
-                id: '2',
-                libelle: 'Consultation Spécialiste',
-                description: 'Consultation faite par un médecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '2',
-                  libelle: 'Laboratoire',
-                  etat: true,
-                  dateDerniereModification: new Date('06/08/1990'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 20,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '3',
-                libelle: 'Prelevement Labo',
-                description: 'Prélévement fait par laboratoire',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '3',
-                  libelle: 'Consultation',
-                  etat: true,
-                  dateDerniereModification: new Date('12/06/1972'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 50,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '4',
-                libelle: 'Encaissement',
-                description: 'recu de paiement lié à une mission',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '1',
-                  libelle: 'Pharmacie',
-                  etat: true,
-                  dateDerniereModification: new Date('07/03/2000'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 6,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-            ],
-            attributs: [
-              {
-                id: '14',
-                titre: 'Nom',
-                description: "nom de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-              },
-              {
-                id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',
-              },
-              {
-                id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Textarea,
-                valeursParDefaut: '',
-              },
-              {
-                id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',
-              },
-              {
-                id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-              },
-              {
-                id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',
-              },
-              {
-                id: '9',
-                titre: 'date admission',
-                description: "date admission de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Date,
-                valeursParDefaut: '',
-              },
-              {
-                id: '10',
-                titre: 'date decharge',
-                description: 'date decharge',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Date,
-                valeursParDefaut: '',
-              },
-              {
-                id: '11',
-                titre: 'date prochain rendez-vous',
-                description: "date prochain rendez-vous de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Date,
-                valeursParDefaut: '',
-              },
-              {
-                id: '12',
-                titre: 'aprobation du medecin',
-                description: 'aprobation du medecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',
-              },
-              {
-                id: '13',
-                titre: 'motif de la decharge',
-                description: 'motif de la decharge ',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Textarea,
-                valeursParDefaut: '',
-              },
-            ],
-            categories: [
-              {
-                id: '1',
-                nom: 'informations personelles',
-                ordre: 1,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '14',
-                    titre: 'Nom',
-                    description: "nom de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: true,
-                    attribut:{id: '1',
-                    titre: 'taille',
-                    description: "taille de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Double,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 3,
-                    obligatoire: true,
-                    attribut:{id: '4',
-                    titre: 'age',
-                    description: "age de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Double,
-                    valeursParDefaut: '',}
-                  },
-                ],
-              },
-              {
-                id: '2',
-                nom: 'informations de sante',
-                ordre: 3,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '5',
-                    titre: 'allergies',
-                    description: "allergies de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.String,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '7',
-                    titre: 'Groupe sangin',
-                    description: "Groupe sangin de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut:
-                      'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
-                  },
-                  {
-                    id: '',
-                    ordre: 3,
-                    obligatoire: false,
-                    attribut:{id: '8',
-                    titre: 'cicatrice',
-                    description: "cicatrice de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut: 'oui, non',}
-                  },
-                ],
-              },
-              {
-                id: '3',
-                nom: 'informations de suivi medical',
-                ordre: 2,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '9',
-                    titre: 'date admission',
-                    description: "date admission de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Date,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '10',
-                    titre: 'date decharge',
-                    description: 'date decharge',
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Date,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 3,
-                    obligatoire: false,
-                    attribut:{id: '11',
-                    titre: 'date prochain rendez-vous',
-                    description: "date prochain rendez-vous de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Date,
-                    valeursParDefaut: '',}
-                  },
-                  {
-                    id: '',
-                    ordre: 4,
-                    obligatoire: false,
-                    attribut:{id: '12',
-                    titre: 'aprobation du medecin',
-                    description: 'aprobation du medecin',
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Boolean,
-                    valeursParDefaut: 'oui, non',}
-                  },
-                  {
-                    id: '',
-                    ordre: 5,
-                    obligatoire: false,
-                    attribut:{id: '13',
-                    titre: 'motif de la decharge',
-                    description: 'motif de la decharge ',
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: TypeTicket.Textarea,
-                    valeursParDefaut: '',}
-                  },
-                ],
-              },
-            ],
-            preconisations:[
-              {
-                id: '1',
-                libelle: 'rachat',
-                etat: true,
-                type: 'neutre',
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 10,
-                    quantiteMax: 20,
-                    montantMin: 1000,
-                    montantMax: 7000,
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                  },
-                  {
-                    id: '2',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                  {
-                    id: '3',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource: 
-                    {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
-                      unite: this.UnitesLitre,
-                      prix: 3000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    }
-                  },
-                  {
-                    id: '4',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource:
-                    {
-                        id: '2',
-                        libelle: 'néonat',
-                        etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-                        unite: this.UnitesLitre,
-                        prix: 2000,
-                        caracteristique: 'souple',
-                        famille: {
-                          id: '3',
-                          libelle: 'pediatrie',
-                          description: 'enfant',
-                          etat: true,
-                        },
-                      },
-                  },
-                ],
-              },
-              {
-                id: '2',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                id: '3',
-                libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      unite: this.UnitesLitre,
-                      prix: 1000,
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'néonat',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                    distributeur: [
-                      {
-                        id: '1',
-                        raisonSocial: 'brasserie1',
-                        etat: true,
-                        adresse: 'Dla',
-                        telephone: '655554488',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '2',
-                        raisonSocial: 'guinness',
-                        etat: true,
-                        adresse: 'Ydé',
-                        telephone: '655554481',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        etat: true,
-                        adresse: 'Buéa',
-                        telephone: '655554486',
-                        mail: 'ngong@yad.fr',
-                      },
-                    ],
-                  },
-                ],
-              }
-            ]
-          }
         ]
       },
       {
@@ -9040,6 +6839,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'ordonnance',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:true,
+        affichagePrix:false,
+        contientRessources:true,
+        contientDistributeurs:true,
         missions: [
           {
             id: '1',
@@ -9263,7 +7066,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -9321,7 +7123,7 @@ export class InMemDBService implements InMemoryDbService {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                  quantite: 30,
                   unite: this.UnitesLitre,
                   prix: 3000,
                   caracteristique: 'souple',
@@ -9344,7 +7146,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'néonat',
                     etat: true,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                    quantite: 20,
                     unite: this.UnitesLitre,
                     prix: 2000,
                     caracteristique: 'souple',
@@ -9361,8 +7163,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -9391,8 +7192,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -9466,6 +7266,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de soin',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '2',
@@ -9642,7 +7446,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -9700,7 +7503,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -9723,7 +7526,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -9740,8 +7543,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -9770,8 +7572,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -9845,6 +7646,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '2',
@@ -10190,7 +7995,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -10248,7 +8052,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -10271,7 +8075,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -10288,8 +8092,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -10318,8 +8121,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -10393,6 +8195,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'ordonnance',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -10616,7 +8422,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -10674,7 +8479,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -10697,7 +8502,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -10714,8 +8519,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -10744,8 +8548,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -10824,6 +8627,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Formulaire de sortie',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:false,
+        affichagePrix:true,
+        contientRessources:true,
+        contientDistributeurs:false,
         missions: [
           {
             id: '2',
@@ -11169,7 +8976,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -11227,7 +9033,7 @@ export class InMemDBService implements InMemoryDbService {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                  quantite: 30,
                   unite: this.UnitesLitre,
                   prix: 3000,
                   caracteristique: 'souple',
@@ -11250,7 +9056,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'néonat',
                     etat: true,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                    quantite: 20,
                     unite: this.UnitesLitre,
                     prix: 2000,
                     caracteristique: 'souple',
@@ -11267,8 +9073,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -11297,8 +9102,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -11570,6 +9374,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Note intervention',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -11796,7 +9604,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -11854,7 +9661,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -11877,7 +9684,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -11894,8 +9701,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -11924,8 +9730,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -11999,6 +9804,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '2',
@@ -12344,7 +10153,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -12402,7 +10210,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -12425,7 +10233,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -12442,8 +10250,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -12472,8 +10279,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -12542,6 +10348,125 @@ export class InMemDBService implements InMemoryDbService {
               }
             ]
           }
+        ],
+        mouvements:[
+          {
+            id: '1',
+            description: 'Ici la description de ce mouvement',
+            quantite: 20,
+            prix: 10000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '1',
+              libelle: 'transfusion',
+              etat: true,
+              quantite: 10,
+              unite: this.UnitesLitre,
+              prix: 1000,
+              caracteristique: 'souple',
+              famille: {
+                id: '4',
+                libelle: 'néonat',
+                description: 'nouveau-né',
+                etat: true,
+              },
+            },
+            distributeur: 
+            {
+              id: '1',
+              raisonSocial: 'cgb',
+              etat: true,
+              adresse: 'Dla',
+              telephone: '655554488',
+              mail: 'ngong@yad.fr',
+            },
+          },
+          {
+            id: '2',
+            description: 'Ici la description de ce mouvement',
+            quantite: 50,
+            prix: 300,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '5',
+              libelle: 'eau distillée',
+              etat: true,
+              quantite: 20,
+              unite: this.UnitesLitre,
+              prix: 500,
+              caracteristique: 'désinfictant',
+              famille: {
+                id: '3',
+                libelle: 'pediatrie',
+                description: 'enfant',
+                etat: true,
+              },
+            }
+          },
+          {
+            id: '3',
+            description: 'Ici la description de ce mouvement',
+            quantite: 10,
+            prix: 5000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '3',
+              libelle: 'pediatrie',
+              etat: true,
+              quantite: 30,
+              unite: this.UnitesLitre,
+              prix: 3000,
+              caracteristique: 'souple',
+              famille: {
+                id: '4',
+                libelle: 'néonat',
+                description: 'nouveau-né',
+                etat: true,
+              }
+            },
+            distributeur: {
+              id: '3',
+              raisonSocial: 'cvc',
+              etat: true,
+              adresse: 'Buéa',
+              telephone: '655554486',
+              mail: 'ngong@yad.fr',
+            }
+          },
+          {
+            id: '4',
+            description: 'Ici la description de ce mouvement',
+            quantite: 20,
+            prix: 1000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '2',
+              libelle: 'néonat',
+              etat: true,
+              quantite: 20,
+              unite: this.UnitesLitre,
+              prix: 2000,
+              caracteristique: 'souple',
+              famille: {
+                id: '2',
+                libelle: 'néonat',
+                description: 'nouveau-né',
+                etat: true,
+              }
+            },
+            distributeur: {
+              id: '2',
+              raisonSocial: 'bgb',
+              etat: true,
+              adresse: 'Ydé',
+              telephone: '655554481',
+              mail: 'ngong@yad.fr',
+            }
+          }
         ]
       },
       {
@@ -12550,6 +10475,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'ordonnance',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        etat:false,
+        affichagePrix:true,
+        contientRessources:true,
+        contientDistributeurs:true,
         missions: [
           {
             id: '1',
@@ -12773,7 +10702,6 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            etat: true,
             type: 'neutre',
             precomvtqte: [
               {
@@ -12831,7 +10759,7 @@ export class InMemDBService implements InMemoryDbService {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                  quantite: 30,
                   unite: this.UnitesLitre,
                   prix: 3000,
                   caracteristique: 'souple',
@@ -12854,7 +10782,7 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'néonat',
                     etat: true,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                    quantite: 20,
                     unite: this.UnitesLitre,
                     prix: 2000,
                     caracteristique: 'souple',
@@ -12871,8 +10799,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -12901,8 +10828,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            etat: true,
-            type: 'reduire' /*type:this.TypeMvtReduire*/,
+            type: 'reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -13062,6 +10988,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de soin',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '2',
@@ -13238,7 +11168,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -13296,7 +11225,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -13319,7 +11248,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -13336,8 +11265,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -13366,8 +11294,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -13441,6 +11368,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '2',
@@ -13786,7 +11717,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -13844,7 +11774,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -13867,7 +11797,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -13884,8 +11814,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -13914,8 +11843,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -13989,6 +11917,10 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'ordonnance',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -14212,7 +12144,6 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                etat: true,
                 type: 'neutre',
                 precomvtqte: [
                   {
@@ -14270,7 +12201,7 @@ export class InMemDBService implements InMemoryDbService {
                       id: '3',
                       libelle: 'pediatrie',
                       etat: true,
-                      /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+                      quantite: 30,
                       unite: this.UnitesLitre,
                       prix: 3000,
                       caracteristique: 'souple',
@@ -14293,7 +12224,7 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'néonat',
                         etat: true,
-                        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                        quantite: 20,
                         unite: this.UnitesLitre,
                         prix: 2000,
                         caracteristique: 'souple',
@@ -14310,8 +12241,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -14340,8 +12270,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                etat: true,
-                type: 'reduire' /*type:this.TypeMvtReduire*/,
+                type: 'reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -14410,7 +12339,94 @@ export class InMemDBService implements InMemoryDbService {
               }
             ]
           }
-        ]
+        ],
+        mouvements:[
+          {
+            id: '1',
+            description: 'Ici la description de ce mouvement',
+            quantite: 20,
+            prix: 10000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '2',
+              libelle: 'néonat',
+              etat: true,
+              quantite: 20,
+              unite: this.UnitesLitre,
+              prix: 2000,
+              caracteristique: 'souple',
+              famille: {
+                id: '2',
+                libelle: 'néonat',
+                description: 'nouveau-né',
+                etat: true,
+              }
+            },
+            distributeur: {
+              id: '2',
+              raisonSocial: 'bgb',
+              etat: true,
+              adresse: 'Ydé',
+              telephone: '655554481',
+              mail: 'ngong@yad.fr',
+            }
+          },
+          {
+            id: '2',
+            description: 'Ici la description de ce mouvement',
+            quantite: 2,
+            prix: 10000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '4',
+              libelle: 'paracetamols',
+              etat: true,
+              quantite: 40,
+              unite: this.UnitesKg,
+              prix: 100,
+              caracteristique: 'Appaise les douleurs légères',
+              famille: {
+                id: '5',
+                libelle: 'transfusion',
+                description: 'sang',
+                etat: true,
+              }
+            }
+          },
+          {
+            id: '3',
+            description: 'Ici la description de ce mouvement',
+            quantite: 15,
+            prix: 4500,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '5',
+              libelle: 'eau distillée',
+              etat: true,
+              quantite: 20,
+              unite: this.UnitesLitre,
+              prix: 500,
+              caracteristique: 'désinfictant',
+              famille: {
+                id: '3',
+                libelle: 'pediatrie',
+                description: 'enfant',
+                etat: true,
+              }
+            },
+            distributeur: {
+              id: '1',
+              raisonSocial: 'cgb',
+              etat: true,
+              adresse: 'Dla',
+              telephone: '655554488',
+              mail: 'ngong@yad.fr',
+            }
+          }
+        ],
       }
     ];
     let ressource: IRessource[] = [
@@ -14418,7 +12434,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '1',
         libelle: 'transfusion',
         etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 10,
+        quantite: 10,
         unite: this.UnitesLitre,
         prix: 1000,
         caracteristique: 'souple',
@@ -14428,7 +12444,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '2',
         libelle: 'néonat',
         etat: true,
-        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+        quantite: 20,
         unite: this.UnitesLitre,
         prix: 2000,
         caracteristique: 'souple',
@@ -14443,7 +12459,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '2',
         libelle: 'néonat',
         etat: true,
-        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+        quantite: 20,
         unite: this.UnitesLitre,
         prix: 2000,
         caracteristique: 'souple',
@@ -14458,7 +12474,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '3',
         libelle: 'pediatrie',
         etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+        quantite: 30,
         unite: this.UnitesLitre,
         prix: 3000,
         caracteristique: 'souple',
@@ -14471,16 +12487,31 @@ export class InMemDBService implements InMemoryDbService {
       },
       {
         id: '4',
-        libelle: 'néonat',
+        libelle: 'paracetamols',
         etat: true,
-        /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 40,
-        unite: this.UnitesLitre,
-        prix: 4000,
-        caracteristique: 'souple',
+        quantite: 40,
+        unite: this.UnitesKg,
+        prix: 100,
+        caracteristique: 'Appaise les douleurs légères',
         famille: {
           id: '5',
           libelle: 'transfusion',
           description: 'sang',
+          etat: true,
+        },
+      },
+      {
+        id: '5',
+        libelle: 'eau distillée',
+        etat: true,
+        quantite: 20,
+        unite: this.UnitesLitre,
+        prix: 500,
+        caracteristique: 'désinfictant',
+        famille: {
+          id: '3',
+          libelle: 'pediatrie',
+          description: 'enfant',
           etat: true,
         },
       },
@@ -14502,7 +12533,6 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '1',
         libelle: 'rachat',
-        etat: true,
         type: 'neutre',
         precomvtqte: [
           {
@@ -14560,7 +12590,7 @@ export class InMemDBService implements InMemoryDbService {
               id: '3',
               libelle: 'pediatrie',
               etat: true,
-              /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
+              quantite: 30,
               unite: this.UnitesLitre,
               prix: 3000,
               caracteristique: 'souple',
@@ -14583,7 +12613,7 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'néonat',
                 etat: true,
-                /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                quantite: 20,
                 unite: this.UnitesLitre,
                 prix: 2000,
                 caracteristique: 'souple',
@@ -14600,8 +12630,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '2',
         libelle: 'vente',
-        etat: true,
-        type: 'reduire' /*type:this.TypeMvtReduire*/,
+        type: 'reduire',
         precomvtqte: [
           {
             id: '1',
@@ -14630,8 +12659,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '3',
         libelle: 'vente',
-        etat: true,
-        type: 'reduire' /*type:this.TypeMvtReduire*/,
+        type: 'reduire',
         precomvtqte: [
           {
             id: '1',

@@ -38,10 +38,14 @@ export class NewFormDocumentComponent implements OnInit {
     id: '',
     titre: '',
     description: '',
+    etat: false,
     missions: [],
     attributs: [],
     categories: [],
-    preconisations: []
+    preconisations: [],
+    affichagePrix: false,
+    contientRessources: false,
+    contientDistributeurs: false
   };
   mission$:Observable<IMission[]>=EMPTY;
   forme: FormGroup;
@@ -86,7 +90,11 @@ export class NewFormDocumentComponent implements OnInit {
       _missions :  new FormControl<string | IMission[]>(''),
       _attributs :  new FormArray([]),
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      description: ['']
+      description: [''],
+      etat: new FormControl(true),
+      affichagePrix: new FormControl(true),
+      contientRessources: new FormControl(true),
+      contientDistributeurs: new FormControl(true)
     });
   }
   ngOnInit(): void {
@@ -103,6 +111,10 @@ export class NewFormDocumentComponent implements OnInit {
         this.forme.setValue({
           titre: this.document.titre,
           description: this.document.description,
+          etat: this.document.etat,
+          affichagePrix: this.document.affichagePrix,
+          contientRessources: this.document.contientRessources,
+          contientDistributeurs: this.document.contientDistributeurs,
           _missions: this.document.missions,
           _attributs: []
           })
@@ -307,11 +319,15 @@ export class NewFormDocumentComponent implements OnInit {
       id: uuidv4(),
       titre: documentInput.titre,
       description: documentInput.description,
+      etat: documentInput.etat,
       missions: documentInput._missions,
       attributs: [],
       categories: [],
       preconisations: [],
-      sousDocuments: []
+      sousDocuments: [],
+      affichagePrix: documentInput.affichagePrix,
+      contientRessources: documentInput.contientRessources,
+      contientDistributeurs: documentInput.contientDistributeurs
     }
     
     if(this.document.id != ""){
