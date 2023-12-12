@@ -221,9 +221,10 @@
       "title15": "Categories",
       "title16": "libelle attribut",
       "title17": "Preconisations",
-      "title18": "Sous documents",
+      "title18": "visibilité du prix ?",
       "title19": "lier des ressources ?",
-      "title20": "visibilité du distributeur ?"
+      "title20": "visibilité du distributeur ?",
+      "title21": "Sous documents"
     },
     "form": {
       "text1": "Le Titre est obligatoire.",
@@ -243,6 +244,7 @@
     "exemplaire": {
       "title": "Exemplaire du document",
       "title2": "Donnees obsoletes",
+      "title3": "Ajouter des ressources",
       "title4": "liste des mouvements",
       "text1": "Composition de l'exemplaire",
       "text2": "date de peremption",
