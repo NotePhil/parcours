@@ -123,8 +123,7 @@ export class NewExemplaireComponent implements OnInit {
     'libelle',
     'quantite',
     'unite',
-    'description',
-    'distributeur'
+    'description'
   ]; // structure du tableau presentant les Ressources
   TABLE_PRECONISATION_RESSOURCES: IPrecoMvt[] = [];
   montantTotal : number = 0;
