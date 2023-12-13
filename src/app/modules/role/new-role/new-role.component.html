@@ -1,8 +1,8 @@
 <div id="mainSection">
   <div class="card block" id="top2">
     <!--<div class="card-header" class="entete pt-4 pb-4">{{'role.header' | translate}}</div>-->
-      <div class="card-header" class="entete pt-4 pb-2">
-        <h2>{{'role.header' | translate}} {{titre}}</h2>
+      <div class="card-header" class="entete pt-4 pb-4">
+        {{'role.header' | translate}} {{titre}}
       </div>
       <div class="card-body">
           <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >

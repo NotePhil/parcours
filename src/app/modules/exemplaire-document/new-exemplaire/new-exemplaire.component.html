@@ -1,13 +1,12 @@
 <div class="mainBlock" id="top2">
      <form [formGroup]="formeExemplaire" (ngSubmit)="onSubmit()" *ngIf="formeExemplaire" >
-
         <h1>
             {{this.document.titre}}
         </h1>
         <div class="infos">
             <p id="titre">
                 {{'tickets.table.title5' | translate}} :
-                <span class="title">  {{this.nomPatientCourant}}</span>
+                <span class="title">{{this.nomPatientCourant}}</span>
             </p>
             <div  *ngIf="submitted && estValide == false" class="alert alert-danger">
                 <div >{{eValvalide}} {{'lists.text3' | translate}}</div>

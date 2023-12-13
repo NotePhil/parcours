@@ -22,9 +22,9 @@ import { IRole } from '../modele/role';
 import { IPersonnel } from '../modele/personnel';
 
 export class InMemDBService implements InMemoryDbService {
-  UnitesLitre = Unites.litre;
-  UnitesKg = Unites.kg;
-  UnitesTonne = Unites.tonne;
+  //Unites'litre' = Unites.'litre';
+  //Unites'Kg' = Unites.'Kg';
+  //UnitesTonne = Unites.tonne;
 
   createDb() {
     let patients: IPatient[] = [
@@ -866,7 +866,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -911,7 +911,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 3000,
                   caracteristique: 'souple',
                   famille: {
@@ -934,7 +934,7 @@ export class InMemDBService implements InMemoryDbService {
                     libelle: 'néonat',
                     etat: true,
                     quantite: 20,
-                    unite: this.UnitesLitre,
+                    unite: 'litre',
                     prix: 2000,
                     caracteristique: 'souple',
                     famille: {
@@ -1007,7 +1007,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -1293,7 +1293,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -1338,7 +1338,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 3000,
                   caracteristique: 'souple',
                   famille: {
@@ -1361,7 +1361,7 @@ export class InMemDBService implements InMemoryDbService {
                     libelle: 'néonat',
                     etat: true,
                     quantite: 20,
-                    unite: this.UnitesLitre,
+                    unite: 'litre',
                     prix: 2000,
                     caracteristique: 'souple',
                     famille: {
@@ -1434,7 +1434,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -1673,7 +1673,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -1718,7 +1718,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 3000,
                   caracteristique: 'souple',
                   famille: {
@@ -1741,7 +1741,7 @@ export class InMemDBService implements InMemoryDbService {
                     libelle: 'néonat',
                     etat: true,
                     quantite: 20,
-                    unite: this.UnitesLitre,
+                    unite: 'litre',
                     prix: 2000,
                     caracteristique: 'souple',
                     famille: {
@@ -1814,7 +1814,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -2222,7 +2222,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -2267,7 +2267,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 3000,
                   caracteristique: 'souple',
                   famille: {
@@ -2290,7 +2290,7 @@ export class InMemDBService implements InMemoryDbService {
                     libelle: 'néonat',
                     etat: true,
                     quantite: 20,
-                    unite: this.UnitesLitre,
+                    unite: 'litre',
                     prix: 2000,
                     caracteristique: 'souple',
                     famille: {
@@ -2363,7 +2363,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -2649,7 +2649,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -2694,7 +2694,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 3000,
                   caracteristique: 'souple',
                   famille: {
@@ -2717,7 +2717,7 @@ export class InMemDBService implements InMemoryDbService {
                     libelle: 'néonat',
                     etat: true,
                     quantite: 20,
-                    unite: this.UnitesLitre,
+                    unite: 'litre',
                     prix: 2000,
                     caracteristique: 'souple',
                     famille: {
@@ -2790,7 +2790,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -3201,7 +3201,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -3246,7 +3246,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 3000,
                   caracteristique: 'souple',
                   famille: {
@@ -3269,7 +3269,7 @@ export class InMemDBService implements InMemoryDbService {
                     libelle: 'néonat',
                     etat: true,
                     /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-                    unite: this.UnitesLitre,
+                    unite: 'litre',
                     prix: 2000,
                     caracteristique: 'souple',
                     famille: {
@@ -3342,7 +3342,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -3593,7 +3593,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'transfusion',
               etat: true,
               quantite: 10,
-              unite: this.UnitesLitre,
+              unite: 'litre',
               prix: 1000,
               caracteristique: 'souple',
               famille: {
@@ -3603,7 +3603,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
               },
             },
-            distributeur: 
+            distributeur:
             {
               id: '1',
               raisonSocial: 'cgb',
@@ -3625,7 +3625,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'eau distillée',
               etat: true,
               quantite: 20,
-              unite: this.UnitesLitre,
+              unite: 'litre',
               prix: 500,
               caracteristique: 'désinfictant',
               famille: {
@@ -3648,7 +3648,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'pediatrie',
               etat: true,
               quantite: 30,
-              unite: this.UnitesLitre,
+              unite: 'litre',
               prix: 3000,
               caracteristique: 'souple',
               famille: {
@@ -3679,7 +3679,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'néonat',
               etat: true,
               quantite: 20,
-              unite: this.UnitesLitre,
+              unite: 'litre',
               prix: 2000,
               caracteristique: 'souple',
               famille: {
@@ -3946,7 +3946,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -3991,7 +3991,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 30,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 3000,
                   caracteristique: 'souple',
                   famille: {
@@ -4014,7 +4014,7 @@ export class InMemDBService implements InMemoryDbService {
                     libelle: 'néonat',
                     etat: true,
                     /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-                    unite: this.UnitesLitre,
+                    unite: 'litre',
                     prix: 2000,
                     caracteristique: 'souple',
                     famille: {
@@ -4087,7 +4087,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
-                  unite: this.UnitesLitre,
+                  unite: 'litre',
                   prix: 1000,
                   caracteristique: 'souple',
                   famille: {
@@ -4226,7 +4226,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'néonat',
               etat: true,
               quantite: 20,
-              unite: this.UnitesLitre,
+              unite: 'litre',
               prix: 2000,
               caracteristique: 'souple',
               famille: {
@@ -4257,7 +4257,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'paracetamols',
               etat: true,
               quantite: 40,
-              unite: this.UnitesKg,
+              unite:'Kg',
               prix: 100,
               caracteristique: 'Appaise les douleurs légères',
               famille: {
@@ -4280,7 +4280,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'eau distillée',
               etat: true,
               quantite: 20,
-              unite: this.UnitesLitre,
+              unite: 'litre',
               prix: 500,
               caracteristique: 'désinfictant',
               famille: {
@@ -4308,7 +4308,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'transfusion',
         etat: true,
         quantite: 10,
-        unite: this.UnitesLitre,
+        unite: 'litre',
         prix: 1000,
         caracteristique: 'souple',
         famille: { id: '1', libelle: 'trans', description: 'sang', etat: true },
@@ -4318,7 +4318,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'néonat',
         etat: true,
         quantite: 20,
-        unite: this.UnitesLitre,
+        unite: 'litre',
         prix: 2000,
         caracteristique: 'souple',
         famille: {
@@ -4333,7 +4333,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'néonat',
         etat: true,
         /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-        unite: this.UnitesLitre,
+        unite: 'litre',
         prix: 2000,
         caracteristique: 'souple',
         famille: {
@@ -4348,7 +4348,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'pediatrie',
         etat: true,
         quantite: 30,
-        unite: this.UnitesLitre,
+        unite: 'litre',
         prix: 3000,
         caracteristique: 'souple',
         famille: {
@@ -4363,7 +4363,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'paracetamols',
         etat: true,
         quantite: 40,
-        unite: this.UnitesKg,
+        unite:'Kg',
         prix: 100,
         caracteristique: 'Appaise les douleurs légères',
         famille: {
@@ -4378,7 +4378,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'eau distillée',
         etat: true,
         quantite: 20,
-        unite: this.UnitesLitre,
+        unite: 'litre',
         prix: 500,
         caracteristique: 'désinfictant',
         famille: {
@@ -4419,7 +4419,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'transfusion',
               etat: true,
               quantite: 10,
-              unite: this.UnitesLitre,
+              unite: 'litre',
               prix: 1000,
               caracteristique: 'souple',
               famille: {
@@ -4464,7 +4464,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'pediatrie',
               etat: true,
               quantite: 30,
-              unite: this.UnitesLitre,
+              unite: 'litre',
               prix: 3000,
               caracteristique: 'souple',
               famille: {
@@ -4487,7 +4487,7 @@ export class InMemDBService implements InMemoryDbService {
                 libelle: 'néonat',
                 etat: true,
                 quantite: 20,
-                unite: this.UnitesLitre,
+                unite: 'litre',
                 prix: 2000,
                 caracteristique: 'souple',
                 famille: {
@@ -4560,7 +4560,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'transfusion',
               etat: true,
               quantite: 10,
-              unite: this.UnitesLitre,
+              unite: 'litre',
               prix: 1000,
               caracteristique: 'souple',
               famille: {

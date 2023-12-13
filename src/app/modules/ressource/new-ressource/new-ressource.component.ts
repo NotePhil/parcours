@@ -21,6 +21,8 @@ export class NewRessourceComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string="Ajouter";
   submitted: boolean=false;
+  unites$: Observable<IRessource[]>=EMPTY;
+  IdRessource:string= ""
   filteredOptions: IFamille[] | undefined;
   titre:string=''
   constructor(private formBuilder:FormBuilder,private familleService:FamillesService,private dataEnteteMenuService:DonneesEchangeService,private ressourceService:RessourcesService,private serviceRessource:RessourcesService,private serviceFamille:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
@@ -70,6 +72,7 @@ export class NewRessourceComponent implements OnInit {
           })
       });
     }
+    this.unites$ = this.getAllRessources();
     this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
   get f(){
@@ -104,6 +107,12 @@ export class NewRessourceComponent implements OnInit {
   displayFn(famille: IFamille): string {
     return famille && famille.libelle ? famille.libelle : '';
   }
-  
+  private getAllRessources(){
+    return this.serviceRessource.getAllRessources();
+  }
+  compareItem(unite1: IRessource, unite2: IRessource) {
+    return unite2 && unite1 ? unite2.id === unite1.id : unite2 === unite1;
+  }
+
 }
 
