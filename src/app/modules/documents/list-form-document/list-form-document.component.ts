@@ -24,7 +24,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
   ELEMENTS_TABLE: IAfficheDocument[] = [];
   filteredOptions: IDocument[] | undefined;
 
-  displayedColumns: string[] = ['titre', 'description', 'missions', 'attributs', 'categories', 'preconisations', 'actions'];
+  displayedColumns: string[] = ['titre', 'description', 'missions', 'attributs', 'categories', 'preconisations', 'sousDocuments', 'actions'];
 
   dataSource = new MatTableDataSource<IAfficheDocument>(this.ELEMENTS_TABLE);
 
@@ -97,22 +97,23 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
 
   private convertDocToDocAffiche(x: IDocument) : IAfficheDocument {
    let  afficheDocument  : IAfficheDocument = {
-      id: '',
-      titre: '',
-      description: '',
-      missions: [],
-      attributs: [],
-      categories: [],
-      listeMissions: '',
-      listAttributs: '',
-      listCategories: '',
-      listPreconisations: '',
-      preconisations: [],
-      etat: false,
-      affichagePrix: false,
-      contientRessources: false,
-      contientDistributeurs: false
-    }
+     id: '',
+     titre: '',
+     description: '',
+     missions: [],
+     attributs: [],
+     categories: [],
+     listeMissions: '',
+     listAttributs: '',
+     listCategories: '',
+     listPreconisations: '',
+     preconisations: [],
+     etat: false,
+     affichagePrix: false,
+     contientRessources: false,
+     contientDistributeurs: false,
+     listSousDocuments: ''
+   }
     afficheDocument.id = x.id;
     afficheDocument.titre = x.titre;
     afficheDocument.description = x.description;

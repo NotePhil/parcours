@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalChoixAttributsComponent } from './modal-choix-attributs/modal-choix-attributs.component';
 import { ModalChoixPreconisationsComponent } from './modal-choix-preconisations/modal-choix-preconisations.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ModalChoixSousDocumentComponent } from './modal-choix-sous-document/modal-choix-sous-document.component';
 import { EnteteComponent } from './entete/entete.component';
 
 
@@ -28,12 +29,14 @@ import { EnteteComponent } from './entete/entete.component';
     ModalCategoriesComponent,
     ModalChoixAttributsComponent,
     ModalChoixPreconisationsComponent,
+    ModalChoixSousDocumentComponent,
     EnteteComponent,
 
   ],
   exports: [
     ModalCategoriesComponent,
     ModalChoixAttributsComponent,
+    ModalChoixSousDocumentComponent,
     EnteteComponent
   ],
   imports: [
