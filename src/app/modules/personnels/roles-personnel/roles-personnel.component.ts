@@ -33,6 +33,7 @@ export class RolesPersonnelComponent implements OnInit {
   textError = "";
   datas: any[] = [];
   ELEMENTS_TABLE: any[] = [];
+  VERIF_TABLE: any[] = [];
   filteredOptions: IRole[] | undefined;
   displayedColumns: string[] = ['selection', 'titre', 'description', 'etat'];
   displayedrolesColumns: string[] = [
@@ -50,6 +51,8 @@ export class RolesPersonnelComponent implements OnInit {
   verif: boolean = false;
   modif: boolean = false;
   test: Date | undefined;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -209,6 +212,43 @@ export class RolesPersonnelComponent implements OnInit {
     }
   }
 
+  verificationModif(ele:any, event: any, value: number, pos:String){
+    console.log("element selectionné :", ele, event.target.value);
+    var j = 0;
+    while (j < this.dataSourceRoleResultat.data.length) {
+      if (this.dataSourceRoleResultat.data[j].role.id == ele.id && j != value) {
+        console.log(
+          'date service :',
+          this.dataSourceRoleResultat.data[j].dateDebut
+        );
+
+        this.newdates = {
+          dateDebut: ele.dateDebut,
+          dateFin: ele.dateFin,
+        };
+        this.olddates = {
+          dateDebut: this.dataSourceRoleResultat.data[j].dateDebut,
+          dateFin: this.dataSourceRoleResultat.data[j].dateFin,
+        };
+        let res = this.verificationsServices.OncheckedDatesRoles(
+          this.olddates,
+          this.newdates
+        );
+        console.log('reponse service :', this.newdates.dateFin);
+        if (res == false) {
+          if (pos == "debut") {
+            event.target.value = this.VERIF_TABLE[value].dateDebut
+          } else {
+            event.target.value = this.VERIF_TABLE[value].dateFin
+          }
+        }
+      }
+      j++;
+      this.VERIF_TABLE = this.dataSourceRoleResultat.data;
+    }
+    
+  }
+
   retirerSelectionRole(index: number) {
     let temp = this.dataSourceRoleResultat.data;
     temp.splice(index, 1); // je supprime un seul element du tableau a la position 'i'
@@ -220,6 +260,7 @@ export class RolesPersonnelComponent implements OnInit {
     this.ELEMENTS_TABLE.forEach((elt) => tabTemp.push(elt));
     this.dataSourceRoleResultat.data = tabTemp;
     this.datas.forEach((c) => (c.event.target.checked = false));
+    this.VERIF_TABLE = this.dataSourceRoleResultat.data;
     this.ELEMENTS_TABLE = [];
     this.datas = [];
   }
