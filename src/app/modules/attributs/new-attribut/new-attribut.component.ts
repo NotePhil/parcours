@@ -26,7 +26,8 @@ export class NewAttributComponent implements OnInit {
   typeFloat = TypeTicket.Float;
   typeBoolean = TypeTicket.Boolean;
   typeDate = TypeTicket.Date;
-  titre:string='';
+  titre:string='';  typeRadio = TypeTicket.Radio
+
   /*initialDateCreation = new FormControl(new Date());
   initialDateModification = new FormControl(new Date());*/
 
@@ -36,7 +37,6 @@ export class NewAttributComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
       type: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      obligatoire:[true],
       valeursParDefaut:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
     })
   }

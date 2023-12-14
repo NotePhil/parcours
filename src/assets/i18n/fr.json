@@ -37,10 +37,11 @@
     "footer": {}
   },
   "lists": {
-    "title": "listing des",
+    "title": "listing",
     "text1": "Champs obligatoires",
     "text2": "Champs non obligatoires",
     "text3": "est un champs non obligatoires",
+    "text4": "entrer la valeur ici",
     "button1": "Imprimer",
     "button2": "Retour",
     "button3": "Annuler",
@@ -110,14 +111,15 @@
     "table": {
       "title1": "Libelle",
       "title2": "Etat",
-      "title3": "date de derniere modification",
-      "title4": "date d'attribution",
-      "title5": "date de fin"
+      "title3": "localisation",
+      "title4": "description"
+
     },
     "form": {
       "label1": "libelle",
       "label2": "etat",
-      "label3": "date derniere modification",
+      "label3": "localisation",
+      "label4": "description",
       "text1": "Le libelle est obligatoire.",
       "text2": "L'etat est obligatoire.",
       "text3": "La date de derniere modification est obligatoire."
@@ -198,6 +200,8 @@
     "search-bar": "Rechercher",
     "title1": "Affichage des resultats",
     "title2": "Selectionner les attributs de la categories",
+    "title4": "Associer des sous documents",
+    "title5": "Selectionner les documents à associer",
     "table": {
       "title0": "Id",
       "title1": "Titre",
@@ -216,13 +220,20 @@
       "title14": "Ordre de la categorie",
       "title15": "Categories",
       "title16": "libelle attribut",
-      "title17": "Preconisations"
+      "title17": "Preconisations",
+      "title18": "visibilité du prix ?",
+      "title19": "lier des ressources ?",
+      "title20": "visibilité du distributeur ?",
+      "title21": "Sous documents"
     },
     "form": {
       "text1": "Le Titre est obligatoire.",
       "text2": "La Description est obligatoire.",
       "text3": "Les Missions sont obligatoires.",
-      "text4": "Les attributs sont obligatoires."
+      "text4": "Les attributs sont obligatoires.",
+      "text5": "Si cette case est cochée, la colone du prix sera visible lors de la creation des mouvement d'un exemplaire de ce document",
+      "text6": "Si cette case est décochée, il n'y aura pas la possibilité de creer des mouvement lors de la creation d'un exemplaire du document",
+      "text7": "Si cette case est cochée, la colone du distributeur sera visible lors de la creation des mouvement d'un exemplaire de ce document"
     },
     "view": {
       "title": "Modele",
@@ -233,7 +244,11 @@
     "exemplaire": {
       "title": "Exemplaire du document",
       "title2": "Donnees obsoletes",
-      "text1": "Composition de l'exemplaire"
+      "title3": "Ajouter des ressources",
+      "title4": "liste des mouvements",
+      "text1": "Composition de l'exemplaire",
+      "text2": "date de peremption",
+      "text3": "Modifier le distributeur"
     }
   },
   "theme": {
@@ -243,7 +258,7 @@
     "libelle": "langues"
   },
   "famille": {
-    "header": "Ajouter Une Nouvelle Categorie de Ressource",
+    "header": "Ajouter Famille",
     "table": {
       "title1": "Libellé",
       "title2": "Description",
@@ -256,7 +271,7 @@
     "lists": {
       "button1": "Retour"
     },
-    "title": "Listing Categorie de Ressource",
+    "title": "Listing Famille",
     "search-bar": "Rechercher",
     "table1": {
       "title1": "Libellé",
@@ -273,14 +288,15 @@
   },
   "ressource": {
     "table": {
-      "title": "Ajouter une nouvelle ressource",
+      "title": "Ajouter ressource",
       "title1": " Libellé",
       "title2": "Etat",
       "title3": "Quantité",
       "title4": "Unité",
       "title5": "Prix",
       "title6": "Catégorie",
-      "title7": "Caractéristiques"
+      "title7": "Caractéristiques",
+      "title8": "Ressources"
     },
     "form": {
       "text1": "Champ Obligatoire",
@@ -295,7 +311,8 @@
       "text12": "souple",
       "text13": "dure",
       "text14": "léger",
-      "text15": "Selectionnez vos Caractéristiques"
+      "text15": "Selectionnez vos Caractéristiques",
+      "text16": "Rechercher une ressource"
     },
     "lists": {
       "button2": "Retour"
@@ -303,19 +320,21 @@
     "title": "Listing Ressource",
     "search-bar": "Rechercher",
     "table2": {
-      "title1": "Ajouter une ressource",
+      "title1": "Ajouter ressource",
       "title2": "id",
       "title3": "libelle",
       "title4": "Etat",
-      "title5": " Quantité ",
-      "title6": " Unité",
+      "title5": "Quantité ",
+      "title6": "Unité",
       "title7": "Prix",
       "title8": "Catégorie",
-      "title9": "Actions "
+      "title9": "Actions",
+      "title10": "Total ",
+      "title11": "Montant total "
     }
   },
   "preconisation":{
-    "title1":"Ajouter une nouvelle préconisation",
+    "title1":"Ajouter préconisation",
       "form":{
           "title1":"Sélectionnez des preconisations"
       },
@@ -323,10 +342,125 @@
           "title1":"Libellé",
           "title2":"Etat",
           "title3":"Type",
-          "title4":"Voir le detail"
+          "title4":"Voir le detail",
+          "title5":"Distributeur",
+          "title6":"Associer un distributeur"
       },
       "view":{
           "text1":"Les préconisations du document"
       }
-  }
+  },
+  "distributeur": {
+    "table": {
+      "title": "Ajouter Distributeur",
+      "title1": "Raison Social ",
+      "title2": "Etat",
+      "title3": "Adresse",
+      "title4": "Telephone",
+      "title5": "Mail"
+    },
+    "form": {
+      "text1": "Champ Obligatoire",
+      "text2": "Champ Obligatoire"
+    },
+    "lists": {
+      "button1": "Annuler"
+    },
+    "title": "listing Distributeur",
+    "search-bar": "Rechercher",
+    "table2": {
+      "title1": "raisonSocial",
+      "title2": "adresse",
+      "title3": "etat",
+      "title4": "telephone",
+      "title5": "mail",
+      "title9": "Actions "
+    }
+  },
+  "precomvt": {
+    "header": "Nouvelle Préconisation",
+    "header1": "Assigner Familles",
+    "header2": "Assigner Ressource",
+    "table": {
+      "title1": "Libelle",
+      "title2": "Etat",
+      "title3": "Type",
+      "title4": "Famille",
+      "title5": "Ressource ",
+      "title6": "Quantité Max",
+      "title7": "Entrer la quantite maximale",
+      "title8": "Quantité Min ",
+      "title9": "Entrer la quantite minimale",
+      "title10": "Montant Max",
+      "title11": "Entrer le montant minimal",
+      "title12": "Montant Min ",
+      "title13": "Entrer le montant maximal",
+      "title14": "Fournisseurs ",
+      "title15": "Back",
+      "title16": "Annuler",
+      "title17": "Famille",
+      "title18": "Ressource",
+      "title19": "Etape",
+      "title20": "Type:",
+      "title21": "Qtité Max :",
+      "title22": "Qtité Min : ",
+      "title23": "Mtant Max : ",
+      "title24": "Mtant Min : ",
+      "title25": "Enregistrer"
+    },
+    "title": "Listing PrecoMvt",
+    "search-bar": "Rechercher",
+    "table2": {
+      "title1": "libelle",
+      "title2": "etat",
+      "title3": "type",
+      "title4": "Actions"
+    },
+    "title0": "Tableau Des opérations effectuées",
+    "table3": {
+      "title1": "Libellé",
+      "title2": "Etat",
+      "title3": "Type",
+      "title4": "Ressource",
+      "title5": "Quantité Max",
+      "title6": "Quantité Min",
+      "title7": "Montant Max",
+      "title8": "Montant Min",
+      "title9": "Distributeur",
+      "title10": "familles",
+      "title11": "Quantité Max",
+      "title12": "Quantité Min",
+      "title13": "Montant Max",
+      "title14": "Montant Min",
+      "title15": "Distributeur"
+    }
+},
+"role":{
+  "header":"Ajouter Role",
+  "table":{
+    "title1":"Titre",
+    "title2":"titre",
+    "title3":"Etat",
+    "title4":"Description",
+    "title5":"description"
+  },
+  "form":{
+    "text1":"Champ Obligatoire"
+},
+"lists":{
+  "button1":"Annuler"
+},
+"title":"listing Role",
+"search-bar":"Rechercher",
+"table1":{
+    "title1":"Titre",
+    "title2":"Description",
+    "title3":"Etat",
+    "title4":"Actions",
+    "actions":{
+        "link2":"Modifier",
+        "link4":"Supprimer"
+    }
+}
+}
 }

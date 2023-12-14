@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,MaxLengthValidator,MinLengthValidator,ReactiveFormsModule, Validators  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, isEmpty, Observable } from 'rxjs';
@@ -7,6 +7,7 @@ import { PatientsService } from 'src/app/services/patients/patients.service';
 import {IPatient} from '../../../modele/Patient';
 import {v4 as uuidv4} from 'uuid';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
+
 
 @Component({
   selector: 'app-new-patient',
@@ -21,6 +22,7 @@ export class NewPatientComponent implements OnInit {
   //title: string="Ajouter un nouveau Patient";
   submitted: boolean=false;
   initialDate = new FormControl(new Date());
+
   //TODO validation du formulaire. particulièrment les mail; les dates
   titre:string='';
 

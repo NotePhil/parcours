@@ -21,7 +21,6 @@ export class NewTicketComponent implements OnInit {
   ticket : ITicket|undefined;
   forme: FormGroup;
   btnLibelle: string="Enregister";
-  //titre: string="Ajouter un nouveau ticket";
   submitted: boolean=false;
   currentDate = new Date;
   strIidPersonne: string = "";

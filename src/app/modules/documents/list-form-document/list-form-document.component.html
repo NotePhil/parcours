@@ -1,6 +1,6 @@
-<div id="mainSection" class="d-flex flex-column justify-content-around">
-  <app-entete class="title"></app-entete>
-    <div class="card container-fluid" >
+<div id="" class="d-flex flex-column justify-content-around">
+  <app-entete class="title" id="top1"></app-entete>
+    <div class="card container-fluid" id="top" >
         <div class='card-hearder pt-3' >
             <div class="d-flex align-items-center justify-content-end tableTools">
                 <div class="form-inline mr-3">
@@ -44,6 +44,12 @@
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title2' | translate}} </th>
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.description}} </td>
                     </ng-container>
+                    
+                    <!-- etat Column -->
+                    <ng-container matColumnDef="etat">
+                        <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'services.form.label2' | translate}} </th>
+                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
+                    </ng-container>
 
                     <!-- missions Column -->
                     <ng-container matColumnDef="missions">
@@ -76,6 +82,14 @@
                             <span> {{element.listPreconisations}} </span>
                         </td>
                     </ng-container>
+                    
+                    <!-- sousDocuments Column -->
+                    <ng-container matColumnDef="sousDocuments">
+                        <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title18' | translate}} </th>
+                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element">
+                            <span> {{element.listSousDocuments}} </span>
+                        </td>
+                    </ng-container>
 
                     <!-- action column -->
                     <ng-container matColumnDef="actions">
@@ -95,10 +109,7 @@
                                         <i class="fa fa-pen text-info" aria-hidden="true"></i>
                                         <span>{{'patient.table.actions.link2' | translate}}</span>
                                     </button>
-                                    <button class="dropdown-item nav-link" [routerLink]="['/document-nouveau',element.id]" title="{{'patient.table.actions.link4' | translate}}">
-                                        <i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-                                        <span>{{'patient.table.actions.link4' | translate}}</span>
-                                    </button>
+
                                 </div>
                             </div>
                         </td>

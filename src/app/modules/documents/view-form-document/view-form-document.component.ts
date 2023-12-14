@@ -18,7 +18,11 @@ export class ViewFormDocumentComponent implements OnInit {
     missions: [],
     attributs: [],
     categories: [],
-    preconisations: []
+    preconisations: [],
+    etat: false,
+    affichagePrix: false,
+    contientRessources: false,
+    contientDistributeurs: false
   };
   titre:string='';
   constructor(private router:Router,private dataEnteteMenuService:DonneesEchangeService, private infosPath:ActivatedRoute, private serviceDocument:DocumentService) {}

@@ -19,6 +19,9 @@ import { ModalChoixAttributsComponent } from './modal-choix-attributs/modal-choi
 import { ModalChoixPreconisationsComponent } from './modal-choix-preconisations/modal-choix-preconisations.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EnteteComponent } from './entete/entete.component';
+import { ModalChoixSousDocumentComponent } from './modal-choix-sous-document/modal-choix-sous-document.component';
+
+
 
 
 @NgModule({
@@ -26,12 +29,15 @@ import { EnteteComponent } from './entete/entete.component';
     ModalCategoriesComponent,
     ModalChoixAttributsComponent,
     ModalChoixPreconisationsComponent,
-    EnteteComponent
+    EnteteComponent,
+    ModalChoixSousDocumentComponent,
+
   ],
   exports: [
     ModalCategoriesComponent,
     ModalChoixAttributsComponent,
-    EnteteComponent
+    EnteteComponent,
+    ModalChoixSousDocumentComponent
   ],
   imports: [
     CommonModule,
