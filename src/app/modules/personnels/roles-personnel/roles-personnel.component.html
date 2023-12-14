@@ -25,7 +25,7 @@
                             <div *ngIf="submitted && f['dateEntree'].errors"  class="alert alert-danger" >
                                 <div *ngIf="f['dateEntree'].errors['required']">{{'personnel.form.text5' | translate}}</div>
                             </div>
-                            <div *ngIf="verif" class="alert alert-danger" >
+                            <div *ngIf="verif && test == forme.get('dateEntree')?.value" class="alert alert-danger" >
                                 <div>{{textError}}</div>
                             </div>
                         </div>
