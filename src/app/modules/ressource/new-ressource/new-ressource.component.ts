@@ -41,7 +41,8 @@ export class NewRessourceComponent implements OnInit {
       etat: [true],
       quantite: ['', [Validators.required]],
       unite: ['', [Validators.required]],
-      prix: ['', [Validators.required]],
+      prixEntree: ['', [Validators.required]],
+      prixDeSortie: ['', [Validators.required]],
       famille: [''],
       caracteristique:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
     })
@@ -79,7 +80,8 @@ export class NewRessourceComponent implements OnInit {
             etat: this.ressource.etat,
             quantite: this.ressource.quantite,
             unite: this.ressource.unite,
-            prix: this.ressource.prix,
+            prixEntree: this.ressource.prixEntree,
+            prixDeSortie: this.ressource.prixDeSortie,
             famille: this.ressource.famille,
             caracteristique:this.ressource.caracteristique,
           })
@@ -109,7 +111,8 @@ export class NewRessourceComponent implements OnInit {
       etat: ressourceInput.etat,
       quantite: ressourceInput.quantite,
       unite: ressourceInput.unite,
-      prix: ressourceInput.prix,
+      prixEntree: ressourceInput.prixEntree,
+      prixDeSortie: ressourceInput.prixDeSortie,
       famille:ressourceInput.famille,
       caracteristique:ressourceInput.caracteristique,
     }

@@ -294,21 +294,22 @@
         "title2":"State",
         "title3":"Quantity",
         "title4":"Unit",
-        "title5":"Price",
+        "title5":"buy Price",
         "title6":"Category",
         "title7":"Caracteristic",
-        "title8": "Ressources"
+        "title8": "Ressources",
+        "title9": "sell prise"
 
     },
     "form":{
         "text1":"Field Required",
-        "text2":"Field Required",
+        "text2":"",
         "text4":"liter",
         "text5":"kg",
         "text6":"m²",
         "text7":"quintals",
-        "text8":"Field Required",
-        "text9":"Field Required",
+        "text8":"",
+        "text9":"",
         "text11":"Select a Unit",
         "text12":"soft",
         "text13":"hard",

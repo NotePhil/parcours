@@ -539,7 +539,7 @@ export class NewExemplaireComponent implements OnInit {
         id: '',
         description: '',
         quantite: option.quantite,
-        prix: option.prix,
+        prix: option.prixEntree,
         dateCreation: new Date(),
         datePeremption:  new Date(),
         ressource: option
