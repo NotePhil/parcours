@@ -15,41 +15,61 @@ export class VerificationsdatesrolesService {
    * @param nouvelleDate objet que l'on veut enregistrer dans le système
    * @returns 
    */
-  OncheckedDatesRoles(ancienneDate : IObjetDates, nouvelleDate: IObjetDates):String {
+  OncheckedDatesRoles(ancienneDate : IObjetDates, nouvelleDate: IObjetDates):Boolean {
 
-    let result: String;
+    let result: Boolean;
+
+    result = false
+    if (ancienneDate.dateFin || nouvelleDate.dateFin) {
+      if (ancienneDate.dateDebut > ancienneDate.dateFin! || nouvelleDate.dateDebut > nouvelleDate.dateFin!) {
+        result = false
+      }  
+    }
 
     // si l'objet existant ou le nouvel objet n'a pas de date de fin
-    if (ancienneDate.dateFin == undefined || nouvelleDate.dateFin == undefined) {
+    if (!ancienneDate.dateFin || !nouvelleDate.dateFin) {
+
+      if (nouvelleDate.dateFin! <= ancienneDate.dateDebut && !ancienneDate.dateFin!) {
+        result = true
+      }
+      else if (ancienneDate.dateFin! <= nouvelleDate.dateDebut && !nouvelleDate.dateFin) {
+        result = true
+      }
 
       // si la date de debut du nouvel objet commence après celle de l'objet existant
-      if (ancienneDate.dateDebut < nouvelleDate.dateDebut) {
-        result = "OK"
-      }
-      else return result = "La nouvelle date doit etre supperieur à "+ ancienneDate.dateDebut
+      if (ancienneDate.dateDebut < nouvelleDate.dateDebut && (!nouvelleDate.dateFin! && !ancienneDate.dateFin!)) {
+        result = false
+      }    
+      else if (nouvelleDate.dateDebut <= ancienneDate.dateDebut && (!nouvelleDate.dateFin! && !ancienneDate.dateFin!)) { result = false}
     }
-    else if (ancienneDate.dateDebut > ancienneDate.dateFin || nouvelleDate.dateDebut > nouvelleDate.dateFin) {
-      result = "La date de fin ne peut pas etre plus petite que la date de debut"
+    else if (ancienneDate.dateDebut <= nouvelleDate.dateDebut && !ancienneDate.dateFin) {
+      result = false
     }
-    else if (ancienneDate.dateDebut > nouvelleDate.dateDebut) { // si la date de debut du nouvel objet commence avant celle de l'objet existant
+    else if (ancienneDate.dateDebut <= nouvelleDate.dateDebut && nouvelleDate.dateDebut < ancienneDate.dateFin) {
+      result = false
+    }
+    else if (nouvelleDate.dateDebut < ancienneDate.dateDebut && ancienneDate.dateDebut < nouvelleDate.dateFin) {
+      result = false
+    }
+    else if (ancienneDate.dateDebut >= nouvelleDate.dateDebut) { // si la date de debut du nouvel objet commence avant celle de l'objet existant
  
       // si la date de fin du nouvel objet se termine avant la date de debut de l'ancien objet
-      if (nouvelleDate.dateFin < ancienneDate.dateDebut) {
-          result = "OK"
+      if (nouvelleDate.dateFin <= ancienneDate.dateDebut) {
+          result = true
       }else{ // si la date de fin du nouvel objet se termine après la date de debut de l'ancien objet
-        result = "la nouvelle date doit se terminer avant le debut de l'ancienne"
+        result = false
       }       
-    }else if (ancienneDate.dateDebut < nouvelleDate.dateDebut) { // si la date de debut du nouvel objet commence après celle de l'objet existant
+    }else if (ancienneDate.dateDebut <= nouvelleDate.dateDebut) { // si la date de debut du nouvel objet commence après celle de l'objet existant
       
       // si la date de debut du nouvel objet commence après la date de fin de l'objet existant
-      if (ancienneDate.dateFin < nouvelleDate.dateDebut) {
-        result = "OK"
+      if (ancienneDate.dateFin <= nouvelleDate.dateDebut) {
+        result = true
       }
       else{ // si la date de fin du nouvel objet se termine après celle de l'objet existant
-        result = "la nouvelle date doit commencer apres la date de fin de l'ancienne"
+        result = false
       }
     }else {
-      result = 'La date de début ne peut pas être vide'
+      result = false
     }
 
     return result

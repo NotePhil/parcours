@@ -49,6 +49,7 @@ export class RolesPersonnelComponent implements OnInit {
   submitted: boolean = false;
   verif: boolean = false;
   modif: boolean = false;
+  test: Date | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -178,11 +179,12 @@ export class RolesPersonnelComponent implements OnInit {
               this.olddates,
               this.newdates
             );
-            console.log('reponse service :', res);
-            if (res !== 'OK') {
-              this.verif = true;
+            console.log('reponse service :', this.newdates.dateFin);
+            if (res == false) {
+              this.test = this.forme.value.dateEntree
+              this.verif = true
               event.target.checked = false;
-              this.textError = res.toString();
+              this.textError = "Impossible les intervalles de temps ne sont pas correctes";
             }
           }
           j++;

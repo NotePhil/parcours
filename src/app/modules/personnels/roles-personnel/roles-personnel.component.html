@@ -7,26 +7,24 @@
         <div class='card-hearder'>
             <h2 class="modal-title">Personnel: {{ nomPersonnel }}</h2>
         </div>
+        <div *ngIf="verif && test == forme.get('dateEntree')?.value" class="alert alert-danger" >
+            <div>{{textError}}</div>
+        </div>
         <form [formGroup]="forme" *ngIf="forme">
-            <div class="form-group mt-3">
-                
+            <div class="form-group mt-3">               
                 <div class="newAttSection">
                     <div class="div-date">
                         <div class="form-group">
                             <div>
                                 <div class="champs">
                                     <label for="dateEntree" class="label" >
-                                        {{"personnel.table.title6" | translate}}
-                                        
+                                        {{"personnel.table.title6" | translate}}                                        
                                     </label>
                                     <input type="date" formControlName="dateEntree" name="dateEntree" id="dateEntree" placeholder="{{'personnel.table.title3' | translate}}" value="" required class="form-control">
                                 </div>
                             </div>
                             <div *ngIf="submitted && f['dateEntree'].errors"  class="alert alert-danger" >
                                 <div *ngIf="f['dateEntree'].errors['required']">{{'personnel.form.text5' | translate}}</div>
-                            </div>
-                            <div *ngIf="verif" class="alert alert-danger" >
-                                <div>{{textError}}</div>
                             </div>
                         </div>
                         <div class="form-group">
