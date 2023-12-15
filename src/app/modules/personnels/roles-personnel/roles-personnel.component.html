@@ -7,7 +7,7 @@
         <div class='card-hearder'>
             <h2 class="modal-title">Personnel: {{ nomPersonnel }}</h2>
         </div>
-        <div *ngIf="verif && test == forme.get('dateEntree')?.value" class="alert alert-danger" >
+        <div *ngIf="verif" class="alert alert-danger" >
             <div>{{textError}}</div>
         </div>
         <form [formGroup]="forme" *ngIf="forme">
@@ -130,7 +130,7 @@
                                         <ng-container matColumnDef="date debut">
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"personnel.table.title6" | translate}}</th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element, let i = index">
-                                                <input type="date" (change)="verificationModif(element, $event, i, 'debut')" [(ngModel)]="element.dateDebut" [ngModelOptions]="{standalone: true}" [value]="element.dateDebut" name="dateEntreeM" id="dateEntreeM" class="form-control modifDate">
+                                                <input type="date" (change)="verificationModificationDansTableau(element, $event, i, 'debut')"  [value]="element.dateDebut" name="dateEntreeM" id="dateEntreeM" class="form-control modifDate">
                                                 
                                             </td>
                                         </ng-container>
@@ -139,7 +139,7 @@
                                         <ng-container matColumnDef="date fin">
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"personnel.table.title11" | translate}}</th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
-                                                <input type="date" (change)="verificationModif(element, $event, i, 'fin')" [(ngModel)]="element.dateFin" [ngModelOptions]="{standalone: true}" [value]="element.dateFin" name="dateFinM" id="dateFinM" class="form-control modifDate">
+                                                <input type="date" (change)="verificationModificationDansTableau(element, $event, i, 'fin')"   [value]="element.dateFin" name="dateFinM" id="dateFinM" class="form-control modifDate">
                                               
                                             </td>
                                         </ng-container>
