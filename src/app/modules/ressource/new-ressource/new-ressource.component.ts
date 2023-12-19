@@ -6,24 +6,27 @@ import { TypeUnite } from 'src/app/modele/type-unite';
 
 import { IRessource } from 'src/app/modele/ressource';
 import { RessourcesService } from 'src/app/services/ressources/ressources.service';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, Observable, scan } from 'rxjs';
 import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
+import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
 
 @Component({
   selector: 'app-new-ressource',
   templateUrl: './new-ressource.component.html',
   styleUrls: ['./new-ressource.component.scss']
 })
+
 export class NewRessourceComponent implements OnInit {
-  ressource : IRessource|undefined;
+  ressource: IRessource | undefined;
   forme: FormGroup;
-  btnLibelle: string="Ajouter";
-  submitted: boolean=false;
-  ressources$:Observable<IFamille>=EMPTY;
+  btnLibelle: string = "Ajouter";
+  submitted: boolean = false;
+  ressources$: Observable<IFamille> = EMPTY;
   myControl = new FormControl<string | IFamille>('');
   filteredOptions: IFamille[] | undefined;
   dataSource = new MatTableDataSource<IFamille>();
@@ -31,10 +34,10 @@ export class NewRessourceComponent implements OnInit {
     id: '',
     libelle: '',
     description: '',
-    etat:false
+    etat: false
   };
 
-  constructor(private formBuilder:FormBuilder,private familleService:FamillesService,private ressourceService:RessourcesService,private serviceRessource:RessourcesService,private serviceFamille:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private formBuilder: FormBuilder, private dataDocumentCodebarre: DonneesEchangeService, private barService: ModalCodebarreService, private familleService: FamillesService, private ressourceService: RessourcesService, private serviceRessource: RessourcesService, private serviceFamille: FamillesService, private router: Router, private infosPath: ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
@@ -42,37 +45,43 @@ export class NewRessourceComponent implements OnInit {
       unite: ['', [Validators.required]],
       prix: ['', [Validators.required]],
       famille: [''],
-      caracteristique:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
+      caracteristique: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      scanBarcode: ['']
+
     })
+
+    console.log(this.forme);
+
   };
+  scan_val: string | undefined;
 
   ngOnInit(): void {
+    this.barService.getCode().subscribe(dt => this.scan_val = dt)
     this.getAllFamilles().subscribe(valeurs => {
       this.dataSource.data = valeurs;
     });
     this.myControl.valueChanges.subscribe(
       value => {
         const libelle = typeof value === 'string' ? value : value?.libelle;
-        if(libelle != undefined && libelle?.length >0){
+        if (libelle != undefined && libelle?.length > 0) {
           this.serviceFamille.getFamillesByLibelle(libelle.toLowerCase() as string).subscribe(
             reponse => {
               this.filteredOptions = reponse;
             }
           )
         }
-        else{
+        else {
           this.filteredOptions = [];
         }
 
       }
     );
     let idRessource = this.infosPath.snapshot.paramMap.get('idRessource');
-    if((idRessource != null) && idRessource!==''){
-      this.btnLibelle="Modifier";
-      this.ressourceService.getRessourceById(idRessource).subscribe(x =>
-        {
-          this.ressource = x; console.log(this.ressource);
-          this.ressource.id = idRessource!,
+    if ((idRessource != null) && idRessource !== '') {
+      this.btnLibelle = "Modifier";
+      this.ressourceService.getRessourceById(idRessource).subscribe(x => {
+        this.ressource = x; console.log(this.ressource);
+        this.ressource.id = idRessource!,
           this.forme.setValue({
             libelle: this.ressource?.libelle,
             etat: this.ressource.etat,
@@ -80,39 +89,48 @@ export class NewRessourceComponent implements OnInit {
             unite: this.ressource.unite,
             prix: this.ressource.prix,
             famille: this.ressource.famille,
-            caracteristique:this.ressource.caracteristique,
+            caracteristique: this.ressource.caracteristique,
           })
       });
+      this.barService.setCode(this.ressource?.scan || "empty")
     }
   }
-  get f(){
+  get f() {
     return this.forme.controls;
   }
 
-  getIdFamille(id_famille : string){
+  getIdFamille(id_famille: string) {
 
     this.serviceFamille.getFamilleById(id_famille).subscribe(
-      famille =>{
+      famille => {
         this.familleDeRessource = famille
       }
     )
   }
 
-  onSubmit(ressourceInput:any){
-    this.submitted=true;
-    if(this.forme.invalid) return;
-    let ressourceTemp : IRessource={
+  onSubmit(ressourceInput: any) {
+    this.submitted = true;
+
+    console.log(ressourceInput);
+
+    if (this.forme.invalid) return;
+    let ressourceTemp: IRessource = {
       id: uuidv4(),
       libelle: ressourceInput.libelle,
       etat: ressourceInput.etat,
       quantite: ressourceInput.quantite,
       unite: ressourceInput.unite,
       prix: ressourceInput.prix,
-      famille:ressourceInput.famille,
-      caracteristique:ressourceInput.caracteristique,
+      famille: ressourceInput.famille,
+      caracteristique: ressourceInput.caracteristique,
+      scan: this.scan_val,
     }
 
-    if(this.ressource != undefined){
+    this.barService.clearCode()
+    console.log("#####", ressourceTemp);
+
+
+    if (this.ressource != undefined) {
       ressourceTemp.id = this.ressource.id
     }
     ressourceTemp.famille = this.familleDeRessource
@@ -121,20 +139,20 @@ export class NewRessourceComponent implements OnInit {
       object => {
         this.router.navigate(['list-ressources']);
       },
-      error =>{
+      error => {
         console.log(error)
       }
     )
   }
-  private getAllFamilles(){
+  private getAllFamilles() {
     return this.serviceFamille.getAllFamilles();
   }
   displayFn(famille: IFamille): string {
     return famille && famille.libelle ? famille.libelle : '';
   }
-  public rechercherListingFamille(option: IFamille){
+  public rechercherListingFamille(option: IFamille) {
     this.serviceFamille.getFamillesByLibelle(option.libelle.toLowerCase()).subscribe(
-        valeurs => {this.dataSource.data = valeurs;}
+      valeurs => { this.dataSource.data = valeurs; }
     )
   }
 }

@@ -6,7 +6,7 @@ import { NewRessourceComponent } from './new-ressource/new-ressource.component';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatFormFieldModule } from '@angular/material/form-field';
+//import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -15,8 +15,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ListRessourcesComponent } from './list-ressources/list-ressources.component';
-
-
+import { ModalCodebarreComponent } from '../shared/modal-codebarre/modal-codebarre.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -24,15 +24,16 @@ import { ListRessourcesComponent } from './list-ressources/list-ressources.compo
     NewRessourceComponent,
     ListRessourcesComponent,
   ],
+  exports:[NewRessourceComponent, ListRessourcesComponent],
   imports: [
     CommonModule,
     RessourceRoutingModule,
-
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
-    MatFormFieldModule,
+    //MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,

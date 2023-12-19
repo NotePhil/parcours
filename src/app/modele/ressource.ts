@@ -1,3 +1,4 @@
+import { ModalCodebarreService } from "../modules/shared/modal-codebarre/modal-codebarre.service";
 import { IDistributeur } from "./distributeur";
 import { IFamille } from "./famille";
 import { Unites } from "./unites";
@@ -12,6 +13,7 @@ export interface IRessource {
     unite:Unites,
     famille:IFamille,
     caracteristique:string,
+    scan?: string,
    /* dateCreation:Date,
     dateModification:Date,*/
 }

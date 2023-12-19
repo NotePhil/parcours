@@ -1,0 +1,9 @@
+<div class="modal-scan">
+    <input type="button" (click)="toggleScanner()" name="scan" value="scan">
+    <div [ngClass]="{'modal-overlay-active':isScanning, 'modal-overlay-dorm': !isScanning}" (click)="toggleScanner()">
+        <button class="close-button" (click)="toggleScanner()">Close</button>
+        <div class="modal-wrap">
+            <video #video class="modal-vid"></video>
+        </div>
+    </div>
+</div>

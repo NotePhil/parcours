@@ -34,6 +34,9 @@ import { CommonModule } from '@angular/common';
 import { DistributeurModule } from './modules/distributeur/distributeur.module';
 import { RoleModule } from './modules/role/role.module';
 import { PersonnelsModule } from './modules/personnels/personnels.module';
+import { SharedModule } from './modules/shared/shared.module';
+
+
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, MenuComponent],
@@ -77,6 +80,7 @@ import { PersonnelsModule } from './modules/personnels/personnels.module';
     MatToolbarModule,
     MatSlideToggleModule,
     ExemplaireDocumentModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],
