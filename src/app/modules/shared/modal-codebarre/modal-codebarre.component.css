@@ -3,9 +3,10 @@
   flex: 3;
   flex-grow: 9;
   flex-shrink: 0;
-  min-width: 400px;
-  margin-left: auto;
+  min-width: 50px;
+  margin-left: 25px;
   min-height: 40px;
+  margin-top: 14px;
 }
 
 .vid {

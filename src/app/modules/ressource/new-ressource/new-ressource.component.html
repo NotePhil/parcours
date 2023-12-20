@@ -103,10 +103,7 @@
                           {{'ressource.table.title9' | translate}}
                         </label>
                         <app-modal-codebarre></app-modal-codebarre>
-                        <input type="text" readonly name="scanResult" [value]="scan_val"> 
-                      </div>
-                      <div  *ngIf="submitted && f['libelle'].errors"  class="alert alert-danger" >
-                          <div *ngIf="f['libelle'].errors['required']">{{'ressource.form.text1' | translate}}</div>
+                        <input type="text" readonly name="scanResult" [value]="scan_val" class="w-100 align-items-center form-control"> 
                       </div>
                   </div>
               </div>
