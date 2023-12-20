@@ -201,7 +201,6 @@ this.eltsPreco.forEach
       precomvtTemp.precomvtqte.push(valeur.precomvtqte[0])
 
 });
-//console.log (precomvtTemp)
 if (precomvtTemp.precomvtqte.length>1) {
   this.precoMvtService.ajouterPrecomvt(precomvtTemp).subscribe(
     object => {
@@ -324,7 +323,6 @@ reset():void{
   */
   enregistrerValeurPrecomvtqte(precomvtInput:any){
 
-  console.log("enregistrerValeurPrecomvtqte indexModification : " + this.indexModification)
   //sauvegarde des valeurs de precoMvt <=> premier ecran
   if(precomvtInput.libelle != null && precomvtInput.libelle!=""){
     if(this.indexModification==-1) //si vaut -1 alors création
@@ -357,7 +355,6 @@ reset():void{
     this.reset();
 
     this.indexModification = i;
-    console.log("chargerValeurPrecoMvt indexModification : " + this.indexModification)
     let precoTmp = this.eltsPreco[i];
     //l'index 0 correspond toujours au premier écran de precoMvt
     if(i==0){

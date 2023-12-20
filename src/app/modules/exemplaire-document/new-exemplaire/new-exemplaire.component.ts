@@ -23,6 +23,7 @@ import { IMouvement } from 'src/app/modele/mouvement';
 import { ObjetCleValeur } from 'src/app/modele/objet-cle-valeur';
 import { IPrecoMvt } from 'src/app/modele/precomvt';
 import { IRessource } from 'src/app/modele/ressource';
+import { TypeMvt } from 'src/app/modele/type-mvt';
 import { TypeTicket } from 'src/app/modele/type-ticket';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 import { DistributeursService } from 'src/app/services/distributeurs/distributeurs.service';
@@ -52,7 +53,8 @@ export class NewExemplaireComponent implements OnInit {
     mouvements: [],
     affichagePrix: false,
     contientRessources: false,
-    contientDistributeurs: false
+    contientDistributeurs: false,
+    typeMouvement: TypeMvt.Neutre
   };
   
   document: IDocument = {
@@ -66,7 +68,8 @@ export class NewExemplaireComponent implements OnInit {
     preconisations: [],
     affichagePrix: false,
     contientRessources: false,
-    contientDistributeurs: false
+    contientDistributeurs: false,
+    typeMouvement: TypeMvt.Neutre
   };
 
   attribut: IAttributs = {
@@ -132,6 +135,9 @@ export class NewExemplaireComponent implements OnInit {
   distributeur : IDistributeur | undefined;
   modificationDistributeurActive : boolean = false
   indexmodificationDistributeur : number = -1
+  typeNeutre : string = TypeMvt.Neutre
+  typeAjout : string = TypeMvt.Ajout
+  typeReduire : string = TypeMvt.Reduire
 
   constructor(
     private router: Router,
@@ -301,6 +307,7 @@ export class NewExemplaireComponent implements OnInit {
         this.document.affichagePrix = value.affichagePrix
         this.document.contientRessources = value.contientRessources
         this.document.contientDistributeurs = value.contientDistributeurs
+        this.document.typeMouvement = value.typeMouvement
         this.formerEnteteTableauMissions();
       })
   }
@@ -314,8 +321,15 @@ export class NewExemplaireComponent implements OnInit {
       this.displayedRessourcesColumns.push(distributeur)
     }
     if ((this.document.affichagePrix == true)) {
-      let prix : string = "prix"
+      let prix : string = ""
       let montant : string = "montant total"
+      if (this.document.typeMouvement == TypeMvt.Reduire) {
+        prix = "prixDeSortie"
+      } else if (this.document.typeMouvement == TypeMvt.Ajout){
+        prix = "prixEntrée"
+      }else{
+        prix = "prix"
+      }
       this.displayedRessourcesColumns.push(prix)
       this.displayedRessourcesColumns.push(montant)
     }
@@ -502,7 +516,8 @@ export class NewExemplaireComponent implements OnInit {
       etat: this.document.etat,
       affichagePrix: this.document.affichagePrix,
       contientRessources: this.document.contientRessources,
-      contientDistributeurs: this.document.contientDistributeurs
+      contientDistributeurs: this.document.contientDistributeurs,
+      typeMouvement: this.document.typeMouvement
     };
 
     if (this.exemplaire.id != '') {
@@ -517,7 +532,7 @@ export class NewExemplaireComponent implements OnInit {
   }
 
   /**
-   * Methode permettant de récupérer un distributeur dans le template et de l'assicier à 
+   * Methode permettant de récupérer un distributeur dans le template et de l'associer à 
    * une ressource avant de la mettre dans le tablau de mouvement
    * @param distributeur valeur du distributeur récupéré dans l'autocomplate distributeur sur le template
    */
@@ -539,10 +554,17 @@ export class NewExemplaireComponent implements OnInit {
         id: '',
         description: '',
         quantite: option.quantite,
-        prix: option.prixEntree,
+        prix: 0,
         dateCreation: new Date(),
         datePeremption:  new Date(),
         ressource: option
+      }
+      if (this.document.typeMouvement == TypeMvt.Ajout) {
+        mvt.prix = option.prixEntree
+      }else if (this.document.typeMouvement == TypeMvt.Reduire) {
+        mvt.prix = option.prixDeSortie
+      } else {
+        mvt.prix = option.prixEntree
       }
       if (this.distributeurControl.value == undefined || this.distributeurControl.value == '') {
         this.distributeur = undefined

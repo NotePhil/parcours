@@ -224,7 +224,8 @@
       "title18": "visibilité du prix ?",
       "title19": "lier des ressources ?",
       "title20": "visibilité du distributeur ?",
-      "title21": "Sous documents"
+      "title21": "Sous documents",
+      "title22": "type des mouvements"
     },
     "form": {
       "text1": "Le Titre est obligatoire.",
@@ -233,7 +234,9 @@
       "text4": "Les attributs sont obligatoires.",
       "text5": "Si cette case est cochée, la colone du prix sera visible lors de la creation des mouvement d'un exemplaire de ce document",
       "text6": "Si cette case est décochée, il n'y aura pas la possibilité de creer des mouvement lors de la creation d'un exemplaire du document",
-      "text7": "Si cette case est cochée, la colone du distributeur sera visible lors de la creation des mouvement d'un exemplaire de ce document"
+      "text7": "Si cette case est cochée, la colone du distributeur sera visible lors de la creation des mouvement d'un exemplaire de ce document",
+      "text8": "Le type des mouvements effectués sur ce document",
+      "text9": "Le type des mouvements effectués sur ce document est obligatoire"
     },
     "view": {
       "title": "Modele",
@@ -297,7 +300,7 @@
       "title6": "Catégorie",
       "title7": "Caractéristiques",
       "title8": "Ressources",
-      "title9": "Prix de dortie"
+      "title9": "Prix de sortie"
     },
     "form": {
       "text1": "Champ Obligatoire",

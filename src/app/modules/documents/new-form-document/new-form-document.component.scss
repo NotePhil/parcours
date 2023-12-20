@@ -11,10 +11,13 @@
     width: 60%;
 }
 #etat, #affichagePrix, #contientRessources, #contientDistributeurs{
-  border: none;
-  box-shadow: none;
-  height: 20px;
-  padding: 0;
+    height: 20px;
+    padding: 0;
+    input{
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
 }
 .entete{
     background-color: #28a745;

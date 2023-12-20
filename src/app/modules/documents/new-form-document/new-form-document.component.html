@@ -37,10 +37,28 @@
                         <div class="form-group">
                           <div>
                               <div class="champs">
+                                <label for="typeMouvement" class="label" >
+                                    {{"document.table.title22" | translate}}
+                                </label>
+                                <select class="form-control" formControlName="type" title="{{'document.form.text8' | translate}}">
+                                  <option class="label" *ngFor="let typeMouvement of typeMvt" value="{{ typeMouvement }}" >
+                                    {{ typeMouvement }}
+                                  </option>
+                                </select>
+                              </div>
+                          </div>
+                          <div  *ngIf="submitted && f['typeMouvement'].errors"  class="alert alert-danger blockErreur" >
+                              <div *ngIf="f['typeMouvement'].errors['required']">{{'document.form.text9' | translate}}</div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div>
+                              <div class="champs">
                                 <label for="etat" class="label" >
                                     {{"services.form.label2" | translate}}
                                 </label>
-                                <span id="etat" class="form-control">
+                                <span id="etat" class="w-100">
                                     <input type="checkbox" checked value="true" formControlName="etat" name="etat">
                                 </span>
                               </div>
@@ -53,7 +71,7 @@
                                 <label for="affichagePrix" class="label" >
                                     {{"document.table.title18" | translate}}
                                 </label>
-                                <span id="affichagePrix" class="form-control">
+                                <span id="affichagePrix" class="w-100">
                                     <input type="checkbox" checked value="true" formControlName="affichagePrix" name="affichagePrix">
                                 </span>
                               </div>
@@ -66,7 +84,7 @@
                                 <label for="contientRessources" class="contientRessources" >
                                     {{"document.table.title19" | translate}}
                                 </label>
-                                <span id="contientRessources" class="form-control">
+                                <span id="contientRessources" class="w-100">
                                     <input type="checkbox" checked value="true" formControlName="contientRessources" name="contientRessources">
                                 </span>
                               </div>
@@ -79,7 +97,7 @@
                                 <label for="contientDistributeurs" class="contientDistributeurs" >
                                     {{"document.table.title20" | translate}}
                                 </label>
-                                <span id="contientDistributeurs" class="form-control">
+                                <span id="contientDistributeurs" class="w-100">
                                     <input type="checkbox" checked value="true" formControlName="contientDistributeurs" name="contientDistributeurs">
                                 </span>
                               </div>

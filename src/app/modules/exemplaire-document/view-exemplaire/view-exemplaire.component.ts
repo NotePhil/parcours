@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IDocument } from 'src/app/modele/document';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
 import { IMouvement } from 'src/app/modele/mouvement';
+import { TypeMvt } from 'src/app/modele/type-mvt';
+import { Typemvt } from 'src/app/modele/typemvt';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
@@ -28,7 +30,8 @@ export class ViewExemplaireComponent implements OnInit {
     etat: false,
     affichagePrix: false,
     contientRessources: false,
-    contientDistributeurs: false
+    contientDistributeurs: false,
+    typeMouvement: TypeMvt.Neutre
   };
   titre:string='';
   mouvements : IMouvement[] = []

@@ -225,7 +225,8 @@
             "title18": "price visibility ?",
             "title19": "link resources ?",
             "title20": "Distributor visibility ?",
-            "title21": "Paired documents"
+            "title21": "Paired documents",
+            "title22": "Mouvement's nature"
         },
         "form":{
             "text1":"Title is required.",
@@ -234,7 +235,9 @@
             "text4":"Attributs are required.",
             "text5": "If this box is checked, the price column will be visible when creating the movement of a copy of this document",
             "text6": "If this box is unchecked, there will be no possibility of creating movements when creating a copy of the document",
-            "text7": "If this box is checked, the distributor column will be visible when creating the movement of a copy of this document"
+            "text7": "If this box is checked, the distributor column will be visible when creating the movement of a copy of this document",
+            "text8": "Mouvement's nature applied to thid document",
+            "text9": "Mouvement's nature to apply to this document is required"
         },
         "view":{
             "title":"Document's Model",

@@ -73,7 +73,7 @@ export class NewRessourceComponent implements OnInit {
       this.btnLibelle="Modifier";
       this.ressourceService.getRessourceById(idRessource).subscribe(x =>
         {
-          this.ressource = x; console.log(this.ressource);
+          this.ressource = x;
           this.ressource.id = idRessource!,
           this.forme.setValue({
             libelle: this.ressource?.libelle,
@@ -121,13 +121,9 @@ export class NewRessourceComponent implements OnInit {
       ressourceTemp.id = this.ressource.id
     }
     ressourceTemp.famille = this.familleDeRessource
-    console.log('voici la famille de cette ressource : ', ressourceTemp.famille)
     this.ressourceService.ajouterRessource(ressourceTemp).subscribe(
       object => {
         this.router.navigate(['list-ressources']);
-      },
-      error =>{
-        console.log(error)
       }
     )
   }

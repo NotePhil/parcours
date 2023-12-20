@@ -87,9 +87,6 @@ export class NewAttributComponent implements OnInit {
     this.attributService.ajouterAttribut(attributTemp).subscribe(
       object => {
         this.router.navigate(['/list-attributs']);
-      },
-     error =>{
-        console.log(error)
       }
     )
   }

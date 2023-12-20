@@ -20,6 +20,7 @@ import { Unites } from "../modele/unites";
 import { IDistributeur } from "../modele/distributeur";
 import { IRole } from '../modele/role';
 import { IPersonnel } from '../modele/personnel';
+import { TypeMvt } from '../modele/type-mvt';
 
 export class InMemDBService implements InMemoryDbService {
   UnitesLitre = Unites.litre;
@@ -623,6 +624,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Note intervention',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        typeMouvement:TypeMvt.Ajout,
         etat:true,
         affichagePrix:true,
         contientRessources:true,
@@ -1057,6 +1059,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Note intervention',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+            typeMouvement:TypeMvt.Ajout,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -1491,10 +1494,11 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de suivi',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-              etat:true,
-              affichagePrix:true,
-              contientRessources:true,
-              contientDistributeurs:true,
+            typeMouvement:TypeMvt.Ajout,
+            etat:true,
+            affichagePrix:true,
+            contientRessources:true,
+            contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -1922,6 +1926,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de soin',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Neutre,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -2306,6 +2311,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Reduire,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -2859,6 +2865,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'ordonnance',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Neutre,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -3292,6 +3299,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Fiche de suivi',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        typeMouvement:TypeMvt.Ajout,
         etat:false,
         affichagePrix:true,
         contientRessources:false,
@@ -3723,6 +3731,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Fiche de soin',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        typeMouvement:TypeMvt.Neutre,
         etat:true,
         affichagePrix:false,
         contientRessources:true,
@@ -4107,6 +4116,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Note intervention',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+            typeMouvement:TypeMvt.Ajout,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -4541,10 +4551,11 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de suivi',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-              etat:true,
-              affichagePrix:true,
-              contientRessources:true,
-              contientDistributeurs:true,
+            typeMouvement:TypeMvt.Ajout,
+            etat:true,
+            affichagePrix:true,
+            contientRessources:true,
+            contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -4972,6 +4983,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de soin',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Neutre,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -5356,6 +5368,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Reduire,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -5909,6 +5922,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'ordonnance',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Neutre,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -6342,6 +6356,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Formulaire de sortie',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        typeMouvement: TypeMvt.Reduire,
         etat:true,
         affichagePrix:true,
         contientRessources:true,
@@ -6895,6 +6910,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'ordonnance',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        typeMouvement: TypeMvt.Neutre,
         etat:true,
         affichagePrix:false,
         contientRessources:true,
@@ -7326,6 +7342,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de soin',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Neutre,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -7710,6 +7727,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Reduire,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -8263,6 +8281,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'ordonnance',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Neutre,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -8699,6 +8718,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Formulaire de sortie',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        typeMouvement: TypeMvt.Reduire,
         etat:false,
         affichagePrix:true,
         contientRessources:true,
@@ -9450,10 +9470,11 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Note intervention',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-              etat:true,
-              affichagePrix:true,
-              contientRessources:true,
-              contientDistributeurs:true,
+            typeMouvement:TypeMvt.Ajout,
+            etat:true,
+            affichagePrix:true,
+            contientRessources:true,
+            contientDistributeurs:true,
             missions: [
               {
                 id: '1',
@@ -9884,6 +9905,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Reduire,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -10563,6 +10585,7 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'ordonnance',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        typeMouvement: TypeMvt.Neutre,
         etat:false,
         affichagePrix:true,
         contientRessources:true,
@@ -11080,6 +11103,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Fiche de soin',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Neutre,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -11464,6 +11488,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Reduire,
               etat:true,
               affichagePrix:true,
               contientRessources:true,
@@ -12017,6 +12042,7 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'ordonnance',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+              typeMouvement: TypeMvt.Neutre,
               etat:true,
               affichagePrix:true,
               contientRessources:true,

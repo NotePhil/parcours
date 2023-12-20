@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IDocument } from 'src/app/modele/document';
+import { TypeMvt } from 'src/app/modele/type-mvt';
+import { Typemvt } from 'src/app/modele/typemvt';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 
@@ -22,7 +24,8 @@ export class ViewFormDocumentComponent implements OnInit {
     etat: false,
     affichagePrix: false,
     contientRessources: false,
-    contientDistributeurs: false
+    contientDistributeurs: false,
+    typeMouvement: TypeMvt.Neutre
   };
   titre:string='';
   constructor(private router:Router,private dataEnteteMenuService:DonneesEchangeService, private infosPath:ActivatedRoute, private serviceDocument:DocumentService) {}

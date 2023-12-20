@@ -10,6 +10,7 @@ import { Observable, EMPTY } from 'rxjs';
 import { IAfficheDocument } from 'src/app/modele/affiche-document';
 import { IAttributs } from 'src/app/modele/attributs';
 import { IDocument } from 'src/app/modele/document';
+import { TypeMvt } from 'src/app/modele/type-mvt';
 import { DocumentService } from 'src/app/services/documents/document.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
   ELEMENTS_TABLE: IDocument[] = [];
   filteredOptions: IDocument[] | undefined;
 
-  displayedColumns: string[] = ['id', 'titre', 'description', 'etat', 'missions', 'attributs', 'categories', 'preconisations', 'sousDocuments', 'actions'];
+  displayedColumns: string[] = ['id', 'titre', 'description', 'typeMouvement', 'etat', 'missions', 'attributs', 'categories', 'preconisations', 'sousDocuments', 'actions'];
 
   dataSource = new MatTableDataSource<IDocument>(this.ELEMENTS_TABLE);
 
@@ -51,6 +52,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     sousDocuments: [],
     listSousDocuments: '',
     etat: false,
+    typeMouvement: TypeMvt.Neutre,
     affichagePrix: false,
     contientRessources: false,
     contientDistributeurs: false
@@ -70,6 +72,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
             titre: x.titre,
             description: x.description,
             etat: x.etat,
+            typeMouvement: x.typeMouvement,
             affichagePrix: x.affichagePrix,
             contientRessources: x.contientRessources,
             contientDistributeurs: x.contientDistributeurs,
