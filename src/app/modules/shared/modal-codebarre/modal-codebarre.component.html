@@ -1,5 +1,5 @@
 <div class="modal-scan">
-    <input type="button" (click)="toggleScanner()" name="scan" value="scan" class="choix ">
+    <span><i class="fas fa-camera fa-2x" (click)="toggleScanner()"></i></span>
     <div  [ngClass]="{'modal-overlay-active':isScanning, 'modal-overlay-dorm': !isScanning}" (click)="toggleScanner()">
         <button class="close-button" (click)="toggleScanner()">Close</button>
         <div class="modal-wrap" >
