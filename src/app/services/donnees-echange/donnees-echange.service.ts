@@ -9,5 +9,6 @@ export class DonneesEchangeService {
   dataDocumentAttributs : any;
   dataDocumentSousDocuments : any;
   dataEnteteMenu : any;
+  dataDocumentSousExemplaireDocuments : any;
   constructor() { }
 }

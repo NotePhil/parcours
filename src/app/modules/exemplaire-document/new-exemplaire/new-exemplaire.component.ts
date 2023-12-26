@@ -149,7 +149,8 @@ export class NewExemplaireComponent implements OnInit {
     private serviceDocument: DocumentService,
     private _liveAnnouncer: LiveAnnouncer,
     private serviceExemplaire: ExemplaireDocumentService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private donneeExemplaireDocService:DonneesEchangeService
   ) {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
@@ -293,9 +294,29 @@ export class NewExemplaireComponent implements OnInit {
           this.document = document;
           this.totalAttribut = document.attributs.length - 1;
           this.formerEnteteTableauMissions()
+          this.concatMouvementsSousExemplaireDocument()
         });
     }
   }
+
+  /**
+   * 
+   */
+  concatMouvementsSousExemplaireDocument(){
+    let sousExelplaires : IExemplaireDocument[] = this.donneeExemplaireDocService.dataDocumentSousDocuments
+    sousExelplaires.forEach(
+      element => {
+        if (element.mouvements) {
+          element.mouvements.forEach(
+            mvt => {
+              this.ELEMENTS_TABLE_MOUVEMENTS.push(mvt)
+          });
+        }     
+    });
+    this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
+    console.log("hhhhhhhhhhhhh ", this.ELEMENTS_TABLE_MOUVEMENTS)
+  }
+
 /**
  * Methode permettant de former la nouvelle structure du tableau de mouvement de l'exemplaire
  * si les données affiche prix et affiche ressourse sont modifiées dans le document initial 
@@ -321,7 +342,7 @@ export class NewExemplaireComponent implements OnInit {
       this.displayedRessourcesColumns.push(distributeur)
     }
     if ((this.document.affichagePrix == true)) {
-      let prix : string = ""
+      let prix : string = "prix"
       let montant : string = "montant total"
       if (this.document.typeMouvement == TypeMvt.Reduire) {
         prix = "prixDeSortie"
@@ -559,6 +580,7 @@ export class NewExemplaireComponent implements OnInit {
         datePeremption:  new Date(),
         ressource: option
       }
+
       if (this.document.typeMouvement == TypeMvt.Ajout) {
         mvt.prix = option.prixEntree
       }else if (this.document.typeMouvement == TypeMvt.Reduire) {
@@ -566,12 +588,15 @@ export class NewExemplaireComponent implements OnInit {
       } else {
         mvt.prix = option.prixEntree
       }
+
       if (this.distributeurControl.value == undefined || this.distributeurControl.value == '') {
         this.distributeur = undefined
       }
+
       if(this.distributeur != undefined){
         mvt.distributeur = this.distributeur
       }
+
       this.ELEMENTS_TABLE_MOUVEMENTS.unshift(mvt)
       this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS
     }
