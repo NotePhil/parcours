@@ -68,8 +68,12 @@
                         <label  for="famille"  class="label" >
                           {{'ressource.table.title6' | translate}} <sup>*</sup>
                         </label>
-                            <input  type="text" matInput  aria-label="famille" [formControl]="myControl" name="famille" id="famille" placeholder="Entrer la categorie" class="w-100 form-control">
-                        
+                            <input  type="text" matInput [matAutocomplete]="auto" formControlName= "famille" aria-label="famille" [formControl]="myControl" name="famille" id="famille" placeholder="Entrer la categorie" class="w-100 form-control">
+                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+                              <mat-option *ngFor="let option of filteredOptions" [value]="option" (click)="getIdFamille(option.id)" (onSelectionChange)="rechercherListingFamille(option)">
+                                  {{option.libelle}}
+                              </mat-option>
+                              </mat-autocomplete>
                     </div>
                     <div  *ngIf="submitted && f['libelle'].errors"  class="alert alert-danger" >
                       <div *ngIf="f['libelle'].errors['required']">{{'ressource.form.text9' | translate}}</div>
@@ -97,7 +101,7 @@
                           {{'ressource.table.title9' | translate}}
                         </label>
                         <app-modal-codebarre></app-modal-codebarre>
-                        <input type="text" readonly name="scanResult" [value]="scan_val" class="w-100 align-items-center form-control"> 
+                        <input type="text" readonly name="scanBarcode" formControlName="scanBarcode" [value]="scan_val" class="w-100 align-items-center form-control"> 
                       </div>
                   </div>
               </div>

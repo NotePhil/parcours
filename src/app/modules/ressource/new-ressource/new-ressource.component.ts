@@ -90,9 +90,9 @@ export class NewRessourceComponent implements OnInit {
             prix: this.ressource.prix,
             famille: this.ressource.famille,
             caracteristique: this.ressource.caracteristique,
+            scanBarcode: this.ressource?.scanBarCode
           })
       });
-      this.barService.setCode(this.ressource?.scan || "empty")
     }
   }
   get f() {
@@ -123,7 +123,7 @@ export class NewRessourceComponent implements OnInit {
       prix: ressourceInput.prix,
       famille: ressourceInput.famille,
       caracteristique: ressourceInput.caracteristique,
-      scan: this.scan_val,
+      scanBarCode:this.scan_val,
     }
 
     this.barService.clearCode()

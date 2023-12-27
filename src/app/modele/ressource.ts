@@ -13,7 +13,7 @@ export interface IRessource {
     unite:Unites,
     famille:IFamille,
     caracteristique:string,
-    scan?: string,
+    scanBarCode?: string,
    /* dateCreation:Date,
     dateModification:Date,*/
 }

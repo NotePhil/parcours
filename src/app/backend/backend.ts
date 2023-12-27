@@ -4312,6 +4312,7 @@ export class InMemDBService implements InMemoryDbService {
         prix: 1000,
         caracteristique: 'souple',
         famille: { id: '1', libelle: 'trans', description: 'sang', etat: true },
+        scanBarCode: 'hello'
       },
       {
         id: '2',
@@ -4327,6 +4328,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'nouveau-né',
           etat: false,
         },
+        scanBarCode: 'hello'
       },
       {
         id: '2',
@@ -4342,6 +4344,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'enfant',
           etat: true,
         },
+        scanBarCode: 'hello'
       },
       {
         id: '3',
@@ -4357,6 +4360,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'nouveau-né',
           etat: false,
         },
+        scanBarCode: 'hello'
       },
       {
         id: '4',
@@ -4372,6 +4376,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'sang',
           etat: true,
         },
+        scanBarCode: 'hello'
       },
       {
         id: '5',
@@ -4387,6 +4392,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'enfant',
           etat: true,
         },
+        scanBarCode: 'hello'
       },
     ];
     let famille: IFamille[] = [
