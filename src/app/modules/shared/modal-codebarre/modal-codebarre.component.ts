@@ -65,10 +65,10 @@ export class ModalCodebarreComponent {
   }
 
 
-  handleScanResult(data: string): void {
+  handleScanResult(scannedData: string): void {
     //this.scannedData = data;
-    this.barService.setCode(data)
-    console.log("Scaaaaan",data);
+    this.barService.setCode(scannedData)
+    console.log("Scaaaaan",scannedData);
     
   }
 

@@ -37,7 +37,7 @@ export class NewRessourceComponent implements OnInit {
     etat: false
   };
 
-  constructor(private formBuilder: FormBuilder, private dataDocumentCodebarre: DonneesEchangeService, private barService: ModalCodebarreService, private familleService: FamillesService, private ressourceService: RessourcesService, private serviceRessource: RessourcesService, private serviceFamille: FamillesService, private router: Router, private infosPath: ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private fb: FormBuilder, private formBuilder: FormBuilder, private dataDocumentCodebarre: DonneesEchangeService, private barService: ModalCodebarreService, private familleService: FamillesService, private ressourceService: RessourcesService, private serviceRessource: RessourcesService, private serviceFamille: FamillesService, private router: Router, private infosPath: ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
@@ -46,17 +46,18 @@ export class NewRessourceComponent implements OnInit {
       prix: ['', [Validators.required]],
       famille: [''],
       caracteristique: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      scanBarcode: ['']
+      scanBarcode: [''],
 
     })
 
     console.log(this.forme);
 
   };
-  scan_val: string | undefined;
+  scan_val: any | undefined;
 
   ngOnInit(): void {
-    this.barService.getCode().subscribe(dt => this.scan_val = dt)
+    this.barService.getCode().subscribe(dt => {this.scan_val = dt;
+    this.forme.get('scanBarcode')?.setValue(dt)});
     this.getAllFamilles().subscribe(valeurs => {
       this.dataSource.data = valeurs;
     });
@@ -90,11 +91,12 @@ export class NewRessourceComponent implements OnInit {
             prix: this.ressource.prix,
             famille: this.ressource.famille,
             caracteristique: this.ressource.caracteristique,
-            scanBarcode: this.ressource?.scanBarCode
+            scanBarcode: this.ressource?.scanBarCode,
           })
       });
     }
   }
+
   get f() {
     return this.forme.controls;
   }
@@ -123,10 +125,9 @@ export class NewRessourceComponent implements OnInit {
       prix: ressourceInput.prix,
       famille: ressourceInput.famille,
       caracteristique: ressourceInput.caracteristique,
-      scanBarCode:this.scan_val,
+      scanBarCode:this.forme.get('scanBarcode')?.value,
     }
 
-    this.barService.clearCode()
     console.log("#####", ressourceTemp);
 
 
