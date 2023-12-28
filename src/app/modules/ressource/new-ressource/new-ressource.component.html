@@ -51,7 +51,7 @@
                             </label>
                             <mat-form-field class="example-full-width1" appearance="fill">
                               <mat-select  formControlName="unite"  name="unite" [compareWith]="compareItem">
-                                <mat-option  *ngFor="let membre of unites$ |async" [value]="membre">{{membre.unite}}</mat-option>
+                                <mat-option  *ngFor="let membre of unites" [value]="membre">{{membre}}</mat-option>
                               </mat-select>
                             </mat-form-field>
                         </div>

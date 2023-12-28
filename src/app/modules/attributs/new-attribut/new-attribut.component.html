@@ -56,11 +56,7 @@
                                   {{"attributs.table.title6" | translate}}<span style="color: red;" aria-label="required">*</span>
                               </label>
                               <select  class="form-control" formControlName="type" name="type" id="type">
-                                  <option value="{{typeInt}}" >{{typeInt}}</option>
-                                  <option value="{{typeString}}" >{{typeString}}</option>
-                                  <option value="{{typeRadio}}" >{{typeRadio}}</option>
-                                  <option value="{{typeBoolean}}" >{{typeBoolean}}</option>
-                                  <option value="{{typeDate}}" >{{typeDate}}</option>
+                                  <option *ngFor="let item of typeAttribut" value="{{item}}">{{item}}</option>
                               </select>
                           </div>
                           <div  *ngIf="submitted && f['type'].errors"  class="alert alert-danger" >

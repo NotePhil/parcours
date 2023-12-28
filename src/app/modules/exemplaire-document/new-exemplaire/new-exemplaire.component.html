@@ -17,8 +17,8 @@
                     <div class="contentBlock">
                         <div formArrayName="_exemplaireDocument" class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories; let i = index" [ngClass]="{'inputSpecial':(attribut.type == TypeRadio) || (attribut.type == TypeBoolean)}">
                             <label [for]="attributParCategorie.attribut.id" class="form-label">{{attributParCategorie.attribut.titre}}<span *ngIf="attributParCategorie.obligatoire == true"> *</span></label>
-                            <input  *ngIf="(attributParCategorie.attribut.type != 'textarea') && (attributParCategorie.attribut.type != TypeRadio) && (attributParCategorie.attribut.type != TypeBoolean)" [formControlName]="incrementeCompteur(compteur,attributParCategorie)" [type]="attributParCategorie.attribut.type" class="form-control" placeholder="{{'lists.text4' | translate}}">
-                            <textarea *ngIf="attributParCategorie.attribut.type == 'textarea'" class="form-control"  [formControlName]="incrementeCompteur(compteur,attributParCategorie)" placeholder="{{'lists.text4' | translate}}"></textarea>
+                            <input  *ngIf="(attributParCategorie.attribut.type != typeTextArea) && (attributParCategorie.attribut.type != TypeRadio) && (attributParCategorie.attribut.type != TypeBoolean)" [formControlName]="incrementeCompteur(compteur,attributParCategorie)" [type]="attributParCategorie.attribut.type" class="form-control" placeholder="{{'lists.text4' | translate}}">
+                            <textarea *ngIf="attributParCategorie.attribut.type == typeTextArea" class="form-control"  [formControlName]="incrementeCompteur(compteur,attributParCategorie)" placeholder="{{'lists.text4' | translate}}"></textarea>
                             <select class="form-control" *ngIf="(attributParCategorie.attribut.type == TypeRadio) || (attributParCategorie.attribut.type == TypeBoolean)" [formControlName]="incrementeCompteur(compteur,attributParCategorie)">
                                 <option value="{{val.trim()}}" *ngFor="let val of attributParCategorie.attribut.valeursParDefaut.trim().split(',')" >{{val}}</option>
                             </select>
@@ -32,8 +32,8 @@
                     <div formArrayName="_controlsSupprime" *ngFor="let attributSupprime of objetCleValeurSupprime" class="inputBlock" [ngClass]="{'inputSpecial':(attributSupprime.key.type == TypeRadio) || (attributSupprime.key.type == TypeBoolean)}">
                         <label class="form-label">{{attributSupprime.key.titre}}</label>
 
-                        <input *ngIf="(attributSupprime.key.type != 'textarea') && (attributSupprime.key.type != TypeRadio) && (attributSupprime.key.type != TypeBoolean)" [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)" [type]="attributSupprime.key.type" class="form-control" placeholder="{{'lists.text4' | translate}}" [required]="true">
-                        <textarea *ngIf="attributSupprime.key.type == 'textarea'" class="form-control"  [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)" placeholder="{{'lists.text4' | translate}}"></textarea>
+                        <input *ngIf="(attributSupprime.key.type != typeTextArea) && (attributSupprime.key.type != TypeRadio) && (attributSupprime.key.type != TypeBoolean)" [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)" [type]="attributSupprime.key.type" class="form-control" placeholder="{{'lists.text4' | translate}}" [required]="true">
+                        <textarea *ngIf="attributSupprime.key.type == typeTextArea" class="form-control"  [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)" placeholder="{{'lists.text4' | translate}}"></textarea>
                         <select class="form-control" *ngIf="(attributSupprime.key.type == TypeRadio) || (attributSupprime.key.type == TypeBoolean)" [formControlName]="incrementeNumerateur(numerateur,attributSupprime.key)">
                             <option value="{{val.trim()}}" *ngFor="let val of attributSupprime.key.valeursParDefaut.trim().split(',')" >{{val}}</option>
                         </select>

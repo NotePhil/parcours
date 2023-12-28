@@ -10,6 +10,7 @@ import { EMPTY, Observable } from 'rxjs';
 import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
+import { TypeUnite } from 'src/app/modele/type-unite';
 
 @Component({
   selector: 'app-new-ressource',
@@ -21,7 +22,7 @@ export class NewRessourceComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string="Ajouter";
   submitted: boolean=false;
-  unites$: Observable<IRessource[]>=EMPTY;
+  unites : String[] = [];
   IdRessource:string= ""
   filteredOptions: IFamille[] | undefined;
   titre:string=''
@@ -72,7 +73,7 @@ export class NewRessourceComponent implements OnInit {
           })
       });
     }
-    this.unites$ = this.getAllRessources();
+    this.familleService.getTypeUnite().subscribe(u=>{ this.unites = u.type});
     this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
   get f(){

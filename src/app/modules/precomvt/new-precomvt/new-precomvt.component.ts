@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {  FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import {v4 as uuidv4} from 'uuid';
 import { elementAt, EMPTY, map, Observable, single } from 'rxjs';
 
@@ -15,7 +13,6 @@ import { RessourcesService } from 'src/app/services/ressources/ressources.servic
 import { FamillesService } from 'src/app/services/familles/familles.service';
 import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
 import { TypeMvt } from 'src/app/modele/type-mvt';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { IDistributeur } from 'src/app/modele/distributeur';
 import { DistributeursService } from 'src/app/services/distributeurs/distributeurs.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
@@ -39,7 +36,7 @@ export class NewPrecomvtComponent implements OnInit {
   filteredOptions: IRessource[] | undefined;
   distributeurs$:Observable<IDistributeur[]>=EMPTY;
   familles$:Observable<IFamille[]>=EMPTY;
-  typeMvt: string[] = [TypeMvt.Ajout,TypeMvt.Neutre,TypeMvt.Reduire];
+  typeMvt: string[] = [];
   //famille = new FormControl<string | IFamille[]>('');
 
  //représente l'ensemble des éléments de précoMvtQte en cours de création
@@ -60,7 +57,7 @@ export class NewPrecomvtComponent implements OnInit {
   //settings: { idField: string; textField: string; allowSearchFilter: boolean; } | undefined;
   titre:string='';
   btnLibelle: string="Ajouter";
-  constructor(private formBuilder:FormBuilder,private serviceFamille:FamillesService,private dataEnteteMenuService:DonneesEchangeService,private serviceDistributeur:DistributeursService,private ressourceService:RessourcesService ,private precoMvtService:PrecoMvtsService,private serviceRessource:RessourcesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private formBuilder:FormBuilder,private serviceFamille:FamillesService,private dataEnteteMenuService:DonneesEchangeService,private serviceDistributeur:DistributeursService, private precoMvtService:PrecoMvtsService,private serviceRessource:RessourcesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       id: new FormControl(),
       libelle: new FormControl(),
@@ -74,6 +71,7 @@ export class NewPrecomvtComponent implements OnInit {
       //fournisseur:new FormControl(),
       distributeur:new FormControl<string | IDistributeur[]>(''),
     });
+    this.dataEnteteMenuService.getTypeMvt().subscribe(x=>{this.typeMvt = x.type});
  }
 
   ngOnInit(): void {
