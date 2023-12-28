@@ -219,6 +219,17 @@ th{
         width: 50px;
     }
 }
+.groupChamps{
+    display: flex;
+    width: 100%;
+    .form-group{
+        width: 60%;
+    }
+    .champs{
+        margin: 2px 0;
+        width: 100%;
+    }
+}
 @media screen and (max-width: 1200px) {
     .title h2{
         font-size: 15px;
