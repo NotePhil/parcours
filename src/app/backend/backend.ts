@@ -2466,7 +2466,8 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       quantite: 10,
                       unite: this.UnitesLitre,
-                      prix: 1000,
+                      prixEntree: 1000,
+                      prixDeSortie: 1050,
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
@@ -2511,7 +2512,8 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       quantite: 30,
                       unite: this.UnitesLitre,
-                      prix: 3000,
+                      prixEntree: 3000,
+                      prixDeSortie: 3050,
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
@@ -2534,7 +2536,8 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         quantite: 20,
                         unite: this.UnitesLitre,
-                        prix: 2000,
+                        prixEntree: 2000,
+                        prixDeSortie: 2050,
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -2607,7 +2610,8 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       quantite: 10,
                       unite: this.UnitesLitre,
-                      prix: 1000,
+                      prixEntree: 1000,
+                      prixDeSortie: 1050,
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
@@ -2652,10 +2656,11 @@ export class InMemDBService implements InMemoryDbService {
             titre: 'Formulaire de sortie',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-              etat:true,
-              affichagePrix:true,
-              contientRessources:true,
-              contientDistributeurs:true,
+            etat:true,
+            affichagePrix:true,
+            contientRessources:true,
+            contientDistributeurs:true,
+            typeMouvement:TypeMvt.Ajout,
             missions: [
               {
                 id: '2',
