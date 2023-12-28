@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
 import {MatRadioModule} from '@angular/material/radio';
 import { ListPersonnelsComponent } from './list-personnels/list-personnels.component';
 import { RolesPersonnelComponent } from './roles-personnel/roles-personnel.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { RolesPersonnelComponent } from './roles-personnel/roles-personnel.compo
     MatSortModule,
     TicketsModule,
     MatRadioModule,
-    
+    SharedModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,

@@ -8,5 +8,7 @@ export class DonneesEchangeService {
   dataDocumentPrecoMvts : any;
   dataDocumentAttributs : any;
   dataDocumentSousDocuments : any;
+  dataEnteteMenu : any;
+  dataDocumentSousDocuments : any;
   constructor() { }
 }
