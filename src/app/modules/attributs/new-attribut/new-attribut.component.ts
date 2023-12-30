@@ -33,9 +33,8 @@ export class NewAttributComponent implements OnInit {
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
-      obligatoire: [true],
       type: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      valeursParDefaut:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      valeursParDefaut:[''],
     })
   }
 
@@ -50,16 +49,13 @@ export class NewAttributComponent implements OnInit {
       this.attributService.getAttributById(idAttribut).subscribe(x =>
         {
           this.attribut = x;
-          if(!x.obligatoire)
-            this.attribut.obligatoire=true;
           this.attribut.id = idAttribut!,
           this.forme.setValue({
             titre: this.attribut.titre,
             description: this.attribut.description,
             etat: this.attribut.etat,
             type: this.attribut.type,
-            valeursParDefaut:this.attribut.valeursParDefaut,
-            obligatoire: this.attribut.obligatoire
+            valeursParDefaut:this.attribut.valeursParDefaut
           })
       });
     }
@@ -81,8 +77,7 @@ export class NewAttributComponent implements OnInit {
       description: attributInput.description,
       etat: attributInput.etat,
       type: attributInput.type,
-      valeursParDefaut: attributInput.valeursParDefaut,
-      obligatoire: attributInput.obligatoire
+      valeursParDefaut: attributInput.valeursParDefaut
     }
 
     if(this.attribut != undefined){

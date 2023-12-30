@@ -26,18 +26,15 @@ import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-
 export class NewPrecomvtComponent implements OnInit {
 
   LIBELLE_PRECO = "Libelle : ";
-  //precomvt : IPrecoMvt|undefined;
   forme: FormGroup;
   submitted: boolean=false;
   //permet d'identifier la section du formulaire à ouvrir
   steps:any =1;
 
- // myControl = new FormControl<string | IRessource>('');
   filteredOptions: IRessource[] | undefined;
   distributeurs$:Observable<IDistributeur[]>=EMPTY;
   familles$:Observable<IFamille[]>=EMPTY;
   typeMvt: string[] = [];
-  //famille = new FormControl<string | IFamille[]>('');
 
  //représente l'ensemble des éléments de précoMvtQte en cours de création
  eltsPreco : IPrecoMvt[] = [];
@@ -54,7 +51,6 @@ export class NewPrecomvtComponent implements OnInit {
  @ViewChild(FormGroupDirective)
 
   formDirective!: FormGroupDirective;
-  //settings: { idField: string; textField: string; allowSearchFilter: boolean; } | undefined;
   titre:string='';
   btnLibelle: string="Ajouter";
   constructor(private formBuilder:FormBuilder,private serviceFamille:FamillesService,private dataEnteteMenuService:DonneesEchangeService,private serviceDistributeur:DistributeursService, private precoMvtService:PrecoMvtsService,private serviceRessource:RessourcesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
@@ -62,13 +58,13 @@ export class NewPrecomvtComponent implements OnInit {
       id: new FormControl(),
       libelle: new FormControl(),
       type: new FormControl (),
+      etat: new FormControl (),
       ressource: new FormControl<string | IRessource>(''),
       quantiteMin:new FormControl(),
       quantiteMax:new FormControl(),
       montantMin:new FormControl(),
       montantMax:new FormControl(),
       famille :  new FormControl<string | IFamille[]>(''),
-      //fournisseur:new FormControl(),
       distributeur:new FormControl<string | IDistributeur[]>(''),
     });
     this.dataEnteteMenuService.getTypeMvt().subscribe(x=>{this.typeMvt = x.type});
@@ -114,6 +110,7 @@ export class NewPrecomvtComponent implements OnInit {
           };
           let precoMvtTemp : IPrecoMvt ={
             id: PrecoMvtCourant.id,
+            etat:PrecoMvtCourant.etat,
             libelle: this.LIBELLE_PRECO + PrecoMvtCourant.libelle,
             type: PrecoMvtCourant.type,
             precomvtqte:[]
@@ -127,7 +124,8 @@ export class NewPrecomvtComponent implements OnInit {
           let precoMvtTemp : IPrecoMvt ={
             id: "",
             libelle: "",
-              type: '',
+            etat:true,
+            type: '',
             precomvtqte:[]
            };
 
@@ -190,6 +188,7 @@ private getAllDistributeurs(){
 
    let  precomvtTemp : IPrecoMvt={
     id:this.eltsPreco[0].id,
+    etat:this.eltsPreco[0].etat,
     libelle:this.eltsPreco[0].libelle.replace(this.LIBELLE_PRECO,''),
     type:this.eltsPreco[0].type,
     precomvtqte:[],
@@ -364,6 +363,7 @@ reset():void{
       this.steps = 1;
       this.forme.controls["libelle"].setValue(precoTmp.libelle.replace(this.LIBELLE_PRECO,''));
       this.forme.controls["type"].setValue(precoTmp.type);
+      this.forme.controls["etat"].setValue(precoTmp.etat);
       //ajouter un unique champ caché id pour conserver l'id en cas modification
       this.forme.controls["id"].setValue(precoTmp.id);
     }
@@ -376,8 +376,6 @@ reset():void{
       this.forme.controls["montantMin"].setValue(precoTmp.precomvtqte[0].montantMin);
       this.forme.controls["quantiteMax"].setValue(precoTmp.precomvtqte[0].quantiteMax);
       this.forme.controls["quantiteMin"].setValue(precoTmp.precomvtqte[0].quantiteMin);
-      //TODO bug de l'affichage au premier clic. C'est le second qui affiche la bonne valeur
-      ///this.forme.controls["fournisseur"].setValue(precoTmp.precomvtqte[0].fournisseur);
       this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
     }
     else if(precoTmp.precomvtqte[0].famille!= undefined && precoTmp.precomvtqte[0].famille!=null && precoTmp.precomvtqte[0].famille.length>0){
@@ -389,8 +387,6 @@ reset():void{
       this.forme.controls["montantMin"].setValue(precoTmp.precomvtqte[0].montantMin);
       this.forme.controls["quantiteMax"].setValue(precoTmp.precomvtqte[0].quantiteMax);
       this.forme.controls["quantiteMin"].setValue(precoTmp.precomvtqte[0].quantiteMin);
-      //TODO bug de l'affichage au premier clic. C'est le second qui affiche la bonne valeur
-      //this.forme.controls["fournisseur"].setValue(precoTmp.precomvtqte[0].fournisseur);
       this.forme.controls["distributeur"].setValue(precoTmp.precomvtqte[0].distributeur);
     }
 
@@ -409,18 +405,12 @@ reset():void{
       montantMax: precomvtInput.montantMax,
       montantMin: precomvtInput.montantMin,
       id:"",
-      //id: precomvtInput.id,
-      //fournisseur: precomvtInput.fournisseur,
       distributeur: precomvtInput.distributeur
     }
     let libel = this.mettre3PointsdeSuspension(precomvtInput.famille);
-   /* for (let index = 0; index < precomvtInput.famille.length; index++) {
-      const element = precomvtInput.famille[index];
-      libel += element.libelle + ", "
-    }*/
     let precomvtTemp : IPrecoMvt={
       id: uuidv4(),
-      //id:"",
+      etat: precomvtInput.etat,
       libelle: libel,
       type: precomvtInput.TypeMvt,
       precomvtqte:[]
@@ -460,15 +450,12 @@ reset():void{
       quantiteMin: precomvtInput.quantiteMin,
       montantMax: precomvtInput.montantMax,
       montantMin: precomvtInput.montantMin,
-       //id:"",
       id: precomvtInput.id,
-      //fournisseur: precomvtInput.fournisseur,
       distributeur: precomvtInput.distributeur
     };
     let precomvtTemp : IPrecoMvt={
-      //id: uuidv4(),
-       //id:' ',
       id: precomvtInput.id,
+      etat: precomvtInput.etat,
       libelle: "Ressource : " + precomvtInput.ressource.libelle,
       type: precomvtInput.TypeMvt,
       precomvtqte:[]
@@ -490,9 +477,7 @@ reset():void{
       quantiteMin: 0,
       montantMax: 0,
       montantMin: 0,
-      //id:"",
       id: precomvtInput.id,
-     // fournisseur: "DCD",
       distributeur: precomvtInput.distributeur
     };
     let idModif =  uuidv4();
@@ -500,6 +485,7 @@ reset():void{
        idModif = precomvtInput.id;
     let precomvtTemp : IPrecoMvt={
       id: idModif,
+      etat: precomvtInput.etat,
       libelle: this.LIBELLE_PRECO + precomvtInput.libelle,
       type: precomvtInput.type,
       precomvtqte:[]

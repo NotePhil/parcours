@@ -16,6 +16,7 @@ export class ViewPrecomvtComponent implements OnInit {
 
   precoMvt:IPrecoMvt={
     id: '',
+    etat:true,
     libelle:'',
      type: '',
     precomvtqte: [],

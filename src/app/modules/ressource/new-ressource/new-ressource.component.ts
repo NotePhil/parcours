@@ -108,11 +108,13 @@ export class NewRessourceComponent implements OnInit {
   displayFn(famille: IFamille): string {
     return famille && famille.libelle ? famille.libelle : '';
   }
+  
   private getAllRessources(){
     return this.serviceRessource.getAllRessources();
   }
-  compareItem(unite1: IRessource, unite2: IRessource) {
-    return unite2 && unite1 ? unite2.id === unite1.id : unite2 === unite1;
+
+  compareItem(unite1: string, unite2: string) {
+    return unite2 && unite1 ? unite2 == unite1 : false;
   }
 
 }

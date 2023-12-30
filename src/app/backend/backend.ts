@@ -13,7 +13,6 @@ import { IType } from '../modele/type';
 import { IExemplaireDocument } from '../modele/exemplaire-document';
 import { IFamille } from '../modele/famille';
 import { IRessource } from '../modele/ressource';
-import { IPrecoMvtQte } from '../modele/precomvtqte';
 //import { TypeMvt } from "../modele/type-mvt";
 import { IPrecoMvt } from "../modele/precomvt";
 import { IDistributeur } from "../modele/distributeur";
@@ -852,7 +851,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            type: 'neutre',
+            etat:true,
+            type: 'Neutre',
             precomvtqte: [
               {
                 id: '1',
@@ -870,7 +870,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -883,10 +883,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -915,7 +915,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -930,7 +930,7 @@ export class InMemDBService implements InMemoryDbService {
                 ressource:
                 {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     etat: true,
                     quantite: 20,
                     unite: 'Litre',
@@ -949,7 +949,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -958,10 +959,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -978,7 +979,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -987,10 +989,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -1011,7 +1013,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -1282,7 +1284,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -1300,7 +1303,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1313,10 +1316,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1345,7 +1348,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1360,7 +1363,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -1379,7 +1382,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -1388,10 +1392,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1408,7 +1412,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -1417,10 +1422,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1441,7 +1446,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1709,7 +1714,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -1727,7 +1733,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1740,10 +1746,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1772,7 +1778,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1787,7 +1793,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -1806,7 +1812,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -1815,10 +1822,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1835,7 +1842,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -1844,10 +1852,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -1868,7 +1876,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2089,7 +2097,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -2107,7 +2116,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2120,10 +2129,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2152,7 +2161,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2167,7 +2176,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -2186,7 +2195,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -2195,10 +2205,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2215,7 +2225,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -2224,10 +2235,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2248,7 +2259,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2638,7 +2649,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -2656,7 +2668,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2669,10 +2681,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2701,7 +2713,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2716,7 +2728,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -2735,7 +2747,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -2744,10 +2757,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2764,7 +2777,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -2773,10 +2787,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -2797,7 +2811,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -3065,7 +3079,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -3083,7 +3098,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -3096,10 +3111,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -3128,7 +3143,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -3143,7 +3158,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -3162,7 +3177,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -3171,10 +3187,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -3191,7 +3207,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -3200,10 +3217,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -3224,7 +3241,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -3494,7 +3511,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            type: 'neutre',
+            etat:true,
+            type: 'Neutre',
             precomvtqte: [
               {
                 id: '1',
@@ -3512,7 +3530,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -3525,10 +3543,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -3557,7 +3575,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -3572,7 +3590,7 @@ export class InMemDBService implements InMemoryDbService {
                 ressource:
                 {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     etat: true,
                     quantite: 20,
                     unite: 'Litre',
@@ -3591,7 +3609,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -3600,10 +3619,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -3620,7 +3639,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'reduire',
+            type: 'Reduire',
+            etat:true,
             precomvtqte: [
               {
                 id: '1',
@@ -3629,10 +3649,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -3653,7 +3673,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -3874,7 +3894,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            type: 'neutre',
+            etat:true,
+            type: 'Neutre',
             precomvtqte: [
               {
                 id: '1',
@@ -3892,7 +3913,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -3905,10 +3926,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -3937,7 +3958,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -3952,7 +3973,7 @@ export class InMemDBService implements InMemoryDbService {
                 ressource:
                 {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     etat: true,
                     quantite: 20,
                     unite: 'Litre',
@@ -3971,7 +3992,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -3980,10 +4002,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -4000,7 +4022,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -4009,10 +4032,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -4033,7 +4056,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -4304,7 +4327,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -4322,7 +4346,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4335,10 +4359,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4367,7 +4391,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4382,7 +4406,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -4401,7 +4425,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -4410,10 +4435,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4430,7 +4455,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -4439,10 +4465,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4463,7 +4489,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4731,7 +4757,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -4749,7 +4776,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4762,10 +4789,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4794,7 +4821,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4809,7 +4836,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -4828,7 +4855,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -4837,10 +4865,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4857,7 +4885,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -4866,10 +4895,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4890,7 +4919,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5111,7 +5140,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -5129,7 +5159,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5142,10 +5172,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5174,7 +5204,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5189,7 +5219,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -5208,7 +5238,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -5217,10 +5248,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5237,7 +5268,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -5246,10 +5278,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5270,7 +5302,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5660,7 +5692,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -5678,7 +5711,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5691,10 +5724,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5723,7 +5756,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5738,7 +5771,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -5757,7 +5790,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -5766,10 +5800,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5786,7 +5820,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -5795,10 +5830,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5819,7 +5854,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -6087,7 +6122,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -6105,7 +6141,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -6118,10 +6154,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -6150,7 +6186,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -6165,7 +6201,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -6184,7 +6220,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -6193,10 +6230,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -6213,7 +6250,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -6222,10 +6260,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -6246,7 +6284,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -6638,7 +6676,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            type: 'neutre',
+            etat:true,
+            type: 'Neutre',
             precomvtqte: [
               {
                 id: '1',
@@ -6656,7 +6695,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -6669,10 +6708,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -6701,7 +6740,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -6716,7 +6755,7 @@ export class InMemDBService implements InMemoryDbService {
                 ressource:
                 {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     etat: true,
                     quantite: 20,
                     unite: 'Litre',
@@ -6735,7 +6774,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -6744,10 +6784,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -6764,7 +6804,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -6773,10 +6814,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -6797,7 +6838,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -7065,7 +7106,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            type: 'neutre',
+            etat:true,
+            type: 'Neutre',
             precomvtqte: [
               {
                 id: '1',
@@ -7083,7 +7125,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -7096,10 +7138,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -7128,7 +7170,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -7143,7 +7185,7 @@ export class InMemDBService implements InMemoryDbService {
                 ressource:
                 {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     etat: true,
                     quantite: 20,
                     unite: 'Litre',
@@ -7162,7 +7204,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -7171,10 +7214,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -7191,7 +7234,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -7200,10 +7244,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -7224,7 +7268,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -7445,7 +7489,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -7463,7 +7508,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -7476,10 +7521,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -7508,7 +7553,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -7523,7 +7568,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -7542,7 +7587,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -7551,10 +7597,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -7571,7 +7617,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -7580,10 +7627,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -7604,7 +7651,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -7994,7 +8041,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -8012,7 +8060,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8025,10 +8073,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8057,7 +8105,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8072,7 +8120,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -8091,7 +8139,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -8100,10 +8149,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8120,7 +8169,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -8129,10 +8179,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8153,7 +8203,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8421,7 +8471,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -8439,7 +8490,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8452,10 +8503,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8484,7 +8535,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8499,7 +8550,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -8518,7 +8569,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -8527,10 +8579,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8547,7 +8599,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -8556,10 +8609,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8580,7 +8633,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -8975,7 +9028,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            type: 'neutre',
+            etat:true,
+            type: 'Neutre',
             precomvtqte: [
               {
                 id: '1',
@@ -8993,7 +9047,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -9006,10 +9060,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -9038,7 +9092,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -9053,7 +9107,7 @@ export class InMemDBService implements InMemoryDbService {
                 ressource:
                 {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     etat: true,
                     /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
                     unite: 'Litre',
@@ -9072,7 +9126,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            type: 'reduire',
+            etat:true,
+            type: 'Reduire',
             precomvtqte: [
               {
                 id: '1',
@@ -9081,10 +9136,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -9101,7 +9156,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'reduire',
+            type: 'Reduire',
+            etat:true,
             precomvtqte: [
               {
                 id: '1',
@@ -9110,10 +9166,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -9134,7 +9190,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -9603,7 +9659,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -9621,7 +9678,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -9634,10 +9691,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -9666,7 +9723,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -9681,7 +9738,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -9700,7 +9757,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -9709,10 +9767,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -9729,7 +9787,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -9738,10 +9797,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -9762,7 +9821,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -10152,7 +10211,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -10170,7 +10230,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -10183,10 +10243,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -10215,7 +10275,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -10230,7 +10290,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -10249,7 +10309,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -10258,10 +10319,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -10278,7 +10339,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -10287,10 +10349,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -10311,7 +10373,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -10366,7 +10428,7 @@ export class InMemDBService implements InMemoryDbService {
               caracteristique: 'souple',
               famille: {
                 id: '4',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: true,
               },
@@ -10421,7 +10483,7 @@ export class InMemDBService implements InMemoryDbService {
               caracteristique: 'souple',
               famille: {
                 id: '4',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: true,
               }
@@ -10444,7 +10506,7 @@ export class InMemDBService implements InMemoryDbService {
             datePeremption: new Date(),
             ressource: {
               id: '2',
-              libelle: 'néonat',
+              libelle: 'Medical',
               etat: true,
               quantite: 20,
               unite: 'Litre',
@@ -10452,7 +10514,7 @@ export class InMemDBService implements InMemoryDbService {
               caracteristique: 'souple',
               famille: {
                 id: '2',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: true,
               }
@@ -10701,7 +10763,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '1',
             libelle: 'rachat',
-            type: 'neutre',
+            etat:true,
+            type: 'Neutre',
             precomvtqte: [
               {
                 id: '1',
@@ -10719,7 +10782,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -10732,10 +10795,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -10764,7 +10827,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -10779,7 +10842,7 @@ export class InMemDBService implements InMemoryDbService {
                 ressource:
                 {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     etat: true,
                     /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
                     unite: 'Litre',
@@ -10798,7 +10861,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            type: 'reduire',
+            type: 'Reduire',
+            etat:true,
             precomvtqte: [
               {
                 id: '1',
@@ -10807,10 +10871,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -10827,7 +10891,8 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'reduire',
+            type: 'Reduire',
+            etat:true,
             precomvtqte: [
               {
                 id: '1',
@@ -10836,10 +10901,10 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                   {
                     id: '2',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -10860,7 +10925,7 @@ export class InMemDBService implements InMemoryDbService {
                   caracteristique: 'souple',
                   famille: {
                     id: '4',
-                    libelle: 'néonat',
+                    libelle: 'Medical',
                     description: 'nouveau-né',
                     etat: false,
                   },
@@ -11167,7 +11232,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -11185,7 +11251,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11198,10 +11264,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11230,7 +11296,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11245,7 +11311,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -11264,7 +11330,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -11273,10 +11340,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11293,7 +11360,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -11302,10 +11370,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11326,7 +11394,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11716,7 +11784,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -11734,7 +11803,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11747,10 +11816,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11779,7 +11848,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11794,7 +11863,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -11813,7 +11882,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -11822,10 +11892,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11842,7 +11912,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -11851,10 +11922,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -11875,7 +11946,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -12143,7 +12214,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'neutre',
+                etat:true,
+                type: 'Neutre',
                 precomvtqte: [
                   {
                     id: '1',
@@ -12161,7 +12233,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -12174,10 +12246,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -12206,7 +12278,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -12221,7 +12293,7 @@ export class InMemDBService implements InMemoryDbService {
                     ressource:
                     {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         etat: true,
                         quantite: 20,
                         unite: 'Litre',
@@ -12240,7 +12312,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'reduire',
+                type: 'Reduire',
+                etat:true,
                 precomvtqte: [
                   {
                     id: '1',
@@ -12249,10 +12322,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -12269,7 +12342,8 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'reduire',
+                etat:true,
+                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',
@@ -12278,10 +12352,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     famille: [
-                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -12302,7 +12376,7 @@ export class InMemDBService implements InMemoryDbService {
                       caracteristique: 'souple',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Medical',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -12349,7 +12423,7 @@ export class InMemDBService implements InMemoryDbService {
             datePeremption: new Date(),
             ressource: {
               id: '2',
-              libelle: 'néonat',
+              libelle: 'Medical',
               etat: true,
               quantite: 20,
               unite: 'Litre',
@@ -12357,7 +12431,7 @@ export class InMemDBService implements InMemoryDbService {
               caracteristique: 'souple',
               famille: {
                 id: '2',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: true,
               }
@@ -12437,11 +12511,11 @@ export class InMemDBService implements InMemoryDbService {
         unite: 'Litre',
         prix: 1000,
         caracteristique: 'souple',
-        famille: { id: '1', libelle: 'trans', description: 'sang', etat: true },
+        famille: { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
       },
       {
         id: '2',
-        libelle: 'néonat',
+        libelle: 'Medical',
         etat: true,
         quantite: 20,
         unite: 'Litre',
@@ -12449,14 +12523,14 @@ export class InMemDBService implements InMemoryDbService {
         caracteristique: 'souple',
         famille: {
           id: '2',
-          libelle: 'néonat',
+          libelle: 'Medical',
           description: 'nouveau-né',
           etat: false,
         },
       },
       {
         id: '2',
-        libelle: 'néonat',
+        libelle: 'Ventoline',
         etat: true,
         /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
         unite: 'Litre',
@@ -12471,7 +12545,7 @@ export class InMemDBService implements InMemoryDbService {
       },
       {
         id: '3',
-        libelle: 'pediatrie',
+        libelle: 'Aspirine',
         etat: true,
         quantite: 30,
         unite: 'Litre',
@@ -12479,7 +12553,7 @@ export class InMemDBService implements InMemoryDbService {
         caracteristique: 'souple',
         famille: {
           id: '4',
-          libelle: 'néonat',
+          libelle: 'Medical',
           description: 'nouveau-né',
           etat: false,
         },
@@ -12516,15 +12590,15 @@ export class InMemDBService implements InMemoryDbService {
       },
     ];
     let famille: IFamille[] = [
-      { id: '1', libelle: 'trans', description: 'sang', etat: true },
-      { id: '2', libelle: 'néonat', description: 'nouveau-né', etat: false },
+      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
+      { id: '2', libelle: 'Medical', description: 'nouveau-né', etat: false },
       {
         id: '3',
         libelle: 'pediatrie',
         description: 'enfant',
         etat: true,
       },
-      { id: '4', libelle: 'néonat', description: 'nouveau-né', etat: false },
+      { id: '4', libelle: 'Medical', description: 'nouveau-né', etat: false },
       { id: '5', libelle: 'transfusion', description: 'sang', etat: true },
     ];
 
@@ -12532,7 +12606,8 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '1',
         libelle: 'rachat',
-        type: 'neutre',
+        type: 'Neutre',
+        etat:true,
         precomvtqte: [
           {
             id: '1',
@@ -12550,7 +12625,7 @@ export class InMemDBService implements InMemoryDbService {
               caracteristique: 'souple',
               famille: {
                 id: '4',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: false,
               },
@@ -12563,10 +12638,10 @@ export class InMemDBService implements InMemoryDbService {
             montantMin: 100,
             montantMax: 7000,
             famille: [
-              { id: '1', libelle: 'trans', description: 'sang', etat: true },
+              { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
               {
                 id: '2',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: false,
               },
@@ -12595,7 +12670,7 @@ export class InMemDBService implements InMemoryDbService {
               caracteristique: 'souple',
               famille: {
                 id: '4',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: false,
               },
@@ -12610,7 +12685,7 @@ export class InMemDBService implements InMemoryDbService {
             ressource:
             {
                 id: '2',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 etat: true,
                 quantite: 20,
                 unite: 'Litre',
@@ -12629,7 +12704,8 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '2',
         libelle: 'vente',
-        type: 'reduire',
+        type: 'Reduire',
+        etat:true,
         precomvtqte: [
           {
             id: '1',
@@ -12638,10 +12714,10 @@ export class InMemDBService implements InMemoryDbService {
             montantMin: 100,
             montantMax: 7000,
             famille: [
-              { id: '1', libelle: 'trans', description: 'sang', etat: true },
+              { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
               {
                 id: '2',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: false,
               },
@@ -12658,7 +12734,8 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '3',
         libelle: 'vente',
-        type: 'reduire',
+        type: 'Reduire',
+        etat:true,
         precomvtqte: [
           {
             id: '1',
@@ -12667,10 +12744,10 @@ export class InMemDBService implements InMemoryDbService {
             montantMin: 100,
             montantMax: 7000,
             famille: [
-              { id: '1', libelle: 'trans', description: 'sang', etat: true },
+              { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
               {
                 id: '2',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: false,
               },
@@ -12691,7 +12768,7 @@ export class InMemDBService implements InMemoryDbService {
               caracteristique: 'souple',
               famille: {
                 id: '4',
-                libelle: 'néonat',
+                libelle: 'Medical',
                 description: 'nouveau-né',
                 etat: false,
               },
