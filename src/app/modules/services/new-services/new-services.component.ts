@@ -18,14 +18,13 @@ export class NewServicesComponent implements OnInit {
   service : IService|undefined;
   forme: FormGroup;
   btnLibelle: string="Ajouter";
-  titre: string="Ajouter service";
   submitted: boolean=false;
 
   initialDateDerniereModification = new FormControl(new Date());
   initialDateAttribution = new FormControl(new Date());
   initialDateFin = new FormControl(new Date());
-
-  constructor(private formBuilder:FormBuilder, private serviceService:ServicesService,private dataEnteteMenuService:DonneesEchangeService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  titre:string='';
+  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private serviceService:ServicesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat:[true],

@@ -36,6 +36,7 @@ import { SharedModule } from '../shared/shared.module';
     MatTableModule,
     SharedModule,
     MatSortModule,
+    SharedModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,

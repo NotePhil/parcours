@@ -11,6 +11,7 @@ import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { TypeUnite } from 'src/app/modele/type-unite';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-new-ressource',
@@ -25,8 +26,15 @@ export class NewRessourceComponent implements OnInit {
   unites : String[] = [];
   IdRessource:string= ""
   filteredOptions: IFamille[] | undefined;
-  titre:string=''
-  constructor(private formBuilder:FormBuilder,private familleService:FamillesService,private dataEnteteMenuService:DonneesEchangeService,private ressourceService:RessourcesService,private serviceRessource:RessourcesService,private serviceFamille:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  dataSource = new MatTableDataSource<IFamille>();
+  familleDeRessource: IFamille = {
+    id: '',
+    libelle: '',
+    description: '',
+    etat:false
+  };
+  titre:string='';
+  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService,private familleService:FamillesService,private ressourceService:RessourcesService,private serviceRessource:RessourcesService,private serviceFamille:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],

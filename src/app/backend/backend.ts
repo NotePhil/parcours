@@ -695,8 +695,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '4',
@@ -705,8 +707,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '5',
@@ -715,8 +719,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '6',
@@ -725,8 +731,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '7',
@@ -766,8 +774,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
                 }
               },
               {
@@ -781,8 +791,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Int,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '1',
@@ -794,8 +806,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
             ],
           },
@@ -814,8 +828,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '1',
@@ -1128,8 +1144,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '4',
@@ -1138,8 +1156,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -1148,6 +1168,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
               },
@@ -1180,6 +1201,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateModification: new Date('07/03/1990'),
                 type: IType.Boolean,
                 valeursParDefaut: 'oui, non',
+
               },
             ],
             categories: [
@@ -1199,8 +1221,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',
+
                     }
                   },
                   {
@@ -1214,8 +1238,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Int,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '1',
@@ -1227,8 +1253,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -1247,8 +1275,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '1',
@@ -1561,8 +1591,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '6',
@@ -1571,8 +1603,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -1591,8 +1625,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -1611,8 +1647,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -1631,8 +1669,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '2',
@@ -1644,8 +1684,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '3',
@@ -1657,8 +1699,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -1677,8 +1721,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -1991,6 +2037,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
               },
@@ -2003,6 +2050,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateModification: new Date('07/03/1990'),
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -2011,8 +2059,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -2041,8 +2091,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -2054,8 +2106,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -2074,8 +2128,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -2374,8 +2430,394 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
+              },
+              {
+                id: '4',
+                titre: 'age',
+                description: "age de l'individu",
+                etat: true,
+                dateCreation: new Date('07/03/2000'),
+                dateModification: new Date('07/03/1990'),
+
+                type: IType.Double,
+                valeursParDefaut: ''
+              },
+              {
+                id: '5',
+                titre: 'allergies',
+                description: "allergies de l'individu",
+                etat: true,
+                dateCreation: new Date('07/03/2000'),
+                dateModification: new Date('07/03/1990'),
+                type: IType.String,
+                valeursParDefaut: ''
+              },
+              {
+                id: '8',
+                titre: 'cicatrice',
+                description: "cicatrice de l'individu",
+                etat: true,
+                dateCreation: new Date('07/03/2000'),
+                dateModification: new Date('07/03/1990'),
+                type: IType.Boolean,
+                valeursParDefaut: 'true, false',
+              },
+            ],
+            categories: [
+              {
+                id: '1',
+                nom: 'informations personelles',
+                ordre: 1,
+                listAttributsParCategories: [
+                  {
+                    id: '',
+                    ordre: 2,
+                    obligatoire: false,
+                    attribut:{id: '1',
+                    titre: 'taille',
+                    description: "taille de l'individu",
+                    etat: true,
+                    dateCreation: new Date('07/03/2000'),
+                    dateModification: new Date('07/03/1990'),
+                    type: IType.Double,
+                    valeursParDefaut: ''}
+                  },
+                  {
+                    id: '',
+                    ordre: 1,
+                    obligatoire: false,
+                    attribut:{id: '4',
+                    titre: 'age',
+                    description: "age de l'individu",
+                    etat: true,
+                    dateCreation: new Date('07/03/2000'),
+                    dateModification: new Date('07/03/1990'),
+                    type: IType.Double,
+                    valeursParDefaut: ''}
+                  },
+                ],
+              },
+              {
+                id: '2',
+                nom: 'informations de sante',
+                ordre: 2,
+                listAttributsParCategories: [
+                  {
+                    id: '',
+                    ordre: 1,
+                    obligatoire: false,
+                    attribut:{id: '5',
+                    titre: 'allergies',
+                    description: "allergies de l'individu",
+                    etat: true,
+                    dateCreation: new Date('07/03/2000'),
+                    dateModification: new Date('07/03/1990'),
+                    type: IType.String,
+                    valeursParDefaut: ''}
+                  },
+                  {
+                    id: '',
+                    ordre: 2,
+                    obligatoire: false,
+                    attribut:{id: '8',
+                    titre: 'cicatrice',
+                    description: "cicatrice de l'individu",
+                    etat: true,
+                    dateCreation: new Date('07/03/2000'),
+                    dateModification: new Date('07/03/1990'),
+                    type: IType.Boolean,
+                    valeursParDefaut: 'oui, non',}
+                  },
+                ],
+              },
+            ],
+            preconisations:[
+              {
+                id: '1',
+                libelle: 'rachat',
+                type: 'Neutre',
+                etat:true,
+                precomvtqte: [
+                  {
+                    id: '1',
+                    quantiteMin: 10,
+                    quantiteMax: 20,
+                    montantMin: 1000,
+                    montantMax: 7000,
+                    ressource: {
+                      id: '1',
+                      libelle: 'transfusion',
+                      etat: true,
+                      quantite: 10,
+                      unite: 'Litre',
+                      prix: 1000,
+                      caracteristique: 'souple',
+                      famille: {
+                        id: '4',
+                        libelle: 'néonat',
+                        description: 'nouveau-né',
+                        etat: true,
+                      },
+                    },
+                  },
+                  {
+                    id: '2',
+                    quantiteMin: 30,
+                    quantiteMax: 40,
+                    montantMin: 100,
+                    montantMax: 7000,
+                    famille: [
+                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      {
+                        id: '2',
+                        libelle: 'Medical',
+                        description: 'nouveau-né',
+                        etat: true,
+                      },
+                      {
+                        id: '3',
+                        libelle: 'pediatrie',
+                        description: 'enfant',
+                        etat: true,
+                      },
+                    ],
+                  },
+                  {
+                    id: '3',
+                    quantiteMin: 30,
+                    quantiteMax: 40,
+                    montantMin: 100,
+                    montantMax: 7000,
+                    ressource: 
+                    {
+                      id: '3',
+                      libelle: 'pediatrie',
+                      etat: true,
+                      quantite: 30,
+                      unite: 'Litre',
+                      prix: 3000,
+                      caracteristique: 'souple',
+                      famille: {
+                        id: '4',
+                        libelle: 'néonat',
+                        description: 'nouveau-né',
+                        etat: true,
+                      },
+                    }
+                  },
+                  {
+                    id: '4',
+                    quantiteMin: 30,
+                    quantiteMax: 40,
+                    montantMin: 100,
+                    montantMax: 7000,
+                    ressource:
+                    {
+                        id: '2',
+                        libelle: 'néonat',
+                        etat: true,
+                        quantite: 20,
+                        unite: 'Litre',
+                        prix: 2000,
+                        caracteristique: 'souple',
+                        famille: {
+                          id: '3',
+                          libelle: 'pediatrie',
+                          description: 'enfant',
+                          etat: true,
+                        },
+                      },
+                  },
+                ],
+              },
+              {
+                id: '2',
+                libelle: 'vente',
+                type: 'Reduire',
+                etat:true,
+                precomvtqte: [
+                  {
+                    id: '1',
+                    quantiteMin: 30,
+                    quantiteMax: 40,
+                    montantMin: 100,
+                    montantMax: 7000,
+                    famille: [
+                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      {
+                        id: '2',
+                        libelle: 'néonat',
+                        description: 'nouveau-né',
+                        etat: true,
+                      },
+                      {
+                        id: '3',
+                        libelle: 'pediatrie',
+                        description: 'enfant',
+                        etat: true,
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                id: '3',
+                libelle: 'vente',
+                type: 'Reduire',
+                etat:true,
+                precomvtqte: [
+                  {
+                    id: '1',
+                    quantiteMin: 30,
+                    quantiteMax: 40,
+                    montantMin: 100,
+                    montantMax: 7000,
+                    famille: [
+                      { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                      {
+                        id: '2',
+                        libelle: 'néonat',
+                        description: 'nouveau-né',
+                        etat: true,
+                      },
+                      {
+                        id: '3',
+                        libelle: 'pediatrie',
+                        description: 'enfant',
+                        etat: true,
+                      },
+                    ],
+                    ressource: {
+                      id: '1',
+                      libelle: 'transfusion',
+                      etat: true,
+                      quantite: 10,
+                      unite: 'Litre',
+                      prix: 1000,
+                      caracteristique: 'souple',
+                      famille: {
+                        id: '4',
+                        libelle: 'néonat',
+                        description: 'nouveau-né',
+                        etat: true,
+                      },
+                    },
+                    distributeur: [
+                      {
+                        id: '1',
+                        raisonSocial: 'brasserie1',
+                        etat: true,
+                        adresse: 'Dla',
+                        telephone: '655554488',
+                        mail: 'ngong@yad.fr',
+                      },
+                      {
+                        id: '2',
+                        raisonSocial: 'guinness',
+                        etat: true,
+                        adresse: 'Ydé',
+                        telephone: '655554481',
+                        mail: 'ngong@yad.fr',
+                      },
+                      {
+                        id: '3',
+                        raisonSocial: 'papeterie yvan',
+                        etat: true,
+                        adresse: 'Buéa',
+                        telephone: '655554486',
+                        mail: 'ngong@yad.fr',
+                      },
+                    ],
+                  },
+                ],
+              }
+            ]
+          },
+          {
+            id: '4',
+            titre: 'Formulaire de sortie',
+            description:
+              "Document delivre par le medecin ou un infirmier de l'etablissement",
+              etat:true,
+              affichagePrix:true,
+              contientRessources:true,
+              contientDistributeurs:true,
+            missions: [
+              {
+                id: '2',
+                libelle: 'Consultation Spécialiste',
+                description: 'Consultation faite par un médecin',
+                etat: true,
+                dateCreation: new Date('07/03/2000'),
+                dateModification: new Date('07/03/1990'),
+                idLogin: 'admin',
+                service: {
+                  id: '2',
+                  libelle: 'Laboratoire',
+                  etat: true,
+                  dateDerniereModification: new Date('06/08/1990'),
+                  dateAttribution: new Date('07/03/1990'),
+                  dateFin: new Date('07/03/1990'),
+                  nombreTotalAttributions: 20,
+                  localisation:'douala',
+                  description:'bien',
+                },
+              },
+              {
+                id: '3',
+                libelle: 'Prelevement Labo',
+                description: 'Prélévement fait par laboratoire',
+                etat: true,
+                dateCreation: new Date('07/03/2000'),
+                dateModification: new Date('07/03/1990'),
+                idLogin: 'admin',
+                service: {
+                  id: '3',
+                  libelle: 'Consultation',
+                  etat: true,
+                  dateDerniereModification: new Date('12/06/1972'),
+                  dateAttribution: new Date('07/03/1990'),
+                  dateFin: new Date('07/03/1990'),
+                  nombreTotalAttributions: 50,
+                  localisation:'douala',
+                  description:'bien',
+                },
+              },
+              {
+                id: '4',
+                libelle: 'Encaissement',
+                description: 'recu de paiement lié à une mission',
+                etat: true,
+                dateCreation: new Date('07/03/2000'),
+                dateModification: new Date('07/03/1990'),
+                idLogin: 'admin',
+                service: {
+                  id: '1',
+                  libelle: 'Pharmacie',
+                  etat: true,
+                  dateDerniereModification: new Date('07/03/2000'),
+                  dateAttribution: new Date('07/03/1990'),
+                  dateFin: new Date('07/03/1990'),
+                  nombreTotalAttributions: 6,
+                  localisation:'douala',
+                  description:'bien',
+                },
+              },
+            ],
+            attributs: [
+              {
+                id: '14',
+                titre: 'Nom',
+                description: "nom de l'individu",
+                etat: true,
+                dateCreation: new Date('07/03/2000'),
+                dateModification: new Date('07/03/1990'),
+                type: IType.String,
+                valeursParDefaut: ''
               },
               {
                 id: '4',
@@ -2385,7 +2827,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: IType.Double,
-                valeursParDefaut: '',
+                valeursParDefaut: ''
               },
               {
                 id: '5',
@@ -2394,8 +2836,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
+
               },
               {
                 id: '1',
@@ -2404,8 +2848,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -2434,8 +2880,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '10',
@@ -2444,8 +2892,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '11',
@@ -2454,8 +2904,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '12',
@@ -2474,8 +2926,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -2494,8 +2948,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -2507,8 +2963,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -2520,8 +2978,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -2540,8 +3000,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -2587,8 +3049,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -2600,8 +3064,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -2613,8 +3079,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -2639,8 +3107,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Textarea,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -2926,8 +3396,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '6',
@@ -2936,8 +3408,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -2956,8 +3430,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -2976,8 +3452,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -2996,8 +3474,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -3009,8 +3489,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -3022,8 +3504,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -3042,8 +3526,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -3358,8 +3844,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '6',
@@ -3368,8 +3856,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '8',
@@ -3388,8 +3878,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '7',
@@ -3408,8 +3900,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
         ],
         categories: [
@@ -3428,8 +3922,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '2',
@@ -3441,8 +3937,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '3',
@@ -3454,8 +3952,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
             ],
           },
@@ -3474,8 +3974,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -3788,8 +4290,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '4',
@@ -3798,8 +4302,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '5',
@@ -3808,8 +4314,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '8',
@@ -3838,8 +4346,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -3851,8 +4361,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
             ],
           },
@@ -3871,8 +4383,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -4171,8 +4685,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '4',
@@ -4181,8 +4697,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -4191,8 +4709,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '6',
@@ -4201,8 +4721,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -4242,8 +4764,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',
+
                     }
                   },
                   {
@@ -4257,8 +4781,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Int,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '1',
@@ -4270,8 +4796,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -4290,8 +4818,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '1',
@@ -4604,8 +5134,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '6',
@@ -4614,8 +5146,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -4634,8 +5168,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -4654,8 +5190,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -4674,8 +5212,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '2',
@@ -4687,8 +5227,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '3',
@@ -4700,8 +5242,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -4720,8 +5264,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -5034,8 +5580,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '4',
@@ -5044,8 +5592,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -5054,8 +5604,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -5084,8 +5636,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -5097,8 +5651,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -5117,8 +5673,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -5417,8 +5975,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '4',
@@ -5427,8 +5987,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -5437,8 +5999,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
+
               },
               {
                 id: '1',
@@ -5447,8 +6011,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -5477,8 +6043,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '10',
@@ -5487,8 +6055,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '11',
@@ -5497,8 +6067,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '12',
@@ -5517,8 +6089,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -5537,8 +6111,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -5550,8 +6126,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -5563,8 +6141,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -5583,8 +6163,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -5630,8 +6212,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -5643,8 +6227,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -5656,8 +6242,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -5682,8 +6270,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Textarea,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -5969,8 +6559,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '6',
@@ -5979,8 +6571,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -5999,8 +6593,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -6019,8 +6615,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -6039,8 +6637,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -6052,8 +6652,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -6065,8 +6667,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -6085,8 +6689,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -6401,8 +7007,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '4',
@@ -6411,8 +7019,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '5',
@@ -6421,8 +7031,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Textarea,
             valeursParDefaut: '',
+
           },
           {
             id: '1',
@@ -6431,8 +7043,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '7',
@@ -6461,8 +7075,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Date,
             valeursParDefaut: '',
+
           },
           {
             id: '10',
@@ -6471,8 +7087,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Date,
             valeursParDefaut: '',
+
           },
           {
             id: '11',
@@ -6481,8 +7099,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Date,
             valeursParDefaut: '',
+
           },
           {
             id: '12',
@@ -6501,8 +7121,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Textarea,
             valeursParDefaut: '',
+
           },
         ],
         categories: [
@@ -6521,8 +7143,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -6534,8 +7158,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -6547,8 +7173,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
             ],
           },
@@ -6567,8 +7195,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -6614,8 +7244,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -6627,8 +7259,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -6640,8 +7274,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -6666,8 +7302,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',}
+
               },
             ],
           },
@@ -6953,8 +7591,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '6',
@@ -6963,8 +7603,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '8',
@@ -6983,8 +7625,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '7',
@@ -7003,8 +7647,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
         ],
         categories: [
@@ -7023,8 +7669,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -7036,8 +7684,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -7049,8 +7699,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
             ],
           },
@@ -7069,8 +7721,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
               {
                 id: '',
@@ -7383,8 +8037,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '4',
@@ -7393,8 +8049,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -7403,8 +8061,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -7433,8 +8093,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -7446,8 +8108,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -7786,6 +8450,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
               },
@@ -7796,8 +8461,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -7826,6 +8493,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
               },
@@ -7836,8 +8504,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '11',
@@ -7846,8 +8516,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '12',
@@ -7866,8 +8538,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -7886,8 +8560,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -7899,8 +8575,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -7912,8 +8590,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -7932,8 +8612,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -7979,8 +8661,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -7992,8 +8676,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -8005,8 +8691,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -8031,8 +8719,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Textarea,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -8318,8 +9008,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '6',
@@ -8328,8 +9020,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -8348,8 +9042,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -8368,8 +9064,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -8388,8 +9086,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -8401,8 +9101,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -8414,8 +9116,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -8434,8 +9138,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -8753,8 +9459,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '4',
@@ -8763,8 +9471,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '5',
@@ -8773,8 +9483,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Textarea,
             valeursParDefaut: '',
+
           },
           {
             id: '1',
@@ -8783,8 +9495,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '7',
@@ -8813,8 +9527,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Date,
             valeursParDefaut: '',
+
           },
           {
             id: '10',
@@ -8823,8 +9539,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Date,
             valeursParDefaut: '',
+
           },
           {
             id: '11',
@@ -8833,8 +9551,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Date,
             valeursParDefaut: '',
+
           },
           {
             id: '12',
@@ -8853,8 +9573,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Textarea,
             valeursParDefaut: '',
+
           },
         ],
         categories: [
@@ -8873,8 +9595,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
               {
                 id:'',
@@ -8886,8 +9610,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
               {
                 id:'',
@@ -8899,8 +9625,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
             ],
           },
@@ -8919,8 +9647,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
               {
                 id:'',
@@ -8966,8 +9696,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',}
+
               },
               {
                 id:'',
@@ -8979,8 +9711,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',}
+
               },
               {
                 id:'',
@@ -8992,8 +9726,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',}
+
               },
               {
                 id:'',
@@ -9018,8 +9754,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',}
+
               },
             ],
           },
@@ -9238,7 +9976,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.Double,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: '23',
           },
@@ -9253,7 +9991,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.String,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: 'oignon, lait, mangue',
           },
@@ -9268,7 +10006,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.String,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: '1.78',
           },
@@ -9313,7 +10051,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.Date,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: new Date('07/03/2023'),
           },
@@ -9328,7 +10066,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.Date,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: new Date('17/03/2023'),
           },
@@ -9343,7 +10081,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.Date,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: new Date('17/06/2023'),
           },
@@ -9373,7 +10111,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.Textarea,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: 'Fin traitement',
           },
@@ -9388,7 +10126,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.Double,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: '54',
           },
@@ -9418,7 +10156,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.String,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: 'Noir',
           },
@@ -9503,8 +10241,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '4',
@@ -9513,8 +10253,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -9523,8 +10265,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '6',
@@ -9533,8 +10277,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -9574,8 +10320,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',
+
                     }
                   },
                   {
@@ -9589,8 +10337,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Int,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '1',
@@ -9602,8 +10352,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -9622,8 +10374,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '1',
@@ -9936,8 +10690,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '4',
@@ -9946,8 +10702,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -9956,8 +10714,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
+
               },
               {
                 id: '1',
@@ -9966,8 +10726,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -9996,8 +10758,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '10',
@@ -10006,8 +10770,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '11',
@@ -10016,8 +10782,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '12',
@@ -10036,8 +10804,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -10056,8 +10826,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -10069,8 +10841,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -10082,8 +10856,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -10102,8 +10878,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -10149,8 +10927,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -10162,8 +10942,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -10175,8 +10957,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -10201,8 +10985,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Textarea,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -10528,7 +11314,7 @@ export class InMemDBService implements InMemoryDbService {
               mail: 'ngong@yad.fr',
             }
           }
-        ]
+        ],
       },
       {
         id: '2',
@@ -10610,8 +11396,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '6',
@@ -10620,8 +11408,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
           {
             id: '8',
@@ -10640,8 +11430,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.Double,
             valeursParDefaut: '',
+
           },
           {
             id: '7',
@@ -10660,8 +11452,10 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
+
             type: IType.String,
             valeursParDefaut: '',
+
           },
         ],
         categories: [
@@ -10680,8 +11474,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
               {
                 id:'',
@@ -10693,8 +11489,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',}
+
               },
               {
                 id:'',
@@ -10706,8 +11504,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
             ],
           },
@@ -10726,8 +11526,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',}
+
               },
               {
                 id:'',
@@ -10972,7 +11774,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.String,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: '1.70' },
           { key:
@@ -10986,7 +11788,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.String,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: 'noir' },
           { key:
@@ -11014,7 +11816,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.Double,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: '23' },
           { key:
@@ -11042,7 +11844,7 @@ export class InMemDBService implements InMemoryDbService {
               type: IType.String,
               ordre: 0,
               obligatoire: false,
-              valeursParDefaut: '',
+              valeursParDefaut: ''
             },
             value: 'oignon, lait, mangue' },
         ],
@@ -11126,8 +11928,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '4',
@@ -11136,8 +11940,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -11146,8 +11952,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -11176,8 +11984,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -11189,8 +11999,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -11209,8 +12021,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -11509,8 +12323,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '4',
@@ -11519,8 +12335,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '5',
@@ -11529,8 +12347,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
+
               },
               {
                 id: '1',
@@ -11539,8 +12359,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -11569,8 +12391,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '10',
@@ -11579,8 +12403,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '11',
@@ -11589,8 +12415,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Date,
                 valeursParDefaut: '',
+
               },
               {
                 id: '12',
@@ -11609,8 +12437,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Textarea,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -11629,8 +12459,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -11642,8 +12474,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -11655,8 +12489,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -11675,8 +12511,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -11722,8 +12560,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -11735,8 +12575,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -11748,8 +12590,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Date,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -11774,8 +12618,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Textarea,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -12061,8 +12907,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '6',
@@ -12071,8 +12919,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
               {
                 id: '8',
@@ -12091,8 +12941,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.Double,
                 valeursParDefaut: '',
+
               },
               {
                 id: '7',
@@ -12111,8 +12963,10 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
+
                 type: IType.String,
                 valeursParDefaut: '',
+
               },
             ],
             categories: [
@@ -12131,8 +12985,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -12144,8 +13000,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.Double,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -12157,8 +13015,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                 ],
               },
@@ -12177,8 +13037,10 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
+
                     type: IType.String,
                     valeursParDefaut: '',}
+
                   },
                   {
                     id: '',
@@ -12835,9 +13697,9 @@ export class InMemDBService implements InMemoryDbService {
       {id:"3", titre:"marcheur", description: "commercial sur le terrain",etat:true,dateCreation:new Date("07/03/2000")},
     ];
     let personnels: IPersonnel[] = [
-      {id:"1", nom:"Tagne", prenom:"Willy", email:"tagnewillie@gmail.com", telephone:"655455487", sexe:"M", dateNaissance: new Date('10/04/2000'), dateEntree: new Date(), dateSortie: undefined},
-      {id:"3", nom:"Peter", prenom:"Alan", email:"peteralan@gmail.com", telephone:"655455487", sexe:"M", dateNaissance: new Date('10/08/2004'), dateEntree: new Date(), dateSortie: undefined},
-      {id:"3", nom:"Dombo", prenom:"Gilles", email:"dombogilles@gmail.com", telephone:"655455487", sexe:"M", dateNaissance: new Date('10/10/2002'), dateEntree: new Date(), dateSortie: undefined}
+      {id:"1", nom:"Tagne", prenom:"Willy", email:"tagnewillie@gmail.com", telephone:"655455487", sexe:"M", dateNaissance: new Date('10/04/2000'), dateEntree: new Date(), dateSortie: undefined, roles: undefined},
+      {id:"3", nom:"Peter", prenom:"Alan", email:"peteralan@gmail.com", telephone:"655455487", sexe:"M", dateNaissance: new Date('10/08/2004'), dateEntree: new Date(), dateSortie: undefined, roles: undefined},
+      {id:"3", nom:"Dombo", prenom:"Gilles", email:"dombogilles@gmail.com", telephone:"655455487", sexe:"M", dateNaissance: new Date('10/10/2002'), dateEntree: new Date(), dateSortie: undefined, roles: undefined}
     ];
     let typeAttribut:TypeAttribut={type:["Number","Text", "Checkbox", "Radio", "Date","Url", "Textarea", "Email"]};
     let typeUnite : TypeUnite = {type:["Litre","Kg","Packs","Boite"]};

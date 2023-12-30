@@ -25,7 +25,7 @@ export class ViewFormDocumentComponent implements OnInit {
     contientDistributeurs: false
   };
   titre:string='';
-  constructor(private router:Router, private infosPath:ActivatedRoute,private dataEnteteMenuService:DonneesEchangeService, private serviceDocument:DocumentService) {}
+  constructor(private router:Router,private dataEnteteMenuService:DonneesEchangeService, private infosPath:ActivatedRoute, private serviceDocument:DocumentService) {}
 
   ngOnInit(): void {
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');

@@ -50,7 +50,6 @@ export class NewFormDocumentComponent implements OnInit {
   mission$:Observable<IMission[]>=EMPTY;
   forme: FormGroup;
   btnLibelle: string="Ajouter";
-  //titre: string="Ajouter document";
   submitted: boolean=false;
   validation: boolean=false;
   serviceDeMission!: IService;
@@ -83,8 +82,8 @@ export class NewFormDocumentComponent implements OnInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router:Router, private formBuilder: FormBuilder, private infosPath:ActivatedRoute,
-     private serviceDocument:DocumentService,private dataEnteteMenuService:DonneesEchangeService, private serviceMission:MissionsService, private serviceAttribut:AttributService,
+  constructor(private router:Router, private formBuilder: FormBuilder, private infosPath:ActivatedRoute,private dataEnteteMenuService:DonneesEchangeService,
+     private serviceDocument:DocumentService, private serviceMission:MissionsService, private serviceAttribut:AttributService,
       private _liveAnnouncer: LiveAnnouncer, private donneeDocCatService:DonneesEchangeService, private dialogDef : MatDialog) {
     this.forme = this.formBuilder.group({
       _missions :  new FormControl<string | IMission[]>(''),

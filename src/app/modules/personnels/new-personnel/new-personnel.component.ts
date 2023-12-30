@@ -18,11 +18,9 @@ export class NewPersonnelComponent implements OnInit {
    personnel : IPersonnel|undefined;
    forme: FormGroup;
    btnLibelle: string="Ajouter";
-   //titre: string="Ajouter Personnel";
    submitted: boolean=false;
    titre:string='';
-
-   constructor(private formBuilder:FormBuilder, private personnelService:PersonnelsService,private dataEnteteMenuService:DonneesEchangeService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+   constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private personnelService:PersonnelsService, private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
      this.forme =  this.formBuilder.group({
        nom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
        prenom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],

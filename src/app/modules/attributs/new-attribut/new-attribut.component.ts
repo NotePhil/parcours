@@ -25,10 +25,10 @@ export class NewAttributComponent implements OnInit {
   titre:string='';
   typeAttribut : String[] = [];
 
+
   /*initialDateCreation = new FormControl(new Date());
   initialDateModification = new FormControl(new Date());*/
-
-  constructor(private formBuilder:FormBuilder, private attributService:AttributService,private dataEnteteMenuService:DonneesEchangeService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private attributService:AttributService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],

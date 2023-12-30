@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatInputModule} from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -18,8 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalChoixAttributsComponent } from './modal-choix-attributs/modal-choix-attributs.component';
 import { ModalChoixPreconisationsComponent } from './modal-choix-preconisations/modal-choix-preconisations.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ModalChoixSousDocumentComponent } from './modal-choix-sous-document/modal-choix-sous-document.component';
 import { EnteteComponent } from './entete/entete.component';
+import { ModalChoixSousDocumentComponent} from './modal-choix-sous-document/modal-choix-sous-document.component';
 
 
 
@@ -29,6 +29,7 @@ import { EnteteComponent } from './entete/entete.component';
     ModalCategoriesComponent,
     ModalChoixAttributsComponent,
     ModalChoixPreconisationsComponent,
+    EnteteComponent,
     ModalChoixSousDocumentComponent,
     EnteteComponent,
 

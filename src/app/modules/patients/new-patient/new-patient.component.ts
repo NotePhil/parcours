@@ -19,13 +19,11 @@ export class NewPatientComponent implements OnInit {
   patient : IPatient|undefined;
   forme: FormGroup;
   btnLibelle: string="Ajouter";
-  //titre: string="Ajouter un nouveau Patient";
   submitted: boolean=false;
   initialDate = new FormControl(new Date());
   titre:string='';
   //TODO validation du formulaire. particulièrment les mail; les dates
-
-  constructor(private formBuilder:FormBuilder, private patientService:PatientsService,private dataEnteteMenuService:DonneesEchangeService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private patientService:PatientsService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme =  this.formBuilder.group({
       nom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       prenom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -39,6 +37,7 @@ export class NewPatientComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
     let idPatient = this.infosPath.snapshot.paramMap.get('idPatient');
     if((idPatient != null) && idPatient!==''){
 

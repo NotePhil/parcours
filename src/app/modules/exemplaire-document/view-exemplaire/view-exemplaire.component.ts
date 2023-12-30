@@ -30,8 +30,8 @@ export class ViewExemplaireComponent implements OnInit {
     contientRessources: false,
     contientDistributeurs: false
   };
-  mouvements : IMouvement[] = []
   titre:string='';
+  mouvements : IMouvement[] = []
   constructor(private router:Router, private infosPath:ActivatedRoute,private dataEnteteMenuService:DonneesEchangeService, private serviceDocument:DocumentService, private serviceExemplaire:ExemplaireDocumentService) {}
 
   ngOnInit(): void {

@@ -19,16 +19,15 @@ export class NewMissionComponent implements OnInit {
   mission : IMission|undefined;
   forme: FormGroup;
   btnLibelle: string="Ajouter";
-  //titre: string="Ajouter mission";
   submitted: boolean=false;
   services$: Observable<IService[]>=EMPTY;
   idService: string = ""
   service : IService | undefined
   titre:string='';
-  //initialDateCreation = new FormControl(new Date());
-  //initialDateModification = new FormControl(new Date());
+  initialDateCreation = new FormControl(new Date());
+  initialDateModification = new FormControl(new Date());
 
-  constructor(private formBuilder:FormBuilder, private missionService:MissionsService,private dataEnteteMenuService:DonneesEchangeService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe, private serviceService:ServicesService) {
+  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private missionService:MissionsService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe, private serviceService:ServicesService) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],

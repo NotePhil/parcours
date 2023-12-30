@@ -30,7 +30,6 @@ import { RessourceModule } from './modules/ressource/ressource.module';
 import { PrecomvtModule } from './modules/precomvt/precomvt.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
-
 import { DistributeurModule } from './modules/distributeur/distributeur.module';
 import { RoleModule } from './modules/role/role.module';
 import { PersonnelsModule } from './modules/personnels/personnels.module';
@@ -87,3 +86,4 @@ export class AppModule {}
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
+
