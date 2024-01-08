@@ -19,6 +19,7 @@ import { ModalChoixAttributsComponent } from './modal-choix-attributs/modal-choi
 import { ModalChoixPreconisationsComponent } from './modal-choix-preconisations/modal-choix-preconisations.component';
 //import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ModalCodebarreComponent } from './modal-codebarre/modal-codebarre.component';
+import { ModalCodebarreDialogComponent } from './modal-codebarre-dialog/modal-codebarre-dialog.component';
 
 
 
@@ -28,12 +29,14 @@ import { ModalCodebarreComponent } from './modal-codebarre/modal-codebarre.compo
     ModalCategoriesComponent,
     ModalChoixAttributsComponent,
     ModalChoixPreconisationsComponent,
-    ModalCodebarreComponent
+    ModalCodebarreComponent,
+    ModalCodebarreDialogComponent,
   ],
   exports: [
     ModalCategoriesComponent,
     ModalChoixAttributsComponent,
-    ModalCodebarreComponent
+    ModalCodebarreComponent,
+    ModalCodebarreDialogComponent
   ],
   imports: [
     CommonModule,

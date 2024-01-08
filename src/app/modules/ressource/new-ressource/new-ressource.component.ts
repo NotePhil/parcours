@@ -37,7 +37,7 @@ export class NewRessourceComponent implements OnInit {
     etat: false
   };
 
-  constructor(private fb: FormBuilder, private formBuilder: FormBuilder, private dataDocumentCodebarre: DonneesEchangeService, private barService: ModalCodebarreService, private familleService: FamillesService, private ressourceService: RessourcesService, private serviceRessource: RessourcesService, private serviceFamille: FamillesService, private router: Router, private infosPath: ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private formBuilder: FormBuilder, private dataDocumentCodebarre: DonneesEchangeService, private barService: ModalCodebarreService, private familleService: FamillesService, private ressourceService: RessourcesService, private serviceRessource: RessourcesService, private serviceFamille: FamillesService, private router: Router, private infosPath: ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
