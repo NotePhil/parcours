@@ -100,7 +100,7 @@
                         <label for="Scanner" class="label">
                           {{'ressource.table.title9' | translate}}
                         </label>
-                        <app-modal-codebarre-dialog></app-modal-codebarre-dialog>
+                        <app-modal-codebarre-dialog  [multipleScan]="false"></app-modal-codebarre-dialog>
                         <input type="text" readonly name="scanBarcode" formControlName="scanBarcode" [value]="scan_val" class="w-100 align-items-center form-control"> 
                       </div>
                   </div>

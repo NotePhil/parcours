@@ -66,6 +66,7 @@
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label class="searchBar"></mat-label>
                                     <input type="text" matInput [formControl]="ressourceControl" [matAutocomplete]="auto">
+                                    <app-modal-codebarre-dialog [multipleScan]="true"></app-modal-codebarre-dialog>
                                     <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
                                         <mat-option class="options" *ngFor="let option of filteredOptionsRessource" [value]="option" (click)="rechercherListingRessources(option); reinitialliseRessourceControl()">
                                             {{option.libelle}}

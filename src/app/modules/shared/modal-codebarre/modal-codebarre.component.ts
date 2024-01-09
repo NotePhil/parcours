@@ -3,56 +3,51 @@ import {
   ElementRef,
   ViewChild,
   AfterViewInit,
-  Input,
+  OnDestroy,
   Inject,
 } from '@angular/core';
 import { BrowserMultiFormatReader } from '@zxing/library';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'; // Import MatDialogRef
 import { ModalCodebarreService } from './modal-codebarre.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-codebarre',
   templateUrl: './modal-codebarre.component.html',
   styleUrls: ['./modal-codebarre.component.css'],
 })
-export class ModalCodebarreComponent implements AfterViewInit {
+export class ModalCodebarreComponent implements AfterViewInit, OnDestroy {
   @ViewChild('video', { static: false }) video!: ElementRef;
-  multiple_scan: boolean = false;
   scannedData: string | undefined = 'Scan';
+  scannedDataList: string[] = [];
   isScanning: boolean = false;
+  multipleScan: boolean;
 
-  constructor(private barService: ModalCodebarreService) {
-    //@Inject(MAT_DIALOG_DATA) data:any ) {
-    //this.multiple_scan= data.useFirstLogic;
+  constructor(
+    private barService: ModalCodebarreService,
+    @Inject(MAT_DIALOG_DATA) data: any,
+    private dialogRef: MatDialogRef<ModalCodebarreComponent> // Inject MatDialogRef
+  ) {
+    this.multipleScan = data.multipleScan;
   }
-
-  private scannerActivated: boolean = false;
 
   ngAfterViewInit(): void {
     this.toggleScanner();
   }
 
-  ngOnInit(): void {
-    const tmp = this.barService.getCode().subscribe((dt) => {
-      this.scannedData = dt || 'Scan';
-      console.log('hell');
-    });
+  ngOnDestroy(): void {
+    this.stopScanner();
   }
 
   toggleScanner(): void {
     this.isScanning = !this.isScanning;
-
     if (this.isScanning) {
-      this.scanCode();
+      if (this.multipleScan) {
+        this.scanMultipleCodes();
+      } else {
+        this.scanCode();
+      }
     } else {
       this.stopScanner();
-    }
-  }
-
-  startScanner(): void {
-    if (!this.scannerActivated) {
-      this.scannerActivated = true;
-      this.toggleScanner();
     }
   }
 
@@ -63,52 +58,69 @@ export class ModalCodebarreComponent implements AfterViewInit {
       .then((result) => {
         this.handleScanResult(result.getText());
         this.playBeep(); // Play beep sound after each scan
-        this.isScanning = true;
+        this.isScanning = false;
+        this.dialogRef.close(); // Close the modal
       })
       .catch((err) => {
         console.error('Error while scanning: ', err);
         this.isScanning = false;
-        // setTimeout(() => {}, 1000);
       });
+  }
 
-    if (this.multiple_scan) {
-      this.scanCode();
-    }
+  scanMultipleCodes(): void {
+    const codeReader = new BrowserMultiFormatReader();
+    codeReader
+      .decodeFromInputVideoDevice(undefined, this.video.nativeElement)
+      .then((result) => {
+        this.handleScanResult(result.getText());
+        this.scannedDataList.push(result.getText());
+        this.playBeep();
+        this.isScanning = false;
+        console.log('data list', this.scannedDataList);
+        this.stopScannerForDelay();
+      })
+      .catch((err) => {
+        console.error('Error while scanning: ', err);
+        this.isScanning = false;
+        setTimeout(() => {
+          this.scanMultipleCodes();
+        }, 1000);
+      });
+  }
+
+  stopScannerForDelay(): void {
+    setTimeout(() => {
+      this.scanMultipleCodes(); // Restart the scanner after a delay
+    }, 1000); // 1000 milliseconds (adjust as needed)
   }
 
   stopScanner(): void {
-    // Implement any logic needed to stop the current scanner
-    // For now, just toggle the scanning state
     this.isScanning = false;
+    const tracks: MediaStreamTrack[] | null =
+      this.video.nativeElement.srcObject?.getTracks();
+    if (tracks) {
+      tracks.forEach((track: MediaStreamTrack) => track.stop()); // Stop all tracks in the stream
+    }
   }
 
   handleScanResult(scannedData: string): void {
-    //this.scannedData = data;
     this.barService.setCode(scannedData);
     console.log('Scaaaaan', scannedData);
   }
 
   playBeep(): void {
-    // Create an audio context
     const audioContext = new (window.AudioContext ||
       (window as any).webkitAudioContext)();
 
-    // Create an oscillator
     const oscillator = audioContext.createOscillator();
-
-    // Connect the oscillator to the audio context's destination (speakers)
     oscillator.connect(audioContext.destination);
-
-    // Start the oscillator (sound)
     oscillator.start();
 
-    // Stop the oscillator after a short duration (adjust as needed)
     setTimeout(() => {
       oscillator.stop();
-    }, 200); // 200 milliseconds
+    }, 200);
   }
-
-  ring() {
-    alert('ringing,,,');
+  closeModal(): void {
+    this.dialogRef.close(); // Close the modal
   }
 }

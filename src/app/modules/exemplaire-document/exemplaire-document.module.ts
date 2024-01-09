@@ -17,13 +17,13 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ListExemplaireComponent } from './list-exemplaire/list-exemplaire.component';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     NewExemplaireComponent,
     ViewExemplaireComponent,
-    ListExemplaireComponent
+    ListExemplaireComponent,
   ],
   imports: [
     CommonModule,
@@ -32,20 +32,21 @@ import { ListExemplaireComponent } from './list-exemplaire/list-exemplaire.compo
     AppRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    SharedModule,
     MatInputModule,
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
     TranslateModule.forChild({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        },
-        extend:true
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      extend: true,
     }),
-    BrowserModule
-  ]
+    BrowserModule,
+  ],
 })
-export class ExemplaireDocumentModule { }
+export class ExemplaireDocumentModule {}
