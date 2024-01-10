@@ -22,6 +22,7 @@ import { TypeUnite } from '../modele/type-unite';
 import { TypeMvt } from '../modele/type-mvt';
 import { TypeMouvement } from '../modele/typeMouvement';
 import { IEtape } from '../modele/etape';
+import { IParours } from '../modele/parours';
 
 export class InMemDBService implements InMemoryDbService {
 
@@ -372,6 +373,19 @@ export class InMemDBService implements InMemoryDbService {
               {
                 nom: 'Rechercher',
                 lien: './list-etapes',
+                bouton: 'false',
+              },
+            ],
+          },
+          {
+            fonction: 'Parcours',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Créer', lien: 'nouveau-parours', bouton: 'false' },
+              {
+                nom: 'Rechercher',
+                lien: './list-parours',
                 bouton: 'false',
               },
             ],
@@ -14628,6 +14642,17 @@ export class InMemDBService implements InMemoryDbService {
       {id:"2", libelle:"consultation", etat:true,},
       {id:"3", libelle:"sortie", etat:false,}
     ];
-    return{patients, services, menus, tickets, missions, attributs, documents,exemplaires,famille,ressource,precomvt,distributeur,role, personnels, typeAttribut, typeUnite, typeMvt,etape};
+    let parours: IParours[] = [
+      { id: '1', libelle: 'debut',dateCreation:new Date("07/03/2000"),
+        etape: [{ id:"1", libelle:"Acceuil", etat:false,},]
+      },
+      {id: '2',libelle: 'Milieu',dateCreation:new Date("07/03/2000"),
+        etape: [{id:"2", libelle:"consultation", etat:true,},]
+      },
+      { id: '2',libelle: 'fin',dateCreation:new Date("07/03/2000"),
+        etape: [{id:"3", libelle:"sortie", etat:false,},]
+      },
+    ];
+    return{patients, services, menus, tickets, missions, attributs, documents,exemplaires,famille,ressource,precomvt,distributeur,role, personnels, typeAttribut, typeUnite, typeMvt,etape,parours};
   }
 }

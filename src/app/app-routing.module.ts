@@ -15,6 +15,7 @@ import { DistributeurRoutingModule } from './modules/distributeur/distributeur-r
 import { RoleRoutingModule } from './modules/role/role-routing.module';
 import { PersonnelsRoutingModule } from './modules/personnels/personnels-routing.module';
 import { EtapeRoutingModule } from './modules/etape/etape-routing.module';
+import { ParoursRoutingModule } from './modules/parours/parours-routing.module';
 
 
 
@@ -42,7 +43,8 @@ const routes: Routes = [
     FamilleRoutingModule,
     DistributeurRoutingModule,
     RoleRoutingModule,
-    EtapeRoutingModule
+    EtapeRoutingModule,
+    ParoursRoutingModule
   ],
   exports: [RouterModule]
 })
