@@ -9,7 +9,7 @@ export interface IDocument {
     titre:string,
     description:string,
     etat:boolean,
-    typeMouvement: TypeMvt
+    typeMouvement: String,
     affichagePrix:boolean,
     contientRessources:boolean,
     contientDistributeurs:boolean,

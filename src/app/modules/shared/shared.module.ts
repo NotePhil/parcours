@@ -32,7 +32,8 @@ import { ModalChoixSousExemplairesComponent } from './modal-choix-sous-exemplair
     ModalChoixPreconisationsComponent,
     EnteteComponent,
     ModalChoixSousDocumentComponent,
-    ModalChoixSousExemplairesComponent
+    ModalChoixSousExemplairesComponent,
+    EnteteComponent,
 
   ],
   exports: [
@@ -40,7 +41,9 @@ import { ModalChoixSousExemplairesComponent } from './modal-choix-sous-exemplair
     ModalChoixAttributsComponent,
     EnteteComponent,
     ModalChoixSousDocumentComponent,
-    ModalChoixSousExemplairesComponent
+    ModalChoixSousExemplairesComponent,
+    ModalChoixSousDocumentComponent,
+    EnteteComponent
   ],
   imports: [
     CommonModule,

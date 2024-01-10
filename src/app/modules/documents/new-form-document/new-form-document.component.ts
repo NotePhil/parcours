@@ -18,14 +18,14 @@ import {MatDialog} from '@angular/material/dialog';
 import { ModalCategoriesComponent } from '../../shared/modal-categories/modal-categories.component';
 import {v4 as uuidv4} from 'uuid';
 import { ICategorieAffichage } from 'src/app/modele/categorie-affichage';
-import { TypeTicket } from 'src/app/modele/type-ticket';
+import { IType } from 'src/app/modele/type';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ModalChoixAttributsComponent } from '../../shared/modal-choix-attributs/modal-choix-attributs.component';
 import { ModalChoixPreconisationsComponent } from '../../shared/modal-choix-preconisations/modal-choix-preconisations.component';
 import { IPrecoMvt } from 'src/app/modele/precomvt';
 import { ModalChoixSousDocumentComponent } from '../../shared/modal-choix-sous-document/modal-choix-sous-document.component';
 import { IAssociationCategorieAttributs } from 'src/app/modele/association-categorie-attributs';
-import { TypeMvt } from 'src/app/modele/type-mvt';
+import { TypeMouvement } from 'src/app/modele/typeMouvement';
 
 
 @Component({
@@ -47,7 +47,7 @@ export class NewFormDocumentComponent implements OnInit {
     affichagePrix: false,
     contientRessources: false,
     contientDistributeurs: false,
-    typeMouvement: TypeMvt.Neutre
+    typeMouvement: TypeMouvement.Neutre
   };
   mission$:Observable<IMission[]>=EMPTY;
   forme: FormGroup;
@@ -55,6 +55,7 @@ export class NewFormDocumentComponent implements OnInit {
   submitted: boolean=false;
   validation: boolean=false;
   serviceDeMission!: IService;
+  titre:string='';
 
   // variables attributs, pour afficher le tableau d'attributs sur l'IHM
   ELEMENTS_TABLE_ATTRIBUTS: IAttributs[] = [];
@@ -79,12 +80,11 @@ export class NewFormDocumentComponent implements OnInit {
   //tableau contenent les sous documents
   ELEMENTS_TABLE_SOUS_DOCUMENTS: IDocument[] = [];
 
-  titre:string='';
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  typeMvt: string[] = [TypeMvt.Ajout,TypeMvt.Neutre,TypeMvt.Reduire];
+  typeMvt: string[] = [];
 
   constructor(private router:Router, private formBuilder: FormBuilder, private infosPath:ActivatedRoute,private dataEnteteMenuService:DonneesEchangeService,
      private serviceDocument:DocumentService, private serviceMission:MissionsService, private serviceAttribut:AttributService,
@@ -103,7 +103,7 @@ export class NewFormDocumentComponent implements OnInit {
   }
   ngOnInit(): void {
     this.mission$ = this.getAllMissions();
-
+    this.donneeDocCatService.getTypeMvt().subscribe(x => this.typeMvt = x.type);
     // chargement de la page a partir d'un Id pour la modification d'un document
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
     if((idDocument != null) && idDocument!==''){
@@ -158,7 +158,7 @@ export class NewFormDocumentComponent implements OnInit {
                       dateCreation: new Date(),
                       dateModification: new Date(),
                       valeursParDefaut: '',
-                      type: TypeTicket.Int
+                      type: IType.Int
                     }
                   }
                 }
