@@ -1,6 +1,4 @@
-import { IDistributeur } from "./distributeur";
 import { IFamille } from "./famille";
-import { Unites } from "./unites";
 
 
 export interface IRessource {
@@ -8,8 +6,9 @@ export interface IRessource {
     libelle:string,
     etat:boolean,
     quantite:number,
-    prix:number,
-    unite:Unites,
+    prixEntree:number,
+    prixDeSortie:number,
+    unite:string,
     famille:IFamille,
     caracteristique:string,
    /* dateCreation:Date,

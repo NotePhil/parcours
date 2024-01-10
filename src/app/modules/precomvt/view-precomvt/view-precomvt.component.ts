@@ -1,15 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/internal/Observable';
-import { EMPTY } from 'rxjs/internal/observable/empty';
 import { IDistributeur } from 'src/app/modele/distributeur';
 import { IFamille } from 'src/app/modele/famille';
 import { IPrecoMvt } from 'src/app/modele/precomvt';
 import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
-import { TypeMvt } from 'src/app/modele/type-mvt';
 import { PrecoMvtsService } from 'src/app/services/precomvts/precomvts.service';
 
 @Component({
@@ -21,8 +16,9 @@ export class ViewPrecomvtComponent implements OnInit {
 
   precoMvt:IPrecoMvt={
     id: '',
+    etat:true,
     libelle:'',
-     type: TypeMvt.Ajout,
+     type: '',
     precomvtqte: [],
   }
 
@@ -37,11 +33,10 @@ export class ViewPrecomvtComponent implements OnInit {
 
   ngOnInit(): void {
     let idPrecoMvt = this.data.idPrecoMvt
-    console.log("idPrecoMvt :" + idPrecoMvt);
     if((idPrecoMvt != null) && idPrecoMvt!==''){
       this.precoMvtService.getPrecomvtById(idPrecoMvt).subscribe(
         x =>{
-          this.precoMvt = x; console.log("Voici le precomvt", this.precoMvt);
+          this.precoMvt = x;
           this.precoMvt.precomvtqte.forEach(
             element => {
                    if (element.ressource != undefined && element.ressource != null ){

@@ -8,8 +8,6 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, EMPTY } from 'rxjs';
 import { RessourcesService } from 'src/app/services/ressources/ressources.service';
-import { TypeUnite } from 'src/app/modele/type-unite';
-
 import { IRessource } from 'src/app/modele/ressource';
 
 
@@ -28,7 +26,7 @@ export class  ListRessourcesComponent implements OnInit {
   ELEMENTS_TABLE: IRessource[] = [];
   filteredOptions: IRessource[] | undefined;
 
-  displayedColumns: string[] = ['libelle','etat','quantite','unite','prix','famille','caracteristique','actions'];
+  displayedColumns: string[] = ['libelle','etat','quantite','unite','prixEntree','prixDeSortie','famille','caracteristique','actions'];
 
   dataSource = new MatTableDataSource<IRessource>(this.ELEMENTS_TABLE);
 

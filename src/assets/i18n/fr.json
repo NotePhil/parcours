@@ -117,7 +117,7 @@
       }
   },
   "services": {
-    "title1":"Ajouter",
+    "title1":"Ajouter ",
     "table": {
       "title1": "Libelle",
       "title2": "Etat",
@@ -158,7 +158,7 @@
     }
   },
   "attributs": {
-    "title1":"Ajouter",
+    "title1":"Ajouter ",
     "table": {
       "title1": "titre",
       "title2": "Description",
@@ -181,7 +181,7 @@
     }
   },
   "missions": {
-    "title1":"Ajouter",
+    "title1":"Ajouter ",
     "table": {
       "title1": "Libelle",
       "title2": "Description",
@@ -206,7 +206,7 @@
     }
   },
   "document": {
-    "title3":"Ajouter un nouveau document",
+    "title3":"Ajouter ",
     "search-bar": "Rechercher",
     "title1": "Affichage des resultats",
     "title2": "Selectionner les attributs de la categories",
@@ -234,7 +234,8 @@
       "title18": "visibilité du prix ?",
       "title19": "lier des ressources ?",
       "title20": "visibilité du distributeur ?",
-      "title21": "Sous documents"
+      "title21": "Sous documents",
+      "title22": "type des mouvements"
     },
     "form": {
       "text1": "Le Titre est obligatoire.",
@@ -243,19 +244,22 @@
       "text4": "Les attributs sont obligatoires.",
       "text5": "Si cette case est cochée, la colone du prix sera visible lors de la creation des mouvement d'un exemplaire de ce document",
       "text6": "Si cette case est décochée, il n'y aura pas la possibilité de creer des mouvement lors de la creation d'un exemplaire du document",
-      "text7": "Si cette case est cochée, la colone du distributeur sera visible lors de la creation des mouvement d'un exemplaire de ce document"
+      "text7": "Si cette case est cochée, la colone du distributeur sera visible lors de la creation des mouvement d'un exemplaire de ce document",
+      "text8": "Le type des mouvements effectués sur ce document",
+      "text9": "Le type des mouvements effectués sur ce document est obligatoire"
     },
     "view": {
-      "title": "Modele",
+      "title": "Modele ",
       "text1": "liste des missions du document",
       "text2": "liste des attributs du document",
       "text3": "liste des attributs par categorie du document"
     },
     "exemplaire": {
-      "title": "Exemplaire du document",
+      "title": "Exemplaire ",
       "title2": "Donnees obsoletes",
       "title3": "Ajouter des ressources",
       "title4": "liste des mouvements",
+      "title5": "Selectionner les exemplaires à associer",
       "text1": "Composition de l'exemplaire",
       "text2": "date de peremption",
       "text3": "Modifier le distributeur"
@@ -268,7 +272,7 @@
     "libelle": "langues"
   },
   "famille": {
-    "header": "Ajouter Famille",
+    "header": "Ajouter ",
     "table": {
       "title1": "Libellé",
       "title2": "Description",
@@ -281,7 +285,7 @@
     "lists": {
       "button1": "Retour"
     },
-    "title": "Listing Famille",
+    "title": "Listing ",
     "search-bar": "Rechercher",
     "table1": {
       "title1": "Libellé",
@@ -298,25 +302,26 @@
   },
   "ressource": {
     "table": {
-      "title": "Ajouter ressource",
+      "title": "Ajouter ",
       "title1": " Libellé",
       "title2": "Etat",
       "title3": "Quantité",
       "title4": "Unité",
-      "title5": "Prix",
+      "title5": "Prix d'entree",
       "title6": "Catégorie",
       "title7": "Caractéristiques",
-      "title8": "Ressources"
+      "title8": "Ressources",
+      "title9": "Prix de sortie"
     },
     "form": {
       "text1": "Champ Obligatoire",
-      "text2": "Champ Obligatoire",
+      "text2": "",
       "text4": "litre",
       "text5": "kg",
       "text6": "m²",
       "text7": "quintaux",
-      "text8": "Champ Obligatoire",
-      "text9": "Champ Obligatoire",
+      "text8": "",
+      "text9": "",
       "text11": "Selectionnez une Unité",
       "text12": "souple",
       "text13": "dure",
@@ -327,7 +332,7 @@
     "lists": {
       "button2": "Retour"
     },
-    "title": "Listing Ressource",
+    "title": "Listing ",
     "search-bar": "Rechercher",
     "table2": {
       "title1": "Ajouter ressource",
@@ -339,8 +344,8 @@
       "title7": "Prix",
       "title8": "Catégorie",
       "title9": "Actions",
-      "title10": "Total ",
-      "title11": "Montant total "
+      "title10": "Total",
+      "title11": "Montant total"
     }
   },
   "preconisation":{
@@ -362,7 +367,7 @@
   },
   "distributeur": {
     "table": {
-      "title": "Ajouter Distributeur",
+      "title": "Ajouter ",
       "title1": "Raison Social ",
       "title2": "Etat",
       "title3": "Adresse",
@@ -376,7 +381,7 @@
     "lists": {
       "button1": "Annuler"
     },
-    "title": "listing Distributeur",
+    "title": "listing ",
     "search-bar": "Rechercher",
     "table2": {
       "title1": "raisonSocial",
@@ -388,7 +393,7 @@
     }
   },
   "precomvt": {
-    "header": "Nouvelle Préconisation",
+    "header": "Nouvelle ",
     "header1": "Assigner Familles",
     "header2": "Assigner Ressource",
     "table": {
@@ -446,7 +451,7 @@
     }
 },
 "role":{
-  "header":"Ajouter Role",
+  "header":"Ajouter ",
   "table":{
     "title1":"Titre",
     "title2":"titre",
@@ -460,7 +465,7 @@
 "lists":{
   "button1":"Annuler"
 },
-"title":"listing Role",
+"title":"listing ",
 "search-bar":"Rechercher",
 "table1":{
     "title1":"Titre",
