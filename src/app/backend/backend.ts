@@ -21,6 +21,7 @@ import { TypeAttribut } from '../modele/type-attributs';
 import { TypeUnite } from '../modele/type-unite';
 import { TypeMvt } from '../modele/type-mvt';
 import { TypeMouvement } from '../modele/typeMouvement';
+import { IEtape } from '../modele/etape';
 
 export class InMemDBService implements InMemoryDbService {
 
@@ -361,6 +362,19 @@ export class InMemDBService implements InMemoryDbService {
                 bouton: 'false',
               },
             ],
+          },
+          {
+            fonction: 'Etape',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Créer', lien: 'etape-nouvelle', bouton: 'false' },
+              {
+                nom: 'Rechercher',
+                lien: './list-etapes',
+                bouton: 'false',
+              },
+            ],
           }
         ]
       },
@@ -472,6 +486,19 @@ export class InMemDBService implements InMemoryDbService {
             elements: [
               { nom: 'Créer', lien: 'distributeur-nouveau', bouton: 'false' },
               { nom: 'search', lien: './list-distributeurs', bouton: 'false' },
+            ],
+          },
+          {
+            fonction: 'Stage',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Créer', lien: 'etape-nouvelle', bouton: 'false' },
+              {
+                nom: 'search',
+                lien: './list-etapes',
+                bouton: 'false',
+              },
             ],
           }
         ]
@@ -948,7 +975,7 @@ export class InMemDBService implements InMemoryDbService {
                     prixEntree: 2000,
                     prixDeSortie: 2050,
                     unite: 'Litre',
-                    
+
                     caracteristique: 'souple',
                     famille: {
                       id: '3',
@@ -2589,7 +2616,7 @@ export class InMemDBService implements InMemoryDbService {
                     quantiteMax: 40,
                     montantMin: 100,
                     montantMax: 7000,
-                    ressource: 
+                    ressource:
                     {
                       id: '3',
                       libelle: 'pediatrie',
@@ -3132,7 +3159,7 @@ export class InMemDBService implements InMemoryDbService {
                     quantiteMax: 40,
                     montantMin: 100,
                     montantMax: 7000,
-                    ressource: 
+                    ressource:
                     {
                       id: '3',
                       libelle: 'pediatrie',
@@ -3165,7 +3192,7 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 2000,
                         prixDeSortie: 2050,
                         unite: 'Litre',
-                        
+
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -3521,7 +3548,7 @@ export class InMemDBService implements InMemoryDbService {
                     quantiteMax: 40,
                     montantMin: 100,
                     montantMax: 7000,
-                    ressource: 
+                    ressource:
                     {
                       id: '3',
                       libelle: 'pediatrie',
@@ -4582,7 +4609,7 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 2000,
                         prixDeSortie: 2050,
                         unite: 'Litre',
-                        
+
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -5871,7 +5898,7 @@ export class InMemDBService implements InMemoryDbService {
                         quantite: 20,
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        unite: 'Litre',                        
+                        unite: 'Litre',
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -6316,7 +6343,7 @@ export class InMemDBService implements InMemoryDbService {
                         quantite: 20,
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        unite: 'Litre',                       
+                        unite: 'Litre',
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -6712,7 +6739,7 @@ export class InMemDBService implements InMemoryDbService {
                         quantite: 20,
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        unite: 'Litre',                       
+                        unite: 'Litre',
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -7287,7 +7314,7 @@ export class InMemDBService implements InMemoryDbService {
                         quantite: 20,
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        unite: 'Litre',                      
+                        unite: 'Litre',
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -7732,7 +7759,7 @@ export class InMemDBService implements InMemoryDbService {
                         quantite: 20,
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        unite: 'Litre',                        
+                        unite: 'Litre',
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -8308,7 +8335,7 @@ export class InMemDBService implements InMemoryDbService {
                     quantite: 20,
                     prixEntree: 2000,
                     prixDeSortie: 2050,
-                    unite: 'Litre',                  
+                    unite: 'Litre',
                     caracteristique: 'souple',
                     famille: {
                       id: '3',
@@ -8753,7 +8780,7 @@ export class InMemDBService implements InMemoryDbService {
                     quantite: 20,
                     prixEntree: 2000,
                     prixDeSortie: 2050,
-                    unite: 'Litre',                   
+                    unite: 'Litre',
                     caracteristique: 'souple',
                     famille: {
                       id: '3',
@@ -9147,7 +9174,7 @@ export class InMemDBService implements InMemoryDbService {
                         quantite: 20,
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        unite: 'Litre',                        
+                        unite: 'Litre',
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -9716,7 +9743,7 @@ export class InMemDBService implements InMemoryDbService {
                         quantite: 20,
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        unite: 'Litre',                        
+                        unite: 'Litre',
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -10161,7 +10188,7 @@ export class InMemDBService implements InMemoryDbService {
                         quantite: 20,
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        unite: 'Litre',                       
+                        unite: 'Litre',
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -10716,7 +10743,7 @@ export class InMemDBService implements InMemoryDbService {
                   quantite: 30,
                   prixEntree: 1000,
                   prixDeSortie: 1050,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ 
+                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
                   unite: 'Litre',
                   caracteristique: 'souple',
                   famille: {
@@ -10741,7 +10768,7 @@ export class InMemDBService implements InMemoryDbService {
                     quantite: 20,
                     prixEntree: 2000,
                     prixDeSortie: 2050,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ 
+                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
                     unite: 'Litre',
                     caracteristique: 'souple',
                     famille: {
@@ -11386,7 +11413,7 @@ export class InMemDBService implements InMemoryDbService {
                         quantite: 20,
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        unite: 'Litre',                   
+                        unite: 'Litre',
                         caracteristique: 'souple',
                         famille: {
                           id: '3',
@@ -12182,7 +12209,7 @@ export class InMemDBService implements InMemoryDbService {
               quantite: 20,
               prixEntree: 2000,
               prixDeSortie: 2050,
-              unite: 'Litre',              
+              unite: 'Litre',
               caracteristique: 'souple',
               famille: {
                 id: '2',
@@ -12508,7 +12535,7 @@ export class InMemDBService implements InMemoryDbService {
                   quantite: 30,
                   prixEntree: 1000,
                   prixDeSortie: 1050,
-                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ 
+                  /*dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
                   unite: 'Litre',
                   caracteristique: 'souple',
                   famille: {
@@ -12533,8 +12560,8 @@ export class InMemDBService implements InMemoryDbService {
                     quantite: 20,
                     prixEntree: 2000,
                     prixDeSortie: 2050,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ 
-                    unite: 'Litre',                 
+                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
+                    unite: 'Litre',
                     caracteristique: 'souple',
                     famille: {
                       id: '3',
@@ -14264,7 +14291,7 @@ export class InMemDBService implements InMemoryDbService {
         quantite: 20,
         prixEntree: 2000,
         prixDeSortie: 2050,
-        unite: 'Litre',        
+        unite: 'Litre',
         caracteristique: 'souple',
         famille: {
           id: '2',
@@ -14280,7 +14307,7 @@ export class InMemDBService implements InMemoryDbService {
         quantite: 20,
         prixEntree: 2000,
         prixDeSortie: 2050,
-        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ 
+        /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
         unite: 'Litre',
         caracteristique: 'souple',
         famille: {
@@ -14595,7 +14622,12 @@ export class InMemDBService implements InMemoryDbService {
     ];
     let typeAttribut:TypeAttribut={type:["Number","Text", "Checkbox", "Radio", "Date","Url", "Textarea", "Email"]};
     let typeUnite : TypeUnite = {type:["Litre","Kg","Packs","Boite"]};
-    let typeMvt: TypeMvt = {type :["Neutre", "Ajout", "Reduire"]}; 
-    return{patients, services, menus, tickets, missions, attributs, documents,exemplaires,famille,ressource,precomvt,distributeur,role, personnels, typeAttribut, typeUnite, typeMvt};
+    let typeMvt: TypeMvt = {type :["Neutre", "Ajout", "Reduire"]};
+    let etape: IEtape[] = [
+      {id:"1", libelle:"Acceuil", etat:false,},
+      {id:"2", libelle:"consultation", etat:true,},
+      {id:"3", libelle:"sortie", etat:false,}
+    ];
+    return{patients, services, menus, tickets, missions, attributs, documents,exemplaires,famille,ressource,precomvt,distributeur,role, personnels, typeAttribut, typeUnite, typeMvt,etape};
   }
 }

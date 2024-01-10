@@ -14,6 +14,9 @@ import { PrecoMvtRoutingModule } from './modules/precomvt/precomvt-routing.modul
 import { DistributeurRoutingModule } from './modules/distributeur/distributeur-routing.module';
 import { RoleRoutingModule } from './modules/role/role-routing.module';
 import { PersonnelsRoutingModule } from './modules/personnels/personnels-routing.module';
+import { EtapeRoutingModule } from './modules/etape/etape-routing.module';
+
+
 
 const routes: Routes = [
   {
@@ -38,7 +41,8 @@ const routes: Routes = [
     ExemplaireDocumentRoutingModule,
     FamilleRoutingModule,
     DistributeurRoutingModule,
-    RoleRoutingModule
+    RoleRoutingModule,
+    EtapeRoutingModule
   ],
   exports: [RouterModule]
 })

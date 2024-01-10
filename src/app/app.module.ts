@@ -33,6 +33,7 @@ import { CommonModule } from '@angular/common';
 import { DistributeurModule } from './modules/distributeur/distributeur.module';
 import { RoleModule } from './modules/role/role.module';
 import { PersonnelsModule } from './modules/personnels/personnels.module';
+import { EtapeModule } from './modules/etape/etape.module';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, MenuComponent],
@@ -60,6 +61,7 @@ import { PersonnelsModule } from './modules/personnels/personnels.module';
 
     DistributeurModule,
     RoleModule,
+    EtapeModule,
     // ngx-translate and the loader module
     HttpClientModule,
     TranslateModule.forRoot({

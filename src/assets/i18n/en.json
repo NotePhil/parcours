@@ -264,7 +264,7 @@
             "text1":"composition of this instance",
             "text2": "Expiration's date",
             "text3": "Update distributor"
-        }      
+        }
     },
     "theme":{
         "libelle":"theme"
@@ -478,5 +478,28 @@
         "title14": "Min Amount",
         "title15": "Distributor"
       }
+    },
+    "etape":{
+      "table": {
+        "title": "Add",
+        "title1": "Libel",
+        "title2": "State"
+      },
+      "form":{
+        "text1":"Field Required"
+    },
+    "lists":{
+      "button1":"Cancel"
+    },
+    "title":"listing ",
+    "search-bar":"Research",
+    "table1":{
+        "title1":"Libel",
+        "title2":"State",
+        "title4":"Actions",
+        "actions":{
+            "link2":"Modified"
+        }
+    }
     }
 }
