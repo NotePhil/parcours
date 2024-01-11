@@ -20,9 +20,7 @@ import { ModalChoixPreconisationsComponent } from './modal-choix-preconisations/
 //import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ModalCodebarreComponent } from './modal-codebarre/modal-codebarre.component';
 import { ModalCodebarreDialogComponent } from './modal-codebarre-dialog/modal-codebarre-dialog.component';
-
-
-
+import { ModalCodebarreScanContinueComponent } from './modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +29,14 @@ import { ModalCodebarreDialogComponent } from './modal-codebarre-dialog/modal-co
     ModalChoixPreconisationsComponent,
     ModalCodebarreComponent,
     ModalCodebarreDialogComponent,
+    ModalCodebarreScanContinueComponent,
   ],
   exports: [
     ModalCategoriesComponent,
     ModalChoixAttributsComponent,
     ModalCodebarreComponent,
-    ModalCodebarreDialogComponent
+    ModalCodebarreDialogComponent,
+    ModalCodebarreScanContinueComponent,
   ],
   imports: [
     CommonModule,
@@ -53,14 +53,14 @@ import { ModalCodebarreDialogComponent } from './modal-codebarre-dialog/modal-co
     MatDialogModule,
     //MatCheckboxModule,
     TranslateModule.forChild({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        },
-        extend:true
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      extend: true,
     }),
   ],
-  providers: []
+  providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}

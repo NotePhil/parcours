@@ -124,10 +124,17 @@ select{
     background-color:#28a745;// #1473e6;
 }
 }
+.button-right {
+  margin-left: auto;
+}
 /*input, #etat{
   border: none !important;
   box-shadow: none !important;
 }*/
+.container {
+  display: flex;
+  align-items: center;
+}
 .choix{
   color: #28a745;
   font-size: 18px;

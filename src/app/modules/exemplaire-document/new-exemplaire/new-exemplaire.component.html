@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="document.contientRessources == true" class="block card mt-2 pt-1" id="sectionAjoutPreco">
+            <div *ngIf="document.contientRessources == true" class="card mt-2 pt-1" id="sectionAjoutPreco">
                 <div>
                     <h3>{{'document.exemplaire.title3' | translate}} :</h3>
                     <div class="searchBlock" [ngClass]="{'searchBlock': document.contientDistributeurs, 'searchBlockUnique': !document.contientDistributeurs}">
@@ -58,6 +58,7 @@
                                     </mat-autocomplete>
                                 </mat-form-field>
                                 <button *ngIf="modificationDistributeurActive == true" class="btn btnModifierDistributeurBlock" type="button" (click)="modifierDistributeur()">{{'lists.button6' | translate}}</button>
+                                
                             </form>
                         </div>
                         <div class="blockAutoRessources">
@@ -66,12 +67,12 @@
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label class="searchBar"></mat-label>
                                     <input type="text" matInput [formControl]="ressourceControl" [matAutocomplete]="auto">
-                                    <app-modal-codebarre-dialog [multipleScan]="true"></app-modal-codebarre-dialog>
                                     <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
                                         <mat-option class="options" *ngFor="let option of filteredOptionsRessource" [value]="option" (click)="rechercherListingRessources(option); reinitialliseRessourceControl()">
                                             {{option.libelle}}
                                         </mat-option>
                                     </mat-autocomplete>
+                                    
                                 </mat-form-field>
                             </form>
                         </div>
@@ -169,8 +170,10 @@
                 </div>
             </div>
         </div>
-        <div class="actionButton">
-            <button class="btn" type="reset" routerLink="../../executer-missions"><i class="fa fa-reply mr-1"></i>{{'lists.button2' | translate}}</button>
+        
+        <div class="actionButton container">
+            <button class="btn" type="reset" routerLink="../../executer-missions"><i class="fa fa-reply mr-1"></i>{{'lists.button2' | translate}}</button>      
+            <app-modal-codebarre-scan-continue></app-modal-codebarre-scan-continue>
             <button type="submit" class="btn btnValidation">{{btnLibelle}}</button>
         </div>
     </form>
