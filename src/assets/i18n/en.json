@@ -501,5 +501,28 @@
             "link2":"Modified"
         }
     }
+    },
+"parours":{
+  "table": {
+    "title": "Add ",
+    "title1": "libel",
+    "title2": "stage"
+  },
+  "form":{
+    "text1":"Field Required"
+},
+"lists":{
+  "button1":"Cancel"
+},
+"title":"listing ",
+"search-bar":"Research",
+"table1":{
+    "title1":"libel",
+    "title2":"stage",
+    "title4":"Actions",
+    "actions":{
+        "link2":"Modified"
     }
+}
+}
 }

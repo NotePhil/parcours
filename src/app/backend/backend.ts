@@ -514,6 +514,19 @@ export class InMemDBService implements InMemoryDbService {
                 bouton: 'false',
               },
             ],
+          },
+          {
+            fonction: 'Parcours',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Créer', lien: 'nouveau-parours', bouton: 'false' },
+              {
+                nom: 'search',
+                lien: './list-parours',
+                bouton: 'false',
+              },
+            ],
           }
         ]
       },

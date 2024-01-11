@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { Observable, EMPTY } from 'rxjs';
 import { IParours } from 'src/app/modele/parours';
 import { ParoursService } from 'src/app/services/parours/parours.service';
+import { IAfficheParours } from 'src/app/modele/affiche-parours';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-parours',
@@ -15,10 +17,11 @@ import { ParoursService } from 'src/app/services/parours/parours.service';
   styleUrls: ['./list-parours.component.scss']
 })
 export class ListParoursComponent implements OnInit {
-  parours$:Observable<IParours[]>=EMPTY;
+  //parours$:Observable<IParours[]>=EMPTY;
   myControl = new FormControl<string | IParours>('');
 
-  ELEMENTS_TABLE: IParours[] = [];
+  //ELEMENTS_TABLE: IParours[] = [];
+  ELEMENTS_TABLE: IAfficheParours[] = [];
   filteredOptions: IParours[] | undefined;
 
   displayedColumns: string[] = ['libelle','etape', 'actions'];
@@ -29,18 +32,34 @@ export class ListParoursComponent implements OnInit {
   paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private router:Router, private _liveAnnouncer: LiveAnnouncer, private serviceParours:ParoursService) { }
+
+
+  tableParours : IAfficheParours[] = []
+  afficheParours : IAfficheParours = {
+    id: '',
+    libelle: '',
+    etape: [],
+    listeEtape: ''
+  }
+  constructor(private translate: TranslateService,private router:Router, private _liveAnnouncer: LiveAnnouncer, private serviceParour:ParoursService) { }
 
   ngOnInit(): void {
     this.getAllParours().subscribe(valeurs => {
-      this.dataSource.data = valeurs;
+      const tableParours : IAfficheParours[] = [];
+
+      valeurs.forEach(
+        x =>{
+          tableParours.push(this.convertParToParAffiche(x))
+        }
+      )
+      this.dataSource.data = tableParours;
     });
 
     this.myControl.valueChanges.subscribe(
       value => {
         const libelle = typeof value === 'string' ? value : value?.libelle;
         if(libelle != undefined && libelle?.length >0){
-          this.serviceParours.getParoursBylibelle(libelle.toLowerCase() as string).subscribe(
+          this.serviceParour.getParoursBylibelle(libelle.toLowerCase() as string).subscribe(
             reponse => {
               this.filteredOptions = reponse;
             }
@@ -54,8 +73,8 @@ export class ListParoursComponent implements OnInit {
     );
   }
 
-  displayFn(task: IParours): string {
-    return task && task.libelle ? task.libelle : '';
+  displayFn(parours: IParours): string {
+    return parours && parours.libelle ? parours.libelle : '';
   }
 
   ngAfterViewInit() {
@@ -64,8 +83,16 @@ export class ListParoursComponent implements OnInit {
   }
 
   public rechercherListingParours(option: IParours){
-    this.serviceParours.getParoursBylibelle(option.libelle.toLowerCase()).subscribe(
-        valeurs => {this.dataSource.data = valeurs;}
+    this.serviceParour.getParoursBylibelle(option.libelle.toLowerCase()).subscribe(
+        valeurs =>  {
+          const tableParours : IAfficheParours[] = [];
+          valeurs.forEach(
+            x =>{
+              tableParours.push(this.convertParToParAffiche(x))
+            }
+          )
+          this.dataSource.data = tableParours;
+        }
     )
   }
 
@@ -77,7 +104,25 @@ export class ListParoursComponent implements OnInit {
     }
   }
   private getAllParours(){
-    return this.serviceParours.getAllParours();
+    return this.serviceParour.getAllParours();
   }
+
+  private convertParToParAffiche(x: IParours) : IAfficheParours {
+    let afficheParours : IAfficheParours = {
+      id: '',
+      libelle: '',
+      etape: [],
+      listeEtape: ''
+    }
+    afficheParours.id = x.id;
+    afficheParours.libelle = x.libelle;
+    afficheParours.etape = x.etape;
+       x.etape.forEach(
+         e => {
+          afficheParours.listeEtape += e.libelle + ", ";
+        }
+        )
+       return afficheParours;
+   }
 
 }

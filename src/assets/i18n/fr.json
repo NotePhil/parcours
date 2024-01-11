@@ -500,5 +500,28 @@
         "link2":"Modifier"
     }
 }
+},
+"parours":{
+  "table": {
+    "title": "Ajouter ",
+    "title1": "libelle",
+    "title2": "Etape"
+  },
+  "form":{
+    "text1":"Champ Obligatoire"
+},
+"lists":{
+  "button1":"Annuler"
+},
+"title":"listing ",
+"search-bar":"Rechercher",
+"table1":{
+    "title1":"libellé",
+    "title2":"etape",
+    "title4":"Actions",
+    "actions":{
+        "link2":"Modifier"
+    }
+}
 }
 }
