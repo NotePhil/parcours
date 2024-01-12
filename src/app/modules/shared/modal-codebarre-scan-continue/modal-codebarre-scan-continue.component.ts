@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { BrowserMultiFormatReader } from '@zxing/library';
 import { Subscription } from 'rxjs';
+import { ModalCodebarreService } from '../modal-codebarre/modal-codebarre.service';
 
 @Component({
   selector: 'app-modal-codebarre-scan-continue',
@@ -22,7 +23,11 @@ export class ModalCodebarreScanContinueComponent
   mediaStream: MediaStream | undefined;
   scannerSubscription: Subscription | undefined;
 
-  ngAfterViewInit(): void {}
+  constructor(private barService: ModalCodebarreService) {}
+
+  ngAfterViewInit(): void {
+    console.log('helllllloooo');
+  }
 
   createMediaStream(): void {
     if (!this.isCameraOpen) {
@@ -53,32 +58,18 @@ export class ModalCodebarreScanContinueComponent
         this.playBeep();
         setTimeout(() => {
           this.scanMultipleCodes();
-        }, 1000);
+        }, 3000);
       })
       .catch((err) => {
         console.error('Error while scanning: ', err);
         setTimeout(() => {
           this.scanMultipleCodes();
-        }, 1000);
+        }, 3000);
       });
   }
 
   stopScanner(): void {
-    if (this.isCameraOpen) {
-      if (this.video && this.video.nativeElement) {
-        const mediaStream: MediaStream | null = this.video.nativeElement
-          .srcObject as MediaStream;
-        if (mediaStream) {
-          const tracks: MediaStreamTrack[] = mediaStream.getTracks();
-          tracks.forEach((track: MediaStreamTrack) => {
-            track.stop();
-            mediaStream.removeTrack(track);
-          });
-          this.video.nativeElement.srcObject = null;
-          this.isCameraOpen = false;
-        }
-      }
-    }
+    this.isCameraOpen = false;
   }
 
   ngOnDestroy(): void {
@@ -89,7 +80,9 @@ export class ModalCodebarreScanContinueComponent
   handleScanResult(data: string): void {
     this.scannedData = data;
     // You can use this.scannedData as needed in your application
-    console.log('Scanned Data:', this.scannedData);
+
+    this.barService.setCode(this.scannedData);
+    console.log('Scaaaaan', this.scannedData);
   }
   playBeep(): void {
     const audioContext = new (window.AudioContext ||
