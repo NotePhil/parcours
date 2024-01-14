@@ -5,7 +5,7 @@ import {
   AfterViewInit,
   OnDestroy,
 } from '@angular/core';
-import { BrowserMultiFormatReader } from '@zxing/library';
+import { BrowserMultiFormatReader, DecodeHintType } from '@zxing/library';
 import { Subscription } from 'rxjs';
 import { ModalCodebarreService } from '../modal-codebarre/modal-codebarre.service';
 
@@ -25,9 +25,7 @@ export class ModalCodebarreScanContinueComponent
 
   constructor(private barService: ModalCodebarreService) {}
 
-  ngAfterViewInit(): void {
-    console.log('helllllloooo');
-  }
+  ngAfterViewInit(): void {}
 
   createMediaStream(): void {
     if (!this.isCameraOpen) {
@@ -50,7 +48,11 @@ export class ModalCodebarreScanContinueComponent
   }
 
   scanMultipleCodes(): void {
-    const codeReader = new BrowserMultiFormatReader();
+    const codeReader = new BrowserMultiFormatReader(undefined, 500);
+    const hints = new Map<DecodeHintType, any[]>();
+    hints.set(DecodeHintType.TRY_HARDER, [true]); // Add the tryHarder option
+    codeReader.hints = hints;
+
     codeReader
       .decodeFromInputVideoDevice(undefined, this.video.nativeElement)
       .then((result) => {
@@ -84,6 +86,7 @@ export class ModalCodebarreScanContinueComponent
     this.barService.setCode(this.scannedData);
     console.log('Scaaaaan', this.scannedData);
   }
+
   playBeep(): void {
     const audioContext = new (window.AudioContext ||
       (window as any).webkitAudioContext)();

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { ModalCodebarreComponent } from '../modal-codebarre/modal-codebarre.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
   selector: 'app-modal-codebarre-dialog',
   templateUrl: './modal-codebarre-dialog.component.html',
   styleUrls: ['./modal-codebarre-dialog.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ModalCodebarreDialogComponent {
   @Input() multipleScan: boolean = false;
@@ -18,6 +19,7 @@ export class ModalCodebarreDialogComponent {
       width: '500px',
       data: { multipleScan: this.multipleScan },
       disableClose: true, // This option disables closing the dialog by clicking outside
+      hasBackdrop: true,
     });
   }
 }

@@ -6,7 +6,7 @@ import {
   OnDestroy,
   Inject,
 } from '@angular/core';
-import { BrowserMultiFormatReader } from '@zxing/library';
+import { BrowserMultiFormatReader, DecodeHintType } from '@zxing/library';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'; // Import MatDialogRef
 import { ModalCodebarreService } from './modal-codebarre.service';
 
@@ -52,7 +52,11 @@ export class ModalCodebarreComponent implements AfterViewInit, OnDestroy {
   }
 
   scanCode(): void {
-    const codeReader = new BrowserMultiFormatReader();
+    const codeReader = new BrowserMultiFormatReader(undefined, 500);
+    const hints = new Map<DecodeHintType, any[]>();
+    hints.set(DecodeHintType.TRY_HARDER, [true]); // Add the tryHarder option
+    codeReader.hints = hints;
+
     codeReader
       .decodeFromInputVideoDevice(undefined, this.video.nativeElement)
       .then((result) => {
@@ -68,7 +72,11 @@ export class ModalCodebarreComponent implements AfterViewInit, OnDestroy {
   }
 
   scanMultipleCodes(): void {
-    const codeReader = new BrowserMultiFormatReader();
+    const codeReader = new BrowserMultiFormatReader(undefined, 500);
+    const hints = new Map<DecodeHintType, any[]>();
+    hints.set(DecodeHintType.TRY_HARDER, [true]); // Add the tryHarder option
+    codeReader.hints = hints;
+
     codeReader
       .decodeFromInputVideoDevice(undefined, this.video.nativeElement)
       .then((result) => {
@@ -120,6 +128,7 @@ export class ModalCodebarreComponent implements AfterViewInit, OnDestroy {
       oscillator.stop();
     }, 200);
   }
+
   closeModal(): void {
     this.dialogRef.close(); // Close the modal
   }
