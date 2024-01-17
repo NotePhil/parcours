@@ -1,0 +1,60 @@
+#mainSection{
+    width: 50%;
+    margin: auto;
+}
+.actionButton{
+    clear: both;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button{
+        background-color: #1473e6;
+        color: white;
+    }
+}
+.ancienneValeurEtat, .nouvelleValeurEtat{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    .inputBlock{
+        margin: 0 2px;
+        margin-top: 2px;
+        width: 50%;
+        label{
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+.example-form{
+    width: 100%;
+}
+mat-form-field{
+    padding: 0;
+    margin: 0;
+    color: #28a745;
+    line-height: 0;
+    box-sizing: initial;
+    font-family: inherit;
+    input{
+        padding: 0;
+        border: none;
+        margin: 0;
+    }
+    .form-control{
+        background-color: transparent;
+        border: none;
+        border-color: transparent;
+        box-shadow: none !important;
+    }
+}
+.searchBar {
+    position: relative;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    color: #28a74596;
+    border: none;
+    font-size: small;
+    line-height: normal;
+}

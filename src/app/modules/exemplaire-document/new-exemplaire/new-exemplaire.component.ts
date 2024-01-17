@@ -159,6 +159,16 @@ export class NewExemplaireComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.serviceRessource.getAllRessources().subscribe(
+      (resultat) =>{
+        this.filteredOptionsRessource = resultat
+      }
+    )
+    this.serviceDistributeur.getAllDistributeurs().subscribe(
+      (reponse) =>{
+        this.filteredDistributeurOptions=reponse
+      }
+    )
     this.nomPatientCourant = sessionStorage.getItem('nomPatientCourant');
     this.compteur = -1;
 

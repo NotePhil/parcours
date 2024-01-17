@@ -1,0 +1,40 @@
+<div id="mainSection" class="bg-light card modalCategorie">
+    <form class="w-100">
+        <div class="form-group m-5">
+            <div class="contentBlock">
+                <div class="ancienneValeurEtat">
+                    <div class="inputBlock">
+                        <label for="">{{'doc-etats.form.text1' | translate}}</label>
+                        <input type="text" name="" id="" [disabled]="true" class="form-control">
+                    </div>
+                    <div class="inputBlock">
+                        <label for="">{{'doc-etats.form.text3' | translate}}</label>
+                        <input type="text" name="" id="" [disabled]="true" class="form-control">
+                    </div>
+                </div>
+                <div class="nouvelleValeurEtat">
+                    <div class="inputBlock">
+                        <label for="">{{'doc-etats.form.text2' | translate}}</label>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label class="searchBar">{{'patient.search-bar' | translate}}</mat-label>
+                            <input type="text" class="form-control inputMat" matInput aria-label="Rechercher" [formControl]="etatControl" [matAutocomplete]="auto">
+                            <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option class="options" *ngFor="let option of filteredOptions" [value]="option">
+                                    {{option.libelle}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="inputBlock">
+                        <label for="">{{'doc-etats.form.text3' | translate}}</label>
+                        <input type="number" [disabled]="true" name="" id="" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="actionButton mt-2">
+                <button mat-button [mat-dialog-close] cdkFocusInitial class="btn btnValidation">{{'lists.button3' | translate}}</button>
+                <button mat-button [mat-dialog-close] cdkFocusInitial class="btn btnValidation">{{'lists.button6' | translate}}</button>
+            </div>
+        </div>
+    </form>
+</div>

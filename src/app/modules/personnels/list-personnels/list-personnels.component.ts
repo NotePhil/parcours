@@ -73,7 +73,11 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
           )
         }
         else{
-          this.filteredOptions = [];
+          this.servicePersonnel.getAllPersonnels().subscribe(
+            (reponse) =>{
+              this.filteredOptions=reponse
+            }
+          )
         }
         
       }

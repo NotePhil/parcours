@@ -186,7 +186,7 @@
         "table":{
             "title1":"Label",
             "title2":"Description",
-            "title3":"Statut",
+            "title3":"Status",
             "title4":"Allocation's Date",
             "title5":"Modification's Date",
             "title6":"Service"
@@ -194,7 +194,7 @@
         "form":{
             "text1":"Title is required.",
             "text2":"Description is required.",
-            "text3":"Statut is required.",
+            "text3":"Status is required.",
             "text4":"Last modification's date is required.",
             "text5":"Type is required.",
             "text6":"Service is required",
@@ -477,6 +477,20 @@
         "title13": "Amount Max",
         "title14": "Min Amount",
         "title15": "Distributor"
+      }
+    },
+    "etats":{
+      "table":{
+        "title1":"Add Status"
+      }
+    },
+    "doc-etats":{
+      "button1":"Statut",
+      "text1":"Update the statut of this document",
+      "form":{
+        "text1":"Current statut",
+        "text2":"next statut",
+        "text3":"Statut's position"
       }
     }
 }

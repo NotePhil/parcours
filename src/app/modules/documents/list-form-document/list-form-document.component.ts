@@ -1,6 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,6 +13,7 @@ import { IAttributs } from 'src/app/modele/attributs';
 import { IDocument } from 'src/app/modele/document';
 import { TypeMvt } from 'src/app/modele/type-mvt';
 import { DocumentService } from 'src/app/services/documents/document.service';
+import { ModalDocEtatsComponent } from '../../shared/modal-doc-etats/modal-doc-etats.component';
 
 @Component({
   selector: 'app-list-form-document',
@@ -58,7 +60,10 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     contientDistributeurs: false
   }
 
-  constructor(private translate: TranslateService, private router:Router, private serviceDocument: DocumentService,  private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private translate: TranslateService, private router:Router,
+    private serviceDocument: DocumentService,  private _liveAnnouncer: LiveAnnouncer,
+    private dialogDef : MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.getAllDocuments().subscribe(valeurs => {
@@ -70,6 +75,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
         }
       )
       this.dataSource.data = tableDocuments;
+      this.filteredOptions = valeurs
     });
 
     this.myControl.valueChanges.subscribe(
@@ -83,7 +89,11 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
           )
         }
         else{
-          this.filteredOptions = [];
+          this.serviceDocument.getAllDocuments().subscribe(
+            (resultat) =>{
+              this.filteredOptions = resultat
+            }
+          )
         }
       }
     );
@@ -161,6 +171,28 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
         p => afficheDocument.listPreconisations += p.libelle + ", "
       )
       return afficheDocument;
+  }
+
+  /**
+   * Methode permettant d'ouvrir la modal de manipullation des etats du document
+   */
+  openDocEtatDialog(){
+
+    const dialogRef = this.dialogDef.open(ModalDocEtatsComponent,
+    {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
+      enterAnimationDuration:'1000ms',
+      exitAnimationDuration:'1000ms',
+      data:{}
+    }
+    )
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
   }
 
 }
