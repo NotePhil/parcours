@@ -66,7 +66,7 @@
                                 <h4>{{'ressource.form.text16' | translate}}</h4>
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label class="searchBar"></mat-label>
-                                    <input type="text" matInput [formControl]="ressourceControl" [matAutocomplete]="auto">
+                                    <input type="text" matInput [formControl]="ressourceControl" [value]="scan_val" [matAutocomplete]="auto">
                                     <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
                                         <mat-option class="options" *ngFor="let option of filteredOptionsRessource" [value]="option" (click)="rechercherListingRessources(option); reinitialliseRessourceControl()">
                                             {{option.libelle}}

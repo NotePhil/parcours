@@ -15,9 +15,9 @@ import { IFamille } from '../modele/famille';
 import { IRessource } from '../modele/ressource';
 import { IPrecoMvtQte } from '../modele/precomvtqte';
 //import { TypeMvt } from "../modele/type-mvt";
-import { IPrecoMvt } from "../modele/precomvt";
-import { Unites } from "../modele/unites";
-import { IDistributeur } from "../modele/distributeur";
+import { IPrecoMvt } from '../modele/precomvt';
+import { Unites } from '../modele/unites';
+import { IDistributeur } from '../modele/distributeur';
 import { IRole } from '../modele/role';
 import { IPersonnel } from '../modele/personnel';
 
@@ -128,8 +128,8 @@ export class InMemDBService implements InMemoryDbService {
         dateAttribution: new Date('07/03/1990'),
         dateFin: new Date('07/03/1990'),
         nombreTotalAttributions: 6,
-        localisation:'douala',
-        description:'bien',
+        localisation: 'douala',
+        description: 'bien',
       },
       {
         id: '2',
@@ -139,8 +139,8 @@ export class InMemDBService implements InMemoryDbService {
         dateAttribution: new Date('07/03/1990'),
         dateFin: new Date('07/03/1990'),
         nombreTotalAttributions: 20,
-        localisation:'douala',
-        description:'bien',
+        localisation: 'douala',
+        description: 'bien',
       },
       {
         id: '3',
@@ -150,8 +150,8 @@ export class InMemDBService implements InMemoryDbService {
         dateAttribution: new Date('07/03/1990'),
         dateFin: new Date('07/03/1990'),
         nombreTotalAttributions: 50,
-        localisation:'douala',
-        description:'bien',
+        localisation: 'douala',
+        description: 'bien',
       },
     ];
     let tickets: ITicket[] = [
@@ -242,7 +242,7 @@ export class InMemDBService implements InMemoryDbService {
         langue: 'fr',
         fonctionnalites: [
           {
-            fonction:'Personne',
+            fonction: 'Personne',
             icone: 'fas fa-user-cog',
             actif: 'menu-close',
             elements: [
@@ -332,7 +332,15 @@ export class InMemDBService implements InMemoryDbService {
               { nom: 'Rechercher', lien: './list-familles', bouton: 'false' },
             ],
           },
-          {"fonction":"Role", "icone":"fas fa-user-cog", "actif":"", "elements":[{"nom":"Créer", "lien":"role-nouveau", "bouton":"false"},{"nom":"Rechercher", "lien":"./list-roles", "bouton":"false"}]},
+          {
+            fonction: 'Role',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Créer', lien: 'role-nouveau', bouton: 'false' },
+              { nom: 'Rechercher', lien: './list-roles', bouton: 'false' },
+            ],
+          },
           {
             fonction: 'Ressource',
             icone: 'fas fa-user-cog',
@@ -363,8 +371,8 @@ export class InMemDBService implements InMemoryDbService {
                 bouton: 'false',
               },
             ],
-          }
-        ]
+          },
+        ],
       },
       {
         idUser: 'phil',
@@ -448,7 +456,15 @@ export class InMemDBService implements InMemoryDbService {
               { nom: 'Search', lien: './list-familles', bouton: 'false' },
             ],
           },
-         {"fonction":"Role", "icone":"fas fa-user-cog", "actif":"", "elements":[{"nom":"Créer", "lien":"role-nouveau", "bouton":"false"},{"nom":"search", "lien":"./list-roles", "bouton":"false"}]},
+          {
+            fonction: 'Role',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Créer', lien: 'role-nouveau', bouton: 'false' },
+              { nom: 'search', lien: './list-roles', bouton: 'false' },
+            ],
+          },
           {
             fonction: 'Ressource',
             icone: 'fas fa-user-cog',
@@ -475,8 +491,8 @@ export class InMemDBService implements InMemoryDbService {
               { nom: 'Créer', lien: 'distributeur-nouveau', bouton: 'false' },
               { nom: 'search', lien: './list-distributeurs', bouton: 'false' },
             ],
-          }
-        ]
+          },
+        ],
       },
     ];
     let missions: IMission[] = [
@@ -496,8 +512,8 @@ export class InMemDBService implements InMemoryDbService {
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 6,
-          localisation:'douala',
-          description:'bien',
+          localisation: 'douala',
+          description: 'bien',
         },
       },
       {
@@ -516,8 +532,8 @@ export class InMemDBService implements InMemoryDbService {
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 20,
-          localisation:'douala',
-          description:'bien',
+          localisation: 'douala',
+          description: 'bien',
         },
       },
       {
@@ -536,8 +552,8 @@ export class InMemDBService implements InMemoryDbService {
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 50,
-          localisation:'douala',
-          description:'bien',
+          localisation: 'douala',
+          description: 'bien',
         },
       },
       {
@@ -556,8 +572,8 @@ export class InMemDBService implements InMemoryDbService {
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 6,
-          localisation:'douala',
-          description:'bien',
+          localisation: 'douala',
+          description: 'bien',
         },
       },
       {
@@ -576,8 +592,8 @@ export class InMemDBService implements InMemoryDbService {
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 50,
-          localisation:'douala',
-          description:'bien',
+          localisation: 'douala',
+          description: 'bien',
         },
       },
       {
@@ -596,26 +612,152 @@ export class InMemDBService implements InMemoryDbService {
           dateAttribution: new Date('07/03/1990'),
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 6,
-          localisation:'douala',
-          description:'bien',
+          localisation: 'douala',
+          description: 'bien',
         },
       },
     ];
     let attributs: IAttributs[] = [
-      { id: '1', titre: 'taille',description: "taille de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String, valeursParDefaut: '',},
-      {id: '2',titre: 'poids',description: "poids de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Double, valeursParDefaut: '',},
-      {id: '3', titre: 'sexe',description: "sexe de l'individu", etat: true, dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,valeursParDefaut: 'Homme, Femme, Autre',},
-      {id: '4',titre: 'age',description: "age de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Double, valeursParDefaut: '',},
-      { id: '5', titre: 'allergies',description: "allergies de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String,valeursParDefaut: '',},
-      { id: '6', titre: 'teint',description: "teint de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.String, valeursParDefaut: '',},
-      {id: '7', titre: 'Groupe sangin', description: "Groupe sangin de l'individu",etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean,valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',},
-      { id: '8',titre: 'cicatrice',description: "cicatrice de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean, valeursParDefaut: 'oui, non',},
-      {id: '9', titre: 'date admission', description: "date admission de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Date,valeursParDefaut: '',},
-      {id: '10', titre: 'date decharge', description: 'date decharge',etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Date,valeursParDefaut: '',},
-      {id: '11', titre: 'date prochain rendez-vous',description: "date prochain rendez-vous de l'individu",etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Date, valeursParDefaut: '',},
-      { id: '12', titre: 'aprobation du medecin', description: 'aprobation du medecin', etat: true,dateCreation: new Date('07/03/2000'), dateModification: new Date('07/03/1990'),type: TypeTicket.Boolean, valeursParDefaut: 'oui, non',},
-      {id: '13',titre: 'motif de la decharge',description: 'motif de la decharge ',etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.Textarea,valeursParDefaut: '',},
-      {id: '14',titre: 'nom',description: "nom de l'individu", etat: true,dateCreation: new Date('07/03/2000'),dateModification: new Date('07/03/1990'),type: TypeTicket.String, valeursParDefaut: '',},
+      {
+        id: '1',
+        titre: 'taille',
+        description: "taille de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.String,
+        valeursParDefaut: '',
+      },
+      {
+        id: '2',
+        titre: 'poids',
+        description: "poids de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Double,
+        valeursParDefaut: '',
+      },
+      {
+        id: '3',
+        titre: 'sexe',
+        description: "sexe de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Boolean,
+        valeursParDefaut: 'Homme, Femme, Autre',
+      },
+      {
+        id: '4',
+        titre: 'age',
+        description: "age de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Double,
+        valeursParDefaut: '',
+      },
+      {
+        id: '5',
+        titre: 'allergies',
+        description: "allergies de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.String,
+        valeursParDefaut: '',
+      },
+      {
+        id: '6',
+        titre: 'teint',
+        description: "teint de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.String,
+        valeursParDefaut: '',
+      },
+      {
+        id: '7',
+        titre: 'Groupe sangin',
+        description: "Groupe sangin de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Boolean,
+        valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+      },
+      {
+        id: '8',
+        titre: 'cicatrice',
+        description: "cicatrice de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Boolean,
+        valeursParDefaut: 'oui, non',
+      },
+      {
+        id: '9',
+        titre: 'date admission',
+        description: "date admission de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Date,
+        valeursParDefaut: '',
+      },
+      {
+        id: '10',
+        titre: 'date decharge',
+        description: 'date decharge',
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Date,
+        valeursParDefaut: '',
+      },
+      {
+        id: '11',
+        titre: 'date prochain rendez-vous',
+        description: "date prochain rendez-vous de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Date,
+        valeursParDefaut: '',
+      },
+      {
+        id: '12',
+        titre: 'aprobation du medecin',
+        description: 'aprobation du medecin',
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Boolean,
+        valeursParDefaut: 'oui, non',
+      },
+      {
+        id: '13',
+        titre: 'motif de la decharge',
+        description: 'motif de la decharge ',
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.Textarea,
+        valeursParDefaut: '',
+      },
+      {
+        id: '14',
+        titre: 'nom',
+        description: "nom de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+        dateModification: new Date('07/03/1990'),
+        type: TypeTicket.String,
+        valeursParDefaut: '',
+      },
     ];
     let documents: IDocument[] = [
       {
@@ -623,10 +765,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Note intervention',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-        etat:true,
-        affichagePrix:true,
-        contientRessources:true,
-        contientDistributeurs:true,
+        etat: true,
+        affichagePrix: true,
+        contientRessources: true,
+        contientDistributeurs: true,
         missions: [
           {
             id: '1',
@@ -644,8 +786,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 6,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -664,8 +806,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 20,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -684,8 +826,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 50,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
         ],
@@ -761,43 +903,46 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 ordre: 11,
                 obligatoire: false,
-                attribut:{
-                id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',
-                }
+                attribut: {
+                  id: '1',
+                  titre: 'taille',
+                  description: "taille de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
-
                 id: '1',
                 ordre: 12,
                 obligatoire: false,
-                attribut:{id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Int,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '4',
+                  titre: 'age',
+                  description: "age de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Int,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '1',
                 ordre: 13,
                 obligatoire: false,
-                attribut:{id: '6',
-                titre: 'teint',
-                description: "teint de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '6',
+                  titre: 'teint',
+                  description: "teint de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
             ],
           },
@@ -810,46 +955,52 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '5',
+                  titre: 'allergies',
+                  description: "allergies de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '1',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
+                attribut: {
+                  id: '7',
+                  titre: 'Groupe sangin',
+                  description: "Groupe sangin de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut:
+                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                },
               },
               {
                 id: '1',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',}
+                attribut: {
+                  id: '8',
+                  titre: 'cicatrice',
+                  description: "cicatrice de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
               },
             ],
           },
         ],
-        preconisations:[
+        preconisations: [
           {
             id: '1',
             libelle: 'rachat',
@@ -884,7 +1035,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -905,8 +1061,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
+                ressource: {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
@@ -920,7 +1075,7 @@ export class InMemDBService implements InMemoryDbService {
                     description: 'nouveau-né',
                     etat: false,
                   },
-                }
+                },
               },
               {
                 id: '4',
@@ -928,22 +1083,21 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
-                    id: '2',
-                    libelle: 'néonat',
+                ressource: {
+                  id: '2',
+                  libelle: 'néonat',
+                  etat: true,
+                  quantite: 20,
+                  unite: this.UnitesLitre,
+                  prix: 2000,
+                  caracteristique: 'souple',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
                     etat: true,
-                    quantite: 20,
-                    unite: this.UnitesLitre,
-                    prix: 2000,
-                    caracteristique: 'souple',
-                    famille: {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      description: 'enfant',
-                      etat: true,
-                    },
                   },
+                },
               },
             ],
           },
@@ -959,7 +1113,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -988,7 +1147,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -1045,18 +1209,18 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-          }
-        ]
+          },
+        ],
       },
       {
         id: '2',
         titre: 'Fiche de suivi',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-        etat:false,
-        affichagePrix:true,
-        contientRessources:false,
-        contientDistributeurs:false,
+        etat: false,
+        affichagePrix: true,
+        contientRessources: false,
+        contientDistributeurs: false,
         missions: [
           {
             id: '1',
@@ -1074,8 +1238,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 6,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -1094,8 +1258,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 50,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -1114,8 +1278,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 20,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
         ],
@@ -1191,40 +1355,46 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '1',
+                  titre: 'taille',
+                  description: "taille de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '2',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '4',
+                  titre: 'age',
+                  description: "age de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '3',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '6',
-                titre: 'teint',
-                description: "teint de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '6',
+                  titre: 'teint',
+                  description: "teint de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
             ],
           },
@@ -1237,46 +1407,52 @@ export class InMemDBService implements InMemoryDbService {
                 id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '5',
+                  titre: 'allergies',
+                  description: "allergies de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
+                attribut: {
+                  id: '7',
+                  titre: 'Groupe sangin',
+                  description: "Groupe sangin de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut:
+                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                },
               },
               {
                 id: '',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',}
+                attribut: {
+                  id: '8',
+                  titre: 'cicatrice',
+                  description: "cicatrice de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
               },
             ],
           },
         ],
-        preconisations:[
+        preconisations: [
           {
             id: '1',
             libelle: 'rachat',
@@ -1311,7 +1487,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -1332,8 +1513,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
+                ressource: {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
@@ -1347,7 +1527,7 @@ export class InMemDBService implements InMemoryDbService {
                     description: 'nouveau-né',
                     etat: false,
                   },
-                }
+                },
               },
               {
                 id: '4',
@@ -1355,22 +1535,21 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
-                    id: '2',
-                    libelle: 'néonat',
+                ressource: {
+                  id: '2',
+                  libelle: 'néonat',
+                  etat: true,
+                  quantite: 20,
+                  unite: this.UnitesLitre,
+                  prix: 2000,
+                  caracteristique: 'souple',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
                     etat: true,
-                    quantite: 20,
-                    unite: this.UnitesLitre,
-                    prix: 2000,
-                    caracteristique: 'souple',
-                    famille: {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      description: 'enfant',
-                      etat: true,
-                    },
                   },
+                },
               },
             ],
           },
@@ -1386,7 +1565,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -1415,7 +1599,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -1472,18 +1661,18 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-          }
-        ]
+          },
+        ],
       },
       {
         id: '3',
         titre: 'Fiche de soin',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-        etat:true,
-        affichagePrix:false,
-        contientRessources:true,
-        contientDistributeurs:false,
+        etat: true,
+        affichagePrix: false,
+        contientRessources: true,
+        contientDistributeurs: false,
         missions: [
           {
             id: '2',
@@ -1501,8 +1690,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 20,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -1521,8 +1710,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 50,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -1541,8 +1730,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 6,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
         ],
@@ -1598,27 +1787,31 @@ export class InMemDBService implements InMemoryDbService {
                 id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '1',
+                  titre: 'taille',
+                  description: "taille de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '4',
+                  titre: 'age',
+                  description: "age de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
             ],
           },
@@ -1631,32 +1824,36 @@ export class InMemDBService implements InMemoryDbService {
                 id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '5',
+                  titre: 'allergies',
+                  description: "allergies de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',}
+                attribut: {
+                  id: '8',
+                  titre: 'cicatrice',
+                  description: "cicatrice de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
               },
             ],
           },
         ],
-        preconisations:[
+        preconisations: [
           {
             id: '1',
             libelle: 'rachat',
@@ -1691,7 +1888,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -1712,8 +1914,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
+                ressource: {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
@@ -1727,7 +1928,7 @@ export class InMemDBService implements InMemoryDbService {
                     description: 'nouveau-né',
                     etat: false,
                   },
-                }
+                },
               },
               {
                 id: '4',
@@ -1735,22 +1936,21 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
-                    id: '2',
-                    libelle: 'néonat',
+                ressource: {
+                  id: '2',
+                  libelle: 'néonat',
+                  etat: true,
+                  quantite: 20,
+                  unite: this.UnitesLitre,
+                  prix: 2000,
+                  caracteristique: 'souple',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
                     etat: true,
-                    quantite: 20,
-                    unite: this.UnitesLitre,
-                    prix: 2000,
-                    caracteristique: 'souple',
-                    famille: {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      description: 'enfant',
-                      etat: true,
-                    },
                   },
+                },
               },
             ],
           },
@@ -1766,7 +1966,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -1795,7 +2000,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -1852,18 +2062,18 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-          }
-        ]
+          },
+        ],
       },
       {
         id: '4',
         titre: 'Formulaire de sortie',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-        etat:true,
-        affichagePrix:true,
-        contientRessources:true,
-        contientDistributeurs:false,
+        etat: true,
+        affichagePrix: true,
+        contientRessources: true,
+        contientDistributeurs: false,
         missions: [
           {
             id: '2',
@@ -1881,8 +2091,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 20,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -1901,8 +2111,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 50,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -1921,8 +2131,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 6,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
         ],
@@ -2048,40 +2258,46 @@ export class InMemDBService implements InMemoryDbService {
                 id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '14',
-                titre: 'Nom',
-                description: "nom de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '14',
+                  titre: 'Nom',
+                  description: "nom de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 2,
                 obligatoire: true,
-                attribut:{id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '1',
+                  titre: 'taille',
+                  description: "taille de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 3,
                 obligatoire: true,
-                attribut:{id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '4',
+                  titre: 'age',
+                  description: "age de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
             ],
           },
@@ -2094,41 +2310,47 @@ export class InMemDBService implements InMemoryDbService {
                 id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '5',
+                  titre: 'allergies',
+                  description: "allergies de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
+                attribut: {
+                  id: '7',
+                  titre: 'Groupe sangin',
+                  description: "Groupe sangin de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut:
+                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                },
               },
               {
                 id: '',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',}
+                attribut: {
+                  id: '8',
+                  titre: 'cicatrice',
+                  description: "cicatrice de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
               },
             ],
           },
@@ -2141,71 +2363,81 @@ export class InMemDBService implements InMemoryDbService {
                 id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '9',
-                titre: 'date admission',
-                description: "date admission de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Date,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '9',
+                  titre: 'date admission',
+                  description: "date admission de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Date,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '10',
-                titre: 'date decharge',
-                description: 'date decharge',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Date,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '10',
+                  titre: 'date decharge',
+                  description: 'date decharge',
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Date,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '11',
-                titre: 'date prochain rendez-vous',
-                description: "date prochain rendez-vous de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Date,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '11',
+                  titre: 'date prochain rendez-vous',
+                  description: "date prochain rendez-vous de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Date,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 4,
                 obligatoire: false,
-                attribut:{id: '12',
-                titre: 'aprobation du medecin',
-                description: 'aprobation du medecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',}
+                attribut: {
+                  id: '12',
+                  titre: 'aprobation du medecin',
+                  description: 'aprobation du medecin',
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
               },
               {
                 id: '',
                 ordre: 5,
                 obligatoire: false,
-                attribut:{id: '13',
-                titre: 'motif de la decharge',
-                description: 'motif de la decharge ',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Textarea,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '13',
+                  titre: 'motif de la decharge',
+                  description: 'motif de la decharge ',
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Textarea,
+                  valeursParDefaut: '',
+                },
               },
             ],
           },
         ],
-        preconisations:[
+        preconisations: [
           {
             id: '1',
             libelle: 'rachat',
@@ -2240,7 +2472,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -2261,8 +2498,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
+                ressource: {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
@@ -2276,7 +2512,7 @@ export class InMemDBService implements InMemoryDbService {
                     description: 'nouveau-né',
                     etat: false,
                   },
-                }
+                },
               },
               {
                 id: '4',
@@ -2284,22 +2520,21 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
-                    id: '2',
-                    libelle: 'néonat',
+                ressource: {
+                  id: '2',
+                  libelle: 'néonat',
+                  etat: true,
+                  quantite: 20,
+                  unite: this.UnitesLitre,
+                  prix: 2000,
+                  caracteristique: 'souple',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
                     etat: true,
-                    quantite: 20,
-                    unite: this.UnitesLitre,
-                    prix: 2000,
-                    caracteristique: 'souple',
-                    famille: {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      description: 'enfant',
-                      etat: true,
-                    },
                   },
+                },
               },
             ],
           },
@@ -2315,7 +2550,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -2344,7 +2584,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -2401,18 +2646,18 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-          }
-        ]
+          },
+        ],
       },
       {
         id: '5',
         titre: 'ordonnance',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-        etat:true,
-        affichagePrix:false,
-        contientRessources:true,
-        contientDistributeurs:true,
+        etat: true,
+        affichagePrix: false,
+        contientRessources: true,
+        contientDistributeurs: true,
         missions: [
           {
             id: '1',
@@ -2430,8 +2675,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 6,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -2450,8 +2695,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 20,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -2470,8 +2715,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 50,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
         ],
@@ -2547,40 +2792,46 @@ export class InMemDBService implements InMemoryDbService {
                 id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '1',
+                  titre: 'taille',
+                  description: "taille de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '4',
+                  titre: 'age',
+                  description: "age de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '6',
-                titre: 'teint',
-                description: "teint de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '6',
+                  titre: 'teint',
+                  description: "teint de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
             ],
           },
@@ -2593,46 +2844,52 @@ export class InMemDBService implements InMemoryDbService {
                 id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '5',
+                  titre: 'allergies',
+                  description: "allergies de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
                 id: '',
                 ordre: 0,
                 obligatoire: false,
-                attribut:{id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
+                attribut: {
+                  id: '7',
+                  titre: 'Groupe sangin',
+                  description: "Groupe sangin de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut:
+                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                },
               },
               {
                 id: '',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',}
+                attribut: {
+                  id: '8',
+                  titre: 'cicatrice',
+                  description: "cicatrice de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
               },
             ],
           },
         ],
-        preconisations:[
+        preconisations: [
           {
             id: '1',
             libelle: 'rachat',
@@ -2667,7 +2924,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -2688,8 +2950,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
+                ressource: {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
@@ -2703,7 +2964,7 @@ export class InMemDBService implements InMemoryDbService {
                     description: 'nouveau-né',
                     etat: false,
                   },
-                }
+                },
               },
               {
                 id: '4',
@@ -2711,22 +2972,21 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
-                    id: '2',
-                    libelle: 'néonat',
+                ressource: {
+                  id: '2',
+                  libelle: 'néonat',
+                  etat: true,
+                  quantite: 20,
+                  unite: this.UnitesLitre,
+                  prix: 2000,
+                  caracteristique: 'souple',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
                     etat: true,
-                    quantite: 20,
-                    unite: this.UnitesLitre,
-                    prix: 2000,
-                    caracteristique: 'souple',
-                    famille: {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      description: 'enfant',
-                      etat: true,
-                    },
                   },
+                },
               },
             ],
           },
@@ -2742,7 +3002,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -2771,7 +3036,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -2828,8 +3098,8 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-          }
-        ]
+          },
+        ],
       },
     ];
     let exemplaires: IExemplaireDocument[] = [
@@ -2839,10 +3109,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'Formulaire de sortie',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-        etat:false,
-        affichagePrix:true,
-        contientRessources:true,
-        contientDistributeurs:false,
+        etat: false,
+        affichagePrix: true,
+        contientRessources: true,
+        contientDistributeurs: false,
         missions: [
           {
             id: '2',
@@ -2860,8 +3130,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 20,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -2880,8 +3150,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 50,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -2900,8 +3170,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 6,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
         ],
@@ -3024,43 +3294,49 @@ export class InMemDBService implements InMemoryDbService {
             ordre: 1,
             listAttributsParCategories: [
               {
-                id:'',
+                id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '14',
-                titre: 'Nom',
-                description: "nom de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '14',
+                  titre: 'Nom',
+                  description: "nom de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 2,
                 obligatoire: true,
-                attribut:{id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '1',
+                  titre: 'taille',
+                  description: "taille de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 3,
                 obligatoire: true,
-                attribut:{id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '4',
+                  titre: 'age',
+                  description: "age de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
             ],
           },
@@ -3070,44 +3346,50 @@ export class InMemDBService implements InMemoryDbService {
             ordre: 3,
             listAttributsParCategories: [
               {
-                id:'',
+                id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '5',
+                  titre: 'allergies',
+                  description: "allergies de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 0,
                 obligatoire: false,
-                attribut:{id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
+                attribut: {
+                  id: '7',
+                  titre: 'Groupe sangin',
+                  description: "Groupe sangin de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut:
+                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',}
+                attribut: {
+                  id: '8',
+                  titre: 'cicatrice',
+                  description: "cicatrice de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
               },
             ],
           },
@@ -3117,74 +3399,84 @@ export class InMemDBService implements InMemoryDbService {
             ordre: 2,
             listAttributsParCategories: [
               {
-                id:'',
+                id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '9',
-                titre: 'date admission',
-                description: "date admission de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Date,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '9',
+                  titre: 'date admission',
+                  description: "date admission de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Date,
+                  valeursParDefaut: '',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '10',
-                titre: 'date decharge',
-                description: 'date decharge',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Date,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '10',
+                  titre: 'date decharge',
+                  description: 'date decharge',
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Date,
+                  valeursParDefaut: '',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '11',
-                titre: 'date prochain rendez-vous',
-                description: "date prochain rendez-vous de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Date,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '11',
+                  titre: 'date prochain rendez-vous',
+                  description: "date prochain rendez-vous de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Date,
+                  valeursParDefaut: '',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 4,
                 obligatoire: false,
-                attribut:{id: '12',
-                titre: 'aprobation du medecin',
-                description: 'aprobation du medecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',}
+                attribut: {
+                  id: '12',
+                  titre: 'aprobation du medecin',
+                  description: 'aprobation du medecin',
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 5,
                 obligatoire: false,
-                attribut:{id: '13',
-                titre: 'motif de la decharge',
-                description: 'motif de la decharge ',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Textarea,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '13',
+                  titre: 'motif de la decharge',
+                  description: 'motif de la decharge ',
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Textarea,
+                  valeursParDefaut: '',
+                },
               },
             ],
           },
         ],
-        preconisations:[
+        preconisations: [
           {
             id: '1',
             libelle: 'rachat',
@@ -3219,7 +3511,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -3240,8 +3537,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
+                ressource: {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
@@ -3255,7 +3551,7 @@ export class InMemDBService implements InMemoryDbService {
                     description: 'nouveau-né',
                     etat: false,
                   },
-                }
+                },
               },
               {
                 id: '4',
@@ -3263,22 +3559,21 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
-                    id: '2',
-                    libelle: 'néonat',
+                ressource: {
+                  id: '2',
+                  libelle: 'néonat',
+                  etat: true,
+                  /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                  unite: this.UnitesLitre,
+                  prix: 2000,
+                  caracteristique: 'souple',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
                     etat: true,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-                    unite: this.UnitesLitre,
-                    prix: 2000,
-                    caracteristique: 'souple',
-                    famille: {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      description: 'enfant',
-                      etat: true,
-                    },
                   },
+                },
               },
             ],
           },
@@ -3294,7 +3589,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -3323,7 +3623,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -3380,12 +3685,11 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-          }
+          },
         ],
         objetEnregistre: [
           {
-            key:
-            {
+            key: {
               id: '4',
               titre: 'age',
               description: "age de l'individu",
@@ -3580,7 +3884,7 @@ export class InMemDBService implements InMemoryDbService {
             value: 'Noir',
           },
         ],
-        mouvements:[
+        mouvements: [
           {
             id: '1',
             description: 'Ici la description de ce mouvement',
@@ -3603,8 +3907,7 @@ export class InMemDBService implements InMemoryDbService {
                 etat: true,
               },
             },
-            distributeur: 
-            {
+            distributeur: {
               id: '1',
               raisonSocial: 'cgb',
               etat: true,
@@ -3634,7 +3937,7 @@ export class InMemDBService implements InMemoryDbService {
                 description: 'enfant',
                 etat: true,
               },
-            }
+            },
           },
           {
             id: '3',
@@ -3656,7 +3959,7 @@ export class InMemDBService implements InMemoryDbService {
                 libelle: 'néonat',
                 description: 'nouveau-né',
                 etat: true,
-              }
+              },
             },
             distributeur: {
               id: '3',
@@ -3665,7 +3968,7 @@ export class InMemDBService implements InMemoryDbService {
               adresse: 'Buéa',
               telephone: '655554486',
               mail: 'ngong@yad.fr',
-            }
+            },
           },
           {
             id: '4',
@@ -3687,7 +3990,7 @@ export class InMemDBService implements InMemoryDbService {
                 libelle: 'néonat',
                 description: 'nouveau-né',
                 etat: true,
-              }
+              },
             },
             distributeur: {
               id: '2',
@@ -3696,9 +3999,9 @@ export class InMemDBService implements InMemoryDbService {
               adresse: 'Ydé',
               telephone: '655554481',
               mail: 'ngong@yad.fr',
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         id: '2',
@@ -3706,10 +4009,10 @@ export class InMemDBService implements InMemoryDbService {
         titre: 'ordonnance',
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-        etat:false,
-        affichagePrix:true,
-        contientRessources:true,
-        contientDistributeurs:true,
+        etat: false,
+        affichagePrix: true,
+        contientRessources: true,
+        contientDistributeurs: true,
         missions: [
           {
             id: '1',
@@ -3727,8 +4030,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 6,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -3747,8 +4050,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 20,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
           {
@@ -3767,8 +4070,8 @@ export class InMemDBService implements InMemoryDbService {
               dateAttribution: new Date('07/03/1990'),
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 50,
-              localisation:'douala',
-              description:'bien',
+              localisation: 'douala',
+              description: 'bien',
             },
           },
         ],
@@ -3841,43 +4144,49 @@ export class InMemDBService implements InMemoryDbService {
             ordre: 1,
             listAttributsParCategories: [
               {
-                id:'',
+                id: '',
                 ordre: 1,
                 obligatoire: false,
-                attribut:{id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '1',
+                  titre: 'taille',
+                  description: "taille de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Double,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '4',
+                  titre: 'age',
+                  description: "age de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Double,
+                  valeursParDefaut: '',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '6',
-                titre: 'teint',
-                description: "teint de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '6',
+                  titre: 'teint',
+                  description: "teint de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
             ],
           },
@@ -3887,49 +4196,55 @@ export class InMemDBService implements InMemoryDbService {
             ordre: 2,
             listAttributsParCategories: [
               {
-                id:'',
+                id: '',
                 ordre: 2,
                 obligatoire: false,
-                attribut:{id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.String,
-                valeursParDefaut: '',}
+                attribut: {
+                  id: '5',
+                  titre: 'allergies',
+                  description: "allergies de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.String,
+                  valeursParDefaut: '',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 0,
                 obligatoire: false,
-                attribut:{id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
+                attribut: {
+                  id: '7',
+                  titre: 'Groupe sangin',
+                  description: "Groupe sangin de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut:
+                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                },
               },
               {
-                id:'',
+                id: '',
                 ordre: 3,
                 obligatoire: false,
-                attribut:{id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: TypeTicket.Boolean,
-                valeursParDefaut: 'oui, non',}
+                attribut: {
+                  id: '8',
+                  titre: 'cicatrice',
+                  description: "cicatrice de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: TypeTicket.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
               },
             ],
           },
         ],
-        preconisations:[
+        preconisations: [
           {
             id: '1',
             libelle: 'rachat',
@@ -3964,7 +4279,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -3985,8 +4305,7 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
+                ressource: {
                   id: '3',
                   libelle: 'pediatrie',
                   etat: true,
@@ -4000,7 +4319,7 @@ export class InMemDBService implements InMemoryDbService {
                     description: 'nouveau-né',
                     etat: false,
                   },
-                }
+                },
               },
               {
                 id: '4',
@@ -4008,22 +4327,21 @@ export class InMemDBService implements InMemoryDbService {
                 quantiteMax: 40,
                 montantMin: 100,
                 montantMax: 7000,
-                ressource:
-                {
-                    id: '2',
-                    libelle: 'néonat',
+                ressource: {
+                  id: '2',
+                  libelle: 'néonat',
+                  etat: true,
+                  /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
+                  unite: this.UnitesLitre,
+                  prix: 2000,
+                  caracteristique: 'souple',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
                     etat: true,
-                    /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/ quantite: 20,
-                    unite: this.UnitesLitre,
-                    prix: 2000,
-                    caracteristique: 'souple',
-                    famille: {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      description: 'enfant',
-                      etat: true,
-                    },
                   },
+                },
               },
             ],
           },
@@ -4039,7 +4357,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -4068,7 +4391,12 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 famille: [
-                  { id: '1', libelle: 'trans', description: 'sang', etat: true },
+                  {
+                    id: '1',
+                    libelle: 'trans',
+                    description: 'sang',
+                    etat: true,
+                  },
                   {
                     id: '2',
                     libelle: 'néonat',
@@ -4125,11 +4453,11 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-          }
+          },
         ],
         objetEnregistre: [
-          { key:
-            {
+          {
+            key: {
               id: '1',
               titre: 'taille',
               description: "taille de l'individu",
@@ -4141,9 +4469,10 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: '',
             },
-            value: '1.70' },
-          { key:
-            {
+            value: '1.70',
+          },
+          {
+            key: {
               id: '6',
               titre: 'teint',
               description: "teint de l'individu",
@@ -4155,9 +4484,10 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: '',
             },
-            value: 'noir' },
-          { key:
-            {
+            value: 'noir',
+          },
+          {
+            key: {
               id: '8',
               titre: 'cicatrice',
               description: "cicatrice de l'individu",
@@ -4169,9 +4499,10 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: 'oui, non',
             },
-            value: 'oui' },
-          { key:
-            {
+            value: 'oui',
+          },
+          {
+            key: {
               id: '4',
               titre: 'age',
               description: "age de l'individu",
@@ -4183,9 +4514,10 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: '',
             },
-            value: '23' },
-          { key:
-            {
+            value: '23',
+          },
+          {
+            key: {
               id: '7',
               titre: 'Groupe sangin',
               description: "Groupe sangin de l'individu",
@@ -4197,9 +4529,10 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
             },
-            value: 'A+' },
-          { key:
-            {
+            value: 'A+',
+          },
+          {
+            key: {
               id: '5',
               titre: 'allergies',
               description: "allergies de l'individu",
@@ -4211,9 +4544,10 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: '',
             },
-            value: 'oignon, lait, mangue' },
+            value: 'oignon, lait, mangue',
+          },
         ],
-        mouvements:[
+        mouvements: [
           {
             id: '1',
             description: 'Ici la description de ce mouvement',
@@ -4234,7 +4568,7 @@ export class InMemDBService implements InMemoryDbService {
                 libelle: 'néonat',
                 description: 'nouveau-né',
                 etat: true,
-              }
+              },
             },
             distributeur: {
               id: '2',
@@ -4243,7 +4577,7 @@ export class InMemDBService implements InMemoryDbService {
               adresse: 'Ydé',
               telephone: '655554481',
               mail: 'ngong@yad.fr',
-            }
+            },
           },
           {
             id: '2',
@@ -4265,8 +4599,8 @@ export class InMemDBService implements InMemoryDbService {
                 libelle: 'transfusion',
                 description: 'sang',
                 etat: true,
-              }
-            }
+              },
+            },
           },
           {
             id: '3',
@@ -4288,7 +4622,7 @@ export class InMemDBService implements InMemoryDbService {
                 libelle: 'pediatrie',
                 description: 'enfant',
                 etat: true,
-              }
+              },
             },
             distributeur: {
               id: '1',
@@ -4297,10 +4631,10 @@ export class InMemDBService implements InMemoryDbService {
               adresse: 'Dla',
               telephone: '655554488',
               mail: 'ngong@yad.fr',
-            }
-          }
+            },
+          },
         ],
-      }
+      },
     ];
     let ressource: IRessource[] = [
       {
@@ -4312,7 +4646,7 @@ export class InMemDBService implements InMemoryDbService {
         prix: 1000,
         caracteristique: 'souple',
         famille: { id: '1', libelle: 'trans', description: 'sang', etat: true },
-        scanBarCode: 'hello'
+        scanBarCode: '6911989109209',
       },
       {
         id: '2',
@@ -4328,7 +4662,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'nouveau-né',
           etat: false,
         },
-        scanBarCode: 'hello'
+        scanBarCode: '6911989109209',
       },
       {
         id: '2',
@@ -4344,7 +4678,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'enfant',
           etat: true,
         },
-        scanBarCode: 'hello'
+        scanBarCode: 'hello',
       },
       {
         id: '3',
@@ -4360,7 +4694,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'nouveau-né',
           etat: false,
         },
-        scanBarCode: 'hello'
+        scanBarCode: 'hello',
       },
       {
         id: '4',
@@ -4376,7 +4710,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'sang',
           etat: true,
         },
-        scanBarCode: 'hello'
+        scanBarCode: 'http://www.lidl-service.com',
       },
       {
         id: '5',
@@ -4392,7 +4726,7 @@ export class InMemDBService implements InMemoryDbService {
           description: 'enfant',
           etat: true,
         },
-        scanBarCode: 'hello'
+        scanBarCode: 'hello',
       },
     ];
     let famille: IFamille[] = [
@@ -4464,8 +4798,7 @@ export class InMemDBService implements InMemoryDbService {
             quantiteMax: 40,
             montantMin: 100,
             montantMax: 7000,
-            ressource:
-            {
+            ressource: {
               id: '3',
               libelle: 'pediatrie',
               etat: true,
@@ -4479,7 +4812,7 @@ export class InMemDBService implements InMemoryDbService {
                 description: 'nouveau-né',
                 etat: false,
               },
-            }
+            },
           },
           {
             id: '4',
@@ -4487,22 +4820,21 @@ export class InMemDBService implements InMemoryDbService {
             quantiteMax: 40,
             montantMin: 100,
             montantMax: 7000,
-            ressource:
-            {
-                id: '2',
-                libelle: 'néonat',
+            ressource: {
+              id: '2',
+              libelle: 'néonat',
+              etat: true,
+              quantite: 20,
+              unite: this.UnitesLitre,
+              prix: 2000,
+              caracteristique: 'souple',
+              famille: {
+                id: '3',
+                libelle: 'pediatrie',
+                description: 'enfant',
                 etat: true,
-                quantite: 20,
-                unite: this.UnitesLitre,
-                prix: 2000,
-                caracteristique: 'souple',
-                famille: {
-                  id: '3',
-                  libelle: 'pediatrie',
-                  description: 'enfant',
-                  etat: true,
-                },
               },
+            },
           },
         ],
       },
@@ -4630,16 +4962,60 @@ export class InMemDBService implements InMemoryDbService {
         adresse: 'Buéa',
         telephone: '655554486',
         mail: 'ngong@yad.fr',
-      }
+      },
     ];
-    let role:IRole[]=[
-      {id:"1", titre:"vendeur", description: "cicatrice de la personne",etat:true, dateCreation:new Date("07/03/2000")},
-      {id:"2", titre:"traiteur", description: "cicatrice de l'individu",etat:true, dateCreation:new Date("07/03/2000")},
-      {id:"3", titre:"marcheur", description: "cicatrice du vieu",etat:true,dateCreation:new Date("07/03/2000")},
+    let role: IRole[] = [
+      {
+        id: '1',
+        titre: 'vendeur',
+        description: 'cicatrice de la personne',
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+      },
+      {
+        id: '2',
+        titre: 'traiteur',
+        description: "cicatrice de l'individu",
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+      },
+      {
+        id: '3',
+        titre: 'marcheur',
+        description: 'cicatrice du vieu',
+        etat: true,
+        dateCreation: new Date('07/03/2000'),
+      },
     ];
     let personnels: IPersonnel[] = [
-      {id:"1", nom:"Tagne", prenom:"Willy", email:"tagnewillie@gmail.com", telephone:"655455487", sexe:"M", dateNaissance: new Date('10/04/2000'), dateEntree: new Date(), dateSortie: undefined}
+      {
+        id: '1',
+        nom: 'Tagne',
+        prenom: 'Willy',
+        email: 'tagnewillie@gmail.com',
+        telephone: '655455487',
+        sexe: 'M',
+        dateNaissance: new Date('10/04/2000'),
+        dateEntree: new Date(),
+        dateSortie: undefined,
+        codeBarre: 'undefined',
+      },
     ];
-    return{patients, services, menus, tickets, missions, attributs, documents,exemplaires,famille,ressource,precomvt,distributeur,role, personnels};
+    return {
+      patients,
+      services,
+      menus,
+      tickets,
+      missions,
+      attributs,
+      documents,
+      exemplaires,
+      famille,
+      ressource,
+      precomvt,
+      distributeur,
+      role,
+      personnels,
+    };
   }
 }
