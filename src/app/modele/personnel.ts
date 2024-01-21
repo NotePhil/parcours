@@ -18,5 +18,4 @@ export interface IPersonnel {
       dateFin?: Date;
     }
   ];
-  codeBarre: String;
 }
