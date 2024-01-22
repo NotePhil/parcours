@@ -4998,7 +4998,6 @@ export class InMemDBService implements InMemoryDbService {
         dateNaissance: new Date('10/04/2000'),
         dateEntree: new Date(),
         dateSortie: undefined,
-        codeBarre: 'undefined',
       },
     ];
     return {
