@@ -1,39 +1,77 @@
-<div id="mainSection" class="bg-light card modalCategorie">
+<div id="mainBlock" class="bg-light card modalCategorie">
     <form class="w-100">
-        <div class="form-group m-5">
-            <div class="contentBlock">
-                <div class="ancienneValeurEtat">
-                    <div class="inputBlock">
-                        <label for="">{{'doc-etats.form.text1' | translate}}</label>
-                        <input type="text" name="" id="" [disabled]="true" class="form-control">
-                    </div>
-                    <div class="inputBlock">
-                        <label for="">{{'doc-etats.form.text3' | translate}}</label>
-                        <input type="text" name="" id="" [disabled]="true" class="form-control">
-                    </div>
-                </div>
-                <div class="nouvelleValeurEtat">
-                    <div class="inputBlock">
-                        <label for="">{{'doc-etats.form.text2' | translate}}</label>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label class="searchBar">{{'patient.search-bar' | translate}}</mat-label>
-                            <input type="text" class="form-control inputMat" matInput aria-label="Rechercher" [formControl]="etatControl" [matAutocomplete]="auto">
-                            <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
-                                <mat-option class="options" *ngFor="let option of filteredOptions" [value]="option">
-                                    {{option.libelle}}
-                                </mat-option>
-                            </mat-autocomplete>
-                        </mat-form-field>
-                    </div>
-                    <div class="inputBlock">
-                        <label for="">{{'doc-etats.form.text3' | translate}}</label>
-                        <input type="number" [disabled]="true" name="" id="" class="form-control">
-                    </div>
-                </div>
+        <div class="form-group mt-5">
+            <div class='card-hearder'>
+                <h2 class="modal-title">{{'document.title6' | translate}}</h2>
             </div>
-            <div class="actionButton mt-2">
-                <button mat-button [mat-dialog-close] cdkFocusInitial class="btn btnValidation">{{'lists.button3' | translate}}</button>
-                <button mat-button [mat-dialog-close] cdkFocusInitial class="btn btnValidation">{{'lists.button6' | translate}}</button>
+            <div class="newAttSection">
+                <div class="sarchBlock">
+                    <form [formGroup]="formeDocEtats" *ngIf="formeDocEtats" class="example-form">
+                        <div class="ordreInput">
+                            <label for="ordreDocEtat">{{'doc-etats.form.text3' | translate}}</label>
+                            <input class="form-control" type="number" formControlName="ordreDocEtats" name="ordreDocEtat" id="">
+                        </div>
+                        <div class="etatInput">
+                            <label>{{'doc-etats.button1' | translate}}</label>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label class="searchBar">{{'patient.search-bar' | translate}}</mat-label>
+                                <input type="text" class="form-control inputMat" matInput aria-label="Rechercher" [formControl]="etatControl" [matAutocomplete]="auto">
+                                <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
+                                    <mat-option class="options" *ngFor="let option of filteredOptions" [value]="option" (click)="rechercherListingEtat(option); reinitialliseRessourceControl()">
+                                        {{option.libelle}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <div *ngIf="selected && f['ordreDocEtats'].errors" class="texteErreur">
+                        <p *ngIf="f['ordreDocEtats'].errors['required']">{{'lists.text1' | translate}}</p>
+                        <p *ngIf="ordreExiste">{{'doc-etats.form.text4' | translate}}</p>
+                    </div>
+                </div>
+                <!-- tableau listing des mouvements -->
+
+                <div class="card-body p-0 tableBlock" id="tableList">
+                    <div class='table-responsive w-100'>
+                        <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceDocEtats">
+
+                            <!-- libelle Column -->
+                            <ng-container matColumnDef="libelle">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'preconisation.table.title1' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.etat.libelle}} </td>
+                            </ng-container>
+
+                            <!-- ordre Column -->
+                            <ng-container matColumnDef="ordre">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'doc-etats.form.text3' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">{{element.ordre}}</td>
+                            </ng-container>
+
+                            <!-- Actions column -->
+                            <ng-container matColumnDef="actions">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
+                                    <div class="actions">
+                                        <button class="btn p-0" [value]="element.id" title="clicker pour annuler la selection" (click)="retirerSelectionEtat(i)">
+                                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                        </button>
+                                        <span><i class="fa fa-info-circle text-info ml-1" aria-hidden="true" title="{{'preconisation.table.title4' | translate}}"></i></span>
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedDocEtatsColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedDocEtatsColumns;"></tr>
+                        </table>
+
+                        <mat-paginator style="background-color: rgba(40, 167, 69, 0.79);" [pageSizeOptions]="[2, 5, 10, 20]"
+                                       showFirstLastButtons
+                                       aria-label="Select page of periodic elements">
+                        </mat-paginator>
+                    </div>
+                    <div class="actionButton mt-2">
+                        <button mat-button [mat-dialog-close] cdkFocusInitial class="btn btnValidation">{{'lists.button6' | translate}}</button>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

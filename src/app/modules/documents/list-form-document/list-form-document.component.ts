@@ -27,7 +27,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
   ELEMENTS_TABLE: IAfficheDocument[] = [];
   filteredOptions: IDocument[] | undefined;
 
-  displayedColumns: string[] = ['titre', 'description', 'typeMouvement', 'etat', 'missions', 'attributs', 'categories', 'preconisations', 'sousDocuments', 'actions'];
+  displayedColumns: string[] = ['titre', 'description', 'typeMouvement', 'etat', 'missions', 'attributs', 'categories', 'preconisations', 'sousDocuments', 'docEtats', 'actions'];
 
   dataSource = new MatTableDataSource<IAfficheDocument>(this.ELEMENTS_TABLE);
 
@@ -57,7 +57,9 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     typeMouvement: 'Neutre',
     affichagePrix: false,
     contientRessources: false,
-    contientDistributeurs: false
+    contientDistributeurs: false,
+    listDocEtats: '',
+    DocEtats: []
   }
 
   constructor(private translate: TranslateService, private router:Router,
@@ -141,14 +143,16 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
      listeMissions: '',
      listAttributs: '',
      listCategories: '',
-     typeMouvement:'Neutre',
+     typeMouvement: 'Neutre',
      listPreconisations: '',
      preconisations: [],
      etat: false,
      affichagePrix: false,
      contientRessources: false,
      contientDistributeurs: false,
-     listSousDocuments: ''
+     listSousDocuments: '',
+     listDocEtats: '',
+     DocEtats: []
    }
     afficheDocument.id = x.id;
     afficheDocument.titre = x.titre;
@@ -170,29 +174,9 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
       x.preconisations.forEach(
         p => afficheDocument.listPreconisations += p.libelle + ", "
       )
+      x.DocEtats.forEach(
+        de => afficheDocument.listDocEtats += de.etat.libelle + ", "
+      )
       return afficheDocument;
   }
-
-  /**
-   * Methode permettant d'ouvrir la modal de manipullation des etats du document
-   */
-  openDocEtatDialog(){
-
-    const dialogRef = this.dialogDef.open(ModalDocEtatsComponent,
-    {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      height: '100%',
-      width: '100%',
-      enterAnimationDuration:'1000ms',
-      exitAnimationDuration:'1000ms',
-      data:{}
-    }
-    )
-
-    dialogRef.afterClosed().subscribe(result => {
-      
-    });
-  }
-
 }

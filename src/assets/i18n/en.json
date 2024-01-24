@@ -213,6 +213,7 @@
         "title2":"Select attributs of this category",
         "title4": "Pair other documents",
         "title5": "Select documents to pair",
+        "title6": "Creat document's statuts",
         "table":{
             "title0":"Id",
             "title1":"Title",
@@ -236,7 +237,8 @@
             "title19": "link resources ?",
             "title20": "Distributor visibility ?",
             "title21": "Paired documents",
-            "title22": "Mouvement's nature"
+            "title22": "Mouvement's nature",
+            "title23": "Document's statut"
         },
         "form":{
             "text1":"Title is required.",
@@ -253,7 +255,8 @@
             "title":"Document's Model",
             "text1":"missions's list of document",
             "text2":"attributs's list of document",
-            "text3":"attributs's list by categories"
+            "text3":"attributs's list by categories",
+            "text4": "Statut's list of document"
         },
         "exemplaire": {
             "title":"Document's instance ",
@@ -490,7 +493,8 @@
       "form":{
         "text1":"Current statut",
         "text2":"next statut",
-        "text3":"Statut's position"
+        "text3":"Statut's position",
+        "text4":"This order already existed"
       }
     }
 }

@@ -38,7 +38,7 @@
   },
   "lists": {
     "title": "listing",
-    "text1": "Champs obligatoires",
+    "text1": "Champs obligatoire",
     "text2": "Champs non obligatoires",
     "text3": "est un champs non obligatoires",
     "text4": "entrer la valeur ici",
@@ -212,6 +212,7 @@
     "title2": "Selectionner les attributs de la categories",
     "title4": "Associer des sous documents",
     "title5": "Selectionner les documents à associer",
+    "title6": "Creer les etats du document",
     "table": {
       "title0": "Id",
       "title1": "Titre",
@@ -235,7 +236,8 @@
       "title19": "lier des ressources ?",
       "title20": "visibilité du distributeur ?",
       "title21": "Sous documents",
-      "title22": "type des mouvements"
+      "title22": "type des mouvements",
+      "title23": "Etats du document"
     },
     "form": {
       "text1": "Le Titre est obligatoire.",
@@ -252,7 +254,8 @@
       "title": "Modele ",
       "text1": "liste des missions du document",
       "text2": "liste des attributs du document",
-      "text3": "liste des attributs par categorie du document"
+      "text3": "liste des attributs par categorie du document",
+      "text4": "liste des états du document"
     },
     "exemplaire": {
       "title": "Exemplaire ",
@@ -489,7 +492,8 @@
     "form":{
       "text1":"Status courant",
       "text2":"Status suivant",
-      "text3":"Ordre du status"
+      "text3":"Ordre de l'état",
+      "text4":"Cet ordre existe déjà"
     }
   }
 }
