@@ -8,25 +8,32 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { IPersonnel } from 'src/app/modele/personnel';
 import { PersonnelsService } from 'src/app/services/personnels/personnels.service';
-
-export interface User {
-  nom: string;
-}
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-personnels',
   templateUrl: './list-personnels.component.html',
-  styleUrls: ['./list-personnels.component.scss']
+  styleUrls: ['./list-personnels.component.scss'],
 })
 export class ListPersonnelsComponent implements OnInit, AfterViewInit {
-
   myControl = new FormControl<string | IPersonnel>('');
 
   ELEMENTS_TABLE: IPersonnel[] = [];
   filteredOptions: IPersonnel[] | undefined;
 
-  displayedColumns: string[] = ['nom', 'prenom', 'dateNaissance', 'sexe', 'email', 'telephone', 'dateEntree', 'dateSortie', 'actions'];
-  
+  displayedColumns: string[] = [
+    'nom',
+    'prenom',
+    'dateNaissance',
+    'sexe',
+    'email',
+    'telephone',
+    'dateEntree',
+    'dateSortie',
+    'qrCodeValue',
+    'actions',
+  ];
+
   dataSource = new MatTableDataSource<IPersonnel>(this.ELEMENTS_TABLE);
 
   @ViewChild(MatPaginator)
@@ -34,11 +41,19 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private translate: TranslateService,private router:Router, private servicePersonnel:PersonnelsService, private _liveAnnouncer: LiveAnnouncer) { 
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private servicePersonnel: PersonnelsService,
+    private _liveAnnouncer: LiveAnnouncer
+  ) {}
 
-  }
-  private getAllPersonnels(){
+  private getAllPersonnels() {
     return this.servicePersonnel.getAllPersonnels();
+  }
+  private getQRCodeValueById(id: string): Observable<string> {
+    // Call your service method to get QR code value by ID
+    return this.servicePersonnel.getQRCodeValueById(id);
   }
 
   displayFn(user: IPersonnel): string {
@@ -50,42 +65,40 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  public rechercherListingPersonnel(option: IPersonnel){
-    this.servicePersonnel.getPersonnelsByName(option.nom.toLowerCase()).subscribe(
-        valeurs => {this.dataSource.data = valeurs;}
-    )
+  public rechercherListingPersonnel(option: IPersonnel) {
+    this.servicePersonnel
+      .getPersonnelsByName(option.nom.toLowerCase())
+      .subscribe((valeurs) => {
+        this.dataSource.data = valeurs;
+      });
   }
 
   ngOnInit(): void {
-
-    this.getAllPersonnels().subscribe(valeurs => {
+    this.getAllPersonnels().subscribe((valeurs) => {
+      valeurs.forEach((personnel) => {
+        this.getQRCodeValueById(personnel.id).subscribe((qrCodeValue) => {
+          personnel.qrCodeValue = qrCodeValue;
+        });
+      });
       this.dataSource.data = valeurs;
     });
 
-    this.myControl.valueChanges.subscribe(
-      value => {
-        const name = typeof value === 'string' ? value : value?.nom;
-        if(name != undefined && name?.length >0){
-          this.servicePersonnel.getPersonnelsByName(name.toLowerCase() as string).subscribe(
-            reponse => { 
-              this.filteredOptions = reponse;
-            }
-          )
-        }
-        else{
-          this.filteredOptions = [];
-        }
-        
+    this.myControl.valueChanges.subscribe((value) => {
+      const name = typeof value === 'string' ? value : value?.nom;
+      if (name != undefined && name?.length > 0) {
+        this.servicePersonnel
+          .getPersonnelsByName(name.toLowerCase() as string)
+          .subscribe((reponse) => {
+            this.filteredOptions = reponse;
+          });
+      } else {
+        this.filteredOptions = [];
       }
-    );
+    });
   }
 
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {

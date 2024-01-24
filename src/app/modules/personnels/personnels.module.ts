@@ -15,13 +15,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ListPersonnelsComponent } from './list-personnels/list-personnels.component';
-
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
-  declarations: [
-    NewPersonnelComponent,
-    ListPersonnelsComponent
-  ],
+  declarations: [NewPersonnelComponent, ListPersonnelsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -33,17 +30,19 @@ import { ListPersonnelsComponent } from './list-personnels/list-personnels.compo
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    QRCodeModule,
     TicketsModule,
-    
+
     TranslateModule.forChild({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        },extend:true
-      }),
-      BrowserModule
-    ],
-    providers: [DatePipe],
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      extend: true,
+    }),
+    BrowserModule,
+  ],
+  providers: [DatePipe],
 })
-export class PersonnelsModule { }
+export class PersonnelsModule {}

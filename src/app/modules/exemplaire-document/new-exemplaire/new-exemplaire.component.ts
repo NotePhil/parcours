@@ -605,7 +605,12 @@ export class NewExemplaireComponent implements OnInit {
   }
 
   displayFn(Ressource: IRessource): string {
-    return Ressource && Ressource.libelle ? Ressource.libelle : '';
+    return Ressource && Ressource.libelle && Ressource.scanBarCode
+      ? Ressource.libelle
+      : '';
+  }
+  displayFnn(option: any): string {
+    return option.scanBarCode ? option.scanBarCode : option.libelle;
   }
 
   displayDistributeurFn(distributeur: IDistributeur): string {

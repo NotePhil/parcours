@@ -69,7 +69,7 @@
                                     <input type="text" matInput [formControl]="ressourceControl" [value]="scan_val" [matAutocomplete]="auto">
                                     <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
                                         <mat-option class="options" *ngFor="let option of filteredOptionsRessource" [value]="option" (click)="rechercherListingRessources(option); reinitialliseRessourceControl()">
-                                            {{option.libelle}}
+                                            {{ displayFnn(option) }}
                                         </mat-option>
                                     </mat-autocomplete>
                                     

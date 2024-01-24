@@ -1,15 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IPersonnel } from 'src/app/modele/personnel';
 import { PersonnelsService } from 'src/app/services/personnels/personnels.service';
 import { v4 as uuidv4 } from 'uuid';
+import * as QRCode from 'qrcode';
 
 @Component({
   selector: 'app-new-personnel',
@@ -17,12 +13,14 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./new-personnel.component.scss'],
 })
 export class NewPersonnelComponent implements OnInit {
-  //personnel$:Observable<personnel>=EMPTY;
   personnel: IPersonnel | undefined;
   forme: FormGroup;
   btnLibelle: string = 'Ajouter';
   titre: string = 'Ajouter Personnel';
   submitted: boolean = false;
+
+  // Import the QRCodeModule
+  qrCodeValue: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,7 +55,6 @@ export class NewPersonnelComponent implements OnInit {
           Validators.pattern('.+@.+.{1}[a-z]{2,3}'),
         ],
       ],
-      //todo initialisation du composant à une date
       dateNaissance: ['1980-01-01', Validators.required],
       dateEntree: ['2023-01-01', Validators.required],
       dateSortie: ['0000-00-00'],
@@ -104,7 +101,7 @@ export class NewPersonnelComponent implements OnInit {
 
   onSubmit(personnelInput: any) {
     this.submitted = true;
-    //Todo la validation d'element non conforme passe
+
     if (this.forme.invalid) return;
 
     let personnelTemp: IPersonnel = {
@@ -117,6 +114,7 @@ export class NewPersonnelComponent implements OnInit {
       dateNaissance: personnelInput.dateNaissance,
       dateEntree: personnelInput.dateEntree,
       dateSortie: personnelInput.dateSortie,
+      qrCodeValue: personnelInput.qrCodeValue,
     };
 
     console.log('the person is', personnelTemp);
@@ -124,6 +122,8 @@ export class NewPersonnelComponent implements OnInit {
     if (this.personnel != undefined) {
       personnelTemp.id = this.personnel.id;
     }
+
+    // Save personnel data
     this.personnelService
       .ajouterPersonnel(personnelTemp)
       .subscribe((object) => {

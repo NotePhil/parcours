@@ -18,4 +18,5 @@ export interface IPersonnel {
       dateFin?: Date;
     }
   ];
+  qrCodeValue: string;
 }

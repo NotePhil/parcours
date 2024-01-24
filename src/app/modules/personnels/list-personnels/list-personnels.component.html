@@ -77,6 +77,16 @@
                     <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"personnel.table.title8" | translate}} </th>
                     <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateSortie}} </td>
                   </ng-container>
+
+                  <!-- New column for QR Code Value -->
+                    <ng-container matColumnDef="qrCodeValue">
+                      <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
+                        QR Code
+                      </th>
+                      <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                        <qrcode [qrdata]="element.id" [width]="60" ></qrcode>
+                      </td>
+                    </ng-container>
                   
                   <!-- action Column -->
                   <ng-container matColumnDef="actions">
