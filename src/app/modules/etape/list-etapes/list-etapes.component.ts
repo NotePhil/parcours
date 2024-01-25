@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { EMPTY, Observable } from 'rxjs';
@@ -14,6 +13,9 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { IEtape } from 'src/app/modele/etape';
 import { EtapesService } from 'src/app/services/etapes/etapes.service';
+import { IDocument } from 'src/app/modele/document';
+import { IAfficheDocument } from 'src/app/modele/affiche-document';
+import { IAfficheEtape } from 'src/app/modele/affiche-etape';
 
 export interface User {
   libelle: string;
@@ -34,24 +36,48 @@ export class ListEtapesComponent implements OnInit {
 
   myControl = new FormControl<string | IEtape>('');
 
-  ELEMENTS_TABLE: IEtape[] = [];
+  ELEMENTS_TABLE: IAfficheEtape[] = [];
   filteredOptions: IEtape[] | undefined;
 
-  displayedColumns: string[] = ['libelle', 'etat','actions'];
+  displayedColumns: string[] = ['libelle', 'etat','Document', 'actions'];
 
-  dataSource = new MatTableDataSource<IEtape>(this.ELEMENTS_TABLE);
+
+
+  dataSource = new MatTableDataSource<IAfficheEtape>(this.ELEMENTS_TABLE);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
+
+  tableDocuments : IAfficheEtape[] = []
+
+
+  afficheEtape : IAfficheEtape = {
+    id: '',
+    libelle: '',
+    etat: false,
+    document:[],
+    listSousDocuments: '',
+  }
   constructor(private translate: TranslateService,private router:Router, private serviceEtape:EtapesService, private _liveAnnouncer: LiveAnnouncer, private serviceService:ServicesService, private serviceTicket:TicketsService){ }
 
   ngOnInit(): void {
+    /*this.getAllEtapes().subscribe(valeurs => {
+      this.dataSource.data = valeurs;
+    });*/
 
     this.getAllEtapes().subscribe(valeurs => {
-      this.dataSource.data = valeurs;
-    });
+      const tableDocuments : IAfficheEtape[] = [];
+
+       valeurs.forEach(
+         x =>{
+           tableDocuments.push(this.convertEtapToEtapAffiche(x))
+         }
+       )
+       this.dataSource.data = tableDocuments;
+     });
+
 
     this.myControl.valueChanges.subscribe(
       value => {
@@ -99,9 +125,23 @@ export class ListEtapesComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  /*VRAIpublic rechercherListingEtape(option: IEtape){
+    this.serviceEtape.getEtapesBylibelle(option.getEtapesBylibelle.toLowerCase()).subscribe(
+        valeurs => {this.dataSource.data = valeurs;}
+    )
+  }*/
+
   public rechercherListingEtape(option: IEtape){
     this.serviceEtape.getEtapesBylibelle(option.libelle.toLowerCase()).subscribe(
-        valeurs => {this.dataSource.data = valeurs;}
+        valeurs => {
+          const tableDocuments : IAfficheEtape[] = [];
+          valeurs.forEach(
+            x =>{
+              tableDocuments.push(this.convertEtapToEtapAffiche(x))
+            }
+          )
+          this.dataSource.data = tableDocuments;
+        }
     )
   }
 
@@ -117,4 +157,24 @@ export class ListEtapesComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
+  private convertEtapToEtapAffiche(x: IEtape) : IAfficheEtape {
+    let  afficheEtape  : IAfficheEtape = {
+      id: '',
+      libelle: '',
+      etat: false,
+      document:[],
+      listSousDocuments:'',
+    }
+     afficheEtape.id = x.id;
+     afficheEtape.libelle = x.libelle;
+     afficheEtape.etat = x.etat;
+
+       x.document.forEach(
+        d =>afficheEtape.listSousDocuments += d.titre+ ", "
+
+       )
+
+       return afficheEtape;
+   }
 }

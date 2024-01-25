@@ -11,7 +11,7 @@
                           <mat-label class="searchBar">{{'patient.search-bar' | translate}}</mat-label>
                           <input type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
                           <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
-                              <mat-option class="options" *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingDocument(option)">
+                              <mat-option class="options" *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingDocuments(option)">
                                   {{option.titre}}
                               </mat-option>
                           </mat-autocomplete>
@@ -25,13 +25,7 @@
                   <div class='table-responsive w-100'>
                       <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceDocument" matSort (matSortChange)="announceSortChange($event)">
 
-                          <!-- id Column -->
-                          <ng-container matColumnDef="id">
-                              <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'tickets.table.title1' | translate}} </th>
-                              <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.id}} </td>
-                          </ng-container>
-
-                          <!-- libelle Column -->
+                          <!-- titre Column -->
                           <ng-container matColumnDef="titre">
                               <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>titre</th>
                               <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.titre}} </td>
@@ -44,15 +38,14 @@
 
                           <!-- Actions column -->
                           <ng-container matColumnDef="actions">
-                              <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
-                              <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                  <div class="actions" class="">
-                                      <label style="width: 2px;" for="documents">
-                                          <input type="checkbox" [value]="element.titre" name="documents" id="documents" (click)="getDocumentId(element.id)" (change)="onCheckDocumentChange($event)">
-                                      </label>
-                                  </div>
-                              </td>
-                          </ng-container>
+                            <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
+                            <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                <div class="actions">
+                                    <input type="checkbox" [value]="element.titre" (click)="getDocumentId(element.id)" (change)="onCheckDocumentChange($event)">
+                                    <span role="button" (click)="getDocumentId(element.id)"></span>
+                                </div>
+                            </td>
+                        </ng-container>
                           <tr mat-header-row *matHeaderRowDef="displayedDocumentsColumns"></tr>
                           <tr mat-row *matRowDef="let row; columns: displayedDocumentsColumns;"></tr>
                       </table>
@@ -71,6 +64,7 @@
                       <div class="card-body p-0 tableBlock" id="tableResultats">
                           <div class='table-responsive w-100 m-0'>
                               <table class='table table-sm table-centered table-striped w-100' mat-table [dataSource]="dataSourceDocumentResultat" matSort (matSortChange)="announceSortChange($event)">
+
                                   <!-- titre Column -->
                                   <ng-container matColumnDef="titre">
                                       <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>titre</th>
@@ -82,7 +76,7 @@
                                       <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
                                   </ng-container>
 
-                                  <!-- actions Column -->
+                                  <!-- actions Column-->
                                   <ng-container matColumnDef="actions">
                                       <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
                                       <td class="text-dark containCell" mat-cell *matCellDef="let element;  let i=index">
@@ -93,6 +87,7 @@
                                           </div>
                                       </td>
                                   </ng-container>
+
                                   <tr mat-header-row *matHeaderRowDef="displayedDocumentsColumns"></tr>
                                   <tr mat-row *matRowDef="let row; columns: displayedDocumentsColumns;"></tr>
                               </table>

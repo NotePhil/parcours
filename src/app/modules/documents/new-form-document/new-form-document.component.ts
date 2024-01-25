@@ -83,7 +83,7 @@ export class NewFormDocumentComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
+
   typeMvt: string[] = [];
 
   constructor(private router:Router, private formBuilder: FormBuilder, private infosPath:ActivatedRoute,private dataEnteteMenuService:DonneesEchangeService,
@@ -261,7 +261,7 @@ export class NewFormDocumentComponent implements OnInit {
    */
   openSousDocumentDialog(){
 
-    const dialogRef = this.dialogDef.open(ModalChoixSousDocumentComponent, 
+    const dialogRef = this.dialogDef.open(ModalChoixSousDocumentComponent,
     {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -348,7 +348,7 @@ export class NewFormDocumentComponent implements OnInit {
     this.ELEMENTS_TABLE_PRECONISATIONS.forEach(
       preco => documentTemp.preconisations.push(preco)
     )
-    
+
     this.ELEMENTS_TABLE_SOUS_DOCUMENTS.forEach(
       preco => documentTemp.sousDocuments?.push(preco)
     )

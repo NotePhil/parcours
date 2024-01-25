@@ -5,5 +5,5 @@ export interface IEtape {
   id:string,
   libelle:string,
   etat:boolean,
-  document? : IDocument[],
+  document: IDocument[],
 }

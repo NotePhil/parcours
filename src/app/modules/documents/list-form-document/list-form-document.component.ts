@@ -35,8 +35,8 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   tableDocuments : IAfficheDocument[] = []
-  
-  
+
+
   afficheDocument : IAfficheDocument = {
     id: '',
     titre: '',
@@ -100,7 +100,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
         valeurs => {
           const tableDocuments : IAfficheDocument[] = [];
           valeurs.forEach(
-            x =>{  
+            x =>{
               tableDocuments.push(this.convertDocToDocAffiche(x))
             }
           )
@@ -138,7 +138,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
      affichagePrix: false,
      contientRessources: false,
      contientDistributeurs: false,
-     listSousDocuments: ''
+     listSousDocuments: '',
    }
     afficheDocument.id = x.id;
     afficheDocument.titre = x.titre;

@@ -33,28 +33,27 @@
                             </div>
                         </div>
                       </div>
-                      <!-- document------------------------------------------------- -->
-                      <div class="form-group">
-                        <div class="champs">
-                            <label for="" class="label">
-                                Document <sup>*</sup>
-                            </label>
-                            <div class="dropdown w-100">
-                                <!-- affichage list document selectiones -->
-                                <div class="listDocu">
-                                    <button type="button" class="btn p-0" title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}" (click)="openDocumentDialog()">
-                                        <i class="fas fa-plus-square"></i>
-                                    </button>
-                                    <span *ngFor="let listeDocuments of ELEMENTS_TABLE_DOCUMENTS">
-                                        {{listeDocuments.titre | lowercase}}<span>, </span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div  *ngIf="submitted && ELEMENTS_TABLE_DOCUMENTS.length<1"  class="alert alert-danger blockErreur" >
-                            <div>Champ Obligatoire</div>
-                        </div>
-                    </div>
+                     <!-- documents ------------------------------------------------- -->
+
+                     <div class="form-group">
+                      <div class="champs">
+                          <label  for="" class="label">
+                              Document <span style="color: red;" aria-label="required">*</span>
+                          </label>
+                          <div class="w-100">
+
+                              <!-- Ouvrir le formulair de selection des documents -->
+                              <div class="listAttr">
+                                  <button type="button" class="btn p-0"  (click)="openSousDocumentDialog()">
+                                      <i class="fas fa-plus-square"></i>
+                                  </button>
+                                  <span *ngFor="let listeSousDocuments of ELEMENTS_TABLE_SOUS_DOCUMENTS">
+                                      {{listeSousDocuments.titre | lowercase}}<span>, </span>
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
 
 
