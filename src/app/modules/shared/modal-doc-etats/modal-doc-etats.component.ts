@@ -27,6 +27,7 @@ export class ModalDocEtatsComponent {
   ]; // structure du tableau presentant les doc etats
   selected: boolean=false;
   ordreExiste: boolean=false;
+  etatExiste: boolean=false;
   
   constructor(
     private serviceEtat: EtatService,
@@ -72,6 +73,7 @@ export class ModalDocEtatsComponent {
   public rechercherListingEtat(option: IEtats) {
     this.selected = true;
     this.ordreExiste = false;
+    this.etatExiste = false;
     let tabIdEtats : string[] = []
     this.ELEMENTS_TABLE_DOC_ETATS.forEach(
       docEtat => {
@@ -81,9 +83,20 @@ export class ModalDocEtatsComponent {
     });
     let ordre : number = this.formeDocEtats.controls["ordreDocEtats"].value
 
-    if (!tabIdEtats.includes(option.id) && (ordre != undefined && ordre != 0 && ordre > 0 )) {
+    for (let index = 0; index < this.ELEMENTS_TABLE_DOC_ETATS.length; index++) {
+      const element = this.ELEMENTS_TABLE_DOC_ETATS[index];
+      if (element.ordre == ordre) {
+        this.ordreExiste = true;
+        break
+      }
+      if (element.etat.id == option.id) {
+        this.etatExiste = true;
+        break
+      }
+    }
+    if ((!tabIdEtats.includes(option.id) && !this.ordreExiste) && (ordre != undefined && ordre != 0 && ordre > 0 )) {
       let docEtat : IDocEtats = {
-        id: '',
+        id: option.id,
         etat: option,
         ordre: ordre,
         dateCreation: new Date()
@@ -91,13 +104,6 @@ export class ModalDocEtatsComponent {
       this.ELEMENTS_TABLE_DOC_ETATS.unshift(docEtat)
       this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS
       this.selected=false;
-    }
-    for (let index = 0; index < this.ELEMENTS_TABLE_DOC_ETATS.length; index++) {
-      const element = this.ELEMENTS_TABLE_DOC_ETATS[index];
-      if (element.ordre == ordre) {
-        this.ordreExiste = true;
-        break
-      }
     }
   }
 
