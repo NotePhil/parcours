@@ -16,6 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ListPersonnelsComponent } from './list-personnels/list-personnels.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [NewPersonnelComponent, ListPersonnelsComponent],
@@ -32,6 +33,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     MatSortModule,
     QRCodeModule,
     TicketsModule,
+    SharedModule,
 
     TranslateModule.forChild({
       loader: {

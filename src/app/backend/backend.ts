@@ -29,7 +29,7 @@ export class InMemDBService implements InMemoryDbService {
   createDb() {
     let patients: IPatient[] = [
       {
-        id: '1',
+        id: '3614274078398',
         nom: 'NGONGANG',
         prenom: 'Philippe',
         sexe: 'M',
@@ -37,6 +37,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999090',
         mail: 'ngong@yad.fr',
         dateNaissance: new Date('07/07/1989'),
+        qrCodeValue: '',
       },
       {
         id: '2',
@@ -47,6 +48,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        qrCodeValue: '',
       },
       {
         id: '3',
@@ -57,6 +59,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        qrCodeValue: '',
       },
       {
         id: '4',
@@ -67,6 +70,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        qrCodeValue: '',
       },
       {
         id: '5',
@@ -77,6 +81,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        qrCodeValue: '',
       },
       {
         id: '6',
@@ -87,6 +92,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        qrCodeValue: '',
       },
       {
         id: '7',
@@ -97,6 +103,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        qrCodeValue: '',
       },
       {
         id: '8',
@@ -107,6 +114,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        qrCodeValue: '',
       },
       {
         id: '9',
@@ -117,6 +125,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        qrCodeValue: '',
       },
     ];
     let services: IService[] = [
@@ -4993,6 +5002,18 @@ export class InMemDBService implements InMemoryDbService {
         nom: 'Tagne',
         prenom: 'Willy',
         email: 'tagnewillie@gmail.com',
+        telephone: '655455487',
+        sexe: 'M',
+        dateNaissance: new Date('10/04/2000'),
+        dateEntree: new Date(),
+        dateSortie: undefined,
+        qrCodeValue: 'hello',
+      },
+      {
+        id: '895',
+        nom: 'Maeva',
+        prenom: 'Mae',
+        email: 'mae@gmail.com',
         telephone: '655455487',
         sexe: 'M',
         dateNaissance: new Date('10/04/2000'),

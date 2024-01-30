@@ -155,8 +155,18 @@ export class NewExemplaireComponent implements OnInit {
   ngOnInit(): void {
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
-      this.formeExemplaire.get('ressourceControl')?.setValue(dt);
+      this.ressourceControl.setValue(this.scan_val); // Set the initial value in the search bar
+
+      if (this.scan_val) {
+        // If scan_val is set, perform a search to get the corresponding libelle
+        this.serviceRessource
+          .getRessourcesByScanBarCodeorLibelle(this.scan_val)
+          .subscribe((response) => {
+            this.filteredOptionsRessource = response;
+          });
+      }
     });
+
     this.nomPatientCourant = sessionStorage.getItem('nomPatientCourant');
     this.compteur = -1;
 
@@ -169,17 +179,16 @@ export class NewExemplaireComponent implements OnInit {
     this.initialiseFormExemplaire();
 
     this.ressourceControl.valueChanges.subscribe((value) => {
-      const libelle = typeof value === 'string' ? value : value?.libelle;
-      if (libelle != undefined && libelle?.length > 0) {
+      const query = value?.toString().toLowerCase(); // Convert to lower case for case-insensitive search
+      if (query && query.length > 0) {
+        // Search by name or ID
         this.serviceRessource
-          .getRessourcesByLibelle(libelle.toLowerCase() as string)
-          .subscribe((resultat) => {
-            this.filteredOptionsRessource = resultat;
+          .getRessourcesByScanBarCodeorLibelle(query)
+          .subscribe((reponse) => {
+            this.filteredOptionsRessource = reponse;
           });
       } else {
-        this.serviceRessource.getAllRessources().subscribe((resultat) => {
-          this.filteredOptionsRessource = resultat;
-        });
+        this.filteredOptionsRessource = [];
       }
     });
 

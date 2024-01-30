@@ -28,6 +28,7 @@ export class NewPatientComponent implements OnInit {
   titre: string = 'Ajouter un nouveau Patient';
   submitted: boolean = false;
   initialDate = new FormControl(new Date());
+  qrCodeValue: string = '';
 
   //TODO validation du formulaire. particulièrment les mail; les dates
 
@@ -114,6 +115,7 @@ export class NewPatientComponent implements OnInit {
       mail: patientInput.mail,
       telephone: patientInput.telephone,
       dateNaissance: patientInput.dateNaissance,
+      qrCodeValue: patientInput.qrCodeValue,
     };
     patientTemp.dateNaissance = this.initialDate.value!;
 

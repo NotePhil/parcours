@@ -30,14 +30,30 @@ export class PersonnelsService {
     );
   }
 
-  ajouterPersonnel(personnel: IPersonnel) {
-    return this.http.post('api/personnels', personnel);
-  }
-  getQRCodeValueById(personnelId: string): Observable<string> {
-    return this.getPersonnelById(personnelId).pipe(
-      map((personnel) => {
-        return personnel?.qrCodeValue || '';
+  getPersonnelsById(id: string): Observable<IPersonnel[]> {
+    return this.http.get<IPersonnel[]>('api/personnels').pipe(
+      map((x) => {
+        return x.filter((p) => p.id.toLowerCase().startsWith(id));
       })
     );
+  }
+
+  getPersonelsByNameOrId(query: string): Observable<IPersonnel[]> {
+    return this.http.get<IPersonnel[]>('api/personnels').pipe(
+      map((patients) => {
+        const lowerCaseQuery = query.toLowerCase();
+
+        // Filter by ID or name
+        return patients.filter(
+          (p) =>
+            p.id.toString().startsWith(query) ||
+            p.nom.toLowerCase().startsWith(lowerCaseQuery)
+        );
+      })
+    );
+  }
+
+  ajouterPersonnel(personnel: IPersonnel) {
+    return this.http.post('api/personnels', personnel);
   }
 }

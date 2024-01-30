@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { IPersonnel } from 'src/app/modele/personnel';
 import { PersonnelsService } from 'src/app/services/personnels/personnels.service';
 import { Observable } from 'rxjs';
+import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
 
 @Component({
   selector: 'app-list-personnels',
@@ -36,6 +37,8 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource<IPersonnel>(this.ELEMENTS_TABLE);
 
+  formPersonnel: FormGroup;
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
@@ -45,15 +48,17 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
     private translate: TranslateService,
     private router: Router,
     private servicePersonnel: PersonnelsService,
-    private _liveAnnouncer: LiveAnnouncer
-  ) {}
+    private formBuilder: FormBuilder,
+    private _liveAnnouncer: LiveAnnouncer,
+    private barService: ModalCodebarreService
+  ) {
+    this.formPersonnel = this.formBuilder.group({
+      _listPersonnels: new FormArray([]),
+    });
+  }
 
   private getAllPersonnels() {
     return this.servicePersonnel.getAllPersonnels();
-  }
-  private getQRCodeValueById(id: string): Observable<string> {
-    // Call your service method to get QR code value by ID
-    return this.servicePersonnel.getQRCodeValueById(id);
   }
 
   displayFn(user: IPersonnel): string {
@@ -72,22 +77,33 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
         this.dataSource.data = valeurs;
       });
   }
+  scan_val: any | undefined;
 
   ngOnInit(): void {
+    this.barService.getCode().subscribe((dt) => {
+      this.scan_val = dt;
+      this.myControl.setValue(this.scan_val); // Set the initial value in the search bar
+
+      if (this.scan_val) {
+        // If scan_val is set, perform a search to get the corresponding libelle
+        this.servicePersonnel
+          .getPersonelsByNameOrId(this.scan_val)
+          .subscribe((response) => {
+            this.filteredOptions = response;
+          });
+      }
+    });
+
     this.getAllPersonnels().subscribe((valeurs) => {
-      valeurs.forEach((personnel) => {
-        this.getQRCodeValueById(personnel.id).subscribe((qrCodeValue) => {
-          personnel.qrCodeValue = qrCodeValue;
-        });
-      });
       this.dataSource.data = valeurs;
     });
 
     this.myControl.valueChanges.subscribe((value) => {
-      const name = typeof value === 'string' ? value : value?.nom;
-      if (name != undefined && name?.length > 0) {
+      const query = value?.toString().toLowerCase(); // Convert to lower case for case-insensitive search
+      if (query && query.length > 0) {
+        // Search by name or ID
         this.servicePersonnel
-          .getPersonnelsByName(name.toLowerCase() as string)
+          .getPersonelsByNameOrId(query)
           .subscribe((reponse) => {
             this.filteredOptions = reponse;
           });

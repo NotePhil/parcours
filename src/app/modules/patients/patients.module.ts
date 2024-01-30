@@ -15,14 +15,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-
-
+import { SharedModule } from '../shared/shared.module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
-  declarations: [
-    NewPatientComponent,
-    ListPatientsComponent
-  ],
+  declarations: [NewPatientComponent, ListPatientsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -35,17 +32,19 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule,
     MatSortModule,
     TicketsModule,
+    SharedModule,
+    QRCodeModule,
 
     TranslateModule.forChild({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        },
-        extend:true
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      extend: true,
     }),
-    BrowserModule
+    BrowserModule,
   ],
   providers: [DatePipe],
 })
-export class PatientsModule { }
+export class PatientsModule {}
