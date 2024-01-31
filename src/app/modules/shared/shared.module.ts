@@ -22,6 +22,7 @@ import { EnteteComponent } from './entete/entete.component';
 import { ModalChoixSousDocumentComponent} from './modal-choix-sous-document/modal-choix-sous-document.component';
 import { ModalChoixSousExemplairesComponent } from './modal-choix-sous-exemplaires/modal-choix-sous-exemplaires.component';
 import { ModalDocEtatsComponent } from './modal-doc-etats/modal-doc-etats.component';
+import { ModalRoleValidationComponent } from './modal-role-validation/modal-role-validation.component';
 
 
 
@@ -34,7 +35,8 @@ import { ModalDocEtatsComponent } from './modal-doc-etats/modal-doc-etats.compon
     EnteteComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
-    ModalDocEtatsComponent
+    ModalDocEtatsComponent,
+    ModalRoleValidationComponent
 
   ],
   exports: [
@@ -44,6 +46,7 @@ import { ModalDocEtatsComponent } from './modal-doc-etats/modal-doc-etats.compon
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
     ModalDocEtatsComponent,
+    ModalRoleValidationComponent
   ],
   imports: [
     CommonModule,
