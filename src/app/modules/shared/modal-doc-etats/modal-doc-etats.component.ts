@@ -24,11 +24,13 @@ export class ModalDocEtatsComponent {
   displayedDocEtatsColumns: string[] = [
     'actions',
     'libelle',
-    'ordre'
+    'ordre',
+    'role'
   ]; // structure du tableau presentant les doc etats
   selected: boolean=false;
   ordreExiste: boolean=false;
   etatExiste: boolean=false;
+  idDOCEtat : string = ""
   
   constructor(
     private serviceEtat: EtatService,
@@ -112,6 +114,10 @@ export class ModalDocEtatsComponent {
     return this.formeDocEtats.controls;
   }
 
+  getIdDocEtat(idDocEtat : string){
+    this.idDOCEtat = idDocEtat
+  }
+
   displayFn(preco: IEtats): string {
     return preco && preco.libelle ? preco.libelle : '';
   }
@@ -153,7 +159,16 @@ export class ModalDocEtatsComponent {
     )
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocCatService.dataDocumentEtats
+      for (let index = 0; index < this.ELEMENTS_TABLE_DOC_ETATS.length; index++) {
+        const element = this.ELEMENTS_TABLE_DOC_ETATS[index];
+        
+        if (element.id == this.idDOCEtat) {
+          element.validation = this.donneeDocEtatService.dataRoleValidation
+          this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS
+          this.donneeDocEtatService.dataRoleValidation = undefined
+          break
+        }
+      }
     });
   }
 }

@@ -493,7 +493,9 @@
       "text2": "next statut",
       "text3": "Statut's position",
       "text4": "This order already existed",
-      "text5": "This statut already existed"
+      "text5": "This statut already existed",
+      "text6": "Validation's role",
+      "text7": "Pair a role for this validation"
     }
   }
 }

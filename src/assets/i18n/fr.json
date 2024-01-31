@@ -494,8 +494,10 @@
       "text1": "Status courant",
       "text2": "Status suivant",
       "text3": "Ordre de l'état",
-       "text4": "Cet ordre existe déjà",
-      "text5": "Cet etat existe déjà"
+      "text4": "Cet ordre existe déjà",
+      "text5": "Cet etat existe déjà",
+      "text6": "Role de validation",
+      "text7": "Associez un role pour la validation"
     }
   }
 }

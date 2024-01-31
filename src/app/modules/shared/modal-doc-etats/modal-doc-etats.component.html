@@ -52,6 +52,12 @@
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">{{element.ordre}}</td>
                             </ng-container>
 
+                            <!-- role Column -->
+                            <ng-container matColumnDef="role">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'doc-etats.form.text6' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">{{element.validation?.roleValidation.titre}}</td>
+                            </ng-container>
+
                             <!-- Actions column -->
                             <ng-container matColumnDef="actions">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
@@ -61,7 +67,7 @@
                                             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                         </button>
                                         <span><i class="fa fa-info-circle text-info ml-1" aria-hidden="true" title="{{'preconisation.table.title4' | translate}}"></i></span>
-                                        <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog()">
+                                        <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(); getIdDocEtat(element.id)">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                     </div>
