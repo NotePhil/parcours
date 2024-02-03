@@ -22,6 +22,7 @@ import { TypeUnite } from '../modele/type-unite';
 import { TypeMvt } from '../modele/type-mvt';
 import { TypeMouvement } from '../modele/typeMouvement';
 import { IEtats } from '../modele/etats';
+import { IValidation } from '../modele/validation';
 
 export class InMemDBService implements InMemoryDbService {
 
@@ -268,6 +269,15 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
+            fonction: 'Validation',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Créer', lien: './nouvelle-validation', bouton: 'false' },
+              { nom: 'Rechercher', lien: './list-validations', bouton: 'false' },
+            ],
+          },
+          {
             fonction: 'Ticket',
             icone: 'fas fa-chart-pie',
             actif: '',
@@ -485,6 +495,11 @@ export class InMemDBService implements InMemoryDbService {
           }
         ]
       },
+    ];
+    let validations: IValidation[] = [
+      {id: '1', code: 'azerty', etat: false, libelle: 'bon', dateCreation: new Date('10/02/2023')},
+      {id: '2', code: 'qwerty', etat:true, libelle: 'passable', dateCreation: new Date('01/04/2014')},
+      {id: '3', code: 'qsdfghj', etat:true, libelle: 'RAS', dateCreation: new Date('10/10/2015')}
     ];
     let missions: IMission[] = [
       {
@@ -14949,6 +14964,6 @@ export class InMemDBService implements InMemoryDbService {
       {id:"3", libelle:"etat 3", description:"troisième état du document", dateCreation: new Date("07/21/2024")},
       {id:"4", libelle:"etat 4", description:"quatrième état du document", dateCreation: new Date("07/21/2024")}
     ];
-    return{patients, services, menus, tickets, missions, attributs, documents,exemplaires,famille,ressource,precomvt,distributeur,role, personnels, typeAttribut, typeUnite, typeMvt, etats};
+    return{patients, services, menus, tickets, validations, missions, attributs, documents,exemplaires,famille,ressource,precomvt,distributeur,role, personnels, typeAttribut, typeUnite, typeMvt, etats};
   }
 }

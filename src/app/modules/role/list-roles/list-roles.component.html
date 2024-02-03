@@ -63,6 +63,18 @@
                                   <span>{{'patient.table.actions.link2' | translate}}</span>
                               </button>
                           </div>
+                          <div class="dropdown-menu" aria-labelledby="triggerId">
+                            <button class="dropdown-item nav-link" [routerLink]="['/affecte-mission-role',element.id]" 
+                              title="missions">
+                              <i class="fa fa-eye text-secondary" aria-hidden="true"></i>
+                              <span>Missions</span>
+                            </button>
+                              <button class="dropdown-item nav-link" [routerLink]="['/role-nouveau',element.id]" 
+                                title="{{'patient.table.actions.link2' | translate}}">
+                                  <i class="fa fa-pen text-info" aria-hidden="true"></i>
+                                  <span>{{'patient.table.actions.link2' | translate}}</span>
+                              </button>
+                          </div>
                       </div>
                   </td>
                 </ng-container>
