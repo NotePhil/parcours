@@ -28,6 +28,7 @@ export class ModalDocEtatsComponent {
     'role'
   ]; // structure du tableau presentant les doc etats
   selected: boolean=false;
+  changeOrdreValeur: boolean=false;
   ordreExiste: boolean=false;
   etatExiste: boolean=false;
   idDOCEtat : string = ""
@@ -107,6 +108,23 @@ export class ModalDocEtatsComponent {
       this.ELEMENTS_TABLE_DOC_ETATS.unshift(docEtat)
       this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS
       this.selected=false;
+    }
+  }
+
+  public verificationChangementOrdre(option: IDocEtats, event: any) {
+    this.changeOrdreValeur = true;
+    this.ordreExiste = false
+
+    for (let index = 0; index < this.ELEMENTS_TABLE_DOC_ETATS.length; index++) {
+      const element = this.ELEMENTS_TABLE_DOC_ETATS[index];
+      if (element.ordre == event.target.value) {
+        this.ordreExiste = true;
+        break
+      }else {
+        option.ordre = event.target.value
+        this.changeOrdreValeur=false;
+        this.ordreExiste = false    
+      }
     }
   }
 
