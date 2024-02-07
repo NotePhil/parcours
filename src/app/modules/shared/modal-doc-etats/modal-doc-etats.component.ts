@@ -111,21 +111,21 @@ export class ModalDocEtatsComponent {
     }
   }
 
-  public verificationChangementOrdre(option: IDocEtats, event: any) {
+  public verificationChangementOrdre(option: IDocEtats, event: any, cpt:number) {
     this.changeOrdreValeur = true;
     this.ordreExiste = false
-
+    let oldVal = option.ordre;
     for (let index = 0; index < this.ELEMENTS_TABLE_DOC_ETATS.length; index++) {
-      const element = this.ELEMENTS_TABLE_DOC_ETATS[index];
-      if (element.ordre == event.target.value) {
+      if (cpt!=index && this.ELEMENTS_TABLE_DOC_ETATS[index].ordre == event.target.value) {
         this.ordreExiste = true;
         break
-      }else {
-        option.ordre = event.target.value
-        this.changeOrdreValeur=false;
-        this.ordreExiste = false    
       }
     }
+
+    if(this.ordreExiste) {
+      event.target.value= oldVal;
+    }else
+      option.ordre = event.target.value;
   }
 
   get f(){
