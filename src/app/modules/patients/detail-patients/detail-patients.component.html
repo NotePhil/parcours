@@ -6,7 +6,9 @@
           <div class="col-md-6">
             <p><strong>Nom:</strong> {{ patient?.nom }}</p>
             <p><strong>Prenom:</strong> {{ patient?.prenom }}</p>
-            <p><strong>QR Code:</strong> <qrcode [qrdata]="patient?.id" [width]="50"></qrcode> </p> 
+            
+            <p><strong style="padding-bottom: 12px;">QR Code:</strong> <span class="qr-code"> <qrcode [qrdata]="patient?.id" [width]="30"></qrcode></span> </p>
+            
           </div>
         </div>
       </div>

@@ -85,7 +85,7 @@ export class NewPatientComponent implements OnInit {
       this.filteredOptions = this.filteredOptions.filter(
         (option) =>
           !this.personnesRatachees.some(
-            (person) => person.nom?.toLowerCase() === option.nom?.toLowerCase()
+            (person) => person.id?.toLowerCase() === option.id?.toLowerCase()
           )
       );
     }

@@ -12,6 +12,7 @@ export interface IPatient {
 }
 
 export interface IPersonneRattachee {
+  id?: string;
   nom?: string;
   prenom?: string;
   sexe?: string;
