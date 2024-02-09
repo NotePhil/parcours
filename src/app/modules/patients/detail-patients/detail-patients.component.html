@@ -1,0 +1,15 @@
+
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Nom:</strong> {{ patient?.nom }}</p>
+            <p><strong>Prenom:</strong> {{ patient?.prenom }}</p>
+            <p><strong>QR Code:</strong> <qrcode [qrdata]="patient?.id" [width]="50"></qrcode> </p> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

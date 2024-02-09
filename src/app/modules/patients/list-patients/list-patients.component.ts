@@ -57,7 +57,6 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     'mail',
     'adresse',
     'telephone',
-    'qrCodeValue',
     'actions',
   ];
 
@@ -93,12 +92,27 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
       this.scan_val = dt;
       this.myControl.setValue(this.scan_val); // Set the initial value in the search bar
 
+      this.handleScanValChange(); // Trigger the search when scan_val changes
+
+      this.myControl.valueChanges.subscribe(() => {
+        this.handleScanValChange();
+      });
+
       if (this.scan_val) {
         // If scan_val is set, perform a search to get the corresponding libelle
         this.servicePatient
           .getPatientsByNameOrId(this.scan_val)
           .subscribe((response) => {
             this.filteredOptions = response;
+
+            // Manually set the selected option in filteredOptions
+            const selectedOption = this.filteredOptions.find(
+              (option) => option.id === this.scan_val
+            );
+            if (selectedOption) {
+              this.filteredOptions = [selectedOption];
+              this.dataSource.data = [selectedOption]; // Update the dataSource with the selected option
+            }
           });
       }
     });
@@ -161,6 +175,25 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  private handleScanValChange() {
+    if (this.scan_val) {
+      this.servicePatient
+        .getPatientsByNameOrId(this.scan_val)
+        .subscribe((response) => {
+          this.filteredOptions = response;
+
+          // Manually set the selected option in filteredOptions
+          const selectedOption = this.filteredOptions.find(
+            (option) => option.id === this.scan_val
+          );
+          if (selectedOption) {
+            this.filteredOptions = [selectedOption];
+            this.dataSource.data = [selectedOption]; // Update the dataSource with the selected option
+          }
+        });
+    }
   }
 
   public rechercherListingPersonne(option: IPatient) {

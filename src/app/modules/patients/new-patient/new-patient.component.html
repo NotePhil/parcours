@@ -31,6 +31,7 @@
                                 </div>
                             </div>
                         </div>
+                    <div class="align-items">
                         <div class="form-group">
                             <div class="champs">
                                 <label  for="type" class="label">
@@ -55,6 +56,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                         <div class="form-group">
                             <div>
                                 <div class="champs">
@@ -86,6 +88,44 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="champs">
+                            <label  for="famille"  class="label" >
+                                personnes rattachées
+                              </label>
+                              <input
+                                type="text"
+                                matInput
+                                [matAutocomplete]="auto"
+                                formControlName="myControl"
+                                [formControl]="myControl"
+                                aria-label="personne"
+                                placeholder="Entrer le nom de la personne"
+                                class="w-100 form-control"
+                                />
+                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelectPersonne($event)" >
+                                <mat-option
+                                    *ngFor="let option of filteredOptions"
+                                    [value]="option"
+                                    (click)="rechercherListingPersonne(option)"
+                                >
+                                    {{ option.nom }}
+                                </mat-option>
+                                </mat-autocomplete>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+                        <!-- Display selected personnesRatachees as badges -->
+                        <!-- Display selected personnesRatachees as badges with a button to remove -->
+                    <div *ngIf="personnesRatachees.length > 0">
+                    <div *ngFor="let personne of personnesRatachees; let i = index" class="badge-container">
+                        <div class="badge-content">
+                        {{ personne.nom }} - {{ personne.prenom }} - {{ personne.sexe }} - {{ personne.dateNaissance | date: 'dd/MM/yyyy' }}
+                        <button mat-button class="remove-button" (click)="removePersonne(i)">X</button>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="actionButton">

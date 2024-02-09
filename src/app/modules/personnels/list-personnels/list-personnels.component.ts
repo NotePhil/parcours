@@ -90,6 +90,13 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
           .getPersonelsByNameOrId(this.scan_val)
           .subscribe((response) => {
             this.filteredOptions = response;
+            const selectedOption = this.filteredOptions.find(
+              (option) => option.id === this.scan_val
+            );
+            if (selectedOption) {
+              this.filteredOptions = [selectedOption];
+              this.dataSource.data = [selectedOption];
+            }
           });
       }
     });

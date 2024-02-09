@@ -9,3 +9,22 @@ select{
     border-radius: 5px;
 }
 
+.badge-container {
+    margin-top: 8px;
+  }
+  
+  .badge-content {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  
+  .remove-button {
+    margin-left: 8px;
+    cursor: pointer;
+  }
+  
+  

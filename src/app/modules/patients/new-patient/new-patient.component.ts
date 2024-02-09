@@ -10,10 +10,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EMPTY, isEmpty, Observable } from 'rxjs';
 import { PatientsService } from 'src/app/services/patients/patients.service';
-import { IPatient } from '../../../modele/Patient';
+import { IPatient, IPersonneRattachee } from '../../../modele/Patient';
 import { v4 as uuidv4 } from 'uuid';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-new-patient',
@@ -26,9 +27,74 @@ export class NewPatientComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string = 'Ajouter';
   titre: string = 'Ajouter un nouveau Patient';
+  myControl = new FormControl<string | IPatient>('');
   submitted: boolean = false;
   initialDate = new FormControl(new Date());
   qrCodeValue: string = '';
+
+  ELEMENTS_TABLE: IPatient[] = [];
+  personnesRatachees: IPersonneRattachee[] = [];
+
+  dataSource = new MatTableDataSource<IPatient>(this.ELEMENTS_TABLE);
+
+  displayFn(patient: IPatient): string {
+    return patient && patient.nom
+      ? patient.nom
+      : patient && patient.toString
+      ? patient.toString()
+      : '';
+  }
+
+  filteredOptions: IPatient[] | undefined;
+
+  public rechercherListingPersonne(option: IPatient) {
+    this.servicePatient
+      .getPatientsByName(option.nom.toLowerCase())
+      .subscribe((valeurs) => {
+        this.dataSource.data = valeurs;
+      });
+  }
+
+  onSelectPersonne(event: MatAutocompleteSelectedEvent): void {
+    const selectedPersonne: IPersonneRattachee = event.option.value;
+
+    if (this.personnesRatachees.length < 2) {
+      if (this.forme && this.forme.get('myControl')) {
+        this.forme.get('myControl')!.setValue('');
+      }
+
+      this.personnesRatachees.push(selectedPersonne);
+
+      this.forme.get('myControl')!.setValue('');
+    } else {
+      alert('Désolé! impossible de ratacher plus de deux patients');
+    }
+  }
+
+  // Function to filter autocomplete options based on already selected personnesRatachees
+  filterAutocompleteOptions() {
+    if (
+      this.filteredOptions &&
+      this.filteredOptions.length > 0 &&
+      this.personnesRatachees.length > 0 &&
+      typeof this.myControl.value === 'string' &&
+      this.myControl.value.trim().length > 0
+    ) {
+      const nom = this.myControl.value.trim().toLowerCase();
+      // Filter out already selected personnesRatachees
+      this.filteredOptions = this.filteredOptions.filter(
+        (option) =>
+          !this.personnesRatachees.some(
+            (person) => person.nom?.toLowerCase() === option.nom?.toLowerCase()
+          )
+      );
+    }
+  }
+
+  removePersonne(index: number): void {
+    this.personnesRatachees.splice(index, 1);
+    this.forme.get('myControl')?.setValue(this.personnesRatachees);
+  }
 
   //TODO validation du formulaire. particulièrment les mail; les dates
 
@@ -37,7 +103,8 @@ export class NewPatientComponent implements OnInit {
     private patientService: PatientsService,
     private router: Router,
     private infosPath: ActivatedRoute,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private servicePatient: PatientsService
   ) {
     this.forme = this.formBuilder.group({
       nom: [
@@ -69,6 +136,24 @@ export class NewPatientComponent implements OnInit {
       dateNaissance: ['1980-01-01', Validators.required],
       telephone: [''],
       adresse: [''],
+      myControl: [''],
+      personnesRatachees: [[]],
+    });
+
+    this.myControl.valueChanges.subscribe((value) => {
+      const nom = typeof value === 'string' ? value : value?.nom;
+      if (nom && nom.length > 0) {
+        // Search by name or ID
+        this.servicePatient.getPatientsByName(nom).subscribe((reponse) => {
+          this.filteredOptions = reponse;
+          this.filterAutocompleteOptions();
+        });
+      } else {
+        this.filteredOptions = [];
+      }
+    });
+    this.myControl.registerOnChange(() => {
+      console.log('myControl changed:', this.myControl.value);
     });
   }
 
@@ -81,6 +166,8 @@ export class NewPatientComponent implements OnInit {
       //trouver un autre moyen d'initialiser avec des valeurs
       this.patientService.getPatientById(idPatient).subscribe((x) => {
         this.patient = x;
+        console.log('Personnes Ratachees:', this.patient.personnesRatachees);
+        this.personnesRatachees = this.patient.personnesRatachees || [];
         this.forme.setValue({
           nom: this.patient.nom,
           prenom: this.patient.prenom,
@@ -92,6 +179,8 @@ export class NewPatientComponent implements OnInit {
           ), // je change le format de la date de naissance pour pouvoir l'afficher dans mon input type date
           telephone: this.patient.telephone,
           adresse: this.patient.adresse,
+          personnesRatachees: this.personnesRatachees,
+          myControl: [],
         });
       });
     }
@@ -116,7 +205,10 @@ export class NewPatientComponent implements OnInit {
       telephone: patientInput.telephone,
       dateNaissance: patientInput.dateNaissance,
       qrCodeValue: patientInput.qrCodeValue,
+      personnesRatachees: this.personnesRatachees,
     };
+    console.log('hello', patientTemp);
+
     patientTemp.dateNaissance = this.initialDate.value!;
 
     if (this.patient != undefined) {

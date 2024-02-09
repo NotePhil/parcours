@@ -17,9 +17,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
 import { QRCodeModule } from 'angularx-qrcode';
+import { DetailPatientsComponent } from './detail-patients/detail-patients.component';
 
 @NgModule({
-  declarations: [NewPatientComponent, ListPatientsComponent],
+  declarations: [NewPatientComponent, ListPatientsComponent, DetailPatientsComponent],
   imports: [
     CommonModule,
     FormsModule,

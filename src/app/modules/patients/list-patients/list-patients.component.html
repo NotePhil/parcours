@@ -12,7 +12,7 @@
                      <form class="example-form">
                         <mat-form-field class="example-full-width" appearance="fill">
                           <mat-label class="searchBar">{{'patient.search-bar' | translate}}</mat-label>
-                          <input type="text" matInput aria-label="Rechercher" [formControl]="myControl" [(ngModel)]="scan_val" [value]="scan_val" [matAutocomplete]="auto">
+                          <input type="text" matInput aria-label="Rechercher" [formControl]="myControl"  [value]="scan_val" [matAutocomplete]="auto">
                           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                             <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingPersonne(option)">
                               {{option.nom}}
@@ -75,16 +75,6 @@
                     <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.telephone}} </td>
                   </ng-container>
 
-                   <!-- New column for QR Code Value -->
-                   <ng-container matColumnDef="qrCodeValue">
-                    <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
-                      QR Code
-                    </th>
-                    <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                      <qrcode [qrdata]="element.id" [width]="60" ></qrcode>
-                    </td>
-                  </ng-container>
-
                   <!-- action Column -->
                   <ng-container matColumnDef="actions">
                     <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
@@ -102,7 +92,7 @@
                                 <span>{{'patient.table.actions.link1' | translate}}</span>
                               </button>
 
-                                <button class="dropdown-item nav-link" [routerLink]="['new-patient']" title="{{'patient.table.actions.link3' | translate}}">
+                                <button class="dropdown-item nav-link" [routerLink]="['/detail-patients', element.id]" title="{{'patient.table.actions.link3' | translate}}">
                                     <i class="fa fa-eye text-secondary" aria-hidden="true"></i>
                                     <span>{{'patient.table.actions.link3' | translate}}</span>
                                 </button>
