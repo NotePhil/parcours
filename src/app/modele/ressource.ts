@@ -1,3 +1,4 @@
+import { IAttributs } from "./attributs";
 import { IFamille } from "./famille";
 
 
@@ -11,6 +12,13 @@ export interface IRessource {
     unite:string,
     famille:IFamille,
     caracteristique:string,
+    caracteristiques? :
+    [
+        {
+            attribut : IAttributs,
+            Valeur: any
+        }
+    ]
    /* dateCreation:Date,
     dateModification:Date,*/
 }

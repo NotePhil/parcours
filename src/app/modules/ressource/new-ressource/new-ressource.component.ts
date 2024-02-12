@@ -6,11 +6,14 @@ import { IRessource } from 'src/app/modele/ressource';
 import { RessourcesService } from 'src/app/services/ressources/ressources.service';
 import {v4 as uuidv4} from 'uuid';
 import { EMPTY, Observable } from 'rxjs';
+import { IAttributs } from 'src/app/modele/attributs';
 import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { TypeUnite } from 'src/app/modele/type-unite';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalRessourceAttributsComponent } from '../../shared/modal-ressource-attributs/modal-ressource-attributs.component';
 
 @Component({
   selector: 'app-new-ressource',
@@ -24,6 +27,7 @@ export class NewRessourceComponent implements OnInit {
   submitted: boolean=false;
   unites : String[] = [];
   IdRessource:string= ""
+  ELEMENTS_TABLE_ATTRIBUTS: any[] = [];
   filteredOptions: IFamille[] | undefined;
   dataSource = new MatTableDataSource<IFamille>();
   familleDeRessource: IFamille = {
@@ -33,7 +37,7 @@ export class NewRessourceComponent implements OnInit {
     etat:false
   };
   titre:string='';
-  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService,private familleService:FamillesService,private ressourceService:RessourcesService,private serviceRessource:RessourcesService,private serviceFamille:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  constructor(private formBuilder:FormBuilder, private dialogDef : MatDialog,private dataEnteteMenuService:DonneesEchangeService,private familleService:FamillesService,private ressourceService:RessourcesService,private serviceRessource:RessourcesService,private serviceFamille:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat: [true],
@@ -90,6 +94,11 @@ export class NewRessourceComponent implements OnInit {
             caracteristique:this.ressource.caracteristique,
           })
       });
+      // Initialisation du tableau d'attributs du document
+    this.ELEMENTS_TABLE_ATTRIBUTS = this.ressource?.caracteristiques!
+    this.dataEnteteMenuService.dataDocumentAttributs = this.ressource?.caracteristiques
+    } else {
+      this.dataEnteteMenuService.dataDocumentAttributs = []
     }
     this.familleService.getTypeUnite().subscribe(u=>{ this.unites = u.type});
     this.titre=this.dataEnteteMenuService.dataEnteteMenu
@@ -98,9 +107,37 @@ export class NewRessourceComponent implements OnInit {
     return this.forme.controls;
   }
 
-  onSubmit(ressourceInput:any){
+  /**
+   * Methode permettant d'ouvrir la modal de selection des attributs de la ressource
+   */
+  openAttributDialog(){
+    const dialogRef = this.dialogDef.open(ModalRessourceAttributsComponent,
+    {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      width:'100%',
+      height:'100%',
+      enterAnimationDuration:'1000ms',
+      exitAnimationDuration:'1000ms',
+      data:{}
+    }
+    )
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ELEMENTS_TABLE_ATTRIBUTS =  this.dataEnteteMenuService.dataDocumentAttributs
+    });
+    
+  }
+
+  onSubmit(ressourceInput:IRessource){
     this.submitted=true;
-    if(this.forme.invalid) return;
+    if(this.forme.invalid || this.ELEMENTS_TABLE_ATTRIBUTS.length<1) return console.log("error azertyuiop", this.forme.invalid);
+
+    let styleAtt : any = {
+      attribut: null,
+      valeur: null
+    };
+
     let ressourceTemp : IRessource={
       id: uuidv4(),
       libelle: ressourceInput.libelle,
@@ -111,17 +148,28 @@ export class NewRessourceComponent implements OnInit {
       prixDeSortie: ressourceInput.prixDeSortie,
       famille:ressourceInput.famille,
       caracteristique:ressourceInput.caracteristique,
+      caracteristiques: [styleAtt]
     }
 
     if(this.ressource != undefined){
       ressourceTemp.id = this.ressource.id
     }
+
+    console.log("attributs selectionne :", this.ELEMENTS_TABLE_ATTRIBUTS);
+    this.ELEMENTS_TABLE_ATTRIBUTS.forEach(
+      a => ressourceTemp.caracteristiques?.push(a)
+    )
+
     ressourceTemp.famille = this.familleDeRessource
+    console.log("resultat de l'enregistrement :", ressourceTemp);
+    
     this.ressourceService.ajouterRessource(ressourceTemp).subscribe(
       object => {
         this.router.navigate(['list-ressources']);
       }
     )
+    this.dataEnteteMenuService.dataDocumentAttributs = []
+
   }
 
   displayFn(famille: IFamille): string {
