@@ -44,6 +44,13 @@ export class PatientsService {
     );
   }
 
+  getPatientsByPersonneRatachees(personneId: string): Observable<IPatient[]> {
+    // Assuming your API endpoint to get patients by personneRatachees is '/api/patients/personneRatachees/{personneId}'
+    return this.http.get<IPatient[]>(
+      `/api/patients/personneRatachees/${personneId}`
+    );
+  }
+
   ajouterPatient(patient: IPatient) {
     return this.http.post('api/patients', patient);
   }

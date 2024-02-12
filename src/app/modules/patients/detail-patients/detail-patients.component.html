@@ -1,17 +1,41 @@
-
 <div class="container mt-4">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <p><strong>Nom:</strong> {{ patient?.nom }}</p>
-            <p><strong>Prenom:</strong> {{ patient?.prenom }}</p>
-            
-            <p><strong style="padding-bottom: 12px;">QR Code:</strong> <span class="qr-code"> <qrcode [qrdata]="patient?.id" [width]="30"></qrcode></span> </p>
-            
+  <!-- Main patient card -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Nom:</strong> {{ patient?.nom }}</p>
+          <p><strong>Prenom:</strong> {{ patient?.prenom }}</p>
+          <!-- Display QR Code if personnesRatachees is empty -->
+          <div *ngIf="!patient?.personnesRatachees || patient?.personnesRatachees.length === 0"
+            style="display: flex; gap: 10px; align-items: center;">
+            <div style="display: flex;gap: 10px; align-items: center;">
+              <p><strong style="padding-bottom: 12px;">QR Code:</strong> </p>
+              <span class="qr-code">
+                <qrcode [qrdata]="patient?.id" [width]="40"></qrcode>
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+
+  <!-- Display cards for personnesRatachees -->
+  <div *ngIf="patient?.personnesRatachees && patient?.personnesRatachees.length > 0">
+    <div class="row">
+      <div class="col-md-6">
+        <div *ngFor="let personne of patient.personnesRatachees" class="card mb-3">
+          <div class="card-body">
+            <p><strong>Nom Personne Ratachee:</strong> {{ personne?.nom }}</p>
+            <p><strong>Prenom Personne Ratachee:</strong> {{ personne?.prenom }}</p>
+            <p><strong style="padding-bottom: 12px;">QR Code:</strong> </p>
+            <span class="qr-code">
+              <qrcode [qrdata]="personne?.id" [width]="40"></qrcode>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,10 @@
     background-color: #f8f9fa;
     padding: 10px;
   }
+
+  .col-md-6[_ngcontent-mnc-c48] {
+    max-width: 100%;
+  }
   
   .card-body {
     padding: 20px;

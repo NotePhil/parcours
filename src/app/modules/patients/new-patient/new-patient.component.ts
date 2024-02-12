@@ -93,7 +93,7 @@ export class NewPatientComponent implements OnInit {
 
   removePersonne(index: number): void {
     this.personnesRatachees.splice(index, 1);
-    this.forme.get('myControl')?.setValue(this.personnesRatachees);
+    this.forme.get('myControl')?.setValue('');
   }
 
   //TODO validation du formulaire. particulièrment les mail; les dates
@@ -144,10 +144,12 @@ export class NewPatientComponent implements OnInit {
       const nom = typeof value === 'string' ? value : value?.nom;
       if (nom && nom.length > 0) {
         // Search by name or ID
-        this.servicePatient.getPatientsByName(nom).subscribe((reponse) => {
-          this.filteredOptions = reponse;
-          this.filterAutocompleteOptions();
-        });
+        this.servicePatient
+          .getPatientsByName(nom.toLowerCase())
+          .subscribe((reponse) => {
+            this.filteredOptions = reponse;
+            this.filterAutocompleteOptions();
+          });
       } else {
         this.filteredOptions = [];
       }

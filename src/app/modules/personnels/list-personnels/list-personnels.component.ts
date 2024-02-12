@@ -31,7 +31,6 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
     'telephone',
     'dateEntree',
     'dateSortie',
-    'qrCodeValue',
     'actions',
   ];
 
