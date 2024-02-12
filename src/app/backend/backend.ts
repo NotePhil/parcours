@@ -420,6 +420,15 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
+            fonction: 'Validation',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Créer', lien: './nouvelle-validation', bouton: 'false' },
+              { nom: 'Rechercher', lien: './list-validations', bouton: 'false' },
+            ],
+          },
+          {
             fonction: 'Mission',
             icone: 'fas fa-user-cog',
             actif: '',
