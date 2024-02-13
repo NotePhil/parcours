@@ -49,19 +49,6 @@
                                     <div *ngIf="f['etat'].errors['required']">{{'attributs.form.text3' | translate}}</div>
                                 </div>
                             </div>
-                            <div>
-                              <div class="champs">
-                                  <label for="obligatoire" class="label" >
-                                      {{'attributs.table.title11' | translate}}
-                                  </label>
-                                  <p class="w-100 d-flex align-items-center choix" >
-                                  <input type="checkbox" [checked]="forme.get('obligatoire')?.value" value="true"  formControlName="obligatoire" name="obligatoire" id="obligatoire" placeholder="{{'attributs.table.title3' | translate}}"  class="form-control">
-                                </p>
-                              </div>
-                              <div  *ngIf="submitted && f['obligatoire'].errors"  class="alert alert-danger" >
-                                  <div *ngIf="f['obligatoire'].errors['required']">{{'attributs.form.text3' | translate}}</div>
-                              </div>
-                          </div>
                         </div>
                         <div class="form-group">
                             <div class="champs">

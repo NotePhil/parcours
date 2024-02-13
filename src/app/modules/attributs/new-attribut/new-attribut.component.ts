@@ -54,7 +54,6 @@ export class NewAttributComponent implements OnInit {
         ],
       ],
       etat: [true],
-      obligatoire: [false],
       type: [
         '',
         [
@@ -63,7 +62,7 @@ export class NewAttributComponent implements OnInit {
           Validators.maxLength(50),
         ],
       ],
-      valeursParDefaut: [''],
+      valeursParDefaut: [],
     });
   }
 
