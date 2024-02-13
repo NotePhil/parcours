@@ -119,7 +119,6 @@ export class NewAttributComponent implements OnInit {
     // Par exemple, comparez si la première et la deuxième valeurs sont identiques
     //----------- cas de type Number ---------------//
     if (this.forme.get('type')?.value == 'Number') {
-      if (this.inputValeur.endsWith(';')) {
         faux = 0;
         for (let index = 0; index < valeurs.length - 1; index++) {
           // Test si la valeur est un nombre
@@ -140,7 +139,6 @@ export class NewAttributComponent implements OnInit {
         } else {
           this.errorNb = false;
         }
-      }
     }
 
     //----------- cas de type radio et checkbox ------------//
@@ -219,7 +217,7 @@ export class NewAttributComponent implements OnInit {
     this.submitted = true;
     if (this.forme.invalid) return;
 
-    if ((this.forme.get('type')?.value == 'Radio' || this.forme.get('type')?.value == 'Checkbox') && this.errorNb == true) {
+    if ((this.forme.get('type')?.value == 'Radio' || this.forme.get('type')?.value == 'Checkbox' || this.forme.get('type')?.value == 'Number') && this.errorNb == true) {
       
     } else {
       let attributTemp: IAttributs = {
