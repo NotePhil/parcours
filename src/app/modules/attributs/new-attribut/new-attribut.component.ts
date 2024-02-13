@@ -182,7 +182,6 @@ export class NewAttributComponent implements OnInit {
 
     //----------- cas du type date --------//
     if (this.forme.get('type')?.value == 'Date') {
-      if (this.inputValeur.endsWith(';')) {
         faux = 0;
         for (let index = 0; index < valeurs.length - 1; index++) {
           let date = new Date(valeurs[index]);
@@ -209,7 +208,6 @@ export class NewAttributComponent implements OnInit {
         } else {
           this.errorNb = false;
         }
-      }
     }
   }
 
