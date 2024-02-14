@@ -506,9 +506,9 @@ export class InMemDBService implements InMemoryDbService {
       },
     ];
     let validations: IValidation[] = [
-      {id: '1', code: 'azerty', etat: false, libelle: 'bon', dateCreation: new Date('10/02/2023')},
-      {id: '2', code: 'qwerty', etat:true, libelle: 'passable', dateCreation: new Date('01/04/2014')},
-      {id: '3', code: 'qsdfghj', etat:true, libelle: 'RAS', dateCreation: new Date('10/10/2015')}
+      {id: '1', code: 'azerty', etat: false, libelle: 'bon', typeVote: 'Unanime', dureeVote: 5, role: {id:"1", titre:"vendeur", description: "personnel au contact du client",etat:true, dateCreation:new Date("07/03/2000")}, dateCreation: new Date('10/02/2023')},
+      {id: '2', code: 'qwerty', etat:true, libelle: 'passable', typeVote: 'Majoritaire', dureeVote: 10, role: {id:"2", titre:"traiteur", description: "Personnel administratif",etat:true, dateCreation:new Date("07/03/2000")}, dateCreation: new Date('01/04/2014')},
+      {id: '3', code: 'qsdfghj', etat:true, libelle: 'RAS', typeVote: 'Unanime', dureeVote: 5, role: {id:"3", titre:"marcheur", description: "commercial sur le terrain",etat:true,dateCreation:new Date("07/03/2000")}, dateCreation: new Date('10/10/2015')}
     ];
     let missions: IMission[] = [
       {

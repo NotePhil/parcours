@@ -65,6 +65,9 @@
       "label1":"code",
       "label2":"etat",
       "label3":"Date de création",
+      "label4": "Type vote",
+      "label5": "Duree vote",
+      "label6": "role",
       "text1":"Champ Obligatoire"
     }
   },

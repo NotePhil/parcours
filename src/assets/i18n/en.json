@@ -488,7 +488,10 @@
         "form":{
           "label1":"code",
           "label2":"etat",
-          "label3":"Creation day"
+          "label3":"Creation day",
+          "label4": "Voting Type",
+          "label5": "Duration vote",
+          "label6": "role"
         }
       },
   "etats": {

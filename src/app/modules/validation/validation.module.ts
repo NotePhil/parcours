@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
+import { MatSelectModule } from '@angular/material/select';
 
 import { NewValidationComponent } from './new-validation/new-validation.component';
 import { ListValidationsComponent } from './list-validations/list-validations.component';
@@ -35,6 +36,7 @@ import { ListValidationsComponent } from './list-validations/list-validations.co
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    MatSelectModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,

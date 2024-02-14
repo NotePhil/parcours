@@ -41,6 +41,24 @@
                     <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"services.table.title1" | translate}}</th>
                     <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
                   </ng-container>
+
+                  <!-- type Column -->
+                  <ng-container matColumnDef="type">
+                    <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"validation.form.label4" | translate}}</th>
+                    <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.typeVote}} </td>
+                  </ng-container>
+
+                  <!-- duree Column -->
+                  <ng-container matColumnDef="durée">
+                    <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"validation.form.label5" | translate}}</th>
+                    <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.dureeVote}} </td>
+                  </ng-container>
+
+                  <!-- role Column -->
+                  <ng-container matColumnDef="role">
+                    <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"validation.form.label6" | translate}}</th>
+                    <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.role.titre}} </td>
+                  </ng-container>
   
                   <!-- etat Column -->
                   <ng-container matColumnDef="etat">
