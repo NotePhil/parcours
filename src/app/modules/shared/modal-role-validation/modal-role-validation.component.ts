@@ -70,8 +70,16 @@ export class ModalRoleValidationComponent implements OnInit{
             id: '',
             libelle: 'validation ' + option.titre,
             code: uuidv4(),
-            roleValidation: valeurs,
-            dateCreation: new Date()
+            dateCreation: new Date(),
+            etat: false,
+            role: {
+              id: '',
+              titre: '',
+              description: '',
+              etat: false
+            },
+            typeVote: '',
+            dureeVote: 0
           }
           this.donneeRoleValidationService.dataRoleValidation = validationRole
         }
