@@ -54,6 +54,23 @@
     "button10": "Fermer",
     "button11": "Enregistrer"
   },
+  "validation":{
+    "header":"Ajouter Validation",
+    "title0": "liste validation",
+    "title":"listing Validation",
+    "table":{
+      "title0":"validation"
+    },
+    "form":{
+      "label1":"code",
+      "label2":"etat",
+      "label3":"Date de création",
+      "label4": "Type vote",
+      "label5": "Duree vote",
+      "label6": "role",
+      "text1":"Champ Obligatoire"
+    }
+  },
   "patient": {
     "title1": "Ajouter ",
     "search-bar": "Rechercher",
@@ -494,10 +511,8 @@
       "text1": "Status courant",
       "text2": "Status suivant",
       "text3": "Ordre de l'état",
-      "text4": "Cet ordre existe déjà",
-      "text5": "Cet etat existe déjà",
-      "text6": "Role de validation",
-      "text7": "Associez un role pour la validation"
+       "text4": "Cet ordre existe déjà",
+      "text5": "Cet etat existe déjà"
     }
   }
 }

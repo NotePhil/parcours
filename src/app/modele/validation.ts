@@ -1,9 +1,12 @@
-import { IRole } from "./role";
+import { IRole } from "./role"
 
 export interface IValidation {
     id: string,
-    libelle: string,
     code: string,
-    roleValidation: IRole,
+    etat: boolean,
+    role: IRole,
+    libelle: string,
+    typeVote: string,
+    dureeVote: number,
     dateCreation: Date
 }
