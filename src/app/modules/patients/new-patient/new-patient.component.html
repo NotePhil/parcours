@@ -120,8 +120,7 @@
                                     <mat-option *ngFor="let option of filteredOptions" [value]="option"
                                         (click)="rechercherListingPersonne(option)">
                                         {{ option.nom }}
-                                        {{option.prenom}} Ne A
-                                        le
+                                        {{option.prenom}} Né le
                                         {{option.dateNaissance | date: 'dd/MM/yyyy'}}
                                     </mat-option>
                                 </mat-autocomplete>
@@ -132,7 +131,7 @@
 
                     <!-- Display selected personnesRatachees as badges -->
                     <!-- Display selected personnesRatachees as badges with a button to remove -->
-                    <div *ngIf="personnesRatachees.length > 0" style="display: flex;">
+                    <div *ngIf="personnesRatachees.length > 0" class="display">
                         <div *ngFor="let personne of personnesRatachees; let i = index" class="badge-container"
                             style="flex-grow: 1;flex-shrink: 0;">
                             <div class="badge-content">

@@ -68,6 +68,7 @@ export class NewPatientComponent implements OnInit {
       this.forme.get('myControl')!.setValue('');
     } else {
       alert('Désolé! impossible de ratacher plus de deux patients');
+      this.forme.get('myControl')!.setValue('');
     }
   }
 
