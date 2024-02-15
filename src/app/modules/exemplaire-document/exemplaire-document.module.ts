@@ -18,13 +18,15 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ListExemplaireComponent } from './list-exemplaire/list-exemplaire.component';
 import { SharedModule } from '../shared/shared.module';
+import { PrevisualisationExemplaireComponent } from './previsualisation-exemplaire/previsualisation-exemplaire.component';
 
 
 @NgModule({
   declarations: [
     NewExemplaireComponent,
     ViewExemplaireComponent,
-    ListExemplaireComponent
+    ListExemplaireComponent,
+    PrevisualisationExemplaireComponent
   ],
   imports: [
     CommonModule,
