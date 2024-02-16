@@ -58,15 +58,6 @@ export class InMemDBService implements InMemoryDbService {
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
         qrCodeValue: '',
-        personnesRatachees: [
-          {
-            id: '90',
-            nom: 'Tchakounte',
-            prenom: 'Simpice',
-            sexe: 'm',
-            dateNaissance: new Date('07/07/1989'),
-          },
-        ],
       },
       {
         id: 'http://www.lidl-service.com',
@@ -78,7 +69,6 @@ export class InMemDBService implements InMemoryDbService {
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
         qrCodeValue: '',
-        personnesRatachees: [],
       },
       {
         id: 'http://www.lidl-service.com',
