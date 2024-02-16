@@ -28,10 +28,8 @@ export class NewPatientComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string="Ajouter";
   submitted: boolean=false;
-  btnLibelle: string = 'Ajouter';
   titre: string = 'Ajouter un nouveau Patient';
   myControl = new FormControl<string | IPatient>('');
-  submitted: boolean = false;
   initialDate = new FormControl(new Date());
   qrCodeValue: string = '';
 
@@ -51,7 +49,7 @@ export class NewPatientComponent implements OnInit {
   filteredOptions: IPatient[] | undefined;
 
   public rechercherListingPersonne(option: IPatient) {
-    this.servicePatient
+    this.patientService
       .getPatientsByName(option.nom.toLowerCase())
       .subscribe((valeurs) => {
         this.dataSource.data = valeurs;
@@ -119,7 +117,7 @@ export class NewPatientComponent implements OnInit {
       const nom = typeof value === 'string' ? value : value?.nom;
       if (nom && nom.length > 0) {
         // Search by name or ID
-        this.servicePatient
+        this.patientService
           .getPatientsByName(nom.toLowerCase())
           .subscribe((reponse) => {
             this.filteredOptions = reponse;

@@ -37,7 +37,7 @@ import { ModalCodebarreScanContinueComponent } from './modal-codebarre-scan-cont
     EnteteComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
-    ModalDocEtatsComponent
+    ModalDocEtatsComponent,
     ModalCodebarreComponent,
     ModalCodebarreDialogComponent,
     ModalCodebarreScanContinueComponent,
