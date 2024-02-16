@@ -1,6 +1,6 @@
 <div id="" class="d-flex flex-column justify-content-around">
     <div class="title" id="top1">
-        <h2>{{"lists.title" | translate}} document</h2>
+        <app-entete class="title"></app-entete>
     </div>
     <div class="card container-fluid" id="top" >
         <div class='card-hearder pt-3' >
@@ -28,39 +28,38 @@
         <div class="card-body p-0" id="tableBlock">
             <div class='table-responsive w-100'>
                 <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
-                 
-                    <!-- id Column -->
-                    <ng-container matColumnDef="id">
-                        <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title0' | translate}} </th>
-                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.id}} </td>
-                    </ng-container>
-                 
+
+
                     <!-- titre Column -->
                     <ng-container matColumnDef="titre">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title1' | translate}} </th>
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.titre}} </td>
                     </ng-container>
-                    
+
                     <!-- description Column -->
                     <ng-container matColumnDef="description">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title2' | translate}} </th>
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.description}} </td>
                     </ng-container>
-                    
+                   <!-- typeMouvement Column -->
+                    <ng-container matColumnDef="typeMouvement">
+                        <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title22' | translate}} </th>
+                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.typeMouvement}} </td>
+                    </ng-container>
                     <!-- etat Column -->
                     <ng-container matColumnDef="etat">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'services.form.label2' | translate}} </th>
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
                     </ng-container>
-                    
+
                     <!-- missions Column -->
                     <ng-container matColumnDef="missions">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title3' | translate}} </th>
-                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> 
+                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element">
                             <span> {{element.listeMissions}} </span>
                         </td>
                     </ng-container>
-                    
+
                     <!-- attributs Column -->
                     <ng-container matColumnDef="attributs">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title4' | translate}} </th>
@@ -68,7 +67,7 @@
                             <span> {{element.listAttributs}} </span>
                         </td>
                     </ng-container>
-                    
+
                     <!-- categories Column -->
                     <ng-container matColumnDef="categories">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title15' | translate}} </th>
@@ -76,12 +75,28 @@
                             <span> {{element.listCategories}} </span>
                         </td>
                     </ng-container>
-                    
+
                     <!-- preconisations Column -->
                     <ng-container matColumnDef="preconisations">
                         <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title17' | translate}} </th>
                         <td class="text-dark text-center containCell" mat-cell *matCellDef="let element">
                             <span> {{element.listPreconisations}} </span>
+                        </td>
+                    </ng-container>
+                    
+                    <!-- sousDocuments Column -->
+                    <ng-container matColumnDef="sousDocuments">
+                        <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title21' | translate}} </th>
+                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element">
+                            <span> {{element.listSousDocuments}} </span>
+                        </td>
+                    </ng-container>
+
+                    <!-- docEtats Column -->
+                    <ng-container matColumnDef="docEtats">
+                        <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title23' | translate}} </th>
+                        <td class="text-dark text-center containCell" mat-cell *matCellDef="let element">
+                            <span> {{element.listDocEtats}} </span>
                         </td>
                     </ng-container>
 

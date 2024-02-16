@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, EMPTY } from 'rxjs';
 import { IAttributs } from 'src/app/modele/attributs';
-import { TypeTicket } from 'src/app/modele/type-ticket';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 
 @Component({
@@ -38,6 +37,7 @@ export class ListAttributsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllAttributs().subscribe(valeurs => {
       this.dataSource.data = valeurs;
+        this.filteredOptions = valeurs
     });
 
     this.myControl.valueChanges.subscribe(
@@ -51,7 +51,11 @@ export class ListAttributsComponent implements OnInit {
           )
         }
         else{
-          this.filteredOptions = [];
+          this.serviceAttribut.getAllAttributs().subscribe(
+            (resultat) =>{
+              this.filteredOptions = resultat
+            }
+          )
         }
       }
     );

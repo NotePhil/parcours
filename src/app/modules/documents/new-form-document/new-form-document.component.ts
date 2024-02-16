@@ -18,11 +18,16 @@ import {MatDialog} from '@angular/material/dialog';
 import { ModalCategoriesComponent } from '../../shared/modal-categories/modal-categories.component';
 import {v4 as uuidv4} from 'uuid';
 import { ICategorieAffichage } from 'src/app/modele/categorie-affichage';
-import { TypeTicket } from 'src/app/modele/type-ticket';
+import { IType } from 'src/app/modele/type';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ModalChoixAttributsComponent } from '../../shared/modal-choix-attributs/modal-choix-attributs.component';
 import { ModalChoixPreconisationsComponent } from '../../shared/modal-choix-preconisations/modal-choix-preconisations.component';
 import { IPrecoMvt } from 'src/app/modele/precomvt';
+import { ModalChoixSousDocumentComponent } from '../../shared/modal-choix-sous-document/modal-choix-sous-document.component';
+import { IAssociationCategorieAttributs } from 'src/app/modele/association-categorie-attributs';
+import { TypeMouvement } from 'src/app/modele/typeMouvement';
+import { ModalDocEtatsComponent } from '../../shared/modal-doc-etats/modal-doc-etats.component';
+import { IDocEtats } from 'src/app/modele/doc-etats';
 
 
 @Component({
@@ -43,15 +48,17 @@ export class NewFormDocumentComponent implements OnInit {
     preconisations: [],
     affichagePrix: false,
     contientRessources: false,
-    contientDistributeurs: false
+    contientDistributeurs: false,
+    typeMouvement: TypeMouvement.Neutre,
+    DocEtats: []
   };
   mission$:Observable<IMission[]>=EMPTY;
   forme: FormGroup;
   btnLibelle: string="Ajouter";
-  titre: string="Ajouter document";
   submitted: boolean=false;
   validation: boolean=false;
   serviceDeMission!: IService;
+  titre:string='';
 
   // variables attributs, pour afficher le tableau d'attributs sur l'IHM
   ELEMENTS_TABLE_ATTRIBUTS: IAttributs[] = [];
@@ -73,12 +80,19 @@ export class NewFormDocumentComponent implements OnInit {
   //tableau contenent les preconisations
   ELEMENTS_TABLE_PRECONISATIONS: IPrecoMvt[] = [];
 
-  
+  //tableau contenent les sous documents
+  ELEMENTS_TABLE_SOUS_DOCUMENTS: IDocument[] = [];
+
+  //tableau contenent les etats du documents
+  ELEMENTS_TABLE_DOC_ETATS: IDocEtats[] = [];
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  
+  typeMvt: string[] = [];
 
-  constructor(private router:Router, private formBuilder: FormBuilder, private infosPath:ActivatedRoute,
+  constructor(private router:Router, private formBuilder: FormBuilder, private infosPath:ActivatedRoute,private dataEnteteMenuService:DonneesEchangeService,
      private serviceDocument:DocumentService, private serviceMission:MissionsService, private serviceAttribut:AttributService,
       private _liveAnnouncer: LiveAnnouncer, private donneeDocCatService:DonneesEchangeService, private dialogDef : MatDialog) {
     this.forme = this.formBuilder.group({
@@ -86,6 +100,7 @@ export class NewFormDocumentComponent implements OnInit {
       _attributs :  new FormArray([]),
       titre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: [''],
+      typeMouvement: ['', [Validators.required]],
       etat: new FormControl(true),
       affichagePrix: new FormControl(true),
       contientRessources: new FormControl(true),
@@ -94,7 +109,7 @@ export class NewFormDocumentComponent implements OnInit {
   }
   ngOnInit(): void {
     this.mission$ = this.getAllMissions();
-
+    this.donneeDocCatService.getTypeMvt().subscribe(x => this.typeMvt = x.type);
     // chargement de la page a partir d'un Id pour la modification d'un document
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
     if((idDocument != null) && idDocument!==''){
@@ -107,6 +122,7 @@ export class NewFormDocumentComponent implements OnInit {
           titre: this.document.titre,
           description: this.document.description,
           etat: this.document.etat,
+          typeMouvement: this.document.typeMouvement,
           affichagePrix: this.document.affichagePrix,
           contientRessources: this.document.contientRessources,
           contientDistributeurs: this.document.contientDistributeurs,
@@ -120,6 +136,14 @@ export class NewFormDocumentComponent implements OnInit {
 
         // Initialisation du tableau de preconisations du document
         this.ELEMENTS_TABLE_PRECONISATIONS = this.document.preconisations
+
+        // Initialisation du tableau de sous documents du document
+        if (this.document.sousDocuments != undefined) {
+          this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.document.sousDocuments
+        }
+
+        // Initialisation du tableau des etats du document
+        this.ELEMENTS_TABLE_DOC_ETATS = this.document.DocEtats
 
         // Initialisation du tableau de categories temp du document qui reconstitue
         // le deuxieme tableau de la modal
@@ -143,7 +167,7 @@ export class NewFormDocumentComponent implements OnInit {
                       dateCreation: new Date(),
                       dateModification: new Date(),
                       valeursParDefaut: '',
-                      type: TypeTicket.Int
+                      type: IType.Int
                     }
                   }
                 }
@@ -160,6 +184,8 @@ export class NewFormDocumentComponent implements OnInit {
         this.donneeDocCatService.dataDocumentCategorie = categorieAfficheFinal
         this.donneeDocCatService.dataDocumentPrecoMvts = this.document.preconisations
         this.donneeDocCatService.dataDocumentAttributs = this.document.attributs
+        this.donneeDocCatService.dataDocumentSousDocuments = this.document.sousDocuments
+        this.donneeDocCatService.dataDocumentEtats = this.document.DocEtats
 
         // synthese du tableau de categories du document pour afficher les differentes categories dans l'espace dedie
         this.syntheseCategorieAttribut()
@@ -168,13 +194,20 @@ export class NewFormDocumentComponent implements OnInit {
       this.donneeDocCatService.dataDocumentAttributs = []
       this.donneeDocCatService.dataDocumentCategorie = []
       this.donneeDocCatService.dataDocumentPrecoMvts = []
+      this.donneeDocCatService.dataDocumentSousDocuments = []
+      this.donneeDocCatService.dataDocumentEtats = []
     }
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
+
+  /**
+   * Methode permettant d'ouvrir la modal de creation des categories du dociment
+   */
   openCategorieDialog(){
     //envoi des données à la fenetre enfant
 
-    const dialogRef = this.dialogDef.open(ModalCategoriesComponent, 
+    const dialogRef = this.dialogDef.open(ModalCategoriesComponent,
     {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -191,8 +224,11 @@ export class NewFormDocumentComponent implements OnInit {
     });
   }
 
+  /**
+   * Methode permettant d'ouvrir la modal de selection des attributs du dociment
+   */
   openAttributDialog(){
-    const dialogRef = this.dialogDef.open(ModalChoixAttributsComponent, 
+    const dialogRef = this.dialogDef.open(ModalChoixAttributsComponent,
     {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -208,9 +244,13 @@ export class NewFormDocumentComponent implements OnInit {
       this.ELEMENTS_TABLE_ATTRIBUTS =  this.donneeDocCatService.dataDocumentAttributs
     });
   }
+
+  /**
+   * Methode permettant d'ouvrir la modal de selection des preconisations du dociment
+   */
   openPrecoMvtDialog(){
 
-    const dialogRef = this.dialogDef.open(ModalChoixPreconisationsComponent, 
+    const dialogRef = this.dialogDef.open(ModalChoixPreconisationsComponent,
     {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -228,11 +268,55 @@ export class NewFormDocumentComponent implements OnInit {
   }
 
   /**
-   * methode quiu permet de fusionner les categories en fontion du meme nom tout en regroupant leurs attributs
+   * Methode permettant d'ouvrir la modal permettant d'associer des sous documents au document
+   */
+  openSousDocumentDialog(){
+
+    const dialogRef = this.dialogDef.open(ModalChoixSousDocumentComponent, 
+    {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      width:'100%',
+      height:'100%',
+      enterAnimationDuration:'1000ms',
+      exitAnimationDuration:'1000ms',
+      data:{}
+    }
+    )
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.donneeDocCatService.dataDocumentSousDocuments
+    });
+  }
+  
+  /**
+   * Methode permettant d'ouvrir la modal de manipullation des etats du document
+   */
+  openDocEtatDialog(){
+
+    const dialogRef = this.dialogDef.open(ModalDocEtatsComponent,
+    {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
+      enterAnimationDuration:'1000ms',
+      exitAnimationDuration:'1000ms',
+      data:{}
+    }
+    )
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocCatService.dataDocumentEtats
+    });
+  }
+
+  /**
+   * methode qui permet de fusionner les categories en fontion du meme nom tout en regroupant leurs attributs
    * ceci permet de former le tableau d'objets ICategoriesAttriut qui sera rattache au document lors de l'enregistrement
    */
   syntheseCategorieAttribut(){
-    let tmpCatAtt = new Map(); 
+    let tmpCatAtt = new Map();
     let categorieAttributsFinal : ICategoriesAttributs[] = [];
 
     //récupération des données du service
@@ -275,19 +359,22 @@ export class NewFormDocumentComponent implements OnInit {
       titre: documentInput.titre,
       description: documentInput.description,
       etat: documentInput.etat,
+      typeMouvement: documentInput.typeMouvement,
       missions: documentInput._missions,
       attributs: [],
       categories: [],
       preconisations: [],
+      sousDocuments: [],
       affichagePrix: documentInput.affichagePrix,
       contientRessources: documentInput.contientRessources,
-      contientDistributeurs: documentInput.contientDistributeurs
+      contientDistributeurs: documentInput.contientDistributeurs,
+      DocEtats: []
     }
-    
+
     if(this.document.id != ""){
       documentTemp.id = this.document.id
     }
-    
+
     this.ELEMENTS_TABLE_ATTRIBUTS.forEach(
       a => documentTemp.attributs.push(a)
     )
@@ -295,6 +382,15 @@ export class NewFormDocumentComponent implements OnInit {
     this.ELEMENTS_TABLE_PRECONISATIONS.forEach(
       preco => documentTemp.preconisations.push(preco)
     )
+    
+    this.ELEMENTS_TABLE_SOUS_DOCUMENTS.forEach(
+      preco => documentTemp.sousDocuments?.push(preco)
+    )
+
+    this.ELEMENTS_TABLE_DOC_ETATS.forEach(
+      docEtat => documentTemp.DocEtats.push(docEtat)
+    )
+
     if (this.TABLE_CATEGORIE_AFFICHAGE_TEMP.length<1) {
       let categorieAttributs : ICategoriesAttributs = {
         id: '',
@@ -302,6 +398,16 @@ export class NewFormDocumentComponent implements OnInit {
         ordre: 100,
         listAttributsParCategories: []
       }
+      this.ELEMENTS_TABLE_ATTRIBUTS.forEach(
+        element => {
+
+          let associationCategorieAttributs : IAssociationCategorieAttributs = {
+            ordre : 0,
+            obligatoire: false,
+            attribut: element
+          }
+          categorieAttributs.listAttributsParCategories.push(associationCategorieAttributs)
+      });
       // ajout d'une categorie par defaut dans le document
       documentTemp.categories.push(categorieAttributs)
     }else{
@@ -318,6 +424,8 @@ export class NewFormDocumentComponent implements OnInit {
     this.donneeDocCatService.dataDocumentAttributs = []
     this.donneeDocCatService.dataDocumentCategorie = []
     this.donneeDocCatService.dataDocumentPrecoMvts = []
+    this.donneeDocCatService.dataDocumentSousDocuments = []
+    this.donneeDocCatService.dataDocumentEtats = []
   }
   get f(){
     return this.forme.controls;

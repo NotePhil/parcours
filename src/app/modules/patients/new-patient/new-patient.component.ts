@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PatientsService } from 'src/app/services/patients/patients.service';
 import { IPatient, IPersonneRattachee } from '../../../modele/Patient';
 import { v4 as uuidv4 } from 'uuid';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
@@ -25,6 +26,8 @@ export class NewPatientComponent implements OnInit {
   //patient$:Observable<patientient>=EMPTY;
   patient: IPatient | undefined;
   forme: FormGroup;
+  btnLibelle: string="Ajouter";
+  submitted: boolean=false;
   btnLibelle: string = 'Ajouter';
   titre: string = 'Ajouter un nouveau Patient';
   myControl = new FormControl<string | IPatient>('');
@@ -98,41 +101,12 @@ export class NewPatientComponent implements OnInit {
   }
 
   //TODO validation du formulaire. particulièrment les mail; les dates
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private patientService: PatientsService,
-    private router: Router,
-    private infosPath: ActivatedRoute,
-    private datePipe: DatePipe,
-    private servicePatient: PatientsService
-  ) {
-    this.forme = this.formBuilder.group({
-      nom: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(50),
-        ],
-      ],
-      prenom: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(50),
-        ],
-      ],
-      sexe: [''],
-      mail: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern('.+@.+.{1}[a-z]{2,3}'),
-        ],
-      ],
+  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private patientService:PatientsService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+    this.forme =  this.formBuilder.group({
+      nom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      prenom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      sexe: ['M'],
+      mail: ['', [Validators.required, Validators.email, Validators.pattern(".+@.+\.{1}[a-z]{2,3}")]],
       //todo initialisation du composant à une date
       dateNaissance: ['1980-01-01', Validators.required],
       telephone: [''],
@@ -161,6 +135,7 @@ export class NewPatientComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
     let idPatient = this.infosPath.snapshot.paramMap.get('idPatient');
     if (idPatient != null && idPatient !== '') {
       this.btnLibelle = 'Modifier';
@@ -187,6 +162,7 @@ export class NewPatientComponent implements OnInit {
         });
       });
     }
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
   get f() {
@@ -214,8 +190,8 @@ export class NewPatientComponent implements OnInit {
 
     patientTemp.dateNaissance = this.initialDate.value!;
 
-    if (this.patient != undefined) {
-      patientTemp.id = this.patient.id;
+    if(this.patient != undefined){
+      patientTemp.id = this.patient.id
     }
     this.patientService.ajouterPatient(patientTemp).subscribe((object) => {
       this.router.navigate(['/list-patients']);

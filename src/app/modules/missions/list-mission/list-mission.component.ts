@@ -18,11 +18,11 @@ export class ListMissionComponent implements OnInit {
 
   missions$:Observable<IMission[]>=EMPTY;
   myControl = new FormControl<string | IMission>('');
- 
+
   ELEMENTS_TABLE: IMission[] = [];
   filteredOptions: IMission[] | undefined;
 
-  displayedColumns: string[] = ['id', 'libelle', 'description', 'etat', 'service', 'actions'];
+  displayedColumns: string[] = ['libelle', 'description', 'etat', 'service', 'actions'];
 
   dataSource = new MatTableDataSource<IMission>(this.ELEMENTS_TABLE);
 
@@ -36,6 +36,7 @@ export class ListMissionComponent implements OnInit {
   ngOnInit(): void {
     this.getAllMissions().subscribe(valeurs => {
       this.dataSource.data = valeurs;
+      this.filteredOptions = valeurs
     });
 
     this.myControl.valueChanges.subscribe(
@@ -43,15 +44,19 @@ export class ListMissionComponent implements OnInit {
         const libelle = typeof value === 'string' ? value : value?.libelle;
         if(libelle != undefined && libelle?.length >0){
           this.serviceMission.getMissionByLibelle(libelle.toLowerCase() as string).subscribe(
-            reponse => { 
+            reponse => {
               this.filteredOptions = reponse;
             }
           )
         }
         else{
-          this.filteredOptions = [];
+          this.serviceMission.getAllMissions().subscribe(
+            (reponse) =>{
+              this.filteredOptions=reponse
+            }
+          )
         }
-        
+
       }
     );
   }

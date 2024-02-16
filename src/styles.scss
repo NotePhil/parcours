@@ -127,10 +127,6 @@ select{
 .button-right {
   margin-left: auto;
 }
-/*input, #etat{
-  border: none !important;
-  box-shadow: none !important;
-}*/
 .container {
   display: flex;
   align-items: center;
@@ -155,7 +151,7 @@ select{
   height: 100px;
   h2{
       color: #28a745;
-      text-transform: uppercase;
+      //text-transform: uppercase;
   }
 }
 .searchBlock{
@@ -185,10 +181,6 @@ select{
       font-size: 20px;
       padding: 10px;
       border-radius: 5px;
-      span:hover{
-          box-shadow: 0 0 2px #28a745;
-          transition: ease 0.23s;
-      }
   }
 }
 

@@ -1,10 +1,12 @@
 <div id="mainSection">
     <div class="card block" id="top2">
-        <div class="card-header" class="entete pt-4 pb-4">{{ titre }}</div>
+        <div class="card-header" class="entete pt-4 pb-4">
+          {{"document.title3" | translate}} {{titre}}
+        </div>
         <div class="card-body">
             <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
-                <div class="">
-                    <div class="">
+                <div>
+                    <div>
                         <div class="form-group">
                             <div>
                                 <div class="champs">
@@ -35,53 +37,74 @@
                         <div class="form-group">
                           <div>
                               <div class="champs">
-                                <label for="etat" class="label" >
-                                    {{"services.form.label2" | translate}}
+                                <label for="typeMouvement" class="label" >
+                                    {{"document.table.title22" | translate}}
                                 </label>
-                                <span id="etat" class="form-control">
-                                    <input type="checkbox" checked value="true" formControlName="etat" name="etat">
-                                </span>
+                                <select class="form-control" formControlName="typeMouvement" title="{{'document.form.text8' | translate}}">
+                                  <option class="label" *ngFor="let typeMouvement of typeMvt" value="{{ typeMouvement }}" >
+                                    {{ typeMouvement }}
+                                  </option>
+                                </select>
                               </div>
+                          </div>
+                          <div  *ngIf="submitted && f['typeMouvement'].errors"  class="alert alert-danger blockErreur" >
+                              <div *ngIf="f['typeMouvement'].errors['required']">{{'document.form.text9' | translate}}</div>
                           </div>
                         </div>
 
-                        <div class="form-group" title="{{'document.form.text5' | translate}}">
-                          <div>
-                              <div class="champs">
-                                <label for="affichagePrix" class="label" >
-                                    {{"document.table.title18" | translate}}
-                                </label>
-                                <span id="affichagePrix" class="form-control">
-                                    <input type="checkbox" checked value="true" formControlName="affichagePrix" name="affichagePrix">
-                                </span>
-                              </div>
-                          </div>
-                        </div>
+                        <div class="groupChamps">
+                            <div class="form-group">
+                                <div>
+                                    <div class="champs">
+                                        <label for="etat" class="label" >
+                                            {{"services.form.label2" | translate}}
+                                        </label>
+                                        <span id="etat" class="w-100">
+                                            <input type="checkbox" checked value="true" formControlName="etat" name="etat">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="form-group" title="{{'document.form.text6' | translate}}">
-                          <div>
-                              <div class="champs">
-                                <label for="contientRessources" class="contientRessources" >
-                                    {{"document.table.title19" | translate}}
-                                </label>
-                                <span id="contientRessources" class="form-control">
-                                    <input type="checkbox" checked value="true" formControlName="contientRessources" name="contientRessources">
-                                </span>
-                              </div>
-                          </div>
+                            <div class="form-group" title="{{'document.form.text5' | translate}}">
+                                <div>
+                                    <div class="champs">
+                                        <label for="affichagePrix" class="label" >
+                                            {{"document.table.title18" | translate}}
+                                        </label>
+                                        <span id="affichagePrix" class="w-100">
+                                            <input type="checkbox" checked value="true" formControlName="affichagePrix" name="affichagePrix">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="groupChamps">
+                            <div class="form-group" title="{{'document.form.text6' | translate}}">
+                                <div>
+                                    <div class="champs">
+                                        <label for="contientRessources" class="contientRessources" >
+                                            {{"document.table.title19" | translate}}
+                                        </label>
+                                        <span id="contientRessources" class="w-100">
+                                            <input type="checkbox" checked value="true" formControlName="contientRessources" name="contientRessources">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="form-group" title="{{'document.form.text7' | translate}}">
-                          <div>
-                              <div class="champs">
-                                <label for="contientDistributeurs" class="contientDistributeurs" >
-                                    {{"document.table.title20" | translate}}
-                                </label>
-                                <span id="contientDistributeurs" class="form-control">
-                                    <input type="checkbox" checked value="true" formControlName="contientDistributeurs" name="contientDistributeurs">
-                                </span>
-                              </div>
-                          </div>
+                            <div class="form-group" title="{{'document.form.text7' | translate}}">
+                                <div>
+                                    <div class="champs">
+                                        <label for="contientDistributeurs" class="contientDistributeurs" >
+                                            {{"document.table.title20" | translate}}
+                                        </label>
+                                        <span id="contientDistributeurs" class="w-100">
+                                            <input type="checkbox" checked value="true" formControlName="contientDistributeurs" name="contientDistributeurs">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -160,6 +183,50 @@
                                         </button>
                                         <span *ngFor="let listePreconisations of ELEMENTS_TABLE_PRECONISATIONS">
                                             {{listePreconisations.libelle | lowercase}}<span>, </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- sous documents ------------------------------------------------- -->
+
+                        <div class="form-group">
+                            <div class="champs">
+                                <label  for="" class="label">
+                                    {{"document.title4" | translate}}
+                                </label>
+                                <div class="w-100">
+
+                                    <!-- Ouvrir le formulair de selection des sous documents -->
+                                    <div class="listAttr">
+                                        <button type="button" class="btn p-0" title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}" (click)="openSousDocumentDialog()">
+                                            <i class="fas fa-plus-square"></i>
+                                        </button>
+                                        <span *ngFor="let listeSousDocuments of ELEMENTS_TABLE_SOUS_DOCUMENTS">
+                                            {{listeSousDocuments.titre | lowercase}}<span>, </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Etats du document ------------------------------------------------- -->
+
+                        <div class="form-group">
+                            <div class="champs">
+                                <label  for="" class="label">
+                                    {{"document.title6" | translate}}
+                                </label>
+                                <div class="w-100">
+
+                                    <!-- Ouvrir le formulair de creation des docEtats -->
+                                    <div class="listAttr">
+                                        <button type="button" class="btn p-0" title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}" (click)="openDocEtatDialog()">
+                                            <i class="fas fa-plus-square"></i>
+                                        </button>
+                                        <span *ngFor="let listeDocEtats of ELEMENTS_TABLE_DOC_ETATS">
+                                            {{listeDocEtats.etat.libelle | lowercase}}<span>, </span>
                                         </span>
                                     </div>
                                 </div>

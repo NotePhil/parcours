@@ -1,9 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, MaxLengthValidator,MinLengthValidator,ReactiveFormsModule, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EMPTY, Observable } from 'rxjs';
 import { IService } from 'src/app/modele/service';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ServicesService } from 'src/app/services/services/services.service';
 import {v4 as uuidv4} from 'uuid';
 
@@ -17,14 +17,13 @@ export class NewServicesComponent implements OnInit {
   service : IService|undefined;
   forme: FormGroup;
   btnLibelle: string="Ajouter";
-  titre: string="Ajouter service";
   submitted: boolean=false;
 
   initialDateDerniereModification = new FormControl(new Date());
   initialDateAttribution = new FormControl(new Date());
   initialDateFin = new FormControl(new Date());
-
-  constructor(private formBuilder:FormBuilder, private serviceService:ServicesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
+  titre:string='';
+  constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private serviceService:ServicesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat:[true],
@@ -49,6 +48,7 @@ export class NewServicesComponent implements OnInit {
           })
       });
     }
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
   get f(){
