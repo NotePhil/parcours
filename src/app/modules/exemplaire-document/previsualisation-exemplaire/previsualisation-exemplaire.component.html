@@ -1,1 +1,27 @@
-<p>previsualisation-exemplaire works!</p>
+<div class="mainBlock" id="top2">
+    <div>
+       <h1>
+           {{this.exemplaire.titre}} {{titre}}
+       </h1>
+       <div class="infos">
+           <p id="titre">
+               {{'tickets.table.title5' | translate}} :
+               <span class="title">{{this.nomPatientCourant}}</span>
+           </p>
+           <div class="block1" *ngFor="let attributParCategorie of exemplaire.categories">
+               <div class="pb-3" *ngIf="attributParCategorie.nom">
+                   <h3>{{attributParCategorie.nom}}</h3>
+                   <div class="contentBlock">
+                       <div class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories; let i = index">
+                           <label class="form-label">{{attributParCategorie.attribut.titre}}</label>
+                           <div class="valAttribut">  
+                            <span>{{rechercherValeurParIdAttribut(attributParCategorie.attribut.id,attributParCategorie.attribut.type)}}</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!--  -->
+    </div>
+</div>
