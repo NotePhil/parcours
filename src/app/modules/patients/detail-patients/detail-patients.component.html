@@ -36,7 +36,7 @@
             <div *ngFor="let personne of patient.personnesRatachees">
               {{ personne?.nom }} {{ personne?.prenom }}
               <div style="display: flex;gap: 10px; align-items: center; margin-bottom: 12px;">
-                <p><strong style="padding-bottom: 12px;">QR Code:</strong> </p>
+                <p style="padding-bottom: 0px;">QR Code: </p>
                 <span class="qr-code">
                   <qrcode [qrdata]="personne?.id" [width]="40"></qrcode>
                 </span>
