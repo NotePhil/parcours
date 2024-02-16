@@ -35,21 +35,21 @@ import { PrevisualisationExemplaireComponent } from './previsualisation-exemplai
     AppRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    SharedModule,
     MatInputModule,
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-    SharedModule,
     TranslateModule.forChild({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        },
-        extend:true
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      extend: true,
     }),
-    BrowserModule
-  ]
+    BrowserModule,
+  ],
 })
-export class ExemplaireDocumentModule { }
+export class ExemplaireDocumentModule {}
