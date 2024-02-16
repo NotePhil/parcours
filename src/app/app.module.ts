@@ -11,10 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {
-  MatSlideToggle,
-  MatSlideToggleModule,
-} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule,} from '@angular/material/slide-toggle';
 import { ServicesModule } from './modules/services/services.module';
 import { MenuComponent } from './menu/menu.component';
 import { TicketsModule } from './modules/tickets/tickets.module';
@@ -30,13 +27,14 @@ import { RessourceModule } from './modules/ressource/ressource.module';
 import { PrecomvtModule } from './modules/precomvt/precomvt.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
-
 import { DistributeurModule } from './modules/distributeur/distributeur.module';
 import { RoleModule } from './modules/role/role.module';
 import { PersonnelsModule } from './modules/personnels/personnels.module';
 import { SharedModule } from './modules/shared/shared.module';
 
 
+import { EtatsModule } from './modules/etats/etats.module';
+import { ValidationModule } from './modules/validation/validation.module';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, MenuComponent],
@@ -61,9 +59,10 @@ import { SharedModule } from './modules/shared/shared.module';
     RessourceModule,
     PrecomvtModule,
     CommonModule,
-
     DistributeurModule,
     RoleModule,
+    ValidationModule,
+
     // ngx-translate and the loader module
     HttpClientModule,
     TranslateModule.forRoot({
@@ -80,7 +79,8 @@ import { SharedModule } from './modules/shared/shared.module';
     MatToolbarModule,
     MatSlideToggleModule,
     ExemplaireDocumentModule,
-    SharedModule
+    SharedModule,
+    EtatsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -91,3 +91,4 @@ export class AppModule {}
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
+

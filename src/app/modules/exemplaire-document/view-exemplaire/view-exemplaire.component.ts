@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IDocument } from 'src/app/modele/document';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
 import { IMouvement } from 'src/app/modele/mouvement';
+import { TypeMouvement } from 'src/app/modele/typeMouvement';
 import { DocumentService } from 'src/app/services/documents/document.service';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/
   styleUrls: ['./view-exemplaire.component.scss']
 })
 export class ViewExemplaireComponent implements OnInit {
-  
+
   exemplaire : IExemplaireDocument = {
     id: '',
     titre: '',
@@ -27,11 +28,13 @@ export class ViewExemplaireComponent implements OnInit {
     etat: false,
     affichagePrix: false,
     contientRessources: false,
-    contientDistributeurs: false
+    contientDistributeurs: false,
+    typeMouvement: TypeMouvement.Neutre,
+    DocEtats: []
   };
+  titre:string='';
   mouvements : IMouvement[] = []
-
-  constructor(private router:Router, private infosPath:ActivatedRoute, private serviceDocument:DocumentService, private serviceExemplaire:ExemplaireDocumentService) {}
+  constructor(private router:Router, private infosPath:ActivatedRoute,private dataEnteteMenuService:DonneesEchangeService, private serviceDocument:DocumentService, private serviceExemplaire:ExemplaireDocumentService) {}
 
   ngOnInit(): void {
     let idExemplaire = this.infosPath.snapshot.paramMap.get('idExemplaire');
@@ -44,5 +47,6 @@ export class ViewExemplaireComponent implements OnInit {
           }
         });
     }
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 }

@@ -7,17 +7,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { TypeUnite } from 'src/app/modele/type-unite';
-
 import { IRessource } from 'src/app/modele/ressource';
 import { RessourcesService } from 'src/app/services/ressources/ressources.service';
 import { v4 as uuidv4 } from 'uuid';
-import { MatTableDataSource } from '@angular/material/table';
-
 import { EMPTY, Observable, scan } from 'rxjs';
 import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
+import { TypeUnite } from 'src/app/modele/type-unite';
+import { MatTableDataSource } from '@angular/material/table';
 import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
 
 @Component({
@@ -28,10 +26,10 @@ import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codeba
 export class NewRessourceComponent implements OnInit {
   ressource: IRessource | undefined;
   forme: FormGroup;
-  btnLibelle: string = 'Ajouter';
-  submitted: boolean = false;
-  ressources$: Observable<IFamille> = EMPTY;
-  myControl = new FormControl<string | IFamille>('');
+  btnLibelle: string="Ajouter";
+  submitted: boolean=false;
+  unites : String[] = [];
+  IdRessource:string= ""
   filteredOptions: IFamille[] | undefined;
   dataSource = new MatTableDataSource<IFamille>();
   familleDeRessource: IFamille = {
@@ -40,9 +38,10 @@ export class NewRessourceComponent implements OnInit {
     description: '',
     etat: false,
   };
-
+  titre:string='';
+  scan_val: any | undefined;
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,private dataEnteteMenuService:DonneesEchangeService,
     private dataDocumentCodebarre: DonneesEchangeService,
     private barService: ModalCodebarreService,
     private familleService: FamillesService,
@@ -65,79 +64,73 @@ export class NewRessourceComponent implements OnInit {
       etat: [true],
       quantite: ['', [Validators.required]],
       unite: ['', [Validators.required]],
-      prix: ['', [Validators.required]],
-      famille: [''],
-      caracteristique: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(50),
-        ],
-      ],
-      scanBarcode: [''],
-    });
-
-    console.log(this.forme);
-  }
-  scan_val: any | undefined;
+      prixEntree: ['', [Validators.required]],
+      prixDeSortie: ['', [Validators.required]],
+      famille: new FormControl<string | IFamille>(''),
+      caracteristique:[''],
+      scanBarcode: ['']
+    })
+  };
 
   ngOnInit(): void {
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
       this.forme.get('scanBarcode')?.setValue(dt);
     });
-    this.getAllFamilles().subscribe((valeurs) => {
-      this.dataSource.data = valeurs;
-    });
-    this.myControl.valueChanges.subscribe((value) => {
-      console.log('hello');
-      const libelle = typeof value === 'string' ? value : value?.libelle;
-      if (libelle != undefined && libelle?.length > 0) {
-        this.serviceFamille
-          .getFamillesByLibelle(libelle.toLowerCase() as string)
-          .subscribe((reponse) => {
-            this.filteredOptions = reponse;
-          });
-      } else {
-        this.filteredOptions = [];
+    this.serviceFamille.getAllFamilles().subscribe(
+      (reponse) =>{
+        this.filteredOptions=reponse
       }
-    });
+    )
+    this.forme.controls["famille"].valueChanges.subscribe(
+      value => {
+        const libelle = typeof value === 'string' ? value : value?.libelle;
+        if(libelle != undefined && libelle?.length >0){
+          this.serviceFamille.getFamillesByLibelle(libelle.toLowerCase() as string).subscribe(
+            reponse => {
+              this.filteredOptions = reponse;
+            }
+          )
+        }
+        else{
+          this.serviceFamille.getAllFamilles().subscribe(
+            (reponse) =>{
+              this.filteredOptions=reponse
+            }
+          )
+        }
+      }
+    );
     let idRessource = this.infosPath.snapshot.paramMap.get('idRessource');
-    if (idRessource != null && idRessource !== '') {
-      this.btnLibelle = 'Modifier';
-      this.ressourceService.getRessourceById(idRessource).subscribe((x) => {
-        this.ressource = x;
-        console.log(this.ressource);
-        (this.ressource.id = idRessource!),
+    if((idRessource != null) && idRessource!==''){
+      this.btnLibelle="Modifier";
+      this.ressourceService.getRessourceById(idRessource).subscribe(x =>
+        {
+          this.ressource = x;
+          this.ressource.id = idRessource!,
           this.forme.setValue({
-            libelle: this.ressource?.libelle,
+            libelle: this.ressource.libelle,
             etat: this.ressource.etat,
             quantite: this.ressource.quantite,
             unite: this.ressource.unite,
-            prix: this.ressource.prix,
+            prixEntree: this.ressource.prixEntree,
+            prixDeSortie: this.ressource.prixDeSortie,
             famille: this.ressource.famille,
             caracteristique: this.ressource.caracteristique,
             scanBarcode: this.ressource?.scanBarCode,
           });
       });
     }
+    this.familleService.getTypeUnite().subscribe(u=>{ this.unites = u.type});
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
   get f() {
     return this.forme.controls;
   }
 
-  getIdFamille(id_famille: string) {
-    this.serviceFamille.getFamilleById(id_famille).subscribe((famille) => {
-      this.familleDeRessource = famille;
-    });
-  }
-
   onSubmit(ressourceInput: any) {
     this.submitted = true;
-
-    console.log(ressourceInput);
 
     if (this.forme.invalid) return;
     let ressourceTemp: IRessource = {
@@ -146,45 +139,34 @@ export class NewRessourceComponent implements OnInit {
       etat: ressourceInput.etat,
       quantite: ressourceInput.quantite,
       unite: ressourceInput.unite,
-      prix: ressourceInput.prix,
+      prixEntree: ressourceInput.prixEntree,
+      prixDeSortie: ressourceInput.prixDeSortie,
       famille: ressourceInput.famille,
-      caracteristique: ressourceInput.caracteristique,
+      caracteristique:ressourceInput.caracteristique,
       scanBarCode: this.forme.get('scanBarcode')?.value,
-    };
-
-    console.log('#####', ressourceTemp);
+    }
 
     if (this.ressource != undefined) {
       ressourceTemp.id = this.ressource.id;
     }
-    ressourceTemp.famille = this.familleDeRessource;
-    console.log(
-      'voici la famille de cette ressource : ',
-      ressourceTemp.famille
-    );
+    ressourceTemp.famille = this.familleDeRessource
     this.ressourceService.ajouterRessource(ressourceTemp).subscribe(
       (object) => {
         this.router.navigate(['list-ressources']);
-      },
-      (error) => {
-        console.log(error);
       }
     );
   }
-  private getAllFamilles() {
-    return this.serviceFamille.getAllFamilles();
-  }
+
   displayFn(famille: IFamille): string {
     return famille && famille.libelle ? famille.libelle : '';
   }
-  public rechercherListingFamille(option: IFamille) {
-    this.serviceFamille
-      .getFamillesByLibelle(option.libelle.toLowerCase())
-      .subscribe((valeurs) => {
-        this.dataSource.data = valeurs;
-      });
+  
+  private getAllRessources(){
+    return this.serviceRessource.getAllRessources();
   }
-}
-function getIdfamille(idfamille: any, string: any) {
-  throw new Error('Function not implemented.');
+
+  compareItem(unite1: string, unite2: string) {
+    return unite2 && unite1 ? unite2 == unite1 : false;
+  }
+
 }

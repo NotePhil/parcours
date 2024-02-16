@@ -5,7 +5,6 @@ import { RoleRoutingModule } from './role-routing.module';
 import { NewRoleComponent } from './new-role/new-role.component';
 import { ListRolesComponent } from './list-roles/list-roles.component';
 
-
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,12 +18,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MissionsRoleComponent } from './missions-role/missions-role.component';
 
 
 @NgModule({
   declarations: [
     NewRoleComponent,
-    ListRolesComponent
+    ListRolesComponent,
+    MissionsRoleComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    MatSelectModule,
     TicketsModule,
     TranslateModule.forChild({
       loader: {
