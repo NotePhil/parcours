@@ -26,16 +26,6 @@
         font-weight: normal;
     }
 }
-.actionButton{
-    clear: both;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    button{
-        background-color: #1473e6;
-        color: white;
-    }
-}
 .tableBlock{
     width: 100%;
     div{
@@ -45,6 +35,23 @@
         .actions{
             font-size: 12px;
         }
+    }
+}
+
+.actionButton{
+    clear: both;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button{
+        background-color: #28a745;
+        color: white;
+        height: 30px;
+        padding: 0 10px;
+        font-size: 15px;
+    }
+    .btnValidation{
+        background-color: #1473e6;
     }
 }
 .actions button{

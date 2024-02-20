@@ -1,5 +1,11 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { FormControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,12 +20,13 @@ import { log } from 'console';
 @Component({
   selector: 'app-modal-ressource-attributs',
   templateUrl: './modal-ressource-attributs.component.html',
-  styleUrls: ['./modal-ressource-attributs.component.scss']
+  styleUrls: ['./modal-ressource-attributs.component.scss'],
 })
 export class ModalRessourceAttributsComponent implements OnInit {
   // variables attributs, pour afficher le tableau d'attributs sur l'IHM
   formeAttribut: FormGroup;
-  submitted: boolean=false;
+  submitted: boolean = false;
+  valid: boolean = true;
   myControl = new FormControl<string | IAttributs>('');
   ELEMENTS_TABLE_ATTRIBUTS: any[] = [];
   filteredOptions: IAttributs[] | undefined;
@@ -27,13 +34,13 @@ export class ModalRessourceAttributsComponent implements OnInit {
     'actions',
     'titre',
     'description',
-    'type'
+    'type',
   ]; // structure du tableau presentant les attributs
   displayedResultAttributsColumns: string[] = [
     'actions',
     'titre',
     'type',
-    'valeur'
+    'valeur',
   ];
   dataSourceAttribut = new MatTableDataSource<IAttributs>(
     this.ELEMENTS_TABLE_ATTRIBUTS
@@ -51,21 +58,23 @@ export class ModalRessourceAttributsComponent implements OnInit {
     private infosPath: ActivatedRoute,
     private serviceAttribut: AttributService,
     private _liveAnnouncer: LiveAnnouncer,
-    private donneeDocCatService:DonneesEchangeService,
+    private donneeDocCatService: DonneesEchangeService,
     private dialogDef: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.formeAttribut = this.formBuilder.group({
-      res: [undefined  ,Validators.required]
+      res: [ '', Validators.required],
     });
   }
 
   ngOnInit(): void {
     this.getAllAttributs().subscribe((valeurs) => {
       this.dataSourceAttribut.data = valeurs;
-      this.filteredOptions = valeurs
+      this.filteredOptions = valeurs;
     });
-    this.dataSourceAttributResultat.data = this.donneeDocCatService.dataDocumentAttributs
+    this.dataSourceAttributResultat.data = this.donneeDocCatService.dataDocumentAttributs;
+    console.log("resultats tb :", this.dataSourceAttributResultat.data);
+    
     this.myControl.valueChanges.subscribe((value) => {
       const titre = typeof value === 'string' ? value : value?.titre;
       if (titre != undefined && titre?.length > 0) {
@@ -75,31 +84,30 @@ export class ModalRessourceAttributsComponent implements OnInit {
             this.filteredOptions = reponse;
           });
       } else {
-        this.serviceAttribut.getAllAttributs().subscribe(
-          (reponse) =>{
-            this.filteredOptions=reponse
-          }
-        )
+        this.serviceAttribut.getAllAttributs().subscribe((reponse) => {
+          this.filteredOptions = reponse;
+        });
       }
     });
   }
 
   onCheckAttributChange(event: any) {
-    let listIdAttTemp : string[] = []
-    let positionsAttr = new Map()
-    let indexAttrCourant : number = 0
+    let listIdAttTemp: string[] = [];
+    let positionsAttr = new Map();
+    let indexAttrCourant: number = 0;
     this.donneeDocCatService.dataDocumentAttributs.forEach(
       (element: IAttributs) => {
-        listIdAttTemp.push(element.id)
-        positionsAttr.set(element.id, indexAttrCourant++)
-    });
+        listIdAttTemp.push(element.id);
+        positionsAttr.set(element.id, indexAttrCourant++);
+      }
+    );
     if (event.target.checked) {
       if (!listIdAttTemp.includes(this.idAttribut)) {
         this.ajoutSelectionAttribut(this.idAttribut);
       }
     } else {
       if (listIdAttTemp.includes(this.idAttribut)) {
-        const index = positionsAttr.get(this.idAttribut)
+        const index = positionsAttr.get(this.idAttribut);
         this.retirerSelectionAttribut(index);
       }
     }
@@ -112,26 +120,71 @@ export class ModalRessourceAttributsComponent implements OnInit {
   ajoutSelectionAttribut(idAttribut: string) {
     this.serviceAttribut.getAttributById(idAttribut).subscribe((val) => {
       this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
-      this.ELEMENTS_TABLE_ATTRIBUTS.push({attributs: val, valeur: this.formeAttribut.value.res});
-      this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;      
-      this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS;
-      console.log("attributs selectionnés :", this.donneeDocCatService.dataDocumentAttributs);
+      this.ELEMENTS_TABLE_ATTRIBUTS.push({
+        attributs: val,
+        valeur: this.formeAttribut.value.res,
+      });
+      this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
+      this.donneeDocCatService.dataDocumentAttributs =
+        this.ELEMENTS_TABLE_ATTRIBUTS;
+      console.log(
+        'attributs selectionnés :',
+        this.donneeDocCatService.dataDocumentAttributs
+      );
     });
   }
 
-  verificationModificationDansTableau(element:any, event: any, indexElement: number){
-    console.log("element sélectionné :", element, event.target.value);
-        this.ELEMENTS_TABLE_ATTRIBUTS[indexElement].valeur = event.target.value;
+  viderselection() {
+    this.ELEMENTS_TABLE_ATTRIBUTS = [];
+    this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
+    this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS;
   }
 
-  get f(){
+  verificationModificationDansTableau(
+    element: any,
+    event: any,
+    indexElement: number
+  ) {
+    console.log('element sélectionné :', element, event.target.value);
+    this.ELEMENTS_TABLE_ATTRIBUTS[indexElement].valeur = event.target.value;
+
+    let faux: number = 0;
+    for (let index = 0; index < this.ELEMENTS_TABLE_ATTRIBUTS.length; index++) {
+      let element = this.ELEMENTS_TABLE_ATTRIBUTS[index];
+      if (element.attributs.type == 'Number') {
+        faux = 0;
+        // Test si la valeur est un nombre
+        if (!isNaN(parseFloat(element.valeur))) {
+          console.log('La valeur saisie est un nombre.', element);
+        } else {
+          faux++;
+          console.log("La valeur saisie n'est pas un nombre.", element);
+        }
+        console.log(' index', index);
+      }
+      if (element.valeur == null || element.valeur == "") {
+        faux++;
+      }
+    }
+    if (faux <= 0) {
+      this.valid = false;
+    } else {
+      this.valid = true;
+    }
+
+    return this.valid;
+  }
+
+  get f() {
     return this.formeAttribut.controls;
   }
 
-  onSubmit(personnelInput:any){
-    this.submitted=true;
+  onSubmit(personnelInput: any) {
+    this.submitted = true;
     //Todo la validation d'element non conforme passe
-    if(this.formeAttribut.invalid) return;
+    if (this.formeAttribut.invalid) return;
+
+    this.valid = false;
 
     /* let personnelTemp : IPersonnel={
       id: uuidv4(),
@@ -159,7 +212,8 @@ export class ModalRessourceAttributsComponent implements OnInit {
     this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
     this.ELEMENTS_TABLE_ATTRIBUTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-    this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS;
+    this.donneeDocCatService.dataDocumentAttributs =
+      this.ELEMENTS_TABLE_ATTRIBUTS;
   }
   private getAllAttributs() {
     return this.serviceAttribut.getAllAttributs();
