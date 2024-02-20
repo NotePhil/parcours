@@ -77,6 +77,75 @@ h3{
     overflow: hidden;
     padding-top: 8px;
 }
+.containCell{
+    label{
+        display: flex;
+        margin: auto;
+        padding: 0;
+        input{
+            margin: auto;
+            border: none;
+            box-shadow: 0 0 3px #80808031;
+            height: 20px;
+            font-size: 12px;
+            width: 80%;
+        }
+    }
+}
+.containHead{
+    padding: 1% 0;
+}
+.containCell{
+    padding-top: 20px;
+}
+td{
+    font-size: 13px;
+}
+th{
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745 !important;
+    text-align: center;
+}
+#tableList{
+    padding: 0 20px !important;
+}
+.tableBlock{
+    width: 100%;
+    div{
+        width: 100%;
+    }
+    table{
+        .actions{
+            margin: 0;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+        }
+    }
+}
+.total{
+    width: 100%;
+    text-align: right;
+    input{
+        width: 14%;
+        position: relative;
+        bottom: 8px;
+        background-color: #28a7464e;
+        border: none;
+        border-radius: 2px;
+        margin-right: 1px;
+    }
+    span{
+        color: #28a745;
+        position: relative;
+        bottom: 8px;
+    }
+}
+.options {
+    padding: 0 20px;
+    padding-bottom: 10px;
+}
 @media screen and (max-width: 1040px) {
     .block1 .inputBlock{
         width: 31% !important;
