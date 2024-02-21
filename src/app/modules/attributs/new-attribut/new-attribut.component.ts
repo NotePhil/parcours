@@ -62,7 +62,7 @@ export class NewAttributComponent implements OnInit {
           Validators.maxLength(50),
         ],
       ],
-      valeursParDefaut: [],
+      valeursParDefaut: [''],
     });
   }
 
@@ -74,18 +74,17 @@ export class NewAttributComponent implements OnInit {
     if (idAttribut != null && idAttribut !== '') {
       this.btnLibelle = 'Modifier';
       this.titre = 'service à Modifier';
-      this.attributService.getAttributById(idAttribut).subscribe((x) => 
-      {
+      this.attributService.getAttributById(idAttribut).subscribe((x) => {
         this.attribut = x;
-          this.forme.setValue({
-            titre: this.attribut?.titre,
-            description: this.attribut?.description,
-            etat: this.attribut?.etat,
-            obligatoire: this.attribut?.obligatoire!,
-            type: this.attribut?.type,
-            valeursParDefaut: this.attribut?.valeursParDefaut,
-          });
-          this.inputValeur = this.attribut?.valeursParDefaut
+        this.forme.setValue({
+          titre: this.attribut?.titre,
+          description: this.attribut?.description,
+          etat: this.attribut?.etat,
+          obligatoire: this.attribut?.obligatoire!,
+          type: this.attribut?.type,
+          valeursParDefaut: this.attribut?.valeursParDefaut,
+        });
+        this.inputValeur = this.attribut?.valeursParDefaut;
       });
     }
     this.titre = this.dataEnteteMenuService.dataEnteteMenu;
@@ -95,128 +94,182 @@ export class NewAttributComponent implements OnInit {
     return this.forme.controls;
   }
 
+  verifierCaracteresNumeriques(chaine: string): boolean {
+    return /^\d+$/.test(chaine); // Utilisation d'une expression régulière pour vérifier si la chaîne contient uniquement des chiffres
+  }
+
+  verifierEmail(mail: string): boolean {
+    // Expression régulière pour vérifier si la chaîne est un email
+    const regexEmail: RegExp =
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regexEmail.test(mail);
+  }
+
+  verifierURL(url: string): boolean {
+    // Expression régulière pour vérifier si la chaîne est une URL valide
+    const regexURL: RegExp = /^(ftp|http|https):\/\/[^ "]+$/;
+    return regexURL.test(url);
+  }
+
   // Méthode pour gérer les changements dans l'input
-  onInputChange() {
-    // Vérifier le type et séparer les valeurs
-    //const valeursSeparees: string[] = this.inputValeur.split(';');
-    // Remplacez les espaces par des points-virgules
-    this.inputValeur = this.inputValeur.replace(/\s+/g, ';');
-    this.inputValeur = this.inputValeur.replace(/;+/g, ';');
-    this.inputValeur = this.inputValeur.replace(/,/g, '');
-
-    // Faire quelque chose avec les valeurs séparées
-    console.log('valeur saisie :', this.inputValeur);
-
-    // Divisez la chaîne saisie en valeurs individuelles
-    const valeurs: string[] = this.inputValeur
-      .split(';')
-      .map((value) => value.trim());
-    console.log('valeur separe :', valeurs);
-
+  onInputChange(): string {
     let faux: number = 0;
     this.errorNb = false;
-    // Faites vos comparaisons ici avec les valeurs
-    // Par exemple, comparez si la première et la deuxième valeurs sont identiques
-    //----------- cas de type Number ---------------//
-    if (this.forme.get('type')?.value == 'Number') {
-        faux = 0;
-        for (let index = 0; index < valeurs.length - 1; index++) {
-          // Test si la valeur est un nombre
-          if (!isNaN(parseFloat(valeurs[index]))) {
-            console.log('La valeur saisie est un nombre.', valeurs[index]);
-          } else {
-            faux++;
-            this.textError = "La valeur par défaut doit être un nombre";
-            console.log(
-              "La valeur saisie n'est pas un nombre.",
-              valeurs[index]
-            );
-          }
-          console.log(' index', index);
-        }
-        if (faux > 0) {
-          this.errorNb = true;
-        } else {
-          this.errorNb = false;
-        }
-    }
 
     //----------- cas de type radio et checkbox ------------//
-    if (this.forme.get('type')?.value == 'Radio') {
-      if (valeurs.length < 2 || valeurs[1] == "") {
-        this.errorNb = true;
-        this.textError = "Au moins deux valeurs doivent être saisies pour ce type";
-        /* faux = 0;
-        for (let index = 0; index < valeurs.length - 1; index++) {
-          // Test si la valeur est un nombre
-          if (!isNaN(parseFloat(valeurs[index]))) {
-            console.log('La valeur saisie est un nombre.', valeurs[index]);
-          } else {
-            faux++;
-            this.textError = "La valeur saisie n'est pas un nombre.";
-            console.log(
-              "La valeur saisie n'est pas un nombre.",
-              valeurs[index]
-            );
-          }
-          console.log(' index', index);
-        }
-        if (faux > 0) {
+    if (
+      this.forme.get('type')?.value == 'Checkbox' ||
+      this.forme.get('type')?.value == 'Radio'
+    ) {
+      // Vérifier le type et séparer les valeurs
+      //const valeursSeparees: string[] = this.inputValeur.split(';');
+      // Remplacez les espaces par des points-virgules
+      this.inputValeur = this.inputValeur.replace(/\s+/g, ';');
+      this.inputValeur = this.inputValeur.replace(/;+/g, ';');
+      this.inputValeur = this.inputValeur.replace(/,/g, '');
+
+      // Faire quelque chose avec les valeurs séparées
+      console.log('valeur saisie :', this.inputValeur);
+
+      // Divisez la chaîne saisie en valeurs individuelles
+      const valeurs: string[] = this.inputValeur
+        .split(';')
+        .map((value) => value.trim());
+      console.log('valeur separe :', valeurs);
+      if (this.forme.get('type')?.value == 'Radio') {
+        if (valeurs.length < 2 || valeurs[1] == '') {
+          faux++;
           this.errorNb = true;
+          this.textError =
+            'Au moins deux valeurs doivent être saisies pour ce type';
         } else {
           this.errorNb = false;
-        } */
-      } else {
-        this.errorNb = false;
+        }
       }
-    }
 
-    if (this.forme.get('type')?.value == 'Checkbox') {
-      if (valeurs.length < 1 || valeurs[0] == "") {
-        this.errorNb = true;
-        this.textError = "Au moins une valeur doit être saisie pour ce type";
-      } else {
-        this.errorNb = false;
+      if (this.forme.get('type')?.value == 'Checkbox') {
+        if (valeurs.length < 1 || valeurs[0] == '') {
+          faux++;
+          this.errorNb = true;
+          this.textError = 'Au moins une valeur doit être saisie pour ce type';
+        } else {
+          this.errorNb = false;
+        }
       }
     }
 
     //----------- cas du type date --------//
     if (this.forme.get('type')?.value == 'Date') {
-        faux = 0;
-        for (let index = 0; index < valeurs.length - 1; index++) {
-          let date = new Date(valeurs[index]);
-          // Séparez la chaîne en jour, mois et année
-          const [jour, mois, annee] = valeurs[index].split('/').map(Number);
+      this.inputValeur = this.inputValeur.replace(/-/g, '/');
+      if (this.inputValeur.includes(';')) {
+        faux++;
+        this.inputValeur = this.inputValeur.replace(/;+/g, '');
+        this.inputValeur = this.inputValeur.replace(/\s+/g, '');
+        this.textError = 'Pas de multiples valeurs';
+      }
+      // Séparez la chaîne en jour, mois et année
+      const [jour, mois, annee] = this.inputValeur.split('/').map(Number);
 
-          // Utilisez le constructeur Date avec les valeurs séparées
-          this.dateResultat = new Date(annee, mois - 1, jour); // Mois est 0-indexé dans l'objet Date
-          if (isNaN(this.dateResultat.getTime())) {
-            faux++;
-            this.textError = 'Des valeurs de type date sont obligatoires';
-            console.log(
-              "La valeur saisie n'est pas une date.",
-              valeurs[index],
-              this.dateResultat
-            );
-          } else {
-            // Si la conversion en date échoue, la validation échoue
-            console.log('La valeur saisie est une date.', valeurs[index], this.dateResultat);
-          }
-        }
-        if (faux > 0) {
-          this.errorNb = true;
-        } else {
-          this.errorNb = false;
-        }
+      // Utilisez le constructeur Date avec les valeurs séparées
+      this.dateResultat = new Date(annee, mois - 1, jour); // Mois est 0-indexé dans l'objet Date
+      if (isNaN(this.dateResultat.getTime())) {
+        faux++;
+        this.textError = 'Des valeurs de type date sont obligatoires';
+        console.log(
+          "La valeur saisie n'est pas une date.",
+          this.inputValeur,
+          this.dateResultat
+        );
+      } else {
+        // Si la conversion en date réussie, la validation réussie
+        console.log(
+          'La valeur saisie est une date.',
+          this.inputValeur,
+          this.dateResultat
+        );
+      }
     }
+
+    //----------- cas de type Number ---------------//
+    if (this.forme.get('type')?.value == 'Number') {
+      if (this.inputValeur.includes(';')) {
+        faux++;
+        this.inputValeur = this.inputValeur.replace(/;/g, '');
+        this.inputValeur = this.inputValeur.replace(/\s+/g, '');
+        this.textError = 'Pas de multiples valeurs';
+      }
+      if (this.verifierCaracteresNumeriques(this.inputValeur)) {
+        // Test si la valeur est un nombre
+        if (!isNaN(parseFloat(this.inputValeur))) {
+          console.log('La valeur saisie est un nombre.', this.inputValeur);
+        } else {
+          faux++;
+          this.textError = 'La valeur par défaut doit être un nombre';
+          console.log(
+            "La valeur saisie n'est pas un nombre.",
+            this.inputValeur
+          );
+        }
+      } else {
+        faux++;
+        this.textError = 'La valeur par défaut doit être un nombre';
+        console.log("La valeur saisie n'est pas un nombre.", this.inputValeur);
+      }
+    }
+
+    //----------- cas de type Email ---------------//
+    if (this.forme.get('type')?.value == 'Email') {
+      if (this.inputValeur.includes(';')) {
+        faux++;
+        this.inputValeur = this.inputValeur.replace(/;/g, '');
+        this.inputValeur = this.inputValeur.replace(/\s+/g, '');
+        this.textError = 'Pas de multiples valeurs';
+      }
+      if (this.verifierEmail(this.inputValeur)) {
+        console.log('La valeur saisie est une address mail.', this.inputValeur);
+      } else {
+        faux++;
+        this.textError = 'La valeur par défaut doit être un Email';
+        console.log("La valeur saisie n'est pas un email.", this.inputValeur);
+      }
+    }
+
+    //----------- cas de type URL ---------------//
+    if (this.forme.get('type')?.value == 'Url') {
+      if (this.inputValeur.includes(';')) {
+        faux++;
+        this.inputValeur = this.inputValeur.replace(/;/g, '');
+        this.inputValeur = this.inputValeur.replace(/\s+/g, '');
+        this.textError = 'Pas de multiples valeurs';
+      }
+      if (this.verifierURL(this.inputValeur)) {
+        console.log('La valeur saisie est une Url valide.', this.inputValeur);
+      } else {
+        faux++;
+        this.textError = 'La valeur par défaut doit être une Url valide';
+        console.log("La valeur saisie n'est pas une url.", this.inputValeur);
+      }
+    }
+
+    if (faux > 0) {
+      this.errorNb = true;
+    } else {
+      this.errorNb = false;
+    }
+
+    return this.inputValeur;
   }
 
   onSubmit(attributInput: any) {
     this.submitted = true;
     if (this.forme.invalid) return;
 
-    if ((this.forme.get('type')?.value == 'Radio' || this.forme.get('type')?.value == 'Checkbox' || this.forme.get('type')?.value == 'Number') && this.errorNb == true) {
-      
+    if (
+      (this.forme.get('type')?.value == 'Radio' ||
+        this.forme.get('type')?.value == 'Checkbox' ||
+        this.forme.get('type')?.value == 'Number') &&
+      this.errorNb == true
+    ) {
     } else {
       let attributTemp: IAttributs = {
         id: uuidv4(),
@@ -227,17 +280,16 @@ export class NewAttributComponent implements OnInit {
         type: attributInput.type,
         valeursParDefaut: attributInput.valeursParDefaut,
       };
-  
+
       if (this.attribut != undefined) {
         attributTemp.id = this.attribut.id;
       }
-  
-      console.log("valeur final :", attributTemp);
-      
+
+      console.log('valeur final :', attributTemp);
+
       this.attributService.ajouterAttribut(attributTemp).subscribe((object) => {
         this.router.navigate(['/list-attributs']);
       });
     }
-
   }
 }
