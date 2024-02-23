@@ -77,11 +77,10 @@ export class NewAttributComponent implements OnInit {
       this.attributService.getAttributById(idAttribut).subscribe((x) => {
         this.attribut = x;
         this.forme.setValue({
-          titre: this.attribut?.titre,
-          description: this.attribut?.description,
-          etat: this.attribut?.etat,
-          obligatoire: this.attribut?.obligatoire!,
-          type: this.attribut?.type,
+          titre: this.attribut.titre,
+          description: this.attribut.description,
+          etat: this.attribut.etat,
+          type: this.attribut.type,
           valeursParDefaut: this.attribut?.valeursParDefaut,
         });
         this.inputValeur = this.attribut?.valeursParDefaut;
@@ -112,8 +111,7 @@ export class NewAttributComponent implements OnInit {
   }
 
   // Méthode pour gérer les changements dans l'input
-  onInputChange(): string {
-    let faux: number = 0;
+  onInputChange() {
     this.errorNb = false;
 
     //----------- cas de type radio et checkbox ------------//
@@ -138,7 +136,6 @@ export class NewAttributComponent implements OnInit {
       console.log('valeur separe :', valeurs);
       if (this.forme.get('type')?.value == 'Radio') {
         if (valeurs.length < 2 || valeurs[1] == '') {
-          faux++;
           this.errorNb = true;
           this.textError =
             'Au moins deux valeurs doivent être saisies pour ce type';
@@ -149,7 +146,6 @@ export class NewAttributComponent implements OnInit {
 
       if (this.forme.get('type')?.value == 'Checkbox') {
         if (valeurs.length < 1 || valeurs[0] == '') {
-          faux++;
           this.errorNb = true;
           this.textError = 'Au moins une valeur doit être saisie pour ce type';
         } else {
@@ -162,8 +158,8 @@ export class NewAttributComponent implements OnInit {
     if (this.forme.get('type')?.value == 'Date') {
       this.inputValeur = this.inputValeur.replace(/-/g, '/');
       if (this.inputValeur.includes(';')) {
-        faux++;
-        this.inputValeur = this.inputValeur.replace(/;+/g, '');
+        this.errorNb = true;
+        this.inputValeur = this.inputValeur.replace(/;/g, '');
         this.inputValeur = this.inputValeur.replace(/\s+/g, '');
         this.textError = 'Pas de multiples valeurs';
       }
@@ -173,7 +169,7 @@ export class NewAttributComponent implements OnInit {
       // Utilisez le constructeur Date avec les valeurs séparées
       this.dateResultat = new Date(annee, mois - 1, jour); // Mois est 0-indexé dans l'objet Date
       if (isNaN(this.dateResultat.getTime())) {
-        faux++;
+        this.errorNb = true;
         this.textError = 'Des valeurs de type date sont obligatoires';
         console.log(
           "La valeur saisie n'est pas une date.",
@@ -187,31 +183,24 @@ export class NewAttributComponent implements OnInit {
           this.inputValeur,
           this.dateResultat
         );
+        this.errorNb = false;
+          
       }
     }
 
     //----------- cas de type Number ---------------//
     if (this.forme.get('type')?.value == 'Number') {
       if (this.inputValeur.includes(';')) {
-        faux++;
+        this.errorNb = true;
         this.inputValeur = this.inputValeur.replace(/;/g, '');
         this.inputValeur = this.inputValeur.replace(/\s+/g, '');
         this.textError = 'Pas de multiples valeurs';
       }
       if (this.verifierCaracteresNumeriques(this.inputValeur)) {
         // Test si la valeur est un nombre
-        if (!isNaN(parseFloat(this.inputValeur))) {
           console.log('La valeur saisie est un nombre.', this.inputValeur);
-        } else {
-          faux++;
-          this.textError = 'La valeur par défaut doit être un nombre';
-          console.log(
-            "La valeur saisie n'est pas un nombre.",
-            this.inputValeur
-          );
-        }
       } else {
-        faux++;
+        this.errorNb = true;
         this.textError = 'La valeur par défaut doit être un nombre';
         console.log("La valeur saisie n'est pas un nombre.", this.inputValeur);
       }
@@ -220,7 +209,7 @@ export class NewAttributComponent implements OnInit {
     //----------- cas de type Email ---------------//
     if (this.forme.get('type')?.value == 'Email') {
       if (this.inputValeur.includes(';')) {
-        faux++;
+        this.errorNb = true;
         this.inputValeur = this.inputValeur.replace(/;/g, '');
         this.inputValeur = this.inputValeur.replace(/\s+/g, '');
         this.textError = 'Pas de multiples valeurs';
@@ -228,7 +217,7 @@ export class NewAttributComponent implements OnInit {
       if (this.verifierEmail(this.inputValeur)) {
         console.log('La valeur saisie est une address mail.', this.inputValeur);
       } else {
-        faux++;
+        this.errorNb = true;
         this.textError = 'La valeur par défaut doit être un Email';
         console.log("La valeur saisie n'est pas un email.", this.inputValeur);
       }
@@ -237,7 +226,7 @@ export class NewAttributComponent implements OnInit {
     //----------- cas de type URL ---------------//
     if (this.forme.get('type')?.value == 'Url') {
       if (this.inputValeur.includes(';')) {
-        faux++;
+        this.errorNb = true;
         this.inputValeur = this.inputValeur.replace(/;/g, '');
         this.inputValeur = this.inputValeur.replace(/\s+/g, '');
         this.textError = 'Pas de multiples valeurs';
@@ -245,19 +234,11 @@ export class NewAttributComponent implements OnInit {
       if (this.verifierURL(this.inputValeur)) {
         console.log('La valeur saisie est une Url valide.', this.inputValeur);
       } else {
-        faux++;
+        this.errorNb = true;
         this.textError = 'La valeur par défaut doit être une Url valide';
         console.log("La valeur saisie n'est pas une url.", this.inputValeur);
       }
     }
-
-    if (faux > 0) {
-      this.errorNb = true;
-    } else {
-      this.errorNb = false;
-    }
-
-    return this.inputValeur;
   }
 
   onSubmit(attributInput: any) {
@@ -265,9 +246,6 @@ export class NewAttributComponent implements OnInit {
     if (this.forme.invalid) return;
 
     if (
-      (this.forme.get('type')?.value == 'Radio' ||
-        this.forme.get('type')?.value == 'Checkbox' ||
-        this.forme.get('type')?.value == 'Number') &&
       this.errorNb == true
     ) {
     } else {
@@ -276,7 +254,6 @@ export class NewAttributComponent implements OnInit {
         titre: attributInput.titre,
         description: attributInput.description,
         etat: attributInput.etat,
-        obligatoire: attributInput.obligatoire,
         type: attributInput.type,
         valeursParDefaut: attributInput.valeursParDefaut,
       };

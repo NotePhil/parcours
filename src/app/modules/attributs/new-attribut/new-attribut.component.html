@@ -55,7 +55,7 @@
                                 <label  for="type" class="label">
                                     {{"attributs.table.title6" | translate}}<span style="color: red;" aria-label="required">*</span>
                                 </label>
-                                <select  class="form-control" (change)="onInputChange()" formControlName="type" name="type" id="type" required>
+                                <select  class="form-control" formControlName="type" name="type" id="type" required>
                                     <option *ngFor="let item of typeAttribut" value="{{item}}">{{item}}</option>
                                 </select>
                             </div>
@@ -70,7 +70,7 @@
                                 </label>
                                 <input type="text" [(ngModel)]="inputValeur" (input)="onInputChange()" formControlName="valeursParDefaut" name="valeursParDefaut" id="valeursParDefaut" placeholder="{{'attributs.table.title10' | translate}}" class="form-control">
                             </div>
-                            <div  *ngIf="errorNb"  class="alert alert-danger" >
+                            <div  *ngIf="errorNb" class="alert alert-danger" >
                               <div>{{textError}}</div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="actionButton">
                     <button class="btn" routerLink="../list-attributs"><i class="fa fa-reply mr-1" aria-hidden="true"></i>{{'lists.button2' | translate}}</button>
-                    <button type="submit" class="btn btnValidation">{{btnLibelle}}</button>
+                    <button type="submit" (click)="onInputChange()" class="btn btnValidation">{{btnLibelle}}</button>
                 </div>
             </form>
           </div>
