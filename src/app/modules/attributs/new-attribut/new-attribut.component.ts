@@ -94,7 +94,7 @@ export class NewAttributComponent implements OnInit {
   }
 
   verifierCaracteresNumeriques(chaine: string): boolean {
-    return /^\d+$/.test(chaine); // Utilisation d'une expression régulière pour vérifier si la chaîne contient uniquement des chiffres
+    return /[^0-9.]/.test(chaine); // Utilisation d'une expression régulière pour vérifier si la chaîne contient uniquement des chiffres
   }
 
   verifierEmail(mail: string): boolean {
@@ -102,6 +102,26 @@ export class NewAttributComponent implements OnInit {
     const regexEmail: RegExp =
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return regexEmail.test(mail);
+  }
+
+  isValidDate(dateString: string) {
+    // Utiliser une expression régulière pour vérifier le format de la date (jj/mm/aaaa)
+    var dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+    
+    // Vérifier si la chaîne de caractères correspond au format de date
+    if (!dateRegex.test(dateString)) {
+      return false;
+    }
+    
+    // Vérifier si la date est réellement valide
+    var dateParts = dateString.split('/');
+    var day = parseInt(dateParts[0], 10);
+    var month = parseInt(dateParts[1], 10) - 1; // Mois en JavaScript commence à partir de 0
+    var year = parseInt(dateParts[2], 10);
+    
+    var date = new Date(year, month, day);
+    
+    return (date.getFullYear() === year && date.getMonth() === month && date.getDate() === day);
   }
 
   verifierURL(url: string): boolean {
@@ -163,20 +183,8 @@ export class NewAttributComponent implements OnInit {
         this.inputValeur = this.inputValeur.replace(/\s+/g, '');
         this.textError = 'Pas de multiples valeurs';
       }
-      // Séparez la chaîne en jour, mois et année
-      const [jour, mois, annee] = this.inputValeur.split('/').map(Number);
 
-      // Utilisez le constructeur Date avec les valeurs séparées
-      this.dateResultat = new Date(annee, mois - 1, jour); // Mois est 0-indexé dans l'objet Date
-      if (isNaN(this.dateResultat.getTime())) {
-        this.errorNb = true;
-        this.textError = 'Des valeurs de type date sont obligatoires';
-        console.log(
-          "La valeur saisie n'est pas une date.",
-          this.inputValeur,
-          this.dateResultat
-        );
-      } else {
+      if (this.isValidDate(this.inputValeur)) {
         // Si la conversion en date réussie, la validation réussie
         console.log(
           'La valeur saisie est une date.',
@@ -184,7 +192,14 @@ export class NewAttributComponent implements OnInit {
           this.dateResultat
         );
         this.errorNb = false;
-          
+      } else {
+        this.errorNb = true;
+        this.textError = 'votre saisie ne respecte pas le format de ce type';
+        console.log(
+          "La valeur saisie n'est pas une date.",
+          this.inputValeur,
+          this.isValidDate(this.inputValeur)
+        );
       }
     }
 
@@ -196,12 +211,19 @@ export class NewAttributComponent implements OnInit {
         this.inputValeur = this.inputValeur.replace(/\s+/g, '');
         this.textError = 'Pas de multiples valeurs';
       }
-      if (this.verifierCaracteresNumeriques(this.inputValeur)) {
-        // Test si la valeur est un nombre
+      if (!this.verifierCaracteresNumeriques(this.inputValeur)) {
+        if (parseFloat(this.inputValeur)) {
+          // Test si la valeur est un nombre
           console.log('La valeur saisie est un nombre.', this.inputValeur);
+        } else {
+          this.errorNb = true;
+        this.textError = 'votre saisie ne respecte pas le format de ce type';
+        console.log("La valeur saisie n'est pas un nombre.", this.inputValeur);
+        }
+        
       } else {
         this.errorNb = true;
-        this.textError = 'La valeur par défaut doit être un nombre';
+        this.textError = 'votre saisie ne respecte pas le format de ce type';
         console.log("La valeur saisie n'est pas un nombre.", this.inputValeur);
       }
     }
@@ -218,7 +240,7 @@ export class NewAttributComponent implements OnInit {
         console.log('La valeur saisie est une address mail.', this.inputValeur);
       } else {
         this.errorNb = true;
-        this.textError = 'La valeur par défaut doit être un Email';
+        this.textError = 'votre saisie ne respecte pas le format de ce type';
         console.log("La valeur saisie n'est pas un email.", this.inputValeur);
       }
     }
@@ -235,7 +257,7 @@ export class NewAttributComponent implements OnInit {
         console.log('La valeur saisie est une Url valide.', this.inputValeur);
       } else {
         this.errorNb = true;
-        this.textError = 'La valeur par défaut doit être une Url valide';
+        this.textError = 'votre saisie ne respecte pas le format de ce type';
         console.log("La valeur saisie n'est pas une url.", this.inputValeur);
       }
     }
