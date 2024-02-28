@@ -1,8 +1,11 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
+import { IExemplairesDePersonne } from 'src/app/modele/exemplaires-de-personne';
 import { IMouvement } from 'src/app/modele/mouvement';
 import { IType } from 'src/app/modele/type';
 import { TypeMouvement } from 'src/app/modele/typeMouvement';
@@ -48,16 +51,29 @@ export class PrevisualisationExemplaireComponent  implements OnInit {
     'description'
   ]; // structure du tableau presentant les Ressources
   dataSourceMouvements = new MatTableDataSource<IMouvement>();
+  dataSourceAutresExemplaires = new MatTableDataSource<IExemplaireDocument>();
+  filteredOptions: IExemplaireDocument[] | undefined;
+  displayedColumns: string[] = ['titre'];
+  @ViewChild(MatSort) sort!: MatSort;
+  exemplairesDePersonne : IExemplairesDePersonne[] = []
 
   constructor(
     private router:Router, 
     private infosPath:ActivatedRoute,
     private dataEnteteMenuService:DonneesEchangeService, 
     private serviceExemplaire:ExemplaireDocumentService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private serviceExemplaireDocument: ExemplaireDocumentService,
+    private _liveAnnouncer: LiveAnnouncer
     ) {}
 
   ngOnInit(): void {
+    this.getAllExemplaires().subscribe(valeurs => {
+      this.dataSourceAutresExemplaires.data = valeurs;
+      this.filteredOptions = valeurs
+      this.regrouperExemplairesParType()
+    });
+
     let idExemplaire = this.infosPath.snapshot.paramMap.get('idExemplaire');
     if((idExemplaire != null) && idExemplaire!==''){
       this.serviceExemplaire.getExemplaireDocumentById(idExemplaire).subscribe(
@@ -140,5 +156,45 @@ export class PrevisualisationExemplaireComponent  implements OnInit {
       this.displayedRessourcesColumns.push(montant)
     }
   }
-}
+  private getAllExemplaires(){
+    return this.serviceExemplaireDocument.getAllExemplaireDocuments();
+  }
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+  regrouperExemplairesParType(){
+    let tabTitresTraite : string[] = []
+    for (let index = 0; index < this.dataSourceAutresExemplaires.data.length; index++) {
+      const element = this.dataSourceAutresExemplaires.data[index];
+      if (tabTitresTraite.length<0) {
+        tabTitresTraite.push(element.titre)
+      }
+      if (!tabTitresTraite.includes(element.titre)) {
+        this.serviceExemplaire.getExemplaireDocumentByTitre(element.titre).subscribe(
+          x =>{
+            let exemplairesDePersonneTemp : IExemplairesDePersonne = {
+              titre: element.titre,
+              exemplaires: x
+            }
+            this.exemplairesDePersonne.push(exemplairesDePersonneTemp)
+          }
+        )
+        tabTitresTraite.push(element.titre)
 
+        // for (let j = 0; j < this.dataSourceAutresExemplaires.data.length; j++) {
+        //   const exemplaire = this.dataSourceAutresExemplaires.data[j];
+        //   if (element.titre == exemplaire.titre) {
+        //     if (!tabTitresTraite.includes(exemplaire.titre)) {
+              
+        //     }
+        //   }
+        // }
+      }
+      
+    }
+  }
+}

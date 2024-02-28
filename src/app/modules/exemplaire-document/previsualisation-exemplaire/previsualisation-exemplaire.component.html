@@ -1,5 +1,5 @@
 <div class="mainBlock" id="top2">
-    <div>
+    <div class="globalSection">
        <h1>
            {{this.exemplaire.titre}} {{titre}}
        </h1>
@@ -110,5 +110,42 @@
                 {{'lists.button7' | translate}}
             </button>
         </div>
+    </div>
+    <div id="rigthSection" class="card" >
+      <div class="titleBlock" id="titleBlock" class="entete0">
+        <h2 class="rigth">{{'document.exemplaire.text5' | translate}}</h2>
+      </div>
+      <div class="triExemplairesBlock">
+        <!-- <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceAutresExemplaires" matSort (matSortChange)="announceSortChange($event)">
+            <-- titre Column --
+            <ng-container matColumnDef="titre">
+                <-- <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title1' | translate}} </th> --
+                <td class="text-dark text-center containCell" mat-cell *matCellDef="let element" mat-sort-header> {{element.titre}}
+                    <div *ngIf="element.titre">
+                        <p>{{element.description}}</p>
+                        <p>{{element.titre}}</p>
+                    </div>
+                </td>
+            </ng-container>
+            <-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> --
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table> -->
+        <table class="table table-striped table-bordered table-inverse table-responsive">
+            <div *ngFor="let element of exemplairesDePersonne">
+                <div *ngIf="element.titre">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>{{element.titre}}</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let exemplaire of element.exemplaires">
+                        <tr>
+                            <td scope="row">{{exemplaire.description}}</td>
+                        </tr>
+                    </tbody>
+                </div>
+            </div>
+        </table>
+      </div>
     </div>
 </div>

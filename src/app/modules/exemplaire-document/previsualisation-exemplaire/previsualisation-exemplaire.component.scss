@@ -1,6 +1,14 @@
 .mainBlock{
     background-color: #ffffff;
     padding-top: 5px;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+}
+.globalSection{
+    width: 73%;
 }
 h1{
     text-align: center;
@@ -24,7 +32,7 @@ h3{
     margin: 20px 0;
 }
 .infos{
-    padding: 0 20px;
+    padding: 0 10px;
     padding-bottom: 10px;
 }
 .infos p{
@@ -107,7 +115,7 @@ th{
     text-align: center;
 }
 #tableList{
-    padding: 0 20px !important;
+    padding: 0 10px !important;
 }
 .tableBlock{
     width: 100%;
@@ -146,6 +154,38 @@ th{
     padding: 0 20px;
     padding-bottom: 10px;
 }
+#rigthSection{
+  height: max-content !important;
+  width: 25%;
+}
+.titleBlock{
+  text-align: center;
+  font-size:8px;
+  font-weight: bold;
+}
+.triExemplairesBlock{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.entete0{
+    background-color: #28a745;
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 0 2px #28a745;
+    font-weight: bold;
+    padding: 0;
+    display: flex;
+}
+.rigth{
+    margin: auto;
+    padding: 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #28a745;
+    font-size: 18px;
+}
 @media screen and (max-width: 1040px) {
     .block1 .inputBlock{
         width: 31% !important;
@@ -159,6 +199,9 @@ th{
                 font-size: 12.5px !important;
             }
         }
+    }
+    .rigth{
+        font-size: 90%;
     }
 }
 @media screen and (max-width: 872px) {
@@ -180,6 +223,9 @@ th{
                 font-size: 12px !important;
             }
         }
+    }
+    .rigth{
+        font-size: 80%;
     }
     h3{
         font-size: 15px;
