@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
+import { StringUtils } from '@zxing/library';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
 import { IExemplairesDePersonne } from 'src/app/modele/exemplaires-de-personne';
 import { IMouvement } from 'src/app/modele/mouvement';
@@ -166,35 +167,26 @@ export class PrevisualisationExemplaireComponent  implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
   regrouperExemplairesParType(){
-    let tabTitresTraite : string[] = []
+    this.exemplairesDePersonne = [];
+    let tmpTabExemplaireTrier = new Map();
     for (let index = 0; index < this.dataSourceAutresExemplaires.data.length; index++) {
       const element = this.dataSourceAutresExemplaires.data[index];
-      if (tabTitresTraite.length<0) {
-        tabTitresTraite.push(element.titre)
+      let cle : string =   element.titre;
+      if (!tmpTabExemplaireTrier.has(cle)) {
+        let tabEltTraite : IExemplaireDocument[] = [];
+        tabEltTraite.push(element);
+        tmpTabExemplaireTrier.set(cle,tabEltTraite);
+      }else{
+        let tabEltTraite : IExemplaireDocument[] = tmpTabExemplaireTrier.get(cle);
+        tabEltTraite.push(element);
+        tmpTabExemplaireTrier.set(cle,tabEltTraite);
       }
-      if (!tabTitresTraite.includes(element.titre)) {
-        this.serviceExemplaire.getExemplaireDocumentByTitre(element.titre).subscribe(
-          x =>{
-            let exemplairesDePersonneTemp : IExemplairesDePersonne = {
-              titre: element.titre,
-              exemplaires: x
-            }
-            this.exemplairesDePersonne.push(exemplairesDePersonneTemp)
-          }
-        )
-        tabTitresTraite.push(element.titre)
-
-        // for (let j = 0; j < this.dataSourceAutresExemplaires.data.length; j++) {
-        //   const exemplaire = this.dataSourceAutresExemplaires.data[j];
-        //   if (element.titre == exemplaire.titre) {
-        //     if (!tabTitresTraite.includes(exemplaire.titre)) {
-              
-        //     }
-        //   }
-        // }
-      }
-      
     }
+    tmpTabExemplaireTrier.forEach((value, key) => {
+      let elt : IExemplairesDePersonne = {titre :key, exemplaires:value};
+      this.exemplairesDePersonne.push(elt);        
+    });
   }
 }
