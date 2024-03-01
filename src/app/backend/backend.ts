@@ -14818,9 +14818,6 @@ export class InMemDBService implements InMemoryDbService {
         contientRessources:true,
         contientDistributeurs:false,
         DocEtats:[
-          {id: '2', ordre: 2, dateCreation: new Date("07/21/2024"),
-            etat: {id:"2", libelle:"etat 2", description:"deuxième état du document", dateCreation: new Date("07/21/2024")}
-          },
           {id: '3', ordre: 3, dateCreation: new Date("07/21/2024"),
             etat: {id:"3", libelle:"etat 3", description:"troisième état du document", dateCreation: new Date("07/21/2024")}
           },
@@ -15410,7 +15407,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: '23',
+            value: '83',
           },
           {
             key: {
@@ -15425,7 +15422,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: 'oignon, lait, mangue',
+            value: 'chats, lait, chiens',
           },
           {
             key: {
@@ -15440,7 +15437,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: '1.78',
+            value: '1.50',
           },
           {
             key: {
@@ -15455,7 +15452,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
             },
-            value: 'A+',
+            value: 'B-',
           },
           {
             key: {
@@ -15485,7 +15482,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: new Date('07/03/2023'),
+            value: new Date('20/04/2024'),
           },
           {
             key: {
@@ -15500,7 +15497,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: new Date('17/03/2023'),
+            value: new Date('17/12/2024'),
           },
           {
             key: {
@@ -15515,7 +15512,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: new Date('17/06/2023'),
+            value: new Date('17/06/2025'),
           },
           {
             key: {
@@ -15545,7 +15542,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: 'Fin traitement',
+            value: 'Suspension du traitement pour intolérance aux medicamants contenant du paracétamol',
           },
           {
             key: {
@@ -15560,7 +15557,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: '54',
+            value: '83',
           },
           {
             key: {
@@ -15575,7 +15572,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: 'Homme, Femme, Autre',
             },
-            value: 'Homme',
+            value: 'Femme',
           },
           {
             key: {
@@ -15590,7 +15587,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: 'Noir',
+            value: 'Blanc',
           },
         ],
        sousDocuments:[
@@ -16792,9 +16789,6 @@ export class InMemDBService implements InMemoryDbService {
           {id: '2', ordre: 2, dateCreation: new Date("07/21/2024"),
             etat: {id:"2", libelle:"etat 2", description:"deuxième état du document", dateCreation: new Date("07/21/2024")}
           },
-          {id: '3', ordre: 3, dateCreation: new Date("07/21/2024"),
-            etat: {id:"3", libelle:"etat 3", description:"troisième état du document", dateCreation: new Date("07/21/2024")}
-          },
           {id: '4', ordre: 4, dateCreation: new Date("07/21/2024"),
             etat: {id:"4", libelle:"etat 4", description:"quatrième état du document", dateCreation: new Date("07/21/2024")}
           }
@@ -17252,7 +17246,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: '1.70',
+            value: '1.60',
           },
           {
             key: {
@@ -17267,7 +17261,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: 'noir',
+            value: 'brun',
           },
           {
             key: {
@@ -17282,7 +17276,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: 'oui, non',
             },
-            value: 'oui',
+            value: 'non',
           },
           {
             key: {
@@ -17297,7 +17291,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: '23',
+            value: '45',
           },
           {
             key: {
@@ -17312,7 +17306,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
             },
-            value: 'A+',
+            value: 'O+',
           },
           {
             key: {
@@ -17327,7 +17321,7 @@ export class InMemDBService implements InMemoryDbService {
               obligatoire: false,
               valeursParDefaut: ''
             },
-            value: 'oignon, lait, mangue',
+            value: 'fruits de mer, ail, mangue',
           },
         ],
       sousDocuments:[
@@ -17671,595 +17665,6 @@ export class InMemDBService implements InMemoryDbService {
                 libelle: 'vente',
                 type: 'Reduire',
                 etat:true,
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'Medical',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      scanBarCode: '6911989109209',
-              prixEntree: 1000,
-                      prixDeSortie: 1050,
-                      unite: 'Litre',
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'Medical',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                    distributeur: [
-                      {
-                        id: '1',
-                        raisonSocial: 'brasserie1',
-                        etat: true,
-                        adresse: 'Dla',
-                        telephone: '655554488',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '2',
-                        raisonSocial: 'guinness',
-                        etat: true,
-                        adresse: 'Ydé',
-                        telephone: '655554481',
-                        mail: 'ngong@yad.fr',
-                      },
-                      {
-                        id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        etat: true,
-                        adresse: 'Buéa',
-                        telephone: '655554486',
-                        mail: 'ngong@yad.fr',
-                      },
-                    ],
-                  },
-                ],
-              }
-            ]
-          },
-          {
-            id: '4',
-            titre: 'Formulaire de sortie',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
-              typeMouvement: 'Reduire',
-              etat:true,
-              affichagePrix:true,
-              contientRessources:true,
-              contientDistributeurs:true,
-              DocEtats:[
-                {id: '2', ordre: 2, dateCreation: new Date("07/21/2024"),
-                  etat: {id:"2", libelle:"etat 2", description:"deuxième état du document", dateCreation: new Date("07/21/2024")}
-                },
-                {id: '3', ordre: 3, dateCreation: new Date("07/21/2024"),
-                  etat: {id:"3", libelle:"etat 3", description:"troisième état du document", dateCreation: new Date("07/21/2024")}
-                },
-                {id: '4', ordre: 4, dateCreation: new Date("07/21/2024"),
-                  etat: {id:"4", libelle:"etat 4", description:"quatrième état du document", dateCreation: new Date("07/21/2024")}
-                }
-              ],
-            missions: [
-              {
-                id: '2',
-                libelle: 'Consultation Spécialiste',
-                description: 'Consultation faite par un médecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '2',
-                  libelle: 'Laboratoire',
-                  etat: true,
-                  dateDerniereModification: new Date('06/08/1990'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 20,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '3',
-                libelle: 'Prelevement Labo',
-                description: 'Prélévement fait par laboratoire',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '3',
-                  libelle: 'Consultation',
-                  etat: true,
-                  dateDerniereModification: new Date('12/06/1972'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 50,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-              {
-                id: '4',
-                libelle: 'Encaissement',
-                description: 'recu de paiement lié à une mission',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                idLogin: 'admin',
-                service: {
-                  id: '1',
-                  libelle: 'Pharmacie',
-                  etat: true,
-                  dateDerniereModification: new Date('07/03/2000'),
-                  dateAttribution: new Date('07/03/1990'),
-                  dateFin: new Date('07/03/1990'),
-                  nombreTotalAttributions: 6,
-                  localisation:'douala',
-                  description:'bien',
-                },
-              },
-            ],
-            attributs: [
-              {
-                id: '14',
-                titre: 'Nom',
-                description: "nom de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.String,
-                valeursParDefaut: '',
-
-              },
-              {
-                id: '4',
-                titre: 'age',
-                description: "age de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Double,
-                valeursParDefaut: '',
-
-              },
-              {
-                id: '5',
-                titre: 'allergies',
-                description: "allergies de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Textarea,
-                valeursParDefaut: '',
-
-              },
-              {
-                id: '1',
-                titre: 'taille',
-                description: "taille de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Double,
-                valeursParDefaut: '',
-
-              },
-              {
-                id: '7',
-                titre: 'Groupe sangin',
-                description: "Groupe sangin de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Boolean,
-                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
-              },
-              {
-                id: '8',
-                titre: 'cicatrice',
-                description: "cicatrice de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Boolean,
-                valeursParDefaut: 'oui, non',
-              },
-              {
-                id: '9',
-                titre: 'date admission',
-                description: "date admission de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Date,
-                valeursParDefaut: '',
-
-              },
-              {
-                id: '10',
-                titre: 'date decharge',
-                description: 'date decharge',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Date,
-                valeursParDefaut: '',
-
-              },
-              {
-                id: '11',
-                titre: 'date prochain rendez-vous',
-                description: "date prochain rendez-vous de l'individu",
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Date,
-                valeursParDefaut: '',
-
-              },
-              {
-                id: '12',
-                titre: 'aprobation du medecin',
-                description: 'aprobation du medecin',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Boolean,
-                valeursParDefaut: 'oui, non',
-              },
-              {
-                id: '13',
-                titre: 'motif de la decharge',
-                description: 'motif de la decharge ',
-                etat: true,
-                dateCreation: new Date('07/03/2000'),
-                dateModification: new Date('07/03/1990'),
-                type: IType.Textarea,
-                valeursParDefaut: '',
-
-              },
-            ],
-            categories: [
-              {
-                id: '1',
-                nom: 'informations personelles',
-                ordre: 1,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '14',
-                    titre: 'Nom',
-                    description: "nom de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: IType.String,
-                    valeursParDefaut: '',}
-
-                  },
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: true,
-                    attribut:{id: '1',
-                    titre: 'taille',
-                    description: "taille de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-
-                    type: IType.Double,
-                    valeursParDefaut: '',}
-
-                  },
-                  {
-                    id: '',
-                    ordre: 3,
-                    obligatoire: true,
-                    attribut:{id: '4',
-                    titre: 'age',
-                    description: "age de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-
-                    type: IType.Double,
-                    valeursParDefaut: '',}
-
-                  },
-                ],
-              },
-              {
-                id: '2',
-                nom: 'informations de sante',
-                ordre: 3,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '5',
-                    titre: 'allergies',
-                    description: "allergies de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: IType.String,
-                    valeursParDefaut: '',}
-
-                  },
-                  {
-                    id: '',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '7',
-                    titre: 'Groupe sangin',
-                    description: "Groupe sangin de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: IType.Boolean,
-                    valeursParDefaut:
-                      'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',}
-                  },
-                  {
-                    id: '',
-                    ordre: 3,
-                    obligatoire: false,
-                    attribut:{id: '8',
-                    titre: 'cicatrice',
-                    description: "cicatrice de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: IType.Boolean,
-                    valeursParDefaut: 'oui, non',}
-                  },
-                ],
-              },
-              {
-                id: '3',
-                nom: 'informations de suivi medical',
-                ordre: 2,
-                listAttributsParCategories: [
-                  {
-                    id: '',
-                    ordre: 1,
-                    obligatoire: false,
-                    attribut:{id: '9',
-                    titre: 'date admission',
-                    description: "date admission de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: IType.Date,
-                    valeursParDefaut: '',}
-
-                  },
-                  {
-                    id: '',
-                    ordre: 2,
-                    obligatoire: false,
-                    attribut:{id: '10',
-                    titre: 'date decharge',
-                    description: 'date decharge',
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: IType.Date,
-                    valeursParDefaut: '',}
-
-                  },
-                  {
-                    id: '',
-                    ordre: 3,
-                    obligatoire: false,
-                    attribut:{id: '11',
-                    titre: 'date prochain rendez-vous',
-                    description: "date prochain rendez-vous de l'individu",
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: IType.Date,
-                    valeursParDefaut: '',}
-
-                  },
-                  {
-                    id: '',
-                    ordre: 4,
-                    obligatoire: false,
-                    attribut:{id: '12',
-                    titre: 'aprobation du medecin',
-                    description: 'aprobation du medecin',
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: IType.Boolean,
-                    valeursParDefaut: 'oui, non',}
-                  },
-                  {
-                    id: '',
-                    ordre: 5,
-                    obligatoire: false,
-                    attribut:{id: '13',
-                    titre: 'motif de la decharge',
-                    description: 'motif de la decharge ',
-                    etat: true,
-                    dateCreation: new Date('07/03/2000'),
-                    dateModification: new Date('07/03/1990'),
-                    type: IType.Textarea,
-                    valeursParDefaut: '',}
-
-                  },
-                ],
-              },
-            ],
-            preconisations:[
-              {
-                id: '1',
-                libelle: 'rachat',
-                etat:true,
-                type: 'Neutre',
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 10,
-                    quantiteMax: 20,
-                    montantMin: 1000,
-                    montantMax: 7000,
-                    ressource: {
-                      id: '1',
-                      libelle: 'transfusion',
-                      etat: true,
-                      quantite: 10,
-                      scanBarCode: '6911989109209',
-              prixEntree: 1000,
-                      prixDeSortie: 1050,
-                      unite: 'Litre',
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'Medical',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    },
-                  },
-                  {
-                    id: '2',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'Medical',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                  {
-                    id: '3',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource:
-                    {
-                      id: '3',
-                      libelle: 'pediatrie',
-                      etat: true,
-                      quantite: 30,
-                      prixEntree: 3000,
-                      prixDeSortie: 3050,
-                      unite: 'Litre',
-                      caracteristique: 'souple',
-                      famille: {
-                        id: '4',
-                        libelle: 'Medical',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                    }
-                  },
-                  {
-                    id: '4',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    ressource:
-                    {
-                        id: '2',
-                        libelle: 'Medical',
-                        etat: true,
-                        quantite: 20,
-                        scanBarCode: '6911989109209',
-              prixEntree: 2000,
-                        prixDeSortie: 2050,
-                        unite: 'Litre',
-                        caracteristique: 'souple',
-                        famille: {
-                          id: '3',
-                          libelle: 'pediatrie',
-                          description: 'enfant',
-                          etat: true,
-                        },
-                      },
-                  },
-                ],
-              },
-              {
-                id: '2',
-                libelle: 'vente',
-                etat:true,
-                type: 'Reduire',
-                precomvtqte: [
-                  {
-                    id: '1',
-                    quantiteMin: 30,
-                    quantiteMax: 40,
-                    montantMin: 100,
-                    montantMax: 7000,
-                    famille: [
-                      { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
-                      {
-                        id: '2',
-                        libelle: 'Medical',
-                        description: 'nouveau-né',
-                        etat: true,
-                      },
-                      {
-                        id: '3',
-                        libelle: 'pediatrie',
-                        description: 'enfant',
-                        etat: true,
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                id: '3',
-                libelle: 'vente',
-                etat:true,
-                type: 'Reduire',
                 precomvtqte: [
                   {
                     id: '1',

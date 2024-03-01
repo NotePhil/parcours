@@ -167,7 +167,10 @@ export class PrevisualisationExemplaireComponent  implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
+  /**
+   * Methode permettant de trier le tableau des exemplaires de la personne afin de les 
+   * regrouper par type(documents ayant le meme titre)
+   */
   regrouperExemplairesParType(){
     this.exemplairesDePersonne = [];
     let tmpTabExemplaireTrier = new Map();
@@ -188,5 +191,32 @@ export class PrevisualisationExemplaireComponent  implements OnInit {
       let elt : IExemplairesDePersonne = {titre :key, exemplaires:value};
       this.exemplairesDePersonne.push(elt);        
     });
+  }
+
+  /**
+   * Methode permettant de rafraîchir la section de la page presentant l'emplaire et de 
+   * remplacer ce dernier par le document de la personne sur lequel on clique pour le visualiser
+   * @param exemplaire : document recupéré pour etre visualisé
+   */
+  switchExemplaires(exemplaire : IExemplaireDocument){
+    this.displayedRessourcesColumns = [
+      'libelle',
+      'quantite',
+      'unite',
+      'description'
+    ];
+    this.exemplaire = exemplaire
+    
+    this.formerEnteteTableauMissions();
+
+    if (this.exemplaire.mouvements != undefined) {
+      this.mouvements = this.exemplaire.mouvements
+    }
+    if (this.exemplaire.mouvements != undefined) {
+      this.dataSourceMouvements.data = this.exemplaire.mouvements
+    }
+    this.titre=this.dataEnteteMenuService.dataEnteteMenu
+    this.nomPatientCourant = sessionStorage.getItem('nomPatientCourant');
+
   }
 }
