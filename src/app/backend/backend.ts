@@ -341,7 +341,6 @@ export class InMemDBService implements InMemoryDbService {
         fonctionnalites: [
           {
             fonction: 'Personne',
-            fonction: 'Personne',
             icone: 'fas fa-user-cog',
             actif: 'menu-close',
             elements: [
@@ -705,9 +704,7 @@ export class InMemDBService implements InMemoryDbService {
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 6,
           localisation: 'douala',
-          description: 'bien',
-          localisation: 'douala',
-          description: 'bien',
+          description: 'bien'
         },
       },
       {
@@ -727,9 +724,7 @@ export class InMemDBService implements InMemoryDbService {
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 20,
           localisation: 'douala',
-          description: 'bien',
-          localisation: 'douala',
-          description: 'bien',
+          description: 'bien'
         },
       },
       {
@@ -749,9 +744,7 @@ export class InMemDBService implements InMemoryDbService {
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 50,
           localisation: 'douala',
-          description: 'bien',
-          localisation: 'douala',
-          description: 'bien',
+          description: 'bien'
         },
       },
       {
@@ -771,9 +764,7 @@ export class InMemDBService implements InMemoryDbService {
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 6,
           localisation: 'douala',
-          description: 'bien',
-          localisation: 'douala',
-          description: 'bien',
+          description: 'bien'
         },
       },
       {
@@ -793,9 +784,7 @@ export class InMemDBService implements InMemoryDbService {
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 50,
           localisation: 'douala',
-          description: 'bien',
-          localisation: 'douala',
-          description: 'bien',
+          description: 'bien'
         },
       },
       {
@@ -815,9 +804,7 @@ export class InMemDBService implements InMemoryDbService {
           dateFin: new Date('07/03/1990'),
           nombreTotalAttributions: 6,
           localisation: 'douala',
-          description: 'bien',
-          localisation: 'douala',
-          description: 'bien',
+          description: 'bien'
         },
       },
     ];
@@ -1038,9 +1025,7 @@ export class InMemDBService implements InMemoryDbService {
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 6,
               localisation: 'douala',
-              description: 'bien',
-              localisation: 'douala',
-              description: 'bien',
+              description: 'bien'
             },
           },
           {
@@ -1060,9 +1045,7 @@ export class InMemDBService implements InMemoryDbService {
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 20,
               localisation: 'douala',
-              description: 'bien',
-              localisation: 'douala',
-              description: 'bien',
+              description: 'bien'
             },
           },
           {
@@ -1082,9 +1065,7 @@ export class InMemDBService implements InMemoryDbService {
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 50,
               localisation: 'douala',
-              description: 'bien',
-              localisation: 'douala',
-              description: 'bien',
+              description: 'bien'
             },
           },
         ],
@@ -11972,9 +11953,7 @@ export class InMemDBService implements InMemoryDbService {
               dateFin: new Date('07/03/1990'),
               nombreTotalAttributions: 20,
               localisation: 'douala',
-              description: 'bien',
-              localisation: 'douala',
-              description: 'bien',
+              description: 'bien'
             },
           },
           {

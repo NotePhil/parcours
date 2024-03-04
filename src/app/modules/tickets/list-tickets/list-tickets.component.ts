@@ -16,12 +16,9 @@ import { TicketsService } from 'src/app/services/tickets/tickets.service';
 @Component({
   selector: 'app-list-tickets',
   templateUrl: './list-tickets.component.html',
-  styleUrls: ['./list-tickets.component.scss'],,
+  styleUrls: ['./list-tickets.component.scss'],
 })
 export class ListTicketsComponent implements OnInit, AfterViewInit {
-  tickets$: Observable<ITicket[]> = EMPTY;
-  ticketImpression: ITicket | undefined;
-  patientCorrespondant: IPatient = {
   tickets$: Observable<ITicket[]> = EMPTY;
   ticketImpression: ITicket | undefined;
   patientCorrespondant: IPatient = {
