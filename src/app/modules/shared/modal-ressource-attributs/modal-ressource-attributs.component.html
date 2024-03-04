@@ -61,7 +61,7 @@
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                     <div class="actions" class="">
                                         <label style="width: 2px;" for="attributs">
-                                            <input type="checkbox" [value]="element.titre" name="attributs" id="attributs" (click)="getAttributId(element.id)" (change)="onCheckAttributChange($event)">
+                                            <input type="checkbox" [value]="element.titre" name="attributs" id="attributs" (click)="getAttributId(element.id)" (change)="onCheckAttributChange($event, element)">
                                         </label>
                                     </div>
                                 </td>
@@ -100,7 +100,7 @@
                                     <ng-container matColumnDef="valeur">
                                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title12' | translate}} </th>
                                         <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index"> 
-                                            <input [type]="element.attributs.type" (change)="verificationModificationDansTableau(element, $event, i)" [value]="element.valeur" formControlName="res" name="res" id="res" required>
+                                            <input [type]="element.attributs.type" (change)="verificationModificationDansTableau(element, $event, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="element.valeur" name="res" id="res" required>
                                             <div  *ngIf="submitted && f['res'].errors"  class="alert alert-danger" >
                                                 <div *ngIf="f['res'].errors['required']">{{'personnel.form.text1' | translate}}</div>
                                             </div>

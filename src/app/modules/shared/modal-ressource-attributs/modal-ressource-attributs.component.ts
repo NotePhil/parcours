@@ -16,6 +16,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { log } from 'console';
+import { IRessource } from 'src/app/modele/ressource';
 
 @Component({
   selector: 'app-modal-ressource-attributs',
@@ -27,6 +28,24 @@ export class ModalRessourceAttributsComponent implements OnInit {
   formeAttribut: FormGroup;
   submitted: boolean = false;
   valid: boolean = true;
+  datas: any[] = [];
+  verif: boolean = false;
+  ressources: IRessource = {
+    id: '',
+    libelle: '',
+    etat: false,
+    quantite: 0,
+    prixEntree: 0,
+    prixDeSortie: 0,
+    unite: '',
+    famille: {
+      id: '',
+      libelle: '',
+      description: '',
+      etat: false,
+    },
+    caracteristique: '',
+  };
   myControl = new FormControl<string | IAttributs>('');
   ELEMENTS_TABLE_ATTRIBUTS: any[] = [];
   filteredOptions: IAttributs[] | undefined;
@@ -63,7 +82,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.formeAttribut = this.formBuilder.group({
-      res: [ '', Validators.required],
+      res: ['', Validators.required],
     });
   }
 
@@ -72,9 +91,13 @@ export class ModalRessourceAttributsComponent implements OnInit {
       this.dataSourceAttribut.data = valeurs;
       this.filteredOptions = valeurs;
     });
-    this.dataSourceAttributResultat.data = this.donneeDocCatService.dataDocumentAttributs;
-    console.log("resultats tb :", this.dataSourceAttributResultat.data);
-    
+
+    if (this.donneeDocCatService.dataDocumentAttributs != undefined) {
+      this.ELEMENTS_TABLE_ATTRIBUTS = this.donneeDocCatService.dataDocumentAttributs;
+      this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
+    }
+    console.log('resultats tb :', this.dataSourceAttributResultat.data);
+
     this.myControl.valueChanges.subscribe((value) => {
       const titre = typeof value === 'string' ? value : value?.titre;
       if (titre != undefined && titre?.length > 0) {
@@ -91,24 +114,44 @@ export class ModalRessourceAttributsComponent implements OnInit {
     });
   }
 
-  onCheckAttributChange(event: any) {
+  onCheckAttributChange(event: any, element: IAttributs) {
     let listIdAttTemp: string[] = [];
     let positionsAttr = new Map();
     let indexAttrCourant: number = 0;
-    this.donneeDocCatService.dataDocumentAttributs.forEach(
-      (element: IAttributs) => {
-        listIdAttTemp.push(element.id);
-        positionsAttr.set(element.id, indexAttrCourant++);
+    this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS
+    this.ELEMENTS_TABLE_ATTRIBUTS.forEach(
+      (ele: any) => {
+        console.log("element :", ele.attributs.id);
+        listIdAttTemp.push(ele.attributs.id)        
+        positionsAttr.set(ele.attributs.id, indexAttrCourant++);
       }
     );
+    
     if (event.target.checked) {
-      if (!listIdAttTemp.includes(this.idAttribut)) {
-        this.ajoutSelectionAttribut(this.idAttribut);
+      console.log("listtemp :", listIdAttTemp, element.id);
+    console.log(this.donneeDocCatService.dataDocumentAttributs);
+      
+      if (!listIdAttTemp.includes(element.id)) {
+        this.ajoutSelectionAttribut(element);
+        this.datas.push({ id: element.id, event: event });
+        this.verif = false;
       }
     } else {
-      if (listIdAttTemp.includes(this.idAttribut)) {
-        const index = positionsAttr.get(this.idAttribut);
+        const index = positionsAttr.get(element.id);
         this.retirerSelectionAttribut(index);
+        event.target.checked = false;
+        this.verif = true;
+      let i = 0;
+      let res = false;
+
+      while (res == false) {
+        if (this.datas[i].id == element.id) {
+          this.ELEMENTS_TABLE_ATTRIBUTS.splice(i, 1); // je supprime un seul element du tableau a la position 'i'
+          this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
+          this.datas.splice(i, 1);
+          res = true;
+        }
+        i++;
       }
     }
   }
@@ -117,27 +160,38 @@ export class ModalRessourceAttributsComponent implements OnInit {
     this.idAttribut = idAttribut;
   }
 
-  ajoutSelectionAttribut(idAttribut: string) {
-    this.serviceAttribut.getAttributById(idAttribut).subscribe((val) => {
-      this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
-      this.ELEMENTS_TABLE_ATTRIBUTS.push({
-        attributs: val,
-        valeur: this.formeAttribut.value.res,
-      });
-      this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-      this.donneeDocCatService.dataDocumentAttributs =
-        this.ELEMENTS_TABLE_ATTRIBUTS;
-      console.log(
-        'attributs selectionnés :',
-        this.donneeDocCatService.dataDocumentAttributs
-      );
+  ajoutSelectionAttribut(attribut: IAttributs) {
+    let listIdAttTemp: string[] = [];
+    let positionsAttr = new Map();
+    let indexAttrCourant: number = 0;
+    this.donneeDocCatService.dataDocumentAttributs.forEach(
+      (ele: IAttributs) => {
+        listIdAttTemp.push(ele.id);
+        positionsAttr.set(ele.id, indexAttrCourant++);
+      }
+    );
+    this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
+    this.ELEMENTS_TABLE_ATTRIBUTS.push({
+      attributs: attribut,
+      valeur: '',
     });
+    this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
+    this.donneeDocCatService.dataDocumentAttributs =
+      this.ELEMENTS_TABLE_ATTRIBUTS;
+    console.log(
+      'attributs selectionnés :',
+      this.donneeDocCatService.dataDocumentAttributs
+    );
+    return true;
   }
 
   viderselection() {
+    this.datas.forEach((c) => (c.event.target.checked = false));
+    this.datas = [];
     this.ELEMENTS_TABLE_ATTRIBUTS = [];
     this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-    this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS;
+    this.donneeDocCatService.dataDocumentAttributs =
+      this.ELEMENTS_TABLE_ATTRIBUTS;
   }
 
   verificationModificationDansTableau(
@@ -146,6 +200,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
     indexElement: number
   ) {
     console.log('element sélectionné :', element, event.target.value);
+    this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
     this.ELEMENTS_TABLE_ATTRIBUTS[indexElement].valeur = event.target.value;
 
     let faux: number = 0;
@@ -162,7 +217,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
         }
         console.log(' index', index);
       }
-      if (element.valeur == null || element.valeur == "") {
+      if (element.valeur == null || element.valeur == '') {
         faux++;
       }
     }
@@ -171,6 +226,8 @@ export class ModalRessourceAttributsComponent implements OnInit {
     } else {
       this.valid = true;
     }
+
+    console.log('valeurs :', this.ELEMENTS_TABLE_ATTRIBUTS);
 
     return this.valid;
   }
@@ -206,6 +263,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
         this.router.navigate(['/list-personnels']);
       }
     ) */
+    this.datas.forEach((c) => (c.event.target.checked = false));
   }
 
   retirerSelectionAttribut(index: number) {
