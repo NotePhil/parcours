@@ -141,8 +141,8 @@ export class NewRessourceComponent implements OnInit {
       scanBarCode: this.forme.get('scanBarcode')?.value,
     };
 
-    if (this.ressource != undefined) {
-      ressourceTemp.id = this.ressource.id;
+    if(this.ressource != undefined){
+      ressourceTemp.id = this.ressource.id
     }
     ressourceTemp.famille = this.familleDeRessource;
     this.ressourceService
