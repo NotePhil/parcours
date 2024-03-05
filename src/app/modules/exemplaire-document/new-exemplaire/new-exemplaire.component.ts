@@ -52,7 +52,9 @@ export class NewExemplaireComponent implements OnInit {
     contientRessources: false,
     contientDistributeurs: false,
     typeMouvement: 'Neutre',
-    DocEtats: []
+    DocEtats: [],
+    dateCreation: new Date,
+    idPersonneRattachee: ''
   };
 
   document: IDocument = {
@@ -561,7 +563,9 @@ export class NewExemplaireComponent implements OnInit {
       contientRessources: this.document.contientRessources,
       contientDistributeurs: this.document.contientDistributeurs,
       typeMouvement: this.document.typeMouvement,
-      DocEtats: []
+      DocEtats: [],
+      dateCreation: new Date,
+      idPersonneRattachee: ''
     };
 
     if (this.exemplaire.id != '') {

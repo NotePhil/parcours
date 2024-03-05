@@ -8,4 +8,6 @@ export interface IExemplaireDocument extends IDocument{
     mouvements?: IMouvement[]
     objetEnregistre : ObjetCleValeur[]
     idSousExelplaires? : string[]
+    dateCreation : Date
+    idPersonneRattachee : string
 }

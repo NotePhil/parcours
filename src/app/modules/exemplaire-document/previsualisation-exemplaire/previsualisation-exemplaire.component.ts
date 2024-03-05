@@ -37,7 +37,9 @@ export class PrevisualisationExemplaireComponent  implements OnInit {
     contientRessources: false,
     contientDistributeurs: false,
     typeMouvement: TypeMouvement.Neutre,
-    DocEtats: []
+    DocEtats: [],
+    dateCreation: new Date,
+    idPersonneRattachee: ''
   };
   titre:string='';
   mouvements : IMouvement[] = []
