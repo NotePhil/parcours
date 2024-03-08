@@ -30,12 +30,6 @@ export class NewRessourceComponent implements OnInit {
   ELEMENTS_TABLE_ATTRIBUTS: any[] = [];
   filteredOptions: IFamille[] | undefined;
   dataSource = new MatTableDataSource<IFamille>();
-  familleDeRessource: IFamille = {
-    id: '',
-    libelle: '',
-    description: '',
-    etat:false
-  };
   titre:string='';
   constructor(private formBuilder:FormBuilder, private dialogDef : MatDialog,private dataEnteteMenuService:DonneesEchangeService,private familleService:FamillesService,private ressourceService:RessourcesService,private serviceRessource:RessourcesService,private serviceFamille:FamillesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
@@ -45,8 +39,7 @@ export class NewRessourceComponent implements OnInit {
       unite: ['', [Validators.required]],
       prixEntree: ['', [Validators.required]],
       prixDeSortie: ['', [Validators.required]],
-      famille: new FormControl<string | IFamille>(''),
-      caracteristique:['']
+      famille: new FormControl<string | IFamille>('')
     })
   };
 
@@ -81,6 +74,8 @@ export class NewRessourceComponent implements OnInit {
       this.btnLibelle="Modifier";
       this.ressourceService.getRessourceById(idRessource).subscribe(x =>
         {
+          console.log("ele retour:", x);
+          
           this.ressource = x;
           this.ressource.id = idRessource!,
           this.forme.setValue({
@@ -90,13 +85,12 @@ export class NewRessourceComponent implements OnInit {
             unite: this.ressource.unite,
             prixEntree: this.ressource.prixEntree,
             prixDeSortie: this.ressource.prixDeSortie,
-            famille: this.ressource.famille,
-            caracteristique:this.ressource.caracteristique,
+            famille: this.ressource.famille
           })
-      });
-      // Initialisation du tableau d'attributs du document
+          // Initialisation du tableau d'attributs du document
     this.ELEMENTS_TABLE_ATTRIBUTS = this.ressource?.caracteristiques!
     this.dataEnteteMenuService.dataDocumentAttributs = this.ressource?.caracteristiques
+      });
     } else {
       this.dataEnteteMenuService.dataDocumentAttributs = []
     }
@@ -133,10 +127,7 @@ export class NewRessourceComponent implements OnInit {
     this.submitted=true;
     if(this.forme.invalid || this.ELEMENTS_TABLE_ATTRIBUTS.length<1) return console.log("error azertyuiop", this.forme.invalid);
 
-    let styleAtt : any = {
-      attribut: null,
-      valeur: null
-    };
+    let styleAtt : any = this.ELEMENTS_TABLE_ATTRIBUTS;
 
     let ressourceTemp : IRessource={
       id: uuidv4(),
@@ -147,8 +138,7 @@ export class NewRessourceComponent implements OnInit {
       prixEntree: ressourceInput.prixEntree,
       prixDeSortie: ressourceInput.prixDeSortie,
       famille:ressourceInput.famille,
-      caracteristique:ressourceInput.caracteristique,
-      caracteristiques: [styleAtt]
+      caracteristiques: styleAtt
     }
 
     if(this.ressource != undefined){
@@ -156,11 +146,6 @@ export class NewRessourceComponent implements OnInit {
     }
 
     console.log("attributs selectionne :", this.ELEMENTS_TABLE_ATTRIBUTS);
-    this.ELEMENTS_TABLE_ATTRIBUTS.forEach(
-      a => ressourceTemp.caracteristiques?.push(a)
-    )
-
-    ressourceTemp.famille = this.familleDeRessource
     console.log("resultat de l'enregistrement :", ressourceTemp);
     
     this.ressourceService.ajouterRessource(ressourceTemp).subscribe(

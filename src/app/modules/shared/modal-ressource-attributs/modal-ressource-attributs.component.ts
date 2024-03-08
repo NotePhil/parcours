@@ -44,10 +44,10 @@ export class ModalRessourceAttributsComponent implements OnInit {
       description: '',
       etat: false,
     },
-    caracteristique: '',
   };
   myControl = new FormControl<string | IAttributs>('');
   ELEMENTS_TABLE_ATTRIBUTS: any[] = [];
+  STORE_ELEMENTS_ATTRIBUTS: any[] = [];
   filteredOptions: IAttributs[] | undefined;
   displayedAttributsColumns: string[] = [
     'actions',
@@ -95,6 +95,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
     if (this.donneeDocCatService.dataDocumentAttributs != undefined) {
       this.ELEMENTS_TABLE_ATTRIBUTS = this.donneeDocCatService.dataDocumentAttributs;
       this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
+      this.STORE_ELEMENTS_ATTRIBUTS = this.donneeDocCatService.dataDocumentAttributs;
     }
     console.log('resultats tb :', this.dataSourceAttributResultat.data);
 
@@ -135,6 +136,9 @@ export class ModalRessourceAttributsComponent implements OnInit {
         this.ajoutSelectionAttribut(element);
         this.datas.push({ id: element.id, event: event });
         this.verif = false;
+      } else {
+          event.target.checked = false;
+          return;
       }
     } else {
         const index = positionsAttr.get(element.id);
@@ -176,8 +180,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
       valeur: '',
     });
     this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-    this.donneeDocCatService.dataDocumentAttributs =
-      this.ELEMENTS_TABLE_ATTRIBUTS;
+    this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS;
     console.log(
       'attributs selectionnés :',
       this.donneeDocCatService.dataDocumentAttributs
@@ -190,8 +193,14 @@ export class ModalRessourceAttributsComponent implements OnInit {
     this.datas = [];
     this.ELEMENTS_TABLE_ATTRIBUTS = [];
     this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-    this.donneeDocCatService.dataDocumentAttributs =
-      this.ELEMENTS_TABLE_ATTRIBUTS;
+    this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS;
+  }
+
+  lastElementModal() {
+    this.donneeDocCatService.dataDocumentAttributs = this.STORE_ELEMENTS_ATTRIBUTS;
+    this.datas.forEach((c) => (c.event.target.checked = false));
+    this.datas = [];
+    this.ELEMENTS_TABLE_ATTRIBUTS = [];
   }
 
   verificationModificationDansTableau(

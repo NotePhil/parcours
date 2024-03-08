@@ -11,7 +11,6 @@ export interface IRessource {
     prixDeSortie:number,
     unite:string,
     famille:IFamille,
-    caracteristique:string,
     caracteristiques? :
     [
         {
