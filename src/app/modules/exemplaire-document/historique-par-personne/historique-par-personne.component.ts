@@ -13,11 +13,11 @@ import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
 
 @Component({
-  selector: 'app-previsualisation-exemplaire',
-  templateUrl: './previsualisation-exemplaire.component.html',
-  styleUrls: ['./previsualisation-exemplaire.component.scss']
+  selector: 'app-historique-par-personne',
+  templateUrl: './historique-par-personne.component.html',
+  styleUrls: ['./historique-par-personne.component.scss']
 })
-export class PrevisualisationExemplaireComponent implements OnInit {
+export class HistoriqueParPersonneComponent implements OnInit {
 
   nomPatientCourant: string | null = '';
   exemplaire : IExemplaireDocument = {

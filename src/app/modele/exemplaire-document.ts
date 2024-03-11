@@ -1,3 +1,4 @@
+import { IPatient } from "./Patient";
 import { IDocument } from "./document";
 import { IMouvement } from "./mouvement";
 import { ObjetCleValeur } from "./objet-cle-valeur";
@@ -9,5 +10,5 @@ export interface IExemplaireDocument extends IDocument{
     objetEnregistre : ObjetCleValeur[]
     idSousExelplaires? : string[]
     dateCreation : Date
-    idPersonneRattachee : string
+    personneRattachee : IPatient
 }

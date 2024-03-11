@@ -4,24 +4,18 @@
            {{this.exemplaire.titre}} {{titre}}
        </h1>
        <div class="infos">
-        <p id="titre">
-            {{'tickets.table.title5' | translate}} :
-            <span class="title">{{this.exemplaire.personneRattachee.nom}}</span>
-        </p>
-        <p id="titre">
-            {{'document.exemplaire.text6' | translate}} :
-            <span class="title">{{this.exemplaire.dateCreation | date: 'dd/MM/yyyy'}}</span>
-            {{'document.exemplaire.text7' | translate}} 
-            <span class="title">{{this.exemplaire.dateCreation | date: 'hh:mm:ss'}}</span>
-        </p>
+           <p id="titre">
+               {{'tickets.table.title5' | translate}} :
+               <span class="title">{{this.exemplaire.personneRattachee.nom}}</span>
+           </p>
            <div class="block1" *ngFor="let attributParCategorie of exemplaire.categories">
                <div class="pb-3" *ngIf="attributParCategorie.nom">
                    <h3>{{attributParCategorie.nom}}</h3>
                    <div class="contentBlock">
                        <div class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories; let i = index">
-                           <label class="">{{attributParCategorie.attribut.titre}} : </label>
+                           <label class="" *ngIf="estEnregistrer(attributParCategorie.attribut.id)">{{attributParCategorie.attribut.titre}} : </label>
                            <div class="valAttribut">  
-                            <span>{{rechercherValeurParIdAttribut(attributParCategorie.attribut.id,attributParCategorie.attribut.type)}}</span>
+                            <span *ngIf="estEnregistrer(attributParCategorie.attribut.id)">{{rechercherValeurParIdAttribut(attributParCategorie.attribut.id,attributParCategorie.attribut.type)}}</span>
                            </div>
                        </div>
                    </div>

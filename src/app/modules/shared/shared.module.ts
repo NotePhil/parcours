@@ -28,6 +28,7 @@ import { ModalDocEtatsComponent } from './modal-doc-etats/modal-doc-etats.compon
 import { ModalCodebarreComponent } from './modal-codebarre/modal-codebarre.component';
 import { ModalCodebarreDialogComponent } from './modal-codebarre-dialog/modal-codebarre-dialog.component';
 import { ModalCodebarreScanContinueComponent } from './modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
+import { ModalChoixPersonneComponent } from './modal-choix-personne/modal-choix-personne.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ModalCodebarreScanContinueComponent } from './modal-codebarre-scan-cont
     ModalCodebarreComponent,
     ModalCodebarreDialogComponent,
     ModalCodebarreScanContinueComponent,
+    ModalChoixPersonneComponent,
   ],
   exports: [
     ModalCategoriesComponent,

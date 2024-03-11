@@ -32,7 +32,14 @@ export class ViewExemplaireComponent implements OnInit {
     typeMouvement: TypeMouvement.Neutre,
     DocEtats: [],
     dateCreation: new Date,
-    idPersonneRattachee: ''
+    personneRattachee: {
+      id: '',
+      nom: '',
+      adresse: '',
+      mail: '',
+      telephone: '',
+      qrCodeValue: ''
+    }
   };
   titre:string='';
   mouvements : IMouvement[] = []

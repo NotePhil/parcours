@@ -54,7 +54,14 @@ export class NewExemplaireComponent implements OnInit {
     typeMouvement: 'Neutre',
     DocEtats: [],
     dateCreation: new Date,
-    idPersonneRattachee: ''
+    personneRattachee: {
+      id: '',
+      nom: '',
+      adresse: '',
+      mail: '',
+      telephone: '',
+      qrCodeValue: ''
+    }
   };
 
   document: IDocument = {
@@ -565,7 +572,14 @@ export class NewExemplaireComponent implements OnInit {
       typeMouvement: this.document.typeMouvement,
       DocEtats: [],
       dateCreation: new Date,
-      idPersonneRattachee: ''
+      personneRattachee: {
+        id: '',
+        nom: '',
+        adresse: '',
+        mail: '',
+        telephone: '',
+        qrCodeValue: ''
+      }
     };
 
     if (this.exemplaire.id != '') {

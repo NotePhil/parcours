@@ -19,6 +19,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { ListExemplaireComponent } from './list-exemplaire/list-exemplaire.component';
 import { SharedModule } from '../shared/shared.module';
 import { PrevisualisationExemplaireComponent } from './previsualisation-exemplaire/previsualisation-exemplaire.component';
+import { HistoriqueParPersonneComponent } from './historique-par-personne/historique-par-personne.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PrevisualisationExemplaireComponent } from './previsualisation-exemplai
     NewExemplaireComponent,
     ViewExemplaireComponent,
     ListExemplaireComponent,
-    PrevisualisationExemplaireComponent
+    PrevisualisationExemplaireComponent,
+    HistoriqueParPersonneComponent
   ],
   imports: [
     CommonModule,
