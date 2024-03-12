@@ -1,1 +1,17 @@
-<p>modal-choix-personne works!</p>
+<div id="mainBlock" class="bg-light card modalCategorie">
+    <h2>{{'document.exemplaire.text8' | translate}}</h2>
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label class="searchBar">{{'patient.search-bar' | translate}}</mat-label>
+          <input type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingPersonnes(option)">
+              {{option.nom}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+    </form>
+    <div class="actionButton valBtn mt-2">
+        <button mat-button [mat-dialog-close] cdkFocusInitial routerLink="../historique-par-personne" class="btn btnValidation">{{'lists.button11' | translate}}</button>
+    </div>
+</div>

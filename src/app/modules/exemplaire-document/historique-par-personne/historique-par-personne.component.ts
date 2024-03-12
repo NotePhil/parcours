@@ -1,6 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,6 +12,7 @@ import { IType } from 'src/app/modele/type';
 import { TypeMouvement } from 'src/app/modele/typeMouvement';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
+import { ModalChoixPersonneComponent } from '../../shared/modal-choix-personne/modal-choix-personne.component';
 
 @Component({
   selector: 'app-historique-par-personne',
@@ -65,41 +67,42 @@ export class HistoriqueParPersonneComponent implements OnInit {
   displayedColumns: string[] = ['titre'];
   @ViewChild(MatSort) sort!: MatSort;
   exemplairesDePersonne : IExemplairesDePersonne[] = []
+  
 
   constructor(
     private router:Router, 
     private infosPath:ActivatedRoute,
-    private dataEnteteMenuService:DonneesEchangeService, 
     private serviceExemplaire:ExemplaireDocumentService,
     private datePipe: DatePipe,
-    private serviceExemplaireDocument: ExemplaireDocumentService,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private donneeExemplairePersonneRatacheeService:DonneesEchangeService,
+    private decimalPipe : DecimalPipe
     ) {}
 
   ngOnInit(): void {
-    this.getAllExemplaires().subscribe(valeurs => {
+
+    let idExemplaire : string = this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee.id
+    this.exemplaire.personneRattachee =  this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee;
+    this.serviceExemplaire.getExemplaireDocumentByIdPersonneRatachee(idExemplaire).subscribe(valeurs => {
       this.dataSourceAutresExemplaires.data = valeurs;
+      idExemplaire = valeurs[0].id
+      this.exemplaire = valeurs[0];
+      if (this.exemplaire.mouvements != undefined) {
+        this.dataSourceMouvements.data = this.exemplaire.mouvements
+      }
+      this.formerEnteteTableauMissions();
       this.filteredOptions = valeurs
       this.regrouperExemplairesParType()
     });
-
-    let idExemplaire = this.infosPath.snapshot.paramMap.get('idExemplaire');
-    if((idExemplaire != null) && idExemplaire!==''){
-      this.serviceExemplaire.getExemplaireDocumentById(idExemplaire).subscribe(
-        x =>{
-          this.exemplaire = x;
-          if (this.exemplaire.mouvements != undefined) {
-            this.mouvements = this.exemplaire.mouvements
-          }
-          if (this.exemplaire.mouvements != undefined) {
-            this.dataSourceMouvements.data = this.exemplaire.mouvements
-          }
-          this.formerEnteteTableauMissions();
-        });
-    }
-    this.titre=this.dataEnteteMenuService.dataEnteteMenu
-    this.nomPatientCourant = sessionStorage.getItem('nomPatientCourant');
   }
+  /**
+   * Methode permettant de formater les nombres afin d'y inserer un separateur de millers
+   * @param nbr le nombre à transformer
+   * @returns 
+   */
+    separateurDeMilliers(nbr:number) : string | null{
+      return this.decimalPipe.transform(nbr)
+    }
 
   /**
    * methode permettant de renvoyer la valeur de l'attribut
@@ -184,9 +187,6 @@ export class HistoriqueParPersonneComponent implements OnInit {
       this.displayedRessourcesColumns.push(montant)
     }
   }
-  private getAllExemplaires(){
-    return this.serviceExemplaireDocument.getAllExemplaireDocuments();
-  }
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
@@ -242,8 +242,6 @@ export class HistoriqueParPersonneComponent implements OnInit {
     if (this.exemplaire.mouvements != undefined) {
       this.dataSourceMouvements.data = this.exemplaire.mouvements
     }
-    this.titre=this.dataEnteteMenuService.dataEnteteMenu
-    this.nomPatientCourant = sessionStorage.getItem('nomPatientCourant');
 
   }
 }

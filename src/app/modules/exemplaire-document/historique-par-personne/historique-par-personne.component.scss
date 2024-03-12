@@ -7,12 +7,12 @@
     align-items: start;
     justify-content: space-between;
 }
-.globalSection{
-    width: 73%;
+#globalSection{
+    width: 85%;
     margin: 0 10px;
     border: 1px solid #28a7452b;
 }
-h1{
+h3{
     text-align: center;
     text-transform: uppercase;
     background-color: #28a745;
@@ -22,7 +22,7 @@ h1{
     padding: 10px 0;
     margin: 0;
 }
-h3{
+h4{
     text-transform: capitalize;
     margin: 0;
     padding: 0;
@@ -69,7 +69,6 @@ h3{
     position: relative;
     top: 5px;
     opacity: 0.8;
-    // width: 100%;
 }
 .block1 .inputBlock label, .block1 .inputBlock span{
     font-size: 13px;
@@ -149,12 +148,19 @@ th{
     }
 }
 .options {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     padding: 0 20px;
     padding-bottom: 10px;
+    button{
+        margin: auto 2px;
+        border-radius: 50%;
+    }
 }
 #rigthSection{
   height: max-content !important;
-  width: 25%;
+  width: fit-content;
 }
 .titleBlock{
   text-align: center;
@@ -166,6 +172,16 @@ th{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: auto;
+  width: 100% !important;
+  table, table div, tr, th, td{
+  width: 100% !important;
+  }
+  th{
+      background-color: #ffffff;
+      color: #28a745 !important;
+      text-align: center;
+  }
 }
 .entete0{
     background-color: #28a745;
@@ -178,11 +194,19 @@ th{
 }
 .rigth{
     margin: auto;
-    padding: 10px 0;
+    padding: 14.5px 0;
     text-align: center;
     text-transform: uppercase;
     background-color: #28a745;
-    font-size: 18px;
+}
+.hoverCol{
+    transition: ease-in-out 0.3s;
+}
+.hoverCol:hover, .focusDoc {
+    color: #28a745;
+    text-shadow: 0 0 1px #28a745;
+    transition: ease-in-out 0.3s;
+    background-color: rgba(40, 167, 69, 0.2);
 }
 @media screen and (max-width: 1040px) {
     .block1 .inputBlock{
@@ -222,7 +246,7 @@ th{
     .rigth{
         font-size: 80%;
     }
-    h3{
+    h4{
         font-size: 15px;
     }
 }
@@ -247,7 +271,7 @@ th{
             }
         }
     }
-    h3{
+    h4{
         font-size: 14px;
     }
 }
@@ -269,10 +293,10 @@ th{
             }
         }
     }
-    h1{
+    h3{
         font-size: 17px;
     }
-    h3{
+    h4{
         font-size: 13px;
     }
     p{
@@ -301,7 +325,7 @@ th{
         padding: 2.8px;
         width: 100% !important;
     }
-    h1{
+    h3{
         font-size: 15px;
     }
     p, span{

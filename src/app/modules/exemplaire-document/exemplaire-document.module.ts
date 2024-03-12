@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 
 import { ExemplaireDocumentRoutingModule } from './exemplaire-document-routing.module';
 import { NewExemplaireComponent } from './new-exemplaire/new-exemplaire.component';
@@ -20,6 +20,8 @@ import { ListExemplaireComponent } from './list-exemplaire/list-exemplaire.compo
 import { SharedModule } from '../shared/shared.module';
 import { PrevisualisationExemplaireComponent } from './previsualisation-exemplaire/previsualisation-exemplaire.component';
 import { HistoriqueParPersonneComponent } from './historique-par-personne/historique-par-personne.component';
+import { PageIntermediaireComponent } from './page-intermediaire/page-intermediaire.component';
+import { NgxPrintModule } from 'ngx-print';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { HistoriqueParPersonneComponent } from './historique-par-personne/histor
     ViewExemplaireComponent,
     ListExemplaireComponent,
     PrevisualisationExemplaireComponent,
-    HistoriqueParPersonneComponent
+    HistoriqueParPersonneComponent,
+    PageIntermediaireComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +55,8 @@ import { HistoriqueParPersonneComponent } from './historique-par-personne/histor
       extend: true,
     }),
     BrowserModule,
+    NgxPrintModule
   ],
+  providers : [DecimalPipe]
 })
 export class ExemplaireDocumentModule {}

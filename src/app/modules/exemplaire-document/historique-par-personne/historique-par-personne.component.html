@@ -1,16 +1,22 @@
 <div class="mainBlock" id="top2">
-    <div class="globalSection">
-       <h1>
-           {{this.exemplaire.titre}} {{titre}}
-       </h1>
+    <div id="globalSection">
+       <h3>
+           {{this.exemplaire.titre}}
+       </h3>
        <div class="infos">
-           <p id="titre">
-               {{'tickets.table.title5' | translate}} :
-               <span class="title">{{this.exemplaire.personneRattachee.nom}}</span>
-           </p>
+        <p id="titre">
+            {{'document.exemplaire.text9' | translate}} :
+            <span class="title">{{this.exemplaire.personneRattachee.nom}}</span>
+        </p>
+        <p id="titre">
+            {{'document.exemplaire.text6' | translate}} :
+            <span class="title">{{this.exemplaire.dateCreation | date: 'dd/MM/yyyy'}}</span>
+            {{'document.exemplaire.text7' | translate}} 
+            <span class="title">{{this.exemplaire.dateCreation | date: 'hh:mm:ss'}}</span>
+        </p>
            <div class="block1" *ngFor="let attributParCategorie of exemplaire.categories">
                <div class="pb-3" *ngIf="attributParCategorie.nom">
-                   <h3>{{attributParCategorie.nom}}</h3>
+                   <h4>{{attributParCategorie.nom}}</h4>
                    <div class="contentBlock">
                        <div class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories; let i = index">
                            <label class="" *ngIf="estEnregistrer(attributParCategorie.attribut.id)">{{attributParCategorie.attribut.titre}} : </label>
@@ -39,7 +45,7 @@
                     <ng-container matColumnDef="quantite">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title5' | translate}} </th>
                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                            {{element.quantite}}
+                            {{separateurDeMilliers(element.quantite)}}
                         </td>
                     </ng-container>
 
@@ -62,7 +68,7 @@
                     <ng-container *ngIf="exemplaire.affichagePrix == true && exemplaire.typeMouvement == typeNeutre" matColumnDef="prix">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title7' | translate}} </th>
                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                            {{element.prix}}
+                            {{separateurDeMilliers(element.prix)}}
                         </td>
                     </ng-container>
 
@@ -70,7 +76,7 @@
                     <ng-container *ngIf="exemplaire.affichagePrix == true && exemplaire.typeMouvement == typeAjout" matColumnDef="prixEntrée">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title5' | translate}} </th>
                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                            {{element.prix}}
+                            {{separateurDeMilliers(element.prix)}}
                         </td>
                     </ng-container>
 
@@ -78,14 +84,14 @@
                     <ng-container *ngIf="exemplaire.affichagePrix == true && exemplaire.typeMouvement == typeReduire" matColumnDef="prixDeSortie">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title9' | translate}} </th>
                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                            {{element.prix}} 
+                            {{separateurDeMilliers(element.prix)}} 
                         </td>
                     </ng-container>
 
                     <!-- montant total Column -->
                     <ng-container *ngIf="exemplaire.affichagePrix == true" matColumnDef="montant total">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title10' | translate}}</th>
-                            <td class="text-dark containCell" mat-cell *matCellDef="let element">{{element.quantite*element.prix}}</td>
+                            <td class="text-dark containCell" mat-cell *matCellDef="let element">{{separateurDeMilliers(element.quantite*element.prix)}}</td>
                     </ng-container>
 
                     <!-- distributeur Column -->
@@ -100,23 +106,26 @@
                 <!-- montant total -->
                 <div class="total" *ngIf="exemplaire.affichagePrix == true && exemplaire.mouvements?.length">
                     <span class="mr-2">{{'ressource.table2.title11' | translate}}</span>
-                    <input type="text" [value]="sommeMontants()" disabled>
+                    <input type="text" [value]="separateurDeMilliers(sommeMontants())" disabled>
                 </div>
             </div>
         </div>
         <div class="options">
-            <button type="button" [routerLink]="['/exemplaire-nouveau/modify/',exemplaire.id]" class="btn btn-outline-info">
-                <i class="fas fa-pen"></i>
-                {{'lists.button7' | translate}}
+            <button title="{{'lists.button1' | translate}}" class="btn btn-outline-warning" data-dismiss="modal"
+                [useExistingCss]="true"
+                styleSheetFile="assets/css/ticketPrint.scss"
+                printSectionId="globalSection"
+                ngxPrint>
+                <i class="fas fa-print"></i>
             </button>
         </div>
     </div>
     <div id="rigthSection" class="card" >
       <div class="titleBlock" id="titleBlock" class="entete0">
-        <h2 class="rigth">{{'document.exemplaire.text5' | translate}}</h2>
+        <h5 class="rigth">{{'document.exemplaire.text5' | translate}}</h5>
       </div>
       <div class="triExemplairesBlock">
-        <table class="table table-striped table-bordered table-inverse table-responsive">
+        <table class="table table-striped table-bordered table-inverse table-sm">
             <div *ngFor="let element of exemplairesDePersonne">
                 <div *ngIf="element.titre">
                     <thead class="thead-inverse">
@@ -124,9 +133,13 @@
                             <th>{{element.titre}}</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let exemplaire of element.exemplaires">
+                    <tbody *ngFor="let exemplaires of element.exemplaires">
                         <tr>
-                            <td scope="row" role="button" (click)="switchExemplaires(exemplaire)">{{exemplaire.description}}</td>
+                            <td scope="row" class="hoverCol"  [ngClass]="{'focusDoc': this.exemplaire.id == exemplaires.id, 'hoverCol': this.exemplaire.id != exemplaires.id}" role="button" (click)="switchExemplaires(exemplaires)">
+                                {{exemplaires.dateCreation | date: 'dd/MM/yyyy'}}
+                                {{ 'document.exemplaire.text7' | translate}} 
+                                {{exemplaires.dateCreation | date: 'hh:mm:ss'}}
+                            </td>
                         </tr>
                     </tbody>
                 </div>

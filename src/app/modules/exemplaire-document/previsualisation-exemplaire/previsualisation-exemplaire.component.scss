@@ -7,12 +7,12 @@
     align-items: start;
     justify-content: space-between;
 }
-.globalSection{
-    width: 73%;
+#globalSection{
+    width: 100%;
     margin: 0 10px;
     border: 1px solid #28a7452b;
 }
-h1{
+h3{
     text-align: center;
     text-transform: uppercase;
     background-color: #28a745;
@@ -22,7 +22,7 @@ h1{
     padding: 10px 0;
     margin: 0;
 }
-h3{
+h4{
     text-transform: capitalize;
     margin: 0;
     padding: 0;
@@ -149,40 +149,15 @@ th{
     }
 }
 .options {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     padding: 0 20px;
     padding-bottom: 10px;
-}
-#rigthSection{
-  height: max-content !important;
-  width: 25%;
-}
-.titleBlock{
-  text-align: center;
-  font-size:8px;
-  font-weight: bold;
-}
-.triExemplairesBlock{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.entete0{
-    background-color: #28a745;
-    color: rgba(255, 255, 255, 0.7);
-    border-radius: 5px;
-    box-shadow: 0 0 2px #28a745;
-    font-weight: bold;
-    padding: 0;
-    display: flex;
-}
-.rigth{
-    margin: auto;
-    padding: 10px 0;
-    text-align: center;
-    text-transform: uppercase;
-    background-color: #28a745;
-    font-size: 18px;
+    button{
+        margin: auto 2px;
+        border-radius: 50%;
+    }
 }
 @media screen and (max-width: 1040px) {
     .block1 .inputBlock{
@@ -196,9 +171,6 @@ th{
                 font-size: 12.5px !important;
             }
         }
-    }
-    .rigth{
-        font-size: 90%;
     }
 }
 @media screen and (max-width: 872px) {
@@ -219,10 +191,7 @@ th{
             }
         }
     }
-    .rigth{
-        font-size: 80%;
-    }
-    h3{
+    h4{
         font-size: 15px;
     }
 }
@@ -247,7 +216,7 @@ th{
             }
         }
     }
-    h3{
+    h4{
         font-size: 14px;
     }
 }
@@ -269,10 +238,10 @@ th{
             }
         }
     }
-    h1{
+    h3{
         font-size: 17px;
     }
-    h3{
+    h4{
         font-size: 13px;
     }
     p{
@@ -301,7 +270,7 @@ th{
         padding: 2.8px;
         width: 100% !important;
     }
-    h1{
+    h3{
         font-size: 15px;
     }
     p, span{

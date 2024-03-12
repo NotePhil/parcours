@@ -1,11 +1,10 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
-import { IExemplairesDePersonne } from 'src/app/modele/exemplaires-de-personne';
 import { IMouvement } from 'src/app/modele/mouvement';
 import { IType } from 'src/app/modele/type';
 import { TypeMouvement } from 'src/app/modele/typeMouvement';
@@ -64,7 +63,6 @@ export class PrevisualisationExemplaireComponent implements OnInit {
   filteredOptions: IExemplaireDocument[] | undefined;
   displayedColumns: string[] = ['titre'];
   @ViewChild(MatSort) sort!: MatSort;
-  exemplairesDePersonne : IExemplairesDePersonne[] = []
 
   constructor(
     private router:Router, 
@@ -73,14 +71,14 @@ export class PrevisualisationExemplaireComponent implements OnInit {
     private serviceExemplaire:ExemplaireDocumentService,
     private datePipe: DatePipe,
     private serviceExemplaireDocument: ExemplaireDocumentService,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private decimalPipe : DecimalPipe
     ) {}
 
   ngOnInit(): void {
     this.getAllExemplaires().subscribe(valeurs => {
       this.dataSourceAutresExemplaires.data = valeurs;
       this.filteredOptions = valeurs
-      this.regrouperExemplairesParType()
     });
 
     let idExemplaire = this.infosPath.snapshot.paramMap.get('idExemplaire');
@@ -99,6 +97,14 @@ export class PrevisualisationExemplaireComponent implements OnInit {
     }
     this.titre=this.dataEnteteMenuService.dataEnteteMenu
     this.nomPatientCourant = sessionStorage.getItem('nomPatientCourant');
+  }
+/**
+ * Methode permettant de formater les nombres afin d'y inserer un separateur de millers
+ * @param nbr le nombre à transformer
+ * @returns 
+ */
+  separateurDeMilliers(nbr:number) : string | null{
+    return this.decimalPipe.transform(nbr)
   }
 
   /**
@@ -193,31 +199,6 @@ export class PrevisualisationExemplaireComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
-  }
-  /**
-   * Methode permettant de trier le tableau des exemplaires de la personne afin de les 
-   * regrouper par type(documents ayant le meme titre)
-   */
-  regrouperExemplairesParType(){
-    this.exemplairesDePersonne = [];
-    let tmpTabExemplaireTrier = new Map();
-    for (let index = 0; index < this.dataSourceAutresExemplaires.data.length; index++) {
-      const element = this.dataSourceAutresExemplaires.data[index];
-      let cle : string =   element.titre;
-      if (!tmpTabExemplaireTrier.has(cle)) {
-        let tabEltTraite : IExemplaireDocument[] = [];
-        tabEltTraite.push(element);
-        tmpTabExemplaireTrier.set(cle,tabEltTraite);
-      }else{
-        let tabEltTraite : IExemplaireDocument[] = tmpTabExemplaireTrier.get(cle);
-        tabEltTraite.push(element);
-        tmpTabExemplaireTrier.set(cle,tabEltTraite);
-      }
-    }
-    tmpTabExemplaireTrier.forEach((value, key) => {
-      let elt : IExemplairesDePersonne = {titre :key, exemplaires:value};
-      this.exemplairesDePersonne.push(elt);        
-    });
   }
 
   /**
