@@ -141,9 +141,6 @@ export class ModalRessourceAttributsComponent implements OnInit {
           return;
       }
     } else {
-        const index = positionsAttr.get(element.id);
-        this.retirerSelectionAttribut(index);
-        event.target.checked = false;
         this.verif = true;
       let i = 0;
       let res = false;
@@ -277,10 +274,20 @@ export class ModalRessourceAttributsComponent implements OnInit {
 
   retirerSelectionAttribut(index: number) {
     this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
-    this.ELEMENTS_TABLE_ATTRIBUTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
+    let i = 0;
+      let res = false;
+
+      while (res == false) {
+        if (this.datas[i].id == this.ELEMENTS_TABLE_ATTRIBUTS[index].attributs.id) {
+          this.ELEMENTS_TABLE_ATTRIBUTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
+          this.datas[i].event.target.checked = false;
+          this.datas.splice(i, 1);
+          res = true;
+        }
+        i++;
+      }
     this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-    this.donneeDocCatService.dataDocumentAttributs =
-      this.ELEMENTS_TABLE_ATTRIBUTS;
+    this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS;
   }
   private getAllAttributs() {
     return this.serviceAttribut.getAllAttributs();
