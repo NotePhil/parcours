@@ -94,7 +94,8 @@
       "text1": "Le nom est obligatoire.",
       "text2": "Le prénom est obligatoire.",
       "text3": "La date de naissance est obligatoire.",
-      "text4": "L'addresse mail est obligatoire."
+      "text4": "L'addresse mail est obligatoire.",
+      "text5": "Né le"
     }
   },
   "personnel": {

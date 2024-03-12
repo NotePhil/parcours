@@ -31,6 +31,7 @@ export class PageIntermediaireComponent  implements OnInit {
       width: '100%',
       enterAnimationDuration:'1000ms',
       exitAnimationDuration:'1000ms',
+      panelClass: 'modalExemplairecDePersonne', // Add your custom panel class
       data:{}
     }
     )

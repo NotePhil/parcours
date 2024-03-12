@@ -197,8 +197,9 @@
         </div>
         
         <div class="actionButton container">
-            <button class="btn" type="reset" routerLink="../../executer-missions"><i class="fa fa-reply mr-1"></i>{{'lists.button2' | translate}}</button>      
-            <app-modal-codebarre-scan-continue></app-modal-codebarre-scan-continue>
+            <button class="btn" type="reset" routerLink="../../executer-missions"><i class="fa fa-reply mr-1"></i>{{'lists.button2' | translate}}</button>
+            <div *ngIf="document.contientRessources == true"><app-modal-codebarre-scan-continue></app-modal-codebarre-scan-continue></div>      
+            
             <button type="submit" class="btn btnValidation">{{btnLibelle}}</button>
         </div>
     </form>
