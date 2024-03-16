@@ -92,12 +92,13 @@ export class ModalRessourceAttributsComponent implements OnInit {
       this.filteredOptions = valeurs;
     });
 
-    if (this.donneeDocCatService.dataDocumentAttributs != undefined) {
+    if (this.donneeDocCatService.dataDocumentAttributs) {
       this.ELEMENTS_TABLE_ATTRIBUTS = this.donneeDocCatService.dataDocumentAttributs;
       this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
       this.STORE_ELEMENTS_ATTRIBUTS = this.donneeDocCatService.dataDocumentAttributs;
+      this.valid = false;
     }
-    console.log('resultats tb :', this.dataSourceAttributResultat.data);
+    console.log('resultats tb :', this.donneeDocCatService.dataDocumentAttributs);
 
     this.myControl.valueChanges.subscribe((value) => {
       const titre = typeof value === 'string' ? value : value?.titre;
