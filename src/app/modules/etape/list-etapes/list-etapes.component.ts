@@ -6,11 +6,11 @@ import { IService } from 'src/app/modele/service';
 import { ITicket } from 'src/app/modele/ticket';
 import { ServicesService } from 'src/app/services/services/services.service';
 import { TicketsService } from 'src/app/services/tickets/tickets.service';
-import {FormControl} from '@angular/forms';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort, Sort} from '@angular/material/sort';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
+import { FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { IEtape } from 'src/app/modele/etape';
 import { EtapesService } from 'src/app/services/etapes/etapes.service';
 import { IDocument } from 'src/app/modele/document';
@@ -24,24 +24,20 @@ export interface User {
 @Component({
   selector: 'app-list-etapes',
   templateUrl: './list-etapes.component.html',
-  styleUrls: ['./list-etapes.component.scss']
+  styleUrls: ['./list-etapes.component.scss'],
 })
 export class ListEtapesComponent implements OnInit {
-
-  id_etape: string = "0";
-  id_service : number = 0;
-  libelle_etape : string = "";
-  libelle_service : string = "";
-
+  id_etape: string = '0';
+  id_service: number = 0;
+  libelle_etape: string = '';
+  libelle_service: string = '';
 
   myControl = new FormControl<string | IEtape>('');
 
   ELEMENTS_TABLE: IAfficheEtape[] = [];
   filteredOptions: IEtape[] | undefined;
 
-  displayedColumns: string[] = ['libelle', 'etat','Document', 'actions'];
-
-
+  displayedColumns: string[] = ['libelle', 'etat', 'Document', 'actions'];
 
   dataSource = new MatTableDataSource<IAfficheEtape>(this.ELEMENTS_TABLE);
 
@@ -50,74 +46,72 @@ export class ListEtapesComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  tableDocuments : IAfficheEtape[] = []
+  tableDocuments: IAfficheEtape[] = [];
 
-
-  afficheEtape : IAfficheEtape = {
+  afficheEtape: IAfficheEtape = {
     id: '',
     libelle: '',
     etat: false,
-    document:[],
+    document: [],
     listSousDocuments: '',
-  }
-  constructor(private translate: TranslateService,private router:Router, private serviceEtape:EtapesService, private _liveAnnouncer: LiveAnnouncer, private serviceService:ServicesService, private serviceTicket:TicketsService){ }
+  };
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private serviceEtape: EtapesService,
+    private _liveAnnouncer: LiveAnnouncer,
+    private serviceService: ServicesService,
+    private serviceTicket: TicketsService
+  ) {}
 
   ngOnInit(): void {
     /*this.getAllEtapes().subscribe(valeurs => {
       this.dataSource.data = valeurs;
     });*/
 
-    this.getAllEtapes().subscribe(valeurs => {
-      const tableDocuments : IAfficheEtape[] = [];
+    this.getAllEtapes().subscribe((valeurs) => {
+      const tableDocuments: IAfficheEtape[] = [];
 
-       valeurs.forEach(
-         x =>{
-           tableDocuments.push(this.convertEtapToEtapAffiche(x))
-         }
-       )
-       this.dataSource.data = tableDocuments;
-     });
+      valeurs.forEach((x) => {
+        tableDocuments.push(this.convertEtapToEtapAffiche(x));
+      });
+      this.dataSource.data = tableDocuments;
+    });
 
-
-    this.myControl.valueChanges.subscribe(
-      value => {
-        const name = typeof value === 'string' ? value : value?.libelle;
-        if(name != undefined && name?.length >0){
-          this.serviceEtape.getEtapesBylibelle(name.toLowerCase() as string).subscribe(
-            reponse => {
-              this.filteredOptions = reponse;
-            }
-          )
-        }
-        else{
-          this.filteredOptions = [];
-        }
-
+    this.myControl.valueChanges.subscribe((value) => {
+      const name = typeof value === 'string' ? value : value?.libelle;
+      if (name != undefined && name?.length > 0) {
+        this.serviceEtape
+          .getEtapesBylibelle(name.toLowerCase() as string)
+          .subscribe((reponse) => {
+            this.filteredOptions = reponse;
+          });
+      } else {
+        this.filteredOptions = [];
       }
-    );
+    });
   }
 
-
-  setIdEtape (id_etape: string, libelle_etape : string){
+  setIdEtape(id_etape: string, libelle_etape: string) {
     this.id_etape = id_etape;
-    this.libelle_etape = libelle_etape
-    sessionStorage.setItem("id_etape", this.id_etape.toString());
-    sessionStorage.setItem("libelle_etape", this.libelle_etape);
+    this.libelle_etape = libelle_etape;
+    sessionStorage.setItem('id_etape', this.id_etape.toString());
+    sessionStorage.setItem('libelle_etape', this.libelle_etape);
   }
-  setlibelleService(id_service : number, libelleService: string){
+  setlibelleService(id_service: number, libelleService: string) {
     this.libelle_service = libelleService;
     this.id_service = id_service;
 
-    sessionStorage.setItem("id_service", this.id_service.toString());
-    sessionStorage.setItem("libelle_service", this.libelle_service);
+    sessionStorage.setItem('id_service', this.id_service.toString());
+    sessionStorage.setItem('libelle_service', this.libelle_service);
   }
 
-  private getAllEtapes(){
+  private getAllEtapes() {
     return this.serviceEtape.getAllEtapes();
   }
 
   displayFn(user: IEtape): string {
-    return user && user.libelle ? user.libelle: '';
+    return user && user.libelle ? user.libelle : '';
   }
 
   ngAfterViewInit() {
@@ -131,18 +125,16 @@ export class ListEtapesComponent implements OnInit {
     )
   }*/
 
-  public rechercherListingEtape(option: IEtape){
-    this.serviceEtape.getEtapesBylibelle(option.libelle.toLowerCase()).subscribe(
-        valeurs => {
-          const tableDocuments : IAfficheEtape[] = [];
-          valeurs.forEach(
-            x =>{
-              tableDocuments.push(this.convertEtapToEtapAffiche(x))
-            }
-          )
-          this.dataSource.data = tableDocuments;
-        }
-    )
+  public rechercherListingEtape(option: IEtape) {
+    this.serviceEtape
+      .getEtapesBylibelle(option.libelle.toLowerCase())
+      .subscribe((valeurs) => {
+        const tableDocuments: IAfficheEtape[] = [];
+        valeurs.forEach((x) => {
+          tableDocuments.push(this.convertEtapToEtapAffiche(x));
+        });
+        this.dataSource.data = tableDocuments;
+      });
   }
 
   /** Announce the change in sort state for assistive technology. */
@@ -158,23 +150,28 @@ export class ListEtapesComponent implements OnInit {
     }
   }
 
-  private convertEtapToEtapAffiche(x: IEtape) : IAfficheEtape {
-    let  afficheEtape  : IAfficheEtape = {
+  private convertEtapToEtapAffiche(x: IEtape): IAfficheEtape {
+    console.log(x.document);
+
+    let afficheEtape: IAfficheEtape = {
       id: '',
       libelle: '',
       etat: false,
-      document:[],
-      listSousDocuments:'',
-    }
-     afficheEtape.id = x.id;
-     afficheEtape.libelle = x.libelle;
-     afficheEtape.etat = x.etat;
+      document: [],
+      listSousDocuments: '',
+    };
+    afficheEtape.id = x.id;
+    afficheEtape.libelle = x.libelle;
+    afficheEtape.etat = x.etat;
 
-       x.document.forEach(
-        d =>afficheEtape.listSousDocuments += d.titre+ ", "
+    x.document.forEach(
+      (d) => (afficheEtape.listSousDocuments += d.titre + ', ')
+    );
+    afficheEtape.listSousDocuments = afficheEtape.listSousDocuments.replace(
+      /,\s*$/,
+      ''
+    );
 
-       )
-
-       return afficheEtape;
-   }
+    return afficheEtape;
+  }
 }
