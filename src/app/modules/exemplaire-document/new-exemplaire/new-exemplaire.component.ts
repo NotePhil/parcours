@@ -53,7 +53,7 @@ export class NewExemplaireComponent implements OnInit {
     contientDistributeurs: false,
     typeMouvement: 'Neutre',
     DocEtats: [],
-    dateCreation: new Date,
+    dateCreation: new Date(),
     personneRattachee: {
       id: '',
       nom: '',
@@ -93,7 +93,6 @@ export class NewExemplaireComponent implements OnInit {
 
   formeExemplaire: FormGroup;
   btnLibelle: string = 'Ajouter';
-  //titre: string = 'Ajouter un nouvel exemplaire de document';
   submitted: boolean = false;
   controlExemplaire = new FormControl();
   typeAttribut: string = '';
@@ -153,7 +152,7 @@ export class NewExemplaireComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private dataEnteteMenuService:DonneesEchangeService,
+    private donneeEchangeService:DonneesEchangeService,
     private infosPath: ActivatedRoute,
     private serviceRessource: RessourcesService,
     private serviceDistributeur: DistributeursService,
@@ -161,7 +160,6 @@ export class NewExemplaireComponent implements OnInit {
     private _liveAnnouncer: LiveAnnouncer,
     private serviceExemplaire: ExemplaireDocumentService,
     private datePipe: DatePipe,
-    private donneeExemplaireDocService:DonneesEchangeService,
     private barService: ModalCodebarreService
   ) {
     this.formeExemplaire = this.formBuilder.group({
@@ -190,7 +188,7 @@ export class NewExemplaireComponent implements OnInit {
         this.filteredDistributeurOptions=reponse
       }
     )
-    this.nomPatientCourant = sessionStorage.getItem('nomPatientCourant');
+    this.nomPatientCourant = this.donneeEchangeService.dataExemplairePersonneRatachee.nom;
     this.compteur = -1;
 
     // recuperation de l'id de l'exemplaire
@@ -200,7 +198,7 @@ export class NewExemplaireComponent implements OnInit {
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
 
     this.initialiseFormExemplaire();
-    this.titre=this.dataEnteteMenuService.dataEnteteMenu
+    this.titre=this.donneeEchangeService.dataEnteteMenu
     
     this.ressourceControl.valueChanges.subscribe((value) => {
       const query = value?.toString().toLowerCase(); // Convert to lower case for case-insensitive search
@@ -334,7 +332,7 @@ export class NewExemplaireComponent implements OnInit {
    * pré-former le tableau de mouvement
    */
   concatMouvementsSousExemplaireDocument(){
-    let sousExelplaires : IExemplaireDocument[] = this.donneeExemplaireDocService.dataDocumentSousDocuments
+    let sousExelplaires : IExemplaireDocument[] = this.donneeEchangeService.dataDocumentSousDocuments
     sousExelplaires.forEach(
       element => {
         if (element.mouvements) {
@@ -572,14 +570,7 @@ export class NewExemplaireComponent implements OnInit {
       typeMouvement: this.document.typeMouvement,
       DocEtats: [],
       dateCreation: new Date,
-      personneRattachee: {
-        id: '',
-        nom: '',
-        adresse: '',
-        mail: '',
-        telephone: '',
-        qrCodeValue: ''
-      }
+      personneRattachee: this.donneeEchangeService.dataExemplairePersonneRatachee
     };
 
     if (this.exemplaire.id != '') {

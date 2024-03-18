@@ -65,13 +65,14 @@ export class ModalChoixPersonneComponent  implements OnInit{
 
     this.myControl.valueChanges.subscribe(
       value => {
-        const name = typeof value === 'string' ? value : value?.nom;
-        if(name != undefined && name?.length >0){
-          this.servicePersonne.getPatientsByName(name.toLowerCase() as string).subscribe(
-            reponse => {
+        const query = value?.toString().toLowerCase(); // Convert to lower case for case-insensitive search
+        if (query && query.length > 0) {
+          // Search by name or ID
+          this.servicePersonne
+            .getPatientsByNameOrId(query)
+            .subscribe((reponse) => {
               this.filteredOptions = reponse;
-            }
-          )
+            });
         }
         else{
           this.servicePersonne.getAllPatients().subscribe(
@@ -83,6 +84,8 @@ export class ModalChoixPersonneComponent  implements OnInit{
 
       }
     );
+    const defaultValue = 'YourDefaultSearchValue'; // Replace with your desired default value
+    this.myControl.setValue(defaultValue);
   }
   displayFn(user: IPatient): string {
     return user && user.nom ? user.nom: '';
@@ -96,8 +99,7 @@ export class ModalChoixPersonneComponent  implements OnInit{
     this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee = option
     this.personne! = option
     if (this.myControl.value == '' || this.myControl.value == undefined) {
-      
-    this.scan_val = undefined
+      this.scan_val = undefined
     }
   }
   private handleScanValChange() {
