@@ -14,17 +14,22 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ModalCategoriesComponent } from './modal-categories/modal-categories.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialogModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+} from '@angular/material/dialog';
 import { ModalChoixAttributsComponent } from './modal-choix-attributs/modal-choix-attributs.component';
 import { ModalChoixPreconisationsComponent } from './modal-choix-preconisations/modal-choix-preconisations.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+//import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EnteteComponent } from './entete/entete.component';
 import { ModalChoixSousDocumentComponent} from './modal-choix-sous-document/modal-choix-sous-document.component';
 import { ModalChoixSousExemplairesComponent } from './modal-choix-sous-exemplaires/modal-choix-sous-exemplaires.component';
 import { ModalChoixDocumentsComponent } from './modal-choix-documents/modal-choix-documents.component';
-
-
-
+import { ModalDocEtatsComponent } from './modal-doc-etats/modal-doc-etats.component';
+import { ModalRoleValidationComponent } from './modal-role-validation/modal-role-validation.component';
+import { ModalCodebarreComponent } from './modal-codebarre/modal-codebarre.component';
+import { ModalCodebarreDialogComponent } from './modal-codebarre-dialog/modal-codebarre-dialog.component';
+import { ModalCodebarreScanContinueComponent } from './modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
 
 @NgModule({
   declarations: [
@@ -34,18 +39,25 @@ import { ModalChoixDocumentsComponent } from './modal-choix-documents/modal-choi
     EnteteComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
-    EnteteComponent,
+    ModalDocEtatsComponent,
+    ModalRoleValidationComponent,
+    ModalCodebarreComponent,
+    ModalCodebarreDialogComponent,
+    ModalCodebarreScanContinueComponent,
     ModalChoixDocumentsComponent,
 
   ],
   exports: [
     ModalCategoriesComponent,
-    ModalChoixAttributsComponent,
     EnteteComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
-    ModalChoixSousDocumentComponent,
-    EnteteComponent,
+    ModalDocEtatsComponent,
+    ModalChoixAttributsComponent,
+    ModalCodebarreComponent,
+    ModalCodebarreDialogComponent,
+    ModalCodebarreScanContinueComponent,
+    ModalRoleValidationComponent,
     ModalChoixDocumentsComponent,
   ],
   imports: [
@@ -56,21 +68,23 @@ import { ModalChoixDocumentsComponent } from './modal-choix-documents/modal-choi
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
-    MatFormFieldModule,
+    //MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
     MatDialogModule,
-    MatCheckboxModule,
+    //MatCheckboxModule,
     TranslateModule.forChild({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        },
-        extend:true
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      extend: true,
     }),
   ],
-  providers: []
+  providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

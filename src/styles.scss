@@ -124,6 +124,13 @@ select{
     background-color:#28a745;// #1473e6;
 }
 }
+.button-right {
+  margin-left: auto;
+}
+.container {
+  display: flex;
+  align-items: center;
+}
 .choix{
   color: #28a745;
   font-size: 18px;
@@ -174,10 +181,6 @@ select{
       font-size: 20px;
       padding: 10px;
       border-radius: 5px;
-      span:hover{
-          box-shadow: 0 0 2px #28a745;
-          transition: ease 0.23s;
-      }
   }
 }
 
@@ -255,6 +258,11 @@ td{
 #top{
   margin-top: -70px;
 }
+
+.align-items{
+  display: flex;
+}
+
 
 @media screen and (max-width: 1200px) {
   .title h2{

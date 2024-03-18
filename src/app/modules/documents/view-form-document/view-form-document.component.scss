@@ -16,15 +16,16 @@
         width: 100%;
     }
 }
-.entete .lien{
-    position: absolute;
-    left: 5px;
+.lien{
+    color: rgba(255, 255, 255, 0.7);
     transition: ease 0.2s;
+    font-size: 18px;
+    margin-top: 10px;
 }
-.entete .lien:hover{
-    border: solid 1px #ffffff9a;
-    padding: 0 10px;
+.lien:hover{
+    color: rgba(255, 255, 255, 0.8);
     transition: ease-in-out 0.2s;
+    transform: scale(1.1);
 }
 #titre{
     margin: 20px 0;
@@ -106,11 +107,12 @@ th{
 #blockCat{
     .infosCat{
         display: flex;
+        align-items: center;
         justify-content: space-between;
         p{
             margin: 10px 0;
             padding: 0;
-            width: 50%;
+            width: fit-content;
             font-weight: bold;
             text-transform: capitalize;
             span{

@@ -14,6 +14,8 @@ import { PrecoMvtRoutingModule } from './modules/precomvt/precomvt-routing.modul
 import { DistributeurRoutingModule } from './modules/distributeur/distributeur-routing.module';
 import { RoleRoutingModule } from './modules/role/role-routing.module';
 import { PersonnelsRoutingModule } from './modules/personnels/personnels-routing.module';
+import { EtatsRoutingModule } from './modules/etats/etats-routing.module';
+import { ValidationRoutingModule } from './modules/validation/validation-routing.module';
 import { EtapeRoutingModule } from './modules/etape/etape-routing.module';
 import { ParoursRoutingModule } from './modules/parours/parours-routing.module';
 
@@ -43,6 +45,8 @@ const routes: Routes = [
     FamilleRoutingModule,
     DistributeurRoutingModule,
     RoleRoutingModule,
+    EtatsRoutingModule,
+    ValidationRoutingModule,
     EtapeRoutingModule,
     ParoursRoutingModule
   ],

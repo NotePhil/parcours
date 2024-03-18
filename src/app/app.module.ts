@@ -11,10 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {
-  MatSlideToggle,
-  MatSlideToggleModule,
-} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule,} from '@angular/material/slide-toggle';
 import { ServicesModule } from './modules/services/services.module';
 import { MenuComponent } from './menu/menu.component';
 import { TicketsModule } from './modules/tickets/tickets.module';
@@ -33,6 +30,11 @@ import { CommonModule } from '@angular/common';
 import { DistributeurModule } from './modules/distributeur/distributeur.module';
 import { RoleModule } from './modules/role/role.module';
 import { PersonnelsModule } from './modules/personnels/personnels.module';
+import { SharedModule } from './modules/shared/shared.module';
+
+
+import { EtatsModule } from './modules/etats/etats.module';
+import { ValidationModule } from './modules/validation/validation.module';
 import { EtapeModule } from './modules/etape/etape.module';
 import { ParoursModule } from './modules/parours/parours.module';
 
@@ -59,9 +61,10 @@ import { ParoursModule } from './modules/parours/parours.module';
     RessourceModule,
     PrecomvtModule,
     CommonModule,
-
     DistributeurModule,
     RoleModule,
+    ValidationModule,
+
     EtapeModule,
     ParoursModule,
     // ngx-translate and the loader module
@@ -79,7 +82,9 @@ import { ParoursModule } from './modules/parours/parours.module';
     MatIconModule,
     MatToolbarModule,
     MatSlideToggleModule,
-    ExemplaireDocumentModule
+    ExemplaireDocumentModule,
+    SharedModule,
+    EtatsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -18,13 +18,15 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ListPersonnelsComponent } from './list-personnels/list-personnels.component';
 import { RolesPersonnelComponent } from './roles-personnel/roles-personnel.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { QRCodeModule } from 'angularx-qrcode';
+import { DetailPersonnelsComponent } from './detail-personnels/detail-personnels.component';
 
 @NgModule({
   declarations: [
-    NewPersonnelComponent,
+    NewPersonnelComponent, 
     ListPersonnelsComponent,
-    RolesPersonnelComponent
+    RolesPersonnelComponent,
+    DetailPersonnelsComponent
   ],
   imports: [
     CommonModule,
@@ -37,18 +39,20 @@ import { SharedModule } from '../shared/shared.module';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    QRCodeModule,
     TicketsModule,
     MatRadioModule,
     SharedModule,
     TranslateModule.forChild({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        },extend:true
-      }),
-      BrowserModule
-    ],
-    providers: [DatePipe],
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      extend: true,
+    }),
+    BrowserModule,
+  ],
+  providers: [DatePipe],
 })
-export class PersonnelsModule { }
+export class PersonnelsModule {}
