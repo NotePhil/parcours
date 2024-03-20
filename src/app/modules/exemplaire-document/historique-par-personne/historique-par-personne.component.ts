@@ -81,11 +81,11 @@ export class HistoriqueParPersonneComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let idExemplaire : string = this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee.id
+    let idPersonne : string = this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee.id
     this.exemplaire.personneRattachee =  this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee;
-    this.serviceExemplaire.getExemplaireDocumentByIdPersonneRatachee(idExemplaire).subscribe(valeurs => {
+    this.serviceExemplaire.getExemplaireDocumentByIdPersonneRatachee(idPersonne).subscribe(valeurs => {
       this.dataSourceAutresExemplaires.data = valeurs;
-      idExemplaire = valeurs[0].id
+      idPersonne = valeurs[0].id
       this.exemplaire = valeurs[0];
       if (this.exemplaire.mouvements != undefined) {
         this.dataSourceMouvements.data = this.exemplaire.mouvements

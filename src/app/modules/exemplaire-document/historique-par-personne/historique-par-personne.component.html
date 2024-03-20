@@ -1,14 +1,16 @@
 <div class="mainBlock" id="top2">
     <div id="globalSection">
-       <h3>
+       <h3 *ngIf="this.exemplairesDePersonne.length > 0">
            {{this.exemplaire.titre}}
        </h3>
+       <h3 *ngIf="this.exemplairesDePersonne.length == 0">{{'document.title7' | translate}}</h3>
        <div class="infos">
         <p id="titre">
             {{'document.exemplaire.text9' | translate}} :
             <span class="title">{{this.exemplaire.personneRattachee.nom}}</span>
+            <span class="title"> {{this.exemplaire.personneRattachee.prenom}}</span>
         </p>
-        <p id="titre">
+        <p *ngIf="this.exemplairesDePersonne.length > 0" id="titre">
             {{'document.exemplaire.text6' | translate}} :
             <span class="title">{{this.exemplaire.dateCreation | date: 'dd/MM/yyyy'}}</span>
             {{'document.exemplaire.text7' | translate}} 
@@ -19,9 +21,9 @@
                    <h4>{{attributParCategorie.nom}}</h4>
                    <div class="contentBlock">
                        <div class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories; let i = index">
-                           <label class="" *ngIf="estEnregistrer(attributParCategorie.attribut.id)">{{attributParCategorie.attribut.titre}} : </label>
+                           <label>{{attributParCategorie.attribut.titre}} : </label>
                            <div class="valAttribut">  
-                            <span *ngIf="estEnregistrer(attributParCategorie.attribut.id)">{{rechercherValeurParIdAttribut(attributParCategorie.attribut.id,attributParCategorie.attribut.type)}}</span>
+                            <span>{{rechercherValeurParIdAttribut(attributParCategorie.attribut.id,attributParCategorie.attribut.type)}}</span>
                            </div>
                        </div>
                    </div>
@@ -31,7 +33,7 @@
 
         <!-- tableau listing des mouvements -->
 
-        <div class="card-body p-0 tableBlock" id="tableList">
+        <div *ngIf="(this.exemplairesDePersonne.length > 0) || (this.exemplaire.mouvements == undefined)" class="card-body p-0 tableBlock" id="tableList">
             <div class='table-responsive w-100'>
                 <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceMouvements">
 
@@ -110,7 +112,7 @@
                 </div>
             </div>
         </div>
-        <div class="options">
+        <div *ngIf="this.exemplairesDePersonne.length > 0" class="options">
             <button title="{{'lists.button1' | translate}}" class="btn btn-outline-warning" data-dismiss="modal"
                 [useExistingCss]="true"
                 styleSheetFile="assets/css/ticketPrint.scss"
@@ -120,7 +122,7 @@
             </button>
         </div>
     </div>
-    <div id="rigthSection" class="card" >
+    <div *ngIf="this.exemplairesDePersonne.length > 0" id="rigthSection" class="card" >
       <div class="titleBlock" id="titleBlock" class="entete0">
         <h5 class="rigth">{{'document.exemplaire.text5' | translate}}</h5>
       </div>
@@ -136,9 +138,31 @@
                     <tbody *ngFor="let exemplaires of element.exemplaires">
                         <tr>
                             <td scope="row" class="hoverCol"  [ngClass]="{'focusDoc': this.exemplaire.id == exemplaires.id, 'hoverCol': this.exemplaire.id != exemplaires.id}" role="button" (click)="switchExemplaires(exemplaires)">
-                                {{exemplaires.dateCreation | date: 'dd/MM/yyyy'}}
-                                {{ 'document.exemplaire.text7' | translate}} 
-                                {{exemplaires.dateCreation | date: 'hh:mm:ss'}}
+                                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+                                    <li class="nav-item">
+                                        <a class="nav-link">
+                                            <span class="titleExemplaire">
+                                                {{exemplaires.dateCreation | date: 'dd/MM/yyyy'}}
+                                                {{ 'document.exemplaire.text7' | translate}} 
+                                                {{exemplaires.dateCreation | date: 'hh:mm:ss'}}
+                                            </span>
+                                            <i class="right fas fa-angle-left"></i>
+                                        </a>
+
+                                        <ul class="nav-treeview">
+                                            <li class="nav-item">
+                                                <span>
+                                                    {{exemplaires.description}}
+                                                </span>
+                                                <span>
+                                                    {{exemplaires.titre}}, 
+                                                    {{'document.exemplaire.text6' | translate}} :
+                                                    <span class="title">{{exemplaire.dateCreation | date: 'dd/MM/yyyy'}}</span>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </td>
                         </tr>
                     </tbody>

@@ -45,6 +45,9 @@ h4{
     font-weight: normal;
     text-transform: uppercase;
 }
+.infos .title:last-child{
+    text-transform: capitalize;
+}
 .contentBlock{
     display: flex;
     align-items: start;
@@ -207,6 +210,44 @@ th{
     text-shadow: 0 0 1px #28a745;
     transition: ease-in-out 0.3s;
     background-color: rgba(40, 167, 69, 0.2);
+}
+.hoverCol ul, .focusDoc ul{
+    width: 100%;
+    background-color: transparent;
+    text-align: center !important;
+    li{
+        width: 100%;
+        position: relative;
+        a {
+            text-decoration: none;
+            &:hover{
+                color: inherit;
+            }
+            i{
+            position: absolute;
+            right: 1px;
+            }
+        }
+        .nav-treeview{
+            background-color: #dedcdcda;
+            color: #787878;
+            text-align: left;
+            li{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: start;
+                overflow-x: scroll;
+                span{
+                    width: 100px;
+                }
+            }
+        }
+        .titleExemplaire{
+            font-weight: 500;
+        }
+    }
 }
 @media screen and (max-width: 1040px) {
     .block1 .inputBlock{

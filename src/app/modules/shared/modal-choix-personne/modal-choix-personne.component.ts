@@ -120,4 +120,11 @@ export class ModalChoixPersonneComponent  implements OnInit{
         });
     }
   }
+  /**
+   * Methode permettant de reinitialiser la barre de recherche et le contenu de la variable personne
+   */
+  reinitialiser(){
+    this.myControl.reset()
+    this.personne = undefined
+  }
 }

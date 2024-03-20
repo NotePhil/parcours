@@ -408,9 +408,9 @@ export class InMemDBService implements InMemoryDbService {
             elements: [
               { nom: 'Créer', lien: './mission-nouveau', bouton: 'false' },
               { nom: 'Rechercher', lien: './list-missions', bouton: 'false' },
-              { nom: 'Exécuter', lien: './executer-missions', bouton: 'false' },
+              { nom: 'Exécuter', lien: './page-intermedaire', bouton: 'false' },
               { nom: 'liste des exemplaires', lien: './list-exemplaire', bouton: 'false'},
-              { nom: 'Historique des documents', lien: 'page-intermedaire', bouton: 'false'}
+              { nom: 'Historique des documents', lien: './page-intermedaire', bouton: 'false'}
             ],
           },
           {
@@ -555,9 +555,9 @@ export class InMemDBService implements InMemoryDbService {
             elements: [
               { nom: 'New', lien: './mission-nouveau', bouton: 'false' },
               { nom: 'Search', lien: './list-missions', bouton: 'false' },
-              { nom: 'Execute', lien: './executer-missions', bouton: 'false' },
+              { nom: 'Execute', lien: './page-intermedaire', bouton: 'false' },
               { nom: 'list of exemplaires', lien: './list-exemplaire', bouton: 'false'},
-              { nom: "Documents history", lien: 'page-intermedaire', bouton: 'false'}
+              { nom: "Documents history", lien: './page-intermedaire', bouton: 'false'}
             ],
           },
           {
