@@ -16,6 +16,7 @@ export class DonneesEchangeService {
   dataDocumentSousExemplaireDocuments : any;
   dataDocumentEtats : any;
   dataExemplairePersonneRatachee : any;
+  dataUrlExemplaireDePersonne : any;
   constructor(private http:HttpClient) { }
 
   getTypeMvt():Observable<TypeMvt>

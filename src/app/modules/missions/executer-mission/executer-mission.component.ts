@@ -24,15 +24,17 @@ export class ExecuterMissionComponent implements OnInit {
   missionChoisieLibelle: string="";
   estClique : boolean = false;
   idDocumentPourExemplaire : string = ""
+  nomPersonne : string = ""
 
   constructor(private formBuilder:FormBuilder, private missionService:MissionsService,private router:Router, private infosPath:ActivatedRoute,
-     private documentService:DocumentService, private donneeExemplaireDocService:DonneesEchangeService, private dialogDef : MatDialog ) {
+     private documentService:DocumentService, private donneeExemplaireDePersonneService:DonneesEchangeService, private dialogDef : MatDialog ) {
     this.formeMissionExec = this.formBuilder.group({
      
     });
    }
 
   ngOnInit(): void {
+    this.nomPersonne = this.donneeExemplaireDePersonneService.dataExemplairePersonneRatachee.nom + " " + this.donneeExemplaireDePersonneService.dataExemplairePersonneRatachee.prenom
     this.missions$ = this.missionService.getMissionByUser("admin");
   }
 

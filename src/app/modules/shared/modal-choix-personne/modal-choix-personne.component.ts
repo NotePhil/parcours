@@ -19,6 +19,7 @@ export class ModalChoixPersonneComponent  implements OnInit{
   filteredOptions: IPatient[] | undefined;
   personne : IPatient | undefined
   scan_val: any | undefined;
+  url : string =""
   
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
@@ -30,6 +31,13 @@ export class ModalChoixPersonneComponent  implements OnInit{
   ) {}
   
   ngOnInit(): void {
+    if (this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Exécuter" || this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Execute") {
+      this.url= "../executer-missions"
+    }else if (this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Historique des documents" || this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Documents history") {
+      this.url= "../historique-par-personne"
+    }
+    console.log('url'  , this.url);
+    
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
       this.myControl.setValue(this.scan_val); // Set the initial value in the search bar

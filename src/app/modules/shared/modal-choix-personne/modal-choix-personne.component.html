@@ -77,7 +77,7 @@
       <button *ngIf="this.personne != undefined" mat-button (click)="reinitialiser()" class="btn btnValidation annuler" title="{{'lists.button3' | translate}}">
         <i class="fa fa-undo" aria-hidden="true"></i>
       </button>
-      <button *ngIf="this.personne != undefined" mat-button [mat-dialog-close] cdkFocusInitial routerLink="../historique-par-personne" class="btn btnValidation" title="{{'lists.button11' | translate}}">
+      <button *ngIf="this.personne != undefined" mat-button [mat-dialog-close] cdkFocusInitial routerLink = "{{url}}" class="btn btnValidation" title="{{'lists.button11' | translate}}">
         <i class="fa fa-check" aria-hidden="true"></i>
       </button>
     </div>

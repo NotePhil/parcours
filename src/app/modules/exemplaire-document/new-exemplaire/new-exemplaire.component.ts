@@ -188,7 +188,7 @@ export class NewExemplaireComponent implements OnInit {
         this.filteredDistributeurOptions=reponse
       }
     )
-    this.nomPatientCourant = this.donneeEchangeService.dataExemplairePersonneRatachee.nom;
+    this.nomPatientCourant = this.donneeEchangeService.dataExemplairePersonneRatachee.nom + " " + this.donneeEchangeService.dataExemplairePersonneRatachee.prenom;
     this.compteur = -1;
 
     // recuperation de l'id de l'exemplaire
