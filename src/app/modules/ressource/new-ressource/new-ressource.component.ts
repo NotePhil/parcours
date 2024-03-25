@@ -118,7 +118,7 @@ export class NewRessourceComponent implements OnInit {
     )
 
     dialogRef.afterClosed().subscribe(result => {
-      this.ELEMENTS_TABLE_ATTRIBUTS =  this.dataEnteteMenuService.dataDocumentAttributs
+      this.ELEMENTS_TABLE_ATTRIBUTS =  this.dataEnteteMenuService.dataDocumentAttributs      
     });
     
   }

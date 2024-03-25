@@ -17,6 +17,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { log } from 'console';
 import { IRessource } from 'src/app/modele/ressource';
+import { IType } from 'src/app/modele/type';
 
 @Component({
   selector: 'app-modal-ressource-attributs',
@@ -47,7 +48,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
   };
   myControl = new FormControl<string | IAttributs>('');
   ELEMENTS_TABLE_ATTRIBUTS: any[] = [];
-  STORE_ELEMENTS_ATTRIBUTS: any[] = this.donneeDocCatService.dataDocumentAttributs;
+  STORE_ELEMENTS_ATTRIBUTS = new Map();
   filteredOptions: IAttributs[] | undefined;
   displayedAttributsColumns: string[] = [
     'actions',
@@ -66,6 +67,20 @@ export class ModalRessourceAttributsComponent implements OnInit {
   );
   dataSourceAttributResultat = new MatTableDataSource<any>();
   idAttribut: string = '';
+  attRes : IAttributs = {
+    id: '',
+    titre: '',
+    description: '',
+    etat: false,
+    dateCreation: new Date(),
+    dateModification: new Date(),
+    valeursParDefaut: '',
+    type: IType.Int,
+  } 
+  att = {
+    attribut : this.attRes,
+    Valeur : ""
+}
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -98,6 +113,10 @@ export class ModalRessourceAttributsComponent implements OnInit {
       this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
       this.valid = false;
     }
+    this.donneeDocCatService.dataDocumentAttributs.forEach(
+      (element: any) => {
+      this.STORE_ELEMENTS_ATTRIBUTS.set(element.attributs, element.valeur)
+    });
     console.log(
       'resultats tb :',
       this.STORE_ELEMENTS_ATTRIBUTS, this.donneeDocCatService.dataDocumentAttributs, this.valid
@@ -199,10 +218,22 @@ export class ModalRessourceAttributsComponent implements OnInit {
   }
 
   lastElementModal() {
-    this.donneeDocCatService.dataDocumentAttributs = this.STORE_ELEMENTS_ATTRIBUTS;
-    this.datas.forEach((c) => (c.event.target.checked = false));
-    this.datas = [];
+    // this.donneeDocCatService.dataDocumentAttributs = this.STORE_ELEMENTS_ATTRIBUTS;
+    // this.datas.forEach((c) => (c.event.target.checked = false));
+    // this.datas = [];
     this.ELEMENTS_TABLE_ATTRIBUTS = [];
+    this.donneeDocCatService.dataDocumentAttributs = []
+    this.STORE_ELEMENTS_ATTRIBUTS.forEach(
+      (value, key) => {
+      this.serviceAttribut.getAttributById(key).subscribe( 
+        object => {
+      })
+          this.att.attribut = key
+          this.att.Valeur = value
+          this.ELEMENTS_TABLE_ATTRIBUTS.push(this.att)
+          console.log("ressoAtt :", this.att);
+    });
+          this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS
     console.log("ele store :", this.STORE_ELEMENTS_ATTRIBUTS, this.donneeDocCatService.dataDocumentAttributs);
     
   }

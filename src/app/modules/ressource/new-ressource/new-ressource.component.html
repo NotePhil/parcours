@@ -110,7 +110,7 @@
                                   <i class="fas fa-plus-square"></i>
                               </button>
                               <span *ngFor="let listeAttributs of ELEMENTS_TABLE_ATTRIBUTS">
-                                  {{listeAttributs.attributs.titre | lowercase}}<span>, </span>
+                                  {{listeAttributs.attributs!.titre! | lowercase}}<span>, </span>
                               </span>
                           </div>
                       </div>
