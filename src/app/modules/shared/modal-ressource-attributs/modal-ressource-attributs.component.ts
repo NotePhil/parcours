@@ -225,13 +225,9 @@ export class ModalRessourceAttributsComponent implements OnInit {
     this.donneeDocCatService.dataDocumentAttributs = []
     this.STORE_ELEMENTS_ATTRIBUTS.forEach(
       (value, key) => {
-      this.serviceAttribut.getAttributById(key).subscribe( 
-        object => {
-      })
-          this.att.attribut = key
-          this.att.Valeur = value
-          this.ELEMENTS_TABLE_ATTRIBUTS.push(this.att)
-          console.log("ressoAtt :", this.att);
+      this.att.attribut = key
+      this.att.Valeur = value
+      this.ELEMENTS_TABLE_ATTRIBUTS.push(this.att)
     });
           this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS
     console.log("ele store :", this.STORE_ELEMENTS_ATTRIBUTS, this.donneeDocCatService.dataDocumentAttributs);
