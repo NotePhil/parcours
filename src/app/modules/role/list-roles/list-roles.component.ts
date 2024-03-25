@@ -78,7 +78,6 @@ export class ListRolesComponent implements OnInit {
             validations: x.validations!,
             listeValidations: ''
           }
-          console.log("valid:", x.validations);
           
           if (x.validations) {
             x.validations.forEach(

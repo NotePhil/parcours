@@ -125,6 +125,9 @@
     <div *ngIf="this.exemplairesDePersonne.length > 0" id="rigthSection" class="card" >
       <div class="titleBlock" id="titleBlock" class="entete0">
         <h5 class="rigth">{{'document.exemplaire.text5' | translate}}</h5>
+        <div role="button" (click)="regrouperExemplairesParDate()">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+        </div>
       </div>
       <div class="triExemplairesBlock">
         <table class="table table-striped table-bordered table-inverse table-sm">
@@ -132,7 +135,7 @@
                 <div *ngIf="element.titre">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>{{element.titre}}</th>
+                            <th *ngIf="element.titre != ''">{{element.titre}}</th>
                         </tr>
                     </thead>
                     <tbody *ngFor="let exemplaires of element.exemplaires">

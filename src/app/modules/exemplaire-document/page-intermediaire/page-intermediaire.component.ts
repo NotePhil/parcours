@@ -37,8 +37,7 @@ export class PageIntermediaireComponent  implements OnInit {
     )
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee.id
-      console.log(this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee.id)
+      
     });
   }
 }

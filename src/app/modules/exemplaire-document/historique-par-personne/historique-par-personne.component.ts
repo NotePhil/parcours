@@ -219,6 +219,28 @@ export class HistoriqueParPersonneComponent implements OnInit {
       this.exemplairesDePersonne.push(elt);        
     });
   }
+  /**
+   * Methode permettant de trier le tableau des exemplaires de la personne afin de les 
+   * regrouper par date
+   */
+  regrouperExemplairesParDate(){
+    let tmpTabExemplaireTrier = new Map();
+    let tmpTabExemplaireDates = [];
+    for (let index = 0; index < this.dataSourceAutresExemplaires.data.length; index++) {
+      const element = this.dataSourceAutresExemplaires.data[index];
+        tmpTabExemplaireTrier.set(element.dateCreation,element);
+        tmpTabExemplaireDates.push(element.dateCreation)
+    }
+    tmpTabExemplaireDates.sort()
+
+    let exemplairesTemp : IExemplaireDocument[] = []
+    tmpTabExemplaireDates.forEach((date) => {
+      exemplairesTemp.push(tmpTabExemplaireTrier.get(date))      
+    });
+      let elt : IExemplairesDePersonne = {titre : "", exemplaires:exemplairesTemp};
+      this.exemplairesDePersonne = []
+      this.exemplairesDePersonne.push(elt);
+  }
 
   /**
    * Methode permettant de rafraîchir la section de la page presentant l'emplaire et de 

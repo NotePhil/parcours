@@ -36,7 +36,6 @@ export class ModalChoixPersonneComponent  implements OnInit{
     }else if (this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Historique des documents" || this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Documents history") {
       this.url= "../historique-par-personne"
     }
-    console.log('url'  , this.url);
     
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
