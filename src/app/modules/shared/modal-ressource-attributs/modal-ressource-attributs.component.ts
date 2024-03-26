@@ -48,7 +48,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
   };
   myControl = new FormControl<string | IAttributs>('');
   ELEMENTS_TABLE_ATTRIBUTS: any[] = [];
-  STORE_ELEMENTS_ATTRIBUTS = new Map();
+  STORE_ELEMENTS_ATTRIBUTS: any[] = [];
   filteredOptions: IAttributs[] | undefined;
   displayedAttributsColumns: string[] = [
     'actions',
@@ -108,19 +108,15 @@ export class ModalRessourceAttributsComponent implements OnInit {
     });
 
     if (this.donneeDocCatService.dataDocumentAttributs.length > 0) {
-      this.ELEMENTS_TABLE_ATTRIBUTS =
-        this.donneeDocCatService.dataDocumentAttributs;
+      this.ELEMENTS_TABLE_ATTRIBUTS = this.donneeDocCatService.dataDocumentAttributs;
       this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
+      this.STORE_ELEMENTS_ATTRIBUTS = this.ELEMENTS_TABLE_ATTRIBUTS;
       this.valid = false;
+      console.log(
+        'resultats tb :',
+        this.STORE_ELEMENTS_ATTRIBUTS, this.donneeDocCatService.dataDocumentAttributs, this.valid
+      );
     }
-    this.donneeDocCatService.dataDocumentAttributs.forEach(
-      (element: any) => {
-      this.STORE_ELEMENTS_ATTRIBUTS.set(element.attributs, element.valeur)
-    });
-    console.log(
-      'resultats tb :',
-      this.STORE_ELEMENTS_ATTRIBUTS, this.donneeDocCatService.dataDocumentAttributs, this.valid
-    );
 
     this.myControl.valueChanges.subscribe((value) => {
       const titre = typeof value === 'string' ? value : value?.titre;
@@ -223,13 +219,9 @@ export class ModalRessourceAttributsComponent implements OnInit {
     // this.datas = [];
     this.ELEMENTS_TABLE_ATTRIBUTS = [];
     this.donneeDocCatService.dataDocumentAttributs = []
-    this.STORE_ELEMENTS_ATTRIBUTS.forEach(
-      (value, key) => {
-      this.att.attribut = key
-      this.att.Valeur = value
-      this.ELEMENTS_TABLE_ATTRIBUTS.push(this.att)
-    });
-          this.donneeDocCatService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS
+    //this.donneeDocCatService.dataDocumentAttributs = this.STORE_ELEMENTS_ATTRIBUTS
+    this.datas.forEach((c) => (c.event.target.checked = false));
+    this.datas = [];
     console.log("ele store :", this.STORE_ELEMENTS_ATTRIBUTS, this.donneeDocCatService.dataDocumentAttributs);
     
   }
