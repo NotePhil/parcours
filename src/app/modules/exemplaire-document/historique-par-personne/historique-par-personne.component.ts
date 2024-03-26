@@ -66,8 +66,9 @@ export class HistoriqueParPersonneComponent implements OnInit {
   filteredOptions: IExemplaireDocument[] | undefined;
   displayedColumns: string[] = ['titre'];
   @ViewChild(MatSort) sort!: MatSort;
-  exemplairesDePersonne : IExemplairesDePersonne[] = []
-  
+  exemplairesDePersonne : IExemplairesDePersonne[] = [];
+  DEFAULT_VALUE_TRI : string = "default";
+  TRI_VALUE_DATE : string = "date";
 
   constructor(
     private router:Router, 
@@ -92,7 +93,7 @@ export class HistoriqueParPersonneComponent implements OnInit {
       }
       this.formerEnteteTableauMissions();
       this.filteredOptions = valeurs
-      this.regrouperExemplairesParType()
+      this.regrouperExemplairesParType("default")
     });
   }
   /**
@@ -198,12 +199,15 @@ export class HistoriqueParPersonneComponent implements OnInit {
    * Methode permettant de trier le tableau des exemplaires de la personne afin de les 
    * regrouper par type(documents ayant le meme titre)
    */
-  regrouperExemplairesParType(){
+  regrouperExemplairesParType(cleDeTri : string){
     this.exemplairesDePersonne = [];
     let tmpTabExemplaireTrier = new Map();
     for (let index = 0; index < this.dataSourceAutresExemplaires.data.length; index++) {
       const element = this.dataSourceAutresExemplaires.data[index];
       let cle : string =   element.titre;
+      if(cleDeTri == this.TRI_VALUE_DATE)
+        cle = element.dateCreation.toString().substring(0,10);
+
       if (!tmpTabExemplaireTrier.has(cle)) {
         let tabEltTraite : IExemplaireDocument[] = [];
         tabEltTraite.push(element);
@@ -218,29 +222,27 @@ export class HistoriqueParPersonneComponent implements OnInit {
       let elt : IExemplairesDePersonne = {titre :key, exemplaires:value};
       this.exemplairesDePersonne.push(elt);        
     });
+
+    this.exemplairesDePersonne.sort(this.comparerParNom)
   }
   /**
    * Methode permettant de trier le tableau des exemplaires de la personne afin de les 
    * regrouper par date
    */
   regrouperExemplairesParDate(){
-    let tmpTabExemplaireTrier = new Map();
-    let tmpTabExemplaireDates = [];
-    for (let index = 0; index < this.dataSourceAutresExemplaires.data.length; index++) {
-      const element = this.dataSourceAutresExemplaires.data[index];
-        tmpTabExemplaireTrier.set(element.dateCreation,element);
-        tmpTabExemplaireDates.push(element.dateCreation)
-    }
-    tmpTabExemplaireDates.sort()
-
-    let exemplairesTemp : IExemplaireDocument[] = []
-    tmpTabExemplaireDates.forEach((date) => {
-      exemplairesTemp.push(tmpTabExemplaireTrier.get(date))      
-    });
-      let elt : IExemplairesDePersonne = {titre : "", exemplaires:exemplairesTemp};
-      this.exemplairesDePersonne = []
-      this.exemplairesDePersonne.push(elt);
+      this.regrouperExemplairesParType("date");  
   }
+
+  // Fonction de comparaison pour trier par la propriété 'nom'
+  comparerParNom(a: IExemplairesDePersonne, b: IExemplairesDePersonne) {
+    if (a.titre < b.titre) {
+        return 1;
+    }
+    if (a.titre > b.titre) {
+        return -1;
+    }
+    return 0;
+}
 
   /**
    * Methode permettant de rafraîchir la section de la page presentant l'emplaire et de 
