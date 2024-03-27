@@ -9,23 +9,27 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IDocument } from 'src/app/modele/document';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
+import { ModalChoixDocEtatComponent } from '../modal-choix-doc-etat/modal-choix-doc-etat.component';
 
 @Component({
   selector: 'app-modal-choix-sous-document',
   templateUrl: './modal-choix-sous-document.component.html',
-  styleUrls: ['./modal-choix-sous-document.component.scss']
+  styleUrls: ['./modal-choix-sous-document.component.scss'],
 })
 export class ModalChoixSousDocumentComponent implements OnInit {
+  selectedEtats: string[] = [];
   formeDocument: FormGroup;
   myControl = new FormControl<string | IDocument>('');
   ELEMENTS_TABLE_DOCUMENTS: IDocument[] = [];
   filteredOptions: IDocument[] | undefined;
-  displayedDocumentsColumns: string[] = [
+  displayedDocumentsColumns: string[] = ['actions', 'titre', 'description']; // structure du tableau presentant les documents
+  displayedDocumentsColumnsOnSelect: string[] = [
     'actions',
     'titre',
-    'description'
-  ]; // structure du tableau presentant les documents
-  
+    'description',
+    'etat',
+  ]; // structure du tableau presentant les documents selectionees
+
   dataSourceDocument = new MatTableDataSource<IDocument>(
     this.ELEMENTS_TABLE_DOCUMENTS
   );
@@ -40,20 +44,37 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     private formBuilder: FormBuilder,
     private serviceDocument: DocumentService,
     private _liveAnnouncer: LiveAnnouncer,
-    private donneeDocCatService:DonneesEchangeService,
+    private donneeDocCatService: DonneesEchangeService,
+    public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    
-    this.formeDocument = this.formBuilder.group({
+    this.formeDocument = this.formBuilder.group({});
+  }
+
+  openModal(documentChoisi: IDocument) {
+    const dialogRef = this.dialog.open(ModalChoixDocEtatComponent, {
+      width: '600px',
+      data: { documentChoisi: documentChoisi },
     });
+
+    dialogRef.componentInstance.saveChanges.subscribe(
+      (selectedEtats: string[]) => {
+        this.selectedEtats = selectedEtats;
+      }
+    );
+
+    //dialogRef.afterClosed().subscribe((result) => {
+    //  console.log('The modal was closed');
+    //});
   }
 
   ngOnInit(): void {
     this.getAllDocument().subscribe((valeurs) => {
       this.dataSourceDocument.data = valeurs;
-      this.filteredOptions = valeurs
+      this.filteredOptions = valeurs;
     });
-    this.dataSourceDocumentResultat.data = this.donneeDocCatService.dataDocumentSousDocuments
+    this.dataSourceDocumentResultat.data =
+      this.donneeDocCatService.dataDocumentSousDocuments;
     this.myControl.valueChanges.subscribe((value) => {
       const titre = typeof value === 'string' ? value : value?.titre;
       if (titre != undefined && titre?.length > 0) {
@@ -63,30 +84,29 @@ export class ModalChoixSousDocumentComponent implements OnInit {
             this.filteredOptions = reponse;
           });
       } else {
-        this.serviceDocument.getAllDocuments().subscribe(
-          (reponse) =>{
-            this.filteredOptions=reponse
-          }
-        )
+        this.serviceDocument.getAllDocuments().subscribe((reponse) => {
+          this.filteredOptions = reponse;
+        });
       }
     });
   }
   onCheckDocumentChange(event: any) {
-    let listidDocumentTemp : string[] = []
-    let positionsDocument = new Map()
-    let indexDocumentCourant : number = 0
+    let listidDocumentTemp: string[] = [];
+    let positionsDocument = new Map();
+    let indexDocumentCourant: number = 0;
     this.donneeDocCatService.dataDocumentSousDocuments?.forEach(
       (element: IDocument) => {
-        listidDocumentTemp.push(element.id)
-        positionsDocument.set(element.id, indexDocumentCourant++)
-    });
+        listidDocumentTemp.push(element.id);
+        positionsDocument.set(element.id, indexDocumentCourant++);
+      }
+    );
     if (event.target.checked) {
       if (!listidDocumentTemp.includes(this.idDocument)) {
         this.ajoutSelectionDocument(this.idDocument);
       }
     } else {
       if (listidDocumentTemp.includes(this.idDocument)) {
-        const index = positionsDocument.get(this.idDocument)
+        const index = positionsDocument.get(this.idDocument);
         this.retirerSelectionDocument(index);
       }
     }
@@ -100,7 +120,8 @@ export class ModalChoixSousDocumentComponent implements OnInit {
       this.ELEMENTS_TABLE_DOCUMENTS = this.dataSourceDocumentResultat.data;
       this.ELEMENTS_TABLE_DOCUMENTS.push(val);
       this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
-      this.donneeDocCatService.dataDocumentSousDocuments = this.ELEMENTS_TABLE_DOCUMENTS
+      this.donneeDocCatService.dataDocumentSousDocuments =
+        this.ELEMENTS_TABLE_DOCUMENTS;
     });
   }
 
@@ -108,7 +129,8 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     this.ELEMENTS_TABLE_DOCUMENTS = this.dataSourceDocumentResultat.data;
     this.ELEMENTS_TABLE_DOCUMENTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
-    this.donneeDocCatService.dataDocumentSousDocuments = this.ELEMENTS_TABLE_DOCUMENTS
+    this.donneeDocCatService.dataDocumentSousDocuments =
+      this.ELEMENTS_TABLE_DOCUMENTS;
   }
   private getAllDocument() {
     return this.serviceDocument.getAllDocuments();
