@@ -59,21 +59,28 @@
                         <td>{{ressourcesExemplaire.prix}}</td>
                         <td>{{ressourcesExemplaire.quantite*ressourcesExemplaire.prix}}</td>
                         <td>{{ressourcesExemplaire.description}}</td>
-                        <td>{{ressourcesExemplaire.datePeremption}}</td>
+                        <td>{{ressourcesExemplaire.datePeremption | date:'dd/MM/yyyy' }}</td>
                         <td *ngIf="exemplaire.contientDistributeurs == true">{{ressourcesExemplaire.distributeur?.raisonSocial!}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="options">
-        <button type="button" [routerLink]="['/exemplaire-nouveau/modify/',exemplaire.id]" class="btn btn-outline-info">
-            <i class="fas fa-pen"></i>
-            {{'lists.button7' | translate}}
-        </button>
-        <button type="button" class="btn btn-outline-danger">
-            <i class="fas fa-trash"></i>
-            {{'lists.button8' | translate}}
+    <div class="options" style="justify-content: space-between; display: flex;">
+        <div>
+            <button type="button" [routerLink]="['/exemplaire-nouveau/modify/',exemplaire.id]" class="btn btn-outline-info">
+                <i class="fas fa-pen"></i>
+                {{'lists.button7' | translate}}
+            </button>
+            <button type="button" class="btn btn-outline-danger">
+                <i class="fas fa-trash"></i>
+                {{'lists.button8' | translate}}
+            </button>
+        </div>
+
+        <button *ngIf="reponse" type="button" class="btn btn-outline-success">
+            <i class="fas fa-check"></i>
+            {{'lists.button6' | translate}}
         </button>
     </div>
 </div>

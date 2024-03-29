@@ -33,6 +33,7 @@ export class ViewExemplaireComponent implements OnInit {
     DocEtats: []
   };
   titre:string='';
+  reponse: Boolean = false;
   mouvements : IMouvement[] = []
   constructor(private router:Router, private infosPath:ActivatedRoute,private dataEnteteMenuService:DonneesEchangeService, private serviceDocument:DocumentService, private serviceExemplaire:ExemplaireDocumentService) {}
 
@@ -48,5 +49,7 @@ export class ViewExemplaireComponent implements OnInit {
         });
     }
     this.titre=this.dataEnteteMenuService.dataEnteteMenu
+
+    this.reponse = this.serviceExemplaire.getExemplaireDocumentByOrder(this.exemplaire)
   }
 }

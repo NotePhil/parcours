@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { IDocEtats } from "src/app/modele/doc-etats";
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
 
 @Injectable({
@@ -22,6 +23,26 @@ export class ExemplaireDocumentService {
           return x.find(d=>d.id==id) as IExemplaireDocument 
         })
     );
+  }
+
+  getExemplaireDocumentByOrder(exemplaire:IExemplaireDocument):Boolean{
+    let res = false;
+    let docEtat : IDocEtats;
+    
+    docEtat = exemplaire.DocEtats[0];
+    for (let index = 0; index < exemplaire.DocEtats.length; index++) {
+      if (exemplaire.DocEtats[index].ordre > docEtat.ordre) {
+        docEtat = exemplaire.DocEtats[index];
+      }  
+    }
+
+    if (docEtat.validation != undefined) {
+        res = true    
+    } else {
+      res = false;
+    }
+
+    return res;
   }
   
   getExemplaireDocumentByTitre(titre:string): Observable<IExemplaireDocument[]> {
