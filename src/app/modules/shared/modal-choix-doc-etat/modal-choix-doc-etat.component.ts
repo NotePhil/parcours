@@ -43,10 +43,16 @@ export class ModalChoixDocEtatComponent {
   }
 
   onSave(): void {
-    const selectedEtats = this.data.documentChoisi.DocEtats.filter(
+    const selectedEtat = this.data.documentChoisi.DocEtats.find(
       (etat: any) => etat.checked
-    ).map((etat: any) => etat.etat.libelle);
-    this.saveChanges.emit(selectedEtats);
+    );
+    if (selectedEtat) {
+      this.data.documentChoisi.DocEtats = [selectedEtat];
+      console.log('update', selectedEtat);
+
+      // Emitting the updated document with only the selected etat
+      this.saveChanges.emit([selectedEtat.etat.libelle]);
+    }
     this.dialogRef.close();
   }
 

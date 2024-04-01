@@ -118,7 +118,9 @@ export class NewEtapeComponent implements OnInit {
       height: '100%',
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '1000ms',
-      data: {},
+      data: {
+        selectedEtat: this.forme.value.etat,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

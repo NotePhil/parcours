@@ -128,12 +128,17 @@ export class ListEtapesComponent implements OnInit {
   public rechercherListingEtape(option: IEtape) {
     this.serviceEtape
       .getEtapesBylibelle(option.libelle.toLowerCase())
-      .subscribe((valeurs) => {
-        const tableDocuments: IAfficheEtape[] = [];
-        valeurs.forEach((x) => {
-          tableDocuments.push(this.convertEtapToEtapAffiche(x));
-        });
-        this.dataSource.data = tableDocuments;
+      .subscribe((etapes) => {
+        if (etapes.length > 0) {
+          const etape = etapes[0];
+          this.serviceEtape.getEtapeById(etape.id).subscribe((documents) => {
+            const tableDocuments: IAfficheEtape[] = [];
+            tableDocuments.push(this.convertEtapToEtapAffiche(etape));
+            this.dataSource.data = tableDocuments;
+          });
+        } else {
+          this.dataSource.data = [];
+        }
       });
   }
 
