@@ -46,6 +46,9 @@
 
                   <!-- Ouvrir le formulair de selection des documents -->
                   <div class="listAttr">
+                    <span *ngFor="let document of documents">
+                      {{ document.titre }} <span>, </span>
+                    </span>
                     <button type="button" class="btn p-0" (click)="openSousDocumentDialog()">
                       <i class="fas fa-plus-square"></i>
                     </button>
@@ -62,7 +65,8 @@
           </div>
         </div>
         <div class="actionButton">
-          <button class="btn" routerLink="../list-etapes">{{'lists.button2' | translate}}</button>
+          <button class="btn" routerLink="../list-etapes" (click)="resetDocuments()">{{'lists.button2' |
+            translate}}</button>
           <button type="submit" class="btn">{{btnLibelle}}</button>
         </div>
       </form>

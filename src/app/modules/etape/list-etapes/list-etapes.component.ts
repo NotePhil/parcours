@@ -85,6 +85,7 @@ export class ListEtapesComponent implements OnInit {
           .getEtapesBylibelle(name.toLowerCase() as string)
           .subscribe((reponse) => {
             this.filteredOptions = reponse;
+            console.log('item', this.filteredOptions);
           });
       } else {
         this.filteredOptions = [];

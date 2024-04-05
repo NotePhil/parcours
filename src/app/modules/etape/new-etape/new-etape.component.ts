@@ -68,7 +68,7 @@ export class NewEtapeComponent implements OnInit {
     private donneeDocCatService: DonneesEchangeService
   ) {
     this.forme = this.formBuilder.group({
-      ['libelle']: [
+      libelle: [
         '',
         [
           Validators.required,
@@ -76,7 +76,8 @@ export class NewEtapeComponent implements OnInit {
           Validators.maxLength(50),
         ],
       ],
-      ['etat']: [true],
+      etat: [true],
+      documents: [[]],
     });
   }
 
@@ -89,11 +90,12 @@ export class NewEtapeComponent implements OnInit {
       this.etapeService.getEtapeById(idEtape).subscribe((x) => {
         this.etape = x;
         console.log('hiiii', this.etape);
+        this.documents = this.etape.document;
 
         this.forme.patchValue({
           libelle: this.etape.libelle,
           etat: this.etape.etat,
-          documents: this.etape.document,
+          documents: this.etape.document.map((document) => document.id),
         });
 
         // Initialisation du tableau d'attributs du document
@@ -129,6 +131,10 @@ export class NewEtapeComponent implements OnInit {
       console.log('sous doc', this.ELEMENTS_TABLE_SOUS_DOCUMENTS);
     });
   }
+  resetDocuments() {
+    // Reset document selection array
+    this.ELEMENTS_TABLE_SOUS_DOCUMENTS = [];
+  }
 
   onSubmit() {
     console.log('helllo', this.ELEMENTS_TABLE_SOUS_DOCUMENTS);
@@ -154,6 +160,8 @@ export class NewEtapeComponent implements OnInit {
       etapeTemp.id = this.etape.id
     }*/
     this.etapeService.ajouterEtape(etapeTemp).subscribe(() => {
+      this.ELEMENTS_TABLE_SOUS_DOCUMENTS = [];
+      this.documents = [];
       this.router.navigate(['/list-etapes']);
     });
     this.donneeDocCatService.dataDocumentDocuments = [];
