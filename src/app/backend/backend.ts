@@ -14016,14 +14016,14 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            ordre: 2,
+            ordre: 5,
             dateCreation: new Date('07/21/2024'),
             etat: {
               id: '2',
               libelle: 'etat 2',
               description: 'deuxième état du document',
               dateCreation: new Date('07/21/2024'),
-            },
+            }
           },
           {
             id: '3',
@@ -14038,7 +14038,7 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '4',
-            ordre: 4,
+            ordre: 6,
             dateCreation: new Date('07/21/2024'),
             etat: {
               id: '4',
@@ -14046,6 +14046,22 @@ export class InMemDBService implements InMemoryDbService {
               description: 'quatrième état du document',
               dateCreation: new Date('07/21/2024'),
             },
+            validation: {
+              id: '2',
+              code: 'qwerty',
+              etat: true,
+              libelle: 'passable',
+              typeVote: 'Majoritaire',
+              dureeVote: 10,
+              role: {
+                id: '2',
+                titre: 'traiteur',
+                description: 'Personnel administratif',
+                etat: true,
+                dateCreation: new Date('07/03/2000'),
+              },
+              dateCreation: new Date('01/04/2014'),
+            }
           },
         ],
         missions: [

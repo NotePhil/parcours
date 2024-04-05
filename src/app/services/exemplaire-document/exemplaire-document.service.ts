@@ -25,24 +25,28 @@ export class ExemplaireDocumentService {
     );
   }
 
-  getExemplaireDocumentByOrder(exemplaire:IExemplaireDocument):Boolean{
-    let res = false;
-    let docEtat : IDocEtats;
+  getExemplaireDocumentByOrder(exemplaire:IExemplaireDocument){
+    let res : boolean;
+    let i = null;
+    let docEtat! : IDocEtats;
     
     docEtat = exemplaire.DocEtats[0];
     for (let index = 0; index < exemplaire.DocEtats.length; index++) {
       if (exemplaire.DocEtats[index].ordre > docEtat.ordre) {
         docEtat = exemplaire.DocEtats[index];
+        i = index;
       }  
+    console.log(index);
     }
 
+    
     if (docEtat.validation != undefined) {
-        res = true    
+      res = true;   
     } else {
       res = false;
     }
 
-    return res;
+    return {ele: docEtat, sol: res, in: i};
   }
   
   getExemplaireDocumentByTitre(titre:string): Observable<IExemplaireDocument[]> {

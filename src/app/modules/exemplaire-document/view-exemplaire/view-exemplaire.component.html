@@ -19,6 +19,10 @@
             <span class="titl"> {{'document.table.title1' | translate}} : </span>
             {{exemplaire.titre}}
         </p>
+        <p id="etat">
+            <span class="titl"> {{'document.title7' | translate}} : </span>
+            {{courant}}
+        </p>
         <p class="titl">
             {{'document.exemplaire.text1' | translate}} :
         </p>
@@ -78,9 +82,17 @@
             </button>
         </div>
 
-        <button *ngIf="reponse" type="button" class="btn btn-outline-success">
-            <i class="fas fa-check"></i>
-            {{'lists.button6' | translate}}
-        </button>
+        <div style="justify-content: space-between; display: flex;">
+            <select *ngIf="EtatsSuivant.length >= 1" class="form-select" aria-label="Default select example">
+                <option selected>Etat</option>
+                <option *ngFor="let etat of EtatsSuivant" (click)="orderSuivant(etat.etat)">{{etat.etat.libelle}}</option>
+              </select>
+    
+              <p *ngIf="error" class="text-warning h5">{{ error}}</p>
+            <button *ngIf="reponse.sol" (click)="etatsSuivants()" type="button" class="btn btn-outline-success">
+                <i class="fas fa-check"></i>
+                {{'lists.button6' | translate}}
+            </button>
+        </div>
     </div>
 </div>
