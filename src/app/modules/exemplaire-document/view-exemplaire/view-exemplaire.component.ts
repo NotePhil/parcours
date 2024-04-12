@@ -42,6 +42,8 @@ export class ViewExemplaireComponent implements OnInit {
   reponse!: { ele: IDocEtats | null; sol: boolean; in: number | null; };
   mouvements : IMouvement[] = []
   EtatsSuivant : IDocEtats[] = []
+  TabOrdre : IOrdreEtat[] = []
+  ExempleOrdre : IOrdreEtat[] = []
   NextEtats!: IOrdreEtat;
   constructor(private router:Router, private infosPath:ActivatedRoute,private dataEnteteMenuService:DonneesEchangeService, private serviceDocument:DocumentService, private serviceExemplaire:ExemplaireDocumentService) {}
 
@@ -66,12 +68,13 @@ export class ViewExemplaireComponent implements OnInit {
     if (this.reponse!.in != (this.exemplaire.DocEtats.length - 1)) {
       this.EtatsSuivant = this.exemplaire.DocEtats.slice(this.reponse.in! + 1)
     } else {
-      this.error = "Etat final !!"
+      this.error = "état final aucune action possible !!"
     }
     console.log('etat suivant :', this.EtatsSuivant);
   }
 
   orderSuivant(etat: IEtats){
+
     this.NextEtats = {
       id: uuidv4(),
       ordre : 1,
@@ -79,6 +82,39 @@ export class ViewExemplaireComponent implements OnInit {
       dateCreation: new Date()
     }
 
-    console.log('ordre etat :', this.NextEtats) 
+    this.TabOrdre.push(this.NextEtats);
+    this.ExempleOrdre = this.TabOrdre;
+
+    let exemplaireTemp: IExemplaireDocument = {
+      id: uuidv4(),
+      idDocument: this.exemplaire.id,
+      titre: this.exemplaire.titre,
+      description: this.exemplaire.description,
+      missions: this.exemplaire.missions,
+      attributs: this.exemplaire.attributs,
+      objetEnregistre: this.exemplaire.objetEnregistre,
+      categories: this.exemplaire.categories,
+      preconisations: this.exemplaire.preconisations,
+      mouvements: this.exemplaire.mouvements,
+      etat: this.exemplaire.etat,
+      affichagePrix: this.exemplaire.affichagePrix,
+      contientRessources: this.exemplaire.contientRessources,
+      contientDistributeurs: this.exemplaire.contientDistributeurs,
+      typeMouvement: this.exemplaire.typeMouvement,
+      ordreEtats: this.ExempleOrdre,
+      DocEtats: []
+    };
+
+    if (this.exemplaire.id != '') {
+      exemplaireTemp.id = this.exemplaire.id;
+    }
+
+    this.serviceExemplaire
+      .ajouterExemplaireDocument(exemplaireTemp)
+      .subscribe((object) => {
+        this.router.navigate(['/list-exemplaire']);
+      });
+
+    console.log('ordre etat :', exemplaireTemp) 
   }
 }

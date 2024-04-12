@@ -14023,28 +14023,6 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'etat 2',
               description: 'deuxième état du document',
               dateCreation: new Date('07/21/2024'),
-            }
-          },
-          {
-            id: '3',
-            ordre: 3,
-            dateCreation: new Date('07/21/2024'),
-            etat: {
-              id: '3',
-              libelle: 'etat 3',
-              description: 'troisième état du document',
-              dateCreation: new Date('07/21/2024'),
-            },
-          },
-          {
-            id: '4',
-            ordre: 6,
-            dateCreation: new Date('07/21/2024'),
-            etat: {
-              id: '4',
-              libelle: 'etat 4',
-              description: 'quatrième état du document',
-              dateCreation: new Date('07/21/2024'),
             },
             validation: {
               id: '2',
@@ -14061,6 +14039,28 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
               },
               dateCreation: new Date('01/04/2014'),
+            }
+          },
+          {
+            id: '3',
+            ordre: 3,
+            dateCreation: new Date('07/21/2024'),
+            etat: {
+              id: '3',
+              libelle: 'etat 3',
+              description: 'troisième état du document',
+              dateCreation: new Date('07/21/2024'),
+            },
+          },
+          {
+            id: '4',
+            ordre: 4,
+            dateCreation: new Date('07/21/2024'),
+            etat: {
+              id: '4',
+              libelle: 'etat 4',
+              description: 'quatrième état du document',
+              dateCreation: new Date('07/21/2024'),
             }
           },
         ],
