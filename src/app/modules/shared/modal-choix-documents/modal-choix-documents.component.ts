@@ -1,6 +1,11 @@
-import { Component,Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,25 +15,19 @@ import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-
 import { IDocument } from 'src/app/modele/document';
 import { DocumentService } from 'src/app/services/documents/document.service';
 
-
 @Component({
   selector: 'app-modal-choix-documents',
   templateUrl: './modal-choix-documents.component.html',
-  styleUrls: ['./modal-choix-documents.component.scss']
+  styleUrls: ['./modal-choix-documents.component.scss'],
 })
 export class ModalChoixDocumentsComponent implements OnInit {
-
   // variables attributs, pour afficher le tableau d'attributs sur l'IHM
   formeDocument: FormGroup;
   myControl = new FormControl<string | IDocument>('');
   ELEMENTS_TABLE_DOCUMENTS: IDocument[] = [];
   filteredOptions: IDocument[] | undefined;
-  displayedDocumentsColumns: string[] = [
-    'actions',
-    'titre',
-    'etat'
-  ]; // structure du tableau presentant les attributs
- /* dataSourceDocument = new MatTableDataSource<IDocument>(
+  displayedDocumentsColumns: string[] = ['actions', 'titre', 'etat']; // structure du tableau presentant les attributs
+  /* dataSourceDocument = new MatTableDataSource<IDocument>(
     this.ELEMENTS_TABLE_DOCUMENTS
   );
   dataSourceDocumentResultat = new MatTableDataSource<IDocument>();
@@ -49,11 +48,11 @@ export class ModalChoixDocumentsComponent implements OnInit {
     private serviceDocument: DocumentService,
     private _liveAnnouncer: LiveAnnouncer,
     //private donneeDocCatService:DonneesEchangeService,
-    private donneeEtapCatService:DonneesEchangeService,
+    private donneeEtapCatService: DonneesEchangeService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
     this.formeDocument = this.formBuilder.group({
+      etat: ['', Validators.required],
     });
   }
 
@@ -61,7 +60,8 @@ export class ModalChoixDocumentsComponent implements OnInit {
     this.getAllDocument().subscribe((valeurs) => {
       this.dataSourceDocument.data = valeurs;
     });
-    this.dataSourceDocumentResultat.data = this.donneeEtapCatService.dataEtapeDocuments
+    this.dataSourceDocumentResultat.data =
+      this.donneeEtapCatService.dataEtapeDocuments;
     this.myControl.valueChanges.subscribe((value) => {
       const titre = typeof value === 'string' ? value : value?.titre;
       if (titre != undefined && titre?.length > 0) {
@@ -74,23 +74,28 @@ export class ModalChoixDocumentsComponent implements OnInit {
         this.filteredOptions = [];
       }
     });
+    this.formeDocument.get('etat')?.valueChanges.subscribe(() => {
+      this.formeDocument.get('etat')?.markAsTouched();
+      console.log(this.formeDocument.get('etat'));
+    });
   }
   onCheckDocumentChange(event: any) {
-    let listidDocumentTemp : string[] = []
-    let positionsDocument = new Map()
-    let indexDocumentCourant : number = 0
+    let listidDocumentTemp: string[] = [];
+    let positionsDocument = new Map();
+    let indexDocumentCourant: number = 0;
     this.donneeEtapCatService.dataDocumentSousDocuments?.forEach(
       (element: IDocument) => {
-        listidDocumentTemp.push(element.id)
-        positionsDocument.set(element.id, indexDocumentCourant++)
-    });
+        listidDocumentTemp.push(element.id);
+        positionsDocument.set(element.id, indexDocumentCourant++);
+      }
+    );
     if (event.target.checked) {
       if (!listidDocumentTemp.includes(this.idDocument)) {
         this.ajoutSelectionDocument(this.idDocument);
       }
     } else {
       if (listidDocumentTemp.includes(this.idDocument)) {
-        const index = positionsDocument.get(this.idDocument)
+        const index = positionsDocument.get(this.idDocument);
         this.retirerSelectionDocument(index);
       }
     }
@@ -104,7 +109,8 @@ export class ModalChoixDocumentsComponent implements OnInit {
       this.ELEMENTS_TABLE_DOCUMENTS = this.dataSourceDocumentResultat.data;
       this.ELEMENTS_TABLE_DOCUMENTS.push(val);
       this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
-      this.donneeEtapCatService.dataDocumentSousDocuments = this.ELEMENTS_TABLE_DOCUMENTS
+      this.donneeEtapCatService.dataDocumentSousDocuments =
+        this.ELEMENTS_TABLE_DOCUMENTS;
     });
   }
 
@@ -112,7 +118,8 @@ export class ModalChoixDocumentsComponent implements OnInit {
     this.ELEMENTS_TABLE_DOCUMENTS = this.dataSourceDocumentResultat.data;
     this.ELEMENTS_TABLE_DOCUMENTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
-    this.donneeEtapCatService.dataDocumentSousDocuments = this.ELEMENTS_TABLE_DOCUMENTS
+    this.donneeEtapCatService.dataDocumentSousDocuments =
+      this.ELEMENTS_TABLE_DOCUMENTS;
   }
   private getAllDocument() {
     return this.serviceDocument.getAllDocuments();
@@ -140,5 +147,8 @@ export class ModalChoixDocumentsComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+  logEtatControlState() {
+    console.log(this.formeDocument.get('etat'));
   }
 }

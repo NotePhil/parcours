@@ -137,33 +137,38 @@ export class NewEtapeComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('helllo', this.ELEMENTS_TABLE_SOUS_DOCUMENTS);
-
     this.submitted = true;
-    //Todo la validation d'element non conforme passe
+    // Validate form
     if (this.forme.invalid) return;
 
-    let etapeTemp = {
+    // Update docEtats with checked etapes
+
+    // Create etape object
+    const etapeTemp = {
       id: uuidv4(),
-      ['libelle']: this.f['libelle'].value,
-      ['etat']: this.f['etat'].value,
-      ['document']: this.ELEMENTS_TABLE_SOUS_DOCUMENTS,
+      libelle: this.f['libelle'].value,
+      etat: this.f['etat'].value,
+      document: this.ELEMENTS_TABLE_SOUS_DOCUMENTS,
     };
 
+    // If updating existing etape, set its id
     if (this.etape.id != '') {
       etapeTemp.id = this.etape.id;
     }
 
+    // Add additional documents
     this.ELEMENTS_TABLE_DOCUMENTS.forEach((d) => etapeTemp.document.push(d));
-    console.log('etapes', etapeTemp);
-    /* if(this.etape != undefined){
-      etapeTemp.id = this.etape.id
-    }*/
+
+    // Call service to add/update etape
     this.etapeService.ajouterEtape(etapeTemp).subscribe(() => {
+      this.etapeService.updateDocEtatsWithCheckedEtapes(etapeTemp);
+
+      // Reset selected sous documents
       this.ELEMENTS_TABLE_SOUS_DOCUMENTS = [];
-      this.documents = [];
+      // Navigate back to list
       this.router.navigate(['/list-etapes']);
     });
+    // Clear selected documents data
     this.donneeDocCatService.dataDocumentDocuments = [];
   }
 }

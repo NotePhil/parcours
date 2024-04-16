@@ -1,7 +1,12 @@
-import { Component, Inject, Output, EventEmitter } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'; // Import MatDialogRef
+import { Component, Inject, Output, EventEmitter, Input } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IDocument } from 'src/app/modele/document';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
+interface DialogData {
+  documentChoisi: IDocument;
+  selectedEtat?: string;
+}
 
 @Component({
   selector: 'app-modal-choix-doc-etat',
@@ -9,25 +14,19 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./modal-choix-doc-etat.component.css'],
 })
 export class ModalChoixDocEtatComponent {
+  selectedEtatsMap: { [key: string]: string } = {};
   checkedCount: number = 0;
   formeDocument: FormGroup;
+  selectedEtat: string = '';
   @Output() saveChanges: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Input() previouslySelectedEtat: string | undefined; // Input to receive the previously selected etat
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { documentChoisi: IDocument },
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fb: FormBuilder,
-    public dialogRef: MatDialogRef<ModalChoixDocEtatComponent> // Inject MatDialogRef
+    public dialogRef: MatDialogRef<ModalChoixDocEtatComponent>
   ) {
     this.formeDocument = this.fb.group({});
-  }
-
-  onCheckboxChange(event: any, etat: any): void {
-    etat.checked = event.checked;
-    if (event.checked) {
-      this.checkedCount++;
-    } else {
-      this.checkedCount--;
-    }
   }
 
   isCheckboxDisabled(etat: any): boolean {
@@ -42,21 +41,27 @@ export class ModalChoixDocEtatComponent {
     this.dialogRef.close();
   }
 
-  onSave(): void {
-    const selectedEtat = this.data.documentChoisi.DocEtats.find(
-      (etat: any) => etat.checked
-    );
-    if (selectedEtat) {
-      this.data.documentChoisi.DocEtats = [selectedEtat];
-      console.log('update', selectedEtat);
+  onSave(documentId: string): void {
+    const selectedEtat = this.selectedEtatsMap[documentId];
 
-      // Emitting the updated document with only the selected etat
-      this.saveChanges.emit([selectedEtat.etat.libelle]);
+    if (selectedEtat) {
+      this.saveChanges.emit([selectedEtat]);
     }
     this.dialogRef.close();
   }
 
+  onRadioChange(etat: any, documentId: string): void {
+    // Uncheck all etats first
+    this.data.documentChoisi.DocEtats.forEach((etat: any) => {
+      etat.checked = false;
+    });
+
+    // Check the selected etat
+    etat.checked = true;
+    this.selectedEtatsMap[documentId] = etat.etat.libelle;
+  }
+
   ngOnInit(): void {
-    console.log(this.data.documentChoisi);
+    this.selectedEtat = this.previouslySelectedEtat || ''; // Set the selected etat when component initializes
   }
 }

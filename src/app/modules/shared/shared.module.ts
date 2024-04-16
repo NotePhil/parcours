@@ -33,6 +33,7 @@ import { ModalCodebarreScanContinueComponent } from './modal-codebarre-scan-cont
 import { MatIconModule } from '@angular/material/icon';
 import { ModalChoixDocEtatComponent } from './modal-choix-doc-etat/modal-choix-doc-etat.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDialogModule,
     MatIconModule,
     MatCheckboxModule,
+    MatRadioModule,
     //MatCheckboxModule,
     TranslateModule.forChild({
       loader: {

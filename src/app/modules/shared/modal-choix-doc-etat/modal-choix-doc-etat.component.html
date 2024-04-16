@@ -28,9 +28,10 @@
                         <ng-container matColumnDef="select">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> Select </th>
                             <td class="text-dark containCell" mat-cell *matCellDef="let etat">
-                                <mat-checkbox (change)="onCheckboxChange($event, etat)" [checked]="etat.checked"
-                                    [disabled]="isCheckboxDisabled(etat)">
-                                </mat-checkbox>
+                                <mat-radio-group [(ngModel)]="selectedEtat"
+                                    (change)="onRadioChange(etat, data.documentChoisi.id)">
+                                    <mat-radio-button [value]="etat" [checked]="etat.checked"></mat-radio-button>
+                                </mat-radio-group>
                             </td>
 
                         </ng-container>
@@ -52,7 +53,7 @@
             </div>
             <div class="actionButton mt-2">
                 <button class="btn btnValidation" mat-raised-button color="primary"
-                    (click)="onSave()">Enregistrer</button>
+                    (click)="onSave(data.documentChoisi.id)">Enregistrer</button>
             </div>
         </div>
     </div>

@@ -18,6 +18,7 @@ import { ModalChoixDocEtatComponent } from '../modal-choix-doc-etat/modal-choix-
 })
 export class ModalChoixSousDocumentComponent implements OnInit {
   selectedEtats: string[] = [];
+  selectedEtatsMap: { [documentId: string]: string } = {};
   formeDocument: FormGroup;
   myControl = new FormControl<string | IDocument>('');
   ELEMENTS_TABLE_DOCUMENTS: IDocument[] = [];
@@ -52,14 +53,19 @@ export class ModalChoixSousDocumentComponent implements OnInit {
   }
 
   openModal(documentChoisi: IDocument) {
+    const selectedEtat = this.selectedEtatsMap[documentChoisi.id] || '';
     const dialogRef = this.dialog.open(ModalChoixDocEtatComponent, {
       width: '600px',
-      data: { documentChoisi: documentChoisi },
+      data: {
+        documentChoisi: documentChoisi,
+        documentId: documentChoisi.id,
+        selectedEtat: selectedEtat,
+      },
     });
 
     dialogRef.componentInstance.saveChanges.subscribe(
-      (selectedEtats: string[]) => {
-        this.selectedEtats = selectedEtats;
+      (selectedEtat: string) => {
+        this.selectedEtatsMap[documentChoisi.id] = selectedEtat;
       }
     );
 
