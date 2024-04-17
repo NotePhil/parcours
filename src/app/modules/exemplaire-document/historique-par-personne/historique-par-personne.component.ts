@@ -225,6 +225,7 @@ export class HistoriqueParPersonneComponent implements OnInit {
 
     this.exemplairesDePersonne.sort(this.comparerParNom)
   }
+  
   /**
    * Methode permettant de trier le tableau des exemplaires de la personne afin de les 
    * regrouper par date

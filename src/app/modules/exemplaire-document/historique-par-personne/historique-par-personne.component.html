@@ -122,56 +122,63 @@
             </button>
         </div>
     </div>
-    <div *ngIf="this.exemplairesDePersonne.length > 0" id="rigthSection" class="card" >
-      <div class="titleBlock" id="titleBlock" class="entete0">
-        <h5 class="rigth">{{'document.exemplaire.text5' | translate}}</h5>
-        <div role="button" (click)="regrouperExemplairesParDate()">
-            <i class="fa fa-filter" aria-hidden="true"></i>
-        </div>
-      </div>
-      <div class="triExemplairesBlock">
-        <table class="table table-striped table-bordered table-inverse table-sm">
-            <div *ngFor="let element of exemplairesDePersonne">
-                <div *ngIf="element.titre">
-                    <thead class="thead-inverse">
-                        <tr>
-                            <th *ngIf="element.titre != ''">{{element.titre}}</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let exemplaires of element.exemplaires">
-                        <tr>
-                            <td scope="row" class="hoverCol"  [ngClass]="{'focusDoc': this.exemplaire.id == exemplaires.id, 'hoverCol': this.exemplaire.id != exemplaires.id}" role="button" (click)="switchExemplaires(exemplaires)">
-                                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
-                                    <li class="nav-item">
-                                        <a class="nav-link">
-                                            <span class="titleExemplaire">
-                                                {{exemplaires.dateCreation | date: 'dd/MM/yyyy'}}
-                                                {{ 'document.exemplaire.text7' | translate}} 
-                                                {{exemplaires.dateCreation | date: 'hh:mm:ss'}}
-                                            </span>
-                                            <i class="right fas fa-angle-left"></i>
-                                        </a>
-
-                                        <ul class="nav-treeview">
-                                            <li class="nav-item">
-                                                <span>
-                                                    {{exemplaires.description}}
-                                                </span>
-                                                <span>
-                                                    {{exemplaires.titre}}, 
-                                                    {{'document.exemplaire.text6' | translate}} :
-                                                    <span class="title">{{exemplaire.dateCreation | date: 'dd/MM/yyyy'}}</span>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
+    <div *ngIf="this.exemplairesDePersonne.length > 0" id="rigthSection" class="" >
+        <div class="w-100" id="accordianFilterId" role="tablist" aria-multiselectable="true">
+            <div id="titleBlock">
+                <div class="titleBlock" role="tab" id="sectionHeaderFilterId">
+                    <h5 class="rigth">{{'document.exemplaire.text5' | translate}}</h5>
+                    <button class="btn p-0" data-toggle="collapse" data-parent="#accordianFilterId" href="#sectionContentFilterId" aria-expanded="true" aria-controls="sectionContentFilterId">
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
-        </table>
+            <div id="sectionContentFilterId" class="collapse in w-100" role="tabpanel" aria-labelledby="sectionHeaderFilterId">
+                <div class="filtre">
+                    <label for="" role="button" (click)="regrouperExemplairesParType('default')">
+                        <input type="radio" checked name="filtre" id=""> {{"document.exemplaire.text10" | translate}} {{"precomvt.table2.title3" | translate}}
+                    </label>
+                    <label for="" role="button" (click)="regrouperExemplairesParDate()">
+                        <input type="radio" name="filtre" id=""> {{"document.exemplaire.text10" | translate}} {{'tickets.form.label3' | translate}}
+                    </label>
+                </div>
+            </div>
+        </div>
+      <div class="triExemplairesBlock">
+            <div *ngFor="let element of exemplairesDePersonne">
+                <div *ngIf="element.titre">
+                    <div>
+                        <div>
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+                                <li class="nav-item">
+                                    <a class="nav-link titreDoc">
+                                        <h4  *ngIf="element.titre != ''">{{element.titre}}</h4>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </a>
+
+                                    <ul class="nav-treeview listeDates">
+                                        <li *ngFor="let exemplaires of element.exemplaires" class="nav-item hoverCol" [ngClass]="{'focusDoc': this.exemplaire.id == exemplaires.id, 'hoverCol': this.exemplaire.id != exemplaires.id}" role="button" (click)="switchExemplaires(exemplaires)">
+                                            <div>
+                                                <span class="titleExemplaire">
+                                                    {{'document.exemplaire.text6' | translate}} :
+                                                    {{exemplaires.dateCreation | date: 'dd/MM/yyyy'}}
+                                                </span>
+                                                <span class="titleExemplaire">
+                                                    {{ 'document.exemplaire.text7' | translate}} 
+                                                    {{exemplaires.dateCreation | date: 'hh:mm:ss'}}
+                                                </span>
+                                                <span class="titleExemplaire">
+                                                    {{exemplaires.titre}}
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
       </div>
     </div>
 </div>

@@ -165,7 +165,7 @@
     "form": {
       "label1": "Intitule du service  : ",
       "label2": "id unique du ticket  : ",
-      "label3": "Date  : ",
+      "label3": "Date",
       "label4": "Nom du beneficiaire  : ",
       "label5": "ticket : ",
       "label6": "Nom : ",
@@ -290,7 +290,8 @@
       "text6": "Fait le ",
       "text7": "à ",
       "text8": "Selectionner la personne",
-      "text9": "Nom du bénéficiaire"
+      "text9": "Nom du bénéficiaire",
+      "text10": "Trier par "
     }
   },
   "theme": {

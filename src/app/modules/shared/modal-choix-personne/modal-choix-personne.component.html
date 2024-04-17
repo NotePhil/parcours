@@ -3,7 +3,7 @@
     <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label class="searchBar">{{'patient.search-bar' | translate}}</mat-label>
-          <input type="text" matInput aria-label="Rechercher" [formControl]="myControl" [value]="scan_val" [matAutocomplete]="auto">
+          <input type="text" matInput aria-label="Rechercher" autofocus [formControl]="myControl" [value]="scan_val" [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingPersonnes(option)" title="{{option.nom}} {{option.prenom}} {{'patient.form.text5' | translate}} {{option.dateNaissance | date : 'dd-mm-yyyy'}}">
               {{option.nom}} {{option.prenom}} {{'patient.form.text5' | translate}} {{option.dateNaissance | date : 'dd-mm-yyyy'}}

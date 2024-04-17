@@ -163,12 +163,20 @@ th{
 }
 #rigthSection{
   height: max-content !important;
-  width: fit-content;
+  width: 15%;
 }
 .titleBlock{
-  text-align: center;
-  font-size:8px;
+  font-size:10px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 !important;
+  margin-right: 5px;
+  button i{
+    color: #FFD700;
+    font-size: 12px;
+  }
 }
 .triExemplairesBlock{
   display: flex;
@@ -177,77 +185,114 @@ th{
   justify-content: center;
   margin: auto;
   width: 100% !important;
-  table, table div, tr, th, td{
-  width: 100% !important;
+  div, h4{
+    width: 100% !important;
   }
-  th{
-      background-color: #ffffff;
-      color: #28a745 !important;
-      text-align: center;
+  h4{
+    background-color: #ffffff;
+    color: #28a745 !important;
+    text-align: left;
+    font-size: 12px;
+    width: 98%;
   }
-}
-.entete0{
-    background-color: #28a745;
-    color: rgba(255, 255, 255, 0.7);
-    border-radius: 5px;
-    box-shadow: 0 0 2px #28a745;
-    font-weight: bold;
-    padding: 0;
-    display: flex;
-}
-.rigth{
-    margin: auto;
-    padding: 14.5px 0;
-    text-align: center;
-    text-transform: uppercase;
-    background-color: #28a745;
-}
-.hoverCol{
-    transition: ease-in-out 0.3s;
-}
-.hoverCol:hover, .focusDoc {
-    color: #28a745;
-    text-shadow: 0 0 1px #28a745;
-    transition: ease-in-out 0.3s;
-    background-color: rgba(40, 167, 69, 0.2);
-}
-.hoverCol ul, .focusDoc ul{
-    width: 100%;
-    background-color: transparent;
-    text-align: center !important;
-    li{
-        width: 100%;
-        position: relative;
-        a {
+  .nav-pills li{
+      width: 100%;
+      position: relative;
+      a {
+            width: 100%;
+            padding: 0 !important;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: nowrap;
             &:hover{
                 color: inherit;
             }
             i{
             position: absolute;
             right: 1px;
+            top: 5px;
             }
-        }
-        .nav-treeview{
-            background-color: #dedcdcda;
-            color: #787878;
-            text-align: left;
-            li{
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: start;
-                overflow-x: scroll;
-                span{
-                    width: 100px;
-                }
-            }
-        }
-        .titleExemplaire{
-            font-weight: 500;
-        }
+      }
+      .listeDates{
+          color: #787878;
+          text-align: left;
+          li{
+              width: 100%;
+              border-bottom: 1px solid #787878;
+              div{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: start;
+                    padding: 0 0 2px 2px;
+                    span{
+                        font-size: 11px;                        
+                    }
+              }
+          }
+      }
+      .titleExemplaire{
+          font-weight: 500;
+      }
+  }
+}
+#titleBlock{
+    background-color: #28a745;
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 0 2px #28a745;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.rigth{
+    margin: auto;
+    padding: 14.5px 0;
+    text-transform: uppercase;
+    background-color: #28a745;
+    width: fit-content;
+}
+.hoverCol{
+    transition: ease-in-out 0.3s;
+}
+.hoverCol:hover, .focusDoc {
+    color: #28a745;
+    background-color: #78787871;
+    text-shadow: 0 0 1px #28a745;
+    transition: ease-in-out 0.3s;
+}
+.hoverCol ul, .focusDoc ul{
+    width: 100%;
+    background-color: transparent;
+    text-align: center !important;
+}
+.filtre{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-right: 5px;
+    label{
+        font-size: 10px;
+        color: #787878;
+        background-color: #ffffffdf;
+        padding: 0 5px;
     }
+}
+#accordianFilterId{
+    position: relative;
+}
+#sectionContentFilterId{
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    box-shadow: 0 0 2px #28a7462d;
+    border-radius: 5px;
+    z-index: 1;
 }
 @media screen and (max-width: 1040px) {
     .block1 .inputBlock{
