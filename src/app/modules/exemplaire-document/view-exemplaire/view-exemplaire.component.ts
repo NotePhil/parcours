@@ -29,6 +29,7 @@ export class ViewExemplaireComponent implements OnInit {
     categories: [],
     preconisations: [],
     mouvements: [],
+    ordreEtats: [],
     etat: false,
     affichagePrix: false,
     contientRessources: false,
@@ -56,6 +57,9 @@ export class ViewExemplaireComponent implements OnInit {
           this.reponse = this.serviceExemplaire.getExemplaireDocumentByOrder(x)
           this.courant = this.reponse.ele!.etat.libelle
           console.log('element response :', this.reponse);
+          if (this.exemplaire.ordreEtats != undefined) {
+            this.TabOrdre = this.exemplaire.ordreEtats
+          }
           if (this.exemplaire.mouvements != undefined) {
             this.mouvements = this.exemplaire.mouvements
           }
@@ -75,13 +79,21 @@ export class ViewExemplaireComponent implements OnInit {
 
   orderSuivant(etat: IEtats){
 
+    let ordre = 0;
+    if (this.TabOrdre.length > 0) {
+      ordre = this.TabOrdre[this.TabOrdre.length - 1].ordre;
+      console.log("taille tab :", this.TabOrdre.length);
+      
+    }
+
     this.NextEtats = {
       id: uuidv4(),
-      ordre : 1,
+      ordre : ordre + 1,
       etat : etat,
       dateCreation: new Date()
     }
-
+    console.log("nouvelle ordre:", this.NextEtats);
+    
     this.TabOrdre.push(this.NextEtats);
     this.ExempleOrdre = this.TabOrdre;
 
@@ -112,7 +124,7 @@ export class ViewExemplaireComponent implements OnInit {
     this.serviceExemplaire
       .ajouterExemplaireDocument(exemplaireTemp)
       .subscribe((object) => {
-        this.router.navigate(['/list-exemplaire']);
+        this.router.navigateByUrl(this.router.url);
       });
 
     console.log('ordre etat :', exemplaireTemp) 
