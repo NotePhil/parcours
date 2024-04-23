@@ -83,13 +83,9 @@
         </div>
 
         <div style="justify-content: space-between; display: flex;">
-            <select *ngIf="EtatsSuivant.length >= 1" class="form-select" aria-label="Default select example">
-                <option selected>Etat</option>
-                <option *ngFor="let etat of EtatsSuivant" (click)="orderSuivant(etat.etat)">{{etat.etat.libelle}}</option>
-              </select>
     
               <p *ngIf="error" class="text-warning h5">{{ error}}</p>
-            <button *ngIf="reponse.sol" (click)="etatsSuivants()" type="button" class="btn btn-outline-success">
+            <button *ngIf="reponse.sol" (click)="openModal(exemplaire)" type="button" class="btn btn-outline-success">
                 <i class="fas fa-check"></i>
                 {{'lists.button6' | translate}}
             </button>

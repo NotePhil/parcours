@@ -29,6 +29,8 @@ import { ModalRoleValidationComponent } from './modal-role-validation/modal-role
 import { ModalCodebarreComponent } from './modal-codebarre/modal-codebarre.component';
 import { ModalCodebarreDialogComponent } from './modal-codebarre-dialog/modal-codebarre-dialog.component';
 import { ModalCodebarreScanContinueComponent } from './modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
+import { ModalChoixDocEtatComponent } from './modal-choix-doc-etat/modal-choix-doc-etat.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { ModalCodebarreScanContinueComponent } from './modal-codebarre-scan-cont
     ModalCodebarreComponent,
     ModalCodebarreDialogComponent,
     ModalCodebarreScanContinueComponent,
+    ModalChoixDocEtatComponent,
   ],
   exports: [
     ModalCategoriesComponent,
@@ -64,6 +67,7 @@ import { ModalCodebarreScanContinueComponent } from './modal-codebarre-scan-cont
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatRadioModule,
     //MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
