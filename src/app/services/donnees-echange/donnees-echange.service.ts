@@ -10,10 +10,12 @@ export class DonneesEchangeService {
   dataDocumentCategorie : any;
   dataDocumentPrecoMvts : any;
   dataDocumentAttributs : any;
+  dataDocumentCodebarre : any;
   dataDocumentSousDocuments : any;
   dataEnteteMenu : any;
   dataDocumentSousExemplaireDocuments : any;
   dataDocumentEtats : any;
+  dataRoleValidation : any;
   constructor(private http:HttpClient) { }
 
   getTypeMvt():Observable<TypeMvt>
