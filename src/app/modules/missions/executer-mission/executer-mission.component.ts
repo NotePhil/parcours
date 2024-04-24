@@ -34,7 +34,8 @@ export class ExecuterMissionComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.nomPersonne = this.donneeExemplaireDePersonneService.dataExemplairePersonneRatachee.nom + " " + this.donneeExemplaireDePersonneService.dataExemplairePersonneRatachee.prenom
+    let laPersonneRattachee = this.donneeExemplaireDePersonneService.getUrlExemplairePersonneRatachee()
+    this.nomPersonne = laPersonneRattachee.nom + " " + laPersonneRattachee.prenom
     this.missions$ = this.missionService.getMissionByUser("admin");
   }
 

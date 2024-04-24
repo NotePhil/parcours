@@ -170,6 +170,8 @@ export class NewExemplaireComponent implements OnInit {
   scan_val: any | undefined;
 
   ngOnInit(): void {
+
+    let laPersonneRattachee = this.donneeEchangeService.getUrlExemplairePersonneRatachee()
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
       this.ressourceControl.setValue(this.scan_val); // Set the initial value in the search bar
@@ -188,7 +190,7 @@ export class NewExemplaireComponent implements OnInit {
         this.filteredDistributeurOptions=reponse
       }
     )
-    this.nomPatientCourant = this.donneeEchangeService.dataExemplairePersonneRatachee.nom + " " + this.donneeEchangeService.dataExemplairePersonneRatachee.prenom;
+    this.nomPatientCourant = laPersonneRattachee.nom + " " + laPersonneRattachee.prenom;
     this.compteur = -1;
 
     // recuperation de l'id de l'exemplaire
@@ -546,6 +548,8 @@ export class NewExemplaireComponent implements OnInit {
    * methode de validation du formulaire (enregistrement des donnees du formulaire)
    */
   onSubmit() {
+
+    let laPersonneRattachee = this.donneeEchangeService.getUrlExemplairePersonneRatachee()
     const exemplaireDocument = this._exemplaireDocument;
     this.submitted = true;
     this.enregistrerObjet();
@@ -570,7 +574,7 @@ export class NewExemplaireComponent implements OnInit {
       typeMouvement: this.document.typeMouvement,
       DocEtats: [],
       dateCreation: new Date,
-      personneRattachee: this.donneeEchangeService.dataExemplairePersonneRatachee
+      personneRattachee: laPersonneRattachee
     };
 
     if (this.exemplaire.id != '') {

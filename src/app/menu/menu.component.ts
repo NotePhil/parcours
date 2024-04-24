@@ -54,7 +54,7 @@ export class MenuComponent implements OnInit, OnChanges {
     this.dataEnteteMenuService.dataEnteteMenu=titre
   }
 
-  getUrl(url:string){
-    this.dataEnteteMenuService.dataUrlExemplaireDePersonne = url
+  setUrlSource(urlSource:string){
+    this.dataEnteteMenuService.setUrlSource(urlSource)
   }
 }

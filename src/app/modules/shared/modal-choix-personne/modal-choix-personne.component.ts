@@ -31,12 +31,6 @@ export class ModalChoixPersonneComponent  implements OnInit{
   ) {}
   
   ngOnInit(): void {
-    if (this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Exécuter" || this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Execute") {
-      this.url= "../executer-missions"
-    }else if (this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Historique des documents" || this.donneeExemplairePersonneRatacheeService.dataUrlExemplaireDePersonne == "Documents history") {
-      this.url= "../historique-par-personne"
-    }
-    
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
       this.myControl.setValue(this.scan_val); // Set the initial value in the search bar
@@ -102,8 +96,22 @@ export class ModalChoixPersonneComponent  implements OnInit{
     return this.servicePersonne.getAllPatients();
   }
 
+  /**
+   * Méthode qui permet de recupérer le libelle du menu sur lequel on clic pour
+   * pouvoir déterminer l'url de la page suivante
+   * @returns l'url de redirection
+   */
+  navigate() : string{
+    
+    if (this.donneeExemplairePersonneRatacheeService.getUrlSource() == "Exécuter") {
+      this.url= "../executer-missions"
+    }else if (this.donneeExemplairePersonneRatacheeService.getUrlSource() == "Historique des documents") {
+      this.url= "../historique-par-personne"
+    }
+    return this.url
+  }
   public rechercherListingPersonnes(option: IPatient) {
-    this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee = option
+    this.donneeExemplairePersonneRatacheeService.setUrlExemplairePersonneRatachee(option)
     this.personne! = option
     if (this.myControl.value == '' || this.myControl.value == undefined) {
       this.scan_val = undefined

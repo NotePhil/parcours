@@ -82,8 +82,9 @@ export class HistoriqueParPersonneComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let idPersonne : string = this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee.id
-    this.exemplaire.personneRattachee =  this.donneeExemplairePersonneRatacheeService.dataExemplairePersonneRatachee;
+    let laPersonneRattachee = this.donneeExemplairePersonneRatacheeService.getUrlExemplairePersonneRatachee()
+    let idPersonne : string = laPersonneRattachee.id
+    this.exemplaire.personneRattachee =  laPersonneRattachee;
     this.serviceExemplaire.getExemplaireDocumentByIdPersonneRatachee(idPersonne).subscribe(valeurs => {
       this.dataSourceAutresExemplaires.data = valeurs;
       idPersonne = valeurs[0].id
@@ -225,7 +226,7 @@ export class HistoriqueParPersonneComponent implements OnInit {
 
     this.exemplairesDePersonne.sort(this.comparerParNom)
   }
-  
+
   /**
    * Methode permettant de trier le tableau des exemplaires de la personne afin de les 
    * regrouper par date

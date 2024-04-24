@@ -24,4 +24,36 @@ export class DonneesEchangeService {
     return this.http.get<TypeMvt>('api/typeMvt');
   }
 
+  /**
+   * Méthode permettant d'affecter une valeur au libellé qui servera à former
+   * une url de redirection à partir de la modale choix de personne
+   * @param value nouvelle valeur du libelle qui servera à former une url de redirection
+   */
+  setUrlSource(value: any){
+    this.dataUrlExemplaireDePersonne = value
+  }
+  /**
+   * Méthode permettant de recupérer la valeur au libellé qui servera à former
+   * une url de redirection à partir de la modale choix de personne
+   * @returns la valeur du libellé
+   */
+  getUrlSource(){
+    return this.dataUrlExemplaireDePersonne
+  }
+
+  /**
+   * Méthode permettant de stocker la personne sélectionnée dans la modale choix personne
+   * @param nouvelle valeur
+   */
+  setUrlExemplairePersonneRatachee(value: any){
+    this.dataExemplairePersonneRatachee = value
+  }
+  /**
+   * Méthode permettant de recupérer la personne stockée dans le setUrlExemplairePersonneRatachee()
+   * @returns la valeur de la personne
+   */
+  getUrlExemplairePersonneRatachee(){
+    return this.dataExemplairePersonneRatachee
+  }
+
 }
