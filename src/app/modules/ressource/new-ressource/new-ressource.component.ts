@@ -73,7 +73,6 @@ export class NewRessourceComponent implements OnInit {
       prixEntree: ['', [Validators.required]],
       prixDeSortie: ['', [Validators.required]],
       famille: new FormControl<string | IFamille>(''),
-      caracteristique: [''],
       scanBarcode: [''],
     });
   }
@@ -114,9 +113,12 @@ export class NewRessourceComponent implements OnInit {
             prixEntree: this.ressource.prixEntree,
             prixDeSortie: this.ressource.prixDeSortie,
             famille: this.ressource.famille,
-            caracteristique: this.ressource.caracteristiques,
             scanBarcode: this.ressource?.scanBarCode,
           });
+          if (this.ressource.caracteristiques != undefined) {
+            this.ELEMENTS_TABLE_ATTRIBUTS = this.ressource.caracteristiques
+          }
+          this.dataEnteteMenuService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS
       });
     } else {
       this.dataEnteteMenuService.dataDocumentAttributs = []
@@ -175,7 +177,6 @@ export class NewRessourceComponent implements OnInit {
     if(this.ressource != undefined){
       ressourceTemp.id = this.ressource.id
     }
-    ressourceTemp.famille = this.familleDeRessource;
     this.ressourceService
       .ajouterRessource(ressourceTemp)
       .subscribe((object) => {
