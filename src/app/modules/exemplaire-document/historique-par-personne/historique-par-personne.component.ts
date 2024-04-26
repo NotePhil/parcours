@@ -12,7 +12,7 @@ import { IType } from 'src/app/modele/type';
 import { TypeMouvement } from 'src/app/modele/typeMouvement';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
-import { ModalChoixPersonneComponent } from '../../shared/modal-choix-personne/modal-choix-personne.component';
+import { PatientsService } from 'src/app/services/patients/patients.service';
 
 @Component({
   selector: 'app-historique-par-personne',
@@ -77,14 +77,19 @@ export class HistoriqueParPersonneComponent implements OnInit {
     private datePipe: DatePipe,
     private _liveAnnouncer: LiveAnnouncer,
     private donneeExemplairePersonneRatacheeService:DonneesEchangeService,
-    private decimalPipe : DecimalPipe
+    private decimalPipe : DecimalPipe,
+    private servicePatient: PatientsService
     ) {}
 
   ngOnInit(): void {
 
-    let laPersonneRattachee = this.donneeExemplairePersonneRatacheeService.getUrlExemplairePersonneRatachee()
-    let idPersonne : string = laPersonneRattachee.id
-    this.exemplaire.personneRattachee =  laPersonneRattachee;
+    let idPersonne : string = this.donneeExemplairePersonneRatacheeService.getExemplairePersonneRatachee()
+    this.servicePatient.getPatientById(idPersonne).subscribe(
+      patientTrouve =>{
+        this.exemplaire.personneRattachee =  patientTrouve;
+      }
+    )
+    
     this.serviceExemplaire.getExemplaireDocumentByIdPersonneRatachee(idPersonne).subscribe(valeurs => {
       this.dataSourceAutresExemplaires.data = valeurs;
       idPersonne = valeurs[0].id

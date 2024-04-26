@@ -29,6 +29,8 @@ import { RessourcesService } from 'src/app/services/ressources/ressources.servic
 import { v4 as uuidv4 } from 'uuid';
 import { TypeMouvement } from 'src/app/modele/typeMouvement';
 import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
+import { PatientsService } from 'src/app/services/patients/patients.service';
+import { IPatient } from 'src/app/modele/Patient';
 
 @Component({
   selector: 'app-new-exemplaire',
@@ -148,6 +150,7 @@ export class NewExemplaireComponent implements OnInit {
   typeNeutre : string = TypeMouvement.Neutre
   typeAjout : string = TypeMouvement.Ajout
   typeReduire : string = TypeMouvement.Reduire
+  laPersonneRattachee : IPatient | undefined 
 
   constructor(
     private router: Router,
@@ -160,7 +163,8 @@ export class NewExemplaireComponent implements OnInit {
     private _liveAnnouncer: LiveAnnouncer,
     private serviceExemplaire: ExemplaireDocumentService,
     private datePipe: DatePipe,
-    private barService: ModalCodebarreService
+    private barService: ModalCodebarreService,
+    private servicePatient: PatientsService
   ) {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
@@ -170,8 +174,17 @@ export class NewExemplaireComponent implements OnInit {
   scan_val: any | undefined;
 
   ngOnInit(): void {
+    
+    let idPersonne : string = this.donneeEchangeService.getExemplairePersonneRatachee()
+    this.servicePatient.getPatientById(idPersonne).subscribe(
+      patientTrouve =>{
+        this.laPersonneRattachee =  patientTrouve;
+        if (patientTrouve != undefined) {
+          this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
+        }
+      }
+    )
 
-    let laPersonneRattachee = this.donneeEchangeService.getUrlExemplairePersonneRatachee()
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
       this.ressourceControl.setValue(this.scan_val); // Set the initial value in the search bar
@@ -190,7 +203,6 @@ export class NewExemplaireComponent implements OnInit {
         this.filteredDistributeurOptions=reponse
       }
     )
-    this.nomPatientCourant = laPersonneRattachee.nom + " " + laPersonneRattachee.prenom;
     this.compteur = -1;
 
     // recuperation de l'id de l'exemplaire
@@ -548,8 +560,6 @@ export class NewExemplaireComponent implements OnInit {
    * methode de validation du formulaire (enregistrement des donnees du formulaire)
    */
   onSubmit() {
-
-    let laPersonneRattachee = this.donneeEchangeService.getUrlExemplairePersonneRatachee()
     const exemplaireDocument = this._exemplaireDocument;
     this.submitted = true;
     this.enregistrerObjet();
@@ -574,7 +584,7 @@ export class NewExemplaireComponent implements OnInit {
       typeMouvement: this.document.typeMouvement,
       DocEtats: [],
       dateCreation: new Date,
-      personneRattachee: laPersonneRattachee
+      personneRattachee: this.laPersonneRattachee!
     };
 
     if (this.exemplaire.id != '') {

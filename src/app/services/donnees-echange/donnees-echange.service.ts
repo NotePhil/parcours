@@ -32,6 +32,10 @@ export class DonneesEchangeService {
    */
   setUrlSource(value: any){
     this.dataUrlExemplaireDePersonne = value
+    if (value == "Exécuter" || value == "Historique des documents") {
+      sessionStorage.setItem("urlSource", value)
+    }
+    
   }
   /**
    * Méthode permettant de recupérer la valeur au libellé qui servera à former
@@ -39,6 +43,7 @@ export class DonneesEchangeService {
    * @returns la valeur du libellé
    */
   getUrlSource(){
+    this.dataUrlExemplaireDePersonne = sessionStorage.getItem("urlSource")
     return this.dataUrlExemplaireDePersonne
   }
 
@@ -46,14 +51,16 @@ export class DonneesEchangeService {
    * Méthode permettant de stocker la personne sélectionnée dans la modale choix personne
    * @param nouvelle valeur
    */
-  setUrlExemplairePersonneRatachee(value: any){
+  setExemplairePersonneRatachee(value: any){
     this.dataExemplairePersonneRatachee = value
+    sessionStorage.setItem("personneRatachee",value.id);
   }
   /**
-   * Méthode permettant de recupérer la personne stockée dans le setUrlExemplairePersonneRatachee()
+   * Méthode permettant de recupérer la personne stockée dans le setExemplairePersonneRatachee()
    * @returns la valeur de la personne
    */
-  getUrlExemplairePersonneRatachee(){
+  getExemplairePersonneRatachee(){
+    this.dataExemplairePersonneRatachee = sessionStorage.getItem("personneRatachee")
     return this.dataExemplairePersonneRatachee
   }
 

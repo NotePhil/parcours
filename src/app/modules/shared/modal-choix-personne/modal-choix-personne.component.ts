@@ -111,7 +111,7 @@ export class ModalChoixPersonneComponent  implements OnInit{
     return this.url
   }
   public rechercherListingPersonnes(option: IPatient) {
-    this.donneeExemplairePersonneRatacheeService.setUrlExemplairePersonneRatachee(option)
+    this.donneeExemplairePersonneRatacheeService.setExemplairePersonneRatachee(option)
     this.personne! = option
     if (this.myControl.value == '' || this.myControl.value == undefined) {
       this.scan_val = undefined
