@@ -270,29 +270,22 @@ th{
     background-color: transparent;
     text-align: center !important;
 }
-.filtre{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-    margin-right: 5px;
+#sectionContentFilterId{
+    padding: 2px 5px;
+    min-width: 1rem;
     label{
         font-size: 10px;
+        padding: 0;
+        margin: 0;
+        width: fit-content;
         color: #787878;
-        background-color: #ffffffdf;
-        padding: 0 5px;
+        input{
+            position: relative;
+            top: 2.5px;
+            width: 10px;
+            background-color: #FFD700;
+        }
     }
-}
-#accordianFilterId{
-    position: relative;
-}
-#sectionContentFilterId{
-    position: absolute;
-    bottom: -50px;
-    right: 0;
-    box-shadow: 0 0 2px #28a7462d;
-    border-radius: 5px;
-    z-index: 1;
 }
 @media screen and (max-width: 1040px) {
     .block1 .inputBlock{

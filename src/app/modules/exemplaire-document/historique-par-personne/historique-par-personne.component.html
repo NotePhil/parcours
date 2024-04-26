@@ -127,23 +127,23 @@
             <div id="titleBlock">
                 <div class="titleBlock" role="tab" id="sectionHeaderFilterId">
                     <h5 class="rigth">{{'document.exemplaire.text5' | translate}}</h5>
-                    <button class="btn p-0" data-toggle="collapse" data-parent="#accordianFilterId" href="#sectionContentFilterId" aria-expanded="true" aria-controls="sectionContentFilterId">
-                        <i class="fa fa-filter" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
-            <div id="sectionContentFilterId" class="collapse in w-100" role="tabpanel" aria-labelledby="sectionHeaderFilterId">
-                <div class="filtre">
-                    <label for="" role="button" (click)="regrouperExemplairesParType('default')">
-                        <input type="radio" checked name="filtre" id=""> {{"document.exemplaire.text10" | translate}} {{"precomvt.table2.title3" | translate}}
-                    </label>
-                    <label for="" role="button" (click)="regrouperExemplairesParDate()">
-                        <input type="radio" name="filtre" id=""> {{"document.exemplaire.text10" | translate}} {{'tickets.form.label3' | translate}}
-                    </label>
+                    <div class="dropdown">
+                        <button id="my-dropdownFiltre" class="btn p-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-filter"></i>
+                        </button>
+                        <div class="dropdown-menu" id="sectionContentFilterId" aria-labelledby="my-dropdownFiltre">
+                            <label class="dropdown-item" for="filtre" role="button" (click)="regrouperExemplairesParType('default')">
+                                <input type="radio" checked  name="filtre" id=""> {{"document.exemplaire.text10" | translate}} {{"precomvt.table2.title3" | translate}}
+                            </label>
+                            <label class="dropdown-item" for="filtre" role="button" (click)="regrouperExemplairesParDate()">
+                                <input type="radio" name="filtre" id=""> {{"document.exemplaire.text10" | translate}} {{'tickets.form.label3' | translate}}
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-      <div class="triExemplairesBlock">
+        <div class="triExemplairesBlock">
             <div *ngFor="let element of exemplairesDePersonne">
                 <div *ngIf="element.titre">
                     <div>
@@ -179,6 +179,6 @@
                     </div>
                 </div>
             </div>
-      </div>
+        </div>
     </div>
 </div>
