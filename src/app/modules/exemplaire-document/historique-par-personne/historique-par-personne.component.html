@@ -13,7 +13,7 @@
         <p *ngIf="this.exemplairesDePersonne.length > 0" id="titre">
             {{'document.exemplaire.text6' | translate}} :
             <span class="title">{{this.exemplaire.dateCreation | date: 'dd/MM/yyyy'}}</span>
-            {{'document.exemplaire.text7' | translate}} 
+            {{'document.exemplaire.text7' | translate}}
             <span class="title">{{this.exemplaire.dateCreation | date: 'hh:mm:ss'}}</span>
         </p>
            <div class="block1" *ngFor="let attributParCategorie of exemplaire.categories">
@@ -22,7 +22,7 @@
                    <div class="contentBlock">
                        <div class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories; let i = index">
                            <label>{{attributParCategorie.attribut.titre}} : </label>
-                           <div class="valAttribut">  
+                           <div class="valAttribut">
                             <span>{{rechercherValeurParIdAttribut(attributParCategorie.attribut.id,attributParCategorie.attribut.type)}}</span>
                            </div>
                        </div>
