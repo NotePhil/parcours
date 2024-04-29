@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-list-parours',
   templateUrl: './list-parours.component.html',
-  styleUrls: ['./list-parours.component.scss']
+  styleUrls: ['./list-parours.component.scss'],
 })
 export class ListParoursComponent implements OnInit {
   //parours$:Observable<IParours[]>=EMPTY;
@@ -24,7 +24,7 @@ export class ListParoursComponent implements OnInit {
   ELEMENTS_TABLE: IAfficheParours[] = [];
   filteredOptions: IParours[] | undefined;
 
-  displayedColumns: string[] = ['libelle','etape', 'actions'];
+  displayedColumns: string[] = ['libelle', 'etape', 'actions'];
 
   dataSource = new MatTableDataSource<IParours>(this.ELEMENTS_TABLE);
 
@@ -33,44 +33,42 @@ export class ListParoursComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-
-  tableParours : IAfficheParours[] = []
-  afficheParours : IAfficheParours = {
+  tableParours: IAfficheParours[] = [];
+  afficheParours: IAfficheParours = {
     id: '',
     libelle: '',
     etape: [],
-    listeEtape: ''
-  }
-  constructor(private translate: TranslateService,private router:Router, private _liveAnnouncer: LiveAnnouncer, private serviceParour:ParoursService) { }
+    listeEtape: '',
+  };
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private _liveAnnouncer: LiveAnnouncer,
+    private serviceParour: ParoursService
+  ) {}
 
   ngOnInit(): void {
-    this.getAllParours().subscribe(valeurs => {
-      const tableParours : IAfficheParours[] = [];
+    this.getAllParours().subscribe((valeurs) => {
+      const tableParours: IAfficheParours[] = [];
 
-      valeurs.forEach(
-        x =>{
-          tableParours.push(this.convertParToParAffiche(x))
-        }
-      )
+      valeurs.forEach((x) => {
+        tableParours.push(this.convertParToParAffiche(x));
+      });
       this.dataSource.data = tableParours;
     });
 
-    this.myControl.valueChanges.subscribe(
-      value => {
-        const libelle = typeof value === 'string' ? value : value?.libelle;
-        if(libelle != undefined && libelle?.length >0){
-          this.serviceParour.getParoursBylibelle(libelle.toLowerCase() as string).subscribe(
-            reponse => {
-              this.filteredOptions = reponse;
-            }
-          )
-        }
-        else{
-          this.filteredOptions = [];
-        }
-
+    this.myControl.valueChanges.subscribe((value) => {
+      const libelle = typeof value === 'string' ? value : value?.libelle;
+      if (libelle != undefined && libelle?.length > 0) {
+        this.serviceParour
+          .getParoursBylibelle(libelle.toLowerCase() as string)
+          .subscribe((reponse) => {
+            this.filteredOptions = reponse;
+          });
+      } else {
+        this.filteredOptions = [];
       }
-    );
+    });
   }
 
   displayFn(parours: IParours): string {
@@ -82,18 +80,16 @@ export class ListParoursComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  public rechercherListingParours(option: IParours){
-    this.serviceParour.getParoursBylibelle(option.libelle.toLowerCase()).subscribe(
-        valeurs =>  {
-          const tableParours : IAfficheParours[] = [];
-          valeurs.forEach(
-            x =>{
-              tableParours.push(this.convertParToParAffiche(x))
-            }
-          )
-          this.dataSource.data = tableParours;
-        }
-    )
+  public rechercherListingParours(option: IParours) {
+    this.serviceParour
+      .getParoursBylibelle(option.libelle.toLowerCase())
+      .subscribe((valeurs) => {
+        const tableParours: IAfficheParours[] = [];
+        valeurs.forEach((x) => {
+          tableParours.push(this.convertParToParAffiche(x));
+        });
+        this.dataSource.data = tableParours;
+      });
   }
 
   announceSortChange(sortState: Sort) {
@@ -103,26 +99,24 @@ export class ListParoursComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-  private getAllParours(){
+  private getAllParours() {
     return this.serviceParour.getAllParours();
   }
 
-  private convertParToParAffiche(x: IParours) : IAfficheParours {
-    let afficheParours : IAfficheParours = {
+  private convertParToParAffiche(x: IParours): IAfficheParours {
+    let afficheParours: IAfficheParours = {
       id: '',
       libelle: '',
       etape: [],
-      listeEtape: ''
-    }
+      listeEtape: '',
+    };
+    console.log('parc', afficheParours);
     afficheParours.id = x.id;
     afficheParours.libelle = x.libelle;
     afficheParours.etape = x.etape;
-       x.etape.forEach(
-         e => {
-          afficheParours.listeEtape += e.libelle + ", ";
-        }
-        )
-       return afficheParours;
-   }
-
+    x.etape.forEach((e) => {
+      afficheParours.listeEtape += e.libelle + ', ';
+    });
+    return afficheParours;
+  }
 }

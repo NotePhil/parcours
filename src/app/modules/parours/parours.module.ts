@@ -20,13 +20,10 @@ import { HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { EtapeModule } from '../etape/etape.module';
 
 @NgModule({
-  declarations: [
-    NewParoursComponent,
-    ListParoursComponent
-  ],
+  declarations: [NewParoursComponent, ListParoursComponent],
   imports: [
     CommonModule,
     ParoursRoutingModule,
@@ -41,18 +38,19 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSortModule,
     TicketsModule,
     SharedModule,
+    EtapeModule,
     MatSelectModule,
     MatCheckboxModule,
     TranslateModule.forChild({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
       },
-      extend:true
-  }),
-  BrowserModule
-],
-providers: [DatePipe],
+      extend: true,
+    }),
+    BrowserModule,
+  ],
+  providers: [DatePipe],
 })
-export class ParoursModule { }
+export class ParoursModule {}

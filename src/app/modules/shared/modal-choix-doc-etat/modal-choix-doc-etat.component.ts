@@ -1,11 +1,11 @@
-import { Component, Inject, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IDocument } from 'src/app/modele/document';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DocumentService } from 'src/app/services/documents/document.service'; // Import DocumentService
+import { IDocument } from 'src/app/modele/document';
 
 interface DialogData {
   documentChoisi: IDocument;
-  selectedEtat?: string;
 }
 
 @Component({
@@ -13,55 +13,38 @@ interface DialogData {
   templateUrl: './modal-choix-doc-etat.component.html',
   styleUrls: ['./modal-choix-doc-etat.component.css'],
 })
-export class ModalChoixDocEtatComponent {
-  selectedEtatsMap: { [key: string]: string } = {};
-  checkedCount: number = 0;
+export class ModalChoixDocEtatComponent implements OnInit {
   formeDocument: FormGroup;
   selectedEtat: string = '';
-  @Output() saveChanges: EventEmitter<string[]> = new EventEmitter<string[]>();
-  @Input() previouslySelectedEtat: string | undefined; // Input to receive the previously selected etat
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fb: FormBuilder,
-    public dialogRef: MatDialogRef<ModalChoixDocEtatComponent>
+    public dialogRef: MatDialogRef<ModalChoixDocEtatComponent>,
+    private documentService: DocumentService // Inject DocumentService
   ) {
     this.formeDocument = this.fb.group({});
   }
 
-  isCheckboxDisabled(etat: any): boolean {
-    return this.checkedCount === 1 && !etat.checked;
-  }
-
   onCancel(): void {
     this.formeDocument.reset();
-    this.data.documentChoisi.DocEtats.forEach((etat: any) => {
-      etat.checked = false;
-    });
     this.dialogRef.close();
   }
 
   onSave(documentId: string): void {
-    const selectedEtat = this.selectedEtatsMap[documentId];
-
-    if (selectedEtat) {
-      this.saveChanges.emit([selectedEtat]);
-    }
+    // Save selected etat to the DocumentService
+    this.documentService.setSelectedEtat(documentId, this.selectedEtat);
     this.dialogRef.close();
   }
 
   onRadioChange(etat: any, documentId: string): void {
-    // Uncheck all etats first
-    this.data.documentChoisi.DocEtats.forEach((etat: any) => {
-      etat.checked = false;
-    });
-
-    // Check the selected etat
-    etat.checked = true;
-    this.selectedEtatsMap[documentId] = etat.etat.libelle;
+    this.selectedEtat = etat.etat.libelle;
   }
 
   ngOnInit(): void {
-    this.selectedEtat = this.previouslySelectedEtat || ''; // Set the selected etat when component initializes
+    // Load previously selected etat from DocumentService
+    this.selectedEtat = this.documentService.getSelectedEtat(
+      this.data.documentChoisi.id
+    );
   }
 }

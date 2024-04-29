@@ -2,7 +2,6 @@
     <div class="modal-content">
         <div class="result">
             <h2>Document Etats - {{ data.documentChoisi.titre }}</h2>
-
         </div>
         <div class="card">
             <div class="card-body p-0 tableBlock" id="tableResultats" matSort>
@@ -30,7 +29,8 @@
                             <td class="text-dark containCell" mat-cell *matCellDef="let etat">
                                 <mat-radio-group [(ngModel)]="selectedEtat"
                                     (change)="onRadioChange(etat, data.documentChoisi.id)">
-                                    <mat-radio-button [value]="etat" [checked]="etat.checked"></mat-radio-button>
+                                    <mat-radio-button [value]="etat.etat.libelle"
+                                        [checked]="etat.etat.libelle === selectedEtat"></mat-radio-button>
                                 </mat-radio-group>
                             </td>
 

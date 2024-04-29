@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -15,12 +15,13 @@ import { IEtape } from 'src/app/modele/etape';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { EtapesService } from 'src/app/services/etapes/etapes.service';
 import { v4 as uuidv4 } from 'uuid';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { DocumentService } from 'src/app/services/documents/document.service';
-import { ModalChoixDocumentsComponent } from '../../shared/modal-choix-documents/modal-choix-documents.component';
 import { IDocument } from 'src/app/modele/document';
 import { ModalChoixSousDocumentComponent } from '../../shared/modal-choix-sous-document/modal-choix-sous-document.component';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-etape',
@@ -34,6 +35,7 @@ export class NewEtapeComponent implements OnInit {
   submitted: boolean = false;
   titre: string = '';
   documents: IDocument[] = [];
+  documentId: string[] = [];
 
   etape: IEtape = {
     id: '',
@@ -65,7 +67,9 @@ export class NewEtapeComponent implements OnInit {
     private datePipe: DatePipe,
     private serviceDocument: DocumentService,
     private dialogDef: MatDialog,
-    private donneeDocCatService: DonneesEchangeService
+    private donneeDocCatService: DonneesEchangeService,
+    private dialogRef: MatDialogRef<NewEtapeComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.forme = this.formBuilder.group({
       libelle: [
@@ -81,28 +85,27 @@ export class NewEtapeComponent implements OnInit {
     });
   }
 
+  closeDialog() {
+    this.dialogRef.close(); // close the dialog
+  }
+
   ngOnInit() {
-    let idEtape = this.infosPath.snapshot.paramMap.get('idEtape');
+    let idEtape = this.data?.idEtape;
     if (idEtape != null && idEtape !== '') {
       this.btnLibelle = 'Modifier';
 
       //trouver un autre moyen d'initialiser avec des valeurs
       this.etapeService.getEtapeById(idEtape).subscribe((x) => {
         this.etape = x;
-        console.log('hiiii', this.etape);
         this.documents = this.etape.document;
 
         this.forme.patchValue({
           libelle: this.etape.libelle,
           etat: this.etape.etat,
-          documents: this.etape.document.map((document) => document.id),
         });
-
-        // Initialisation du tableau d'attributs du document
-        this.ELEMENTS_TABLE_DOCUMENTS = this.etape.document;
+        this.documentId = this.etape.document.map((doc) => doc.id);
       });
     }
-    this.titre = this.dataEnteteMenuService.dataEnteteMenu;
   }
 
   get f() {
@@ -113,35 +116,47 @@ export class NewEtapeComponent implements OnInit {
    * Methode permettant d'ouvrir la modal permettant d'associer des sous documents au document
    */
   openSousDocumentDialog() {
-    const dialogRef = this.dialogDef.open(ModalChoixSousDocumentComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      width: '100%',
-      height: '100%',
-      enterAnimationDuration: '1000ms',
-      exitAnimationDuration: '1000ms',
-      data: {
-        selectedEtat: this.forme.value.etat,
-      },
-    });
+    const dialogConfig = new MatDialogConfig();
+
+    if (this.documentId.length > 0) {
+      dialogConfig.data = { documentIds: this.documentId };
+    }
+    console.log('Preparing to open dialog with document IDs:', this.documentId);
+
+    (dialogConfig.maxWidth = '100vw'),
+      (dialogConfig.maxHeight = '100vh'),
+      (dialogConfig.width = '100%'),
+      (dialogConfig.height = '100%'),
+      (dialogConfig.enterAnimationDuration = '1000ms'),
+      (dialogConfig.exitAnimationDuration = '1000ms');
+
+    const dialogRef = this.dialogDef.open(
+      ModalChoixSousDocumentComponent,
+      dialogConfig
+    );
 
     dialogRef.afterClosed().subscribe((result) => {
       this.ELEMENTS_TABLE_SOUS_DOCUMENTS =
         this.donneeDocCatService.dataDocumentSousDocuments;
-      console.log('sous doc', this.ELEMENTS_TABLE_SOUS_DOCUMENTS);
+
+      if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
+        this.documentId = this.ELEMENTS_TABLE_SOUS_DOCUMENTS.map(
+          (doc) => doc.id
+        );
+      }
     });
   }
-  resetDocuments() {
+
+  closeModal() {
     // Reset document selection array
     this.ELEMENTS_TABLE_SOUS_DOCUMENTS = [];
+    this.dialogRef.close();
   }
 
   onSubmit() {
     this.submitted = true;
     // Validate form
     if (this.forme.invalid) return;
-
-    // Update docEtats with checked etapes
 
     // Create etape object
     const etapeTemp = {
@@ -166,7 +181,8 @@ export class NewEtapeComponent implements OnInit {
       // Reset selected sous documents
       this.ELEMENTS_TABLE_SOUS_DOCUMENTS = [];
       // Navigate back to list
-      this.router.navigate(['/list-etapes']);
+      this.router.navigate(['/parcours-nouveau']);
+      this.dialogRef.close(etapeTemp);
     });
     // Clear selected documents data
     this.donneeDocCatService.dataDocumentDocuments = [];

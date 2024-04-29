@@ -1,5 +1,5 @@
 <div id="mainSection" class="bg-light card modalCategorie">
-    <form [formGroup]="formeDocument" *ngIf="formeDocument" class="w-100">
+    <form class="w-100">
         <div class="form-group mt-5">
             <div class='card-hearder'>
                 <h2 class="modal-title">{{"document.title5" | translate}}</h2>
@@ -101,19 +101,20 @@
                                     <!-- etat Column -->
                                     <ng-container matColumnDef="etat">
                                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
-                                            Etat </th>
+                                            {{ 'document.table.title3' | translate }}
+                                        </th>
                                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                             <div class="actions">
-                                                <button type="button" class="btn p-1">
+                                                <button type="button" class="btn p-1" (click)="openModal(element)">
                                                     <i class="fas fa-plus-square fa-lg"
-                                                        style="color: rgba(40, 167, 69, 0.79) ;"
-                                                        (click)="openModal(element)"></i>
+                                                        style="color: rgba(40, 167, 69, 0.79);"></i>
                                                 </button>
                                                 <span style="font-size: small; min-width: 67px;">{{
                                                     selectedEtatsMap[element.id] }}</span>
                                             </div>
                                         </td>
                                     </ng-container>
+
 
                                     <!-- actions Column -->
                                     <ng-container matColumnDef="actions">

@@ -19,12 +19,8 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 
-
 @NgModule({
-  declarations: [
-    NewEtapeComponent,
-    ListEtapesComponent
-  ],
+  declarations: [NewEtapeComponent, ListEtapesComponent],
   imports: [
     CommonModule,
     //EtapeRoutingModule,
@@ -41,15 +37,15 @@ import { HttpClient } from '@angular/common/http';
     SharedModule,
     TranslateModule.forChild({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
       },
-      extend:true
-  }),
-  BrowserModule
-],
-providers: [DatePipe],
+      extend: true,
+    }),
+    BrowserModule,
+  ],
+  exports: [ListEtapesComponent],
+  providers: [DatePipe],
 })
-
-export class EtapeModule { }
+export class EtapeModule {}
