@@ -85,7 +85,7 @@
         <div style="justify-content: space-between; display: flex;">
     
               <p *ngIf="error" class="text-warning h5">{{ error}}</p>
-            <button *ngIf="reponse.sol" (click)="openModal(exemplaire)" type="button" class="btn btn-outline-success">
+            <button *ngIf="req" (click)="openModal(exemplaire)" type="button" class="btn btn-outline-success">
                 <i class="fas fa-check"></i>
                 {{'lists.button6' | translate}}
             </button>

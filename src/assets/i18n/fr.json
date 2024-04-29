@@ -277,6 +277,7 @@
     },
     "exemplaire": {
       "title": "Exemplaire ",
+      "title0": "selection",
       "title2": "Donnees obsoletes",
       "title3": "Ajouter des ressources",
       "title4": "liste des mouvements",

@@ -38,13 +38,14 @@ export class ViewExemplaireComponent implements OnInit {
     contientRessources: false,
     contientDistributeurs: false,
     typeMouvement: TypeMouvement.Neutre,
-    DocEtats: [],
+    docEtats: [],
   };
   titre: string = '';
   courant: string = '';
+  req: boolean = false;
   error: string = '';
   selectedEtatsMap: IDocEtats | undefined;
-  reponse!: { ele: IDocEtats | null; sol: boolean; in: number | null };
+  reponse: { ele: IOrdreEtat; sol: boolean; in: number } | undefined;
   mouvements: IMouvement[] = [];
   EtatsSuivant: IDocEtats[] = [];
   TabOrdre: IOrdreEtat[] = [];
@@ -66,9 +67,17 @@ export class ViewExemplaireComponent implements OnInit {
         .getExemplaireDocumentById(idExemplaire)
         .subscribe((x) => {
           this.exemplaire = x;
-          this.reponse = this.serviceExemplaire.getExemplaireDocumentByOrder(x);
-          this.courant = this.reponse.ele!.etat.libelle;
-          console.log('element response :', this.reponse);
+          this.serviceDocument.getDocumentById(x.idDocument).subscribe(
+            (y) => {
+              this.reponse = this.serviceExemplaire.getExemplaireDocumentByOrder(x, y);
+              if (this.reponse) {
+                this.req = this.reponse.sol;
+                this.courant = this.reponse.ele.etat.libelle;
+              }
+              console.log('element response :', this.serviceExemplaire.getExemplaireDocumentByOrder(x, y));
+            }
+          )
+
           if (this.exemplaire.ordreEtats != undefined) {
             this.TabOrdre = this.exemplaire.ordreEtats;
           }
@@ -83,8 +92,8 @@ export class ViewExemplaireComponent implements OnInit {
   openModal(documentChoisi: IDocument) {
     let selectedEtat = {};
 
-    if (this.reponse!.in != this.exemplaire.DocEtats.length - 1) {
-      this.EtatsSuivant = this.exemplaire.DocEtats.slice(this.reponse.in! + 1);
+    if (this.reponse!.in != documentChoisi.docEtats.length - 1) {
+      this.EtatsSuivant = documentChoisi.docEtats.slice(this.reponse!.in + 1);
       const dialogRef = this.dialog.open(ModalChoixDocEtatComponent, {
         width: '600px',
         data: {
@@ -132,7 +141,7 @@ export class ViewExemplaireComponent implements OnInit {
             contientDistributeurs: this.exemplaire.contientDistributeurs,
             typeMouvement: this.exemplaire.typeMouvement,
             ordreEtats: this.ExempleOrdre,
-            DocEtats: [],
+            docEtats: [],
           };
       
           if (this.exemplaire.id != '') {
@@ -142,6 +151,7 @@ export class ViewExemplaireComponent implements OnInit {
           this.serviceExemplaire
             .ajouterExemplaireDocument(exemplaireTemp)
             .subscribe((object) => {
+              this.ngOnInit();
               this.router.navigateByUrl(this.router.url);
             });
         }
@@ -169,7 +179,7 @@ export class ViewExemplaireComponent implements OnInit {
       contientDistributeurs: this.exemplaire.contientDistributeurs,
       typeMouvement: this.exemplaire.typeMouvement,
       ordreEtats: this.ExempleOrdre,
-      DocEtats: [],
+      docEtats: [],
     };
 
     if (this.exemplaire.id != '') {

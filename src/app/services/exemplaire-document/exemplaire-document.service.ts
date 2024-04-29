@@ -1,65 +1,67 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { IDocEtats } from "src/app/modele/doc-etats";
+import { IDocEtats } from 'src/app/modele/doc-etats';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
+import { IOrdreEtat } from 'src/app/modele/ordreEtat';
+import { DocumentService } from '../documents/document.service';
+import { IDocument } from 'src/app/modele/document';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ExemplaireDocumentService {
+  res!: boolean;
+  i!: number;
+  ordreEtat!: IOrdreEtat;
+  constructor(
+    private http: HttpClient,
+    private documentService: DocumentService
+  ) {}
 
-  constructor(private http:HttpClient) { }
-
-  getAllExemplaireDocuments():Observable<IExemplaireDocument[]>
-  {
+  getAllExemplaireDocuments(): Observable<IExemplaireDocument[]> {
     return this.http.get<IExemplaireDocument[]>('api/exemplaires');
   }
 
-  getExemplaireDocumentById(id:string):Observable<IExemplaireDocument>{
+  getExemplaireDocumentById(id: string): Observable<IExemplaireDocument> {
     return this.getAllExemplaireDocuments().pipe(
-      map(x=>
-        {
-          return x.find(d=>d.id==id) as IExemplaireDocument 
-        })
+      map((x) => {
+        return x.find((d) => d.id == id) as IExemplaireDocument;
+      })
     );
   }
 
-  getExemplaireDocumentByOrder(exemplaire:IExemplaireDocument){
-    let res : boolean;
-    let i = null;
-    let docEtat! : IDocEtats;
-    
-    docEtat = exemplaire.DocEtats[0];
-    for (let index = 0; index < exemplaire.DocEtats.length; index++) {
-      if (exemplaire.DocEtats[index].ordre > docEtat.ordre) {
-        docEtat = exemplaire.DocEtats[index];
-        i = index;
-      }  
-    console.log(index);
-    }
+  getExemplaireDocumentByOrder(exemplaire: IExemplaireDocument, doc: IDocument) {
 
+    this.ordreEtat = exemplaire.ordreEtats![exemplaire.ordreEtats!.length - 1];
     
-    if (docEtat.validation != undefined) {
-      res = true;   
-    } else {
-      res = false;
-    }
-
-    return {ele: docEtat, sol: res, in: i};
+      console.log("doc :", doc);
+      
+      for (let index = 0; index < doc.docEtats.length; index++) {
+        if (doc.docEtats[index].etat.id == this.ordreEtat.etat.id) {
+          if (doc.docEtats[index].validation != undefined) {
+            this.res = true;
+          } else {
+            this.res = false;
+          }
+          this.i = index;
+        }
+        console.log(index, doc.docEtats[index], this.ordreEtat.etat);
+      }
+      return { ele: this.ordreEtat, sol: this.res, in: this.i };
   }
-  
-  getExemplaireDocumentByTitre(titre:string): Observable<IExemplaireDocument[]> {
+
+  getExemplaireDocumentByTitre(
+    titre: string
+  ): Observable<IExemplaireDocument[]> {
     return this.http.get<IExemplaireDocument[]>('api/exemplaires').pipe(
-      map(x=>
-        {
-          return x.filter(e=> e.titre.toLowerCase().startsWith(titre))
-        })
-    );        
+      map((x) => {
+        return x.filter((e) => e.titre.toLowerCase().startsWith(titre));
+      })
+    );
   }
 
-   ajouterExemplaireDocument(exemplaire:IExemplaireDocument )
-   {
-     return this.http.post("api/exemplaires",exemplaire);
-   }
+  ajouterExemplaireDocument(exemplaire: IExemplaireDocument) {
+    return this.http.post('api/exemplaires', exemplaire);
+  }
 }
