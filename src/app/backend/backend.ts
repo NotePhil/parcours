@@ -445,15 +445,6 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            fonction: 'Role',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'role-nouveau', bouton: 'false' },
-              { nom: 'Rechercher', lien: './list-roles', bouton: 'false' },
-            ],
-          },
-          {
             fonction: 'Ressource',
             icone: 'fas fa-user-cog',
             actif: '',
