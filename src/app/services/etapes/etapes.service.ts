@@ -33,6 +33,7 @@ export class EtapesService {
   }
 
   ajouterEtape(etape: IEtape): Observable<any> {
+    console.log('etape', etape);
     return this.http.post('api/etape', etape);
   }
 
@@ -40,7 +41,6 @@ export class EtapesService {
     etape.document.forEach((document) => {
       document.DocEtats.forEach((docEtat) => {
         if (docEtat.checked) {
-          // Update the etape variable of the checked docEtat
           docEtat.etape = etape;
           console.log('etape new', docEtat);
         }

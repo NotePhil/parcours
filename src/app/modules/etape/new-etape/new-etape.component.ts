@@ -96,6 +96,8 @@ export class NewEtapeComponent implements OnInit {
 
       //trouver un autre moyen d'initialiser avec des valeurs
       this.etapeService.getEtapeById(idEtape).subscribe((x) => {
+        console.log('x', x);
+
         this.etape = x;
         this.documents = this.etape.document;
 
@@ -136,20 +138,16 @@ export class NewEtapeComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.ELEMENTS_TABLE_SOUS_DOCUMENTS =
-        this.donneeDocCatService.dataDocumentSousDocuments;
+      this.documents = this.donneeDocCatService.dataDocumentSousDocuments;
 
-      if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
-        this.documentId = this.ELEMENTS_TABLE_SOUS_DOCUMENTS.map(
-          (doc) => doc.id
-        );
+      if (this.documents.length > 0) {
+        this.documentId = this.documents.map((doc) => doc.id);
       }
     });
   }
 
   closeModal() {
     // Reset document selection array
-    this.ELEMENTS_TABLE_SOUS_DOCUMENTS = [];
     this.dialogRef.close();
   }
 
@@ -163,28 +161,17 @@ export class NewEtapeComponent implements OnInit {
       id: uuidv4(),
       libelle: this.f['libelle'].value,
       etat: this.f['etat'].value,
-      document: this.ELEMENTS_TABLE_SOUS_DOCUMENTS,
+      document: this.documents,
     };
+    console.log('etapeTemp', etapeTemp);
 
     // If updating existing etape, set its id
     if (this.etape.id != '') {
       etapeTemp.id = this.etape.id;
     }
 
-    // Add additional documents
-    this.ELEMENTS_TABLE_DOCUMENTS.forEach((d) => etapeTemp.document.push(d));
-
-    // Call service to add/update etape
     this.etapeService.ajouterEtape(etapeTemp).subscribe(() => {
-      this.etapeService.updateDocEtatsWithCheckedEtapes(etapeTemp);
-
-      // Reset selected sous documents
-      this.ELEMENTS_TABLE_SOUS_DOCUMENTS = [];
-      // Navigate back to list
-      this.router.navigate(['/parcours-nouveau']);
       this.dialogRef.close(etapeTemp);
     });
-    // Clear selected documents data
-    this.donneeDocCatService.dataDocumentDocuments = [];
   }
 }

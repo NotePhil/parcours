@@ -91,6 +91,7 @@ export class ModalChoixSousDocumentComponent implements OnInit {
         this.ELEMENTS_TABLE_DOCUMENTS.push(document);
         this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
         this.populateSelectedEtatsMap();
+        console.log('sous-doc', this.dataSourceDocumentResultat.data);
       });
   }
 

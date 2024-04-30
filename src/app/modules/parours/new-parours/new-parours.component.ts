@@ -122,16 +122,32 @@ export class NewParoursComponent implements OnInit {
     const dialogRef = this.dialog.open(NewEtapeComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.getAllEtapes().subscribe((valeurs) => {
+        const tableDocuments: IAfficheEtape[] = [];
+
+        valeurs.forEach((x) => {
+          tableDocuments.push(this.convertEtapToEtapAffiche(x));
+        });
+        this.dataSource.data = tableDocuments;
+        console.log('etapes', tableDocuments);
+      });
       if (result) {
-        // Assign the new etape to the form control
-        const currentEtape = this.forme.controls['_etape'].value as IEtape[];
-        const index = currentEtape.findIndex((et) => et.id === result.id);
-        if (index >= 0) {
-          currentEtape[index] = result;
-        } else {
-          currentEtape.push(result);
+        let idParours = this.infosPath.snapshot.paramMap.get('idParours');
+        console.log('idparcours', idParours);
+
+        if (!etapeId || idParours != null) {
+          console.log('res', result);
+
+          // Assign the new etape to the form control
+          const currentEtape = this.forme.controls['_etape'].value as IEtape[];
+          const index = currentEtape.findIndex((et) => et.id === result.id);
+          if (index >= 0) {
+            currentEtape[index] = result;
+          } else {
+            currentEtape.push(result);
+          }
+          this.forme.controls['_etape'].setValue(currentEtape);
         }
-        this.forme.controls['_etape'].setValue(currentEtape);
       }
     });
   }

@@ -77,20 +77,6 @@ export class ListEtapesComponent implements OnInit {
       });
       this.dataSource.data = tableDocuments;
     });
-
-    this.myControl.valueChanges.subscribe((value) => {
-      const name = typeof value === 'string' ? value : value?.libelle;
-      if (name != undefined && name?.length > 0) {
-        this.serviceEtape
-          .getEtapesBylibelle(name.toLowerCase() as string)
-          .subscribe((reponse) => {
-            this.filteredOptions = reponse;
-            console.log('item', this.filteredOptions);
-          });
-      } else {
-        this.filteredOptions = [];
-      }
-    });
   }
 
   setIdEtape(id_etape: string, libelle_etape: string) {
