@@ -495,7 +495,6 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Créer', lien: 'etape-nouvelle', bouton: 'false' },
               {
                 nom: 'Rechercher',
                 lien: './list-etapes',
@@ -658,7 +657,6 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Créer', lien: 'etape-nouvelle', bouton: 'false' },
               {
                 nom: 'search',
                 lien: './list-etapes',
@@ -17034,7 +17032,6 @@ export class InMemDBService implements InMemoryDbService {
                     prixEntree: 1000,
                     prixDeSortie: 1050,
                     unite: 'Litre',
-                    caracteristique: 'souple',
                     famille: {
                       id: '4',
                       libelle: 'Medical',
@@ -17085,7 +17082,6 @@ export class InMemDBService implements InMemoryDbService {
                     prixEntree: 1000,
                     prixDeSortie: 1050,
                     unite: 'Litre',
-                    caracteristique: 'souple',
                     famille: {
                       id: '4',
                       libelle: 'Medical',
@@ -17110,7 +17106,6 @@ export class InMemDBService implements InMemoryDbService {
                     prixDeSortie: 2050,
                     unite: 'Litre',
   
-                    caracteristique: 'souple',
                     famille: {
                       id: '3',
                       libelle: 'pediatrie',
@@ -17197,7 +17192,6 @@ export class InMemDBService implements InMemoryDbService {
                     prixEntree: 1000,
                     prixDeSortie: 1050,
                     unite: 'Litre',
-                    caracteristique: 'souple',
                     famille: {
                       id: '4',
                       libelle: 'Medical',
@@ -17546,7 +17540,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -17596,7 +17589,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 3000,
                         prixDeSortie: 3050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -17620,7 +17612,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 2000,
                         prixDeSortie: 2050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '3',
                           libelle: 'pediatrie',
@@ -17707,7 +17698,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -18046,7 +18036,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -18096,7 +18085,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 3000,
                         prixDeSortie: 3050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -18120,7 +18108,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 2000,
                         prixDeSortie: 2050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '3',
                           libelle: 'pediatrie',
@@ -18207,7 +18194,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -18494,7 +18480,6 @@ export class InMemDBService implements InMemoryDbService {
                         unite: 'Litre',
                         prixDeSortie: 2000,
                         prixEntree: 1300,
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -18544,7 +18529,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixDeSortie: 2000,
                         prixEntree: 1300,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -18567,7 +18551,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixDeSortie: 2000,
                         prixEntree: 1300,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '3',
                           libelle: 'pediatrie',
@@ -18653,7 +18636,6 @@ export class InMemDBService implements InMemoryDbService {
                         unite: 'Litre',
                         prixDeSortie: 2000,
                         prixEntree: 1300,
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -18939,7 +18921,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixDeSortie: 1000,
                         scanBarCode: 'hello',
                         prixEntree: 500,
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'néonat',
@@ -18990,7 +18971,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixDeSortie: 3000,
                         scanBarCode: '6911989109209',
                         prixEntree: 2000,
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'néonat',
@@ -19014,7 +18994,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixDeSortie: 2000,
                         scanBarCode: 'hello',
                         prixEntree: 500,
-                        caracteristique: 'souple',
                         famille: {
                           id: '3',
                           libelle: 'pediatrie',
@@ -19101,7 +19080,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixDeSortie: 1000,
                         scanBarCode: 'hello',
                         prixEntree: 500,
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'néonat',
@@ -19555,7 +19533,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'néonat',
@@ -19605,7 +19582,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 3000,
                         prixDeSortie: 3050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'néonat',
@@ -19630,7 +19606,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixDeSortie: 2050,
                         unite: 'Litre',
   
-                        caracteristique: 'souple',
                         famille: {
                           id: '3',
                           libelle: 'pediatrie',
@@ -19717,7 +19692,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'néonat',
@@ -20003,7 +19977,6 @@ export class InMemDBService implements InMemoryDbService {
                         scanBarCode: '6911989109209',
                         prixEntree: 1000,
                         prixDeSortie: 1050,
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'néonat',
@@ -20053,7 +20026,6 @@ export class InMemDBService implements InMemoryDbService {
                         unite: 'Litre',
                         prixEntree: 3000,
                         prixDeSortie: 3050,
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'néonat',
@@ -20077,7 +20049,6 @@ export class InMemDBService implements InMemoryDbService {
                         scanBarCode: '6911989109209',
                         prixEntree: 2000,
                         prixDeSortie: 2050,
-                        caracteristique: 'souple',
                         famille: {
                           id: '3',
                           libelle: 'pediatrie',
@@ -20164,7 +20135,6 @@ export class InMemDBService implements InMemoryDbService {
                         scanBarCode: '6911989109209',
                         prixEntree: 1000,
                         prixDeSortie: 1050,
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'néonat',
@@ -20647,7 +20617,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -20697,7 +20666,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 3000,
                         prixDeSortie: 3050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -20721,7 +20689,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 2000,
                         prixDeSortie: 2050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '3',
                           libelle: 'pediatrie',
@@ -20808,7 +20775,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -21159,7 +21125,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -21209,7 +21174,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 3000,
                         prixDeSortie: 3050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -21234,7 +21198,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixDeSortie: 2050,
                         unite: 'Litre',
   
-                        caracteristique: 'souple',
                         famille: {
                           id: '3',
                           libelle: 'pediatrie',
@@ -21321,7 +21284,6 @@ export class InMemDBService implements InMemoryDbService {
                         prixEntree: 1000,
                         prixDeSortie: 1050,
                         unite: 'Litre',
-                        caracteristique: 'souple',
                         famille: {
                           id: '4',
                           libelle: 'Medical',
@@ -21662,7 +21624,6 @@ export class InMemDBService implements InMemoryDbService {
                     prixEntree: 1000,
                     prixDeSortie: 1050,
                     unite: 'Litre',
-                    caracteristique: 'souple',
                     famille: {
                       id: '4',
                       libelle: 'Medical',
@@ -21713,7 +21674,6 @@ export class InMemDBService implements InMemoryDbService {
                     prixEntree: 1000,
                     prixDeSortie: 1050,
                     unite: 'Litre',
-                    caracteristique: 'souple',
                     famille: {
                       id: '4',
                       libelle: 'Medical',
@@ -21737,7 +21697,6 @@ export class InMemDBService implements InMemoryDbService {
                     prixEntree: 2000,
                     prixDeSortie: 2050,
                     unite: 'Litre',
-                    caracteristique: 'souple',
                     famille: {
                       id: '3',
                       libelle: 'pediatrie',
@@ -21824,7 +21783,6 @@ export class InMemDBService implements InMemoryDbService {
                     prixEntree: 1000,
                     prixDeSortie: 1050,
                     unite: 'Litre',
-                    caracteristique: 'souple',
                     famille: {
                       id: '4',
                       libelle: 'Medical',
@@ -22179,7 +22137,6 @@ export class InMemDBService implements InMemoryDbService {
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       unite: 'Litre',
-                      caracteristique: 'souple',
                       famille: {
                         id: '4',
                         libelle: 'Medical',
@@ -22230,7 +22187,6 @@ export class InMemDBService implements InMemoryDbService {
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       unite: 'Litre',
-                      caracteristique: 'souple',
                       famille: {
                         id: '4',
                         libelle: 'Medical',
@@ -22255,7 +22211,6 @@ export class InMemDBService implements InMemoryDbService {
                       prixDeSortie: 2050,
                       unite: 'Litre',
     
-                      caracteristique: 'souple',
                       famille: {
                         id: '3',
                         libelle: 'pediatrie',
@@ -22342,7 +22297,6 @@ export class InMemDBService implements InMemoryDbService {
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       unite: 'Litre',
-                      caracteristique: 'souple',
                       famille: {
                         id: '4',
                         libelle: 'Medical',
@@ -22691,7 +22645,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -22741,7 +22694,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -22765,7 +22717,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 2000,
                           prixDeSortie: 2050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -22852,7 +22803,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -23191,7 +23141,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -23241,7 +23190,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -23265,7 +23213,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 2000,
                           prixDeSortie: 2050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -23352,7 +23299,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -23639,7 +23585,6 @@ export class InMemDBService implements InMemoryDbService {
                           unite: 'Litre',
                           prixDeSortie: 2000,
                           prixEntree: 1300,
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -23689,7 +23634,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixDeSortie: 2000,
                           prixEntree: 1300,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -23712,7 +23656,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixDeSortie: 2000,
                           prixEntree: 1300,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -23798,7 +23741,6 @@ export class InMemDBService implements InMemoryDbService {
                           unite: 'Litre',
                           prixDeSortie: 2000,
                           prixEntree: 1300,
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -24084,7 +24026,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixDeSortie: 1000,
                           scanBarCode: 'hello',
                           prixEntree: 500,
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'néonat',
@@ -24135,7 +24076,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixDeSortie: 3000,
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'néonat',
@@ -24159,7 +24099,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixDeSortie: 2000,
                           scanBarCode: 'hello',
                           prixEntree: 500,
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -24246,7 +24185,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixDeSortie: 1000,
                           scanBarCode: 'hello',
                           prixEntree: 500,
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'néonat',
@@ -24700,7 +24638,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'néonat',
@@ -24750,7 +24687,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'néonat',
@@ -24775,7 +24711,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixDeSortie: 2050,
                           unite: 'Litre',
     
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -24862,7 +24797,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'néonat',
@@ -25148,7 +25082,6 @@ export class InMemDBService implements InMemoryDbService {
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'néonat',
@@ -25198,7 +25131,6 @@ export class InMemDBService implements InMemoryDbService {
                           unite: 'Litre',
                           prixEntree: 3000,
                           prixDeSortie: 3050,
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'néonat',
@@ -25222,7 +25154,6 @@ export class InMemDBService implements InMemoryDbService {
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
                           prixDeSortie: 2050,
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -25309,7 +25240,6 @@ export class InMemDBService implements InMemoryDbService {
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'néonat',
@@ -25792,7 +25722,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -25842,7 +25771,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -25866,7 +25794,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 2000,
                           prixDeSortie: 2050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -25953,7 +25880,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -26304,7 +26230,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -26354,7 +26279,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -26379,7 +26303,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixDeSortie: 2050,
                           unite: 'Litre',
     
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -26466,7 +26389,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -26762,7 +26684,6 @@ export class InMemDBService implements InMemoryDbService {
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       unite: 'Litre',
-                      caracteristique: 'souple',
                       famille: {
                         id: '4',
                         libelle: 'Medical',
@@ -26813,7 +26734,6 @@ export class InMemDBService implements InMemoryDbService {
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       unite: 'Litre',
-                      caracteristique: 'souple',
                       famille: {
                         id: '4',
                         libelle: 'Medical',
@@ -26837,7 +26757,6 @@ export class InMemDBService implements InMemoryDbService {
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
-                      caracteristique: 'souple',
                       famille: {
                         id: '3',
                         libelle: 'pediatrie',
@@ -26924,7 +26843,6 @@ export class InMemDBService implements InMemoryDbService {
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       unite: 'Litre',
-                      caracteristique: 'souple',
                       famille: {
                         id: '4',
                         libelle: 'Medical',
@@ -27273,7 +27191,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -27323,7 +27240,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -27347,7 +27263,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 2000,
                           prixDeSortie: 2050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -27434,7 +27349,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -27774,7 +27688,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -27824,7 +27737,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -27848,7 +27760,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 2000,
                           prixDeSortie: 2050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -27935,7 +27846,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -28223,7 +28133,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -28273,7 +28182,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -28297,7 +28205,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 2000,
                           prixDeSortie: 2050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -28384,7 +28291,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -28856,7 +28762,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -28906,7 +28811,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -28930,7 +28834,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 2000,
                           prixDeSortie: 2050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -29017,7 +28920,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -29368,7 +29270,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -29418,7 +29319,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
@@ -29442,7 +29342,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 2000,
                           prixDeSortie: 2050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '3',
                             libelle: 'pediatrie',
@@ -29529,7 +29428,6 @@ export class InMemDBService implements InMemoryDbService {
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
-                          caracteristique: 'souple',
                           famille: {
                             id: '4',
                             libelle: 'Medical',
