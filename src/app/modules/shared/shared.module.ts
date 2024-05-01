@@ -26,6 +26,7 @@ import { ModalChoixSousDocumentComponent } from './modal-choix-sous-document/mod
 import { ModalChoixSousExemplairesComponent } from './modal-choix-sous-exemplaires/modal-choix-sous-exemplaires.component';
 import { ModalChoixDocumentsComponent } from './modal-choix-documents/modal-choix-documents.component';
 import { ModalDocEtatsComponent } from './modal-doc-etats/modal-doc-etats.component';
+import { ModalRessourceAttributsComponent } from './modal-ressource-attributs/modal-ressource-attributs.component';
 import { ModalRoleValidationComponent } from './modal-role-validation/modal-role-validation.component';
 import { ModalCodebarreComponent } from './modal-codebarre/modal-codebarre.component';
 import { ModalCodebarreDialogComponent } from './modal-codebarre-dialog/modal-codebarre-dialog.component';
@@ -44,6 +45,7 @@ import { MatRadioModule } from '@angular/material/radio';
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
     ModalDocEtatsComponent,
+    ModalRessourceAttributsComponent,
     ModalRoleValidationComponent,
     ModalCodebarreComponent,
     ModalCodebarreDialogComponent,
@@ -62,6 +64,7 @@ import { MatRadioModule } from '@angular/material/radio';
     ModalCodebarreDialogComponent,
     ModalCodebarreScanContinueComponent,
     ModalRoleValidationComponent,
+    ModalRessourceAttributsComponent,
     ModalChoixDocumentsComponent,
   ],
   imports: [
