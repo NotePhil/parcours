@@ -38,7 +38,7 @@ export class ViewExemplaireComponent implements OnInit {
     contientRessources: false,
     contientDistributeurs: false,
     typeMouvement: TypeMouvement.Neutre,
-    docEtats: [],,
+    docEtats: [],
     dateCreation: new Date,
     personneRattachee: {
       id: '',
@@ -151,6 +151,15 @@ export class ViewExemplaireComponent implements OnInit {
             typeMouvement: this.exemplaire.typeMouvement,
             ordreEtats: this.ExempleOrdre,
             docEtats: [],
+            dateCreation: new Date(),
+            personneRattachee: {
+              id: '',
+              nom: '',
+              adresse: '',
+              mail: '',
+              telephone: '',
+              qrCodeValue: ''
+            }
           };
       
           if (this.exemplaire.id != '') {
@@ -189,6 +198,15 @@ export class ViewExemplaireComponent implements OnInit {
       typeMouvement: this.exemplaire.typeMouvement,
       ordreEtats: this.ExempleOrdre,
       docEtats: [],
+      dateCreation: new Date(),
+      personneRattachee: {
+        id: '',
+        nom: '',
+        adresse: '',
+        mail: '',
+        telephone: '',
+        qrCodeValue: ''
+      }
     };
 
     if (this.exemplaire.id != '') {
