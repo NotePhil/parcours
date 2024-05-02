@@ -29,6 +29,8 @@ import { RessourcesService } from 'src/app/services/ressources/ressources.servic
 import { v4 as uuidv4 } from 'uuid';
 import { TypeMouvement } from 'src/app/modele/typeMouvement';
 import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
+import { PatientsService } from 'src/app/services/patients/patients.service';
+import { IPatient } from 'src/app/modele/Patient';
 
 @Component({
   selector: 'app-new-exemplaire',
@@ -53,7 +55,16 @@ export class NewExemplaireComponent implements OnInit {
     contientDistributeurs: false,
     typeMouvement: 'Neutre',
     docEtats: [],
-    ordreEtats: []
+    ordreEtats: [],
+    dateCreation: new Date(),
+    personneRattachee: {
+      id: '',
+      nom: '',
+      adresse: '',
+      mail: '',
+      telephone: '',
+      qrCodeValue: ''
+    }
   };
 
   document: IDocument = {
@@ -85,7 +96,6 @@ export class NewExemplaireComponent implements OnInit {
 
   formeExemplaire: FormGroup;
   btnLibelle: string = 'Ajouter';
-  //titre: string = 'Ajouter un nouvel exemplaire de document';
   submitted: boolean = false;
   controlExemplaire = new FormControl();
   typeAttribut: string = '';
@@ -141,11 +151,12 @@ export class NewExemplaireComponent implements OnInit {
   typeNeutre : string = TypeMouvement.Neutre
   typeAjout : string = TypeMouvement.Ajout
   typeReduire : string = TypeMouvement.Reduire
+  laPersonneRattachee : IPatient | undefined 
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private dataEnteteMenuService:DonneesEchangeService,
+    private donneeEchangeService:DonneesEchangeService,
     private infosPath: ActivatedRoute,
     private serviceRessource: RessourcesService,
     private serviceDistributeur: DistributeursService,
@@ -153,8 +164,8 @@ export class NewExemplaireComponent implements OnInit {
     private _liveAnnouncer: LiveAnnouncer,
     private serviceExemplaire: ExemplaireDocumentService,
     private datePipe: DatePipe,
-    private donneeExemplaireDocService:DonneesEchangeService,
-    private barService: ModalCodebarreService
+    private barService: ModalCodebarreService,
+    private servicePatient: PatientsService
   ) {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
@@ -164,6 +175,17 @@ export class NewExemplaireComponent implements OnInit {
   scan_val: any | undefined;
 
   ngOnInit(): void {
+    
+    let idPersonne : string = this.donneeEchangeService.getExemplairePersonneRatachee()
+    this.servicePatient.getPatientById(idPersonne).subscribe(
+      patientTrouve =>{
+        this.laPersonneRattachee =  patientTrouve;
+        if (patientTrouve != undefined) {
+          this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
+        }
+      }
+    )
+
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
       this.ressourceControl.setValue(this.scan_val); // Set the initial value in the search bar
@@ -182,7 +204,6 @@ export class NewExemplaireComponent implements OnInit {
         this.filteredDistributeurOptions=reponse
       }
     )
-    this.nomPatientCourant = sessionStorage.getItem('nomPatientCourant');
     this.compteur = -1;
 
     // recuperation de l'id de l'exemplaire
@@ -192,7 +213,7 @@ export class NewExemplaireComponent implements OnInit {
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
 
     this.initialiseFormExemplaire();
-    this.titre=this.dataEnteteMenuService.dataEnteteMenu
+    this.titre=this.donneeEchangeService.dataEnteteMenu
     
     this.ressourceControl.valueChanges.subscribe((value) => {
       const query = value?.toString().toLowerCase(); // Convert to lower case for case-insensitive search
@@ -326,7 +347,7 @@ export class NewExemplaireComponent implements OnInit {
    * pré-former le tableau de mouvement
    */
   concatMouvementsSousExemplaireDocument(){
-    let sousExelplaires : IExemplaireDocument[] = this.donneeExemplaireDocService.dataDocumentSousDocuments
+    let sousExelplaires : IExemplaireDocument[] = this.donneeEchangeService.dataDocumentSousDocuments
     sousExelplaires.forEach(
       element => {
         if (element.mouvements) {
@@ -563,7 +584,9 @@ export class NewExemplaireComponent implements OnInit {
       contientDistributeurs: this.document.contientDistributeurs,
       typeMouvement: this.document.typeMouvement,
       docEtats: this.document.docEtats,
-      ordreEtats: this.exemplaire.ordreEtats
+      ordreEtats: this.exemplaire.ordreEtats,
+      dateCreation: new Date,
+      personneRattachee: this.laPersonneRattachee!
     };
 
     if (this.exemplaire.id != '') {

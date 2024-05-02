@@ -49,6 +49,15 @@ export class ExemplaireDocumentService {
       }
       return { ele: this.ordreEtat, sol: this.res, in: this.i };
   }
+  
+  getExemplaireDocumentByIdPersonneRatachee(idPersonne:string): Observable<IExemplaireDocument[]> {
+    return this.http.get<IExemplaireDocument[]>('api/exemplaires').pipe(
+      map(x=>
+        {
+          return x.filter(e=> e.personneRattachee.id.toLowerCase() == idPersonne)
+        })
+    );        
+  }
 
   getExemplaireDocumentByTitre(
     titre: string

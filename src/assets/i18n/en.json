@@ -77,7 +77,8 @@
       "text1": "Name is requied",
       "text2": "Surname is requied",
       "text3": "Birthday is requied",
-      "text4": "mail address is requied is requied"
+      "text4": "mail address is requied is requied",
+      "text5": "Born the"
     }
   },
   "personnel": {
@@ -169,7 +170,7 @@
       "title7": "Order",
       "title8": "Is attribut required ?",
       "title9": "Defaut values ",
-      "title10": "Separeted values with a comma",
+      "title10": "Separeted values with a comma (;)",
       "title11": "Required ?"
     },
     "form": {
@@ -214,6 +215,7 @@
     "title5": "Select documents to pair",
     "title6": "Creat document's statuts",
     "title7": "Current state",
+    "title8": "Documents not found",
     "table": {
       "title0": "Id",
       "title1": "Title",
@@ -267,7 +269,14 @@
       "title5": "Select instances to pair",
       "text1": "composition of this instance",
       "text2": "Expiration's date",
-      "text3": "Update distributor"
+      "text3": "Update distributor",
+      "text4": "Preview",
+      "text5": "Other documents",
+      "text6": "date ",
+      "text7": "at ",
+      "text8": "Select people",
+      "text9": "Customer's name",
+      "text10": "Order by "
     }
   },
   "theme": {
@@ -512,5 +521,51 @@
       "text4": "This order already existed",
       "text5": "This statut already existed"
     }
+  },
+  "etape":{
+    "table": {
+      "title": "Add",
+      "title1": "Libel",
+      "title2": "State"
+    },
+    "form":{
+      "text1":"Field Required"
+  },
+  "lists":{
+    "button1":"Cancel"
+  },
+  "title":"listing ",
+  "search-bar":"Research",
+  "table1":{
+      "title1":"Libel",
+      "title2":"State",
+      "title4":"Actions",
+      "actions":{
+          "link2":"Modified"
+      }
   }
+  },
+"parours":{
+"table": {
+  "title": "Add ",
+  "title1": "libel",
+  "title2": "stage"
+},
+"form":{
+  "text1":"Field Required"
+},
+"lists":{
+"button1":"Cancel"
+},
+"title":"listing ",
+"search-bar":"Research",
+"table1":{
+  "title1":"libel",
+  "title2":"stage",
+  "title4":"Actions",
+  "actions":{
+      "link2":"Modified"
+  }
+}
+}
 }
