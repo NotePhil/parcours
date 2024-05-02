@@ -35,18 +35,17 @@ export class ExemplaireDocumentService {
 
     this.ordreEtat = exemplaire.ordreEtats![exemplaire.ordreEtats!.length - 1];
     
-      console.log("doc :", doc);
+      console.log("doc :", doc, " exemplaire :", exemplaire);
       
       for (let index = 0; index < doc.docEtats.length; index++) {
         if (doc.docEtats[index].etat.id == this.ordreEtat.etat.id) {
-          if (doc.docEtats[index].validation != undefined) {
-            this.res = true;
-          } else {
-            this.res = false;
-          }
           this.i = index;
         }
-        console.log(index, doc.docEtats[index], this.ordreEtat.etat);
+      }
+      if (doc.docEtats[this.i].validation != undefined) {
+        this.res = true;
+      } else {
+        this.res = false;
       }
       return { ele: this.ordreEtat, sol: this.res, in: this.i };
   }

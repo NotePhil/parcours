@@ -52,7 +52,8 @@ export class NewExemplaireComponent implements OnInit {
     contientRessources: false,
     contientDistributeurs: false,
     typeMouvement: 'Neutre',
-    docEtats: []
+    docEtats: [],
+    ordreEtats: []
   };
 
   document: IDocument = {
@@ -561,7 +562,8 @@ export class NewExemplaireComponent implements OnInit {
       contientRessources: this.document.contientRessources,
       contientDistributeurs: this.document.contientDistributeurs,
       typeMouvement: this.document.typeMouvement,
-      docEtats: []
+      docEtats: this.document.docEtats,
+      ordreEtats: this.exemplaire.ordreEtats
     };
 
     if (this.exemplaire.id != '') {
@@ -571,6 +573,8 @@ export class NewExemplaireComponent implements OnInit {
     this.serviceExemplaire
       .ajouterExemplaireDocument(exemplaireTemp)
       .subscribe((object) => {
+        console.log(" new exemplaire :", exemplaireTemp);
+        
         this.router.navigate(['/list-exemplaire']);
       });
   }
