@@ -105,7 +105,7 @@ export class ModalDocEtatsComponent implements OnInit{
         ordre: ordre,
         dateCreation: new Date()
       }
-      this.ELEMENTS_TABLE_DOC_ETATS.unshift(docEtat)
+      this.ELEMENTS_TABLE_DOC_ETATS.push(docEtat)
       this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS
       this.selected=false;
     }

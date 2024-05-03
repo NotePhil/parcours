@@ -6,7 +6,7 @@
           <input type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingRole(option)">
-              {{option.titre}}
+              {{option.libelle}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>

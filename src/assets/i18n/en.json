@@ -519,7 +519,9 @@
       "text2": "next statut",
       "text3": "Statut's position",
       "text4": "This order already existed",
-      "text5": "This statut already existed"
+      "text5": "This statut already existed",
+      "text6": "Paired validation",
+      "text7": "Search validatuion"
     }
   },
   "etape":{

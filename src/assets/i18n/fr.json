@@ -525,7 +525,9 @@
       "text2": "Status suivant",
       "text3": "Ordre de l'état",
        "text4": "Cet ordre existe déjà",
-      "text5": "Cet etat existe déjà"
+       "text5": "Cet etat existe déjà",
+       "text6": "Validation associée",
+       "text7": "Recherchez une validatuion"
     }
   },
 "etape":{
