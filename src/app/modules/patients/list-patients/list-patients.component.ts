@@ -23,6 +23,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { NewTicketComponent } from '../../tickets/new-ticket/new-ticket.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
+import { ModalCodebarreScanContinueComponent } from '../../shared/modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
 
 export interface User {
   nom: string;
@@ -34,6 +35,8 @@ export interface User {
   styleUrls: ['./list-patients.component.scss'],
 })
 export class ListPatientsComponent implements OnInit, AfterViewInit {
+  @ViewChild('barcodeScanner', { static: false })
+  barcodeScanner!: ModalCodebarreScanContinueComponent;
   patients$: Observable<IPatient[]> = EMPTY;
   services$: Observable<IService[]> = EMPTY;
   tickets$: Observable<ITicket[]> = EMPTY;
@@ -47,6 +50,7 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   myControl = new FormControl<string | IPatient>('');
 
   ELEMENTS_TABLE: IPatient[] = [];
+  //filteredOptions: IPatient[] | undefined;
   filteredOptions: IPatient[] | undefined;
   displayedColumns: string[] = [
     'nom',
@@ -121,7 +125,7 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
 
     this.getAllPatients().subscribe((valeurs) => {
       this.dataSource.data = valeurs;
-      this.filteredOptions =valeurs
+      this.filteredOptions = valeurs;
     });
 
     this.myControl.valueChanges.subscribe((value) => {
@@ -139,6 +143,16 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     });
     const defaultValue = 'YourDefaultSearchValue'; // Replace with your desired default value
     this.myControl.setValue(defaultValue);
+  }
+
+  openBarcodeScanner(): void {
+    console.log('Attempting to open barcode scanner');
+    if (this.barcodeScanner) {
+      console.log('barcodeScanner initialized');
+      this.barcodeScanner.createMediaStream(); // Make sure to use parentheses to call the function
+    } else {
+      console.log('barcodeScanner is undefined in AfterViewInit');
+    }
   }
 
   setIdPersonne(id_personne: string, nom_patient: string) {
@@ -173,6 +187,11 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    if (this.barcodeScanner) {
+      console.log('barcodeScanner initialized');
+    } else {
+      console.log('barcodeScanner is undefined');
+    }
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
