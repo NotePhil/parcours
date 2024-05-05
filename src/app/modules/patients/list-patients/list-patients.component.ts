@@ -149,7 +149,7 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     console.log('Attempting to open barcode scanner');
     if (this.barcodeScanner) {
       console.log('barcodeScanner initialized');
-      this.barcodeScanner.createMediaStream(); // Make sure to use parentheses to call the function
+      this.barcodeScanner.createMediaStream();
     } else {
       console.log('barcodeScanner is undefined in AfterViewInit');
     }

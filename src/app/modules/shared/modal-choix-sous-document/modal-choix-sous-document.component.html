@@ -142,7 +142,10 @@
                                     aria-label="Select page of periodic elements">
                                 </mat-paginator>
                             </div>
-                            <div class="actionButton mt-2">
+                            <div class="actionButton mt-2" style="display: flex; justify-content: space-between;">
+
+                                <button mat-button class="btn btnValidation" (click)="closeDialog()">Annuler
+                                </button>
                                 <button mat-button [mat-dialog-close] cdkFocusInitial
                                     class="btn btnValidation">{{'lists.button6' | translate}}
                                 </button>

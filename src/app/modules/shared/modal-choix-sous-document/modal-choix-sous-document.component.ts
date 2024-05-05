@@ -1,6 +1,10 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,6 +20,7 @@ import { Observable, mergeMap, of } from 'rxjs';
   styleUrls: ['./modal-choix-sous-document.component.scss'],
 })
 export class ModalChoixSousDocumentComponent implements OnInit {
+  formeDocument: FormGroup;
   selectedEtatsMap: { [documentId: string]: string } = {};
   myControl = new FormControl<string | IDocument>('');
   ELEMENTS_TABLE_DOCUMENTS: IDocument[] = [];
@@ -42,12 +47,23 @@ export class ModalChoixSousDocumentComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private serviceDocument: DocumentService,
+    private dialogRef: MatDialogRef<ModalChoixSousDocumentComponent>,
     private donneeDocCatService: DonneesEchangeService,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.documentIds = this.data?.documentIds ?? [];
-    console.log('Document IDs received:', data);
+    (this.formeDocument = this.formBuilder.group({})),
+      (this.documentIds = this.data?.documentIds ?? []);
+  }
+  closeDialog(): void {
+    this.formeDocument.reset();
+    this.myControl.reset();
+    this.filteredOptions = undefined;
+    this.selectedEtatsMap = {};
+    this.ELEMENTS_TABLE_DOCUMENTS = [];
+    this.donneeDocCatService.dataDocumentSousDocuments = [];
+
+    this.dialogRef.close();
   }
 
   openModal(documentChoisi: IDocument) {

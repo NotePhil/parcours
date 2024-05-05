@@ -69,8 +69,10 @@ export class ModalCodebarreScanContinueComponent
 
   stopScanner(): void {
     this.isCameraOpen = false;
-    if (this.mediaStream) {
-      this.mediaStream.getTracks().forEach((track) => track.stop());
+    const tracks: MediaStreamTrack[] | null =
+      this.video.nativeElement.srcObject?.getTracks();
+    if (tracks) {
+      tracks.forEach((track: MediaStreamTrack) => track.stop()); // Stop all tracks in the stream
     }
   }
 
