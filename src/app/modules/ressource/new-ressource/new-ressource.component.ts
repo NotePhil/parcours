@@ -139,8 +139,6 @@ export class NewRessourceComponent implements OnInit {
   openAttributDialog(){
     const dialogRef = this.dialogDef.open(ModalRessourceAttributsComponent,
     {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
       width:'100%',
       height:'100%',
       enterAnimationDuration:'1000ms',
@@ -157,7 +155,7 @@ export class NewRessourceComponent implements OnInit {
 
   onSubmit(ressourceInput:IRessource){
     this.submitted=true;
-    if(this.forme.invalid || this.ELEMENTS_TABLE_ATTRIBUTS.length<1) return console.log("error azertyuiop", this.forme.invalid);
+    if(this.forme.invalid) return console.log("error azertyuiop", this.forme.invalid);
 
     let styleAtt : any = this.ELEMENTS_TABLE_ATTRIBUTS;
 
