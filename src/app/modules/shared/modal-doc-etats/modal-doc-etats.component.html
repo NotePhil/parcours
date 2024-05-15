@@ -1,4 +1,4 @@
-<div id="mainBlock" class="bg-light card modalCategorie">
+<div id="mainBlock" class="bg-light card">
     <form class="w-100">
         <div class="form-group mt-5">
             <div class='card-hearder'>
@@ -34,6 +34,7 @@
                         <p *ngIf="etatExiste">{{'doc-etats.form.text5' | translate}}</p>
                     </div>
                 </div>
+
                 <!-- tableau listing des etats du document -->
 
                 <div class="card-body p-0 tableBlock" id="tableList">
@@ -50,19 +51,47 @@
                             <ng-container matColumnDef="ordre">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'doc-etats.form.text3' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element, let cpt = index">
-                                    <div class="ordreInput2">
+                                    <div class="ordreInput2 w-100">
                                         <p *ngIf="changeOrdreValeur && ordreExiste" class="texteErreurChange">
                                             <span>{{'doc-etats.form.text4' | translate}}</span>
                                         </p>
-                                        <input class="form-control w-25" type="number" name="" id="" [value]="element.ordre" (change)="verificationChangementOrdre(element, $event, cpt)">
+                                        <input class="form-control" type="number" name="" id="" [value]="element.ordre" (change)="verificationChangementOrdre(element, $event, cpt)">
                                     </div>
                                 </td>
                             </ng-container>
 
-                            <!-- role Column -->
-                            <ng-container matColumnDef="role">
+                            <!-- validation Column -->
+                            <ng-container matColumnDef="validation">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'doc-etats.form.text6' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">{{element.validation?.libelle}}</td>
+                            </ng-container>
+
+                            <!-- EtatPrecedant Column -->
+                            <ng-container matColumnDef="EtatPrecedant">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'etats.table.title2' | translate}}</th>
+                                <td class="text-dark containCell choixCell" mat-cell *matCellDef="let element">
+                                    <select [disabled]="element.ordre == plusPetitOrdre" [(ngModel)]="element.etat.etatPrecedant" [ngModelOptions]="{standalone: true}" (change)="recherchePPO(ELEMENTS_TABLE_DOC_ETATS); recherchePGO(ELEMENTS_TABLE_DOC_ETATS)">
+                                        <option></option> 
+                                        <option *ngFor="let etat of ELEMENTS_TABLE_DOC_ETATS"> {{etat.etat.libelle}} </option>
+                                    </select>
+                                    <div class="coverFull" *ngIf="element.ordre == plusPetitOrdre">
+                                        <span><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <!-- EtatSuivant Column -->
+                            <ng-container matColumnDef="EtatSuivant">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'etats.table.title3' | translate}}</th>
+                                <td class="text-dark containCell choixCell" mat-cell *matCellDef="let element">
+                                    <select [disabled]="element.ordre == plusGrandOrdre" [(ngModel)]="element.etat.etatSuivant" [ngModelOptions]="{standalone: true}" (change)="recherchePGO(ELEMENTS_TABLE_DOC_ETATS); recherchePPO(ELEMENTS_TABLE_DOC_ETATS)">
+                                        <option></option>
+                                        <option *ngFor="let etat of ELEMENTS_TABLE_DOC_ETATS"> {{etat.etat.libelle}} </option>
+                                    </select>
+                                    <div class="coverFull" *ngIf="element.ordre == plusGrandOrdre">
+                                        <span><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                                    </div>
+                                </td>
                             </ng-container>
 
                             <!-- Actions column -->
@@ -74,7 +103,7 @@
                                             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                         </button>
                                         <span><i class="fa fa-info-circle text-info ml-1" aria-hidden="true" title="{{'preconisation.table.title4' | translate}}"></i></span>
-                                        <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(); getIdDocEtat(element.id)">
+                                        <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(); getIdDocEtat(element.id); initialiseValidationControl(element.validation)">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                     </div>

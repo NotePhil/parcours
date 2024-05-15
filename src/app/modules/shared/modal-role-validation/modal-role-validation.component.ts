@@ -17,12 +17,13 @@ export class ModalRoleValidationComponent implements OnInit{
 
   myControl = new FormControl<string | IValidation>('');
   filteredOptions: IValidation[] | undefined;
+  validationCourente : IValidation | undefined
   
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     private router:Router,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private serviceRole:ValidationsService,
+    private serviceValidation:ValidationsService,
     private donneeRoleValidationService:DonneesEchangeService
   ) {}
   
@@ -32,18 +33,21 @@ export class ModalRoleValidationComponent implements OnInit{
       this.filteredOptions = valeurs
     });
 
+    this.validationCourente = this.donneeRoleValidationService.dataRoleValidation
+    this.myControl.setValue(this.donneeRoleValidationService.dataRoleValidation)
+    
     this.myControl.valueChanges.subscribe(
       value => {
         const name = typeof value === 'string' ? value : value?.libelle;
         if(name != undefined && name?.length >0){
-          this.serviceRole.getValidationByLibelle(name.toLowerCase() as string).subscribe(
+          this.serviceValidation.getValidationByLibelle(name.toLowerCase() as string).subscribe(
             reponse => {
               this.filteredOptions = reponse;
             }
           )
         }
         else{
-          this.serviceRole.getAllValidations().subscribe(
+          this.serviceValidation.getAllValidations().subscribe(
             (reponse) =>{
               this.filteredOptions=reponse
             }
@@ -58,29 +62,23 @@ export class ModalRoleValidationComponent implements OnInit{
   }
 
   private getAllValidations(){
-    return this.serviceRole.getAllValidations();
+    return this.serviceValidation.getAllValidations();
   }
 
   public rechercherListingRole(option: IValidation){
-    this.serviceRole.getValidationById(option.id).subscribe(
+    this.validationCourente = option
+    this.serviceValidation.getValidationById(option.id).subscribe(
         valeurs => {
-          let validationRole : IValidation = {
-            id: '',
-            libelle: 'validation ' + option.libelle,
-            code: uuidv4(),
-            dateCreation: new Date(),
-            etat: false,
-            role: {
-              id: '',
-              titre: '',
-              description: '',
-              etat: false
-            },
-            typeVote: '',
-            dureeVote: 0
-          }
-          this.donneeRoleValidationService.dataRoleValidation = validationRole
+          this.donneeRoleValidationService.dataRoleValidation = valeurs
         }
     )
+  }
+  /**
+   * Methode permettant de reinitialiser la barre de recherche et le contenu de la variable personne
+   */
+  reinitialiser(){
+    this.myControl.reset()
+    this.validationCourente = undefined
+    this.donneeRoleValidationService.dataRoleValidation = undefined
   }
 }

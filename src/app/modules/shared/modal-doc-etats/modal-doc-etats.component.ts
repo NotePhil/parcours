@@ -9,6 +9,7 @@ import { IEtats } from 'src/app/modele/etats';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { EtatService } from 'src/app/services/etats/etats.service';
 import { ModalRoleValidationComponent } from '../modal-role-validation/modal-role-validation.component';
+import { IValidation } from 'src/app/modele/validation';
 
 @Component({
   selector: 'app-modal-doc-etats',
@@ -25,13 +26,17 @@ export class ModalDocEtatsComponent implements OnInit{
     'actions',
     'libelle',
     'ordre',
-    'role'
+    'validation',
+    'EtatPrecedant',
+    'EtatSuivant'
   ]; // structure du tableau presentant les doc etats
   selected: boolean=false;
   changeOrdreValeur: boolean=false;
   ordreExiste: boolean=false;
   etatExiste: boolean=false;
   idDOCEtat : string = ""
+  plusPetitOrdre : number = 1
+  plusGrandOrdre : number = 0
   
   constructor(
     private serviceEtat: EtatService,
@@ -54,6 +59,8 @@ export class ModalDocEtatsComponent implements OnInit{
     )
     this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocEtatService.dataDocumentEtats;
     this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS;
+    this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
+    this.recherchePGO(this.ELEMENTS_TABLE_DOC_ETATS)
 
     this.etatControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
@@ -108,6 +115,8 @@ export class ModalDocEtatsComponent implements OnInit{
       this.ELEMENTS_TABLE_DOC_ETATS.push(docEtat)
       this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS
       this.selected=false;
+      this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
+      this.recherchePGO(this.ELEMENTS_TABLE_DOC_ETATS)
     }
   }
 
@@ -144,6 +153,8 @@ export class ModalDocEtatsComponent implements OnInit{
     this.ELEMENTS_TABLE_DOC_ETATS = this.dataSourceDocEtats.data;
     this.ELEMENTS_TABLE_DOC_ETATS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS;
+    this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
+    this.recherchePGO(this.ELEMENTS_TABLE_DOC_ETATS)
   }
 
   /**
@@ -183,10 +194,46 @@ export class ModalDocEtatsComponent implements OnInit{
         if (element.id == this.idDOCEtat) {
           element.validation = this.donneeDocEtatService.dataRoleValidation
           this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS
-          this.donneeDocEtatService.dataRoleValidation = undefined
           break
         }
       }
+    });
+  }
+  /**
+   * Methode qui permet d'injecter une donnée du service de sorte à initialiser
+   * le control de choix de validation de la modale avec la valeur de la validation du docEtat
+   * sur lequel on clique
+   * @param validation valeur à injecter au service
+   */
+  initialiseValidationControl(validation : IValidation){
+    this.donneeDocEtatService.dataRoleValidation = validation
+  }
+  /**
+   * Methode permettant de parcourir le tableau de docEtats et de ressortir le plus petit ordre (PPO) du tableau
+   * @param docEtat tableau de docEtats de la modale
+   */
+  recherchePPO(docEtat : IDocEtats[]){
+    this.plusPetitOrdre = docEtat[0].ordre
+    docEtat.forEach(
+      element => {
+        let ordre = element.ordre
+        if (ordre < this.plusPetitOrdre) {
+          this.plusPetitOrdre = ordre
+        }
+    });
+  }
+  /**
+   * Methode permettant de parcourir le tableau de docEtats et de ressortir le plus grand ordre (PGO) du tableau
+   * @param docEtat tableau de docEtats de la modale
+   */
+  recherchePGO(docEtat : IDocEtats[]){
+    this.plusPetitOrdre = docEtat[0].ordre
+    docEtat.forEach(
+      element => {
+        let ordre = element.ordre
+        if (ordre > this.plusPetitOrdre) {
+          this.plusGrandOrdre = ordre
+        }
     });
   }
 }

@@ -85,8 +85,12 @@
         }
     }
 }
+.ordreInput2{
+    margin-left: 10%;
+}
 .ordreInput2 input{
     margin: auto;
+    width: 80px !important;
     height: 20px;
     position: absolute;
 }
@@ -96,6 +100,34 @@
     font-style: italic;
     position: relative;
     top: -2px;
+}
+select{
+    background-color: #d2d2d2;
+}
+.choixCell{
+    position: relative;
+}
+.coverFull{
+    display: none;
+}
+.choixCell:hover{
+    .coverFull{
+        display: block;
+        background-color: #d2d2d25f;
+        position: absolute;
+        top: 0;
+        height: 50px;
+        width: 100%;
+        display: flex;
+        span{
+            margin: auto;
+            i{
+                margin-top: 20px;
+                font-size: 18px;
+                color: #f571719d;
+            }
+        }
+    }
 }
 @media screen and (max-width: 950px ) {
     #mainBlock{
