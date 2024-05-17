@@ -1,8 +1,21 @@
 <div class="mainBlock" id="top2">
     <div id="globalSection">
-       <h3>
-           {{this.exemplaire.titre}} {{titre}}
-       </h3>
+       
+       <div class="entete">
+        <p><span routerLink="../../list-exemplaire" title="{{'lists.button2' | translate}}"><i class="fa fa-arrow-left lien" aria-hidden="true"></i></span></p>
+        <h3>
+            {{this.exemplaire.titre}} {{titre}}
+        </h3>
+        <div class="hoverBlock">
+            <p class="infoBuble">
+                <i class="fa fa-info-circle text-info" aria-hidden="true"></i>
+            </p>
+            <div class="hoverElement" id="description">
+                <span class="titl"> {{'document.table.title2' | translate}} : </span>
+                <p>{{exemplaire.description}}</p>
+            </div>
+        </div>
+    </div>
        <div class="infos">
         <p id="titre">
             {{'tickets.table.title5' | translate}} :
@@ -110,7 +123,8 @@
                 </div>
             </div>
         </div>
-        <div class="options">
+      <div class="options" style="justify-content: space-between; display: flex;">
+        <div>
             <button title="{{'lists.button7' | translate}}" type="button" [routerLink]="['/exemplaire-nouveau/modify/',exemplaire.id]" class="btn btn-outline-info">
                 <i class="fas fa-pen"></i>
             </button>
@@ -122,5 +136,14 @@
                 <i class="fas fa-print"></i>
             </button>
         </div>
+
+        <div style="justify-content: space-between; display: flex;">
+    
+              <p *ngIf="error" class="text-warning h5">{{ error}}</p>
+            <button *ngIf="req" (click)="openModal(exemplaire)" type="button" class="btn btn-outline-success">
+                <i class="fas fa-check"></i>
+            </button>
+        </div>
+    </div>
     </div>
 </div>

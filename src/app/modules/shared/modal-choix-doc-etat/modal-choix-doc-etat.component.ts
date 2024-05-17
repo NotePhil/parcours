@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IDocument } from 'src/app/modele/document';
 import { IDocEtats } from 'src/app/modele/doc-etats';
+import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 
 interface DialogData {
   EtatsChoisi: IDocEtats[];
@@ -19,12 +20,12 @@ export class ModalChoixDocEtatComponent {
   selectedEtatsMap: IDocEtats | undefined;
   formeEtat: FormGroup;
   selectedEtat: IDocEtats | undefined;
-  @Output() saveChanges: EventEmitter<IDocEtats> = new EventEmitter<IDocEtats>();
-  @Input() previouslySelectedEtat: IDocEtats | undefined; // Input to receive the previously selected etat
+  previouslySelectedEtat: IDocEtats | undefined; // Input to receive the previously selected etat
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fb: FormBuilder,
+    private servicedonneechange: DonneesEchangeService,
     public dialogRef: MatDialogRef<ModalChoixDocEtatComponent>
   ) {
     this.formeEtat = this.fb.group({});
@@ -39,7 +40,7 @@ export class ModalChoixDocEtatComponent {
     let selectedEtat = this.selectedEtatsMap;
 
     if (selectedEtat) {
-      this.saveChanges.emit(selectedEtat);
+      this.servicedonneechange.saveEtatModal(selectedEtat);
       console.log("etat :", selectedEtat);
       
     }
