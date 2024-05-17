@@ -1,7 +1,7 @@
 <div id="mainSection">
   <div class="card block" id="top2">
     <div class="card-header" class="entete pt-4 pb-4">
-      {{"parours.title" | translate}} {{titre}}
+      {{"parours.table.title" | translate}} {{titre}}
     </div>
     <div class="card-body">
       <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme">
@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="actionButton">
-          <button class="btn" routerLink="../list-parours"><i class="fa fa-reply mr-1"
+          <button type="button" class="btn" (click)="onReturn()"><i class="fa fa-reply mr-1"
               aria-hidden="true"></i>{{'lists.button2' | translate}}</button>
           <button type="submit" class="btn btnValidation">{{btnLibelle}}</button>
         </div>
@@ -56,7 +56,9 @@
   </div>
 </div>
 
-<div id="" class="d-flex flex-column justify-content-around" style="margin-top: 100px;">
+
+<div *ngIf="dataSource && dataSource.data.length > 0" id="" class="d-flex flex-column justify-content-around"
+  style="margin-top: 100px;">
   <div class="title" id="top1">
     <!--<h2>{{"distributeur.title"| translate}}</h2>-->
     <!--<app-entete class="title"></app-entete>-->

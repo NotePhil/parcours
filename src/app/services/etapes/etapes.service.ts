@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { IEtape } from 'src/app/modele/etape';
 import { IDocument } from 'src/app/modele/document';
 import { IDocEtats } from 'src/app/modele/doc-etats';
+import { IParours } from 'src/app/modele/parours';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +47,12 @@ export class EtapesService {
         }
       });
     });
+  }
+
+  getEtapesByParours(paroursId: string): Observable<IEtape[]> {
+    return this.http
+      .get<IParours>(`api/parours/${paroursId}`)
+      .pipe(map((parours) => parours.etape));
   }
 
   getDocumentsByEtapeId(etapeId: string): Observable<IDocument[]> {
