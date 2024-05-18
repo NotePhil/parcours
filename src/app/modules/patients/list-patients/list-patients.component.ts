@@ -217,9 +217,11 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
 
   public rechercherListingPersonne(option: IPatient) {
     this.servicePatient
-      .getPatientsByName(option.nom.toLowerCase())
-      .subscribe((valeurs) => {
-        this.dataSource.data = valeurs;
+      .getPatientWithAssociates(option.id)
+      .subscribe((patient) => {
+        // Use optional chaining to safely access patient.personnesRatachees
+        const associates = patient.personnesRatachees ?? [];
+        this.dataSource.data = [patient, ...associates];
       });
   }
 
