@@ -14,6 +14,7 @@ import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/
 import { ModalChoixDocEtatComponent } from '../../shared/modal-choix-doc-etat/modal-choix-doc-etat.component';
 import { IDocument } from 'src/app/modele/document';
 import { DocumentService } from 'src/app/services/documents/document.service';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-previsualisation-exemplaire',
@@ -69,7 +70,6 @@ export class PrevisualisationExemplaireComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   reponse: any;
   EtatsSuivant: any;
-  dialog: any;
   selectedEtatsMap: any;
   TabOrdre: any;
   NextEtats: { id: any; ordre: number; etat: any; dateCreation: Date; } | undefined;
@@ -80,6 +80,7 @@ export class PrevisualisationExemplaireComponent implements OnInit {
 
   constructor(
     private router:Router, 
+    public dialog: MatDialog,
     private infosPath:ActivatedRoute,
     private dataEnteteMenuService:DonneesEchangeService, 
     private serviceExemplaire:ExemplaireDocumentService,
