@@ -315,14 +315,7 @@ export class PrevisualisationExemplaireComponent implements OnInit {
             ordreEtats: this.ExempleOrdre,
             docEtats: [],
             dateCreation: new Date(),
-            personneRattachee: {
-              id: '',
-              nom: '',
-              adresse: '',
-              mail: '',
-              telephone: '',
-              qrCodeValue: ''
-            }
+            personneRattachee: this.exemplaire.personneRattachee
           };
       
           if (this.exemplaire.id != '') {
@@ -362,14 +355,7 @@ export class PrevisualisationExemplaireComponent implements OnInit {
       ordreEtats: this.ExempleOrdre,
       docEtats: [],
       dateCreation: new Date(),
-      personneRattachee: {
-        id: '',
-        nom: '',
-        adresse: '',
-        mail: '',
-        telephone: '',
-        qrCodeValue: ''
-      }
+      personneRattachee: this.exemplaire.personneRattachee
     };
 
     if (this.exemplaire.id != '') {
