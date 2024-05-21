@@ -99,6 +99,7 @@ export class NewParoursComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const currentEtape = this.forme.controls['_etape'].value as IEtape[];
+
         const index = currentEtape.findIndex((et) => et.id === result.id);
         if (index >= 0) {
           currentEtape[index] = result;
@@ -109,12 +110,14 @@ export class NewParoursComponent implements OnInit {
         this.dataSource.data = currentEtape.map((etape) =>
           this.convertEtapToEtapAffiche(etape)
         );
+        this.getEtapeLibelles();
       }
     });
   }
 
   getEtapeLibelles(): string {
     const etapes = this.forme.controls['_etape'].value as IEtape[];
+
     return etapes.map((etape) => etape.libelle).join(', ');
   }
 

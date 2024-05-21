@@ -33,6 +33,7 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     'description',
     'etat',
   ];
+  originalDocumentIds: string[] = [];
 
   dataSourceDocument = new MatTableDataSource<IDocument>(
     this.ELEMENTS_TABLE_DOCUMENTS
@@ -55,14 +56,16 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     (this.formeDocument = this.formBuilder.group({})),
       (this.documentIds = this.data?.documentIds ?? []);
   }
-  closeDialog(): void {
-    this.formeDocument.reset();
-    this.myControl.reset();
-    this.filteredOptions = undefined;
-    this.selectedEtatsMap = {};
-    this.ELEMENTS_TABLE_DOCUMENTS = [];
-    this.donneeDocCatService.dataDocumentSousDocuments = [];
 
+  onCancel() {
+    if (this.documentIds.length > 0) {
+      this.documentIds = [...this.originalDocumentIds]; // Restorer les documents existant
+      this.donneeDocCatService.dataDocumentSousDocuments = [
+        ...this.ELEMENTS_TABLE_DOCUMENTS,
+      ];
+    } else {
+      this.donneeDocCatService.dataDocumentSousDocuments = [];
+    }
     this.dialogRef.close();
   }
 
@@ -92,6 +95,7 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     // Call a method to populate selectedEtatsMap after the data is available
     this.populateSelectedEtatsMap();
     if (this.documentIds.length > 0) {
+      this.originalDocumentIds = [...this.documentIds];
       this.dataSourceDocumentResultat.data =
         this.donneeDocCatService.dataDocumentSousDocuments;
       this.loadDocuments(this.documentIds);
@@ -107,7 +111,6 @@ export class ModalChoixSousDocumentComponent implements OnInit {
         this.ELEMENTS_TABLE_DOCUMENTS.push(document);
         this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
         this.populateSelectedEtatsMap();
-        console.log('sous-doc', this.dataSourceDocumentResultat.data);
       });
   }
 
@@ -154,6 +157,7 @@ export class ModalChoixSousDocumentComponent implements OnInit {
       this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
       this.donneeDocCatService.dataDocumentSousDocuments =
         this.ELEMENTS_TABLE_DOCUMENTS;
+      console.log('hello', this.donneeDocCatService.dataDocumentSousDocuments);
     });
   }
 
@@ -192,5 +196,13 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     } else {
       // Announce sorting cleared
     }
+  }
+  isDocumentSelected(documentId: string): boolean {
+    return this.ELEMENTS_TABLE_DOCUMENTS.some((doc) => doc.id === documentId);
+  }
+  onSave() {
+    this.dialogRef.close(this.ELEMENTS_TABLE_DOCUMENTS);
+    this.donneeDocCatService.dataDocumentSousDocuments =
+      this.ELEMENTS_TABLE_DOCUMENTS;
   }
 }

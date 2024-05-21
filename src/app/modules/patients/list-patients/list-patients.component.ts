@@ -93,28 +93,27 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
-      this.myControl.setValue(this.scan_val); // Set the initial value in the search bar
-
-      this.handleScanValChange(); // Trigger the search when scan_val changes
+      this.myControl.setValue(this.scan_val); // Définit la valeur initiale dans la barre de recherche
+      this.handleScanValChange(); // Déclenche la recherche lorsque scan_val change
 
       this.myControl.valueChanges.subscribe(() => {
         this.handleScanValChange();
       });
 
       if (this.scan_val) {
-        // If scan_val is set, perform a search to get the corresponding libelle
+        // Si scan_val est défini, effectuez une recherche pour obtenir la libelle correspondante
         this.servicePatient
           .getPatientsByNameOrId(this.scan_val)
           .subscribe((response) => {
             this.filteredOptions = response;
 
-            // Manually set the selected option in filteredOptions
+            // Définit manuellement l'option sélectionnée dans filteredOptions
             const selectedOption = this.filteredOptions.find(
               (option) => option.id === this.scan_val
             );
             if (selectedOption) {
               this.filteredOptions = [selectedOption];
-              this.dataSource.data = [selectedOption]; // Update the dataSource with the selected option
+              this.dataSource.data = [selectedOption]; // Mise à jour du dataSource avec l'option sélectionnée
             }
           });
       }
@@ -141,7 +140,7 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
         this.filteredOptions = [];
       }
     });
-    const defaultValue = 'YourDefaultSearchValue'; // Replace with your desired default value
+    const defaultValue = 'YourDefaultSearchValue'; // Remplacez par la valeur par défaut souhaitée
     this.myControl.setValue(defaultValue);
   }
 
@@ -203,13 +202,13 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
         .subscribe((response) => {
           this.filteredOptions = response;
 
-          // Manually set the selected option in filteredOptions
+          // Définit manuellement l'option sélectionnée dans filteredOptions
           const selectedOption = this.filteredOptions.find(
             (option) => option.id === this.scan_val
           );
           if (selectedOption) {
             this.filteredOptions = [selectedOption];
-            this.dataSource.data = [selectedOption]; // Update the dataSource with the selected option
+            this.dataSource.data = [selectedOption]; // Mise à jour du dataSource avec l'option sélectionnée
           }
         });
     }

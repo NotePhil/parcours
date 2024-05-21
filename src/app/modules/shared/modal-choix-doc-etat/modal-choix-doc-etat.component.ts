@@ -32,7 +32,7 @@ export class ModalChoixDocEtatComponent implements OnInit {
   }
 
   onSave(documentId: string): void {
-    // Save selected etat to the DocumentService
+    // Enregistrer l'etat au DocumentService
     this.documentService.setSelectedEtat(documentId, this.selectedEtat);
     this.dialogRef.close();
   }
@@ -42,7 +42,7 @@ export class ModalChoixDocEtatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Load previously selected etat from DocumentService
+    // Charger les etats selectionees a partir de DocumentService
     this.selectedEtat = this.documentService.getSelectedEtat(
       this.data.documentChoisi.id
     );

@@ -510,7 +510,7 @@ export class NewPrecomvtComponent implements OnInit {
     return libel;
   }
   saveToSessionStorage(): void {
-    // Store eltsPreco in sessionStorage
+    // stocker eltsPreco dans sessionStorage
     sessionStorage.setItem('Preco', JSON.stringify(this.eltsPreco));
   }
   saveStepToSession(): void {
@@ -583,8 +583,11 @@ export class NewPrecomvtComponent implements OnInit {
       : distributeur2 === distributeur1;
   }
   ngOnDestroy(): void {
-    // Reset sessionStorage
+    // Reset le sessionStorage
     sessionStorage.removeItem('Preco');
     sessionStorage.removeItem('Etape courante');
+  }
+  onReturn() {
+    this.router.navigate(['/list-precomvts']);
   }
 }
