@@ -57,7 +57,7 @@
   "validation":{
     "header":"Ajouter Validation",
     "title0": "liste validation",
-    "title":"listing Validation",
+    "title1":"Personnel autorisé",
     "table":{
       "title0":"validation"
     },

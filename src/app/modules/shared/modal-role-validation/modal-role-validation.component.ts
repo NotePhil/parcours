@@ -3,8 +3,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { IPersonnel } from 'src/app/modele/personnel';
 import { IValidation } from 'src/app/modele/validation';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
+import { PersonnelsService } from 'src/app/services/personnels/personnels.service';
 import { ValidationsService } from 'src/app/services/validations/validations.service';
 import {v4 as uuidv4} from 'uuid';
 
@@ -18,12 +20,14 @@ export class ModalRoleValidationComponent implements OnInit{
   myControl = new FormControl<string | IValidation>('');
   filteredOptions: IValidation[] | undefined;
   validationCourente : IValidation | undefined
+  personnelRole : IPersonnel[] = []
   
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     private router:Router,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private serviceValidation:ValidationsService,
+    private servicePersonnel:PersonnelsService,
     private donneeRoleValidationService:DonneesEchangeService
   ) {}
   
@@ -34,6 +38,13 @@ export class ModalRoleValidationComponent implements OnInit{
     });
 
     this.validationCourente = this.donneeRoleValidationService.dataRoleValidation
+    
+    if (this.validationCourente != undefined) {
+      this.rechercherPersonnelDuRole(this.validationCourente.role.id).subscribe(valeurs => {
+        this.personnelRole = valeurs
+      });
+    }
+
     this.myControl.setValue(this.donneeRoleValidationService.dataRoleValidation)
     
     this.myControl.valueChanges.subscribe(
@@ -65,6 +76,10 @@ export class ModalRoleValidationComponent implements OnInit{
     return this.serviceValidation.getAllValidations();
   }
 
+  private rechercherPersonnelDuRole(idRole : string){
+    return this.servicePersonnel.getPersonnelByRole(idRole);
+  }
+
   public rechercherListingRole(option: IValidation){
     this.validationCourente = option
     this.serviceValidation.getValidationById(option.id).subscribe(
@@ -72,6 +87,9 @@ export class ModalRoleValidationComponent implements OnInit{
           this.donneeRoleValidationService.dataRoleValidation = valeurs
         }
     )
+    this.rechercherPersonnelDuRole(option.role.id).subscribe(valeurs => {
+      this.personnelRole = valeurs
+    });
   }
   /**
    * Methode permettant de reinitialiser la barre de recherche et le contenu de la variable personne

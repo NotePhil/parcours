@@ -27,16 +27,14 @@ export class ModalDocEtatsComponent implements OnInit{
     'libelle',
     'ordre',
     'validation',
-    'EtatPrecedant',
-    'EtatSuivant'
+    'EtatPrecedant'
   ]; // structure du tableau presentant les doc etats
   selected: boolean=false;
   changeOrdreValeur: boolean=false;
   ordreExiste: boolean=false;
   etatExiste: boolean=false;
   idDOCEtat : string = ""
-  plusPetitOrdre : number = 1
-  plusGrandOrdre : number = 0
+  plusPetitOrdre : number = 0
   
   constructor(
     private serviceEtat: EtatService,
@@ -59,8 +57,10 @@ export class ModalDocEtatsComponent implements OnInit{
     )
     this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocEtatService.dataDocumentEtats;
     this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS;
-    this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
-    this.recherchePGO(this.ELEMENTS_TABLE_DOC_ETATS)
+    
+    if (this.ELEMENTS_TABLE_DOC_ETATS.length > 0) {
+      this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
+    }
 
     this.etatControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
@@ -116,7 +116,6 @@ export class ModalDocEtatsComponent implements OnInit{
       this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS
       this.selected=false;
       this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
-      this.recherchePGO(this.ELEMENTS_TABLE_DOC_ETATS)
     }
   }
 
@@ -154,7 +153,6 @@ export class ModalDocEtatsComponent implements OnInit{
     this.ELEMENTS_TABLE_DOC_ETATS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS;
     this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
-    this.recherchePGO(this.ELEMENTS_TABLE_DOC_ETATS)
   }
 
   /**
@@ -223,17 +221,21 @@ export class ModalDocEtatsComponent implements OnInit{
     });
   }
   /**
-   * Methode permettant de parcourir le tableau de docEtats et de ressortir le plus grand ordre (PGO) du tableau
-   * @param docEtat tableau de docEtats de la modale
+   * Methode permettant de ressportir le tableau des etats ayant supprimé l'etat courrant de sorte à ne pas le 
+   * choisir en tant que état précédant
+   * @param index index de l'etat courrant 
    */
-  recherchePGO(docEtat : IDocEtats[]){
-    this.plusPetitOrdre = docEtat[0].ordre
-    docEtat.forEach(
+  effaceEtatCourrant(etats : IDocEtats) : IDocEtats[] {
+    let etatsFinal : IDocEtats[] = []
+    this.ELEMENTS_TABLE_DOC_ETATS.forEach(
       element => {
-        let ordre = element.ordre
-        if (ordre > this.plusPetitOrdre) {
-          this.plusGrandOrdre = ordre
+        if (etats.etat.libelle != element.etat.libelle) {
+          etatsFinal.push(element)
         }
     });
+    return etatsFinal
+  }
+  compareItem(docEtat1: IDocEtats, docEtat2: IDocEtats) {
+    return docEtat2.etat && docEtat1.etat ? docEtat2.etat.id === docEtat1.etat.id : docEtat2.etat === docEtat1.etat;
   }
 }

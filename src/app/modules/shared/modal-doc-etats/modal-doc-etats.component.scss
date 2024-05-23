@@ -7,6 +7,8 @@
 .ordreInput{
     input{
         width: 100px;
+        border: 2px solid #28a745 !important;
+        background-color: #28a74614;
     }
 }
 .sarchBlock{
@@ -35,20 +37,19 @@
         margin-right: 2px;
         width: fit-content;
     }
-    .example-full-width {
-        height: 42px !important;
-        border: 2px solid #28a745;
-        .form-control{
-            box-shadow: none !important;
-            border: none !important;
-            background-color: transparent;
-        }
-    }
     .mat-input{
         position: absolute;
         bottom: 100px;
         height: 20px !important;
     }
+}
+.example-full-width-select {
+    height: 42px !important;
+    width: 80%;
+    border: 2px solid #28a745;
+    position: absolute;
+    bottom: 2px;
+    left: 15px;
 }
 #tableList{
     margin-top: 50px !important;
@@ -122,7 +123,7 @@ select{
         span{
             margin: auto;
             i{
-                margin-top: 20px;
+                margin-top: 12px;
                 font-size: 18px;
                 color: #f571719d;
             }

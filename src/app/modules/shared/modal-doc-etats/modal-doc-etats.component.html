@@ -70,25 +70,12 @@
                             <ng-container matColumnDef="EtatPrecedant">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'etats.table.title2' | translate}}</th>
                                 <td class="text-dark containCell choixCell" mat-cell *matCellDef="let element">
-                                    <select [disabled]="element.ordre == plusPetitOrdre" [(ngModel)]="element.etat.etatPrecedant" [ngModelOptions]="{standalone: true}" (change)="recherchePPO(ELEMENTS_TABLE_DOC_ETATS); recherchePGO(ELEMENTS_TABLE_DOC_ETATS)">
-                                        <option></option> 
-                                        <option *ngFor="let etat of ELEMENTS_TABLE_DOC_ETATS"> {{etat.etat.libelle}} </option>
-                                    </select>
+                                    <mat-form-field class="example-full-width-select" appearance="fill">
+                                        <mat-select [disabled]="element.ordre == plusPetitOrdre" [(ngModel)]="element.etat.etatPrecedant" [ngModelOptions]="{standalone: true}" (change)="recherchePPO(ELEMENTS_TABLE_DOC_ETATS)" multiple [compareWith]="compareItem">
+                                        <mat-option *ngFor="let etat of effaceEtatCourrant(element)" [value]="etat.etat">{{etat.etat.libelle}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                     <div class="coverFull" *ngIf="element.ordre == plusPetitOrdre">
-                                        <span><i class="fa fa-times-circle" aria-hidden="true"></i></span>
-                                    </div>
-                                </td>
-                            </ng-container>
-
-                            <!-- EtatSuivant Column -->
-                            <ng-container matColumnDef="EtatSuivant">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'etats.table.title3' | translate}}</th>
-                                <td class="text-dark containCell choixCell" mat-cell *matCellDef="let element">
-                                    <select [disabled]="element.ordre == plusGrandOrdre" [(ngModel)]="element.etat.etatSuivant" [ngModelOptions]="{standalone: true}" (change)="recherchePGO(ELEMENTS_TABLE_DOC_ETATS); recherchePPO(ELEMENTS_TABLE_DOC_ETATS)">
-                                        <option></option>
-                                        <option *ngFor="let etat of ELEMENTS_TABLE_DOC_ETATS"> {{etat.etat.libelle}} </option>
-                                    </select>
-                                    <div class="coverFull" *ngIf="element.ordre == plusGrandOrdre">
                                         <span><i class="fa fa-times-circle" aria-hidden="true"></i></span>
                                     </div>
                                 </td>

@@ -48,3 +48,23 @@
 .resultat{
     font-weight: 600;
 }
+.blockPersonnel{
+    width: 100%;
+    h4{
+        color: #28a746d4;
+        margin-top: 10px;
+        font-weight: normal;
+    }
+    span{
+        font-size: 12px;
+    }
+}
+.listAttr{
+    width: 100%;
+    padding: 2px 5px;
+    padding-right: 10px;
+    background-color: #b3b3b30f;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    flex-wrap: wrap;
+}

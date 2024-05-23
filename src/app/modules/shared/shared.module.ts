@@ -36,6 +36,7 @@ import { ModalChoixDocEtatComponent } from './modal-choix-doc-etat/modal-choix-d
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { ModalChoixPersonneComponent } from './modal-choix-personne/modal-choix-personne.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { ModalChoixPersonneComponent } from './modal-choix-personne/modal-choix-
     MatIconModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatSelectModule,
     //MatCheckboxModule,
     TranslateModule.forChild({
       loader: {
