@@ -47,7 +47,6 @@ export class NewRessourceComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dataEnteteMenuService: DonneesEchangeService,
-    private dataDocumentCodebarre: DonneesEchangeService,
     private barService: ModalCodebarreService,
     private familleService: FamillesService,
     private ressourceService: RessourcesService,

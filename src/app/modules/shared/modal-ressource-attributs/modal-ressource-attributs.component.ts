@@ -1,7 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   FormControl,
-  FormArray,
   FormBuilder,
   FormGroup,
   Validators,
@@ -15,9 +14,9 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
-import { log } from 'console';
 import { IRessource } from 'src/app/modele/ressource';
 import { IType } from 'src/app/modele/type';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-modal-ressource-attributs',
@@ -27,8 +26,8 @@ import { IType } from 'src/app/modele/type';
 export class ModalRessourceAttributsComponent implements OnInit {
   // variables attributs, pour afficher le tableau d'attributs sur l'IHM
   formeAttribut: FormGroup;
-  submitted: boolean = false;
   valid: boolean = true;
+  stockDonnee: any;
   datas: any[] = [];
   verif: boolean = false;
   ressources: IRessource = {
@@ -93,8 +92,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
     private serviceAttribut: AttributService,
     private _liveAnnouncer: LiveAnnouncer,
     private donneeDocCatService: DonneesEchangeService,
-    private dialogDef: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private dialogDef: MatDialog
   ) {
     this.formeAttribut = this.formBuilder.group({
       res: ['', Validators.required],
@@ -110,11 +108,8 @@ export class ModalRessourceAttributsComponent implements OnInit {
     if (this.donneeDocCatService.dataDocumentAttributs.length > 0) {
       this.ELEMENTS_TABLE_ATTRIBUTS = this.donneeDocCatService.dataDocumentAttributs;
       this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-      this.STORE_ELEMENTS_ATTRIBUTS = this.ELEMENTS_TABLE_ATTRIBUTS;
-      this.valid = false;
       console.log(
-        'resultats tb :',
-        this.STORE_ELEMENTS_ATTRIBUTS, this.donneeDocCatService.dataDocumentAttributs, this.valid
+        'resultats tb :', this.donneeDocCatService.dataDocumentAttributs
       );
     }
 
@@ -136,19 +131,13 @@ export class ModalRessourceAttributsComponent implements OnInit {
 
   onCheckAttributChange(event: any, element: IAttributs) {
     let listIdAttTemp: string[] = [];
-    let positionsAttr = new Map();
-    let indexAttrCourant: number = 0;
-    this.donneeDocCatService.dataDocumentAttributs =
-      this.ELEMENTS_TABLE_ATTRIBUTS;
     this.ELEMENTS_TABLE_ATTRIBUTS.forEach((ele: any) => {
       console.log('element :', ele.attributs.id);
       listIdAttTemp.push(ele.attributs.id);
-      positionsAttr.set(ele.attributs.id, indexAttrCourant++);
     });
 
     if (event.target.checked) {
       console.log('listtemp :', listIdAttTemp, element.id);
-      console.log(this.donneeDocCatService.dataDocumentAttributs);
 
       if (!listIdAttTemp.includes(element.id)) {
         this.ajoutSelectionAttribut(element);
@@ -179,51 +168,22 @@ export class ModalRessourceAttributsComponent implements OnInit {
     this.idAttribut = idAttribut;
   }
 
+  saveModal(){
+    this.donneeDocCatService.dataDocumentAttributs =
+      this.ELEMENTS_TABLE_ATTRIBUTS;
+    console.log("element final :", this.donneeDocCatService.dataDocumentAttributs);
+  
+    this.datas.forEach((c) => (c.event.target.checked = false));
+  }
+
   ajoutSelectionAttribut(attribut: IAttributs) {
-    let listIdAttTemp: string[] = [];
-    let positionsAttr = new Map();
-    let indexAttrCourant: number = 0;
-    this.donneeDocCatService.dataDocumentAttributs.forEach(
-      (ele: IAttributs) => {
-        listIdAttTemp.push(ele.id);
-        positionsAttr.set(ele.id, indexAttrCourant++);
-      }
-    );
     this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
     this.ELEMENTS_TABLE_ATTRIBUTS.push({
       attributs: attribut,
       valeur: '',
     });
     this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-    this.donneeDocCatService.dataDocumentAttributs =
-      this.ELEMENTS_TABLE_ATTRIBUTS;
-    console.log(
-      'attributs selectionnés :',
-      this.donneeDocCatService.dataDocumentAttributs
-    );
     return true;
-  }
-
-  viderselection() {
-    this.datas.forEach((c) => (c.event.target.checked = false));
-    this.datas = [];
-    this.ELEMENTS_TABLE_ATTRIBUTS = [];
-    this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-    this.donneeDocCatService.dataDocumentAttributs =
-      this.ELEMENTS_TABLE_ATTRIBUTS;
-  }
-
-  lastElementModal() {
-    // this.donneeDocCatService.dataDocumentAttributs = this.STORE_ELEMENTS_ATTRIBUTS;
-    // this.datas.forEach((c) => (c.event.target.checked = false));
-    // this.datas = [];
-    this.ELEMENTS_TABLE_ATTRIBUTS = [];
-    this.donneeDocCatService.dataDocumentAttributs = []
-    //this.donneeDocCatService.dataDocumentAttributs = this.STORE_ELEMENTS_ATTRIBUTS
-    this.datas.forEach((c) => (c.event.target.checked = false));
-    this.datas = [];
-    console.log("ele store :", this.STORE_ELEMENTS_ATTRIBUTS, this.donneeDocCatService.dataDocumentAttributs);
-    
   }
 
   verifierURL(url: string): boolean {
@@ -347,9 +307,8 @@ export class ModalRessourceAttributsComponent implements OnInit {
   }
 
   onSubmit(personnelInput: any) {
-    this.submitted = true;
     //Todo la validation d'element non conforme passe
-    if (this.formeAttribut.invalid) return;
+    if (this.valid) return;
 
     this.valid = false;
 
@@ -373,7 +332,6 @@ export class ModalRessourceAttributsComponent implements OnInit {
         this.router.navigate(['/list-personnels']);
       }
     ) */
-    this.datas.forEach((c) => (c.event.target.checked = false));
   }
 
   retirerSelectionAttribut(index: number) {
@@ -398,8 +356,6 @@ export class ModalRessourceAttributsComponent implements OnInit {
       this.ELEMENTS_TABLE_ATTRIBUTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     }
     this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
-    this.donneeDocCatService.dataDocumentAttributs =
-      this.ELEMENTS_TABLE_ATTRIBUTS;
   }
   private getAllAttributs() {
     return this.serviceAttribut.getAllAttributs();
