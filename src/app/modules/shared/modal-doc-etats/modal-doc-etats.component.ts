@@ -25,16 +25,12 @@ export class ModalDocEtatsComponent implements OnInit{
   displayedDocEtatsColumns: string[] = [
     'actions',
     'libelle',
-    'ordre',
     'validation',
     'EtatPrecedant'
   ]; // structure du tableau presentant les doc etats
   selected: boolean=false;
-  changeOrdreValeur: boolean=false;
-  ordreExiste: boolean=false;
   etatExiste: boolean=false;
   idDOCEtat : string = ""
-  plusPetitOrdre : number = 0
   
   constructor(
     private serviceEtat: EtatService,
@@ -44,9 +40,7 @@ export class ModalDocEtatsComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router:Router, private dialogDef : MatDialog
   ) {
-      this.formeDocEtats = this.formBuilder.group({
-        ordreDocEtats: ['', [Validators.required, Validators.minLength(1)]],
-      });
+      this.formeDocEtats = this.formBuilder.group({});
     }
 
   ngOnInit(): void {
@@ -58,10 +52,6 @@ export class ModalDocEtatsComponent implements OnInit{
     this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocEtatService.dataDocumentEtats;
     this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS;
     
-    if (this.ELEMENTS_TABLE_DOC_ETATS.length > 0) {
-      this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
-    }
-
     this.etatControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
       if (libelle != undefined && libelle?.length > 0) {
@@ -83,7 +73,6 @@ export class ModalDocEtatsComponent implements OnInit{
 
   public rechercherListingEtat(option: IEtats) {
     this.selected = true;
-    this.ordreExiste = false;
     this.etatExiste = false;
     let tabIdEtats : string[] = []
     this.ELEMENTS_TABLE_DOC_ETATS.forEach(
@@ -92,48 +81,25 @@ export class ModalDocEtatsComponent implements OnInit{
           tabIdEtats.push(docEtat.etat.id)
         }
     });
-    let ordre : number = this.formeDocEtats.controls["ordreDocEtats"].value
 
     for (let index = 0; index < this.ELEMENTS_TABLE_DOC_ETATS.length; index++) {
       const element = this.ELEMENTS_TABLE_DOC_ETATS[index];
-      if (element.ordre == ordre) {
-        this.ordreExiste = true;
-        break
-      }
       if (element.etat.id == option.id) {
         this.etatExiste = true;
         break
       }
     }
-    if ((!tabIdEtats.includes(option.id) && !this.ordreExiste) && (ordre != undefined && ordre != 0 && ordre > 0 )) {
+    if (!tabIdEtats.includes(option.id)) {
       let docEtat : IDocEtats = {
         id: option.id,
         etat: option,
-        ordre: ordre,
+        ordre: 0,
         dateCreation: new Date()
       }
       this.ELEMENTS_TABLE_DOC_ETATS.push(docEtat)
       this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS
       this.selected=false;
-      this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
     }
-  }
-
-  public verificationChangementOrdre(option: IDocEtats, event: any, cpt:number) {
-    this.changeOrdreValeur = true;
-    this.ordreExiste = false
-    let oldVal = option.ordre;
-    for (let index = 0; index < this.ELEMENTS_TABLE_DOC_ETATS.length; index++) {
-      if (cpt!=index && this.ELEMENTS_TABLE_DOC_ETATS[index].ordre == event.target.value) {
-        this.ordreExiste = true;
-        break
-      }
-    }
-
-    if(this.ordreExiste) {
-      event.target.value= oldVal;
-    }else
-      option.ordre = event.target.value;
   }
 
   get f(){
@@ -152,11 +118,10 @@ export class ModalDocEtatsComponent implements OnInit{
     this.ELEMENTS_TABLE_DOC_ETATS = this.dataSourceDocEtats.data;
     this.ELEMENTS_TABLE_DOC_ETATS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS;
-    this.recherchePPO(this.ELEMENTS_TABLE_DOC_ETATS)
   }
 
   /**
-   * Methode qui permet d'effacer la valeur des controls etat et ordre lorsqu'on a
+   * Methode qui permet d'effacer la valeur du control etat lorsqu'on a
    * déjà choisi l'etat en cliquant dessus
    */
   reinitialliseRessourceControl(){
@@ -166,7 +131,6 @@ export class ModalDocEtatsComponent implements OnInit{
       }
     )
     this.etatControl.reset()
-    this.formeDocEtats.controls["ordreDocEtats"].reset()
   }
   /**
    * Methode permettant d'ouvrir la modal de manipullation des etats du document
@@ -205,20 +169,6 @@ export class ModalDocEtatsComponent implements OnInit{
    */
   initialiseValidationControl(validation : IValidation){
     this.donneeDocEtatService.dataRoleValidation = validation
-  }
-  /**
-   * Methode permettant de parcourir le tableau de docEtats et de ressortir le plus petit ordre (PPO) du tableau
-   * @param docEtat tableau de docEtats de la modale
-   */
-  recherchePPO(docEtat : IDocEtats[]){
-    this.plusPetitOrdre = docEtat[0].ordre
-    docEtat.forEach(
-      element => {
-        let ordre = element.ordre
-        if (ordre < this.plusPetitOrdre) {
-          this.plusPetitOrdre = ordre
-        }
-    });
   }
   /**
    * Methode permettant de ressportir le tableau des etats ayant supprimé l'etat courrant de sorte à ne pas le 

@@ -11,9 +11,10 @@
         background-color: #28a74614;
     }
 }
-.sarchBlock{
+.searchBlock{
     width: 100% !important;
     padding: 0 5px;
+    position: relative;
     div{
         display: flex;
         align-items: center;
@@ -24,7 +25,10 @@
     form{
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
+    }
+    .form-control{
+        height: 0 !important;
     }
 }
 .example-form{
@@ -44,7 +48,7 @@
     }
 }
 .example-full-width-select {
-    height: 42px !important;
+    height: 40px !important;
     width: 80%;
     border: 2px solid #28a745;
     position: absolute;
@@ -56,6 +60,8 @@
 }
 .texteErreur{
     position: absolute;
+    right: 0;
+    bottom: 5%;
     p{
         font-size: small;
         font-style: italic;
