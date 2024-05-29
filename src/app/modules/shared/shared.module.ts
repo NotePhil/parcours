@@ -37,7 +37,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { ModalChoixPersonneComponent } from './modal-choix-personne/modal-choix-personne.component';
 import { MatSelectModule } from '@angular/material/select';
-import { MermaidGraphModule } from '../mermaid-graph/mermaid-graph.module';
 
 @NgModule({
   declarations: [
@@ -96,8 +95,7 @@ import { MermaidGraphModule } from '../mermaid-graph/mermaid-graph.module';
         deps: [HttpClient],
       },
       extend: true,
-    }),
-    MermaidGraphModule
+    })
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
