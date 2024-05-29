@@ -117,10 +117,10 @@ export class NewRessourceComponent implements OnInit {
           if (this.ressource.caracteristiques != undefined) {
             this.ELEMENTS_TABLE_ATTRIBUTS = this.ressource.caracteristiques
           }
-          this.dataEnteteMenuService.dataDocumentAttributs = this.ELEMENTS_TABLE_ATTRIBUTS
+          this.dataEnteteMenuService.dataDocumentAttributsRessource = this.ELEMENTS_TABLE_ATTRIBUTS
       });
     } else {
-      this.dataEnteteMenuService.dataDocumentAttributs = []
+      this.dataEnteteMenuService.dataDocumentAttributsRessource = []
     }
     this.familleService.getTypeUnite().subscribe((u) => {
       this.unites = u.type;
@@ -141,13 +141,13 @@ export class NewRessourceComponent implements OnInit {
       width:'100%',
       height:'100%',
       enterAnimationDuration:'1000ms',
-      exitAnimationDuration:'1000ms',
-      data:{}
+      exitAnimationDuration:'1500ms',
+      data: this.ELEMENTS_TABLE_ATTRIBUTS
     }
     )
 
     dialogRef.afterClosed().subscribe(result => {
-      this.ELEMENTS_TABLE_ATTRIBUTS =  this.dataEnteteMenuService.dataDocumentAttributs      
+      this.ELEMENTS_TABLE_ATTRIBUTS =  this.dataEnteteMenuService.dataDocumentAttributsRessource      
     });
     
   }
@@ -180,7 +180,7 @@ export class NewRessourceComponent implements OnInit {
         this.router.navigate(['list-ressources']);
       }
     )
-    this.dataEnteteMenuService.dataDocumentAttributs = []
+    this.dataEnteteMenuService.dataDocumentAttributsRessource = []
 
   }
 

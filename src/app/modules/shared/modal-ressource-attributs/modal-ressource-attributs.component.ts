@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IAttributs } from 'src/app/modele/attributs';
@@ -28,6 +28,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
   formeAttribut: FormGroup;
   valid: boolean = true;
   stockDonnee: any;
+  initialDataDocumentAttributs: any[] = [];
   datas: any[] = [];
   verif: boolean = false;
   ressources: IRessource = {
@@ -61,9 +62,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
     'type',
     'valeur',
   ];
-  dataSourceAttribut = new MatTableDataSource<IAttributs>(
-    this.ELEMENTS_TABLE_ATTRIBUTS
-  );
+  dataSourceAttribut = new MatTableDataSource<IAttributs>();
   dataSourceAttributResultat = new MatTableDataSource<any>();
   idAttribut: string = '';
   attRes : IAttributs = {
@@ -91,8 +90,10 @@ export class ModalRessourceAttributsComponent implements OnInit {
     private infosPath: ActivatedRoute,
     private serviceAttribut: AttributService,
     private _liveAnnouncer: LiveAnnouncer,
+    private dialogRef: MatDialogRef<ModalRessourceAttributsComponent>,
     private donneeDocCatService: DonneesEchangeService,
-    private dialogDef: MatDialog
+    public dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.formeAttribut = this.formBuilder.group({
       res: ['', Validators.required],
@@ -105,11 +106,11 @@ export class ModalRessourceAttributsComponent implements OnInit {
       this.filteredOptions = valeurs;
     });
 
-    if (this.donneeDocCatService.dataDocumentAttributs.length > 0) {
-      this.ELEMENTS_TABLE_ATTRIBUTS = this.donneeDocCatService.dataDocumentAttributs;
-      this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
+    if (this.data.length > 0) {
+      this.dataSourceAttributResultat.data = this.data;
+      this.initialDataDocumentAttributs = [...this.data];
       console.log(
-        'resultats tb :', this.donneeDocCatService.dataDocumentAttributs
+        'resultats tb :', this.data
       );
     }
 
@@ -169,11 +170,22 @@ export class ModalRessourceAttributsComponent implements OnInit {
   }
 
   saveModal(){
-    this.donneeDocCatService.dataDocumentAttributs =
+    this.donneeDocCatService.dataDocumentAttributsRessource =
       this.ELEMENTS_TABLE_ATTRIBUTS;
-    console.log("element final :", this.donneeDocCatService.dataDocumentAttributs);
+    console.log("element final :", this.donneeDocCatService.dataDocumentAttributsRessource);
   
     this.datas.forEach((c) => (c.event.target.checked = false));
+  }
+
+  closeModal(){
+    if (this.initialDataDocumentAttributs.length > 0) {
+      // Si des données initiales étaient présentes, les restaurer
+      this.donneeDocCatService.dataDocumentAttributsRessource = [...this.initialDataDocumentAttributs];
+    } else {
+      // Si aucune donnée initiale, vider la variable
+      this.donneeDocCatService.dataDocumentAttributsRessource = []; 
+    }
+    this.dialogRef.close();
   }
 
   ajoutSelectionAttribut(attribut: IAttributs) {
