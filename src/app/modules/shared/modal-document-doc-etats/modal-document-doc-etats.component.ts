@@ -13,8 +13,8 @@ import { IValidation } from 'src/app/modele/validation';
 
 @Component({
   selector: 'app-modal-doc-etats',
-  templateUrl: './modal-doc-etats.component.html',
-  styleUrls: ['./modal-doc-etats.component.scss']
+  templateUrl: './modal-document-doc-etats.component.html',
+  styleUrls: ['./modal-document-doc-etats.component.scss']
 })
 export class ModalDocEtatsComponent implements OnInit{
   formeDocEtats: FormGroup;
