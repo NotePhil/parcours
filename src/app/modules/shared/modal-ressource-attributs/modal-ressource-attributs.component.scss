@@ -66,11 +66,11 @@
 }
 .result h2{
     opacity: 0.6;
-}  
-.example-full-width {
-    // height: 42px !important;
-    border: 2px solid #28a745;
 }
+.example-full-width {
+    width: 100%;
+    border: 2px solid #28a745;
+} 
 #tableList{
     margin: 10px 0 30px 0;
 }

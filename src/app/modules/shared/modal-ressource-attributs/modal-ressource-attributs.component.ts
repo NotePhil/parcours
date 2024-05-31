@@ -16,7 +16,6 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { IRessource } from 'src/app/modele/ressource';
 import { IType } from 'src/app/modele/type';
-import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-modal-ressource-attributs',
@@ -26,7 +25,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 export class ModalRessourceAttributsComponent implements OnInit {
   // variables attributs, pour afficher le tableau d'attributs sur l'IHM
   formeAttribut: FormGroup;
-  valid: boolean = true;
+  valid: boolean = false;
   stockDonnee: any;
   initialDataDocumentAttributs: any[] = [];
   datas: any[] = [];
@@ -170,11 +169,20 @@ export class ModalRessourceAttributsComponent implements OnInit {
   }
 
   saveModal(){
-    this.donneeDocCatService.dataDocumentAttributsRessource =
-      this.ELEMENTS_TABLE_ATTRIBUTS;
-    console.log("element final :", this.donneeDocCatService.dataDocumentAttributsRessource);
-  
-    this.datas.forEach((c) => (c.event.target.checked = false));
+    let count = 0;
+    this.dataSourceAttributResultat.data.forEach((attribut) => {
+      if (attribut.valeur == null || attribut.valeur == "") {
+        count++;
+      }
+    });
+    if (count > 0) {
+      this.valid = true;
+    } else {
+      this.valid = false;
+      this.donneeDocCatService.dataDocumentAttributsRessource = this.ELEMENTS_TABLE_ATTRIBUTS;
+      console.log("element final :", this.donneeDocCatService.dataDocumentAttributsRessource, this.valid);
+      this.dialogRef.close();
+    }
   }
 
   closeModal(){
@@ -235,38 +243,39 @@ export class ModalRessourceAttributsComponent implements OnInit {
     );
   }
 
-  verificationModificationDansTableau(
-    element: any,
-    event: any,
-    indexElement: number
-  ) {
-    console.log('element sélectionné :', element, event.target.value);
-    this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
-    this.ELEMENTS_TABLE_ATTRIBUTS[indexElement].valeur = event.target.value;
+  verificationModificationDansTableau(element: any, indexElement: number) 
+  {
+    console.log('element select : ', element);
+    console.log("donnee :", this.formeAttribut.get('res')?.value);
 
-    let faux: number = 0;
-    for (let index = 0; index < this.ELEMENTS_TABLE_ATTRIBUTS.length; index++) {
-      let element = this.ELEMENTS_TABLE_ATTRIBUTS[index];
-      if (element.attributs.type == 'Number') {
-        faux = 0;
-        // Test si la valeur est un nombre
-        if (!isNaN(parseFloat(element.valeur))) {
-          console.log('La valeur saisie est un nombre.', element);
+      if (element.attributs.type == 'Text') {        
+        if (this.formeAttribut.get('res')?.value) {
+          this.valid = false;
         } else {
-          faux++;
-          console.log("La valeur saisie n'est pas un nombre.", element);
+          this.valid = true;
+        }   
+      }
+    
+      if (element.attributs.type == 'Number') {
+        // Test si la valeur est un nombre
+        if (!isNaN(parseFloat(this.formeAttribut.get('res')?.value))) {
+          this.valid = false;
+          console.log('La valeur saisie est un nombre.', this.formeAttribut.get('res')?.value);
+        } else {
+          this.valid = true;
+          console.log("La valeur saisie n'est pas un nombre.", this.formeAttribut.get('res')?.value);
         }
-        console.log(' index', index);
       }
 
       //----------- cas du type date --------//
       if (element.attributs.type == 'Date') {
-        if (this.isValidDate(element.valeur)) {
+        if (this.isValidDate(this.formeAttribut.get('res')?.value)) {
           // Si la conversion en date réussie, la validation réussie
-          console.log('La valeur saisie est une date.', element.valeur);
+          this.valid = false;
+          console.log('La valeur saisie est une date.', this.formeAttribut.get('res')?.value);
         } else {
-          faux++;
-          console.log("La valeur saisie n'est pas une date.", element.valeur);
+          this.valid = true;
+          console.log("La valeur saisie n'est pas une date.", this.formeAttribut.get('res')?.value);
         }
       }
 
@@ -275,41 +284,42 @@ export class ModalRessourceAttributsComponent implements OnInit {
         element.attributs.type == 'Checkbox' ||
         element.attributs.type == 'Radio'
       ) {
-        if (element.valeur == null || element.valeur == '') {
-          faux++;
+        if (this.formeAttribut.get('res')?.value == null || this.formeAttribut.get('res')?.value == '') {
+          this.valid = true;
+        } else {
+          this.valid = false;
         }
       }
 
       //----------- cas de type Email ---------------//
       if (element.attributs.type == 'Email') {
-        if (this.verifierEmail(element.valeur)) {
-          console.log('La valeur saisie est une address mail.', element.valeur);
+        if (this.verifierEmail(this.formeAttribut.get('res')?.value)) {
+          this.valid = false;
+          console.log('La valeur saisie est une address mail.', this.formeAttribut.get('res')?.value);
         } else {
-          faux++;
-          console.log("La valeur saisie n'est pas un email.", element.valeur);
+          this.valid = true;
+          console.log("La valeur saisie n'est pas un email.", this.formeAttribut.get('res')?.value);
         }
       }
 
       //----------- cas de type URL ---------------//
       if (element.attributs.type == 'Url') {
-        if (this.verifierURL(element.valeur)) {
-          console.log('La valeur saisie est une Url valide.', element.valeur);
+        if (this.verifierURL(this.formeAttribut.get('res')?.value)) {
+          this.valid = false;
+          console.log('La valeur saisie est une Url valide.', this.formeAttribut.get('res')?.value);
         } else {
-          faux++;
-          console.log("La valeur saisie n'est pas une url.", element.valeur);
+          this.valid = true;
+          console.log("La valeur saisie n'est pas une url.", this.formeAttribut.get('res')?.value);
         }
       }
-      if (element.valeur == null || element.valeur == '') {
-        faux++;
+      if (this.formeAttribut.get('res')?.value == null || this.formeAttribut.get('res')?.value == '') {
+        this.valid = true;
       }
-    }
-    if (faux <= 0) {
-      this.valid = false;
-    } else {
-      this.valid = true;
-    }
 
-    console.log('valeurs :', this.ELEMENTS_TABLE_ATTRIBUTS);
+      if (this.valid == false) {
+        this.ELEMENTS_TABLE_ATTRIBUTS[indexElement].valeur = this.formeAttribut.get('res')?.value;
+        console.log('valeur saisie : ', this.formeAttribut.get('res')?.value);
+      }
 
     return this.valid;
   }
