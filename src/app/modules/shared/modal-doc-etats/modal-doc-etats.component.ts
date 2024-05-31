@@ -185,7 +185,4 @@ export class ModalDocEtatsComponent implements OnInit{
     });
     return etatsFinal
   }
-  compareItem(docEtat1: IDocEtats, docEtat2: IDocEtats) {
-    return docEtat2.etat && docEtat1.etat ? docEtat2.etat.id === docEtat1.etat.id : docEtat2.etat === docEtat1.etat;
-  }
 }
