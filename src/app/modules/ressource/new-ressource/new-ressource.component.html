@@ -109,7 +109,7 @@
                               <button type="button" class="btn p-0" title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}" (click)="openAttributDialog()">
                                   <i class="fas fa-plus-square"></i>
                               </button>
-                              <span *ngFor="let listeAttributs of ELEMENTS_TABLE_ATTRIBUTS">
+                              <span *ngFor="let listeAttributs of ELEMENTS_TABLE_ATTRIBUTS_SELECT">
                                   {{listeAttributs.attributs!.titre! | lowercase}}<span>, </span>
                               </span>
                           </div>

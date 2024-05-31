@@ -138,16 +138,18 @@
                       " [type]="element.attributs.type" (input)="
                         verificationModificationDansTableau(
                           element,
+                          $event,
                           i
                         )
-                      " formControlName="res" name="res" id="res"
+                      " [value]="element.valeur" name="res" id="res"
                   required />
                   <textarea *ngIf="element.attributs.type == 'Textarea'" class="form-control" (input)="
                               verificationModificationDansTableau(
                                 element,
+                                $event,
                                 i
                               )
-                            " [ngModelOptions]="{ standalone: true }" [(ngModel)]="element.valeur" name="res" id="res"
+                            " [value]="element.valeur" name="res" id="res"
                         required></textarea>
                       <select class="form-control" *ngIf="
                               element.attributs.type == 'Radio' ||
@@ -155,15 +157,15 @@
                             " (input)="
                               verificationModificationDansTableau(
                                 element,
+                                $event,
                                 i
                               )
-                            " [ngModelOptions]="{ standalone: true }" [(ngModel)]="element.valeur" name="res" id="res"
+                            " [value]="element.valeur" name="res" id="res"
                         required>
                         <option *ngFor="let val of element.attributs.valeursParDefaut.trim().split(',')" value="{{ val.trim() }}">
                           {{ val }}
                         </option>
                       </select>
-                          <mat-error *ngIf="valid && f['res'].errors">{{ "ressource.form.text1" | translate }}</mat-error>
                     </td>
                   </ng-container>
 
@@ -196,6 +198,7 @@
               <button mat-button (click)="closeModal()" class="btn btnValidation">
                 {{ "lists.button2" | translate }}
               </button>
+              <mat-error *ngIf="valid && f['res'].errors">{{ textError }}</mat-error>
               <button mat-button cdkFocusInitial [disabled]="valid"
                 (click)="saveModal()" class="btn btnValidation">
                 {{ "lists.button6" | translate }}

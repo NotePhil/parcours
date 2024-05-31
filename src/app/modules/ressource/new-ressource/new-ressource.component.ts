@@ -33,7 +33,7 @@ export class NewRessourceComponent implements OnInit {
   submitted: boolean=false;
   unites : String[] = [];
   IdRessource:string= ""
-  ELEMENTS_TABLE_ATTRIBUTS: any[] = [];
+  ELEMENTS_TABLE_ATTRIBUTS_SELECT: any[] = [];
   filteredOptions: IFamille[] | undefined;
   dataSource = new MatTableDataSource<IFamille>();
   familleDeRessource: IFamille = {
@@ -115,12 +115,12 @@ export class NewRessourceComponent implements OnInit {
             scanBarcode: this.ressource?.scanBarCode,
           });
           if (this.ressource.caracteristiques != undefined) {
-            this.ELEMENTS_TABLE_ATTRIBUTS = this.ressource.caracteristiques
+            this.ELEMENTS_TABLE_ATTRIBUTS_SELECT = this.ressource.caracteristiques
           }
-          this.dataEnteteMenuService.dataDocumentAttributsRessource = this.ELEMENTS_TABLE_ATTRIBUTS
+          this.dataEnteteMenuService.dataDocumentRessourcesAttributs = this.ELEMENTS_TABLE_ATTRIBUTS_SELECT;
       });
     } else {
-      this.dataEnteteMenuService.dataDocumentAttributsRessource = []
+      this.dataEnteteMenuService.dataDocumentRessourcesAttributs = []
     }
     this.familleService.getTypeUnite().subscribe((u) => {
       this.unites = u.type;
@@ -136,18 +136,19 @@ export class NewRessourceComponent implements OnInit {
    * Methode permettant d'ouvrir la modal de selection des attributs de la ressource
    */
   openAttributDialog(){
+    this.dataEnteteMenuService.dataDocumentRessourcesAttributs = this.ELEMENTS_TABLE_ATTRIBUTS_SELECT;
+
     const dialogRef = this.dialogDef.open(ModalRessourceAttributsComponent,
     {
       width:'100%',
       height:'100%',
       enterAnimationDuration:'1000ms',
-      exitAnimationDuration:'1500ms',
-      data: this.ELEMENTS_TABLE_ATTRIBUTS
+      exitAnimationDuration:'1000ms'
     }
     )
 
     dialogRef.afterClosed().subscribe(result => {
-      this.ELEMENTS_TABLE_ATTRIBUTS =  this.dataEnteteMenuService.dataDocumentAttributsRessource      
+      this.ELEMENTS_TABLE_ATTRIBUTS_SELECT =  this.dataEnteteMenuService.dataDocumentAttributsRessource      
     });
     
   }
@@ -156,7 +157,7 @@ export class NewRessourceComponent implements OnInit {
     this.submitted=true;
     if(this.forme.invalid) return console.log("error azertyuiop", this.forme.invalid);
 
-    let styleAtt : any = this.ELEMENTS_TABLE_ATTRIBUTS;
+    let styleAtt : any = this.ELEMENTS_TABLE_ATTRIBUTS_SELECT;
 
     let ressourceTemp : IRessource={
       id: uuidv4(),

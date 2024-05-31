@@ -26,6 +26,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
   // variables attributs, pour afficher le tableau d'attributs sur l'IHM
   formeAttribut: FormGroup;
   valid: boolean = false;
+  textError : string = "";
   stockDonnee: any;
   initialDataDocumentAttributs: any[] = [];
   datas: any[] = [];
@@ -91,8 +92,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
     private _liveAnnouncer: LiveAnnouncer,
     private dialogRef: MatDialogRef<ModalRessourceAttributsComponent>,
     private donneeDocCatService: DonneesEchangeService,
-    public dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    public dialog: MatDialog
   ) {
     this.formeAttribut = this.formBuilder.group({
       res: ['', Validators.required],
@@ -105,11 +105,12 @@ export class ModalRessourceAttributsComponent implements OnInit {
       this.filteredOptions = valeurs;
     });
 
-    if (this.data.length > 0) {
-      this.dataSourceAttributResultat.data = this.data;
-      this.initialDataDocumentAttributs = [...this.data];
+    if (this.donneeDocCatService.dataDocumentRessourcesAttributs.length > 0) {
+      this.dataSourceAttributResultat.data = this.donneeDocCatService.dataDocumentRessourcesAttributs;
+      this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
+      this.initialDataDocumentAttributs = [...this.donneeDocCatService.dataDocumentRessourcesAttributs];
       console.log(
-        'resultats tb :', this.data
+        'resultats tb :', this.donneeDocCatService.dataDocumentRessourcesAttributs
       );
     }
 
@@ -177,6 +178,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
     });
     if (count > 0) {
       this.valid = true;
+      this.textError = "La colonne valeur de chaque ligne est obligatoire";
     } else {
       this.valid = false;
       this.donneeDocCatService.dataDocumentAttributsRessource = this.ELEMENTS_TABLE_ATTRIBUTS;
@@ -243,13 +245,12 @@ export class ModalRessourceAttributsComponent implements OnInit {
     );
   }
 
-  verificationModificationDansTableau(element: any, indexElement: number) 
+  verificationModificationDansTableau(element: any, event: any, indexElement: number) 
   {
     console.log('element select : ', element);
-    console.log("donnee :", this.formeAttribut.get('res')?.value);
 
-      if (element.attributs.type == 'Text') {        
-        if (this.formeAttribut.get('res')?.value) {
+      if (element.attributs.type == 'Text') {
+        if (event.target.value) {
           this.valid = false;
         } else {
           this.valid = true;
@@ -258,24 +259,24 @@ export class ModalRessourceAttributsComponent implements OnInit {
     
       if (element.attributs.type == 'Number') {
         // Test si la valeur est un nombre
-        if (!isNaN(parseFloat(this.formeAttribut.get('res')?.value))) {
+        if (!isNaN(parseFloat(event.target.value))) {
           this.valid = false;
-          console.log('La valeur saisie est un nombre.', this.formeAttribut.get('res')?.value);
+          console.log('La valeur saisie est un nombre.', event.target.value);
         } else {
           this.valid = true;
-          console.log("La valeur saisie n'est pas un nombre.", this.formeAttribut.get('res')?.value);
+          this.textError = "La valeur saisie n'est pas un nombre.";
         }
       }
 
       //----------- cas du type date --------//
       if (element.attributs.type == 'Date') {
-        if (this.isValidDate(this.formeAttribut.get('res')?.value)) {
+        if (this.isValidDate(event.target.value)) {
           // Si la conversion en date réussie, la validation réussie
           this.valid = false;
-          console.log('La valeur saisie est une date.', this.formeAttribut.get('res')?.value);
+          console.log('La valeur saisie est une date.', event.target.value);
         } else {
           this.valid = true;
-          console.log("La valeur saisie n'est pas une date.", this.formeAttribut.get('res')?.value);
+          this.textError = "La valeur saisie n'est pas une date.";
         }
       }
 
@@ -284,7 +285,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
         element.attributs.type == 'Checkbox' ||
         element.attributs.type == 'Radio'
       ) {
-        if (this.formeAttribut.get('res')?.value == null || this.formeAttribut.get('res')?.value == '') {
+        if (event.target.value == null || event.target.value == '') {
           this.valid = true;
         } else {
           this.valid = false;
@@ -293,32 +294,28 @@ export class ModalRessourceAttributsComponent implements OnInit {
 
       //----------- cas de type Email ---------------//
       if (element.attributs.type == 'Email') {
-        if (this.verifierEmail(this.formeAttribut.get('res')?.value)) {
+        if (this.verifierEmail(event.target.value)) {
           this.valid = false;
-          console.log('La valeur saisie est une address mail.', this.formeAttribut.get('res')?.value);
+          console.log('La valeur saisie est une address mail.', event.target.value);
         } else {
           this.valid = true;
-          console.log("La valeur saisie n'est pas un email.", this.formeAttribut.get('res')?.value);
+          this.textError = "La valeur saisie n'est pas un email.";
         }
       }
 
       //----------- cas de type URL ---------------//
       if (element.attributs.type == 'Url') {
-        if (this.verifierURL(this.formeAttribut.get('res')?.value)) {
+        if (this.verifierURL(event.target.value)) {
           this.valid = false;
-          console.log('La valeur saisie est une Url valide.', this.formeAttribut.get('res')?.value);
+          console.log('La valeur saisie est une Url valide.', event.target.value);
         } else {
           this.valid = true;
-          console.log("La valeur saisie n'est pas une url.", this.formeAttribut.get('res')?.value);
+          this.textError = "La valeur saisie n'est pas une url.";
         }
-      }
-      if (this.formeAttribut.get('res')?.value == null || this.formeAttribut.get('res')?.value == '') {
-        this.valid = true;
       }
 
       if (this.valid == false) {
-        this.ELEMENTS_TABLE_ATTRIBUTS[indexElement].valeur = this.formeAttribut.get('res')?.value;
-        console.log('valeur saisie : ', this.formeAttribut.get('res')?.value);
+        this.ELEMENTS_TABLE_ATTRIBUTS[indexElement].valeur = event.target.value;
       }
 
     return this.valid;
