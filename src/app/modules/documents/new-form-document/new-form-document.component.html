@@ -234,9 +234,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="actionButton">
-                    <button class="btn" routerLink="../../list-documents"><i class="fa fa-reply mr-1" aria-hidden="true"></i>{{'lists.button2' | translate}}</button>
-                    <button type="submit" class="btn btnValidation">{{btnLibelle}}</button>
+                <div class="actionButton valBtn">
+                    <button class="retour" routerLink="../list-documents" title="{{'lists.button2' | translate}}">
+                        <i class="fa fa-reply mr-1" aria-hidden="true"></i>
+                    </button>
+                    <button type="submit" class="btnValidation" title="{{btnLibelle}}">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="mt-2 note">
                     <p>* : {{"lists.text1" | translate}}</p>

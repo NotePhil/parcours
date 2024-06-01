@@ -27,9 +27,6 @@
   }
 }
 .actionButton{
-  clear: both;
-  display: flex;
-  align-items: center;
   justify-content: flex-end;
   button{
       background-color: #1473e6;
@@ -65,7 +62,7 @@
   // height: 42px !important;
   border: 2px solid #28a745;
 }
-#tableList{
+#tableBlock{
   margin: 10px 0 30px 0;
 }
 mat-form-field{

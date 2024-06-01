@@ -46,17 +46,23 @@
             </div>
         </div>
         <div class="modal-footer w-100">
-            <div class="actionButton">
-                <button [mat-dialog-close] class="btn" *ngIf="step == 1" (click)="removeData()">{{'lists.button3' | translate}}</button>
-                <button class="btn" *ngIf="step == 2" (click)="previousStep()">{{'lists.button4' | translate}}</button>
-                <button class="btn" routerLink="../list-patients" data-dismiss="modal" *ngIf="step == 2"
+            <div class="actionButton valBtn" >
+                <button [mat-dialog-close] class="btn fermer" *ngIf="step == 1" (click)="removeData()" title="{{'lists.button3' | translate}}">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <button class="btn btnValidation" *ngIf="step == 2" (click)="previousStep()" title="{{'lists.button4' | translate}}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <button class="btn reinitialiser" routerLink="../list-patients" data-dismiss="modal" *ngIf="step == 2"
                      [useExistingCss]="true"
                      styleSheetFile="assets/css/ticketPrint.scss"
                      printSectionId="ticketView"
-                     ngxPrint (click)="removeData()">
-                     {{'lists.button1' | translate}}
+                     ngxPrint (click)="removeData()" title="{{'lists.button1' | translate}}">
+                     <i class="fa fa-print" aria-hidden="true"></i>
                 </button>
-                <button type="submit" class="btn btnValidation" *ngIf="step == 1">{{btnLibelle}}</button>
+                <button type="submit" class="btn btnValidation" *ngIf="step == 1" title="{{btnLibelle}}">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </form>

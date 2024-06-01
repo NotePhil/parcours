@@ -1,7 +1,4 @@
-.mainBlock{
-    background-color: #ffffff;
-    padding-top: 5px;
-}
+
 h1{
     text-align: center;
     text-transform: uppercase;
@@ -22,35 +19,6 @@ h3{
 }
 #titre{
     margin: 20px 0;
-}
-#description{
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    p{
-        margin: 0;
-        margin-left: 5px;
-        width: 50%;
-        background-color: #28a7450e;
-        padding: 10px;
-        padding-top: 0;
-        border-radius: 5px;
-    }
-}
-.infos{
-    padding: 0 20px;
-    padding-bottom: 10px;
-}
-.infos p{
-    margin: 40px 0;
-    font-weight: 300;
-}
-.infos .title{
-    font-weight: normal;
-    text-transform: uppercase;
-}
-#titre .title{
-    text-transform: capitalize;
 }
 .contentBlock{
     display: flex;
@@ -104,24 +72,6 @@ h3{
     font-weight: 400 !important;
     padding: 20px 0 2px 0 !important;
 }
-.actionButton{
-    clear: both;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 20px;
-    padding-bottom: 10px;
-    button{
-        background-color: #28a745;
-        color: white;
-        height: 30px;
-        padding: 0 10px;
-        font-size: 15px;
-    }
-    .btnValidation{
-        background-color: #28a745;
-    }
-}
 .inputSpecial{
     width: fit-content !important;
     input{
@@ -134,19 +84,13 @@ h3{
 #sectionAjoutPreco{
     background-color: #ffffff !important;
 }
-.searchBlock{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 2px;
-}
 .searchBlockUnique{
     display: flex;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
     padding: 0 2px;
+    padding-bottom: 5px;
     .blockAutoRessources{
         width: 100%;
     }
@@ -191,7 +135,7 @@ h3{
         height: 20px !important;
     }
 }
-#tableList{
+#tableBlock{
     margin: 10px 0 30px 0;
 }
 mat-form-field{
@@ -283,12 +227,6 @@ th{
             justify-content: start;
         }
     }
-}
-.actions button{
-    font-size: 10px;
-}
-.actions span{
-    font-size: 10px;
 }
 .total{
     width: 100%;

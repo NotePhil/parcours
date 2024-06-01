@@ -28,6 +28,7 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     'description',
     'etat',
   ];
+  btnLibelle: string="Enregistrer";
 
   dataSourceDocument = new MatTableDataSource<IDocument>(
     this.ELEMENTS_TABLE_DOCUMENTS

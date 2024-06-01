@@ -52,7 +52,7 @@ export class NewPrecomvtComponent implements OnInit {
 
   formDirective!: FormGroupDirective;
   titre:string='';
-  btnLibelle: string="Ajouter";
+  btnLibelle: string="Enregistrer";
   constructor(private formBuilder:FormBuilder,private serviceFamille:FamillesService,private dataEnteteMenuService:DonneesEchangeService,private serviceDistributeur:DistributeursService, private precoMvtService:PrecoMvtsService,private serviceRessource:RessourcesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       id: new FormControl(),

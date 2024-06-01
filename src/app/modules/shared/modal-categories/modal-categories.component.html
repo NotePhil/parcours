@@ -98,8 +98,8 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex w-100 align-items-center justify-content-end">
-                <button type="btn" class="btn btn-success" (click)="AjouterCategorieTemp()"> <i class="fa fa-plus" aria-hidden="true"></i> {{'lists.button9' | translate}}</button>
+            <div class="d-flex w-100 align-items-center justify-content-end actionButton valBtn">
+                <button type="btn" class="btn btnValidation" (click)="AjouterCategorieTemp()" title="{{'lists.button9' | translate}}"><i class="fa fa-plus" aria-hidden="true"></i></button>
             </div>
         </div>
 
@@ -157,8 +157,10 @@
                 </div>
             </div>
         </div>
-        <div class="actionButton">
-            <button mat-button [mat-dialog-close]="tableResultatsCategoriesAffichage.data" cdkFocusInitial class="btn btnValidation" (click)="ajouterCategorieParDefaut()">{{'lists.button6' | translate}}</button>
+        <div class="actionButton valBtn" >
+            <button mat-button [mat-dialog-close]="tableResultatsCategoriesAffichage.data" cdkFocusInitial class="btn btnValidation" (click)="ajouterCategorieParDefaut()" title="{{'lists.button11' | translate}}">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
         </div>       
     </div>
 </div>

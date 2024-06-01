@@ -60,7 +60,7 @@
     
                     <div class="tables">
                         <!-- tableau listing des roles -->   
-                    <div class="card-body p-0 tableBlock" id="tableList">
+                    <div class="card-body p-0 tableBlock" id="tableBlock">
                         <div class='table-responsive w-100'>
                             <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
                     
@@ -112,9 +112,13 @@
                                     aria-label="Select page of periodic elements">
                             </mat-paginator>
                         </div>
-                        <div class="actionButton">
-                            <button class="btn" (click)="annullerElement()">{{"personnel.table.actions.link6" | translate}}</button>
-                            <button type="submit" class="btn btnValidation" (click)="validateElement()">{{"personnel.table.actions.link1" | translate}}</button>
+                        <div class="actionButton valBtn">
+                            <button class="btn reinitialiser" (click)="annullerElement()" title="{{'lists.button3' | translate}}">
+                                <i class="fa fa-undo" aria-hidden="true"></i>
+                            </button>
+                            <button type="submit" class="btn btnValidation" (click)="validateElement()" title="{{'lists.button11' | translate}}">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                              </button>
                         </div>
                     </div>
 
@@ -222,8 +226,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="actionButton">
-                            <button type="submit" class="btn btnfinal btnValidation" (click)="onSubmit(dataSourceMissionResultat)">Valider</button>
+                        <div class="actionButton valBtn" >
+                            <button type="submit" class="btn btnfinal btnValidation" (click)="onSubmit(dataSourceMissionResultat)" title="{{'lists.button11' | translate}}">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                     </div>

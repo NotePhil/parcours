@@ -18,7 +18,7 @@ export class NewPersonnelComponent implements OnInit {
    //personnel$:Observable<personnel>=EMPTY;
    personnel : IPersonnel|undefined;
    forme: FormGroup;
-   btnLibelle: string="Ajouter";
+   btnLibelle: string="Enregistrer";
    submitted: boolean=false;
    // Import the QRCodeModule
    qrCodeValue: string = '';

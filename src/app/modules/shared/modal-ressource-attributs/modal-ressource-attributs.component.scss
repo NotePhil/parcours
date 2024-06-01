@@ -1,20 +1,8 @@
-*{
-    clear: both;
-}
 #mainSection{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding: 10px;
     flex-direction: column;
     margin: auto;
     width: 70%;
-}
-.form-control{
-    border: none;
-    box-shadow: 0 0 2px rgb(220, 220, 220);
-    height: 35px;
 }
 .champs{
     display: flex;
@@ -37,26 +25,6 @@
         }
     }
 }
-
-.actionButton{
-    clear: both;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    button{
-        background-color: #28a745;
-        color: white;
-        height: 30px;
-        padding: 0 10px;
-        font-size: 15px;
-    }
-    .btnValidation{
-        background-color: #1473e6;
-    }
-}
-.actions button{
-    font-size: 10px;
-}
 .result{
     width: 100%;
 }
@@ -64,62 +32,21 @@
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    position: relative;
+    bottom: 20px;
 }
 .result h2{
     opacity: 0.6;
 }  
 .example-full-width {
-    // height: 42px !important;
     border: 2px solid #28a745;
 }
 #tableList{
     margin: 10px 0 30px 0;
 }
-mat-form-field{
-    padding: 0;
-    margin: 0;
-    color: #28a745;
-    line-height: 0;
-    box-sizing: initial;
-    // width: 50px;
-    mat-label{
-        height: 20px;
-        padding: 0;
-        margin: 0;
-    }
-    input{
-        padding: 0;
-        border: none;
-        margin: 0;
-        // height: 25px;
-    }
-}
 .mat-header-cell {
     padding-top: 0;
     width: 20%;
-}
-.mat-cell {
-    height: 0;
-}
-.mat-row, .mat-cell {
-    padding: 2px 0 0 0;
-    margin: 0;
-}
-.mat-form-field-infix {
-    padding: 0;
-    border-top: none;
-}
-.mat-form-field-wrapper {
-    padding-bottom: 0 !important;
-}
-.containHead{
-    padding: 1% 0;
-}
-.containCell{
-    padding-top: 20px;
-}
-td{
-    font-size: 13px;
 }
 th{
     background-color: rgba(40, 167, 69, 0.2);
@@ -152,7 +79,6 @@ th{
     label{
         font-weight: normal;
     }
-    
 }
 @media screen and (max-width: 1200px) {
     .title h2{

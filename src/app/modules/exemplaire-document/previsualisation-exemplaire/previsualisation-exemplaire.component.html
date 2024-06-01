@@ -31,7 +31,7 @@
 
         <!-- tableau listing des mouvements -->
 
-        <div class="card-body p-0 tableBlock" id="tableList">
+        <div class="card-body p-0 tableBlock" id="tableBlock">
             <div class='table-responsive w-100'>
                 <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceMouvements">
 
@@ -110,11 +110,11 @@
                 </div>
             </div>
         </div>
-        <div class="options">
-            <button title="{{'lists.button7' | translate}}" type="button" [routerLink]="['/exemplaire-nouveau/modify/',exemplaire.id]" class="btn btn-outline-info">
+        <div class="actionButton valBtn">
+            <button title="{{'lists.button7' | translate}}" type="button" [routerLink]="['/exemplaire-nouveau/modify/',exemplaire.id]" class="btn modifier">
                 <i class="fas fa-pen"></i>
             </button>
-            <button title="{{'lists.button1' | translate}}" class="btn btn-outline-warning" data-dismiss="modal"
+            <button title="{{'lists.button1' | translate}}" class="btn reinitialiser" data-dismiss="modal"
                 [useExistingCss]="true"
                 styleSheetFile="assets/css/ticketPrint.scss"
                 printSectionId="globalSection"
