@@ -56,17 +56,17 @@ export class EtapesService {
   }
 
   getDocumentsByEtapeId(etapeId: string): Observable<IDocument[]> {
-    // Perform a search in the iEtat table to find etapes associated with the given etape ID
-    // Then return the documents associated with those etapes
+    // Perform a search in the iEtat table to find etapes personnesRatacheesd with the given etape ID
+    // Then return the documents personnesRatacheesd with those etapes
     return this.http.get<IDocEtats[]>('api/iEtat').pipe(
       map((docEtats) => {
-        const associatedDocuments: IDocument[] = [];
+        const personnesRatacheesdDocuments: IDocument[] = [];
         docEtats.forEach((docEtat) => {
           if (docEtat.etape!.id === etapeId && docEtat.etape?.document) {
-            associatedDocuments.push(...docEtat.etape.document);
+            personnesRatacheesdDocuments.push(...docEtat.etape.document);
           }
         });
-        return associatedDocuments;
+        return personnesRatacheesdDocuments;
       })
     );
   }

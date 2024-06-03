@@ -18,6 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
 import { DetailPatientsComponent } from './detail-patients/detail-patients.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     QRCodeModule,
     MatTableModule,
     MatSortModule,
+    MatDialogModule,
     TicketsModule,
     SharedModule,
     TranslateModule.forChild({
