@@ -8,9 +8,13 @@
 .entete{
     background-color: #28a745;
     color: white;
-    text-align: center;
     font-size: 22px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    h2{
+        margin: auto; 
+    }
 }
 .actionButton{
     width: 100%;
@@ -18,11 +22,17 @@
         width: fit-content;
     }
 }
-.blockServices{
+#top2 {
+    border: none !important;
+    box-shadow: none !important;
+}
+.blockServices div{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    border: none !important;
+    box-shadow: none;
     label{
         padding: 10px 5px;
         color: #28a745;

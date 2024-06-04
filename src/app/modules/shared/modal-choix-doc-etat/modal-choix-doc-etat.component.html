@@ -44,15 +44,15 @@
                 </div>
             </div>
         </div>
-        <div style="display: flex; justify-content: space-between;">
-            <div class="actionButton valBtn mt-2">
-                <button class="btn btnValidation" mat-raised-button color="primary"
-                    (click)="onCancel()">Annuler</button>
-            </div>
-            <div class="actionButton valBtn mt-2">
-                <button class="btn btnValidation" mat-raised-button color="primary"
-                    (click)="onSave()">Valider</button>
-            </div>
+        <div class="actionButton valBtn mt-2">
+            <button class="btn btnValidation fermer" mat-raised-button
+                (click)="onCancel()" title="{{'lists.button10' | translate}}">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+            <button class="btn btnValidation" mat-raised-button
+                (click)="onSave()" title="{{'lists.button9' | translate}}">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
         </div>
     </div>
 </div>

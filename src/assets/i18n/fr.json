@@ -335,7 +335,7 @@
   "ressource": {
     "table": {
       "title": "Ajouter ",
-      "title1": " Libellé",
+      "title1": "Libellé",
       "title2": "Etat",
       "title3": "Quantité",
       "title4": "Unité",
@@ -529,6 +529,7 @@
     }
   },
 "etape":{
+  "title1":"Document",
   "table": {
     "title": "Ajouter ",
     "title1": "libelle",

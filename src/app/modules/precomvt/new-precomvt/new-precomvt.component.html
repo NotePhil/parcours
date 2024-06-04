@@ -66,7 +66,7 @@
               {{'precomvt.table.title4' | translate}}
             </label>
             <div class="w-100">
-              <mat-form-field  style="background-color:#28a745;" class="example-full-width" appearance="fill" >
+              <mat-form-field  style="background-color:#28a745;" class="example-full-width matSelectContainer" appearance="fill" >
                 <mat-select formControlName="famille"  #familles multiple [compareWith]="compareItem" (ngModelChange)="tabError.delete('famille')">
                   <mat-option style="color:#28a745;" *ngFor="let membre of familles$ |async" [value]="membre" >{{membre.libelle}}</mat-option>
                 </mat-select>
@@ -178,7 +178,7 @@
               <label for="distributeur" class="label">
                 {{'precomvt.table.title14' | translate}}
               </label>
-                <mat-form-field style="background-color:#28a745;" class="example-full-width" appearance="fill" >
+                <mat-form-field style="background-color:#28a745;" class="example-full-width matSelectContainer" appearance="fill" >
                   <mat-select formControlName="distributeur" multiple [compareWith]="compareItem1">
                     <mat-option style="color:#28a745;" *ngFor="let membre of distributeurs$ |async" [value]="membre">{{membre.raisonSocial}}</mat-option>
                   </mat-select>

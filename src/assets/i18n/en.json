@@ -523,6 +523,7 @@
     }
   },
   "etape":{
+    "title1":"Document",
     "table": {
       "title": "Add",
       "title1": "Libel",

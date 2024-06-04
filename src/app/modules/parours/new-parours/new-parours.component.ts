@@ -99,8 +99,7 @@ export class NewParoursComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(50),
+          Validators.minLength(2)
         ],
       ],
       //etape: ['', Validators.required]

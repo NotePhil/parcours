@@ -1,24 +1,19 @@
-
-<!-- Modal -->
-<div class="modal-dialog" role="document">
+<div id="mainSection" role="document">
     <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme"  class="modal-content">
-        <div id="mainSection"  class="modal-body">
-            <div class="card block" *ngIf="step == 1" >
-                <div class="card-header pt-4 pb-4 entete">
-                  <h2>{{"personnel.title1" | translate}} {{titre}}</h2>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="card-body" id="top2">
-                    <div class="container-fluid blockServices">
-                        <label *ngFor='let service of (services$ | async) as services'>
-                            <input type="radio"  name="serviceId" required id="{{service.id}}" value="{{service.libelle}}" (click)="setLibelleService(service.id,service.libelle)">
-                            {{service.libelle}}
-                        </label>
-                    </div>
+        <div class="card block" id="top2" *ngIf="step == 1" >
+            <div class="card-header entete pt-4 pb-4">
+                <h2>{{"personnel.title1" | translate}} {{titre}}</h2>
+            </div>
+            <div class="card-body blockServices">
+                <div class="container-fluid">
+                    <label *ngFor='let service of (services$ | async) as services'>
+                        <input type="radio"  name="serviceId" required id="{{service.id}}" value="{{service.libelle}}" (click)="setLibelleService(service.id,service.libelle)">
+                        {{service.libelle}}
+                    </label>
                 </div>
             </div>
+        </div>
+        <div  class="modal-body">
             <div id="ticketView" class="card" *ngIf="step == 2">
                 <div class="title">
                     <div class="d-flex align-items-start">
@@ -47,13 +42,10 @@
         </div>
         <div class="modal-footer w-100">
             <div class="actionButton valBtn" >
-                <button [mat-dialog-close] class="btn fermer" *ngIf="step == 1" (click)="removeData()" title="{{'lists.button3' | translate}}">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </button>
                 <button class="btn btnValidation" *ngIf="step == 2" (click)="previousStep()" title="{{'lists.button4' | translate}}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <button class="btn reinitialiser" routerLink="../list-patients" data-dismiss="modal" *ngIf="step == 2"
+                <button [mat-dialog-close] class="btn reinitialiser" data-dismiss="modal" *ngIf="step == 2"
                      [useExistingCss]="true"
                      styleSheetFile="assets/css/ticketPrint.scss"
                      printSectionId="ticketView"
@@ -62,6 +54,9 @@
                 </button>
                 <button type="submit" class="btn btnValidation" *ngIf="step == 1" title="{{btnLibelle}}">
                     <i class="fa fa-check" aria-hidden="true"></i>
+                </button>
+                <button [mat-dialog-close] class="btn fermer" (click)="removeData()" title="{{'lists.button3' | translate}}">
+                    <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
             </div>
         </div>

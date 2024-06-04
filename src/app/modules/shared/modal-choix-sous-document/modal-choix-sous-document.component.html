@@ -1,4 +1,4 @@
-<div id="mainSection" class="bg-light card modalCategorie">
+<div id="mainSection" class="bg-light card modalCategorie modalContentScroll">
     <form class="w-100">
         <div class="form-group mt-5">
             <div class='card-hearder'>
@@ -105,12 +105,9 @@
                                         </th>
                                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                             <div class="actions">
-                                                <button type="button" class="btn p-1" (click)="openModal(element)">
-                                                    <i class="fas fa-plus-square fa-lg"
-                                                        style="color: rgba(40, 167, 69, 0.79);"></i>
-                                                </button>
                                                 <span style="font-size: small; min-width: 67px;">{{
-                                                    selectedEtatsMap[element.id] }}</span>
+                                                    selectedEtatsMap[element.id] }}
+                                                </span>
                                             </div>
                                         </td>
                                     </ng-container>
@@ -128,8 +125,12 @@
                                                     (click)="retirerSelectionDocument(i)">
                                                     <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                                 </button>
-                                                <span><i class="fa fa-info-circle text-info" aria-hidden="true"
-                                                        title="{{'preconisation.table.title4' | translate}}"></i></span>
+                                                <span>
+                                                    <i class="fa fa-info-circle text-info" aria-hidden="true"title="{{'preconisation.table.title4' | translate}}"></i>
+                                                </span>
+                                                <button type="button" class="btn p-1" (click)="openModal(element)">
+                                                    <i class="fas fa-plus-square text-warning"></i>
+                                                </button>
                                             </div>
                                         </td>
                                     </ng-container>
