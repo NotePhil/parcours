@@ -54,7 +54,7 @@ export class NewFormDocumentComponent implements OnInit {
     contientRessources: false,
     contientDistributeurs: false,
     typeMouvement: TypeMouvement.Neutre,
-    DocEtats: [],
+    docEtats: []
   };
   mission$: Observable<IMission[]> = EMPTY;
   forme: FormGroup;
@@ -166,7 +166,7 @@ export class NewFormDocumentComponent implements OnInit {
         }
 
         // Initialisation du tableau des etats du document
-        this.ELEMENTS_TABLE_DOC_ETATS = this.document.DocEtats;
+        this.ELEMENTS_TABLE_DOC_ETATS = this.document.docEtats
 
         // Initialisation du tableau de categories temp du document qui reconstitue
         // le deuxieme tableau de la modal
@@ -200,14 +200,11 @@ export class NewFormDocumentComponent implements OnInit {
           });
         });
         //sauvegarde dans le service pour le communiquer à la modale
-        this.donneeDocCatService.dataDocumentCategorie = categorieAfficheFinal;
-        this.donneeDocCatService.dataDocumentPrecoMvts =
-          this.document.preconisations;
-        this.donneeDocCatService.dataDocumentAttributs =
-          this.document.attributs;
-        this.donneeDocCatService.dataDocumentSousDocuments =
-          this.document.sousDocuments;
-        this.donneeDocCatService.dataDocumentEtats = this.document.DocEtats;
+        this.donneeDocCatService.dataDocumentCategorie = categorieAfficheFinal
+        this.donneeDocCatService.dataDocumentPrecoMvts = this.document.preconisations
+        this.donneeDocCatService.dataDocumentAttributs = this.document.attributs
+        this.donneeDocCatService.dataDocumentSousDocuments = this.document.sousDocuments
+        this.donneeDocCatService.dataDocumentEtats = this.document.docEtats
 
         // synthese du tableau de categories du document pour afficher les differentes categories dans l'espace dedie
         this.syntheseCategorieAttribut();
@@ -387,8 +384,8 @@ export class NewFormDocumentComponent implements OnInit {
       affichagePrix: documentInput.affichagePrix,
       contientRessources: documentInput.contientRessources,
       contientDistributeurs: documentInput.contientDistributeurs,
-      DocEtats: [],
-    };
+      docEtats: []
+    }
 
     if (this.document.id != '') {
       documentTemp.id = this.document.id;
@@ -406,9 +403,9 @@ export class NewFormDocumentComponent implements OnInit {
       documentTemp.sousDocuments?.push(preco)
     );
 
-    this.ELEMENTS_TABLE_DOC_ETATS.forEach((docEtat) =>
-      documentTemp.DocEtats.push(docEtat)
-    );
+    this.ELEMENTS_TABLE_DOC_ETATS.forEach(
+      docEtat => documentTemp.docEtats.push(docEtat)
+    )
 
     if (this.TABLE_CATEGORIE_AFFICHAGE_TEMP.length < 1) {
       let categorieAttributs: ICategoriesAttributs = {
