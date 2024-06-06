@@ -24,6 +24,7 @@ import { IType } from 'src/app/modele/type';
 })
 export class ModalRessourceAttributsComponent implements OnInit {
   // variables attributs, pour afficher le tableau d'attributs sur l'IHM
+  selectedAttributeIds: string[] = [];
   formeAttribut: FormGroup;
   valid: boolean = false;
   textError : string = "";
@@ -104,11 +105,13 @@ export class ModalRessourceAttributsComponent implements OnInit {
       this.dataSourceAttribut.data = valeurs;
       this.filteredOptions = valeurs;
     });
+    this.loadSelectedAttributes();
 
     if (this.donneeDocCatService.dataDocumentRessourcesAttributs.length > 0) {
-      this.dataSourceAttributResultat.data = this.donneeDocCatService.dataDocumentRessourcesAttributs;
-      this.ELEMENTS_TABLE_ATTRIBUTS = this.dataSourceAttributResultat.data;
-      this.initialDataDocumentAttributs = [...this.donneeDocCatService.dataDocumentRessourcesAttributs];
+      this.ELEMENTS_TABLE_ATTRIBUTS = JSON.parse(
+        JSON.stringify(this.donneeDocCatService.dataDocumentRessourcesAttributs)
+      );
+      this.dataSourceAttributResultat.data = this.ELEMENTS_TABLE_ATTRIBUTS;
       console.log(
         'resultats tb :', this.donneeDocCatService.dataDocumentRessourcesAttributs
       );
@@ -128,6 +131,13 @@ export class ModalRessourceAttributsComponent implements OnInit {
         });
       }
     });
+  }
+
+  loadSelectedAttributes() {
+    this.selectedAttributeIds =
+      this.donneeDocCatService.dataDocumentRessourcesAttributs.map(
+        (attr: { attributs: IAttributs; valeur: string }) => attr.attributs.id
+      );
   }
 
   onCheckAttributChange(event: any, element: IAttributs) {
@@ -181,21 +191,10 @@ export class ModalRessourceAttributsComponent implements OnInit {
       this.textError = "La colonne valeur de chaque ligne est obligatoire";
     } else {
       this.valid = false;
-      this.donneeDocCatService.dataDocumentAttributsRessource = this.ELEMENTS_TABLE_ATTRIBUTS;
-      console.log("element final :", this.donneeDocCatService.dataDocumentAttributsRessource, this.valid);
+      this.donneeDocCatService.dataDocumentRessourcesAttributs = this.ELEMENTS_TABLE_ATTRIBUTS;
+      console.log("element final :", this.donneeDocCatService.dataDocumentRessourcesAttributs, this.valid);
       this.dialogRef.close();
     }
-  }
-
-  closeModal(){
-    if (this.initialDataDocumentAttributs.length > 0) {
-      // Si des données initiales étaient présentes, les restaurer
-      this.donneeDocCatService.dataDocumentAttributsRessource = [...this.initialDataDocumentAttributs];
-    } else {
-      // Si aucune donnée initiale, vider la variable
-      this.donneeDocCatService.dataDocumentAttributsRessource = []; 
-    }
-    this.dialogRef.close();
   }
 
   ajoutSelectionAttribut(attribut: IAttributs) {

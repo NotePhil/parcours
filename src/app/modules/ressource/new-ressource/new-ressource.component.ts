@@ -148,7 +148,7 @@ export class NewRessourceComponent implements OnInit {
     )
 
     dialogRef.afterClosed().subscribe(result => {
-      this.ELEMENTS_TABLE_ATTRIBUTS_SELECT =  this.dataEnteteMenuService.dataDocumentAttributsRessource      
+      this.ELEMENTS_TABLE_ATTRIBUTS_SELECT =  this.dataEnteteMenuService.dataDocumentRessourcesAttributs      
     });
     
   }
@@ -181,7 +181,7 @@ export class NewRessourceComponent implements OnInit {
         this.router.navigate(['list-ressources']);
       }
     )
-    this.dataEnteteMenuService.dataDocumentAttributsRessource = []
+    this.dataEnteteMenuService.dataDocumentRessourcesAttributs = []
 
   }
 

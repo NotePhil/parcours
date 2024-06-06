@@ -82,7 +82,7 @@
                   <td class="text-dark containCell" mat-cell *matCellDef="let element">
                     <div class="actions" class="">
                       <label style="width: 2px" for="attributs">
-                        <input type="checkbox" [value]="element.titre" name="attributs" id="attributs"
+                        <input type="checkbox" [value]="element.titre" name="attributs" id="attributs" [checked]="selectedAttributeIds.includes(element.id)"
                           (click)="getAttributId(element.id)" (change)="onCheckAttributChange($event, element)" />
                       </label>
                     </div>
@@ -195,7 +195,7 @@
               </div>
             </div>
             <div class="actionButton mt-2">
-              <button mat-button (click)="closeModal()" class="btn btnValidation">
+              <button mat-button [mat-dialog-close] class="btn btnValidation">
                 {{ "lists.button2" | translate }}
               </button>
               <mat-error *ngIf="valid && f['res'].errors">{{ textError }}</mat-error>

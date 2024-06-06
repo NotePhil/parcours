@@ -10,7 +10,6 @@ export class DonneesEchangeService {
   dataDocumentCategorie : any;
   dataDocumentPrecoMvts : any;
   dataDocumentAttributs : any;
-  dataDocumentAttributsRessource : any;
   dataDocumentRessourcesAttributs : any;
   dataDocumentCodebarre : any;
   dataDocumentSousDocuments : any;
