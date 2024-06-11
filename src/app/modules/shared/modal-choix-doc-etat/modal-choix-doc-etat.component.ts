@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { IDocument } from 'src/app/modele/document';
 import { IDocEtats } from 'src/app/modele/doc-etats';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
+import { DocumentService } from 'src/app/services/documents/document.service';
 
 interface DialogData {
   EtatsChoisi: IDocEtats[];
@@ -19,13 +20,14 @@ interface DialogData {
 export class ModalChoixDocEtatComponent {
   selectedEtatsMap: IDocEtats | undefined;
   formeEtat: FormGroup;
-  selectedEtat: IDocEtats | undefined;
+  selectedEtat: string | undefined;
   previouslySelectedEtat: IDocEtats | undefined; // Input to receive the previously selected etat
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fb: FormBuilder,
     private servicedonneechange: DonneesEchangeService,
+    private documentService: DocumentService, // Inject DocumentService
     public dialogRef: MatDialogRef<ModalChoixDocEtatComponent>
   ) {
     this.formeEtat = this.fb.group({});
@@ -51,10 +53,12 @@ export class ModalChoixDocEtatComponent {
 
     this.selectedEtatsMap = etat;
     console.log("change etat :", this.selectedEtatsMap);
-    
   }
 
   ngOnInit(): void {
-    this.selectedEtat = this.previouslySelectedEtat || undefined; // Set the selected etat when component initializes
+    // Load previously selected etat from DocumentService
+    this.selectedEtat = this.documentService.getSelectedEtat(
+      this.data.documentChoisi.id
+    );
   }
 }

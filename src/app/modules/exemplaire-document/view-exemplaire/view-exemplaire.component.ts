@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IDocEtats } from 'src/app/modele/doc-etats';
+import { IEtats } from 'src/app/modele/etats';
 import { IExemplaireDocument } from 'src/app/modele/exemplaire-document';
 import { IMouvement } from 'src/app/modele/mouvement';
 import { TypeMouvement } from 'src/app/modele/typeMouvement';
@@ -10,6 +11,9 @@ import { DocumentService } from 'src/app/services/documents/document.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
 import { IOrdreEtat } from 'src/app/modele/ordreEtat';
+import { IDocument } from 'src/app/modele/document';
+import { ModalChoixDocEtatComponent } from '../../shared/modal-choix-doc-etat/modal-choix-doc-etat.component';
+import { log } from 'console';
 
 @Component({
   selector: 'app-view-exemplaire',
@@ -72,6 +76,20 @@ export class ViewExemplaireComponent implements OnInit {
         .getExemplaireDocumentById(idExemplaire)
         .subscribe((x) => {
           this.exemplaire = x;
+          this.serviceDocument.getDocumentById(x.idDocument).subscribe(
+            (y) => {
+              this.reponse = this.serviceExemplaire.getExemplaireDocumentByOrder(x, y);
+              if (this.reponse) {
+                this.req = this.reponse.sol;
+                this.courant = this.reponse.ele.etat.libelle;
+              }
+              console.log('element response :', this.serviceExemplaire.getExemplaireDocumentByOrder(x, y));
+            }
+          )
+
+          if (this.exemplaire.ordreEtats != undefined) {
+            this.TabOrdre = this.exemplaire.ordreEtats;
+          }
           this.courant = x.ordreEtats![x.ordreEtats!.length - 1].etat.libelle;
 
           if (this.exemplaire.mouvements != undefined) {

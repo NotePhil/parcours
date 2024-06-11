@@ -38,7 +38,7 @@ export class ExemplaireDocumentService {
       console.log("doc :", doc, " exemplaire :", exemplaire);
       
       for (let index = 0; index < doc.docEtats.length; index++) {
-        if (doc.docEtats[index].etat.id == this.ordreEtat?.etat!.id) {
+        if (doc.docEtats[index].etat.id == this.ordreEtat.etat.id) {
           this.i = index;
         }
       }
