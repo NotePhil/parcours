@@ -348,6 +348,23 @@ display: flex;
     color: #28a745 !important;
 }
 
+// pagination
+mat-paginator{
+  align-self: flex-end !important;
+  background-color: rgba(40, 167, 69, 0.79) !important;
+  width: 100% !important;
+}
+
+// style affecté aux tableaux pour qu'ils grandissent vers le bas - XX
+.modaleTableConteneur{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+.mat-table{
+  flex: 1 1 auto !important;
+}
+
 // les pages de details
 .pageView{
   padding-bottom: 20px;
