@@ -6,59 +6,61 @@
           <div *ngIf="steps==2" class="w-100 pt-4 pb-4 entete1" >{{'precomvt.header1' | translate}}</div>
           <div *ngIf="steps==3" class="w-100 pt-4 pb-4 entete2">{{'precomvt.header2' | translate}}</div>
 
-          <div class="w-100 mt-4 pt-0 pl-2 pr-2 pb-0" >
-            <div class="w-100">
-              <div  *ngIf="steps==1" class="w-100">
-                <div class="form-group">
-                  <div>
-                    <div class="champs">
-                      <label for="libelle" class="label" class="libe">
-                        {{'precomvt.table.title1' | translate}} <sup>*</sup>
-                      </label>
-                      <div class="w-100">
-                        <input type="text" formControlName="libelle" name="libelle" id="libelle"  placeholder="{{'precomvt.table.title1' | translate}}"  class="form-control"
-                        (ngModelChange)="tabError.delete('libelle')" >
-                        <p  *ngIf="tabError.get('libelle')"  class="error" >
-                          <span *ngIf="tabError.get('libelle')">{{ tabError.get('libelle') }}</span>
-                        </p>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group" id="eta">
-                  <div>
-                      <div class="champs">
-                        <label for="etat" class="label" >
-                          {{'precomvt.table.title2' | translate}}
-                        </label>
-                        <p class="w-100 d-flex align-items-center w-100 choix" >
-                        <input  type="checkbox" checked value="true" formControlName="etat" name="etat" id="etat">
-                      </p>
-                      </div>
-                  </div>
-                </div>
-                <div class="form-group">
+        <div class="w-100 mt-4 pt-0 pl-2 pr-2 pb-0">
+          <div class="w-100">
+            <div *ngIf="steps==1" class="w-100">
+              <div class="form-group">
+                <div>
                   <div class="champs">
-                    <label  for="type"  class="label" >
-                      {{'precomvt.table.title3' | translate}} <sup>*</sup>
+                    <label for="libelle" class="label" class="libe">
+                      {{'precomvt.table.title1' | translate}} <sup>*</sup>
                     </label>
-                    <div class="errorPls w-100">
-                      <select class="form-control" formControlName="type" (ngModelChange)="tabError.delete('type')" (ngModelChange)="tabError.delete('typeo')">
-                        <option class="label" *ngFor="let typeM of typeMvt" value="{{ typeM }}" >
-                          {{ typeM }}
-                        </option>
-                      </select>
-                      <p  *ngIf="tabError.get('type')"  class="error" >
-                        <span *ngIf="tabError.get('type')">{{ tabError.get('type') }}</span>
+                    <div class="w-100">
+                      <input type="text" formControlName="libelle" name="libelle" id="libelle"
+                        placeholder="{{'precomvt.table.title1' | translate}}" class="form-control"
+                        (ngModelChange)="tabError.delete('libelle')">
+                      <p *ngIf="tabError.get('libelle')" class="error">
+                        <span *ngIf="tabError.get('libelle')">{{ tabError.get('libelle') }}</span>
                       </p>
 
                     </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" id="eta">
+                <div>
+                  <div class="champs">
+                    <label for="etat" class="label">
+                      {{'precomvt.table.title2' | translate}}
+                    </label>
+                    <p class="w-100 d-flex align-items-center w-100 choix">
+                      <input type="checkbox" checked value="true" formControlName="etat" name="etat" id="etat">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="champs">
+                  <label for="type" class="label">
+                    {{'precomvt.table.title3' | translate}} <sup>*</sup>
+                  </label>
+                  <div class="errorPls w-100">
+                    <select class="form-control" formControlName="type" (ngModelChange)="tabError.delete('type')"
+                      (ngModelChange)="tabError.delete('typeo')">
+                      <option class="label" *ngFor="let typeM of typeMvt" value="{{ typeM }}">
+                        {{ typeM }}
+                      </option>
+                    </select>
+                    <p *ngIf="tabError.get('type')" class="error">
+                      <span *ngIf="tabError.get('type')">{{ tabError.get('type') }}</span>
+                    </p>
+
+                  </div>
                 </div>
               </div>
             </div>
-            </div>
           </div>
+        </div>
 
         <div *ngIf="steps == 2" class="form-group pt-0 pl-2 pr-2 pb-0">
           <div class="champs">
@@ -71,7 +73,7 @@
                   <mat-option style="color:#28a745;" *ngFor="let membre of familles$ |async" [value]="membre" >{{membre.libelle}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <p  *ngIf="tabError.get('famille')"  class="error" >
+              <p *ngIf="tabError.get('famille')" class="error">
                 <span *ngIf="tabError.get('famille')">{{ tabError.get('famille') }}</span>
               </p>
             </div>
@@ -91,9 +93,9 @@
                     </mat-option>
                   </mat-autocomplete>
               </mat-form-field>
-              <p  *ngIf="tabError.get('ressource')"  class="error" >
-                <span *ngIf="tabError.get('ressource')">{{ tabError.get('ressource') }}</span >
-                </p>
+              <p *ngIf="tabError.get('ressource')" class="error">
+                <span *ngIf="tabError.get('ressource')">{{ tabError.get('ressource') }}</span>
+              </p>
             </div>
           </div>
         </div>
@@ -102,52 +104,56 @@
 
           <div class="form-group">
             <div class="champs">
-                <label  for="quantiteMax"  class="label" >
-                  {{'precomvt.table.title6' | translate}}
-                </label>
-                <div class="w-100">
-                  <input type="number"  formControlName="quantiteMax" name="quantiteMax" class="form-control" id="quantiteMax" placeholder="{{'precomvt.table.title7' | translate}}"
-                  (ngModelChange)="tabError.delete('quantiteMinMax')"  (ngModelChange)="tabError.delete('quantiteMax')">
-                    <p *ngIf="tabError.get('quantiteMax')"  class="error" >
-                     <span *ngIf="tabError.get('quantiteMax')">{{ tabError.get('quantiteMax') }}</span>
-                    </p>
-                    <span  *ngIf="tabError.get('quantiteMinMax')"  class="error" >
-                     <span *ngIf="tabError.get('quantiteMinMax')">{{ tabError.get('quantiteMinMax') }}</span>
-                    </span>
+              <label for="quantiteMax" class="label">
+                {{'precomvt.table.title6' | translate}}
+              </label>
+              <div class="w-100">
+                <input type="number" formControlName="quantiteMax" name="quantiteMax" class="form-control"
+                  id="quantiteMax" placeholder="{{'precomvt.table.title7' | translate}}"
+                  (ngModelChange)="tabError.delete('quantiteMinMax')" (ngModelChange)="tabError.delete('quantiteMax')">
+                <p *ngIf="tabError.get('quantiteMax')" class="error">
+                  <span *ngIf="tabError.get('quantiteMax')">{{ tabError.get('quantiteMax') }}</span>
+                </p>
+                <span *ngIf="tabError.get('quantiteMinMax')" class="error">
+                  <span *ngIf="tabError.get('quantiteMinMax')">{{ tabError.get('quantiteMinMax') }}</span>
+                </span>
 
-                </div>
-            </div>
-        </div>
-
-          <div class="form-group">
-            <div class="champs">
-                <label  for="quantiteMin"  class="label" >
-                  {{'precomvt.table.title8' | translate}}
-                </label>
-                <div class="w-100">
-                  <input  type="number" formControlName="quantiteMin" name="quantiteMin" class="form-control" id="quantiteMin" placeholder="{{'precomvt.table.title9' | translate}}"
-                   (ngModelChange)="tabError.delete('quantiteMinMax')" (ngModelChange)="tabError.delete('quantiteMin')">
-                  <p *ngIf="tabError.get('quantiteMin')"  class="error" >
-                    <span *ngIf="tabError.get('quantiteMin')">{{ tabError.get('quantiteMin') }}</span> </p>
-                    <span  *ngIf="tabError.get('quantiteMinMax')"  class="error" >
-                     <span *ngIf="tabError.get('quantiteMinMax')">{{ tabError.get('quantiteMinMax') }}</span>
-                    </span>
-
-                </div>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="champs">
-              <label  for="montantMax"  class="label" >
+              <label for="quantiteMin" class="label">
+                {{'precomvt.table.title8' | translate}}
+              </label>
+              <div class="w-100">
+                <input type="number" formControlName="quantiteMin" name="quantiteMin" class="form-control"
+                  id="quantiteMin" placeholder="{{'precomvt.table.title9' | translate}}"
+                  (ngModelChange)="tabError.delete('quantiteMinMax')" (ngModelChange)="tabError.delete('quantiteMin')">
+                <p *ngIf="tabError.get('quantiteMin')" class="error">
+                  <span *ngIf="tabError.get('quantiteMin')">{{ tabError.get('quantiteMin') }}</span>
+                </p>
+                <span *ngIf="tabError.get('quantiteMinMax')" class="error">
+                  <span *ngIf="tabError.get('quantiteMinMax')">{{ tabError.get('quantiteMinMax') }}</span>
+                </span>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="champs">
+              <label for="montantMax" class="label">
                 {{'precomvt.table.title10' | translate}}
               </label>
-              <div class="w-100"><input  type="number"  formControlName="montantMax" name="montantMax" id="montantMax" placeholder="{{'precomvt.table.title13' | translate}}" class="form-control"
-                (ngModelChange)="tabError.delete('montantMinMax')" (ngModelChange)="tabError.delete('montantMax')">
-                <p  *ngIf="tabError.get('montantMax')"  class="error" >
+              <div class="w-100"><input type="number" formControlName="montantMax" name="montantMax" id="montantMax"
+                  placeholder="{{'precomvt.table.title13' | translate}}" class="form-control"
+                  (ngModelChange)="tabError.delete('montantMinMax')" (ngModelChange)="tabError.delete('montantMax')">
+                <p *ngIf="tabError.get('montantMax')" class="error">
                   <span *ngIf="tabError.get('montantMax')">{{ tabError.get('montantMax') }}</span>
                 </p>
-                <span  *ngIf="tabError.get('montantMinMax')"  class="error" >
+                <span *ngIf="tabError.get('montantMinMax')" class="error">
                   <span *ngIf="tabError.get('montantMinMax')">{{ tabError.get('montantMinMax') }}</span>
                 </span>
               </div>
@@ -157,19 +163,20 @@
 
           <div class="form-group">
             <div class="champs">
-                <label  for="montantMin"  class="label" >
-                  {{'precomvt.table.title12' | translate}}
-                </label>
-                <div class="w-100">
-                  <input type="number" formControlName="montantMin" name="montantMin" class="form-control" id="montantMin" placeholder="{{'precomvt.table.title13' | translate}}"
+              <label for="montantMin" class="label">
+                {{'precomvt.table.title12' | translate}}
+              </label>
+              <div class="w-100">
+                <input type="number" formControlName="montantMin" name="montantMin" class="form-control" id="montantMin"
+                  placeholder="{{'precomvt.table.title13' | translate}}"
                   (ngModelChange)="tabError.delete('montantMinMax')" (ngModelChange)="tabError.delete('montantMin')">
-                  <p  *ngIf="tabError.get('montantMin')"  class="error" >
-                    <span *ngIf="tabError.get('montantMin')">{{ tabError.get('montantMin') }}</span>
-                  </p>
-                  <span  *ngIf="tabError.get('montantMinMax')"  class="error" >
-                    <span *ngIf="tabError.get('montantMinMax')">{{ tabError.get('montantMinMax') }}</span>
-                  </span>
-                </div>
+                <p *ngIf="tabError.get('montantMin')" class="error">
+                  <span *ngIf="tabError.get('montantMin')">{{ tabError.get('montantMin') }}</span>
+                </p>
+                <span *ngIf="tabError.get('montantMinMax')" class="error">
+                  <span *ngIf="tabError.get('montantMinMax')">{{ tabError.get('montantMinMax') }}</span>
+                </span>
+              </div>
             </div>
           </div>
 
@@ -184,7 +191,7 @@
                   </mat-select>
                 </mat-form-field>
             </div>
-        </div>
+          </div>
         </div>
 
         <div class="actionButton valBtn" >
@@ -211,13 +218,17 @@
             <P><span>Type: </span>{{elt.type}}</P>
           </div>
           <div class="boitier">
-            <div  class="blockQuantite">
-              <P title="Quantité maximale"><span>{{'precomvt.table.title21' | translate}} : </span>{{elt.precomvtqte[0].quantiteMax}}</P>
-              <P title="Quantité minimale"><span>{{'precomvt.table.title22' | translate}} : </span>{{elt.precomvtqte[0].quantiteMin}}</P>
+            <div class="blockQuantite">
+              <P title="Quantité maximale"><span>{{'precomvt.table.title21' | translate}} :
+                </span>{{elt.precomvtqte[0].quantiteMax}}</P>
+              <P title="Quantité minimale"><span>{{'precomvt.table.title22' | translate}} :
+                </span>{{elt.precomvtqte[0].quantiteMin}}</P>
             </div>
-            <div  class="blockQuantite">
-              <P title="Montant maximal"><span>{{'precomvt.table.title23' | translate}} : </span>{{elt.precomvtqte[0].montantMax}}</P>
-              <P title="Montant minimal"><span>{{'precomvt.table.title24' | translate}} : </span>{{elt.precomvtqte[0].montantMin}}</P>
+            <div class="blockQuantite">
+              <P title="Montant maximal"><span>{{'precomvt.table.title23' | translate}} :
+                </span>{{elt.precomvtqte[0].montantMax}}</P>
+              <P title="Montant minimal"><span>{{'precomvt.table.title24' | translate}} :
+                </span>{{elt.precomvtqte[0].montantMin}}</P>
             </div>
           </div>
         </div>

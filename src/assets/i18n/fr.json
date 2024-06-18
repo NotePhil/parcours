@@ -57,7 +57,7 @@
   "validation":{
     "header":"Ajouter Validation",
     "title0": "liste validation",
-    "title":"listing Validation",
+    "title1":"Personnel autorisé",
     "table":{
       "title0":"validation"
     },
@@ -258,7 +258,9 @@
       "title20": "visibilité du distributeur ?",
       "title21": "Sous documents",
       "title22": "type des mouvements",
-      "title23": "Etats du document"
+      "title23": "Etats du document",
+      "title24": "Etat"
+
     },
     "form": {
       "text1": "Le Titre est obligatoire.",
@@ -513,7 +515,9 @@
   },
   "etats": {
     "table": {
-      "title1": "Ajouter un etat"
+      "title1": "Ajouter un etat",
+      "title2": "Etat précédant",
+      "title3": "Etat suivant"
     }
   },
   "doc-etats": {
@@ -525,7 +529,9 @@
       "text2": "Status suivant",
       "text3": "Ordre de l'état",
        "text4": "Cet ordre existe déjà",
-      "text5": "Cet etat existe déjà"
+       "text5": "Cet etat existe déjà",
+       "text6": "Validation associée",
+       "text7": "Recherchez une validation"
     }
   },
 "etape":{
@@ -537,13 +543,13 @@
   },
   "form":{
     "text1":"Champ Obligatoire"
-},
-"lists":{
-  "button1":"Annuler"
-},
-"title":"listing ",
-"search-bar":"Rechercher",
-"table1":{
+  },
+  "lists":{
+    "button1":"Annuler"
+  },
+  "title":"listing ",
+  "search-bar":"Rechercher",
+  "table1":{
     "title1":"libellé",
     "title2":"Etat",
     "title4":"Actions",
@@ -560,19 +566,19 @@
   },
   "form":{
     "text1":"Champ Obligatoire"
-},
-"lists":{
-  "button1":"Annuler"
-},
-"title":"listing ",
-"search-bar":"Rechercher",
-"table1":{
+  },
+  "lists":{
+    "button1":"Annuler"
+  },
+  "title":"listing ",
+  "search-bar":"Rechercher",
+  "table1":{
     "title1":"libellé",
     "title2":"etape",
     "title4":"Actions",
     "actions":{
         "link2":"Modifier"
-    }
+  }
 }
 }
 }

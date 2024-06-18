@@ -1,4 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+/* les couleurs du site
+* #28a745 vert
+* #FFD700 jaune
+*/
 @font-face {
   font-family: AbrilFatface;
   src: url(assets/fonts/Abril_Fatface/AbrilFatface-Regular.ttf);
@@ -273,6 +276,16 @@ h2{
   }
 }
 mat-form-field{
+  padding: 0;
+  margin: 0;
+  color: #28a745;
+  line-height: normal;
+  box-sizing: initial;
+  input{
+      padding: 0;
+      border: none;
+      margin: 0;
+  }
   padding: 0;
   margin: 0;
   color: #28a745;

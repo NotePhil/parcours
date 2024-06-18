@@ -1,5 +1,7 @@
 <div id="mainSection" role="document">
     <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme"  class="modal-content">
+
+        <!-- Step 1: Select a service -->
         <div class="card block" id="top2" *ngIf="step == 1" >
             <div class="card-header entete pt-4 pb-4">
                 <h2>{{"personnel.title1" | translate}} {{titre}}</h2>
@@ -13,8 +15,35 @@
                 </div>
             </div>
         </div>
+
+        <!-- Step 2: Select an personnesRatachees -->
+        <div class="card block" *ngIf="step == 2">
+          <div class="card-header pt-2 pb-2 entete" style="margin-bottom: 39px">
+            <h2>Sélectionnez un parent à associer</h2>
+          </div>
+          <div class="card-body" id="top2">
+            <div class="container-fluid blockpersonnesRatacheess">
+              <div class="personnesRatacheess-wrapper">
+                <label *ngFor="let personnesRatachees of personnesRatacheess$ | async">
+                  <input
+                    type="checkbox"
+                    name="personnesRatacheesId"
+                    required
+                    id="{{ personnesRatachees.id }}"
+                    value="{{ personnesRatachees.nom }}"
+                    [checked]="isSelected(personnesRatachees)"
+                    (click)="togglepersonnesRatacheesSelection(personnesRatachees)"
+                  />
+                  {{ personnesRatachees.nom }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Ticket View -->
         <div  class="modal-body">
-            <div id="ticketView" class="card" *ngIf="step == 2">
+            <div id="ticketView" class="card" *ngIf="step == 3">
                 <div class="title">
                     <div class="d-flex align-items-start">
                         <img src="../../../../assets/img/logo_camnafaw.jpg" alt="" width="40px">
@@ -45,18 +74,21 @@
                 <button class="btn btnValidation" *ngIf="step == 2" (click)="previousStep()" title="{{'lists.button4' | translate}}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <button [mat-dialog-close] class="btn reinitialiser" data-dismiss="modal" *ngIf="step == 2"
+                <button [mat-dialog-close] class="btn fermer" (click)="removeData()" title="{{'lists.button3' | translate}}">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <button [mat-dialog-close] class="btn reinitialiser" data-dismiss="modal" *ngIf="step == 3"
                      [useExistingCss]="true"
                      styleSheetFile="assets/css/ticketPrint.scss"
                      printSectionId="ticketView"
                      ngxPrint (click)="removeData()" title="{{'lists.button1' | translate}}">
                      <i class="fa fa-print" aria-hidden="true"></i>
                 </button>
-                <button type="submit" class="btn btnValidation" *ngIf="step == 1" title="{{btnLibelle}}">
+                <button type="submit" class="btn btnValidation" *ngIf="step == 2" title="{{btnLibelle}}">
                     <i class="fa fa-check" aria-hidden="true"></i>
                 </button>
-                <button [mat-dialog-close] class="btn fermer" (click)="removeData()" title="{{'lists.button3' | translate}}">
-                    <i class="fa fa-times" aria-hidden="true"></i>
+                <button type="submit" class="btn btnValidation" *ngIf="step === 1" title="{{'lists.button13' | translate}}">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
