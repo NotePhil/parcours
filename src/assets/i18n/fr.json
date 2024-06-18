@@ -52,7 +52,9 @@
     "button8": "Supprimer",
     "button9": "Ajouter",
     "button10": "Fermer",
-    "button11": "Enregistrer"
+    "button11": "Enregistrer",
+    "button12": "Suivant",
+    "button13": "Continuer"
   },
   "validation":{
     "header":"Ajouter Validation",

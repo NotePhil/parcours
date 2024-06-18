@@ -52,7 +52,9 @@
     "button8": "Delete",
     "button9": "Add",
     "button10": "Close",
-    "button11": "Registrer"
+    "button11": "Registrer",
+    "button12": "Next",
+    "button13": "Next"
   },
   "patient": {
     "title1": "Add patient",
