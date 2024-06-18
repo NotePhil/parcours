@@ -254,6 +254,9 @@ h2{
   .mat-form-field-appearance-fill .mat-form-field-flex {
     padding: 70em;
   }
+  .form-control{
+    height: 0;
+  }
 }
 .searchBar {
   position: relative;
@@ -352,6 +355,7 @@ display: flex;
 }
 .actions button{
     font-size: 10px !important;
+    padding: 2px !important;
 }
 .actions span{
     font-size: 10px !important;
