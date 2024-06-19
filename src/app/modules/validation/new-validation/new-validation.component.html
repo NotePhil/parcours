@@ -93,7 +93,7 @@
                                   {{'validation.form.label6' | translate}} <span style="color: red" aria-label="required">*</span>
                                 </label>
                                 <mat-form-field class="example-full-width w-100" appearance="fill">
-                                    <input required type="text" matInput [matAutocomplete]="auto"  aria-label="roleval" formControlName="roleval" name="roleval" id="roleval" placeholder="" class="w-100">
+                                    <input required type="text" matInput [matAutocomplete]="auto"  aria-label="roleval" formControlName="roleval" name="roleval" id="roleval" placeholder="" class="form-control w-100">
                                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                                     <mat-option *ngFor="let option of roles" [value]="option">
                                         {{option.titre}}

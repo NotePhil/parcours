@@ -46,7 +46,7 @@
                             <!-- EtatPrecedant Column -->
                             <ng-container matColumnDef="EtatPrecedant">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'etats.table.title2' | translate}}</th>
-                                <td class="text-dark containCell choixCell" mat-cell *matCellDef="let element, let i = index">
+                                <td class="text-dark containCell choixCell champsSelect" mat-cell *matCellDef="let element, let i = index">
                                     <mat-form-field class="example-full-width-select" appearance="fill">
                                         <mat-select [disabled]="i == 0" [(ngModel)]="element.etat.etatPrecedant" [ngModelOptions]="{standalone: true}" multiple>
                                         <mat-option *ngFor="let etat of effaceEtatCourrant(element)" [value]="etat.etat">{{etat.etat.libelle}}</mat-option>

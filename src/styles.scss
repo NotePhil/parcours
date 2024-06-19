@@ -141,13 +141,7 @@ select{
   padding: 0 10px;
   border-radius: 5px;
 }
-// conteneur de mat select
-.matSelectContainer{
-  padding: 0 !important;
-  .mat-form-field-infix {
-    padding-bottom: 0 !important;
-  }
-}
+
 //conteneur des boutons
 .actionButton{
   clear: both;
@@ -171,6 +165,7 @@ select{
     padding: 0 !important;
     font-size: 15px;
     transition: ease 0.2s;
+    color: #ffffff !important;
 }
 .valBtn button:hover{
     opacity: 1 !important;
@@ -181,18 +176,15 @@ select{
 }
 .fermer{
     background-color: red !important;
-    color: #ffffff !important;
 }
 .reinitialiser{
     background-color: #FFD700 !important;
-    color: #ffffff !important;
 }
 .retour{
     background-color: #b3b3b3 !important;
 }
 .modifier{
     background-color: #31b1e3 !important;
-    color: #ffffff !important;
 }
 .button-right {
 margin-left: auto;
@@ -244,29 +236,50 @@ h2{
 .example-full-width {
   height: 35px !important;
   border: 2px solid #28a745;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: transparent;
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   .mat-form-field-infix {
-    padding-bottom: .70em;
+    padding-bottom: .70em !important;
   }
   .mat-form-field-appearance-fill .mat-form-field-flex {
-    padding: 70em;
+    padding: .70em !important;
   }
   .form-control{
-    height: 0;
+    height: 0 !important;
   }
 }
+.matInput, mat-autocomplete{
+  color: #787878 !important;
+}
 .searchBar {
-  position: relative;
-  top: -2px;
   padding: 0;
   margin: 0;
   color: #28a74596;
   border: none;
   font-size: small;
 }
+mat-option{
+  color: #28a745 !important;
+}
+// conteneur de mat select
+.matSelectContainer{
+  padding: 0 !important;
+  background-color: #28a745 !important;
+}
+
+.champsSelect .mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 0 !important;
+}
+.champsSelect .mat-form-field-infix {
+  padding-bottom: 0 !important;
+  height: 0px !important;
+}
+.champsSelect .example-full-width{
+  height: 30px !important;
+}
+
 //entete des pages de listing
 .tableTools{
   padding-bottom: 15px;
@@ -276,6 +289,9 @@ h2{
       font-size: 20px;
       padding: 10px;
       border-radius: 5px;
+  }
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 0 !important;
   }
 }
 mat-form-field{
@@ -288,16 +304,7 @@ mat-form-field{
       padding: 0;
       border: none;
       margin: 0;
-  }
-  padding: 0;
-  margin: 0;
-  color: #28a745;
-  line-height: normal;
-  box-sizing: initial;
-  input{
-      padding: 0;
-      border: none;
-      margin: 0;
+      height: 0 !important;
   }
 }
 
@@ -324,6 +331,7 @@ margin-top: -70px;
 display: flex;
 }
 #tableBlock{
+  height: fit-content !important;
     table{
         #actions{
             font-size: 12px;
@@ -370,6 +378,10 @@ mat-paginator{
   align-self: flex-end !important;
   background-color: rgba(40, 167, 69, 0.79) !important;
   width: 100% !important;
+  .example-full-width, mat-form-field {
+    height: 0 !important;
+    border: none !important;
+  }
 }
 
 // style affecté aux tableaux pour qu'ils grandissent vers le bas - XX
@@ -540,13 +552,10 @@ mat-paginator{
 
 //reglage des ecrans
 @media screen and (max-width: 1200px) {
-.title h2{
-    font-size: 15px;
-    text-transform: uppercase;
-}
-.example-full-width {
-    border: 2px solid #28a745;
-}
+  .title h2{
+      font-size: 15px;
+      text-transform: uppercase;
+  }
 }
 @media screen and (max-width: 1100px) {
   .title h2{
@@ -558,4 +567,9 @@ mat-paginator{
   td{
       font-size: 12px;
   }
+}
+@media screen and (max-width: 910px) {
+    .listAttr{
+        width: 100%;
+    }
 }
