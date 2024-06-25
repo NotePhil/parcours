@@ -24,7 +24,7 @@ import { IAssociationCategorieAttributs } from 'src/app/modele/association-categ
   styleUrls: ['./modal-categories.component.scss']
 })
 export class ModalCategoriesComponent implements OnInit {
-
+  selectedCategoriesIds: string[] = [];
   formeCategorieAttribut: FormGroup;
   btnLibelle: string="Enregistrer";
   titre: string="Ajouter une categorie";
@@ -359,6 +359,7 @@ export class ModalCategoriesComponent implements OnInit {
         this.donneeDocCatService.dataDocumentCategorie = this.TABLE_CATEGORIE_AFFICHAGE_TEMP;
     });
   }
+
 
   get f(){
     return this.formeCategorieAttribut.controls;

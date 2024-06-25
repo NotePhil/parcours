@@ -362,6 +362,9 @@ export class NewFormDocumentComponent implements OnInit {
     });
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP = categorieAttributsFinal;
   }
+  return(){
+    this.router.navigate(['/list-documents']);
+  }
   onSubmit(documentInput: any) {
     this.submitted = true;
     if (
