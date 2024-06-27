@@ -88,9 +88,9 @@
                         <button class="btn retour" [mat-dialog-close] title="{{'lists.button2' | translate}}">
                             <i class="fa fa-undo" aria-hidden="true"></i>
                         </button>
-                        <button mat-button [mat-dialog-close] cdkFocusInitial class="btn btnValidation" title="{{'lists.button6' | translate}}">
+                        <button mat-button [mat-dialog-close] cdkFocusInitial class="btn btnValidation" title="{{'lists.button6' | translate}}" (click)="onSave()">
                             <i class="fa fa-check" aria-hidden="true"></i>
-                        </button>
+                        </button>                       
                     </div>
                 </div>
             </div>
