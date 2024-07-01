@@ -38,16 +38,16 @@
 
           <!-- nom Column -->
           <ng-container matColumnDef="nom">
-            <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+            <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
               {{"personnel.table.title1" | translate}} </th>
-            <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.nom}} </td>
+            <td class="containCell" mat-cell *matCellDef="let element"> {{element.nom}} </td>
           </ng-container>
 
           <!-- prenom Column -->
           <ng-container matColumnDef="prenom">
-            <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+            <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
               {{"personnel.table.title2" | translate}} </th>
-            <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+            <td class="containCell" mat-cell *matCellDef="let element"> {{element.prenom}} </td>
           </ng-container>
 
           <!-- birthday Column -->

@@ -101,20 +101,20 @@
 
           <!-- libelle Column -->
           <ng-container matColumnDef="libelle">
-            <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+            <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
               {{"etape.table1.title1"| translate}}</th>
-            <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+            <td class="containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
           </ng-container>
           <!-- etat Column -->
           <ng-container matColumnDef="etat">
-            <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+            <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
               {{"etape.table1.title2"| translate}}</th>
-            <td class="text-dark text-center containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
+            <td class="containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
           </ng-container>
           <!--Documents Column -->
           <ng-container matColumnDef="Document">
-            <th class="text-dark pl-5 containHead" mat-header-cell *matHeaderCellDef mat-sort-header>Document</th>
-            <td class="text-dark text-center containCell" mat-cell *matCellDef="let element">
+            <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>Document</th>
+            <td class="containCell" mat-cell *matCellDef="let element">
               <span> {{element.listSousDocuments}} </span>
             </td>
           </ng-container>
