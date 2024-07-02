@@ -6,16 +6,13 @@
         <div class='card-hearder pt-3' >
             <div class="d-flex align-items-center justify-content-end tableTools">
                 <div class="form-inline mr-3">
-                    <form class="example-form">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                          <mat-label class="searchBar">{{'patient.search-bar' | translate}}</mat-label>
-                          <input type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
-                          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <form class="example-form-entete">
+                        <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                             <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingDocument(option)">
-                              {{option.titre}}
+                                {{option.titre}}
                             </mat-option>
-                          </mat-autocomplete>
-                        </mat-form-field>
+                        </mat-autocomplete>
                     </form>
                 </div>
             </div>

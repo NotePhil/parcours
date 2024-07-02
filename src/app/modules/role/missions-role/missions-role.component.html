@@ -43,16 +43,14 @@
                     </div>
                     <div class="form-group">
                         <div class="form-inline mr-3">
-                            <form class="example-form label champsSelect">
+                            <form class="example-form-entete label champsSelect">
                                 <label id="search">{{"personnel.table.title10" | translate}}</label>
-                                <mat-form-field class="example-full-width" appearance="fill">
-                                  <input type="text" matInput placeholder="{{'personnel.search-bar' | translate}}" [formControl]="myControl" [matAutocomplete]="auto">
-                                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                                    <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingMission(option)">
-                                      {{option.libelle}}
-                                    </mat-option>
-                                  </mat-autocomplete>
-                                </mat-form-field>
+                                <input type="text" matInput placeholder="{{'personnel.search-bar' | translate}}" [formControl]="myControl" [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingMission(option)">
+                                    {{option.libelle}}
+                                </mat-option>
+                                </mat-autocomplete>
                             </form>
                         </div>
                     </div>
@@ -115,8 +113,8 @@
                             <button class="btn reinitialiser" (click)="annullerElement()" title="{{'lists.button3' | translate}}">
                                 <i class="fa fa-undo" aria-hidden="true"></i>
                             </button>
-                            <button type="submit" class="btn btnValidation" (click)="validateElement()" title="{{'lists.button11' | translate}}">
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                            <button type="submit" class="btn btnValidation" (click)="validateElement()" title="{{'lists.button9' | translate}}">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
                               </button>
                         </div>
                     </div>

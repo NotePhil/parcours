@@ -7,16 +7,13 @@
         <div class='card-hearder pt-3' >
             <div class="d-flex align-items-center justify-content-end tableTools">
                 <div class="form-inline mr-3">
-                    <form class="example-form">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                          <mat-label class="searchBar">{{'patient.search-bar' | translate}}</mat-label>
-                          <input type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
-                          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                            <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingMission(option)">
-                              {{option.libelle}}
-                            </mat-option>
-                          </mat-autocomplete>
-                        </mat-form-field>
+                    <form class="example-form-entete">
+                        <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingMission(option)">
+                            {{option.libelle}}
+                        </mat-option>
+                        </mat-autocomplete>
                     </form>
                 </div>
                 <div role="button" id="addUserBotton" routerLink="../mission-nouveau">
@@ -52,18 +49,6 @@
                         <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'missions.table.title6' | translate}} </th>
                         <td class="containCell" mat-cell *matCellDef="let element"> {{element.service.libelle}} </td>
                     </ng-container>
-
-                    <!-- dateCreation Column -->
-                    <!-- <ng-container matColumnDef="dateCreation">
-                        <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'missions.table.title4' | translate}} </th>
-                        <td class="containCell" mat-cell *matCellDef="let element"> {{element.dateCreation | date: 'dd/MM/yyyy'}} </td>
-                    </ng-container> -->
-
-                    <!-- dateModification Column -->
-                    <!-- <ng-container matColumnDef="dateModification">
-                        <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'missions.table.title5' | translate}} </th>
-                        <td class="containCell" mat-cell *matCellDef="let element"> {{element.dateModification | date: 'dd/MM/yyyy'}} </td>
-                    </ng-container> -->
 
                     <ng-container matColumnDef="actions">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
