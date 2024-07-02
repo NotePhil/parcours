@@ -113,7 +113,7 @@
                                     {{"document.table.title3" | translate}} <sup>*</sup>
                                 </label>
                                 <div class="matSelectElement">
-                                    <mat-select class="matSelectElement" formControlName="_missions" multiple [compareWith]="compareItem">
+                                    <mat-select formControlName="_missions" multiple [compareWith]="compareItem">
                                         <mat-option *ngFor="let missionsDocument of mission$ |async" [value]="missionsDocument">{{missionsDocument.libelle}}</mat-option>
                                     </mat-select>
                                 </div>

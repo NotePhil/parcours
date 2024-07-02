@@ -92,11 +92,11 @@
                                 <label  for="roleval"  class="label" >
                                   {{'validation.form.label6' | translate}} <span style="color: red" aria-label="required">*</span>
                                 </label>
-                                <input required type="text" matInput [matAutocomplete]="auto"  aria-label="roleval" formControlName="roleval" name="roleval" id="roleval" class="form-control w-100">
+                                <input required type="text" matInput [matAutocomplete]="auto"  aria-label="roleval" formControlName="roleval" name="roleval" id="roleval" class="champsAutocomplate">
                                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                                <mat-option *ngFor="let option of roles" [value]="option">
-                                    {{option.titre}}
-                                </mat-option>
+                                    <mat-option *ngFor="let option of roles" [value]="option">
+                                        {{option.titre}}
+                                    </mat-option>
                                 </mat-autocomplete>
                             </div>
                             <div *ngIf="submitted && !f['roleval'].value" class="alert alert-danger">

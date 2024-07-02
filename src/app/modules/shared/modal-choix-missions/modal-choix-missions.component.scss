@@ -61,25 +61,6 @@
 #tableBlock{
   margin: 10px 0 30px 0;
 }
-mat-form-field{
-  padding: 0;
-  margin: 0;
-  color: #28a745;
-  line-height: 0;
-  box-sizing: initial;
-  // width: 50px;
-  mat-label{
-      height: 20px;
-      padding: 0;
-      margin: 0;
-  }
-  input{
-      padding: 0;
-      border: none;
-      margin: 0;
-      // height: 25px;
-  }
-}
 .mat-header-cell {
   padding-top: 0;
   width: 20%;
@@ -90,13 +71,6 @@ mat-form-field{
 .mat-row, .mat-cell {
   padding: 2px 0 0 0;
   margin: 0;
-}
-.mat-form-field-infix {
-  padding: 0;
-  border-top: none;
-}
-.mat-form-field-wrapper {
-  padding-bottom: 0 !important;
 }
 .containHead{
   padding: 1% 0;

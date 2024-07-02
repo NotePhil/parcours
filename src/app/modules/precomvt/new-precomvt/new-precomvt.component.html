@@ -85,7 +85,7 @@
               {{'precomvt.table.title5' | translate}}
             </label>
             <div class="w-100">
-              <input type="text" matInput [matAutocomplete]="auto" aria-label="ressource" formControlName="ressource"  ng-reflect-name="ressource" (ngModelChange)="tabError.delete('ressource')">
+              <input type="text" matInput [matAutocomplete]="auto" aria-label="ressource" class="champsAutocomplate" formControlName="ressource"  ng-reflect-name="ressource" (ngModelChange)="tabError.delete('ressource')">
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
                 <mat-option *ngFor="let option of filteredOptions" [value]="option" >
                   {{option.libelle}}
