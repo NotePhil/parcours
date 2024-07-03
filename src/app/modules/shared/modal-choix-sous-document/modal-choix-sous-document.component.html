@@ -1,4 +1,4 @@
-<div id="mainSection" class="bg-light card modalCategorie">
+<div id="mainSection" class="bg-light card modalCategorie modalContentScroll">
     <form class="w-100">
         <div class="form-group mt-5">
             <div class='card-hearder'>
@@ -21,7 +21,7 @@
 
                 <!-- tableau listing des PrecoMvts -->
 
-                <div class="card-body p-0 tableBlock" id="tableList">
+                <div class="card-body p-0 tableBlock" id="tableBlock">
                     <div class='table-responsive w-100'>
                         <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table
                             [dataSource]="dataSourceDocument" matSort (matSortChange)="announceSortChange($event)">
@@ -68,7 +68,7 @@
                 </div>
 
                 <!-- tableau affichage des resultats -->
-                <div class="result">
+                <div class="result mt-3">
                     <h2>
                         {{'document.title1' | translate}}
                     </h2>
