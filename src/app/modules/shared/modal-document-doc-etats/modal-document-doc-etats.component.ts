@@ -120,6 +120,7 @@ export class ModalDocEtatsComponent implements OnInit{
 
   retirerSelectionEtat(index: number) {
     this.localElementTableDocEtats.splice(index, 1); // Remove the element from the local array
+    this.localElementTableDocEtats[0].etat.etatPrecedant = undefined
     this.dataSourceDocEtats.data = this.localElementTableDocEtats; // Update the data source with the modified local array
 }
 
