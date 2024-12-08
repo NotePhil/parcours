@@ -40,7 +40,7 @@
                   {{'ressource.table.title3' | translate}} <sup>*</sup>
                 </label>
                 <input type="number" list="" formControlName="quantite" name="quantite" id="quantite"
-                  placeholder=" {{'ressource.table.title3' | translate}}" class="form-control">
+                  placeholder=" {{'ressource.table.title3' | translate}}" class="form-control" [readOnly]="idRessource != null && idRessource !== '' && idRessource != undefined">
               </div>
               <div *ngIf="submitted && f['libelle'].errors" class="alert alert-danger">
                 <div *ngIf="f['libelle'].errors['required']">{{'ressource.form.text1' | translate}}</div>

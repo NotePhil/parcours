@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {
   FormBuilder,
@@ -10,12 +10,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IRessource } from 'src/app/modele/ressource';
 import { RessourcesService } from 'src/app/services/ressources/ressources.service';
 import { v4 as uuidv4 } from 'uuid';
-import { EMPTY, Observable, scan } from 'rxjs';
-import { IAttributs } from 'src/app/modele/attributs';
 import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
-import { TypeUnite } from 'src/app/modele/type-unite';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -44,6 +41,7 @@ export class NewRessourceComponent implements OnInit {
   };
   titre: string = '';
   scan_val: any | undefined;
+  idRessource: string | undefined | null;
   constructor(
     private formBuilder: FormBuilder,
     private dataEnteteMenuService: DonneesEchangeService,
@@ -98,12 +96,12 @@ export class NewRessourceComponent implements OnInit {
         });
       }
     });
-    let idRessource = this.infosPath.snapshot.paramMap.get('idRessource');
-    if (idRessource != null && idRessource !== '') {
+    this.idRessource = this.infosPath.snapshot.paramMap.get('idRessource');
+    if (this.idRessource != null && this.idRessource !== '' && this.idRessource != undefined) {
       this.btnLibelle = 'Modifier';
-      this.ressourceService.getRessourceById(idRessource).subscribe((x) => {
+      this.ressourceService.getRessourceById(this.idRessource).subscribe((x) => {
         this.ressource = x;
-        (this.ressource.id = idRessource!),
+        (this.ressource.id = this.idRessource!),
           this.forme.setValue({
             libelle: this.ressource.libelle,
             etat: this.ressource.etat,
