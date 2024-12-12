@@ -42,6 +42,7 @@ import { ModalAffecterComptePersonnelComponent } from './modal-affecter-compte-p
 import { ModalMouvementCaisseCompteComponent } from './modal-mouvement-caisse-compte/modal-mouvement-caisse-compte.component';
 import { ModalMouvementCaisseComponent } from './modal-mouvement-caisse/modal-mouvement-caisse.component';
 import { ModalBilleterieComponent } from './modal-billeterie/modal-billeterie.component';
+import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/modal-ajout-montant-compte.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ModalBilleterieComponent } from './modal-billeterie/modal-billeterie.co
     ModalMouvementCaisseCompteComponent,
     ModalMouvementCaisseComponent,
     ModalBilleterieComponent,
+    ModalAjoutMontantCompteComponent,
   ],
   exports: [
     ModalCategoriesComponent,

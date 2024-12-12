@@ -1,0 +1,45 @@
+<div id="mainBlock">
+    <div class="card block">
+      <!--<div class="card-header" class="entete pt-4 pb-4">{{ titre }}</div>-->
+        <div class="card-header" class="entete pt-4 pb-4">
+          {{"attributs.title1" | translate}}
+        </div>
+        <div class="card-body">
+            <form [formGroup]="forme" *ngIf="forme" >
+                <div class="">
+                    <div class="">
+                        <div class="form-group">
+                            <div>
+                                <div class="champs">
+                                    <label for="nom" class="label">
+                                        {{'personnel.table.title1' | translate}}
+                                    </label>
+                                    <input type="text" [value]="compte!.beneficiaire?.nom+' '+compte!.beneficiaire?.prenom" disabled class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="champs">
+                                <label  for="groupe" class="label">
+                                    {{'mvtCaisse.table.title0' | translate}}
+                                </label>
+                                <input type="number" formControlName="montant" name="montant" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control">
+                            </div>
+                            <div *ngIf="submitted && f['montant'].errors"  class="alert alert-danger" >
+                                <div *ngIf="f['montant'].errors['required']">{{'mvtCaisse.form.text1' | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actionButton valBtn">
+                    <button class="btn retour" [mat-dialog-close]="" title="{{'lists.button2' | translate}}">
+                        <i class="fa fa-undo" aria-hidden="true"></i>
+                    </button>
+                    <button type="submit" cdkFocusInitial (click)="onSubmit(forme.value)" class="btn btnValidation" title="{{btnLibelle}}">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
