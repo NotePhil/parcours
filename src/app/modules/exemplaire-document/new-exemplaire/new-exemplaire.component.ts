@@ -265,15 +265,6 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
         this.laPersonneRattachee = patientTrouve;
         if (patientTrouve != undefined) {
           this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
-          this.compteService.getCompteByUser(this.laPersonneRattachee.id).subscribe(
-            account => {
-              this.compte = account;
-              if (this.compte?.solde == 0 || this.compte?.solde == null) {
-                this.formeExemplaire.controls['use'].disable()
-              }
-              console.log('compte personne rattaché :', this.compte);
-            }
-          )
         }
         console.log("personne ratachée :", this.nomPatientCourant);
       }
@@ -282,7 +273,6 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
       (reponse) => {
         this.caisses = reponse
         console.log('all caisses :', this.caisses);
-
       }
     );
 
@@ -487,7 +477,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
         if (this.modalResultBilleterie.x50) this.resteApayer(this.modalResultBilleterie.x50 * 50);
         if (this.modalResultBilleterie.x100) this.resteApayer(this.modalResultBilleterie.x100 * 100);
         if (this.modalResultBilleterie.x500) this.resteApayer(this.modalResultBilleterie.x500 * 500);
-        if (this.modalResultBilleterie.x500B) this.resteApayer(this.modalResultBilleterie.x500B * 500);
+        if (this.modalResultBilleterie.x500) this.resteApayer(this.modalResultBilleterie.x500B * 500);
         if (this.modalResultBilleterie.x1000) this.resteApayer(this.modalResultBilleterie.x1000 * 1000);
         if (this.modalResultBilleterie.x2000) this.resteApayer(this.modalResultBilleterie.x2000 * 2000);
         if (this.modalResultBilleterie.x5000) this.resteApayer(this.modalResultBilleterie.x5000 * 5000);
@@ -534,6 +524,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
           if (this.exemplaire.personneRattachee != undefined) {
             this.laPersonneRattachee = this.exemplaire.personneRattachee
             this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
+            this.initialaisationSoldeConte(this.laPersonneRattachee.id)
           }
           this.codeControl.setValue(this.exemplaire.code)
           this.serviceDocument.getDocumentById(x.idDocument).subscribe(
@@ -546,8 +537,8 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
                 }
               }
             }
-          )
-          this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+          ) 
+          
           this.lastSomme = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.fCaisse['montant'].setValue(0)
         });
@@ -572,7 +563,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
                 this.laPersonneRattachee =  patientTrouve;
                 if (patientTrouve != undefined) {
                   this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
-                  
+                  this.initialaisationSoldeConte(this.laPersonneRattachee.id)                  
                 }
               }
             )
@@ -580,11 +571,27 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
           this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.lastSomme = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.fCaisse['montant'].setValue(0)
+      this.initialiseMvtCaisses(document.idDocument);
         });
-      this.initialiseMvtCaisses(this.idDocument);
     }
   }
 
+  initialaisationSoldeConte(idPersonneRattachee : string){
+    
+    this.compteService.getCompteByUser(idPersonneRattachee).subscribe(
+      account => {
+        this.compte = account;
+        if (this.compte?.solde == 0 || this.compte?.solde == null) {
+          this.formeExemplaire.controls['use'].disable()
+          this.sommeTtVerse()
+          this.formeExemplaire.controls['use'].setValue(this.resteAPayer - this.montantTTverse)
+        }
+        console.log('compte personne rattaché :', this.compte);
+        console.log('this.resteAPayer :', this.resteAPayer);
+        console.log('this.montantTTverse :', this.montantTTverse);
+      }
+    )
+  }
   initialiseMvtCaisses(id: string) {
     this.mvtCaisseService.getExemplaireDocumentByIdMvtCaisse(id).subscribe((d) => {
       console.log("mvt caisses last :", d);
@@ -598,11 +605,13 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
 
   sommeTtVerse(): number {
     this.montantTTverse = 0;
-    this.ELEMENTS_TABLE_MOUVEMENTCAISSES.forEach((mouvement) => {
-      if (mouvement.montant != undefined || mouvement.montant != null) {
-        this.montantTTverse += mouvement.montant;
-      }
-    });
+    if (this.ELEMENTS_TABLE_MOUVEMENTCAISSES.length > 0) {
+      this.ELEMENTS_TABLE_MOUVEMENTCAISSES.forEach((mouvement) => {
+        if (mouvement.montant != undefined || mouvement.montant != null) {
+          this.montantTTverse += mouvement.montant;
+        }
+      }); 
+    }
     return this.montantTTverse;
   }
 
