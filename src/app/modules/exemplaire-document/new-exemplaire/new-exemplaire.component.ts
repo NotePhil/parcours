@@ -245,6 +245,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
       _exemplaireDocument: new FormArray([]),
       _controlsSupprime: new FormArray([]),
       use : [false],
+      resteAPayer: [],
       montant : ['', [Validators.required]],
       moyenPaiement : new FormControl<string | ICaisses>(''),
       referencePaiement : ['', [Validators.required]]
@@ -582,10 +583,11 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
       account => {
         this.compte = account;
         if (this.compte?.solde == 0 || this.compte?.solde == null) {
-          this.formeExemplaire.controls['use'].disable()
-          this.sommeTtVerse()
-          this.formeExemplaire.controls['use'].setValue(this.resteAPayer - this.montantTTverse)
+          this.formeExemplaire.controls['use'].disable();
         }
+        this.sommeTtVerse();
+        this.resteAPayer -= this.montantTTverse;
+        this.formeExemplaire.controls['resteAPayer'].setValue(this.resteAPayer);
         console.log('compte personne rattaché :', this.compte);
         console.log('this.resteAPayer :', this.resteAPayer);
         console.log('this.montantTTverse :', this.montantTTverse);
