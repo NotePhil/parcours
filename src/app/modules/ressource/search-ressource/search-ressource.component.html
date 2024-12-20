@@ -1,0 +1,128 @@
+<div id="" class="d-flex flex-column justify-content-around">
+    <div class="title" id="top1">
+        <app-entete class="title"></app-entete>
+    </div>
+    <div class="card container-fluid" id="top">
+        <div class='card-hearder' >
+            <div class="d-flex align-items-end justify-content-end  tableTools">
+                <div class="container py-2">
+                        <form [formGroup]="forme" class="card-body" *ngIf="forme">
+                            <div class="row align-items-end">
+                                <div class="col-md-3">
+                                    <h6 class="fw-bold mb-2">Quantité</h6>
+                                    <div class="input-group">
+                                        <input type="number" formControlName="min" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control" placeholder="Min">
+                                        <span class="input-group-text">-</span>
+                                        <input type="number" formControlName="max" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control" placeholder="Max">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="fw-bold mb-2">prix</h6>
+                                    <div class="input-group">
+                                        <input type="number" formControlName="prixMin" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control" placeholder="Prix Min">
+                                        <span class="input-group-text">-</span>
+                                        <input type="number" formControlName="prixMax" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control" placeholder="Prix Max">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                        <div class="example-form-entete">
+                                          <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher" formControlName="myControl" [matAutocomplete]="auto">
+                                          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                            <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                                              {{option.libelle}}
+                                            </mat-option>
+                                          </mat-autocomplete>
+                                      </div>
+                                </div>
+                                <div class="col-md-3">
+                                        <div class="example-form-entete">
+                                          <input placeholder="{{'ressource.table2.title8' | translate}}" type="text" matInput aria-label="Famille" formControlName="familly" [matAutocomplete]="autoFa">
+                                          <mat-autocomplete #autoFa="matAutocomplete" [displayWith]="displayFnFamille">
+                                            <mat-option *ngFor="let option of filteredOptions" [value]="option.famille">
+                                              {{option.famille.libelle}}
+                                            </mat-option>
+                                          </mat-autocomplete>
+                                        </div>
+                                </div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-0" id="tableBlock">
+            <div class='table-responsive w-100'>
+                <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+  
+                    <!-- libellé Column -->
+                    <ng-container matColumnDef="libelle">
+                        <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'ressource.table2.title3' | translate}} </th>
+                        <td class="containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+                    </ng-container>
+  
+                    <!-- etat Column -->
+                      <ng-container matColumnDef="etat">
+                          <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'ressource.table2.title4' | translate}} </th>
+                          <td class="containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
+                      </ng-container>
+  
+                      <!-- quantité Column -->
+                      <ng-container matColumnDef="quantite">
+                        <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'ressource.table2.title5' | translate}} </th>
+                        <td class="containCell" mat-cell *matCellDef="let element"> {{element.quantite}} </td>
+                      </ng-container>
+  
+                     <!-- unité Column -->
+                     <ng-container matColumnDef="unite">
+                      <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table2.title6' | translate}}</th>
+                      <td class="containCell" mat-cell *matCellDef="let element"> {{element.unite}} </td>
+                      </ng-container>
+  
+                      <!-- prixEntree Column -->
+                      <ng-container matColumnDef="prixEntree">
+                          <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table.title5' | translate}}</th>
+                          <td class="containCell" mat-cell *matCellDef="let element"> {{element.prixEntree}} </td>
+                      </ng-container>
+  
+                      <!-- prixDeSortie Column -->
+                      <ng-container matColumnDef="prixDeSortie">
+                          <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table.title9' | translate}}</th>
+                          <td class="containCell" mat-cell *matCellDef="let element"> {{element.prixDeSortie}} </td>
+                      </ng-container>
+  
+                        <!-- famille Column -->
+                      <ng-container matColumnDef="famille">
+                        <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'ressource.table2.title8' | translate}}</th>
+                        <td class="containCell" mat-cell *matCellDef="let element"> {{element.famille.libelle}} </td>
+                      </ng-container>
+  
+                       <!-- actions Column -->
+                       <ng-container matColumnDef="actions">
+                        <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'ressource.table2.title9' | translate}}</th>
+                        <td class="containCell" mat-cell *matCellDef="let element">
+                          <div id="actions" class="dropdown-open">
+                              <button class="btn dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                      aria-expanded="false">
+                                  <span>...</span>
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="triggerId">
+                                  <button class="dropdown-item nav-link" [routerLink]="['/ressource-nouvelle',element.id]" title="{{'patient.table.actions.link2' | translate}}">
+                                      <i class="fa fa-pen text-info" aria-hidden="true"></i>
+                                      <span>{{'patient.table.actions.link2' | translate}}</span>
+                                  </button>
+  
+                              </div>
+                          </div>
+                      </td>
+                      </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                               showFirstLastButtons
+                               aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+  </div>
+  

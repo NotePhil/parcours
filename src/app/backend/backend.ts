@@ -453,7 +453,9 @@ export class InMemDBService implements InMemoryDbService {
             actif: '',
             elements: [
               { nom: 'Créer', lien: 'ressource-nouvelle', bouton: 'false' },
+              { nom: 'filtre', lien: './search-ressource', bouton: 'false' },
               { nom: 'Rechercher', lien: './list-ressources', bouton: 'false' },
+
             ],
           },
           {
@@ -643,6 +645,7 @@ export class InMemDBService implements InMemoryDbService {
             actif: '',
             elements: [
               { nom: 'New', lien: 'ressource-nouvelle', bouton: 'false' },
+              { nom: 'filter', lien: './search-ressource', bouton: 'false' },
               { nom: 'Search', lien: './list-ressources', bouton: 'false' },
             ],
           },
