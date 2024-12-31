@@ -433,6 +433,10 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     }
   }
 
+  /**
+   * Méthode permettant de d'enregistrer un mouvement caisse quand l'utilisateur a choisi comme 
+   * moyen de paiement caisse
+   */
   openModalPaiementDialog() {
 
     const dialogRef = this.dialogDef.open(ModalMouvementCaisseComponent,
@@ -461,6 +465,10 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     });
   }
 
+  /**
+   * Méthode permettant de d'enregistrer un mouvement caisse quand l'utilisateur a choisi comme 
+   * moyen de paiement cash
+   */
   openModalBilleterieDialog() {
 
     const dialogRef = this.dialogDef.open(ModalBilleterieComponent,
@@ -547,6 +555,9 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
               }
             }
           )
+          /**
+           * Initialise le montant total a payer, le montant versé a 0 et la somme déjà versée dans la variable lastSomme
+           */
           this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.lastSomme = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.fCaisse['montant'].setValue(0)
@@ -596,6 +607,9 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     })
   }
 
+  /**
+   * Méthode permettant d'initialiser la somme total versée du tableau de mouvement caisse déjà éffectué !
+   */
   sommeTtVerse(): number {
     this.montantTTverse = 0;
     this.ELEMENTS_TABLE_MOUVEMENTCAISSES.forEach((mouvement) => {
@@ -606,6 +620,11 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     return this.montantTTverse;
   }
 
+  /**
+   * Méthode qui permet d'initialiser la modal de la billeterie quand un mouvement a été éffectué
+   * @param value 
+   * @returns 
+   */
   lastValueMvt(value: IMouvement): boolean {
     let response = false;
     this.LAST_ELEMENTS_TABLE_MOUVEMENTS = JSON.parse(localStorage.getItem("mvtExempl")!);
@@ -841,6 +860,12 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     return this.formeExemplaire.controls;
   }
 
+  /**
+   * Méthode permettant d'incrémenter ou de décrementer la somme déjà versé si l'utilisateur 
+   * décide d'utiliser ou pas son solde courant
+   * @param res 
+   * @returns 
+   */
   useSolde(res: boolean): number {
     if (res) {
       this.fCaisse['montant'].setValue(this.compte?.solde!);
@@ -853,6 +878,9 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     return this.resteAPayer;
   }
 
+  /**
+   * Méthode permettant de faire la différence entre la somme versée et la somme total à payer
+   */
   resteApayer(montant: number): number {
     this.resteAPayer -= montant;
     this.fCaisse['montant'].setValue(this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.resteAPayer)
@@ -990,6 +1018,11 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     return element && element.libelle ? element.libelle : '';
   }
 
+  /**
+   * Methode de validation d'un mouvement caisse !
+   * @param selectItem 
+   * @param doc 
+   */
   saveMvt(selectItem: any, doc: IExemplaireDocument) {
     let donne: IMouvementCaisses;
     let ele: any = this.selectedOptions;

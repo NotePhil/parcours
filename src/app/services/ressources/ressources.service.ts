@@ -14,6 +14,12 @@ export class RessourcesService {
     return this.http.get<IRessource[]>('api/ressource').pipe(map((x) => x));
   }
 
+  getAllRessourcesBySeuil(): Observable<IRessource[]> {
+    return this.http.get<IRessource[]>('api/ressource').pipe(map((x) => {
+      return x.sort((r1, r2) => Math.abs(r1.quantite - r1.seuil) - Math.abs(r2.quantite - r2.seuil))
+    }));
+  }
+
   getRessourceById(id: string): Observable<IRessource> {
     return this.getAllRessources().pipe(
       map((x) => {

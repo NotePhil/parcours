@@ -3,50 +3,18 @@
         <app-entete class="title"></app-entete>
     </div>
     <div class="card container-fluid" id="top">
-        <div class='card-hearder' >
+        <div class='card-hearder pt-3' >
             <div class="d-flex align-items-end justify-content-end  tableTools">
-                <div class="container py-2">
-                        <form [formGroup]="forme" class="card-body" *ngIf="forme">
-                            <div class="row align-items-end">
-                                <div class="col-md-3">
-                                    <h6 class="fw-bold mb-2">Quantité</h6>
-                                    <div class="input-group">
-                                        <input type="number" formControlName="min" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control" placeholder="Min">
-                                        <span class="input-group-text">-</span>
-                                        <input type="number" formControlName="max" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control" placeholder="Max">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <h6 class="fw-bold mb-2">prix</h6>
-                                    <div class="input-group">
-                                        <input type="number" formControlName="prixMin" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control" placeholder="Prix Min">
-                                        <span class="input-group-text">-</span>
-                                        <input type="number" formControlName="prixMax" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control" placeholder="Prix Max">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                        <div class="example-form-entete">
-                                          <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher" formControlName="myControl" [matAutocomplete]="auto">
-                                          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                                            <mat-option *ngFor="let option of filteredOptions" [value]="option">
-                                              {{option.libelle}}
-                                            </mat-option>
-                                          </mat-autocomplete>
-                                      </div>
-                                </div>
-                                <div class="col-md-3">
-                                        <div class="example-form-entete">
-                                          <input placeholder="{{'ressource.table2.title8' | translate}}" type="text" matInput aria-label="Famille" formControlName="familly" [matAutocomplete]="autoFa">
-                                          <mat-autocomplete #autoFa="matAutocomplete" [displayWith]="displayFnFamille">
-                                            <mat-option *ngFor="let option of filteredOptions" [value]="option.famille">
-                                              {{option.famille.libelle}}
-                                            </mat-option>
-                                          </mat-autocomplete>
-                                        </div>
-                                </div>
-                            </div>
-                        </form>
-                </div>
+                <div class="form-inline">
+                    <form class="example-form-entete">
+                      <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingRessource(option)">
+                          {{option.libelle}}
+                        </mat-option>
+                      </mat-autocomplete>
+                  </form>
+                  </div>
             </div>
         </div>
         <div class="card-body p-0" id="tableBlock">
@@ -70,6 +38,12 @@
                         <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'ressource.table2.title5' | translate}} </th>
                         <td class="containCell" mat-cell *matCellDef="let element"> {{element.quantite}} </td>
                       </ng-container>
+
+                      <!-- seuil Column -->
+                    <ng-container matColumnDef="seuil">
+                        <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table.title15' | translate}}</th>
+                        <td class="containCell" mat-cell *matCellDef="let element"> {{element.seuil}} </td>
+                    </ng-container>
   
                      <!-- unité Column -->
                      <ng-container matColumnDef="unite">

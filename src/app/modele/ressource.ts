@@ -7,6 +7,7 @@ export interface IRessource {
     id:string,
     libelle:string,
     etat:boolean,
+    seuil:number,
     quantite:number,
     prixEntree:number,
     prixDeSortie:number,

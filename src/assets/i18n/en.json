@@ -423,7 +423,8 @@
       "title11": "Percentage value",
       "title12": "Remaining balance",
       "title13": "No promotion for this assurence",
-      "title14": "Promotion"
+      "title14": "Promotion",
+      "title15": "Limit"
     },
     "form": {
       "text1": "Field Required",

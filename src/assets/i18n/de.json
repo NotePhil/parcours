@@ -410,7 +410,8 @@
             "title6": "Category",
             "title7": "Caracteristic",
             "title8": "Ressources",
-            "title9": "sell prise"
+            "title9": "sell prise",
+            "title15": "Limit"
         },
         "form": {
             "text1": "Field Required",

@@ -66,6 +66,7 @@ export class NewRessourceComponent implements OnInit {
       ],
       etat: [true],
       quantite: ['', [Validators.required]],
+      seuil: ['', [Validators.required]],
       unite: ['', [Validators.required]],
       prixEntree: ['', [Validators.required]],
       prixDeSortie: ['', [Validators.required]],
@@ -106,6 +107,7 @@ export class NewRessourceComponent implements OnInit {
             libelle: this.ressource.libelle,
             etat: this.ressource.etat,
             quantite: this.ressource.quantite,
+            seuil: this.ressource.seuil,
             unite: this.ressource.unite,
             prixEntree: this.ressource.prixEntree,
             prixDeSortie: this.ressource.prixDeSortie,
@@ -166,6 +168,7 @@ export class NewRessourceComponent implements OnInit {
       etat: ressourceInput.etat,
       quantite: ressourceInput.quantite,
       unite: ressourceInput.unite,
+      seuil: ressourceInput.seuil,
       prixEntree: ressourceInput.prixEntree,
       prixDeSortie: ressourceInput.prixDeSortie,
       famille: ressourceInput.famille,
@@ -184,6 +187,11 @@ export class NewRessourceComponent implements OnInit {
     )
     this.dataEnteteMenuService.dataDocumentRessourcesAttributs = []
 
+  }
+
+  onInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.value = inputElement.value.replace(/[^0-9]/g, ''); // Supprime les caractères non numériques
   }
 
   displayFn(famille: IFamille): string {
