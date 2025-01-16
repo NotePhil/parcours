@@ -1,15 +1,14 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, EMPTY, merge } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { RessourcesService } from 'src/app/services/ressources/ressources.service';
 import { IRessource } from 'src/app/modele/ressource';
-import { IFamille } from 'src/app/modele/famille';
 
 @Component({
   selector: 'app-search-ressource',
@@ -86,12 +85,8 @@ export class SearchRessourceComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  public rechercherListingRessource(option: IRessource) {
-    this.serviceRessource
-      .getRessourcesByLibelle(option.libelle.toLowerCase())
-      .subscribe((valeurs) => {
-        this.dataSource.data = valeurs;
-      });
+  public rechercherListingRessource(option: IRessource): IRessource[] {
+    return this.dataSource.data = this.filteredOptions!.filter((p) => p.libelle.toLowerCase().startsWith(option.libelle.toLowerCase()));
   }
 
   announceSortChange(sortState: Sort) {
