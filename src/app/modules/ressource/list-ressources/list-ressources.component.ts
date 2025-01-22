@@ -10,6 +10,7 @@ import { Observable, EMPTY, merge } from 'rxjs';
 import { RessourcesService } from 'src/app/services/ressources/ressources.service';
 import { IRessource } from 'src/app/modele/ressource';
 import { IFamille } from 'src/app/modele/famille';
+import { FamillesService } from 'src/app/services/familles/familles.service';
 
 @Component({
   selector: 'app-list-ressources',
@@ -20,7 +21,8 @@ export class ListRessourcesComponent implements OnInit {
   ressources$: Observable<IRessource> = EMPTY;
 
   forme: FormGroup;
-  filteredOptionsFamilly: IRessource[] | undefined;
+  filteredOptionsFamilly: IFamille[] | undefined;
+  familly = new FormControl<string | IFamille>('');
   myControl = new FormControl<string | IRessource>('');
 
   ELEMENTS_TABLE: IRessource[] = [];
@@ -48,7 +50,8 @@ export class ListRessourcesComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder, 
+    private serviceFamille:FamillesService,
     private serviceRessource: RessourcesService,
     private _liveAnnouncer: LiveAnnouncer
   ) {
@@ -66,8 +69,31 @@ export class ListRessourcesComponent implements OnInit {
     this.getAllRessources().subscribe((valeurs) => {
       this.dataSource.data = valeurs;
       this.filteredOptions = valeurs;
-      this.filteredOptionsFamilly = valeurs;
     });
+
+    this.getAllFamilles().subscribe((valeurs) => {
+      this.filteredOptionsFamilly = valeurs
+    });
+
+    this.familly.valueChanges.subscribe(
+      value => {
+        const libelle = typeof value === 'string' ? value : value?.libelle;
+        if(libelle != undefined && libelle?.length >0){
+          this.serviceFamille.getFamillesByLibelle(libelle.toLowerCase() as string).subscribe(
+            reponse => {
+              this.filteredOptionsFamilly = reponse;
+            }
+          )
+        }
+        else{
+          this.serviceFamille.getAllFamilles().subscribe(
+            (reponse) =>{
+              this.filteredOptionsFamilly=reponse
+            }
+          )
+        }
+      }
+    );
 
     this.myControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
@@ -87,6 +113,10 @@ export class ListRessourcesComponent implements OnInit {
 
   private getAllRessources() {
     return this.serviceRessource.getAllRessources();
+  }
+
+  private getAllFamilles(){
+    return this.serviceFamille.getAllFamilles();
   }
 
   get fRessources() {
