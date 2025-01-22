@@ -306,9 +306,13 @@ export class NewFormDocumentComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe((result) => {
       this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.donneeDocCatService.dataDocumentSousDocuments;
+      console.log("this.donneeDocCatService.dataDocumentSousDocuments ", this.donneeDocCatService.dataDocumentSousDocuments);
+      
   
       if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
         this.document.sousDocuments = this.ELEMENTS_TABLE_SOUS_DOCUMENTS;
+        console.log("this.document.sousDocument ", this.document.sousDocuments);
+        
       }
     });
   }
@@ -406,7 +410,7 @@ export class NewFormDocumentComponent implements OnInit {
       formatCode: documentInput.formatCode
     }
 
-    if (this.document.idDocument != '') {
+    if (this.document.idDocument != undefined) {
       documentTemp.idDocument = this.document.idDocument;
     }
 
