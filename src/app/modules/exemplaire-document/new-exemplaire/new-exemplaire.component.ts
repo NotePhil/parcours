@@ -44,6 +44,7 @@ import { ComptesService } from 'src/app/services/comptes/comptes.service';
 import { CaissesService } from 'src/app/services/caisses/caisses.service';
 import { ModalMouvementCaisseComponent } from '../../shared/modal-mouvement-caisse/modal-mouvement-caisse.component';
 import { ModalBilleterieComponent } from '../../shared/modal-billeterie/modal-billeterie.component';
+import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
 
 @Component({
   selector: 'app-new-exemplaire',
@@ -1095,6 +1096,13 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     this.distributeur = distributeur;
   }
   public rechercherListingRessources(option: IRessource) {
+    let resValidate : IPrecoMvtQte | undefined;
+      this.document.preconisations.forEach((precoMvt) => {
+        if (precoMvt.precomvtqte.find(p => p.ressource?.id == option.id)) {
+          resValidate = precoMvt.precomvtqte.find(p => p.ressource?.id == option.id);
+        }
+      })
+    console.log("precoQte : ", resValidate);    
     this.modificationDistributeurActive = false;
     this.indexmodificationDistributeur = -1;
     let tabIdRessource: string[] = [];
