@@ -51,7 +51,7 @@ import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
   templateUrl: './new-exemplaire.component.html',
   styleUrls: ['./new-exemplaire.component.scss'],
 })
-export class NewExemplaireComponent implements OnInit , AfterViewInit {
+export class NewExemplaireComponent implements OnInit, AfterViewInit {
   @ViewChild('barcodeScanner', { static: false })
   barcodeScanner!: ModalCodebarreScanContinueComponent;
 
@@ -121,6 +121,10 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     type: IType.Int,
   };
 
+  errorText: String = '';
+  isFalse: boolean = false;
+  isFalseIn: boolean = false;
+  isFalseOut: boolean = false;
   formeExemplaire: FormGroup;
   btnLibelle: string = 'Ajouter';
   submitted: boolean = false;
@@ -146,6 +150,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
   numerateur: number = -1;
   selectedOptions!: ICaisses;
   totalAttributSupprime: number = 0;
+  resValidate: IPrecoMvtQte | undefined;
   objetCleValeurSupprime: ObjetCleValeur[] = [];
   tableauAttributsSupprime: IAttributs[] = [];
 
@@ -205,13 +210,13 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
   modalLastResultBilleterie: any;
   tableMvts: IMouvementCaisses[] = []
   codeControl = new FormControl()
-  promotion : IPromo | undefined
+  promotion: IPromo | undefined
   distributeurR: string = '';
   ressource: string = '';
   mouvements: IMouvement[] = [];
-  assurancePersone : IDistributeur | undefined
-  remisePromo : number = 0 // laveur de la promotion
-  unitePromo : string = "" // laveur de la promotion
+  assurancePersone: IDistributeur | undefined
+  remisePromo: number = 0 // laveur de la promotion
+  unitePromo: string = "" // laveur de la promotion
   showText = false
   promotionsByRessource: { [key: string]: IPromo[] } = {};
   idMouvement: string = '';
@@ -245,16 +250,16 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
       _controlsSupprime: new FormArray([]),
-      use : [false],
-      montant : ['', [Validators.required]],
-      moyenPaiement : new FormControl<string | ICaisses>(''),
-      referencePaiement : ['', [Validators.required]]
+      use: [false],
+      montant: ['', [Validators.required]],
+      moyenPaiement: new FormControl<string | ICaisses>(''),
+      referencePaiement: ['', [Validators.required]]
     });
   }
 
   ngOnInit(): void {
-    
-    this.unitePromo =""
+
+    this.unitePromo = ""
     this.codeControl.disable()
     this.donneeEchangeService.dataPromoMouvementCourant = undefined
     console.log("info doc :", this.exemplaire, this.document);
@@ -563,17 +568,17 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
           this.formerEnteteTableauMissions()
           let dateExemplaire = new Date()
           this.codeControl.setValue(this.setCode(dateExemplaire))
-          if ( this.donneeEchangeService.dataDocumentSousDocuments != undefined) {
+          if (this.donneeEchangeService.dataDocumentSousDocuments != undefined) {
             this.concatMouvementsSousExemplaireDocument()
           }
           if (this.document.beneficiaireObligatoire) {
-            let idPersonne : string = this.donneeEchangeService.getExemplairePersonneRatachee()
+            let idPersonne: string = this.donneeEchangeService.getExemplairePersonneRatachee()
             this.servicePatient.getPatientById(idPersonne).subscribe(
-              patientTrouve =>{
-                this.laPersonneRattachee =  patientTrouve;
+              patientTrouve => {
+                this.laPersonneRattachee = patientTrouve;
                 if (patientTrouve != undefined) {
                   this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
-                  
+
                 }
               }
             )
@@ -667,18 +672,18 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
   /**
    * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
    */
-  formerEnteteTableauMissions(){
+  formerEnteteTableauMissions() {
     if (this.document.contientDistributeurs == true && !this.document.beneficiaireObligatoire) {
-      let distributeur : string = "distributeur"
+      let distributeur: string = "distributeur"
       this.displayedRessourcesColumns.includes('distributeur')
       this.displayedRessourcesColumns.push(distributeur)
     }
     if ((this.document.affichagePrix == true)) {
-      let prix : string = "prix"
-      let pourcentageCharge : string = "pourcentageCharge"
-      let pourcentageChargeRssource : string = "pourcentageChargeRssource"
-      let montantCharge : string = "montantCharge"
-      let montant : string = "montant total"
+      let prix: string = "prix"
+      let pourcentageCharge: string = "pourcentageCharge"
+      let pourcentageChargeRssource: string = "pourcentageChargeRssource"
+      let montantCharge: string = "montantCharge"
+      let montant: string = "montant total"
       if (this.document.typeMouvement == TypeMouvement.Reduire) {
         prix = "prixDeSortie"
       } else if (this.document.typeMouvement == TypeMouvement.Ajout) {
@@ -689,12 +694,12 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
       this.displayedRessourcesColumns.push(prix)
       if (this.document.beneficiaireObligatoire) {
         this.displayedRessourcesColumns.push(pourcentageCharge)
-      }else{
+      } else {
         this.displayedRessourcesColumns.push(pourcentageChargeRssource)
       }
       this.displayedRessourcesColumns.push(montantCharge)
       this.displayedRessourcesColumns.push(montant)
-    }    
+    }
   }
   /**
    * methode permettant de renvoyer la valeur de l'attribut
@@ -873,7 +878,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     if (caisse != 'multipaiement' && caisse != 'cash' && caisse != 'solde') {
       this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
       this.fCaisse['use'].setValue(false),
-      this.fCaisse['montant'].enable();
+        this.fCaisse['montant'].enable();
       this.fCaisse['montant'].setValue(0);
 
     }
@@ -919,7 +924,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     return this.montantTotal;
   }
 
-  getAssurancePersonne(assurance:IDistributeur){
+  getAssurancePersonne(assurance: IDistributeur) {
     this.assurancePersone = assurance
   }
 
@@ -943,7 +948,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     this.submitted = true;
     this.enregistrerObjet();
     this.evaluation();
-    if (this.formeExemplaire.invalid) return;
+    if (this.formeExemplaire.invalid || this.isFalse == true || this.isFalseIn == true || this.isFalseOut == true) return;
 
     let exemplaireTemp: IExemplaireDocument = {
       id: uuidv4(),
@@ -1095,14 +1100,8 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
   public associerDistributeur(distributeur: IDistributeur) {
     this.distributeur = distributeur;
   }
+
   public rechercherListingRessources(option: IRessource) {
-    let resValidate : IPrecoMvtQte | undefined;
-      this.document.preconisations.forEach((precoMvt) => {
-        if (precoMvt.precomvtqte.find(p => p.ressource?.id == option.id)) {
-          resValidate = precoMvt.precomvtqte.find(p => p.ressource?.id == option.id);
-        }
-      })
-    console.log("precoQte : ", resValidate);    
     this.modificationDistributeurActive = false;
     this.indexmodificationDistributeur = -1;
     let tabIdRessource: string[] = [];
@@ -1148,22 +1147,55 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
       this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS
     }
   }
-  
-  rechercherListingAssurance(option: IDistributeur){
-    this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) =>{
+
+  verificationRessource(qte?: any, prixOut?: any, prixIn?: any, option?: IRessource) {
+    this.document.preconisations.forEach((precoMvt) => {
+      if (precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id)) {
+        this.resValidate = precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id);
+      }
+    })
+    console.log("precoQte : ", this.resValidate);
+    // Vérifiaction de la qté par rapport à la precoMvt !
+    if (qte < this.resValidate!.quantiteMin || qte > this.resValidate!.quantiteMax) {
+      this.isFalse = true;
+      this.errorText = "La valveur ne respecte pas la precomouvement"
+    } else {
+      this.isFalse = false;
+    }
+
+    // Vérification du prix d'entré par rapport à la precoMvt !
+    if (prixIn < this.resValidate!.montantMin || prixIn > this.resValidate!.montantMax) {
+      this.isFalseIn = true;
+      this.errorText = "La valveur ne respecte pas la precomouvement"
+    } else {
+      this.isFalseIn = false;
+    }
+
+    // Vérification du prix de sorti par rapport à la PrecoMvt !
+    if (prixOut < this.resValidate!.montantMin || prixOut > this.resValidate!.montantMax) {
+      this.isFalseOut = true;
+      this.errorText = "La valveur ne respecte pas la precomouvement"
+    } else {
+      this.isFalseOut = false;
+    }
+
+  }
+
+  rechercherListingAssurance(option: IDistributeur) {
+    this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
       this.promotion = promo!
       this.showText = false
       this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
         mvt => {
-        let mouvementTemp = mvt
-        if (this.promotion) {
-          mouvementTemp.promotion = this.promotion
-          this.appliquerPromotion(mouvementTemp)
-        }
-        if (!this.promotion) {
-          this.showText = true
-        }
-      });
+          let mouvementTemp = mvt
+          if (this.promotion) {
+            mouvementTemp.promotion = this.promotion
+            this.appliquerPromotion(mouvementTemp)
+          }
+          if (!this.promotion) {
+            this.showText = true
+          }
+        });
     })
   }
 
@@ -1171,9 +1203,9 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
    * Méthode permettant de déterminer si une assurance pocède une promotion en cours
    * @param option assurance
    */
-  verifieSiPromoAppliquable(mouvement: IMouvement):boolean{
-    
-    const today = new Date(); 
+  verifieSiPromoAppliquable(mouvement: IMouvement): boolean {
+
+    const today = new Date();
     let dateOk = false
     let ressourceOk = false
     let familleOk = false
@@ -1183,8 +1215,8 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
       this.promotion = mouvement.promotion
       dateOk = true
 
-      let ressourceCouverte : boolean = false;
-      let familleCouverte : boolean = false;
+      let ressourceCouverte: boolean = false;
+      let familleCouverte: boolean = false;
 
       // Vérification des Ressources et Familles : La promotion est appliquée si la ressource ou la famille de la ressource est couverte par la promotion.
       if (mouvement.promotion.ressource) {
@@ -1204,23 +1236,23 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
   }
 
   // Calcul de la Remise : La remise est calculée soit en pourcentage soit en montant fixe. Si les deux sont présents, seul le pourcentage est utilisé.
-  calculRemise(mouvement: IMouvement):number{
+  calculRemise(mouvement: IMouvement): number {
     if (!mouvement.promotion) {
       this.remisePromo = 0
-      this.unitePromo =""
+      this.unitePromo = ""
       return mouvement.prix
     }
     let remise = 0;
 
     if (mouvement.promotion.pourcentageRemise > 0) {
-        remise = mouvement.prix * (mouvement.promotion.pourcentageRemise / 100);
-        this.remisePromo = mouvement.promotion.pourcentageRemise
-        this.unitePromo = "%"
+      remise = mouvement.prix * (mouvement.promotion.pourcentageRemise / 100);
+      this.remisePromo = mouvement.promotion.pourcentageRemise
+      this.unitePromo = "%"
     } else if (mouvement.promotion.montantRemise > 0) {
-        remise = mouvement.promotion.montantRemise;
-        // remise = (promo.montantRemise/mouvement.prix)*100;
-        this.remisePromo = mouvement.promotion.montantRemise
-        this.unitePromo = "UD"
+      remise = mouvement.promotion.montantRemise;
+      // remise = (promo.montantRemise/mouvement.prix)*100;
+      this.remisePromo = mouvement.promotion.montantRemise
+      this.unitePromo = "UD"
     }
 
     remise = Math.min(remise, mouvement.prix); // S'assurer que la remise n'excède pas le prix
@@ -1235,13 +1267,13 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
    * @param promo promotion à apliquer
    * @returns mouvement soldés
    */
-  appliquerPromotion(mouvement: IMouvement):IMouvement{
+  appliquerPromotion(mouvement: IMouvement): IMouvement {
     if (this.verifieSiPromoAppliquable(mouvement)) {
       this.calculRemise(mouvement)
     }
     return mouvement
   }
-  
+
   /**
    * Methode qui permet d'effacer la valeur du control ressource lorsqu'on a
    * déjà choisi la ressource en cliquant dessus
@@ -1333,7 +1365,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
       (promos) => {
         // Associer les promotions à la ressource dans le dictionnaire
         this.promotionsByRessource[ressource.id] = promos;
-        
+
       }
     );
   }
@@ -1343,12 +1375,12 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
    * @param promoressource 
    * @param mvt 
    */
-  applyPromoRessource(promoressource:IPromo, mvt:IMouvement){
+  applyPromoRessource(promoressource: IPromo, mvt: IMouvement) {
     if (mvt.promotion) {
       mvt.promotion = promoressource
     }
   }
-  setCode(date : Date){
+  setCode(date: Date) {
     return this.serviceExemplaire.formatCode(date)
   }
 
@@ -1359,8 +1391,8 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
   getRessource(ressource: IRessource) {
     this.idRessource = ressource.id;
     this.donneeEchangeService.dataRessourceMouvementCourant = ressource
-  } 
-  
+  }
+
   openPromotionRessourceDialog() {
     const dialogRef = this.dialogDef.open(ModalChoixPromotionRessourceComponent,
       {
@@ -1370,8 +1402,8 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
         width: '100%',
         enterAnimationDuration: '1000ms',
         exitAnimationDuration: '1000ms',
-        data : this.donneeEchangeService.dataPromoMouvementCourant
-        
+        data: this.donneeEchangeService.dataPromoMouvementCourant
+
       }
     );
 
@@ -1385,7 +1417,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
           }
           this.idMouvement = ''
           break
-        }  
+        }
       }
     });
   }
@@ -1394,7 +1426,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     this.donneeEchangeService.dataPromoMouvementCourant = promotion;
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() { }
 
   openBarcodeScanner(): void {
     console.log('Attempting to open barcode scanner');
@@ -1406,7 +1438,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     }
   }
 
-  toogleScanCodeView(){
+  toogleScanCodeView() {
     this.showScanCodeComponent = !this.showScanCodeComponent
   }
 }

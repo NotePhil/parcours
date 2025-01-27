@@ -145,8 +145,11 @@
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title5' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                   <label class="custom-control">
-                                      <input class="form-control" type="number" [(ngModel)]="element.quantite" [ngModelOptions]="{standalone: true}" [disabled]="element.typeMouvement != 'Neutre' && i <= (tailleFirstMvts - 1)" value="true">
+                                      <input class="form-control" type="number" (change)="verificationRessource(element.quantite, null, null, element.ressource)" [(ngModel)]="element.quantite" [ngModelOptions]="{standalone: true}" [disabled]="element.typeMouvement != 'Neutre' && i <= (tailleFirstMvts - 1)" value="true">
                                   </label>
+                                  <p *ngIf="isFalse && resValidate?.ressource!.id == element.ressource.id" class="text-sm text-danger">
+                                    {{ errorText }}
+                                  </p>
                                 </td>
                             </ng-container>
 
@@ -172,8 +175,11 @@
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title5' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                     <label class="custom-control">
-                                        <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
+                                        <input class="form-control" type="number" (change)="verificationRessource(null, null, element.ressource!.prixEntree, element.ressource)" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
                                     </label>
+                                    <p *ngIf="isFalseIn && resValidate?.ressource!.id == element.ressource.id" class="text-sm text-danger">
+                                        {{ errorText }}
+                                    </p>
                                 </td>
                             </ng-container>
 
@@ -182,8 +188,11 @@
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title9' | translate}} </th>
                                     <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                     <label class="custom-control">
-                                        <input class="form-control" type="number" [disabled]="element.typeMouvement != 'Neutre' && i <= (tailleFirstMvts - 1)" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
+                                        <input class="form-control" type="number" (change)="verificationRessource(null, element.ressource!.prixDeSortie, element.ressource)" [disabled]="element.typeMouvement != 'Neutre' && i <= (tailleFirstMvts - 1)" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
                                     </label> 
+                                    <p *ngIf="isFalseOut && resValidate?.ressource!.id == element.ressource.id" class="text-sm text-danger">
+                                        {{ errorText }}
+                                    </p>
                                 </td>
                             </ng-container>
 
