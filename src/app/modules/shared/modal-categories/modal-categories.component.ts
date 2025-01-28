@@ -171,7 +171,7 @@ export class ModalCategoriesComponent implements OnInit {
         );
       this.tableauIndexSelectionner = new Map();
       //sauvegarde de la nouvelle valeur du 2ème tableau
-      //this.donneeDocCatService.dataDocumentCategorie =
+      this.donneeDocCatService.dataDocumentCategorie =
         TABLE_CATEGORIE_AFFICHAGE_TEMP;
     } else {
       //Création du premier tableau si le deuxième est vide

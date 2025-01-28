@@ -379,6 +379,10 @@ export class NewFormDocumentComponent implements OnInit {
       }
     });
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP = categorieAttributsFinal;
+    console.log(categorieAttributsFinal);
+    console.log("this.donneeDocCatService.dataDocumentCategorie", this.donneeDocCatService.dataDocumentCategorie);
+    
+    
   }
   return(){
     this.router.navigate(['/list-documents']);
@@ -460,6 +464,8 @@ export class NewFormDocumentComponent implements OnInit {
         documentTemp.categories.push(cat)
       );
     }
+
+    documentTemp.id = documentTemp.idDocument
 
     this.serviceDocument.ajouterDocument(documentTemp).subscribe((object) => {
       this.router.navigate(['/list-documents']);
