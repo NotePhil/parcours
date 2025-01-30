@@ -422,6 +422,10 @@ export class ModalCategoriesComponent implements OnInit {
         this.TABLE_CATEGORIE_AFFICHAGE_TEMP;
     });
   }
+  // Sauvegarder les changements et fermer la boîte de dialogue
+  onSave() {
+    this.donneeDocCatService.dataDocumentCategorie = this.TABLE_FINAL_CATEGORIES_ATTRIBUTS
+  }
 
   get f() {
     return this.formeCategorieAttribut.controls;
