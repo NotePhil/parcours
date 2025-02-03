@@ -9921,6 +9921,14 @@ export class InMemDBService implements InMemoryDbService {
             etat: {
               id: '2',
               libelle: 'etat 2',
+              etatSuivant:[
+                  {
+                    id: '3',
+                    libelle: 'etat 3',
+                    description: 'troisième état du document',
+                    dateCreation: new Date('07/21/2024'),
+                  },
+              ],
               description: 'deuxième état du document',
               dateCreation: new Date('07/21/2024'),
             },
@@ -9949,6 +9957,14 @@ export class InMemDBService implements InMemoryDbService {
             etat: {
               id: '3',
               libelle: 'etat 3',
+              etatPrecedant: [
+                {
+                  id: '1',
+                  libelle: 'etat 1',
+                  description: 'premièr état du document',
+                  dateCreation: new Date('07/21/2024'),
+                },
+              ],
               description: 'troisième état du document',
               dateCreation: new Date('07/21/2024'),
             },
