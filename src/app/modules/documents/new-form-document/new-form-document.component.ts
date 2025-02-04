@@ -306,12 +306,9 @@ export class NewFormDocumentComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe((result) => {
       this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.donneeDocCatService.dataDocumentSousDocuments;
-      console.log("this.donneeDocCatService.dataDocumentSousDocuments ", this.donneeDocCatService.dataDocumentSousDocuments);
-      
   
       if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
         this.document.sousDocuments = this.ELEMENTS_TABLE_SOUS_DOCUMENTS;
-        console.log("this.document.sousDocument ", this.document.sousDocuments);
         
       }
     });
@@ -379,10 +376,6 @@ export class NewFormDocumentComponent implements OnInit {
       }
     });
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP = categorieAttributsFinal;
-    console.log(categorieAttributsFinal);
-    console.log("this.donneeDocCatService.dataDocumentCategorie", this.donneeDocCatService.dataDocumentCategorie);
-    
-    
   }
   return(){
     this.router.navigate(['/list-documents']);
@@ -471,7 +464,6 @@ export class NewFormDocumentComponent implements OnInit {
 
     this.serviceDocument.ajouterDocument(documentTemp).subscribe((object) => {
       this.router.navigate(['/list-documents']);
-      console.log("documentTemp , idTemp", documentTemp, idTemp);
       
     });
     this.donneeDocCatService.dataDocumentAttributs = [];
