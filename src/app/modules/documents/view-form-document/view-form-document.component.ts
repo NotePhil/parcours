@@ -64,6 +64,14 @@ export class ViewFormDocumentComponent implements OnInit {
     this.titre = this.dataEnteteMenuService.dataEnteteMenu;
   }
 
+  listEtats(etats: IEtats[]): string{
+    let lists : string = "";
+    etats?.forEach(element => {
+      lists += element.libelle + ', ';
+    });
+    return lists;
+  }
+
   public async ngAfterViewInit(): Promise<void> {
     let nameA = 'DEV';
     let nameC = 'TEST';
