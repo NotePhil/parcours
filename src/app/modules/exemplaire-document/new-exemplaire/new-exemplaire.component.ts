@@ -33,7 +33,6 @@ import { PatientsService } from 'src/app/services/patients/patients.service';
 import { IPatient } from 'src/app/modele/Patient';
 import { IPromo } from 'src/app/modele/promo-distributeur';
 import { PromoService } from 'src/app/services/promo/promo.service';
-import { MatDialog } from '@angular/material/dialog';
 import { ModalChoixPromotionRessourceComponent } from '../../shared/modal-choix-promotion-ressource/modal-choix-promotion-ressource.component';
 import { ModalCodebarreScanContinueComponent } from '../../shared/modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
 import { IMouvementCaisses, Monaies, MoyenPaiement } from 'src/app/modele/mouvement-caisses';
@@ -450,7 +449,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+        this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
         this.modalResult = result.data;
         this.modalResult.forEach((element) => {
           if (element.montant) {
@@ -478,7 +477,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+        this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
         this.modalResultBilleterie = result.data;
         if (this.modalResultBilleterie.x1) this.resteApayer(this.modalResultBilleterie.x1);
         if (this.modalResultBilleterie.x2) this.resteApayer(this.modalResultBilleterie.x2 * 2);
@@ -531,8 +530,8 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
           //pour avoir la donnée fraiche on refait un appel à document
           //à supprimer lorsqu'on aura un vrai back connecté
           this.modifierMouvementExemplaire(x.idDocument)
-          this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
-          this.lastSomme = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+          this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+          this.lastSomme = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.fCaisse['montant'].setValue(0)
           this.laPersonneRattachee = this.exemplaire.personneRattachee
           if (this.exemplaire.personneRattachee != undefined) {
@@ -578,8 +577,8 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
               }
             )
           }
-          this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
-          this.lastSomme = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+          this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+          this.lastSomme = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.fCaisse['montant'].setValue(0)
         });
       this.initialiseMvtCaisses(this.idDocument);
@@ -856,63 +855,21 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
 
   resteApayer(montant: number): number {
     this.resteAPayer -= montant;
-    this.fCaisse['montant'].setValue(this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.resteAPayer)
+    this.fCaisse['montant'].setValue(this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.resteAPayer)
     return this.resteAPayer;
   }
 
   verifyUseSolde(caisse: string) {
 
     if (caisse == 'solde' && this.compte?.solde! > 0) {
-      this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+      this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
       this.fCaisse['montant'].disable();
       this.fCaisse['use'].setValue(true);
       this.fCaisse['montant'].setValue(this.compte?.solde!);
       this.resteApayer(this.fCaisse['montant'].value);
     }
     if (caisse != 'multipaiement' && caisse != 'cash' && caisse != 'solde') {
-      this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
-      this.fCaisse['use'].setValue(false),
-      this.fCaisse['montant'].enable();
-      this.fCaisse['montant'].setValue(0);
-
-    }
-    if (caisse == 'multipaiement') this.fCaisse['montant'].disable(), this.openModalPaiementDialog();
-    if (caisse == 'cash') this.fCaisse['montant'].disable(), this.openModalBilleterieDialog();
-  }
-
-  get fCaisse() {
-    return this.formeExemplaire.controls;
-  }
-
-  useSolde(res: boolean): number {
-    if (res) {
-      this.fCaisse['montant'].setValue(this.compte?.solde!);
-      this.fCaisse['moyenPaiement'].setValue(this.caisses.find(c => c.type === 'solde')?.type);
-      this.resteAPayer = this.resteApayer(this.fCaisse['montant'].value);
-    } else {
-      this.resteAPayer += this.fCaisse['montant'].value;
-      this.fCaisse['montant'].setValue(0);
-    }
-    return this.resteAPayer;
-  }
-
-  resteApayer(montant: number): number {
-    this.resteAPayer -= montant;
-    this.fCaisse['montant'].setValue(this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.resteAPayer)
-    return this.resteAPayer;
-  }
-
-  verifyUseSolde(caisse: string) {
-
-    if (caisse == 'solde' && this.compte?.solde! > 0) {
-      this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
-      this.fCaisse['montant'].disable();
-      this.fCaisse['use'].setValue(true);
-      this.fCaisse['montant'].setValue(this.compte?.solde!);
-      this.resteApayer(this.fCaisse['montant'].value);
-    }
-    if (caisse != 'multipaiement' && caisse != 'cash' && caisse != 'solde') {
-      this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+      this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
       this.fCaisse['use'].setValue(false),
       this.fCaisse['montant'].enable();
       this.fCaisse['montant'].setValue(0);
