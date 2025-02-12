@@ -5,7 +5,6 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -38,6 +37,10 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ModalChoixPersonneComponent } from './modal-choix-personne/modal-choix-personne.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ModalChoixPromotionRessourceComponent } from './modal-choix-promotion-ressource/modal-choix-promotion-ressource.component';
+import { ModalAffecterComptePersonnelComponent } from './modal-affecter-compte-personnel/modal-affecter-compte-personnel.component';
+import { ModalMouvementCaisseCompteComponent } from './modal-mouvement-caisse-compte/modal-mouvement-caisse-compte.component';
+import { ModalMouvementCaisseComponent } from './modal-mouvement-caisse/modal-mouvement-caisse.component';
+import { ModalBilleterieComponent } from './modal-billeterie/modal-billeterie.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,10 @@ import { ModalChoixPromotionRessourceComponent } from './modal-choix-promotion-r
     ModalChoixDocEtatComponent,
     ModalChoixPersonneComponent,
     ModalChoixPromotionRessourceComponent,
+    ModalAffecterComptePersonnelComponent,
+    ModalMouvementCaisseCompteComponent,
+    ModalMouvementCaisseComponent,
+    ModalBilleterieComponent,
   ],
   exports: [
     ModalCategoriesComponent,
@@ -81,7 +88,6 @@ import { ModalChoixPromotionRessourceComponent } from './modal-choix-promotion-r
     MatAutocompleteModule,
     MatInputModule,
     MatRadioModule,
-    //MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
