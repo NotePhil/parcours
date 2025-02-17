@@ -10,6 +10,7 @@ import { Observable, EMPTY } from 'rxjs';
 import { IComptes } from 'src/app/modele/comptes';
 import { ComptesService } from 'src/app/services/comptes/comptes.service';
 import { MatDialog } from '@angular/material/dialog';
+import { ModalAjoutMontantCompteComponent } from '../../shared/modal-ajout-montant-compte/modal-ajout-montant-compte.component';
 
 @Component({
   selector: 'app-list-comptes',
@@ -60,6 +61,21 @@ export class ListComptesComponent implements OnInit {
         }
       }
     );
+  }
+
+  openModalAjoutMontantDialog(compte: IComptes){
+    
+    // else if (this.document?.beneficiaireObligatoire == false && this.document?.contientRessources == true) {
+      const dialogRef = this.dialogDef.open(ModalAjoutMontantCompteComponent, 
+      {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        height: '100%',
+        width: '100%',
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '1000ms',
+        data: {element: compte}
+      })
   }
 
   private getAllComptes(){

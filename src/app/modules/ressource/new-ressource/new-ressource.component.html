@@ -86,6 +86,19 @@
             </div>
 
             <div class="form-group">
+              <div class="champs">
+                <label for="seuil" class="label">
+                  {{'ressource.table.title15' | translate}}
+                </label>
+                <input type="number" (input)="onInput($event)" pattern="^[0-9]*$" formControlName="seuil" name="seuil" id="seuil"
+                  placeholder=" {{'ressource.table.title15' | translate}}" class="form-control">
+              </div>
+            </div>
+            <div *ngIf="submitted && f['seuil'].errors" class="alert alert-danger">
+              <div *ngIf="f['seuil'].errors['required']">{{'ressource.form.text1' | translate}}</div>
+            </div>
+
+            <div class="form-group">
               <div class="champs champsSelect">
                 <label for="famille" class="label">
                   {{'ressource.table.title6' | translate}} <sup>*</sup>

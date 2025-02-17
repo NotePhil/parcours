@@ -5,12 +5,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IAttributs } from 'src/app/modele/attributs';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
@@ -36,6 +36,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
     id: '',
     libelle: '',
     etat: false,
+    seuil: 0,
     quantite: 0,
     prixEntree: 0,
     prixDeSortie: 0,
