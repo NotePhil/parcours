@@ -312,6 +312,7 @@ export class NewFormDocumentComponent implements OnInit {
   
       if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
         this.document.sousDocuments = this.ELEMENTS_TABLE_SOUS_DOCUMENTS;
+        
       }
     });
   }
@@ -390,8 +391,10 @@ export class NewFormDocumentComponent implements OnInit {
       this.ELEMENTS_TABLE_ATTRIBUTS.length < 1
     )
       return;
+      let idTemp = uuidv4()
     let documentTemp: IDocument = {
-      idDocument: uuidv4(),
+      idDocument: idTemp,
+      id: idTemp,
       titre: documentInput.titre,
       description: documentInput.description,
       etat: documentInput.etat,
@@ -410,8 +413,8 @@ export class NewFormDocumentComponent implements OnInit {
       formatCode: documentInput.formatCode
     }
 
-    if (this.document.idDocument != '') {
-      documentTemp.idDocument = this.document.idDocument;
+    if (this.document.id != undefined) {
+      documentTemp.id = this.document.id;
     }
 
     this.ELEMENTS_TABLE_ATTRIBUTS.forEach((a) =>
@@ -461,8 +464,11 @@ export class NewFormDocumentComponent implements OnInit {
       );
     }
 
+    documentTemp.idDocument = documentTemp.id!
+
     this.serviceDocument.ajouterDocument(documentTemp).subscribe((object) => {
       this.router.navigate(['/list-documents']);
+      
     });
     this.donneeDocCatService.dataDocumentAttributs = [];
     this.donneeDocCatService.dataDocumentCategorie = [];

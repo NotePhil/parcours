@@ -84,8 +84,8 @@ export class ModalChoixSousDocumentComponent implements OnInit {
 
   // Charger les documents par leurs IDs
   loadDocuments(documentIds: string[]) {
-    const documentObservables: Observable<IDocument>[] = documentIds.map((id) =>
-      this.serviceDocument.getDocumentById(id)
+    const documentObservables: Observable<IDocument>[] = documentIds.map((idDocument) =>
+      this.serviceDocument.getDocumentById(idDocument)
     );
     of(...documentObservables)
       .pipe(mergeMap((obs) => obs))

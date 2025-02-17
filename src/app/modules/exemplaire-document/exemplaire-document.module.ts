@@ -22,6 +22,7 @@ import { PrevisualisationExemplaireComponent } from './previsualisation-exemplai
 import { HistoriqueParPersonneComponent } from './historique-par-personne/historique-par-personne.component';
 import { PageIntermediaireComponent } from './page-intermediaire/page-intermediaire.component';
 import { NgxPrintModule } from 'ngx-print';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';

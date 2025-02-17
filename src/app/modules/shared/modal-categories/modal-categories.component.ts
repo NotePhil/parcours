@@ -89,10 +89,6 @@ export class ModalCategoriesComponent implements OnInit {
   tableauAttributsTemp: IAssociationCategorieAttributs[] = [];
   tableauIndexSelectionner = new Map();
 
-  // structure du tableau presentant les objets categoriesAttributs finaux formes en regroupant les categories
-  // du meme nom avec ces attributs, a partir du deuuxieme tableau de la modal
-  TABLE_FINAL_CATEGORIES_ATTRIBUTS: ICategoriesAttributs[] = [];
-
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -123,7 +119,6 @@ export class ModalCategoriesComponent implements OnInit {
         this.tableResultatsCategoriesAffichage.data.push(categorieAffiche);
       }
     });
-    // this.tableResultatsCategoriesAffichage.data = this.TABLE_CATEGORIE_AFFICHAGE_TEMP;
     if (
       this.donneeDocCatService.dataDocumentCategorie != null &&
       this.donneeDocCatService.dataDocumentCategorie.length > 0
@@ -171,7 +166,7 @@ export class ModalCategoriesComponent implements OnInit {
         );
       this.tableauIndexSelectionner = new Map();
       //sauvegarde de la nouvelle valeur du 2ème tableau
-      //this.donneeDocCatService.dataDocumentCategorie =
+      this.donneeDocCatService.dataDocumentCategorie =
         TABLE_CATEGORIE_AFFICHAGE_TEMP;
     } else {
       //Création du premier tableau si le deuxième est vide
@@ -421,6 +416,10 @@ export class ModalCategoriesComponent implements OnInit {
       this.donneeDocCatService.dataDocumentCategorie =
         this.TABLE_CATEGORIE_AFFICHAGE_TEMP;
     });
+  }
+  // Sauvegarder les changements et fermer la boîte de dialogue
+  onSave() {
+    this.donneeDocCatService.dataDocumentCategorie = this.TABLE_CATEGORIE_AFFICHAGE_TEMP
   }
 
   get f() {

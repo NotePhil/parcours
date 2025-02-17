@@ -33,7 +33,6 @@ import { PatientsService } from 'src/app/services/patients/patients.service';
 import { IPatient } from 'src/app/modele/Patient';
 import { IPromo } from 'src/app/modele/promo-distributeur';
 import { PromoService } from 'src/app/services/promo/promo.service';
-import { MatDialog } from '@angular/material/dialog';
 import { ModalChoixPromotionRessourceComponent } from '../../shared/modal-choix-promotion-ressource/modal-choix-promotion-ressource.component';
 import { ModalCodebarreScanContinueComponent } from '../../shared/modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
 import { IMouvementCaisses, Monaies, MoyenPaiement } from 'src/app/modele/mouvement-caisses';
@@ -42,6 +41,7 @@ import { IComptes } from 'src/app/modele/comptes';
 import { MouvementCaisseService } from 'src/app/services/mouvement-caisse/mouvement-caisse.service';
 import { ComptesService } from 'src/app/services/comptes/comptes.service';
 import { CaissesService } from 'src/app/services/caisses/caisses.service';
+import { MatDialog } from '@angular/material/dialog';
 import { ModalMouvementCaisseComponent } from '../../shared/modal-mouvement-caisse/modal-mouvement-caisse.component';
 import { ModalBilleterieComponent } from '../../shared/modal-billeterie/modal-billeterie.component';
 
@@ -244,11 +244,11 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
       _controlsSupprime: new FormArray([]),
-      use : [false],
-      montant : ['', [Validators.required]],
-      moyenPaiement : new FormControl<string | ICaisses>(''),
-      referencePaiement : ['', [Validators.required]]
-    });
+      use: [false],
+      montant: ['', [Validators.required]],
+      moyenPaiement: new FormControl<string | ICaisses>(''),
+      referencePaiement: ['', [Validators.required]]
+    })
   }
 
   ngOnInit(): void {
@@ -449,7 +449,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+        this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
         this.modalResult = result.data;
         this.modalResult.forEach((element) => {
           if (element.montant) {
@@ -477,7 +477,7 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+        this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
         this.modalResultBilleterie = result.data;
         if (this.modalResultBilleterie.x1) this.resteApayer(this.modalResultBilleterie.x1);
         if (this.modalResultBilleterie.x2) this.resteApayer(this.modalResultBilleterie.x2 * 2);
@@ -530,6 +530,9 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
           //pour avoir la donnée fraiche on refait un appel à document
           //à supprimer lorsqu'on aura un vrai back connecté
           this.modifierMouvementExemplaire(x.idDocument)
+          this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+          this.lastSomme = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS);
+          this.fCaisse['montant'].setValue(0)
           this.laPersonneRattachee = this.exemplaire.personneRattachee
           if (this.exemplaire.personneRattachee != undefined) {
             this.laPersonneRattachee = this.exemplaire.personneRattachee
@@ -577,8 +580,8 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
               }
             )
           }
-          this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
-          this.lastSomme = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+          this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+          this.lastSomme = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.fCaisse['montant'].setValue(0)
         });
       this.initialiseMvtCaisses(this.idDocument);
@@ -855,22 +858,21 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
 
   resteApayer(montant: number): number {
     this.resteAPayer -= montant;
-    this.fCaisse['montant'].setValue(this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) - this.resteAPayer)
+    this.fCaisse['montant'].setValue(this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.resteAPayer)
     return this.resteAPayer;
   }
 
   verifyUseSolde(caisse: string) {
-    console.log("caisse retourné :", this.selectedOptions, caisse);
 
     if (caisse == 'solde' && this.compte?.solde! > 0) {
-      this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+      this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
       this.fCaisse['montant'].disable();
       this.fCaisse['use'].setValue(true);
       this.fCaisse['montant'].setValue(this.compte?.solde!);
       this.resteApayer(this.fCaisse['montant'].value);
     }
     if (caisse != 'multipaiement' && caisse != 'cash' && caisse != 'solde') {
-      this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+      this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
       this.fCaisse['use'].setValue(false),
       this.fCaisse['montant'].enable();
       this.fCaisse['montant'].setValue(0);
@@ -879,7 +881,6 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     if (caisse == 'multipaiement') this.fCaisse['montant'].disable(), this.openModalPaiementDialog();
     if (caisse == 'cash') this.fCaisse['montant'].disable(), this.openModalBilleterieDialog();
   }
-
 
   /**
    * Methode qui permet de faire la somme des montants du tableau de mouvements
@@ -932,7 +933,6 @@ export class NewExemplaireComponent implements OnInit , AfterViewInit {
     }
     this.resteAPayer += reste;
     this.lastSomme = this.montantTotal;
-    console.log('donnéé :', this.resteAPayer, this.montantTotal, reste);
   }
 
   /**
