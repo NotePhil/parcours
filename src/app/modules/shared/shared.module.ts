@@ -5,7 +5,6 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -91,7 +90,6 @@ import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/m
     MatAutocompleteModule,
     MatInputModule,
     MatRadioModule,
-    //MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,

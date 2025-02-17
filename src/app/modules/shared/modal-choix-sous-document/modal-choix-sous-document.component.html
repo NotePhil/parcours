@@ -48,11 +48,11 @@
                                     {{"patient.table.title8" | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                     <div class="actions">
-                                        <input type="checkbox" [checked]="isDocumentSelected(element.id)"
-                                            (click)="getDocumentId(element.id)"
+                                        <input type="checkbox" [checked]="isDocumentSelected(element.idDocument)"
+                                            (click)="getDocumentId(element.idDocument)"
                                             (change)="onCheckDocumentChange($event)">
-                                        <span role="button" (click)="getDocumentId(element.id)"><i
-                                                class="fa fa-info-circle text-info" aria-hidden="true"
+                                        <span role="button" (click)="getDocumentId(element.idDocument)"><i
+                                                class="fa fa-info-circle text-info"
                                                 title="{{'preconisation.table.title4' | translate}}"></i></span>
                                     </div>
                                 </td>
@@ -104,7 +104,7 @@
                                             <div class="actions">
 
                                                 <span style="font-size: small; min-width: 67px;">{{
-                                                    selectedEtatsMap[element.id] }}</span>
+                                                    selectedEtatsMap[element.idDocument] }}</span>
                                             </div>
                                         </td>
                                     </ng-container>
@@ -117,12 +117,12 @@
                                         <td class="text-dark containCell" mat-cell
                                             *matCellDef="let element;  let i=index">
                                             <div class="actions">
-                                                <button class="btn p-0" name="PrecoMvts" [value]="element.id"
+                                                <button class="btn p-0" name="PrecoMvts" [value]="element.idDocument"
                                                     id="PrecoMvts" title="clicker pour annuler la selection"
                                                     (click)="retirerSelectionDocument(i)">
-                                                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                                    <i class="fa fa-trash text-danger"></i>
                                                 </button>
-                                                <span><i class="fa fa-info-circle text-info" aria-hidden="true"
+                                                <span><i class="fa fa-info-circle text-info"
                                                         title="{{'preconisation.table.title4' | translate}}"></i></span>
                                                 <button type="button" title="Ajouter un etat" class="btn p-1"
                                                     (click)="openModal(element)">
@@ -144,10 +144,10 @@
 
                                 <div class="actionButton valBtn mt-2" style="justify-content: center;">
                                     <button class="btn retour" (click)="onCancel()" title="{{'lists.button2' | translate}}">
-                                        <i class="fa fa-undo" aria-hidden="true"></i>
+                                        <i class="fa fa-undo"></i>
                                     </button>
                                     <button mat-button (click)="onSave()" [mat-dialog-close] cdkFocusInitial class="btn btnValidation" title="{{'lists.button6' | translate}}">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                        <i class="fa fa-check"></i>
                                     </button>
                                 </div>
                                 
