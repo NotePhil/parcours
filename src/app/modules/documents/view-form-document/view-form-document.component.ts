@@ -101,7 +101,7 @@ export class ViewFormDocumentComponent implements OnInit {
   
                   line =
                     line +
-                    `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i].etat.etatPrecedant![j].id}[${x.docEtats[i].etat.etatPrecedant![j].libelle}];`;
+                    `${x.docEtats[i].etat.etatPrecedant![j].id}[${x.docEtats[i].etat.etatPrecedant![j].libelle}]-->${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}];`;
                 }
                 console.log("PREi++:", i);
               }
@@ -111,7 +111,7 @@ export class ViewFormDocumentComponent implements OnInit {
   
                   line =
                     line +
-                    `${x.docEtats[i].etat.etatSuivant![j].id}[${x.docEtats[i].etat.etatSuivant![j].libelle}]-->${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}];`;
+                    `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i].etat.etatSuivant![j].id}[${x.docEtats[i].etat.etatSuivant![j].libelle}];`;
                 }
                 console.log("SUIi++:", i);
               }

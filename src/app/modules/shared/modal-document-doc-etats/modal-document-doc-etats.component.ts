@@ -104,31 +104,22 @@ export class ModalDocEtatsComponent implements OnInit{
             if (i == 0) {
               line = line + `${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}]-->${this.localElementTableDocEtats[i + 1].etat.id}[${this.localElementTableDocEtats[i + 1].etat.libelle}];`;
             } else {
-            console.log("elsei++:", i);
-
               if (this.localElementTableDocEtats[i].etat.etatPrecedant != null && this.localElementTableDocEtats[i].etat.etatPrecedant!.length > 0) {
                 for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatPrecedant!.length; j++) {
-                  console.log("j++:", j);
   
                   line =
                     line +
-                    `${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}]-->${this.localElementTableDocEtats[i].etat.etatPrecedant![j].id}[${this.localElementTableDocEtats[i].etat.etatPrecedant![j].libelle}];`;
+                    `${this.localElementTableDocEtats[i].etat.etatPrecedant![j].id}[${this.localElementTableDocEtats[i].etat.etatPrecedant![j].libelle}]-->${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}];`;
                 }
-                console.log("PREi++:", i);
               }
               if (this.localElementTableDocEtats[i].etat.etatSuivant != null && this.localElementTableDocEtats[i].etat.etatSuivant!.length > 0) {
                 for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatSuivant!.length; j++) {
-                  console.log("j++:", j);
-  
                   line =
                     line +
-                    `${this.localElementTableDocEtats[i].etat.etatSuivant![j].id}[${this.localElementTableDocEtats[i].etat.etatSuivant![j].libelle}]-->${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}];`;
+                    `${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}]-->${this.localElementTableDocEtats[i].etat.etatSuivant![j].id}[${this.localElementTableDocEtats[i].etat.etatSuivant![j].libelle}];`;
                 }
-                console.log("SUIi++:", i);
               }
             }
-            console.log("i++:", i);
-            
           }
 
           const { svg, bindFunctions } = await mermaid.render(
