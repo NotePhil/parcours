@@ -5,7 +5,6 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -42,6 +41,7 @@ import { ModalAffecterComptePersonnelComponent } from './modal-affecter-compte-p
 import { ModalMouvementCaisseCompteComponent } from './modal-mouvement-caisse-compte/modal-mouvement-caisse-compte.component';
 import { ModalMouvementCaisseComponent } from './modal-mouvement-caisse/modal-mouvement-caisse.component';
 import { ModalBilleterieComponent } from './modal-billeterie/modal-billeterie.component';
+import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/modal-ajout-montant-compte.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +65,7 @@ import { ModalBilleterieComponent } from './modal-billeterie/modal-billeterie.co
     ModalMouvementCaisseCompteComponent,
     ModalMouvementCaisseComponent,
     ModalBilleterieComponent,
+    ModalAjoutMontantCompteComponent,
   ],
   exports: [
     ModalCategoriesComponent,
@@ -89,7 +90,6 @@ import { ModalBilleterieComponent } from './modal-billeterie/modal-billeterie.co
     MatAutocompleteModule,
     MatInputModule,
     MatRadioModule,
-    //MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,

@@ -42,7 +42,7 @@
     "text3": "is a required field",
     "text4": "entrer value here",
     "text5": "Adding cash register movements",
-    "text6": "Use this balance for this payment",
+    "text6": "use this balance for this payment",
     "button1": "Print",
     "button2": "Back",
     "button3": "Cancel",
@@ -53,7 +53,12 @@
     "button8": "Delete",
     "button9": "Add",
     "button10": "Close",
-    "button14": "rule"
+    "button11": "Registrer",
+    "button12": "Next",
+    "button13": "Next",
+    "button14": "Send",
+    "button15": "Delete selected value",
+    "button16": "rule"
   },
   "caisse": {
     "title1": "Add ",
@@ -108,12 +113,12 @@
     "title4": "Payment Reference",
     "title5": "Cash Register",
     "title6": "Copy",
-    "title7": "Account Balance",
+    "title7": "Acount Balance",
     "title8": "remainder to pay",
-    "title9": "(Bills)",
+    "title9": "Bills",
     "title10": "Enter number",
     "title11": "Pieces",
-    "title12": "Multi'payment",
+    "title12": "Multi-payment",
     "actions": {
       "link1": "Add",
       "link2": "Edit",
@@ -128,7 +133,7 @@
     "text4": "The payment reference is required.",
     "text5": "The cash register is required.",
     "text6": "The copy is required.",
-    "text7": "the type is required."
+      "text7": "the type is required."
   }
 },
   "patient": {
@@ -154,7 +159,8 @@
       "text1": "Name is requied",
       "text2": "Surname is requied",
       "text3": "Birthday is requied",
-      "text4": "mail address is requied is requied"
+      "text4": "mail address is requied is requied",
+      "text5": "Born the"
     }
   },
   "personnel": {
@@ -258,23 +264,6 @@
       "text5": "This field is required."
     }
   },
-  "validation": {
-    "header": "Ajouter Validation",
-    "title": "listing Validation",
-    "title0": "liste validation",
-    "table": {
-      "title0": "validation"
-    },
-    "form": {
-      "label1": "code",
-      "label2": "etat",
-      "label3": "Date de création",
-      "label4": "Type vote",
-      "label5": "Duree vote",
-      "label6": "role",
-      "text1": "Field Required"
-    }
-  },
   "missions": {
     "title1": "Add mission",
     "table": {
@@ -307,8 +296,9 @@
     "title2": "Select attributs of this category",
     "title4": "Pair other documents",
     "title5": "Select documents to pair",
-    "title6": "Creat document's statuts",
+    "title6": "Creat document's Status",
     "title7": "Current state",
+    "title8": "Documents not found",
     "table": {
       "title0": "Id",
       "title1": "Title",
@@ -333,7 +323,10 @@
       "title20": "Distributor visibility ?",
       "title21": "Paired documents",
       "title22": "Mouvement's nature",
-      "title23": "Document's statut"
+      "title23": "Document's Status",
+      "title24": "Status",
+      "title25": "Code format",
+      "title26": "Associate people ?"
     },
     "form": {
       "text1": "Title is required.",
@@ -344,25 +337,40 @@
       "text6": "If this box is unchecked, there will be no possibility of creating movements when creating a copy of the document",
       "text7": "If this box is checked, the distributor column will be visible when creating the movement of a copy of this document",
       "text8": "Mouvement's nature applied to thid document",
-      "text9": "Mouvement's nature to apply to this document is required"
+      "text9": "Mouvement's nature to apply to this document is required",
+      "text12": "If this box is checked, people would be asked when we create document",
+      "text13": "If documents are here, they will be not considerated if 'link ressources' is disabled"
     },
     "view": {
       "title": "Document's Model",
       "text1": "missions's list of document",
       "text2": "attributs's list of document",
       "text3": "attributs's list by categories",
-      "text4": "Statut's list of document"
+      "text4": "Status's list of document"
     },
     "exemplaire": {
       "title": "Document's instance ",
-      "title0": "select",
+      "title0": "selection",
       "title2": "Old datas",
       "title3": "Add ressources",
       "title4": "list of mouvements",
       "title5": "Select instances to pair",
       "text1": "composition of this instance",
       "text2": "Expiration's date",
-      "text3": "Update distributor"
+      "text3": "Update distributor",
+      "text4": "Preview",
+      "text5": "Other documents",
+      "text6": "date ",
+      "text7": "at ",
+      "text8": "Select people",
+      "text9": "Customer's name",
+      "text10": "Order by ",
+      "text11": "Code",
+      "text12": "Transmission mode",
+      "text13": "Transmission",
+      "text14": "Document's history is not available for dose who don't be associate to people",
+      "text15": "Search an assurence",
+      "text16": "Generate PDF"
     }
   },
   "theme": {
@@ -411,7 +419,12 @@
       "title6": "Category",
       "title7": "Caracteristic",
       "title8": "Ressources",
-      "title9": "sell prise"
+      "title9": "sell prise",
+      "title15": "Limit",
+      "title11": "Percentage value",
+      "title12": "Remaining balance",
+      "title13": "No promotion for this assurence",
+      "title14": "Promotion"
     },
     "form": {
       "text1": "Field Required",
@@ -445,7 +458,9 @@
       "title8": "Category",
       "title9": "Actions ",
       "title10": "Total",
-      "title11": "Total amont"
+      "title11": "Total amont",
+      "title12": "Montant pris en charge",
+      "title13": "Montant total à payer"
     }
   },
   "role": {
@@ -519,6 +534,8 @@
   },
   "promo-distributeur": {
     "title": "Add Promotion",
+    "text1": "Issuer",
+    "text2": "Name of Resource or Family",
     "emetteur": "Issuer",
     "date_debut": "Start date",
     "date_fin": "End date",
@@ -527,7 +544,6 @@
     "Pourcentage": "Discount percentage",
     "remise": "Type of discount",
     "beneficiaire": "Beneficiary",
-    "ressource_ou_familles": "Name of Resource or Family",
     "emetteur_control": "Issuer is mandatory.",
     "date_debut_control": "The Promotion Start Date is mandatory.",
     "date_fin_control": "The Promotion End Date is mandatory.",
@@ -542,7 +558,7 @@
     "pourcentage_messgae": "Entrez the percentage",
     "rechercher": "Search",
     "modifier": "Edit",
-    "famille": "Family",
+    "famille": "Category",
     "ressource": "Resource",
     "action": "Actions"
   },
@@ -596,26 +612,92 @@
       "title7": "Amount Max",
       "title8": "Min Amount",
       "title9": "Distributor",
-      "title10": "families",
-      "title11": "Max Quantity",
-      "title12": "Min Quantity",
-      "title13": "Amount Max",
-      "title14": "Min Amount",
-      "title15": "Distributor"
+      "title10": "families"
+    }
+  },
+  "validation": {
+    "header": "Add Validation",
+    "title0": "listing validation",
+    "title1": "Allowed staff",
+    "table": {
+      "title0": "validation"
+    },
+    "form": {
+      "label1": "code",
+      "label2": "etat",
+      "label3": "Creation day",
+      "label4": "Voting Type",
+      "label5": "Duration vote",
+      "label6": "role",
+      "label7": "Type de validation"
     }
   },
   "etats": {
     "table": {
-      "title1": "Add Status"
+      "title1": "Add Status",
+      "title2": "Previous status",
+      "title3": "Next status"
     }
   },
   "doc-etats": {
-    "button1": "Statut",
-    "text1": "Update the statut of this document",
+    "button1": "Status",
+    "button2": "Add validation ?",
+    "text1": "Update the Status of this document",
     "form": {
-      "text1": "Current statut",
-      "text2": "next statut",
-      "text3": "Statut's position"
+      "text1": "Current Status",
+      "text2": "next Status",
+      "text3": "Status's position",
+      "text4": "This order already existed",
+      "text5": "This Status already existed",
+      "text6": "Paired validation",
+      "text7": "Search validatuion"
+    }
+  },
+  "etape": {
+    "title1": "Document",
+    "table": {
+      "title": "Add",
+      "title1": "Libel",
+      "title2": "State"
+    },
+    "form": {
+      "text1": "Field Required"
+    },
+    "lists": {
+      "button1": "Cancel"
+    },
+    "title": "listing ",
+    "search-bar": "Research",
+    "table1": {
+      "title1": "Libel",
+      "title2": "State",
+      "title4": "Actions",
+      "actions": {
+        "link2": "Modified"
+      }
+    }
+  },
+  "parours": {
+    "table": {
+      "title": "Add ",
+      "title1": "libel",
+      "title2": "stage"
+    },
+    "form": {
+      "text1": "Field Required"
+    },
+    "lists": {
+      "button1": "Cancel"
+    },
+    "title": "listing ",
+    "search-bar": "Research",
+    "table1": {
+      "title1": "libel",
+      "title2": "stage",
+      "title4": "Actions",
+      "actions": {
+        "link2": "Modified"
+      }
     }
   }
 }
