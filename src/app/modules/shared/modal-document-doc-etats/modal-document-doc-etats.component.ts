@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-
 import { EtatService } from 'src/app/services/etats/etats.service';
 import { ModalRoleValidationComponent } from '../modal-role-validation/modal-role-validation.component';
 import { IValidation } from 'src/app/modele/validation';
+import mermaid from 'mermaid';
 
 @Component({
   selector: 'app-modal-doc-etats',
@@ -17,6 +18,9 @@ import { IValidation } from 'src/app/modele/validation';
   styleUrls: ['./modal-document-doc-etats.component.scss']
 })
 export class ModalDocEtatsComponent implements OnInit{
+  @ViewChild('mermaidDivEtatsDoc', { static: false })
+    mermaidDivEtatsDoc!: ElementRef;
+
   formeDocEtats: FormGroup;
   etatControl = new FormControl<string | IEtats>('');
   filteredOptions: IEtats[] | undefined;
@@ -46,6 +50,17 @@ export class ModalDocEtatsComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    (window as any).onA = (nodeName: any) => {
+      console.log('Hit callBackFn', nodeName);
+    };
+
+    mermaid.initialize({
+      securityLevel: 'loose',
+      flowchart: {
+        wrappingWidth: 150,
+      },
+    });
+    mermaid.init();
     this.serviceEtat.getAllEtats().subscribe(
       (resultat) => {
         this.filteredOptions = resultat;
@@ -72,6 +87,49 @@ export class ModalDocEtatsComponent implements OnInit{
         );
       }
     });
+  }
+
+  public async ngAfterViewInit(): Promise<void> {
+
+    const element: any = this.mermaidDivEtatsDoc.nativeElement;
+
+    if (this.localElementTableDocEtats != null && this.localElementTableDocEtats.length !== 0) {
+        let AllEtats = this.localElementTableDocEtats.length;
+        console.log(AllEtats);
+        if (AllEtats > 0) {
+          let line = `graph TB;`;
+
+          for (let i = 0; i < AllEtats; i++) {
+
+            if (i == 0) {
+              line = line + `${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}]-->${this.localElementTableDocEtats[i + 1].etat.id}[${this.localElementTableDocEtats[i + 1].etat.libelle}];`;
+            } else {
+              if (this.localElementTableDocEtats[i].etat.etatPrecedant != null && this.localElementTableDocEtats[i].etat.etatPrecedant!.length > 0) {
+                for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatPrecedant!.length; j++) {
+  
+                  line =
+                    line +
+                    `${this.localElementTableDocEtats[i].etat.etatPrecedant![j].id}[${this.localElementTableDocEtats[i].etat.etatPrecedant![j].libelle}]-->${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}];`;
+                }
+              }
+              if (this.localElementTableDocEtats[i].etat.etatSuivant != null && this.localElementTableDocEtats[i].etat.etatSuivant!.length > 0) {
+                for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatSuivant!.length; j++) {
+                  line =
+                    line +
+                    `${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}]-->${this.localElementTableDocEtats[i].etat.etatSuivant![j].id}[${this.localElementTableDocEtats[i].etat.etatSuivant![j].libelle}];`;
+                }
+              }
+            }
+          }
+
+          const { svg, bindFunctions } = await mermaid.render(
+            'graphDiv',
+            line
+          );
+          element.innerHTML = svg;
+          bindFunctions?.(element);
+        }
+    }
   }
 
   public rechercherListingEtat(option: IEtats) {

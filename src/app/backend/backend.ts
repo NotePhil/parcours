@@ -9307,7 +9307,7 @@ export class InMemDBService implements InMemoryDbService {
         estEncaissable: true,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+        beneficiaireObligatoire: true,
         typeMouvement: 'Reduire',
         etat: true,
         affichagePrix: true,
@@ -9818,6 +9818,31 @@ export class InMemDBService implements InMemoryDbService {
                   },
                 },
               },
+              {
+                id: '5',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                ressource: {
+                  id: '2',
+                  libelle: 'Ventoline',
+                  etat: true,
+                  quantite: 20,
+                  scanBarCode: '6911989109209',
+                  prixEntree: 2000,
+                  prixDeSortie: 2050,
+                  /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
+                  unite: 'Litre',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                  seuil: 10
+                },
+              },
             ],
           },
           {
@@ -9967,6 +9992,14 @@ export class InMemDBService implements InMemoryDbService {
             etat: {
               id: '2',
               libelle: 'etat 2',
+              etatSuivant:[
+                  {
+                    id: '3',
+                    libelle: 'etat 3',
+                    description: 'troisième état du document',
+                    dateCreation: new Date('07/21/2024'),
+                  },
+              ],
               description: 'deuxième état du document',
               dateCreation: new Date('07/21/2024'),
             },
@@ -9995,6 +10028,14 @@ export class InMemDBService implements InMemoryDbService {
             etat: {
               id: '3',
               libelle: 'etat 3',
+              etatPrecedant: [
+                {
+                  id: '1',
+                  libelle: 'etat 1',
+                  description: 'premièr état du document',
+                  dateCreation: new Date('07/21/2024'),
+                },
+              ],
               description: 'troisième état du document',
               dateCreation: new Date('07/21/2024'),
             },
@@ -25101,13 +25142,15 @@ export class InMemDBService implements InMemoryDbService {
             montantMin: 100,
             montantMax: 7000,
             ressource: {
-              id: '6',
-              libelle: 'Medical',
+              id: '2',
+              libelle: 'Ventoline',
               etat: true,
               quantite: 20,
               seuil: 10,
+              scanBarCode: '6911989109209',
               prixEntree: 2000,
               prixDeSortie: 2050,
+              /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
               unite: 'Litre',
               famille: {
                 id: '3',
@@ -25115,6 +25158,30 @@ export class InMemDBService implements InMemoryDbService {
                 description: 'enfant',
                 etat: true,
               },
+            },
+          },
+          {
+            id: '1',
+            quantiteMin: 10,
+            quantiteMax: 20,
+            montantMin: 1000,
+            montantMax: 7000,
+            ressource: {
+              id: '1',
+              scanBarCode: '6911989109209',
+              libelle: 'transfusion',
+              etat: true,
+              quantite: 10,
+              prixEntree: 1000,
+              prixDeSortie: 1050,
+              unite: 'Litre',
+              famille: {
+                id: '4',
+                libelle: 'Medical',
+                description: 'nouveau-né',
+                etat: false,
+              },
+              seuil: 10
             },
           },
         ],
