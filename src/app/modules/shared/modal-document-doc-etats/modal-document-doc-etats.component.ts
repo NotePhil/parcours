@@ -70,6 +70,19 @@ export class ModalDocEtatsComponent implements OnInit{
     this.localElementTableDocEtats = [...this.ELEMENTS_TABLE_DOC_ETATS]; // Initialize the local variable with the existing data
     this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS;
 
+    this.formeDocEtats.valueChanges.subscribe((value) => {
+      console.log("hs:", value);
+      
+      if (value != undefined && value?.length > 0) {
+        console.log("avant?");
+        
+        this.ngAfterViewInit();
+
+        console.log("après!");
+        
+      }
+    });
+
     this.etatControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
       if (libelle != undefined && libelle?.length > 0) {
@@ -92,6 +105,8 @@ export class ModalDocEtatsComponent implements OnInit{
   public async ngAfterViewInit(): Promise<void> {
 
     const element: any = this.mermaidDivEtatsDoc.nativeElement;
+    console.log("pendant...");
+    
 
     if (this.localElementTableDocEtats != null && this.localElementTableDocEtats.length !== 0) {
         let AllEtats = this.localElementTableDocEtats.length;
