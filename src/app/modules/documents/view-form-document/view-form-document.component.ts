@@ -64,8 +64,8 @@ export class ViewFormDocumentComponent implements OnInit {
     this.titre = this.dataEnteteMenuService.dataEnteteMenu;
   }
 
-  listEtats(etats: IEtats[]): string{
-    let lists : string = "";
+  listEtats(etats: IEtats[]): string {
+    let lists: string = "";
     etats?.forEach(element => {
       lists += element.libelle + ', ';
     });
@@ -90,34 +90,27 @@ export class ViewFormDocumentComponent implements OnInit {
 
           for (let i = 0; i < AllEtats; i++) {
 
-            if (i == 0) {
-              line = line + `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i + 1].etat.id}[${x.docEtats[i + 1].etat.libelle}];`;
-            } else {
-            console.log("elsei++:", i);
+            if (x.docEtats[i].etat.etatPrecedant != null && x.docEtats[i].etat.etatPrecedant!.length > 0) {
+              for (let j = 0; j < x.docEtats[i].etat.etatPrecedant!.length; j++) {
+                console.log("j++:", j);
 
-              if (x.docEtats[i].etat.etatPrecedant != null && x.docEtats[i].etat.etatPrecedant!.length > 0) {
-                for (let j = 0; j < x.docEtats[i].etat.etatPrecedant!.length; j++) {
-                  console.log("j++:", j);
-  
-                  line =
-                    line +
-                    `${x.docEtats[i].etat.etatPrecedant![j].id}[${x.docEtats[i].etat.etatPrecedant![j].libelle}]-->${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}];`;
-                }
-                console.log("PREi++:", i);
+                line =
+                  line +
+                  `${x.docEtats[i].etat.etatPrecedant![j].id}[${x.docEtats[i].etat.etatPrecedant![j].libelle}]-->${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}];`;
               }
-              if (x.docEtats[i].etat.etatSuivant != null && x.docEtats[i].etat.etatSuivant!.length > 0) {
-                for (let j = 0; j < x.docEtats[i].etat.etatSuivant!.length; j++) {
-                  console.log("j++:", j);
-  
-                  line =
-                    line +
-                    `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i].etat.etatSuivant![j].id}[${x.docEtats[i].etat.etatSuivant![j].libelle}];`;
-                }
-                console.log("SUIi++:", i);
-              }
+              console.log("PREi++:", i);
             }
-            console.log("i++:", i);
-            
+            if (x.docEtats[i].etat.etatSuivant != null && x.docEtats[i].etat.etatSuivant!.length > 0) {
+              for (let j = 0; j < x.docEtats[i].etat.etatSuivant!.length; j++) {
+                console.log("j++:", j);
+
+                line =
+                  line +
+                  `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i].etat.etatSuivant![j].id}[${x.docEtats[i].etat.etatSuivant![j].libelle}];`;
+              }
+              console.log("SUIi++:", i);
+            }
+
           }
 
           let phrase = `

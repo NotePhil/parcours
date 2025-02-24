@@ -17,9 +17,9 @@ import mermaid from 'mermaid';
   templateUrl: './modal-document-doc-etats.component.html',
   styleUrls: ['./modal-document-doc-etats.component.scss']
 })
-export class ModalDocEtatsComponent implements OnInit{
+export class ModalDocEtatsComponent implements OnInit {
   @ViewChild('mermaidDivEtatsDoc', { static: false })
-    mermaidDivEtatsDoc!: ElementRef;
+  mermaidDivEtatsDoc!: ElementRef;
 
   formeDocEtats: FormGroup;
   etatControl = new FormControl<string | IEtats>('');
@@ -72,14 +72,14 @@ export class ModalDocEtatsComponent implements OnInit{
 
     this.formeDocEtats.valueChanges.subscribe((value) => {
       console.log("hs:", value);
-      
+
       if (value != undefined && value?.length > 0) {
         console.log("avant?");
-        
+
         this.ngAfterViewInit();
 
         console.log("après!");
-        
+
       }
     });
 
@@ -105,45 +105,39 @@ export class ModalDocEtatsComponent implements OnInit{
   public async ngAfterViewInit(): Promise<void> {
 
     const element: any = this.mermaidDivEtatsDoc.nativeElement;
-    console.log("pendant...");
-    
+
 
     if (this.localElementTableDocEtats != null && this.localElementTableDocEtats.length !== 0) {
-        let AllEtats = this.localElementTableDocEtats.length;
-        console.log(AllEtats);
-        if (AllEtats > 0) {
-          let line = `graph TB;`;
+      let AllEtats = this.localElementTableDocEtats.length;
+      console.log(AllEtats);
+      if (AllEtats > 0) {
+        let line = `graph TB;`;
 
-          for (let i = 0; i < AllEtats; i++) {
+        for (let i = 0; i < AllEtats; i++) {
+          if (this.localElementTableDocEtats[i].etat.etatPrecedant != null && this.localElementTableDocEtats[i].etat.etatPrecedant!.length > 0) {
+            for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatPrecedant!.length; j++) {
 
-            if (i == 0) {
-              line = line + `${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}]-->${this.localElementTableDocEtats[i + 1].etat.id}[${this.localElementTableDocEtats[i + 1].etat.libelle}];`;
-            } else {
-              if (this.localElementTableDocEtats[i].etat.etatPrecedant != null && this.localElementTableDocEtats[i].etat.etatPrecedant!.length > 0) {
-                for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatPrecedant!.length; j++) {
-  
-                  line =
-                    line +
-                    `${this.localElementTableDocEtats[i].etat.etatPrecedant![j].id}[${this.localElementTableDocEtats[i].etat.etatPrecedant![j].libelle}]-->${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}];`;
-                }
-              }
-              if (this.localElementTableDocEtats[i].etat.etatSuivant != null && this.localElementTableDocEtats[i].etat.etatSuivant!.length > 0) {
-                for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatSuivant!.length; j++) {
-                  line =
-                    line +
-                    `${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}]-->${this.localElementTableDocEtats[i].etat.etatSuivant![j].id}[${this.localElementTableDocEtats[i].etat.etatSuivant![j].libelle}];`;
-                }
-              }
+              line =
+                line +
+                `${this.localElementTableDocEtats[i].etat.etatPrecedant![j].id}[${this.localElementTableDocEtats[i].etat.etatPrecedant![j].libelle}]-->${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}];`;
             }
           }
-
-          const { svg, bindFunctions } = await mermaid.render(
-            'graphDiv',
-            line
-          );
-          element.innerHTML = svg;
-          bindFunctions?.(element);
+          if (this.localElementTableDocEtats[i].etat.etatSuivant != null && this.localElementTableDocEtats[i].etat.etatSuivant!.length > 0) {
+            for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatSuivant!.length; j++) {
+              line =
+                line +
+                `${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}]-->${this.localElementTableDocEtats[i].etat.etatSuivant![j].id}[${this.localElementTableDocEtats[i].etat.etatSuivant![j].libelle}];`;
+            }
+          }
         }
+
+        const { svg, bindFunctions } = await mermaid.render(
+          'graphDiv',
+          line
+        );
+        element.innerHTML = svg;
+        bindFunctions?.(element);
+      }
     }
   }
 
@@ -195,7 +189,7 @@ export class ModalDocEtatsComponent implements OnInit{
     this.localElementTableDocEtats.splice(index, 1); // Remove the element from the local array
     this.localElementTableDocEtats[0].etat.etatPrecedant = undefined
     this.dataSourceDocEtats.data = this.localElementTableDocEtats; // Update the data source with the modified local array
-}
+  }
 
 
   reinitialliseRessourceControl() {
