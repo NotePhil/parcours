@@ -29,14 +29,18 @@ export class LoginComponent {
         ],
       ]
     });
+    
+  }
+  ngOnInit() {
+    console.log("local storage :", this.authService.currentUserValue);
+    
     // rediriger vers la page d'accueil si déjà connecté
     if (this.authService.currentUserValue) {
       this.router.navigate(['/parcours']);
+    } else {
+      // obtenir l'URL de retour ou rediriger vers l'accueil
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/parcours';
     }
-  }
-  ngOnInit() {
-    // obtenir l'URL de retour ou rediriger vers l'accueil
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/parcours';
   }
 
   get f() {

@@ -108,11 +108,6 @@ const routes: Routes = [
         canActivate: [RoleAuthGuard] 
       },
       {
-        path: '',
-        redirectTo: '/parcours',
-        pathMatch: 'full'
-      },
-      {
         path: '**',
         component: NotFoundComponent
       }
