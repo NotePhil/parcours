@@ -38481,7 +38481,7 @@ export class InMemDBService implements InMemoryDbService {
       validations,
       mvtCaisses,
       missions,
-      attributs,
+      //attributs,
       documents,
       exemplaires,
       famille,
