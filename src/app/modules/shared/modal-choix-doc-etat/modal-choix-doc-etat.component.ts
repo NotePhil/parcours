@@ -21,8 +21,7 @@ export class ModalChoixDocEtatComponent {
   selectedEtatsMap: IDocEtats | undefined;
   formeEtat: FormGroup;
   selectedEtat: string | undefined;
-  @Output() saveChanges: EventEmitter<IDocEtats> = new EventEmitter<IDocEtats>();
-  @Input() previouslySelectedEtat: IDocEtats | undefined; // Input to receive the previously selected etat
+  previouslySelectedEtat: IDocEtats | undefined; // Input pour recevoir les etats pre-selectionees
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -44,7 +43,6 @@ export class ModalChoixDocEtatComponent {
 
     if (selectedEtat) {
       this.servicedonneechange.saveEtatModal(selectedEtat);
-      console.log("etat :", selectedEtat);
       
     }
     this.dialogRef.close();
@@ -53,13 +51,12 @@ export class ModalChoixDocEtatComponent {
   onRadioChange(etat: IDocEtats): void {
 
     this.selectedEtatsMap = etat;
-    console.log("change etat :", this.selectedEtatsMap);
   }
 
   ngOnInit(): void {
     // Charge l'état précédemment sélectionné depuis DocumentService
     this.selectedEtat = this.documentService.getSelectedEtat(
-      this.data.documentChoisi.id
+      this.data.documentChoisi.idDocument
     );
   }
 }

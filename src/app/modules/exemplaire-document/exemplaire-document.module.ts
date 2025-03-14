@@ -22,6 +22,10 @@ import { PageIntermediaireComponent } from './page-intermediaire/page-intermedia
 import { NgxPrintModule } from 'ngx-print';
 import { ModulesRoutingModule } from '../modules-routing.module';
 import { NewExemplaireComponent } from './new-exemplaire/new-exemplaire.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -42,10 +46,14 @@ import { NewExemplaireComponent } from './new-exemplaire/new-exemplaire.componen
     MatAutocompleteModule,
     SharedModule,
     MatInputModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    MatSlideToggleModule,
+    MatIconModule,
+    MatToolbarModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

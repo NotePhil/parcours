@@ -24,7 +24,12 @@ import { IEtats } from '../modele/etats';
 import { IValidation } from '../modele/validation';
 import { IEtape } from '../modele/etape';
 import { IParours } from '../modele/parours';
-import { Promo } from '../modele/promo-distributeur';
+import { TypeValidation } from '../modele/type-validation';
+import { FormatCode } from '../modele/format-code';
+import { ICaisses } from '../modele/caisses';
+import { IComptes } from '../modele/comptes';
+import { IMouvementCaisses } from '../modele/mouvement-caisses';
+import { IPromo } from '../modele/promo-distributeur';
 import { IGroupes } from '../modele/groupes';
 import { IMenu } from '../modele/menu';
 import { IUtilisateurs } from '../modele/utilisateurs';
@@ -371,8 +376,8 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Créer', lien: './attributs/attribut-nouveau', bouton: 'false' },
-              { nom: 'Rechercher', lien: './attributs/list-attributs', bouton: 'false' },
+              { nom: 'Créer', lien: './attribut-nouveau', bouton: 'false' },
+              { nom: 'Rechercher', lien: './list-attributs', bouton: 'false' },
             ],
           },
           {
@@ -432,7 +437,9 @@ export class InMemDBService implements InMemoryDbService {
             actif: '',
             elements: [
               { nom: 'Créer', lien: 'ressources/ressource-nouvelle', bouton: 'false' },
+              { nom: 'Stocks', lien: './ressources/search-ressource', bouton: 'false' },
               { nom: 'Rechercher', lien: './ressources/list-ressources', bouton: 'false' },
+
             ],
           },
           {
@@ -530,8 +537,8 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'New', lien: './attributs/attribut-nouveau', bouton: 'false' },
-              { nom: 'Search', lien: './attributs/list-attributs', bouton: 'false' },
+              { nom: 'New', lien: './attribut-nouveau', bouton: 'false' },
+              { nom: 'Search', lien: './list-attributs', bouton: 'false' },
             ],
           },
           {
@@ -554,7 +561,7 @@ export class InMemDBService implements InMemoryDbService {
             elements: [
               { nom: 'New', lien: './missions/mission-nouveau', bouton: 'false' },
               { nom: 'Search', lien: './missions/list-missions', bouton: 'false' },
-              { nom: 'Execute', lien: './missions/page-intermedaire', bouton: 'false' },
+              { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
               {
                 nom: 'list of exemplaires',
                 lien: './missions/list-exemplaire',
@@ -604,6 +611,7 @@ export class InMemDBService implements InMemoryDbService {
             actif: '',
             elements: [
               { nom: 'New', lien: 'ressources/ressource-nouvelle', bouton: 'false' },
+              { nom: 'Stocks', lien: './ressources/search-ressource', bouton: 'false' },
               { nom: 'Search', lien: './ressources/list-ressources', bouton: 'false' },
             ],
           },
@@ -630,10 +638,10 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'New', lien: 'promo-nouveau', bouton: 'false' },
+              { nom: 'New', lien: 'promo/promo-nouveau', bouton: 'false' },
               {
                 nom: 'search',
-                lien: './list-promo',
+                lien: './promo/list-promo',
                 bouton: 'false',
               },
             ],
@@ -643,10 +651,36 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'New', lien: 'promo-nouveau', bouton: 'false' },
+              { nom: 'New', lien: 'promo/promo-nouveau', bouton: 'false' },
               {
                 nom: 'search',
-                lien: './list-promo',
+                lien: './promo/list-promo',
+                bouton: 'false',
+              },
+            ],
+          },
+          {
+            fonction: 'Promo',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'New', lien: 'promo/promo-nouveau', bouton: 'false' },
+              {
+                nom: 'search',
+                lien: './promo/list-promo',
+                bouton: 'false',
+              },
+            ],
+          },
+          {
+            fonction: 'Promo',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'New', lien: 'promo/promo-nouveau', bouton: 'false' },
+              {
+                nom: 'search',
+                lien: './promo/list-promo',
                 bouton: 'false',
               },
             ],
@@ -1424,6 +1458,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'bon',
         typeVote: 'Unanime',
         dureeVote: 5,
+        typeValidation: 'Simple',
         role: {
           id: '1',
           titre: 'vendeur',
@@ -1439,6 +1474,7 @@ export class InMemDBService implements InMemoryDbService {
         etat: true,
         libelle: 'passable',
         typeVote: 'Majoritaire',
+        typeValidation: 'Transmission',
         dureeVote: 10,
         role: {
           id: '2',
@@ -1455,6 +1491,7 @@ export class InMemDBService implements InMemoryDbService {
         etat: true,
         libelle: 'RAS',
         typeVote: 'Unanime',
+        typeValidation: 'Traitement',
         dureeVote: 5,
         role: {
           id: '3',
@@ -1778,10 +1815,12 @@ export class InMemDBService implements InMemoryDbService {
     ];
     let documents: IDocument[] = [
       {
-        id: '1',
+        idDocument: '1',
         titre: 'Note intervention',
+        estEncaissable: false,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
         docEtats: [
           {
             id: '1',
@@ -1833,6 +1872,7 @@ export class InMemDBService implements InMemoryDbService {
         affichagePrix: true,
         contientRessources: true,
         contientDistributeurs: true,
+        formatCode: 'FACT',
         missions: [
           {
             id: '1',
@@ -2083,6 +2123,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -2133,6 +2174,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -2152,10 +2194,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   prixEntree: 2000,
                   prixDeSortie: 2050,
                   unite: 'Litre',
@@ -2241,6 +2284,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -2255,7 +2299,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -2284,10 +2328,11 @@ export class InMemDBService implements InMemoryDbService {
         ],
         sousDocuments: [
           {
-            id: '1',
+            idDocument: '1',
             titre: 'Note intervention',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: false,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -2339,6 +2384,7 @@ export class InMemDBService implements InMemoryDbService {
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -2450,8 +2496,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: IType.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
               },
               {
                 id: '8',
@@ -2549,8 +2594,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -2589,6 +2633,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -2639,6 +2684,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -2657,10 +2703,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -2746,6 +2793,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -2760,7 +2808,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -2789,10 +2837,12 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '2',
+            idDocument: '2',
             titre: 'Fiche de suivi',
+            estEncaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
             docEtats: [
               {
                 id: '1',
@@ -2833,6 +2883,7 @@ export class InMemDBService implements InMemoryDbService {
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -3084,6 +3135,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -3134,6 +3186,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -3152,10 +3205,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -3241,6 +3295,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -3255,7 +3310,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -3284,15 +3339,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '3',
+            idDocument: '3',
             titre: 'Fiche de soin',
+            estEncaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '1',
@@ -3528,6 +3586,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       unite: 'Litre',
                       prixDeSortie: 2000,
                       prixEntree: 1300,
@@ -3577,6 +3636,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixDeSortie: 2000,
                       prixEntree: 1300,
                       unite: 'Litre',
@@ -3595,10 +3655,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixDeSortie: 2000,
                       prixEntree: 1300,
                       unite: 'Litre',
@@ -3684,6 +3745,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       unite: 'Litre',
                       prixDeSortie: 2000,
                       prixEntree: 1300,
@@ -3697,7 +3759,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -3726,15 +3788,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
+            estEncaissable: false,
             typeMouvement: 'Ajout',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '2',
@@ -3968,13 +4033,14 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       unite: 'Litre',
                       prixDeSortie: 1000,
                       scanBarCode: 'hello',
                       prixEntree: 500,
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -3995,7 +4061,7 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4018,13 +4084,14 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       unite: 'Litre',
                       prixDeSortie: 3000,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4038,9 +4105,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMax: 7000,
                     ressource: {
                       id: '2',
-                      libelle: 'néonat',
+                      libelle: 'Ventoline',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       unite: 'Litre',
                       prixDeSortie: 2000,
                       prixEntree: 500,
@@ -4075,7 +4143,7 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4110,7 +4178,7 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4126,13 +4194,14 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       unite: 'Litre',
                       prixDeSortie: 1000,
                       scanBarCode: 'hello',
                       prixEntree: 500,
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4140,7 +4209,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -4169,15 +4238,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
+            estEncaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             etat: true,
             typeMouvement: TypeMouvement.Ajout,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '2',
@@ -4579,13 +4651,14 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       unite: 'Litre',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4629,12 +4702,13 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4648,9 +4722,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMax: 7000,
                     ressource: {
                       id: '2',
-                      libelle: 'néonat',
+                      libelle: 'Ventoline',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -4685,7 +4760,7 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4720,7 +4795,7 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4736,13 +4811,14 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       unite: 'Litre',
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -4750,7 +4826,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -4779,15 +4855,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
+            estEncaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '2',
@@ -5021,13 +5100,14 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       unite: 'Litre',
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5048,7 +5128,7 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5071,12 +5151,13 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       unite: 'Litre',
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5090,9 +5171,10 @@ export class InMemDBService implements InMemoryDbService {
                     montantMax: 7000,
                     ressource: {
                       id: '2',
-                      libelle: 'néonat',
+                      libelle: 'Ventoline',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       unite: 'Litre',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -5127,7 +5209,7 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5162,7 +5244,7 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5178,13 +5260,14 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       unite: 'Litre',
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
                       famille: {
                         id: '4',
-                        libelle: 'néonat',
+                        libelle: 'Ventoline',
                         description: 'nouveau-né',
                         etat: true,
                       },
@@ -5192,7 +5275,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -5221,14 +5304,17 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
+            estEncaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             typeMouvement: 'Ajout',
             docEtats: [
               {
@@ -5660,6 +5746,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -5710,6 +5797,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -5728,10 +5816,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -5817,6 +5906,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -5831,7 +5921,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -5860,15 +5950,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '5',
+            idDocument: '5',
             titre: 'ordonnance',
+            estEncaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '1',
@@ -6167,6 +6260,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -6217,6 +6311,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -6235,10 +6330,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -6324,6 +6420,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -6338,7 +6435,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -6369,10 +6466,12 @@ export class InMemDBService implements InMemoryDbService {
         ],
       },
       {
-        id: '2',
+        idDocument: '2',
         titre: 'Fiche de suivi',
+        estEncaissable: false,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
         docEtats: [
           {
             id: '1',
@@ -6413,6 +6512,7 @@ export class InMemDBService implements InMemoryDbService {
         affichagePrix: true,
         contientRessources: false,
         contientDistributeurs: false,
+        formatCode: 'FACT',
         missions: [
           {
             id: '1',
@@ -6664,6 +6764,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -6714,6 +6815,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -6733,10 +6835,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   prixEntree: 2000,
                   prixDeSortie: 2050,
                   unite: 'Litre',
@@ -6822,6 +6925,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -6836,7 +6940,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -6865,15 +6969,18 @@ export class InMemDBService implements InMemoryDbService {
         ],
       },
       {
-        id: '3',
+        idDocument: '3',
         titre: 'Fiche de soin',
+        estEncaissable: true,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
         typeMouvement: 'Neutre',
         etat: true,
         affichagePrix: false,
         contientRessources: true,
         contientDistributeurs: false,
+        formatCode: 'FACT',
         docEtats: [
           {
             id: '1',
@@ -7109,6 +7216,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -7159,6 +7267,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -7178,10 +7287,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   prixEntree: 2000,
                   prixDeSortie: 2050,
                   unite: 'Litre',
@@ -7267,6 +7377,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -7281,7 +7392,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -7310,10 +7421,12 @@ export class InMemDBService implements InMemoryDbService {
         ],
         sousDocuments: [
           {
-            id: '1',
+            idDocument: '1',
             titre: 'Note intervention',
+            estEncaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -7365,6 +7478,7 @@ export class InMemDBService implements InMemoryDbService {
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -7615,6 +7729,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -7665,6 +7780,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -7683,10 +7799,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -7772,6 +7889,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -7786,7 +7904,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -7815,10 +7933,12 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '2',
+            idDocument: '2',
             titre: 'Fiche de suivi',
+            estEncaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
             docEtats: [
               {
                 id: '1',
@@ -7859,6 +7979,7 @@ export class InMemDBService implements InMemoryDbService {
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -8111,6 +8232,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -8161,6 +8283,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -8179,10 +8302,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -8268,6 +8392,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -8282,7 +8407,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -8311,15 +8436,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '3',
+            idDocument: '3',
             titre: 'Fiche de soin',
+            estEncaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '1',
@@ -8555,6 +8683,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -8605,6 +8734,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -8623,10 +8753,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -8712,6 +8843,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -8726,7 +8858,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -8755,15 +8887,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
+            estEncaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '2',
@@ -9183,6 +9318,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -9233,6 +9369,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -9251,10 +9388,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -9340,6 +9478,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -9354,7 +9493,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -9383,15 +9522,17 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '5',
+            idDocument: '5',
             titre: 'ordonnance',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: true,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '1',
@@ -9549,8 +9690,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: IType.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
               },
               {
                 id: '5',
@@ -9650,8 +9790,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -9690,6 +9829,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -9740,6 +9880,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -9758,10 +9899,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -9847,6 +9989,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -9861,7 +10004,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -9892,15 +10035,18 @@ export class InMemDBService implements InMemoryDbService {
         ],
       },
       {
-        id: '4',
+        idDocument: '4',
         titre: 'Formulaire de sortie',
+        estEncaissable: true,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+        beneficiaireObligatoire: true,
         typeMouvement: 'Reduire',
         etat: true,
         affichagePrix: true,
         contientRessources: true,
         contientDistributeurs: false,
+        formatCode: 'FACT',
         docEtats: [
           {
             id: '2',
@@ -10318,6 +10464,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -10368,6 +10515,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -10387,10 +10535,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   prixEntree: 2000,
                   prixDeSortie: 2050,
                   unite: 'Litre',
@@ -10400,6 +10549,31 @@ export class InMemDBService implements InMemoryDbService {
                     description: 'enfant',
                     etat: true,
                   },
+                },
+              },
+              {
+                id: '5',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                ressource: {
+                  id: '2',
+                  libelle: 'Ventoline',
+                  etat: true,
+                  quantite: 20,
+                  scanBarCode: '6911989109209',
+                  prixEntree: 2000,
+                  prixDeSortie: 2050,
+                  /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
+                  unite: 'Litre',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                  seuil: 10
                 },
               },
             ],
@@ -10476,6 +10650,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -10490,7 +10665,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -10519,15 +10694,18 @@ export class InMemDBService implements InMemoryDbService {
         ],
       },
       {
-        id: '5',
+        idDocument: '5',
         titre: 'ordonnance',
+        estEncaissable: true,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
         typeMouvement: 'Neutre',
         etat: true,
         affichagePrix: false,
         contientRessources: true,
         contientDistributeurs: true,
+            formatCode: 'FACT',
         docEtats: [
           {
             id: '1',
@@ -10547,6 +10725,14 @@ export class InMemDBService implements InMemoryDbService {
             etat: {
               id: '2',
               libelle: 'etat 2',
+              etatSuivant:[
+                  {
+                    id: '3',
+                    libelle: 'etat 3',
+                    description: 'troisième état du document',
+                    dateCreation: new Date('07/21/2024'),
+                  },
+              ],
               description: 'deuxième état du document',
               dateCreation: new Date('07/21/2024'),
             },
@@ -10556,6 +10742,7 @@ export class InMemDBService implements InMemoryDbService {
               etat: true,
               libelle: 'passable',
               typeVote: 'Majoritaire',
+              typeValidation: 'Transmission',
               dureeVote: 10,
               role: {
                 id: '2',
@@ -10574,6 +10761,14 @@ export class InMemDBService implements InMemoryDbService {
             etat: {
               id: '3',
               libelle: 'etat 3',
+              etatPrecedant: [
+                {
+                  id: '1',
+                  libelle: 'etat 1',
+                  description: 'premièr état du document',
+                  dateCreation: new Date('07/21/2024'),
+                },
+              ],
               description: 'troisième état du document',
               dateCreation: new Date('07/21/2024'),
             },
@@ -10841,6 +11036,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -10891,6 +11087,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -10910,10 +11107,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   prixEntree: 2000,
                   prixDeSortie: 2050,
                   unite: 'Litre',
@@ -10999,6 +11197,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -11013,7 +11212,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -11042,15 +11241,18 @@ export class InMemDBService implements InMemoryDbService {
         ],
         sousDocuments: [
           {
-            id: '3',
+            idDocument: '3',
             titre: 'Fiche de soin',
+            estEncaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '1',
@@ -11286,6 +11488,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -11336,6 +11539,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -11354,10 +11558,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -11443,6 +11648,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -11457,7 +11663,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -11486,15 +11692,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
+            estEncaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '2',
@@ -11914,6 +12123,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -11964,6 +12174,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -11982,10 +12193,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -12071,6 +12283,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -12085,7 +12298,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -12114,15 +12327,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '5',
+            idDocument: '5',
             titre: 'ordonnance',
+            estEncaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '1',
@@ -12421,6 +12637,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -12471,6 +12688,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -12489,10 +12707,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -12578,6 +12797,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -12592,7 +12812,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -12622,44 +12842,518 @@ export class InMemDBService implements InMemoryDbService {
           },
         ],
       },
+      {
+        idDocument: '6',
+        titre: 'Fiche de commande',
+        description:
+          "Document delivre par le medecin ou un infirmier de l'etablissement",
+        beneficiaireObligatoire: false,
+        estEncaissable: true,
+        docEtats: [
+          {
+            id: '2',
+            ordre: 2,
+            dateCreation: new Date('07/21/2024'),
+            etat: {
+              id: '2',
+              libelle: 'etat 2',
+              description: 'deuxième état du document',
+              dateCreation: new Date('07/21/2024'),
+            },
+          },
+          {
+            id: '3',
+            ordre: 3,
+            dateCreation: new Date('07/21/2024'),
+            etat: {
+              id: '3',
+              libelle: 'etat 3',
+              description: 'troisième état du document',
+              dateCreation: new Date('07/21/2024'),
+            },
+          },
+        ],
+        typeMouvement: 'Ajout',
+        etat: false,
+        affichagePrix: true,
+        contientRessources: true,
+        contientDistributeurs: true,
+        formatCode: 'FACT',
+        missions: [
+          {
+            id: '3',
+            libelle: 'Prelevement Labo',
+            description: 'Prélévement fait par laboratoire',
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            idLogin: 'admin',
+            service: {
+              id: '3',
+              libelle: 'Consultation',
+              etat: true,
+              dateDerniereModification: new Date('12/06/1972'),
+              dateAttribution: new Date('07/03/1990'),
+              dateFin: new Date('07/03/1990'),
+              nombreTotalAttributions: 50,
+              localisation: 'douala',
+              description: 'bien',
+            },
+          },
+          {
+            id: '2',
+            libelle: 'Consultation Spécialiste',
+            description: 'Consultation faite par un médecin',
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            idLogin: 'admin',
+            service: {
+              id: '2',
+              libelle: 'Laboratoire',
+              etat: true,
+              dateDerniereModification: new Date('06/08/1990'),
+              dateAttribution: new Date('07/03/1990'),
+              dateFin: new Date('07/03/1990'),
+              nombreTotalAttributions: 20,
+              localisation: 'douala',
+              description: 'bien',
+            },
+          },
+        ],
+        attributs: [
+          {
+            id: '1',
+            titre: 'taille',
+            description: "taille de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            type: IType.Double,
+            valeursParDefaut: '',
+          },
+          {
+            id: '6',
+            titre: 'teint',
+            description: "teint de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+
+            type: IType.String,
+            valeursParDefaut: '',
+          },
+          {
+            id: '8',
+            titre: 'cicatrice',
+            description: "cicatrice de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            type: IType.Boolean,
+            valeursParDefaut: 'true, false',
+          },
+          {
+            id: '4',
+            titre: 'age',
+            description: "age de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            type: IType.Double,
+            valeursParDefaut: '',
+          },
+          {
+            id: '7',
+            titre: 'Groupe sangin',
+            description: "Groupe sangin de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            type: IType.Boolean,
+            valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+          },
+          {
+            id: '5',
+            titre: 'allergies',
+            description: "allergies de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+
+            type: IType.String,
+            valeursParDefaut: '',
+          },
+        ],
+        categories: [
+          {
+            id: '1',
+            nom: 'informations personelles',
+            ordre: 1,
+            listAttributsParCategories: [
+              {
+                id: '1',
+                ordre: 2,
+                obligatoire: false,
+                attribut: {
+                  id: '1',
+                  titre: 'taille',
+                  description: "taille de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.Double,
+                  valeursParDefaut: '',
+                },
+              },
+              {
+                id: '2',
+                ordre: 1,
+                obligatoire: false,
+                attribut: {
+                  id: '4',
+                  titre: 'age',
+                  description: "age de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.Double,
+                  valeursParDefaut: '',
+                },
+              },
+              {
+                id: '3',
+                ordre: 3,
+                obligatoire: false,
+                attribut: {
+                  id: '6',
+                  titre: 'teint',
+                  description: "teint de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.String,
+                  valeursParDefaut: '',
+                },
+              },
+            ],
+          },
+          {
+            id: '2',
+            nom: 'informations de sante',
+            ordre: 2,
+            listAttributsParCategories: [
+              {
+                id: '',
+                ordre: 2,
+                obligatoire: false,
+                attribut: {
+                  id: '5',
+                  titre: 'allergies',
+                  description: "allergies de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.String,
+                  valeursParDefaut: '',
+                },
+              },
+              {
+                id: '',
+                ordre: 1,
+                obligatoire: false,
+                attribut: {
+                  id: '7',
+                  titre: 'Groupe sangin',
+                  description: "Groupe sangin de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.Boolean,
+                  valeursParDefaut:
+                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                },
+              },
+              {
+                id: '',
+                ordre: 3,
+                obligatoire: false,
+                attribut: {
+                  id: '8',
+                  titre: 'cicatrice',
+                  description: "cicatrice de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
+              },
+            ],
+          },
+        ],
+        preconisations: [
+          {
+            id: '1',
+            libelle: 'rachat',
+            etat: true,
+            type: 'Neutre',
+            precomvtqte: [
+              {
+                id: '1',
+                quantiteMin: 10,
+                quantiteMax: 20,
+                montantMin: 1000,
+                montantMax: 7000,
+                ressource: {
+                  id: '1',
+                  libelle: 'transfusion',
+                  etat: true,
+                  quantite: 10,
+                  seuil: 5,
+                  scanBarCode: '6911989109209',
+                  prixEntree: 1000,
+                  prixDeSortie: 1050,
+                  unite: 'Litre',
+                  famille: {
+                    id: '4',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                },
+              },
+              {
+                id: '2',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                famille: [
+                  {
+                    id: '1',
+                    libelle: 'Electronique',
+                    description: 'sang',
+                    etat: true,
+                  },
+                  {
+                    id: '2',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                  {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                ],
+              },
+              {
+                id: '3',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                ressource: {
+                  id: '3',
+                  libelle: 'pediatrie',
+                  etat: true,
+                  quantite: 30,
+                  seuil: 15,
+                  scanBarCode: '6911989109209',
+                  prixEntree: 1000,
+                  prixDeSortie: 1050,
+                  unite: 'Litre',
+                  famille: {
+                    id: '4',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                },
+              },
+              {
+                id: '4',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                ressource: {
+                  id: '6',
+                  libelle: 'Medical',
+                  etat: true,
+                  quantite: 20,
+                  seuil: 10,
+                  prixEntree: 2000,
+                  prixDeSortie: 2050,
+                  unite: 'Litre',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                },
+              },
+            ],
+          },
+          {
+            id: '2',
+            libelle: 'vente',
+            etat: true,
+            type: 'Reduire',
+            precomvtqte: [
+              {
+                id: '1',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                famille: [
+                  {
+                    id: '1',
+                    libelle: 'Electronique',
+                    description: 'sang',
+                    etat: true,
+                  },
+                  {
+                    id: '2',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                  {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: '3',
+            libelle: 'vente',
+            type: 'Reduire',
+            etat: true,
+            precomvtqte: [
+              {
+                id: '1',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                famille: [
+                  {
+                    id: '1',
+                    libelle: 'Electronique',
+                    description: 'sang',
+                    etat: true,
+                  },
+                  {
+                    id: '2',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                  {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                ],
+                ressource: {
+                  id: '1',
+                  libelle: 'transfusion',
+                  etat: true,
+                  quantite: 10,
+                  seuil: 5,
+                  scanBarCode: '6911989109209',
+                  prixEntree: 1000,
+                  prixDeSortie: 1050,
+                  unite: 'Litre',
+                  famille: {
+                    id: '4',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                },
+                distributeur: [
+                  {
+                    id: '1',
+                    raisonSocial: 'Brasserie',
+                    etat: true,
+                    adresse: 'Dla',
+                    telephone: '655554488',
+                    mail: 'ngong@yad.fr',
+                  },
+                  {
+                    id: '2',
+                    raisonSocial: 'guinness',
+                    etat: true,
+                    adresse: 'Ydé',
+                    telephone: '655554481',
+                    mail: 'ngong@yad.fr',
+                  },
+                  {
+                    id: '3',
+                    raisonSocial: 'papeterie yvan',
+                    etat: true,
+                    adresse: 'Buéa',
+                    telephone: '655554486',
+                    mail: 'ngong@yad.fr',
+                  },
+                ],
+              },
+            ],
+          },
+        ]
+      }
     ];
     let exemplaires: IExemplaireDocument[] = [
       {
         id: '1',
+        code: '03072024-120000-123',
         idDocument: '4',
+        estEncaissable: false,
         personneRattachee: {
-            id: '6911989109209',
-            nom: 'NGONGANG',
-            prenom: 'Philippe',
-            sexe: 'M',
-            adresse: 'Yaoundé',
-            telephone: '090999090',
-            mail: 'ngong@yad.fr',
-            dateNaissance: new Date('07/07/1989'),
-            qrCodeValue: '',
-            personnesRatachees: [
-              {
-                id: '78',
-                nom: 'Tchakounte',
-                prenom: 'Simpice',
-                sexe: 'm',
-                dateNaissance: new Date('07/07/1989'),
-                adresse: 'Yaoundé',
-                telephone: '090999090',
-                mail: 'ngong@yad.fr',
-                qrCodeValue: '78',
-              },
-            ],
-          },
+          id: '6911989109209',
+          nom: 'NGONGANG',
+          prenom: 'Philippe',
+          sexe: 'M',
+          adresse: 'Yaoundé',
+          telephone: '090999090',
+          mail: 'ngong@yad.fr',
+          dateNaissance: new Date('07/07/1989'),
+          qrCodeValue: '',
+          personnesRatachees: [
+            {
+              id: '78',
+              nom: 'Tchakounte',
+              prenom: 'Simpice',
+              sexe: 'm',
+              dateNaissance: new Date('07/07/1989'),
+              adresse: 'Yaoundé',
+              telephone: '090999090',
+              mail: 'ngong@yad.fr',
+              qrCodeValue: '78',
+            },
+          ],
+        },
         dateCreation: new Date('07/03/2024'),
         titre: 'Formulaire de sortie',
-        description:
-          "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
+        description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Reduire',
         etat: false,
         affichagePrix: true,
         contientRessources: true,
         contientDistributeurs: false,
+        formatCode: 'FACT',
         docEtats: [
           {
             id: '2',
@@ -12955,8 +13649,7 @@ export class InMemDBService implements InMemoryDbService {
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
                   type: IType.Boolean,
-                  valeursParDefaut:
-                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                  valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                 },
               },
               {
@@ -13077,6 +13770,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -13127,6 +13821,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -13147,10 +13842,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   prixEntree: 2000,
                   prixDeSortie: 2050,
                   /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
@@ -13237,6 +13933,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -13251,7 +13948,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -13477,10 +14174,11 @@ export class InMemDBService implements InMemoryDbService {
         ],
         sousDocuments: [
           {
-            id: '1',
+            idDocument: '1',
             titre: 'Note intervention',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: false,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -13532,6 +14230,7 @@ export class InMemDBService implements InMemoryDbService {
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -13643,8 +14342,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: IType.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
               },
               {
                 id: '8',
@@ -13742,8 +14440,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -13782,6 +14479,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -13832,6 +14530,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -13850,10 +14549,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -13939,6 +14639,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -13953,7 +14654,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -13982,15 +14683,17 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: false,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '2',
@@ -14137,8 +14840,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: IType.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
               },
               {
                 id: '8',
@@ -14288,8 +14990,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -14410,6 +15111,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -14460,6 +15162,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -14478,10 +15181,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -14567,6 +15271,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -14581,7 +15286,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -14624,6 +15329,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'transfusion',
               etat: true,
               quantite: 10,
+              seuil: 5,
               prixEntree: 1000,
               prixDeSortie: 1050,
               unite: 'Litre',
@@ -14655,6 +15361,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'eau distillée',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: 'hello',
               prixEntree: 500,
               prixDeSortie: 550,
@@ -14679,6 +15386,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'pediatrie',
               etat: true,
               quantite: 30,
+              seuil: 15,
               prixEntree: 3000,
               prixDeSortie: 3050,
               unite: 'Litre',
@@ -14691,7 +15399,7 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '3',
-              raisonSocial: 'Total Distribution',
+              raisonSocial: 'Total Energie',
               etat: true,
               adresse: 'Buéa',
               telephone: '655554486',
@@ -14706,10 +15414,11 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date(),
             datePeremption: new Date(),
             ressource: {
-              id: '2',
+              id: '6',
               libelle: 'Medical',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: '6911989109209',
               prixEntree: 2000,
               prixDeSortie: 2050,
@@ -14723,7 +15432,7 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '2',
-              raisonSocial: 'ENEO',
+              raisonSocial: 'Eneo',
               etat: true,
               adresse: 'Ydé',
               telephone: '655554481',
@@ -14731,10 +15440,13 @@ export class InMemDBService implements InMemoryDbService {
             },
           },
         ],
+        beneficiaireObligatoire: true
       },
       {
         id: '2',
+        code: '21052021-120000-123',
         idDocument: '5',
+        estEncaissable: true,
         personneRattachee: {
           id: '6911989109209',
           nom: 'NGONGANG',
@@ -14761,13 +15473,13 @@ export class InMemDBService implements InMemoryDbService {
         },
         dateCreation: new Date('05/21/2021'),
         titre: 'ordonnance',
-        description:
-          "Document 2 delivre par le medecin ou un infirmier de l'etablissement",
+        description: "Document 2 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Neutre',
         etat: false,
         affichagePrix: true,
         contientRessources: true,
         contientDistributeurs: true,
+        formatCode: 'FACT',
         docEtats: [
           {
             id: '1',
@@ -14796,6 +15508,7 @@ export class InMemDBService implements InMemoryDbService {
               etat: true,
               libelle: 'passable',
               typeVote: 'Majoritaire',
+              typeValidation: 'Transmission',
               dureeVote: 10,
               role: {
                 id: '2',
@@ -15065,8 +15778,7 @@ export class InMemDBService implements InMemoryDbService {
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
                   type: IType.Boolean,
-                  valeursParDefaut:
-                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                  valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                 },
               },
               {
@@ -15105,6 +15817,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -15155,6 +15868,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -15175,10 +15889,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   prixEntree: 2000,
                   prixDeSortie: 2050,
                   /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
@@ -15265,6 +15980,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -15279,7 +15995,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -15400,15 +16116,17 @@ export class InMemDBService implements InMemoryDbService {
         ],
         sousDocuments: [
           {
-            id: '3',
+            idDocument: '3',
             titre: 'Fiche de soin',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: false,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '1',
@@ -15644,6 +16362,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -15694,6 +16413,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -15712,10 +16432,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -15801,6 +16522,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -15815,7 +16537,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -15844,15 +16566,17 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: true,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '2',
@@ -15999,8 +16723,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: IType.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
               },
               {
                 id: '8',
@@ -16150,8 +16873,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -16272,6 +16994,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -16322,6 +17045,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -16340,10 +17064,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -16429,6 +17154,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -16443,7 +17169,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -16472,15 +17198,17 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '5',
+            idDocument: '5',
             titre: 'ordonnance',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: false,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '1',
@@ -16638,8 +17366,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: IType.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
               },
               {
                 id: '5',
@@ -16739,8 +17466,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -16779,6 +17505,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -16829,6 +17556,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -16847,10 +17575,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       prixEntree: 2000,
                       prixDeSortie: 2050,
                       unite: 'Litre',
@@ -16936,6 +17665,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -16950,7 +17680,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -16988,10 +17718,11 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date(),
             datePeremption: new Date(),
             ressource: {
-              id: '2',
+              id: '6',
               libelle: 'Medical',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: '6911989109209',
               prixEntree: 2000,
               prixDeSortie: 2050,
@@ -17024,6 +17755,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'paracetamols',
               etat: true,
               quantite: 40,
+              seuil: 20,
               scanBarCode: 'http://www.lidl-service.com',
               prixEntree: 100,
               prixDeSortie: 150,
@@ -17048,6 +17780,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'eau distillée',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: 'hello',
               prixEntree: 500,
               prixDeSortie: 550,
@@ -17069,10 +17802,13 @@ export class InMemDBService implements InMemoryDbService {
             },
           },
         ],
+        beneficiaireObligatoire: true
       },
       {
         id: '3',
+        code: '05072021-120000-123',
         idDocument: '4',
+        estEncaissable: false,
         personneRattachee: {
           id: '6911989109209',
           nom: 'NGONGANG',
@@ -17099,14 +17835,14 @@ export class InMemDBService implements InMemoryDbService {
         },
         dateCreation: new Date('07/05/2021'),
         titre: 'Formulaire de sortie',
-        description:
-          "Document 3 delivre par le medecin ou un infirmier de l'etablissement",
+        description: "Document 3 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Reduire',
         etat: false,
         affichagePrix: true,
         contientRessources: true,
         contientDistributeurs: false,
-        docEtats:  [
+        formatCode: 'FACT',
+        docEtats: [
           {
             id: '3',
             ordre: 3,
@@ -17390,8 +18126,7 @@ export class InMemDBService implements InMemoryDbService {
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
                   type: IType.Boolean,
-                  valeursParDefaut:
-                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                  valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                 },
               },
               {
@@ -17512,6 +18247,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -17562,6 +18298,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -17582,10 +18319,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   scanBarCode: '6911989109209',
                   prixEntree: 2000,
                   prixDeSortie: 2050,
@@ -17673,6 +18411,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -17687,7 +18426,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -17914,11 +18653,12 @@ export class InMemDBService implements InMemoryDbService {
         ],
         sousDocuments: [
           {
-            id: '1',
+            idDocument: '1',
             titre: 'Note intervention',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
-            docEtats:  [
+            estEncaissable: false,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
+            docEtats: [
               {
                 id: '1',
                 ordre: 1,
@@ -17969,6 +18709,7 @@ export class InMemDBService implements InMemoryDbService {
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -18179,8 +18920,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -18219,6 +18959,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -18269,6 +19010,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -18287,10 +19029,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -18377,6 +19120,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -18391,7 +19135,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -18420,16 +19164,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: true,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
-            docEtats:  [
+            formatCode: 'FACT',
+            docEtats: [
               {
                 id: '2',
                 ordre: 2,
@@ -18726,8 +19472,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -18848,6 +19593,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -18898,6 +19644,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -18916,10 +19663,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -19006,6 +19754,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -19020,7 +19769,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -19063,6 +19812,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'transfusion',
               etat: true,
               quantite: 10,
+              seuil: 5,
               prixEntree: 1000,
               prixDeSortie: 1050,
               unite: 'Litre',
@@ -19094,6 +19844,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'eau distillée',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: 'hello',
               prixEntree: 500,
               prixDeSortie: 550,
@@ -19118,6 +19869,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'pediatrie',
               etat: true,
               quantite: 30,
+              seuil: 15,
               prixEntree: 3000,
               prixDeSortie: 3050,
               unite: 'Litre',
@@ -19130,7 +19882,7 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '3',
-              raisonSocial: 'Total Distribution',
+              raisonSocial: 'Total Energie',
               etat: true,
               adresse: 'Buéa',
               telephone: '655554486',
@@ -19145,10 +19897,11 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date(),
             datePeremption: new Date(),
             ressource: {
-              id: '2',
+              id: '6',
               libelle: 'Medical',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: '6911989109209',
               prixEntree: 2000,
               prixDeSortie: 2050,
@@ -19162,7 +19915,7 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '2',
-              raisonSocial: 'ENEO',
+              raisonSocial: 'Eneo',
               etat: true,
               adresse: 'Ydé',
               telephone: '655554481',
@@ -19170,10 +19923,13 @@ export class InMemDBService implements InMemoryDbService {
             },
           },
         ],
+        beneficiaireObligatoire: true
       },
       {
         id: '4',
+        code: '03072013-120000-123',
         idDocument: '5',
+        estEncaissable: false,
         personneRattachee: {
           id: '6911989109209',
           nom: 'NGONGANG',
@@ -19200,14 +19956,14 @@ export class InMemDBService implements InMemoryDbService {
         },
         dateCreation: new Date('07/03/2013'),
         titre: 'ordonnance',
-        description:
-          "Document 4 delivre par le medecin ou un infirmier de l'etablissement",
+        description: "Document 4 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Neutre',
         etat: false,
         affichagePrix: true,
         contientRessources: true,
         contientDistributeurs: true,
-        docEtats:  [
+        formatCode: 'FACT',
+        docEtats: [
           {
             id: '1',
             ordre: 1,
@@ -19453,8 +20209,7 @@ export class InMemDBService implements InMemoryDbService {
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
                   type: IType.Boolean,
-                  valeursParDefaut:
-                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                  valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                 },
               },
               {
@@ -19493,6 +20248,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -19543,6 +20299,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -19563,10 +20320,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   scanBarCode: '6911989109209',
                   prixEntree: 2000,
                   prixDeSortie: 2050,
@@ -19654,6 +20412,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -19668,7 +20427,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -19789,16 +20548,18 @@ export class InMemDBService implements InMemoryDbService {
         ],
         sousDocuments: [
           {
-            id: '3',
+            idDocument: '3',
             titre: 'Fiche de soin',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: false,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
-            docEtats:  [
+            formatCode: 'FACT',
+            docEtats: [
               {
                 id: '1',
                 ordre: 1,
@@ -20033,6 +20794,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -20083,6 +20845,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -20101,10 +20864,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -20191,6 +20955,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -20205,7 +20970,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -20234,16 +20999,18 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '5',
+            idDocument: '5',
             titre: 'ordonnance',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: true,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
-            docEtats:  [
+            formatCode: 'FACT',
+            docEtats: [
               {
                 id: '1',
                 ordre: 1,
@@ -20501,8 +21268,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -20541,6 +21307,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -20591,6 +21358,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -20609,10 +21377,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -20699,6 +21468,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -20713,7 +21483,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -20751,10 +21521,11 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date(),
             datePeremption: new Date(),
             ressource: {
-              id: '2',
+              id: '6',
               libelle: 'Medical',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: '6911989109209',
               prixEntree: 2000,
               prixDeSortie: 2050,
@@ -20787,6 +21558,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'paracetamols',
               etat: true,
               quantite: 40,
+              seuil: 20,
               scanBarCode: 'http://www.lidl-service.com',
               prixEntree: 100,
               prixDeSortie: 150,
@@ -20811,6 +21583,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'eau distillée',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: 'hello',
               prixEntree: 500,
               prixDeSortie: 550,
@@ -20832,10 +21605,13 @@ export class InMemDBService implements InMemoryDbService {
             },
           },
         ],
+        beneficiaireObligatoire: true
       },
       {
         id: '5',
+        code: '03072023-120000-123',
         idDocument: '1',
+        estEncaissable: true,
         personneRattachee: {
           id: '290',
           nom: 'Oubian',
@@ -20862,14 +21638,14 @@ export class InMemDBService implements InMemoryDbService {
         },
         dateCreation: new Date('07/03/2023'),
         titre: 'Note intervention',
-        description:
-          "Document 5 delivre par le medecin ou un infirmier de l'etablissement",
+        description: "Document 5 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Neutre',
         etat: false,
         affichagePrix: true,
         contientRessources: true,
         contientDistributeurs: true,
-        docEtats:  [
+        formatCode: 'FACT',
+        docEtats: [
           {
             id: '2',
             ordre: 2,
@@ -21084,8 +21860,7 @@ export class InMemDBService implements InMemoryDbService {
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
                   type: IType.Boolean,
-                  valeursParDefaut:
-                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                  valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                 },
               },
               {
@@ -21147,10 +21922,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   scanBarCode: '6911989109209',
                   prixEntree: 2000,
                   prixDeSortie: 2050,
@@ -21203,6 +21979,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -21217,7 +21994,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -21338,16 +22115,18 @@ export class InMemDBService implements InMemoryDbService {
         ],
         sousDocuments: [
           {
-            id: '5',
+            idDocument: '5',
             titre: 'ordonnance',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: true,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
-            docEtats:  [
+            formatCode: 'FACT',
+            docEtats: [
               {
                 id: '1',
                 ordre: 1,
@@ -21605,8 +22384,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -21645,6 +22423,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -21695,6 +22474,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -21713,10 +22493,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -21803,6 +22584,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -21817,7 +22599,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -21859,6 +22641,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'paracetamols',
               etat: true,
               quantite: 40,
+              seuil: 20,
               scanBarCode: 'http://www.lidl-service.com',
               prixEntree: 100,
               prixDeSortie: 150,
@@ -21883,6 +22666,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'eau distillée',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: 'hello',
               prixEntree: 500,
               prixDeSortie: 550,
@@ -21904,10 +22688,13 @@ export class InMemDBService implements InMemoryDbService {
             },
           },
         ],
+        beneficiaireObligatoire: true
       },
       {
-        id: '1',
+        id: '6',
+        code: '03072010-120000-123',
         idDocument: '4',
+        estEncaissable: false,
         personneRattachee: {
           id: '290',
           nom: 'Oubian',
@@ -21934,13 +22721,13 @@ export class InMemDBService implements InMemoryDbService {
         },
         dateCreation: new Date('07/03/2010'),
         titre: 'Note intervention',
-        description:
-          "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
+        description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Reduire',
         etat: false,
         affichagePrix: true,
         contientRessources: true,
         contientDistributeurs: false,
+        formatCode: 'FACT',
         docEtats: [
           {
             id: '2',
@@ -22236,8 +23023,7 @@ export class InMemDBService implements InMemoryDbService {
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
                   type: IType.Boolean,
-                  valeursParDefaut:
-                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                  valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                 },
               },
               {
@@ -22358,6 +23144,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -22408,6 +23195,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'pediatrie',
                   etat: true,
                   quantite: 30,
+                  seuil: 15,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -22428,10 +23216,11 @@ export class InMemDBService implements InMemoryDbService {
                 montantMin: 100,
                 montantMax: 7000,
                 ressource: {
-                  id: '2',
+                  id: '6',
                   libelle: 'Medical',
                   etat: true,
                   quantite: 20,
+                  seuil: 10,
                   scanBarCode: '6911989109209',
                   prixEntree: 2000,
                   prixDeSortie: 2050,
@@ -22519,6 +23308,7 @@ export class InMemDBService implements InMemoryDbService {
                   libelle: 'transfusion',
                   etat: true,
                   quantite: 10,
+                  seuil: 5,
                   scanBarCode: '6911989109209',
                   prixEntree: 1000,
                   prixDeSortie: 1050,
@@ -22533,7 +23323,7 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'brasserie1',
+                    raisonSocial: 'Brasserie',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -22759,10 +23549,11 @@ export class InMemDBService implements InMemoryDbService {
         ],
         sousDocuments: [
           {
-            id: '1',
+            idDocument: '1',
             titre: 'Note intervention',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: false,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -22814,6 +23605,7 @@ export class InMemDBService implements InMemoryDbService {
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -22925,8 +23717,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: IType.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
               },
               {
                 id: '8',
@@ -23024,8 +23815,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -23064,6 +23854,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -23114,6 +23905,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -23132,10 +23924,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -23222,6 +24015,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -23236,7 +24030,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -23265,15 +24059,17 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '4',
+            idDocument: '4',
             titre: 'Formulaire de sortie',
-            description:
-              "Document delivre par le medecin ou un infirmier de l'etablissement",
+            estEncaissable: false,
+            description: "Document delivre par le medecin ou un infirmier de l'etablissement",
+            beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             docEtats: [
               {
                 id: '2',
@@ -23420,8 +24216,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
                 dateModification: new Date('07/03/1990'),
                 type: IType.Boolean,
-                valeursParDefaut:
-                  'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
               },
               {
                 id: '8',
@@ -23571,8 +24366,7 @@ export class InMemDBService implements InMemoryDbService {
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
                       type: IType.Boolean,
-                      valeursParDefaut:
-                        'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                      valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
                     },
                   },
                   {
@@ -23693,6 +24487,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -23743,6 +24538,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       prixEntree: 3000,
                       prixDeSortie: 3050,
                       unite: 'Litre',
@@ -23761,10 +24557,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -23851,6 +24648,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -23865,7 +24663,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -23908,6 +24706,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'transfusion',
               etat: true,
               quantite: 10,
+              seuil: 5,
               prixEntree: 1000,
               prixDeSortie: 1050,
               unite: 'Litre',
@@ -23939,6 +24738,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'eau distillée',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: 'hello',
               prixEntree: 500,
               prixDeSortie: 550,
@@ -23963,6 +24763,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'pediatrie',
               etat: true,
               quantite: 30,
+              seuil: 15,
               prixEntree: 3000,
               prixDeSortie: 3050,
               unite: 'Litre',
@@ -23975,7 +24776,7 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '3',
-              raisonSocial: 'Total Distribution',
+              raisonSocial: 'Total Energie',
               etat: true,
               adresse: 'Buéa',
               telephone: '655554486',
@@ -23990,10 +24791,11 @@ export class InMemDBService implements InMemoryDbService {
             dateCreation: new Date(),
             datePeremption: new Date(),
             ressource: {
-              id: '2',
+              id: '6',
               libelle: 'Medical',
               etat: true,
               quantite: 20,
+              seuil: 10,
               scanBarCode: '6911989109209',
               prixEntree: 2000,
               prixDeSortie: 2050,
@@ -24007,7 +24809,7 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '2',
-              raisonSocial: 'ENEO',
+              raisonSocial: 'Eneo',
               etat: true,
               adresse: 'Ydé',
               telephone: '655554481',
@@ -24015,9 +24817,731 @@ export class InMemDBService implements InMemoryDbService {
             },
           },
         ],
+        beneficiaireObligatoire: true
       },
+      {
+        id: '7',
+        code: '03092020-120000-123',
+        idDocument: '6',
+        dateCreation:  new Date('09/03/2020'),
+        titre: 'Fiche de commande',
+        description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
+        etat: false,
+        typeMouvement: 'Ajout',
+        affichagePrix: true,
+        contientRessources: true,
+        contientDistributeurs: true,
+        formatCode: 'FACT',
+        beneficiaireObligatoire: false,
+        estEncaissable: true,
+        objetEnregistre: [
+          {
+            key: {
+              id: '4',
+              titre: 'age',
+              description: "age de l'individu",
+              etat: true,
+              dateCreation: new Date('07/03/2000'),
+              dateModification: new Date('07/03/1990'),
+              type: IType.Double,
+              ordre: 0,
+              obligatoire: false,
+              valeursParDefaut: '',
+            },
+            value: '23',
+          },
+          {
+            key: {
+              id: '5',
+              titre: 'allergies',
+              description: "allergies de l'individu",
+              etat: true,
+              dateCreation: new Date('07/03/2000'),
+              dateModification: new Date('07/03/1990'),
+              type: IType.String,
+              ordre: 0,
+              obligatoire: false,
+              valeursParDefaut: '',
+            },
+            value: 'lait, noix',
+          },
+          {
+            key: {
+              id: '1',
+              titre: 'taille',
+              description: "taille de l'individu",
+              etat: true,
+              dateCreation: new Date('07/03/2000'),
+              dateModification: new Date('07/03/1990'),
+              type: IType.String,
+              ordre: 0,
+              obligatoire: false,
+              valeursParDefaut: '',
+            },
+            value: '1.68',
+          },
+          {
+            key: {
+              id: '7',
+              titre: 'Groupe sangin',
+              description: "Groupe sangin de l'individu",
+              etat: true,
+              dateCreation: new Date('07/03/2000'),
+              dateModification: new Date('07/03/1990'),
+              type: IType.Boolean,
+              ordre: 0,
+              obligatoire: false,
+              valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+            },
+            value: 'AB-',
+          },
+          {
+            key: {
+              id: '8',
+              titre: 'cicatrice',
+              description: "cicatrice de l'individu",
+              etat: true,
+              dateCreation: new Date('07/03/2000'),
+              dateModification: new Date('07/03/1990'),
+              type: IType.Boolean,
+              ordre: 0,
+              obligatoire: false,
+              valeursParDefaut: 'oui, non',
+            },
+            value: 'non',
+          },
+          {
+            key: {
+              id: '2',
+              titre: 'poids',
+              description: "poids de l'individu",
+              etat: true,
+              dateCreation: new Date('07/03/2000'),
+              dateModification: new Date('07/03/1990'),
+              type: IType.Double,
+              ordre: 0,
+              obligatoire: false,
+              valeursParDefaut: '',
+            },
+            value: '34',
+          },
+          {
+            key: {
+              id: '3',
+              titre: 'sexe',
+              description: "sexe de l'individu",
+              etat: true,
+              dateCreation: new Date('07/03/2000'),
+              dateModification: new Date('07/03/1990'),
+              type: IType.Boolean,
+              ordre: 0,
+              obligatoire: false,
+              valeursParDefaut: 'Homme, Femme, Autre',
+            },
+            value: 'Homme',
+          },
+          {
+            key: {
+              id: '6',
+              titre: 'teint',
+              description: "teint de l'individu",
+              etat: true,
+              dateCreation: new Date('07/03/2000'),
+              dateModification: new Date('07/03/1990'),
+              type: IType.String,
+              ordre: 0,
+              obligatoire: false,
+              valeursParDefaut: '',
+            },
+            value: 'Noir',
+          },
+        ],
+        docEtats: [
+          {
+            id: '2',
+            ordre: 2,
+            dateCreation: new Date('07/21/2024'),
+            etat: {
+              id: '2',
+              libelle: 'etat 2',
+              description: 'deuxième état du document',
+              dateCreation: new Date('07/21/2024'),
+            },
+          },
+          {
+            id: '3',
+            ordre: 3,
+            dateCreation: new Date('07/21/2024'),
+            etat: {
+              id: '3',
+              libelle: 'etat 3',
+              description: 'troisième état du document',
+              dateCreation: new Date('07/21/2024'),
+            },
+          },
+        ],
+        missions: [
+          {
+            id: '3',
+            libelle: 'Prelevement Labo',
+            description: 'Prélévement fait par laboratoire',
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            idLogin: 'admin',
+            service: {
+              id: '3',
+              libelle: 'Consultation',
+              etat: true,
+              dateDerniereModification: new Date('12/06/1972'),
+              dateAttribution: new Date('07/03/1990'),
+              dateFin: new Date('07/03/1990'),
+              nombreTotalAttributions: 50,
+              localisation: 'douala',
+              description: 'bien',
+            },
+          },
+          {
+            id: '2',
+            libelle: 'Consultation Spécialiste',
+            description: 'Consultation faite par un médecin',
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            idLogin: 'admin',
+            service: {
+              id: '2',
+              libelle: 'Laboratoire',
+              etat: true,
+              dateDerniereModification: new Date('06/08/1990'),
+              dateAttribution: new Date('07/03/1990'),
+              dateFin: new Date('07/03/1990'),
+              nombreTotalAttributions: 20,
+              localisation: 'douala',
+              description: 'bien',
+            },
+          },
+        ],
+        attributs: [
+          {
+            id: '1',
+            titre: 'taille',
+            description: "taille de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            type: IType.Double,
+            valeursParDefaut: '',
+          },
+          {
+            id: '6',
+            titre: 'teint',
+            description: "teint de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+    
+            type: IType.String,
+            valeursParDefaut: '',
+          },
+          {
+            id: '8',
+            titre: 'cicatrice',
+            description: "cicatrice de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            type: IType.Boolean,
+            valeursParDefaut: 'true, false',
+          },
+          {
+            id: '4',
+            titre: 'age',
+            description: "age de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            type: IType.Double,
+            valeursParDefaut: '',
+          },
+          {
+            id: '7',
+            titre: 'Groupe sangin',
+            description: "Groupe sangin de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+            type: IType.Boolean,
+            valeursParDefaut: 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+          },
+          {
+            id: '5',
+            titre: 'allergies',
+            description: "allergies de l'individu",
+            etat: true,
+            dateCreation: new Date('07/03/2000'),
+            dateModification: new Date('07/03/1990'),
+    
+            type: IType.String,
+            valeursParDefaut: '',
+          },
+        ],
+        categories: [
+          {
+            id: '1',
+            nom: 'informations personelles',
+            ordre: 1,
+            listAttributsParCategories: [
+              {
+                id: '1',
+                ordre: 2,
+                obligatoire: false,
+                attribut: {
+                  id: '1',
+                  titre: 'taille',
+                  description: "taille de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.Double,
+                  valeursParDefaut: '',
+                },
+              },
+              {
+                id: '2',
+                ordre: 1,
+                obligatoire: false,
+                attribut: {
+                  id: '4',
+                  titre: 'age',
+                  description: "age de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.Double,
+                  valeursParDefaut: '',
+                },
+              },
+              {
+                id: '3',
+                ordre: 3,
+                obligatoire: false,
+                attribut: {
+                  id: '6',
+                  titre: 'teint',
+                  description: "teint de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.String,
+                  valeursParDefaut: '',
+                },
+              },
+            ],
+          },
+          {
+            id: '2',
+            nom: 'informations de sante',
+            ordre: 2,
+            listAttributsParCategories: [
+              {
+                id: '',
+                ordre: 2,
+                obligatoire: false,
+                attribut: {
+                  id: '5',
+                  titre: 'allergies',
+                  description: "allergies de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.String,
+                  valeursParDefaut: '',
+                },
+              },
+              {
+                id: '',
+                ordre: 1,
+                obligatoire: false,
+                attribut: {
+                  id: '7',
+                  titre: 'Groupe sangin',
+                  description: "Groupe sangin de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.Boolean,
+                  valeursParDefaut:
+                    'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-',
+                },
+              },
+              {
+                id: '',
+                ordre: 3,
+                obligatoire: false,
+                attribut: {
+                  id: '8',
+                  titre: 'cicatrice',
+                  description: "cicatrice de l'individu",
+                  etat: true,
+                  dateCreation: new Date('07/03/2000'),
+                  dateModification: new Date('07/03/1990'),
+                  type: IType.Boolean,
+                  valeursParDefaut: 'oui, non',
+                },
+              },
+            ],
+          },
+        ],
+        mouvements: [
+          {
+            id: '1',
+            description: 'Ici la description de ce mouvement',
+            quantite: 20,
+            prix: 10000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '1',
+              scanBarCode: '6911989109209',
+              libelle: 'transfusion',
+              etat: true,
+              quantite: 10,
+              seuil: 5,
+              prixEntree: 1000,
+              prixDeSortie: 1050,
+              unite: 'Litre',
+              famille: {
+                id: '4',
+                libelle: 'Medical',
+                description: 'nouveau-né',
+                etat: true,
+              },
+            },
+            distributeur: {
+              id: '1',
+              raisonSocial: 'Brasserie',
+              etat: true,
+              adresse: 'Dla',
+              telephone: '655554488',
+              mail: 'ngong@yad.fr',
+            },
+          },
+          {
+            id: '2',
+            description: 'Ici la description de ce mouvement',
+            quantite: 50,
+            prix: 300,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '5',
+              libelle: 'eau distillée',
+              etat: true,
+              quantite: 20,
+              seuil: 10,
+              scanBarCode: 'hello',
+              prixEntree: 500,
+              prixDeSortie: 550,
+              unite: 'Litre',
+              famille: {
+                id: '3',
+                libelle: 'pediatrie',
+                description: 'enfant',
+                etat: true,
+              },
+            },
+          },
+          {
+            id: '3',
+            description: 'Ici la description de ce mouvement',
+            quantite: 10,
+            prix: 5000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '3',
+              libelle: 'pediatrie',
+              etat: true,
+              quantite: 30,
+              seuil: 15,
+              prixEntree: 3000,
+              prixDeSortie: 3050,
+              unite: 'Litre',
+              famille: {
+                id: '4',
+                libelle: 'Medical',
+                description: 'nouveau-né',
+                etat: true,
+              },
+            },
+            distributeur: {
+              id: '3',
+              raisonSocial: 'Total Energie',
+              etat: true,
+              adresse: 'Buéa',
+              telephone: '655554486',
+              mail: 'ngong@yad.fr',
+            },
+          },
+          {
+            id: '4',
+            description: 'Ici la description de ce mouvement',
+            quantite: 20,
+            prix: 2000,
+            dateCreation: new Date(),
+            datePeremption: new Date(),
+            ressource: {
+              id: '6',
+              libelle: 'Medical',
+              etat: true,
+              quantite: 20,
+              seuil: 10,
+              scanBarCode: '6911989109209',
+              prixEntree: 2000,
+              prixDeSortie: 2050,
+              unite: 'Litre',
+              famille: {
+                id: '2',
+                libelle: 'Medical',
+                description: 'nouveau-né',
+                etat: true,
+              },
+            },
+            distributeur: {
+              id: '2',
+              raisonSocial: 'Eneo',
+              etat: true,
+              adresse: 'Ydé',
+              telephone: '655554481',
+              mail: 'ngong@yad.fr',
+            },
+          },
+        ],
+        preconisations: [
+          {
+            id: '1',
+            libelle: 'rachat',
+            etat: true,
+            type: 'Neutre',
+            precomvtqte: [
+              {
+                id: '1',
+                quantiteMin: 10,
+                quantiteMax: 20,
+                montantMin: 1000,
+                montantMax: 7000,
+                ressource: {
+                  id: '1',
+                  libelle: 'transfusion',
+                  etat: true,
+                  quantite: 10,
+                  seuil: 5,
+                  scanBarCode: '6911989109209',
+                  prixEntree: 1000,
+                  prixDeSortie: 1050,
+                  unite: 'Litre',
+                  famille: {
+                    id: '4',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                },
+              },
+              {
+                id: '2',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                famille: [
+                  {
+                    id: '1',
+                    libelle: 'Electronique',
+                    description: 'sang',
+                    etat: true,
+                  },
+                  {
+                    id: '2',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                  {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                ],
+              },
+              {
+                id: '3',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                ressource: {
+                  id: '3',
+                  libelle: 'pediatrie',
+                  etat: true,
+                  quantite: 30,
+                  seuil: 15,
+                  scanBarCode: '6911989109209',
+                  prixEntree: 1000,
+                  prixDeSortie: 1050,
+                  unite: 'Litre',
+                  famille: {
+                    id: '4',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                },
+              },
+              {
+                id: '4',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                ressource: {
+                  id: '6',
+                  libelle: 'Medical',
+                  etat: true,
+                  quantite: 20,
+                  seuil: 10,
+                  prixEntree: 2000,
+                  prixDeSortie: 2050,
+                  unite: 'Litre',
+                  famille: {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                },
+              },
+            ],
+          },
+          {
+            id: '2',
+            libelle: 'vente',
+            etat: true,
+            type: 'Reduire',
+            precomvtqte: [
+              {
+                id: '1',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                famille: [
+                  {
+                    id: '1',
+                    libelle: 'Electronique',
+                    description: 'sang',
+                    etat: true,
+                  },
+                  {
+                    id: '2',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                  {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: '3',
+            libelle: 'vente',
+            type: 'Reduire',
+            etat: true,
+            precomvtqte: [
+              {
+                id: '1',
+                quantiteMin: 30,
+                quantiteMax: 40,
+                montantMin: 100,
+                montantMax: 7000,
+                famille: [
+                  {
+                    id: '1',
+                    libelle: 'Electronique',
+                    description: 'sang',
+                    etat: true,
+                  },
+                  {
+                    id: '2',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                  {
+                    id: '3',
+                    libelle: 'pediatrie',
+                    description: 'enfant',
+                    etat: true,
+                  },
+                ],
+                ressource: {
+                  id: '1',
+                  libelle: 'transfusion',
+                  etat: true,
+                  quantite: 10,
+                  seuil: 5,
+                  scanBarCode: '6911989109209',
+                  prixEntree: 1000,
+                  prixDeSortie: 1050,
+                  unite: 'Litre',
+                  famille: {
+                    id: '4',
+                    libelle: 'Medical',
+                    description: 'nouveau-né',
+                    etat: false,
+                  },
+                },
+                distributeur: [
+                  {
+                    id: '1',
+                    raisonSocial: 'Brasserie',
+                    etat: true,
+                    adresse: 'Dla',
+                    telephone: '655554488',
+                    mail: 'ngong@yad.fr',
+                  },
+                  {
+                    id: '2',
+                    raisonSocial: 'guinness',
+                    etat: true,
+                    adresse: 'Ydé',
+                    telephone: '655554481',
+                    mail: 'ngong@yad.fr',
+                  },
+                  {
+                    id: '3',
+                    raisonSocial: 'papeterie yvan',
+                    etat: true,
+                    adresse: 'Buéa',
+                    telephone: '655554486',
+                    mail: 'ngong@yad.fr',
+                  },
+                ],
+              },
+            ],
+          },
+        ]
+      }
     ];
-    let promo: Promo[] = [
+    let promo: IPromo[] = [
       {
         id: '1',
         emetteur: {
@@ -24029,15 +25553,125 @@ export class InMemDBService implements InMemoryDbService {
           mail: 'ngong@yad.fr',
         },
         codeUnique:"A01B",
-        dateDebut: new Date('07/03/2000'),
-        dateFin: new Date('07/03/2002'),
+        dateDebut: new Date('12/03/2023'),
+        dateFin: new Date('12/03/2025'),
         montantRemise: 100,
         pourcentageRemise:0,
         dateCreation: new Date(),
-      famille: [{
-        id: '1', libelle: 'Electronique', description: 'sang', etat: true
-      }]
-
+        famille: [
+          {
+            id: '1', libelle: 'Electronique', description: 'sang', etat: true
+          },
+          {
+            id: '3', libelle: 'pediatrie', description: 'enfant', etat: true,
+          },
+        ],
+        ressource: [
+          {
+            id: '1',
+            libelle: 'transfusion',
+            etat: true,
+            quantite: 10,
+            seuil: 5,
+            scanBarCode: '6911989109209',
+            prixEntree: 1000,
+            prixDeSortie: 1050,
+            unite: 'Litre',
+            famille: {
+              id: '1',
+              libelle: 'Electronique',
+              description: 'sang',
+              etat: true,
+            },
+          },
+          {
+            id: '6',
+            libelle: 'Medical',
+            etat: true,
+            quantite: 20,
+            seuil: 10,
+            scanBarCode: '6911989109209',
+            prixEntree: 2000,
+            prixDeSortie: 2050,
+            unite: 'Litre',
+            famille: {
+              id: '2',
+              libelle: 'Medical',
+              description: 'nouveau-né',
+              etat: false,
+            },
+          },
+          {
+            id: '4',
+            libelle: 'paracetamols',
+            etat: true,
+            quantite: 40,
+            seuil: 20,
+            scanBarCode: 'http://www.lidl-service.com',
+            prixEntree: 100,
+            prixDeSortie: 150,
+            unite: 'Kg',
+            famille: {
+              id: '5',
+              libelle: 'transfusion',
+              description: 'sang',
+              etat: true,
+            },
+          }
+        ]
+      },
+      {
+        id: '2',
+        emetteur: {
+          id: '2',
+          raisonSocial: 'Brasserie',
+          etat: true,
+          adresse: 'Dla',
+          telephone: '655554488',
+          mail: 'ngong@yad.fr'
+        },
+        codeUnique:"A01F",
+        dateDebut: new Date('12/03/2023'),
+        dateFin: new Date('12/03/2025'),
+        montantRemise: 0,
+        pourcentageRemise:10,
+        dateCreation: new Date(),
+        ressource: [
+          {
+            id: '6',
+            libelle: 'Medical',
+            etat: true,
+            quantite: 20,
+            seuil: 10,
+            scanBarCode: '6911989109209',
+            prixEntree: 2000,
+            prixDeSortie: 2050,
+            unite: 'Litre',
+            famille: {
+              id: '2',
+              libelle: 'Medical',
+              description: 'nouveau-né',
+              etat: false,
+            },
+          },
+          {
+            id: '4',
+            libelle: 'paracetamols',
+            etat: true,
+            quantite: 40,
+            seuil: 20,
+            scanBarCode: 'http://www.lidl-service.com',
+            prixEntree: 100,
+            prixDeSortie: 150,
+            unite: 'Kg',
+            famille: {
+              id: '5',
+              libelle: 'transfusion',
+              description: 'sang',
+              etat: true,
+            },
+          }
+        ]
       }
     ]
     let ressource: IRessource[] = [
@@ -24046,6 +25680,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'transfusion',
         etat: true,
         quantite: 10,
+        seuil: 5,
         scanBarCode: '6911989109209',
         prixEntree: 1000,
         prixDeSortie: 1050,
@@ -24058,10 +25693,11 @@ export class InMemDBService implements InMemoryDbService {
         },
       },
       {
-        id: '2',
+        id: '6',
         libelle: 'Medical',
         etat: true,
         quantite: 20,
+        seuil: 10,
         scanBarCode: '6911989109209',
         prixEntree: 2000,
         prixDeSortie: 2050,
@@ -24078,6 +25714,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'Ventoline',
         etat: true,
         quantite: 20,
+        seuil: 10,
         scanBarCode: '6911989109209',
         prixEntree: 2000,
         prixDeSortie: 2050,
@@ -24095,6 +25732,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'Aspirine',
         etat: true,
         quantite: 30,
+        seuil: 15,
         prixEntree: 3000,
         prixDeSortie: 3050,
         unite: 'Litre',
@@ -24111,6 +25749,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'paracetamols',
         etat: true,
         quantite: 40,
+        seuil: 20,
         scanBarCode: 'http://www.lidl-service.com',
         prixEntree: 100,
         prixDeSortie: 150,
@@ -24127,6 +25766,7 @@ export class InMemDBService implements InMemoryDbService {
         libelle: 'eau distillée',
         etat: true,
         quantite: 20,
+        seuil: 10,
         prixEntree: 500,
         prixDeSortie: 550,
         unite: 'Litre',
@@ -24170,6 +25810,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'transfusion',
               etat: true,
               quantite: 10,
+              seuil: 5,
               prixEntree: 1000,
               prixDeSortie: 1050,
               unite: 'Litre',
@@ -24219,6 +25860,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'pediatrie',
               etat: true,
               quantite: 30,
+              seuil: 15,
               prixEntree: 3000,
               prixDeSortie: 3050,
               unite: 'Litre',
@@ -24238,11 +25880,14 @@ export class InMemDBService implements InMemoryDbService {
             montantMax: 7000,
             ressource: {
               id: '2',
-              libelle: 'Medical',
+              libelle: 'Ventoline',
               etat: true,
               quantite: 20,
+              seuil: 10,
+              scanBarCode: '6911989109209',
               prixEntree: 2000,
               prixDeSortie: 2050,
+              /* dateCreation:new Date("07/03/2000"),dateModification:new Date("07/03/1990"),*/
               unite: 'Litre',
               famille: {
                 id: '3',
@@ -24327,6 +25972,7 @@ export class InMemDBService implements InMemoryDbService {
               libelle: 'transfusion',
               etat: true,
               quantite: 10,
+              seuil: 5,
               prixEntree: 1000,
               prixDeSortie: 1050,
               unite: 'Litre',
@@ -24340,7 +25986,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: [
               {
                 id: '1',
-                raisonSocial: 'brasserie1',
+                raisonSocial: 'Brasserie',
                 etat: true,
                 adresse: 'Dla',
                 telephone: '655554488',
@@ -24480,8 +26126,21 @@ export class InMemDBService implements InMemoryDbService {
         dateNaissance: new Date('10/10/2002'),
         dateEntree: new Date(),
         dateSortie: undefined,
-        roles: undefined,
-        qrCodeValue: 'hello'
+        roles: [
+          {
+            role: {
+              id: '3',
+              titre: 'marcheur',
+              description: 'commercial sur le terrain',
+              etat: true,
+              dateCreation: new Date('07/03/2000'),
+            },
+            status : true,
+            dateDebut : new Date(),
+            dateFin : new Date()
+          }
+        ],
+        qrCodeValue: 'hello',
       },
     ];
     let utilisateurs: IUtilisateurs[] = [
@@ -25189,6 +26848,8 @@ export class InMemDBService implements InMemoryDbService {
     };
     let typeUnite: TypeUnite = { type: ['Litre', 'Kg', 'Packs', 'Boite'] };
     let typeMvt: TypeMvt = { type: ['Neutre', 'Ajout', 'Reduire'] };
+    let typeValidation: TypeValidation = { type: ['Simple', 'Transmission', 'Traitement'] };
+    let formatCode: FormatCode = { type: ['FACT', 'ALPHA', 'ASCII'] };
     let etats: IEtats[] = [
       {
         id: '1',
@@ -25215,6 +26876,46 @@ export class InMemDBService implements InMemoryDbService {
         dateCreation: new Date('07/21/2024'),
       },
     ];
+    let caisses: ICaisses[] = [
+      {id: "1", libelle: "caisse 1", type: "cash", solde: 100000.00},
+      {id: "7", libelle: "caisse 7", type: "solde", solde: 700000.00},
+      {id: "2", libelle: "caisse 2", type: "chèque", solde: 200000.00},
+      {id: "3", libelle: "caisse 3", type: "carte bleue", solde: 300000.00},
+      {id: "5", libelle: "caisse 5", type: "mtn money", solde: 500000.00},
+      {id: "4", libelle: "caisse 4", type: "mobile money", solde: 400000.00},
+      {id: "6", libelle: "caisse 6", type: "orange money", solde: 600000.00},
+    ];
+    let comptes: IComptes[] = [
+      {id: "1", libelle: "courant", solde: 1000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2020'), beneficiaire: {
+        id: '6911989109209',
+        nom: 'NGONGANG',
+        prenom: 'Philippe',
+        sexe: 'M',
+        adresse: 'Yaoundé',
+        telephone: '090999090',
+        mail: 'ngong@yad.fr',
+        dateNaissance: new Date('07/07/1989'),
+        qrCodeValue: '',
+        personnesRatachees: [
+          {
+            id: '78',
+            nom: 'Tchakounte',
+            prenom: 'Simpice',
+            sexe: 'm',
+            dateNaissance: new Date('07/07/1989'),
+            adresse: 'Yaoundé',
+            telephone: '090999090',
+            mail: 'ngong@yad.fr',
+            qrCodeValue: '78',
+          },
+        ],
+      }},
+      {id: "2", libelle: "enfants", solde: 70000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2010')},
+      {id: "3", libelle: "personnel", solde: 0.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2022')},
+      {id: "4", libelle: "courant", solde: 10000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2024')},
+      {id: "5", libelle: "urgence", solde: 500.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2017')},
+      {id: "6", libelle: "courant", solde: 1000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2020')}
+    ];
     let etape: IEtape[] = [
       {
         id: '1',
@@ -25222,10 +26923,12 @@ export class InMemDBService implements InMemoryDbService {
         etat: false,
         document: [
           {
-            id: '1',
+            idDocument: '1',
             titre: 'Note intervention',
+            estEncaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -25277,6 +26980,7 @@ export class InMemDBService implements InMemoryDbService {
             affichagePrix: true,
             contientRessources: true,
             contientDistributeurs: true,
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -25528,6 +27232,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -25578,6 +27283,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -25597,10 +27303,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -25688,6 +27395,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -25702,7 +27410,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -25731,10 +27439,12 @@ export class InMemDBService implements InMemoryDbService {
             ],
             sousDocuments: [
               {
-                id: '1',
+                idDocument: '1',
                 titre: 'Note intervention',
+                estEncaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                 docEtats: [
                   {
                     id: '1',
@@ -25786,6 +27496,7 @@ export class InMemDBService implements InMemoryDbService {
                 affichagePrix: true,
                 contientRessources: true,
                 contientDistributeurs: true,
+            formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -26036,6 +27747,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -26086,6 +27798,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
@@ -26104,10 +27817,11 @@ export class InMemDBService implements InMemoryDbService {
                         montantMin: 100,
                         montantMax: 7000,
                         ressource: {
-                          id: '2',
+                          id: '6',
                           libelle: 'Medical',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
                           prixDeSortie: 2050,
@@ -26194,6 +27908,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -26208,7 +27923,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -26237,10 +27952,12 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
-                id: '2',
+                idDocument: '2',
                 titre: 'Fiche de suivi',
+                estEncaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
                 docEtats: [
                   {
                     id: '1',
@@ -26281,6 +27998,7 @@ export class InMemDBService implements InMemoryDbService {
                 affichagePrix: true,
                 contientRessources: true,
                 contientDistributeurs: true,
+            formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -26532,6 +28250,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -26582,6 +28301,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
@@ -26600,10 +28320,11 @@ export class InMemDBService implements InMemoryDbService {
                         montantMin: 100,
                         montantMax: 7000,
                         ressource: {
-                          id: '2',
+                          id: '6',
                           libelle: 'Medical',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
                           prixDeSortie: 2050,
@@ -26690,6 +28411,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -26704,7 +28426,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -26733,15 +28455,18 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
-                id: '3',
+                idDocument: '3',
                 titre: 'Fiche de soin',
+                estEncaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
                 affichagePrix: true,
                 contientRessources: true,
                 contientDistributeurs: true,
+            formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -26977,6 +28702,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           unite: 'Litre',
                           prixDeSortie: 2000,
                           prixEntree: 1300,
@@ -27026,6 +28752,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           prixDeSortie: 2000,
                           prixEntree: 1300,
                           unite: 'Litre',
@@ -27044,10 +28771,11 @@ export class InMemDBService implements InMemoryDbService {
                         montantMin: 100,
                         montantMax: 7000,
                         ressource: {
-                          id: '2',
+                          id: '6',
                           libelle: 'Medical',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           prixDeSortie: 2000,
                           prixEntree: 1300,
                           unite: 'Litre',
@@ -27133,6 +28861,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           unite: 'Litre',
                           prixDeSortie: 2000,
                           prixEntree: 1300,
@@ -27146,7 +28875,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -27175,15 +28904,18 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
-                id: '4',
+                idDocument: '4',
                 titre: 'Formulaire de sortie',
+                estEncaissable: false,
                 typeMouvement: 'Ajout',
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                 etat: true,
                 affichagePrix: true,
                 contientRessources: true,
                 contientDistributeurs: true,
+            formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -27417,13 +29149,14 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           unite: 'Litre',
                           prixDeSortie: 1000,
                           scanBarCode: 'hello',
                           prixEntree: 500,
                           famille: {
                             id: '4',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -27444,7 +29177,7 @@ export class InMemDBService implements InMemoryDbService {
                           },
                           {
                             id: '2',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -27467,13 +29200,14 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           unite: 'Litre',
                           prixDeSortie: 3000,
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
                           famille: {
                             id: '4',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -27487,9 +29221,10 @@ export class InMemDBService implements InMemoryDbService {
                         montantMax: 7000,
                         ressource: {
                           id: '2',
-                          libelle: 'néonat',
+                          libelle: 'Ventoline',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           unite: 'Litre',
                           prixDeSortie: 2000,
                           scanBarCode: 'hello',
@@ -27525,7 +29260,7 @@ export class InMemDBService implements InMemoryDbService {
                           },
                           {
                             id: '2',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -27560,7 +29295,7 @@ export class InMemDBService implements InMemoryDbService {
                           },
                           {
                             id: '2',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -27576,13 +29311,14 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           unite: 'Litre',
                           prixDeSortie: 1000,
                           scanBarCode: 'hello',
                           prixEntree: 500,
                           famille: {
                             id: '4',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -27590,7 +29326,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -27619,15 +29355,18 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
-                id: '4',
+                idDocument: '4',
                 titre: 'Formulaire de sortie',
+                estEncaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                 etat: true,
                 typeMouvement: TypeMouvement.Ajout,
                 affichagePrix: true,
                 contientRessources: true,
                 contientDistributeurs: true,
+            formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -28030,13 +29769,14 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
                           famille: {
                             id: '4',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28080,12 +29820,13 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
                           famille: {
                             id: '4',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28099,9 +29840,10 @@ export class InMemDBService implements InMemoryDbService {
                         montantMax: 7000,
                         ressource: {
                           id: '2',
-                          libelle: 'néonat',
+                          libelle: 'Ventoline',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
                           prixDeSortie: 2050,
@@ -28138,7 +29880,7 @@ export class InMemDBService implements InMemoryDbService {
                           },
                           {
                             id: '2',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28173,7 +29915,7 @@ export class InMemDBService implements InMemoryDbService {
                           },
                           {
                             id: '2',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28189,13 +29931,14 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           unite: 'Litre',
                           famille: {
                             id: '4',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28203,7 +29946,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -28232,15 +29975,18 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
-                id: '4',
+                idDocument: '4',
                 titre: 'Formulaire de sortie',
+                estEncaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                 typeMouvement: 'Reduire',
                 etat: true,
                 affichagePrix: true,
                 contientRessources: true,
                 contientDistributeurs: true,
+            formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -28474,13 +30220,14 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           unite: 'Litre',
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           famille: {
                             id: '4',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28501,7 +30248,7 @@ export class InMemDBService implements InMemoryDbService {
                           },
                           {
                             id: '2',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28524,12 +30271,13 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           unite: 'Litre',
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           famille: {
                             id: '4',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28543,9 +30291,10 @@ export class InMemDBService implements InMemoryDbService {
                         montantMax: 7000,
                         ressource: {
                           id: '2',
-                          libelle: 'néonat',
+                          libelle: 'Ventoline',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           unite: 'Litre',
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
@@ -28581,7 +30330,7 @@ export class InMemDBService implements InMemoryDbService {
                           },
                           {
                             id: '2',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28616,7 +30365,7 @@ export class InMemDBService implements InMemoryDbService {
                           },
                           {
                             id: '2',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28632,13 +30381,14 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           unite: 'Litre',
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
                           famille: {
                             id: '4',
-                            libelle: 'néonat',
+                            libelle: 'Ventoline',
                             description: 'nouveau-né',
                             etat: true,
                           },
@@ -28646,7 +30396,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -28675,14 +30425,17 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
-                id: '4',
+                idDocument: '4',
                 titre: 'Formulaire de sortie',
+                estEncaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                 etat: true,
                 affichagePrix: true,
                 contientRessources: true,
                 contientDistributeurs: true,
+            formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
                   {
@@ -29115,6 +30868,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -29165,6 +30919,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
@@ -29183,10 +30938,11 @@ export class InMemDBService implements InMemoryDbService {
                         montantMin: 100,
                         montantMax: 7000,
                         ressource: {
-                          id: '2',
+                          id: '6',
                           libelle: 'Medical',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
                           prixDeSortie: 2050,
@@ -29273,6 +31029,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -29287,7 +31044,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -29316,15 +31073,18 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
-                id: '5',
+                idDocument: '5',
                 titre: 'ordonnance',
+                estEncaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
                 affichagePrix: true,
                 contientRessources: true,
                 contientDistributeurs: true,
+            formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -29624,6 +31384,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -29674,6 +31435,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           prixEntree: 3000,
                           prixDeSortie: 3050,
                           unite: 'Litre',
@@ -29692,10 +31454,11 @@ export class InMemDBService implements InMemoryDbService {
                         montantMin: 100,
                         montantMax: 7000,
                         ressource: {
-                          id: '2',
+                          id: '6',
                           libelle: 'Medical',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
                           prixDeSortie: 2050,
@@ -29783,6 +31546,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -29797,7 +31561,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -29828,10 +31592,12 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
-            id: '2',
+            idDocument: '2',
             titre: 'Fiche de suivi',
+            estEncaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
             docEtats: [
               {
                 id: '1',
@@ -29872,6 +31638,7 @@ export class InMemDBService implements InMemoryDbService {
             affichagePrix: true,
             contientRessources: false,
             contientDistributeurs: false,
+        formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -30124,6 +31891,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -30174,6 +31942,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'pediatrie',
                       etat: true,
                       quantite: 30,
+                      seuil: 15,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -30193,10 +31962,11 @@ export class InMemDBService implements InMemoryDbService {
                     montantMin: 100,
                     montantMax: 7000,
                     ressource: {
-                      id: '2',
+                      id: '6',
                       libelle: 'Medical',
                       etat: true,
                       quantite: 20,
+                      seuil: 10,
                       scanBarCode: '6911989109209',
                       prixEntree: 2000,
                       prixDeSortie: 2050,
@@ -30283,6 +32053,7 @@ export class InMemDBService implements InMemoryDbService {
                       libelle: 'transfusion',
                       etat: true,
                       quantite: 10,
+                      seuil: 5,
                       scanBarCode: '6911989109209',
                       prixEntree: 1000,
                       prixDeSortie: 1050,
@@ -30297,7 +32068,7 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'brasserie1',
+                        raisonSocial: 'Brasserie',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -30340,10 +32111,12 @@ export class InMemDBService implements InMemoryDbService {
             etat: false,
             document: [
               {
-                id: '1',
+                idDocument: '1',
                 titre: 'Note intervention',
+                estEncaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                 docEtats: [
                   {
                     id: '1',
@@ -30395,6 +32168,7 @@ export class InMemDBService implements InMemoryDbService {
                 affichagePrix: true,
                 contientRessources: true,
                 contientDistributeurs: true,
+            formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -30646,6 +32420,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -30696,6 +32471,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -30715,10 +32491,11 @@ export class InMemDBService implements InMemoryDbService {
                         montantMin: 100,
                         montantMax: 7000,
                         ressource: {
-                          id: '2',
+                          id: '6',
                           libelle: 'Medical',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
                           prixDeSortie: 2050,
@@ -30806,6 +32583,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -30820,7 +32598,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -30849,10 +32627,12 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 sousDocuments: [
                   {
-                    id: '1',
+                    idDocument: '1',
                     titre: 'Note intervention',
+                    estEncaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                     docEtats: [
                       {
                         id: '1',
@@ -30904,6 +32684,7 @@ export class InMemDBService implements InMemoryDbService {
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     missions: [
                       {
                         id: '1',
@@ -31154,6 +32935,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -31204,6 +32986,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
@@ -31222,10 +33005,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -31312,6 +33096,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -31326,7 +33111,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -31355,10 +33140,12 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '2',
+                    idDocument: '2',
                     titre: 'Fiche de suivi',
+                    estEncaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
                     docEtats: [
                       {
                         id: '1',
@@ -31399,6 +33186,7 @@ export class InMemDBService implements InMemoryDbService {
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     missions: [
                       {
                         id: '1',
@@ -31650,6 +33438,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -31700,6 +33489,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
@@ -31718,10 +33508,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -31808,6 +33599,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -31822,7 +33614,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -31851,15 +33643,18 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '3',
+                    idDocument: '3',
                     titre: 'Fiche de soin',
+                    estEncaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
                     typeMouvement: 'Neutre',
                     etat: true,
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '1',
@@ -32016,7 +33811,6 @@ export class InMemDBService implements InMemoryDbService {
                               etat: true,
                               dateCreation: new Date('07/03/2000'),
                               dateModification: new Date('07/03/1990'),
-
                               type: IType.Double,
                               valeursParDefaut: '',
                             },
@@ -32095,6 +33889,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               unite: 'Litre',
                               prixDeSortie: 2000,
                               prixEntree: 1300,
@@ -32144,6 +33939,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixDeSortie: 2000,
                               prixEntree: 1300,
                               unite: 'Litre',
@@ -32162,10 +33958,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               prixDeSortie: 2000,
                               prixEntree: 1300,
                               unite: 'Litre',
@@ -32251,6 +34048,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               unite: 'Litre',
                               prixDeSortie: 2000,
                               prixEntree: 1300,
@@ -32264,7 +34062,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -32293,15 +34091,18 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '4',
+                    idDocument: '4',
                     titre: 'Formulaire de sortie',
+                    estEncaissable: true,
                     typeMouvement: 'Ajout',
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                     etat: true,
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '2',
@@ -32535,13 +34336,14 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               unite: 'Litre',
                               prixDeSortie: 1000,
                               scanBarCode: 'hello',
                               prixEntree: 500,
                               famille: {
                                 id: '4',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -32562,7 +34364,7 @@ export class InMemDBService implements InMemoryDbService {
                               },
                               {
                                 id: '2',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -32585,13 +34387,14 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               unite: 'Litre',
                               prixDeSortie: 3000,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               famille: {
                                 id: '4',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -32605,9 +34408,10 @@ export class InMemDBService implements InMemoryDbService {
                             montantMax: 7000,
                             ressource: {
                               id: '2',
-                              libelle: 'néonat',
+                              libelle: 'Ventoline',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               unite: 'Litre',
                               prixDeSortie: 2000,
                               scanBarCode: 'hello',
@@ -32643,7 +34447,7 @@ export class InMemDBService implements InMemoryDbService {
                               },
                               {
                                 id: '2',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -32678,7 +34482,7 @@ export class InMemDBService implements InMemoryDbService {
                               },
                               {
                                 id: '2',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -32694,13 +34498,14 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               unite: 'Litre',
                               prixDeSortie: 1000,
                               scanBarCode: 'hello',
                               prixEntree: 500,
                               famille: {
                                 id: '4',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -32708,7 +34513,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -32737,15 +34542,18 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '4',
+                    idDocument: '4',
                     titre: 'Formulaire de sortie',
+                    estEncaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                     etat: true,
                     typeMouvement: TypeMouvement.Ajout,
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '2',
@@ -33148,13 +34956,14 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
                               unite: 'Litre',
                               famille: {
                                 id: '4',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33198,12 +35007,13 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
                               famille: {
                                 id: '4',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33217,9 +35027,10 @@ export class InMemDBService implements InMemoryDbService {
                             montantMax: 7000,
                             ressource: {
                               id: '2',
-                              libelle: 'néonat',
+                              libelle: 'Ventoline',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -33256,7 +35067,7 @@ export class InMemDBService implements InMemoryDbService {
                               },
                               {
                                 id: '2',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33291,7 +35102,7 @@ export class InMemDBService implements InMemoryDbService {
                               },
                               {
                                 id: '2',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33307,13 +35118,14 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
                               unite: 'Litre',
                               famille: {
                                 id: '4',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33321,7 +35133,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -33350,15 +35162,18 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '4',
+                    idDocument: '4',
                     titre: 'Formulaire de sortie',
+                    estEncaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                     typeMouvement: 'Reduire',
                     etat: true,
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '2',
@@ -33592,13 +35407,14 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               unite: 'Litre',
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
                               famille: {
                                 id: '4',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33619,7 +35435,7 @@ export class InMemDBService implements InMemoryDbService {
                               },
                               {
                                 id: '2',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33642,12 +35458,13 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               unite: 'Litre',
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               famille: {
                                 id: '4',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33661,9 +35478,10 @@ export class InMemDBService implements InMemoryDbService {
                             montantMax: 7000,
                             ressource: {
                               id: '2',
-                              libelle: 'néonat',
+                              libelle: 'Ventoline',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               unite: 'Litre',
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
@@ -33699,7 +35517,7 @@ export class InMemDBService implements InMemoryDbService {
                               },
                               {
                                 id: '2',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33734,7 +35552,7 @@ export class InMemDBService implements InMemoryDbService {
                               },
                               {
                                 id: '2',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33750,13 +35568,14 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               unite: 'Litre',
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
                               famille: {
                                 id: '4',
-                                libelle: 'néonat',
+                                libelle: 'Ventoline',
                                 description: 'nouveau-né',
                                 etat: true,
                               },
@@ -33764,7 +35583,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -33793,14 +35612,17 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '4',
+                    idDocument: '4',
                     titre: 'Formulaire de sortie',
+                    estEncaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                     etat: true,
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     typeMouvement: 'Ajout',
                     docEtats: [
                       {
@@ -34233,6 +36055,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -34283,6 +36106,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
@@ -34301,10 +36125,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -34391,6 +36216,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -34405,7 +36231,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -34434,15 +36260,18 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '5',
+                    idDocument: '5',
                     titre: 'ordonnance',
+                    estEncaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                     typeMouvement: 'Neutre',
                     etat: true,
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '1',
@@ -34742,6 +36571,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -34792,6 +36622,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
@@ -34810,10 +36641,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -34901,6 +36733,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -34915,7 +36748,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -34949,7 +36782,6 @@ export class InMemDBService implements InMemoryDbService {
           },
         ],
       },
-
       {
         id: '2',
         libelle: 'Milieu',
@@ -34961,15 +36793,18 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             document: [
               {
-                id: '3',
+                idDocument: '3',
                 titre: 'Fiche de soin',
+                estEncaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
                 affichagePrix: false,
                 contientRessources: true,
                 contientDistributeurs: false,
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -35205,6 +37040,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -35255,6 +37091,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'pediatrie',
                           etat: true,
                           quantite: 30,
+                          seuil: 15,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -35274,10 +37111,11 @@ export class InMemDBService implements InMemoryDbService {
                         montantMin: 100,
                         montantMax: 7000,
                         ressource: {
-                          id: '2',
+                          id: '6',
                           libelle: 'Medical',
                           etat: true,
                           quantite: 20,
+                          seuil: 10,
                           scanBarCode: '6911989109209',
                           prixEntree: 2000,
                           prixDeSortie: 2050,
@@ -35364,6 +37202,7 @@ export class InMemDBService implements InMemoryDbService {
                           libelle: 'transfusion',
                           etat: true,
                           quantite: 10,
+                          seuil: 5,
                           scanBarCode: '6911989109209',
                           prixEntree: 1000,
                           prixDeSortie: 1050,
@@ -35378,7 +37217,7 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'brasserie1',
+                            raisonSocial: 'Brasserie',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -35407,10 +37246,12 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 sousDocuments: [
                   {
-                    id: '1',
+                    idDocument: '1',
                     titre: 'Note intervention',
+                    estEncaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                     docEtats: [
                       {
                         id: '1',
@@ -35462,6 +37303,7 @@ export class InMemDBService implements InMemoryDbService {
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     missions: [
                       {
                         id: '1',
@@ -35712,6 +37554,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -35762,6 +37605,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
@@ -35780,10 +37624,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -35870,6 +37715,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -35884,7 +37730,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -35913,10 +37759,12 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '2',
+                    idDocument: '2',
                     titre: 'Fiche de suivi',
+                    estEncaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: false,
                     docEtats: [
                       {
                         id: '1',
@@ -35957,6 +37805,7 @@ export class InMemDBService implements InMemoryDbService {
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     missions: [
                       {
                         id: '1',
@@ -36209,6 +38058,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -36259,6 +38109,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
@@ -36277,10 +38128,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -36367,6 +38219,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -36381,7 +38234,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -36410,15 +38263,18 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '3',
+                    idDocument: '3',
                     titre: 'Fiche de soin',
+                    estEncaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                    beneficiaireObligatoire: false,
                     typeMouvement: 'Neutre',
                     etat: true,
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+                    formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '1',
@@ -36654,6 +38510,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -36704,6 +38561,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
@@ -36722,10 +38580,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -36812,6 +38671,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -36826,7 +38686,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -36855,15 +38715,18 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '4',
+                    idDocument: '4',
                     titre: 'Formulaire de sortie',
+                    estEncaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                     typeMouvement: 'Reduire',
                     etat: true,
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '2',
@@ -37284,6 +39147,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -37334,6 +39198,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
@@ -37352,10 +39217,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -37442,6 +39308,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -37456,7 +39323,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -37485,15 +39352,18 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                   {
-                    id: '5',
+                    idDocument: '5',
                     titre: 'ordonnance',
+                    estEncaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
+                beneficiaireObligatoire: true,
                     typeMouvement: 'Neutre',
                     etat: true,
                     affichagePrix: true,
                     contientRessources: true,
                     contientDistributeurs: true,
+            formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '1',
@@ -37793,6 +39663,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -37843,6 +39714,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'pediatrie',
                               etat: true,
                               quantite: 30,
+                              seuil: 15,
                               prixEntree: 3000,
                               prixDeSortie: 3050,
                               unite: 'Litre',
@@ -37861,10 +39733,11 @@ export class InMemDBService implements InMemoryDbService {
                             montantMin: 100,
                             montantMax: 7000,
                             ressource: {
-                              id: '2',
+                              id: '6',
                               libelle: 'Medical',
                               etat: true,
                               quantite: 20,
+                              seuil: 10,
                               scanBarCode: '6911989109209',
                               prixEntree: 2000,
                               prixDeSortie: 2050,
@@ -37951,6 +39824,7 @@ export class InMemDBService implements InMemoryDbService {
                               libelle: 'transfusion',
                               etat: true,
                               quantite: 10,
+                              seuil: 5,
                               scanBarCode: '6911989109209',
                               prixEntree: 1000,
                               prixDeSortie: 1050,
@@ -37965,7 +39839,7 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'brasserie1',
+                                raisonSocial: 'Brasserie',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -38000,6 +39874,9 @@ export class InMemDBService implements InMemoryDbService {
         ],
       },
     ];
+    let mvtCaisses: IMouvementCaisses[] = [
+
+    ];
     return {
       patients,
       services,
@@ -38007,6 +39884,7 @@ export class InMemDBService implements InMemoryDbService {
       menus,
       tickets,
       validations,
+      mvtCaisses,
       missions,
       attributs,
       documents,
@@ -38022,8 +39900,12 @@ export class InMemDBService implements InMemoryDbService {
       typeUnite,
       typeMvt,
       etats,
+      caisses,
+      comptes,
       etape,
       parours,
+      typeValidation,
+      formatCode,
       groupes,
       utilisateurs
     };

@@ -14,7 +14,7 @@
           <form class="example-form-entete">
             <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngFor="let option of filteredOptions!" [value]="option.user"
+              <mat-option *ngFor="let option of filteredOptions" [value]="option"
                 (onSelectionChange)="rechercherListingPersonnel(option)">
                 {{option.user.nom}}
               </mat-option>
@@ -37,14 +37,14 @@
           <ng-container matColumnDef="nom">
             <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
               {{"personnel.table.title1" | translate}} </th>
-            <td class="containCell" mat-cell *matCellDef="let element"> {{element.user.nom}} </td>
+            <td class="containCell" mat-cell *matCellDef="let element"> {{element.nom}} </td>
           </ng-container>
 
           <!-- prenom Column -->
           <ng-container matColumnDef="prenom">
             <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
               {{"personnel.table.title2" | translate}} </th>
-            <td class="containCell" mat-cell *matCellDef="let element"> {{element.user.prenom}} </td>
+            <td class="containCell" mat-cell *matCellDef="let element"> {{element.prenom}} </td>
           </ng-container>
 
           <!-- birthday Column -->
@@ -101,7 +101,7 @@
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"personnel.table.title9" |
               translate}} </th>
             <td class="text-dark containCell" mat-cell *matCellDef="let element">
-              <div id="actions" class="dropdown open">
+              <div id="actions" class="dropdown-open">
                 <button class="btn dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span>...</span>
@@ -129,7 +129,6 @@
                     title="{{'personnel.table.action.link3' | translate}}">
                     <i class="fa fa-eye text-secondary" aria-hidden="true"></i>
                     <span>{{'personnel.table.actions.link3' | translate}} </span>
-
                   </button>
  -->
                 </div>

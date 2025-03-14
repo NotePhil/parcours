@@ -1,19 +1,42 @@
 <div class="mainBlock" id="top2">
-     <form [formGroup]="formeExemplaire" (ngSubmit)="onSubmit()" *ngIf="formeExemplaire" >
+     <form [formGroup]="formeExemplaire" (ngSubmit)="onSubmit(formeExemplaire)" *ngIf="formeExemplaire" >
         <h1>
-            {{this.document.titre}} {{titre}}
+            {{this.document.titre}} 
+            <!-- {{titre}} -->
         </h1>
         <div class="infos">
-            <p id="titre">
-                {{'document.exemplaire.text9' | translate}} :
-                <span class="title">{{this.nomPatientCourant}}</span>
-            </p>
-            <p id="titre">
-                {{'document.exemplaire.text6' | translate}} :
-                <span class="title">{{this.exemplaire.dateCreation | date: 'dd/MM/yyyy'}}</span>
-                {{'document.exemplaire.text7' | translate}} 
-                <span class="title">{{this.exemplaire.dateCreation | date: 'hh:mm:ss'}}</span>
-            </p>
+            <div id="titre">
+                <div *ngIf="this.exemplaire.personneRattachee != undefined">
+                    <span class="label">
+                        {{ "document.exemplaire.text9" | translate }} :
+                    </span>
+                    <span class="title">{{ this.exemplaire.personneRattachee.nom + " " }}
+                        <span class="capitaliseTitle"> {{ this.exemplaire.personneRattachee.prenom! }} </span>
+                    </span>
+                </div>
+                <div>
+                    <span class="label">
+                        {{ "document.exemplaire.text6" | translate }} :
+                    </span>
+                    <span class="title">{{
+                        this.exemplaire.dateCreation | date : "dd/MM/yyyy"}}
+                    </span>
+                    <span class="label">
+                        {{ "document.exemplaire.text7" | translate }} : 
+                    </span>
+                    <span class="title">{{ this.exemplaire.dateCreation | date : "hh:mm:ss" }}
+                    </span>
+                </div>
+                <div *ngIf="this.idExemplaire">
+                    <span class="label"> {{ "document.title7" | translate }} : </span>
+                    {{ courant }}
+                </div>
+                <div class="codeInput">
+                    <label for="">{{'document.exemplaire.text11' | translate}} </label>
+                    <input [formControl]="codeControl" type="text" name="code" id="code">
+                </div>
+            </div>
+           
             <div  *ngIf="submitted && estValide == false" class="alert alert-danger">
                 <div >{{eValvalide}} {{'lists.text3' | translate}}</div>
             </div>
@@ -49,20 +72,7 @@
             <div *ngIf="document.contientRessources == true" class="block2 card mt-2 pt-1" id="sectionAjoutPreco">
                 <div>
                     <h3>{{'document.exemplaire.title3' | translate}} :</h3>
-                    <div class="searchBlock" [ngClass]="{'searchBlock': document.contientDistributeurs, 'searchBlockUnique': !document.contientDistributeurs}">
-                        <div *ngIf="document.contientDistributeurs == true" class="blockAutoDistributeurs">
-                            <form class="example-form-entete">
-                                <h4>{{'preconisation.table.title6' | translate}}</h4>
-                                <input type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="autoDistributeur">
-                                <mat-autocomplete class="blockAutocomplate" #autoDistributeur="matAutocomplete" [displayWith]="displayDistributeurFn">
-                                    <mat-option class="options" *ngFor="let optionDistributeur of filteredDistributeurOptions" [value]="optionDistributeur" (click)="associerDistributeur(optionDistributeur)">
-                                        {{optionDistributeur.raisonSocial}}
-                                    </mat-option>
-                                </mat-autocomplete>
-                                <button *ngIf="modificationDistributeurActive == true" class="btn btnModifierDistributeurBlock" type="button" (click)="modifierDistributeur()">{{'lists.button6' | translate}}</button>
-                                
-                            </form>
-                        </div>
+                    <div class="searchBlockUnique">
                         <div class="blockAutoRessources">
                             <form class="example-form-entete">
                                 <h4>{{'ressource.form.text16' | translate}}</h4>
@@ -73,6 +83,46 @@
                                     </mat-option>
                                 </mat-autocomplete>
                             </form>
+                            <div class="blockScan">
+                                <span role="button" *ngIf="document.contientRessources == true" class="btnScan" (click)="openBarcodeScanner(); toogleScanCodeView()">
+                                    <i class="fas fa-camera icon"></i>
+                                </span>
+                                <div class="scanCodeComponent">
+                                    <app-modal-codebarre-scan-continue #barcodeScanner></app-modal-codebarre-scan-continue>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="document.contientDistributeurs == true && !document.beneficiaireObligatoire && modificationDistributeurActive == true" class="blockAutoDistributeurs">
+                            <form class="example-form-entete">
+                                <h4>{{'preconisation.table.title6' | translate}}</h4>
+                                <input type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="autoDistributeur">
+                                <mat-autocomplete class="blockAutocomplate" #autoDistributeur="matAutocomplete" [displayWith]="displayDistributeurFn">
+                                    <mat-option class="options" *ngFor="let optionDistributeur of filteredDistributeurOptions" [value]="optionDistributeur" (click)="associerDistributeur(optionDistributeur)">
+                                        {{optionDistributeur.raisonSocial}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <button *ngIf="modificationDistributeurActive == true" id="btnDeleteDistributeur" class="btn btnModifierDistributeurBlock" type="button" (click)="reinitialliseDistributeurControl()" title="{{'lists.button15' | translate}}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                                <button *ngIf="modificationDistributeurActive == true"  id="btnUpdateDistributeur" class="btn btnModifierDistributeurBlock" type="button" (click)="modifierDistributeur(); reinitialliseDistributeurControl()" title="{{'lists.button6' | translate}}">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                </button>
+                                
+                            </form>
+                        </div>
+                        <div class="blockAutoPromos" *ngIf="document.affichagePrix == true && document.beneficiaireObligatoire">
+                            <form class="example-form-entete">
+                                <h4>{{'document.exemplaire.text15' | translate}}</h4>
+                                <input type="text" matInput [formControl]="assuranceControl" [matAutocomplete]="autoAssurance">
+                                <mat-autocomplete class="blockAutocomplate" #autoAssurance="matAutocomplete" [displayWith]="displayAssuranceFn">
+                                    <mat-option class="options" *ngFor="let option of filteredAssuranceOptions" [value]="option" (click)="rechercherListingAssurance(option); getAssurancePersonne(option)">
+                                        {{option.raisonSocial}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </form>
+                            <div *ngIf="showText == true" class="notfoundPromo">
+                                <p>{{'ressource.table.title12' | translate}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,12 +142,15 @@
                             <!-- quantite Column -->
                             <ng-container matColumnDef="quantite">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title5' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                   <label class="custom-control">
-                                      <input class="form-control" type="number" [(ngModel)]="element.quantite" [ngModelOptions]="{standalone: true}" value="true">
+                                      <input class="form-control" type="number" (change)="verificationRessource(element.quantite, null, null, element.ressource)" [(ngModel)]="element.quantite" [ngModelOptions]="{standalone: true}" [disabled]="element.typeMouvement != 'Neutre' && i <= (tailleFirstMvts - 1)" value="true">
                                   </label>
+                                  <p *ngIf="isFalse && resValidate?.ressource!.id == element.ressource.id" class="text-sm text-danger">
+                                    {{ errorText }}
+                                  </p>
                                 </td>
-                          </ng-container>
+                            </ng-container>
 
                           <!-- unite Column -->
                           <ng-container matColumnDef="unite">
@@ -106,22 +159,12 @@
                                   {{element.ressource.unite}}
                           </ng-container>
 
-                            <!-- description Column -->
-                            <ng-container matColumnDef="description">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'attributs.table.title2' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                    <label class="custom-control">
-                                        <input class="form-control" type="text" [(ngModel)]="element.description" [ngModelOptions]="{standalone: true}" value="true">
-                                    </label>
-                                </td>
-                            </ng-container>
-
                             <!-- prix Column -->
                             <ng-container *ngIf="document.affichagePrix == true && document.typeMouvement == typeNeutre" matColumnDef="prix">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title7' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                     <label class="custom-control">
-                                        <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
+                                        <input class="form-control" type="number" [disabled]="element.typeMouvement != 'Neutre' && i <= (tailleFirstMvts - 1)" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
                                     </label> 
                                 </td>
                             </ng-container>
@@ -131,17 +174,57 @@
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title5' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                     <label class="custom-control">
-                                        <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
-                                    </label> 
+                                        <input class="form-control" type="number" (change)="verificationRessource(null, null, element.ressource!.prixEntree, element.ressource)" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
+                                    </label>
+                                    <p *ngIf="isFalseIn && resValidate?.ressource!.id == element.ressource.id" class="text-sm text-danger">
+                                        {{ errorText }}
+                                    </p>
                                 </td>
                             </ng-container>
 
                             <!-- prixDeSortie Column -->
                             <ng-container *ngIf="document.affichagePrix == true && document.typeMouvement == typeReduire" matColumnDef="prixDeSortie">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title9' | translate}} </th>
+                                    <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
+                                    <label class="custom-control">
+                                        <input class="form-control" type="number" (change)="verificationRessource(null, element.ressource!.prixDeSortie, element.ressource)" [disabled]="element.typeMouvement != 'Neutre' && i <= (tailleFirstMvts - 1)" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
+                                    </label> 
+                                    <p *ngIf="isFalseOut && resValidate?.ressource!.id == element.ressource.id" class="text-sm text-danger">
+                                        {{ errorText }}
+                                    </p>
+                                </td>
+                            </ng-container>
+
+                            <!-- pourcentageCharge Column -->
+                            <ng-container *ngIf="document.affichagePrix == true && document.typeMouvement != typeNeutre && document.beneficiaireObligatoire" matColumnDef="pourcentageCharge">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title11' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                     <label class="custom-control">
-                                        <input class="form-control" type="number" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
+                                        <input class="form-control" type="number" value="{{remisePromo }}" disabled>
+                                        <span>{{unitePromo}}</span>
+                                    </label> 
+                                </td>
+                            </ng-container>
+
+                            <!-- pourcentageChargeRssource Column -->
+                            <ng-container *ngIf="document.affichagePrix == true && document.typeMouvement != typeNeutre && !document.beneficiaireObligatoire" matColumnDef="pourcentageChargeRssource">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title11' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    <label class="custom-control">
+                                        <input *ngIf="element.promotion?.pourcentageRemise > 0" class="form-control" type="number" value="{{element.promotion?.pourcentageRemise }}" disabled>
+                                        <input *ngIf="element.promotion?.montantRemise > 0" class="form-control" type="number" value="{{element.promotion?.montantRemise }}" disabled>
+                                        <span *ngIf="element.promotion?.pourcentageRemise > 0">%</span>
+                                        <span *ngIf="element.promotion?.montantRemise > 0">UD</span>
+                                    </label> 
+                                </td>
+                            </ng-container>
+
+                            <!-- montantCharge Column -->
+                            <ng-container *ngIf="document.affichagePrix == true && document.typeMouvement != typeNeutre" matColumnDef="montantCharge">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title12' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    <label class="custom-control">
+                                        <input class="form-control" type="number" [value]="calculRemise(element)*element.quantite" disabled>
                                     </label> 
                                 </td>
                             </ng-container>
@@ -149,13 +232,22 @@
                             <!-- montant total Column -->
                             <ng-container *ngIf="document.affichagePrix == true" matColumnDef="montant total">
                                   <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title10' | translate}}</th>
-                                  <td class="text-dark containCell" mat-cell *matCellDef="let element"><input type="number" value="{{element.quantite*element.prix}}" disabled> </td>
+                                  <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    <input type="number" value="{{element.quantite*element.prix}}" disabled>
+                                </td>
                             </ng-container>
 
                           <!-- distributeur Column -->
-                          <ng-container *ngIf="document.contientDistributeurs == true" matColumnDef="distributeur">
+                          <ng-container *ngIf="document.contientDistributeurs == true && !document.beneficiaireObligatoire" matColumnDef="distributeur">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'preconisation.table.title5' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index"><div class="modifierDistributeurBlock">{{element.distributeur?.raisonSocial}}<span role="button" title="{{'document.exemplaire.text3' | translate}}" (click)="InitialiseDistributeurControlPourModufication(i)"><i class="fa fa-pen-alt text-warning" aria-hidden="true"></i></span></div></td>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
+                                    <div class="modifierDistributeurBlock" title="{{element.distributeur?.raisonSocial}}">
+                                        {{element.distributeur?.raisonSocial}}
+                                        <span role="button" title="{{'document.exemplaire.text3' | translate}}" (click)="InitialiseDistributeurControlPourModufication(i)">
+                                            <i class="fa fa-pen-alt text-warning" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </td>
                         </ng-container>
 
                             <!-- Actions column -->
@@ -163,10 +255,13 @@
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                     <div class="actions">
-                                        <button class="btn p-0" [value]="element.id" title="clicker pour annuler la selection" (click)="retirerSelectionRessource(i)">
+                                        <button class="btn p-0" [disabled]="element.typeMouvement != 'Neutre' && i <= (tailleFirstMvts - 1)" [value]="element.id" title="clicker pour annuler la selection" (click)="retirerSelectionRessource(i)">
                                             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                         </button>
-                                        <span><i class="fa fa-info-circle text-info ml-1" (click)="getRessourceId(element.id)" aria-hidden="true" title="{{'preconisation.table.title4' | translate}}"></i></span>
+                                        <span><i class="fa fa-info-circle text-info ml-1" aria-hidden="true" title="{{'preconisation.table.title4' | translate}}"></i></span>
+                                        <span *ngIf="document.affichagePrix == true && !document.beneficiaireObligatoire" role="button" class="ml-1 mr-1" title="{{'promo-distributeur.title2' | translate}}" (click)="getRessource(element.ressource); openPromotionRessourceDialog(); getIndexTableauMvtCourant(element.id); initialisePromotionControl(element.promotion!)">
+                                            <i class="fa fa-tags" aria-hidden="true"></i>
+                                        </span>
                                     </div>
                                 </td>
                             </ng-container>
@@ -175,16 +270,147 @@
                         </table>
 
                         <!-- montant total -->
-                        <div class="total" *ngIf="document.affichagePrix == true && ELEMENTS_TABLE_MOUVEMENTS.length > 0">
-                            <span class="mr-2">{{'ressource.table2.title11' | translate}}</span>
-                            <input type="text" [value]="sommeMontants()" disabled>
-                        </div>
+                         <div class="blockMontantsTotaux" *ngIf="document.affichagePrix == true && ELEMENTS_TABLE_MOUVEMENTS.length > 0">
+                            <div class="total">
+                                <span class="mr-2">{{'ressource.table2.title11' | translate}}</span>
+                                <input type="text" [value]="sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS) " disabled>
+                            </div>
+                            <div class="total">
+                                <span class="mr-2">{{'ressource.table2.title12' | translate}}</span>
+                                <input type="text" [value]="sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS)-sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) " disabled>
+                            </div>
+                            <div class="total">
+                                <span class="mr-2">{{'ressource.table2.title13' | translate}}</span>
+                                <input type="text" [value]="sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) " disabled>
+                            </div>
+                         </div>
 
                         <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]"
                                        showFirstLastButtons
                                        aria-label="Select page of periodic elements">
                         </mat-paginator>
                     </div>
+                </div>
+
+                <!-- tableau de mouvement d'une caisse -->
+                <h2 class="m-2">{{'lists.text5' | translate}}</h2>
+                <div class="card-body d-flex flex-wrap gap-2 justify-content-between flex-lg-row flex-column">
+                        <div class="m-2">
+                            <div class=" block1 p-2">
+                                <div class="form-group">
+                                    <div class="champs">
+                                        <label for="exemplaire" class="label">
+                                            {{'mvtCaisse.table.title7' | translate}}
+                                        </label>
+                                        <div class="d-flex" >
+                                            <input type="text" [value]="compte?.solde" disabled class="form-control text-dark">
+                                            <input class="ml-6" type="checkbox" name="use" formControlName="use" (change)="useSolde(fCaisse['use'].value)" title="{{'lists.text6' | translate }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <div class="champs">
+                                            <label for="montant" class="label">
+                                                {{'mvtCaisse.table.title0' | translate}}
+                                            </label>
+                                            <div>
+                                                <input type="number" formControlName="montant" name="montant" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div *ngIf="submitted && fCaisse['montant'].errors"  class="alert alert-danger" >
+                                            <div *ngIf="fCaisse['montant'].errors['required']">{{'mvtCaisse.form.text1' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <div class="champs">
+                                            <label for="reste" class="label">
+                                                {{'mvtCaisse.table.title8' | translate}}
+                                            </label>
+                                            <div>
+                                                <input type="number" [value]="resteAPayer" (change)="resteAPayer" disabled class="form-control">
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                        <div class="champs">
+                                            <label for="moyenPaiement" class="label">
+                                                {{'mvtCaisse.table.title2' | translate}}
+                                            </label>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Choisissez des options</mat-label>
+                                                <mat-select 
+                                                  [multiple]="false"
+                                                  [(value)]="selectedOptions"
+                                                  >
+                                                  <mat-option *ngFor="let option of caisses" [value]="option" (click)="verifyUseSolde(option.type)">
+                                                    {{ option.type }}
+                                                  </mat-option>
+                                                  <mat-option (click)="verifyUseSolde('multipaiement')" value="multipaiement">{{'mvtCaisse.table.title12' | translate}}</mat-option>
+                                                </mat-select>
+                                              </mat-form-field>
+                                        </div>
+                                        <div *ngIf="submitted && fCaisse['moyenPaiement'].errors"  class="alert alert-danger" >
+                                            <div *ngIf="fCaisse['moyenPaiement'].errors['required']">{{'mvtCaisse.form.text3' | translate}}</div>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                        <div class="champs">
+                                            <label for="referencePaiement" class="label">
+                                                {{'mvtCaisse.table.title4' | translate}}
+                                            </label>
+                                            <input type="text" formControlName="referencePaiement" name="referencePaiement" class="form-control">
+                                        </div>
+                                        <div *ngIf="submitted && fCaisse['referencePaiement'].errors"  class="alert alert-danger" >
+                                            <div *ngIf="fCaisse['referencePaiement'].errors['required']">{{'mvtCaisse.form.text4' | translate}}</div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-auto w-auto m-2">
+                            <div class='table-responsive'>
+                                <table class='table table-sm table-centered table-striped table-bordered' mat-table [dataSource]="dataSourceMouvementcaisses">
+        
+                                    <!-- reférence Column -->
+                                    <ng-container matColumnDef="reférence">
+                                        <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'mvtCaisse.table.title4' | translate}} </th>
+                                        <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.referencePaiement}} </td>
+                                    </ng-container>
+        
+                                    <!-- moyen de paiement Column -->
+                                    <ng-container matColumnDef="moyen de paiement">
+                                        <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'mvtCaisse.table.title2' | translate}} </th>
+                                        <td class="text-dark containCell" mat-cell *matCellDef="let element">{{element.moyenPaiement.type}}</td>
+                                    </ng-container>
+        
+                                    <!-- date Column -->
+                                    <ng-container matColumnDef="date">
+                                        <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> Date </th>
+                                        <td class="text-dark containCell" mat-cell *matCellDef="let element">{{element.dateCreation | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    </ng-container>
+        
+                                    <!-- montant total Column -->
+                                    <ng-container *ngIf="document.affichagePrix == true" matColumnDef="montant">
+                                          <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'mvtCaisse.table.title0' | translate}}</th>
+                                          <td class="text-dark containCell" mat-cell *matCellDef="let element">{{element.montant}}</td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedMouvementsColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedMouvementsColumns;"></tr>
+                                </table>
+        
+                                <!-- montant total -->
+                                <div class="total">
+                                    <span class="mr-2">{{'ressource.table2.title11' | translate}}</span>
+                                    <input type="text" [value]="sommeTtVerse()" disabled>
+                                </div>
+        
+                                <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]"
+                                               showFirstLastButtons
+                                               aria-label="Select page of periodic elements">
+                                </mat-paginator>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

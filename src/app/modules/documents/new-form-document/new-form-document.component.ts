@@ -1,4 +1,3 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormGroup,
@@ -17,7 +16,6 @@ import { ICategoriesAttributs } from 'src/app/modele/categories-attributs';
 import { IDocument } from 'src/app/modele/document';
 import { IMission } from 'src/app/modele/mission';
 import { IService } from 'src/app/modele/service';
-import { AttributService } from 'src/app/services/attributs/attribut.service';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { MissionsService } from 'src/app/services/missions/missions.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -42,7 +40,7 @@ import { IDocEtats } from 'src/app/modele/doc-etats';
 })
 export class NewFormDocumentComponent implements OnInit {
   document: IDocument = {
-    id: '',
+    idDocument: '',
     titre: '',
     description: '',
     etat: false,
@@ -51,10 +49,13 @@ export class NewFormDocumentComponent implements OnInit {
     categories: [],
     preconisations: [],
     affichagePrix: false,
+    estEncaissable: false,
     contientRessources: false,
     contientDistributeurs: false,
     typeMouvement: TypeMouvement.Neutre,
-    docEtats: []
+    docEtats: [],
+    formatCode: '',
+    beneficiaireObligatoire: false
   };
   mission$: Observable<IMission[]> = EMPTY;
   forme: FormGroup;
@@ -97,6 +98,8 @@ export class NewFormDocumentComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   typeMvt: string[] = [];
+  formatsCode: string[] = [];
+  documentParentDesactive = false
 
   constructor(
     private router: Router,
@@ -105,34 +108,32 @@ export class NewFormDocumentComponent implements OnInit {
     private dataEnteteMenuService: DonneesEchangeService,
     private serviceDocument: DocumentService,
     private serviceMission: MissionsService,
-    private _liveAnnouncer: LiveAnnouncer,
     private donneeDocCatService: DonneesEchangeService,
     private dialogDef: MatDialog
   ) {
     this.forme = this.formBuilder.group({
       _missions: new FormControl<string | IMission[]>(''),
       _attributs: new FormArray([]),
-      titre: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(50),
-        ],
-      ],
+      titre: [ '', [ Validators.required]],
       description: [''],
       typeMouvement: ['', [Validators.required]],
       etat: new FormControl(true),
-      affichagePrix: new FormControl(true),
-      contientRessources: new FormControl(true),
-      contientDistributeurs: new FormControl(true),
+      estEncaissable: new FormControl(true),
+      affichagePrix: new FormControl(false),
+      contientRessources: new FormControl(false),
+      contientDistributeurs: new FormControl(false),
+      beneficiaireObligatoire: new FormControl(true),
+      formatCode: [ '', [ Validators.required]]
     });
   }
   ngOnInit(): void {
     this.mission$ = this.getAllMissions();
-    this.donneeDocCatService
-      .getTypeMvt()
-      .subscribe((x) => (this.typeMvt = x.type));
+    this.forme.controls['affichagePrix'].disable()
+    this.forme.controls['contientDistributeurs'].disable()    
+    this.documentParentDesactive = true
+    this.donneeDocCatService.getTypeMvt().subscribe((x) => (this.typeMvt = x.type));
+    this.donneeDocCatService.getFormatCode().subscribe((f) => (this.formatsCode = f.type));
+
     // chargement de la page a partir d'un Id pour la modification d'un document
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
     if (idDocument != null && idDocument !== '') {
@@ -140,16 +141,24 @@ export class NewFormDocumentComponent implements OnInit {
       this.titre = 'Document à Modifier';
       this.serviceDocument.getDocumentById(idDocument).subscribe((x) => {
         this.document = x;
+        if (this.document.contientRessources == true) {
+          this.forme.controls['affichagePrix'].enable()
+          this.forme.controls['contientDistributeurs'].enable()    
+          this.documentParentDesactive = false
+        }
         this.forme.setValue({
           titre: this.document.titre,
           description: this.document.description,
           etat: this.document.etat,
+          estEncaissable: this.document.estEncaissable,
           typeMouvement: this.document.typeMouvement,
           affichagePrix: this.document.affichagePrix,
           contientRessources: this.document.contientRessources,
           contientDistributeurs: this.document.contientDistributeurs,
+          beneficiaireObligatoire: this.document.beneficiaireObligatoire,
           _missions: this.document.missions,
           _attributs: [],
+          formatCode : this.document.formatCode
         });
         this.forme.controls['_missions'].setValue(this.document.missions);
 
@@ -285,7 +294,7 @@ export class NewFormDocumentComponent implements OnInit {
   openSousDocumentDialog() {
     const dialogConfig = new MatDialogConfig();
     if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
-      dialogConfig.data = { documentIds: this.ELEMENTS_TABLE_SOUS_DOCUMENTS.map(doc => doc.id) };
+      dialogConfig.data = { documentIds: this.ELEMENTS_TABLE_SOUS_DOCUMENTS.map(doc => doc.idDocument) };
     }
   
     dialogConfig.maxWidth = '100vw';
@@ -302,6 +311,7 @@ export class NewFormDocumentComponent implements OnInit {
   
       if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
         this.document.sousDocuments = this.ELEMENTS_TABLE_SOUS_DOCUMENTS;
+        
       }
     });
   }
@@ -380,11 +390,14 @@ export class NewFormDocumentComponent implements OnInit {
       this.ELEMENTS_TABLE_ATTRIBUTS.length < 1
     )
       return;
+      let idTemp = uuidv4()
     let documentTemp: IDocument = {
-      id: uuidv4(),
+      idDocument: idTemp,
+      id: idTemp,
       titre: documentInput.titre,
       description: documentInput.description,
       etat: documentInput.etat,
+      estEncaissable: documentInput.estEncaissable,
       typeMouvement: documentInput.typeMouvement,
       missions: documentInput._missions,
       attributs: [],
@@ -394,10 +407,12 @@ export class NewFormDocumentComponent implements OnInit {
       affichagePrix: documentInput.affichagePrix,
       contientRessources: documentInput.contientRessources,
       contientDistributeurs: documentInput.contientDistributeurs,
-      docEtats: []
+      beneficiaireObligatoire: documentInput.beneficiaireObligatoire,
+      docEtats: [],
+      formatCode: documentInput.formatCode
     }
 
-    if (this.document.id != '') {
+    if (this.document.id != undefined) {
       documentTemp.id = this.document.id;
     }
 
@@ -409,9 +424,15 @@ export class NewFormDocumentComponent implements OnInit {
       documentTemp.preconisations.push(preco)
     );
 
-    this.ELEMENTS_TABLE_SOUS_DOCUMENTS.forEach((preco) =>
-      documentTemp.sousDocuments?.push(preco)
+    this.ELEMENTS_TABLE_SOUS_DOCUMENTS.forEach((doc) =>
+      documentTemp.sousDocuments?.push(doc)
     );
+
+    if (this.documentParentDesactive == true) {
+      documentTemp.sousDocuments = undefined
+      documentTemp.affichagePrix = false
+      documentTemp.contientDistributeurs = false
+    }
 
     this.ELEMENTS_TABLE_DOC_ETATS.forEach(
       docEtat => documentTemp.docEtats.push(docEtat)
@@ -442,8 +463,11 @@ export class NewFormDocumentComponent implements OnInit {
       );
     }
 
+    documentTemp.idDocument = documentTemp.id!
+
     this.serviceDocument.ajouterDocument(documentTemp).subscribe((object) => {
       this.router.navigate(['parcours/documents/list-documents']);
+      
     });
     this.donneeDocCatService.dataDocumentAttributs = [];
     this.donneeDocCatService.dataDocumentCategorie = [];
@@ -461,5 +485,16 @@ export class NewFormDocumentComponent implements OnInit {
     return mission2 && mission1
       ? mission2.id === mission1.id
       : mission2 === mission1;
+  }
+  desactiveElementsLieRessource(event: any){
+    if (!event.target.checked) {
+      this.forme.controls['affichagePrix'].disable()
+      this.forme.controls['contientDistributeurs'].disable()    
+      this.documentParentDesactive = true
+    }else{
+      this.forme.controls['affichagePrix'].enable()
+      this.forme.controls['contientDistributeurs'].enable()
+      this.documentParentDesactive = false
+    }
   }
 }

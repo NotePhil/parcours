@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -31,13 +31,31 @@ import { TypeMouvement } from 'src/app/modele/typeMouvement';
 import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
 import { PatientsService } from 'src/app/services/patients/patients.service';
 import { IPatient } from 'src/app/modele/Patient';
+import { IPromo } from 'src/app/modele/promo-distributeur';
+import { PromoService } from 'src/app/services/promo/promo.service';
+import { ModalChoixPromotionRessourceComponent } from '../../shared/modal-choix-promotion-ressource/modal-choix-promotion-ressource.component';
+import { ModalCodebarreScanContinueComponent } from '../../shared/modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
+import { IMouvementCaisses, Monaies, MoyenPaiement } from 'src/app/modele/mouvement-caisses';
+import { ICaisses } from 'src/app/modele/caisses';
+import { IComptes } from 'src/app/modele/comptes';
+import { MouvementCaisseService } from 'src/app/services/mouvement-caisse/mouvement-caisse.service';
+import { ComptesService } from 'src/app/services/comptes/comptes.service';
+import { CaissesService } from 'src/app/services/caisses/caisses.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalMouvementCaisseComponent } from '../../shared/modal-mouvement-caisse/modal-mouvement-caisse.component';
+import { ModalBilleterieComponent } from '../../shared/modal-billeterie/modal-billeterie.component';
+import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
 
 @Component({
   selector: 'app-new-exemplaire',
   templateUrl: './new-exemplaire.component.html',
   styleUrls: ['./new-exemplaire.component.scss'],
 })
-export class NewExemplaireComponent implements OnInit {
+export class NewExemplaireComponent implements OnInit, AfterViewInit {
+  @ViewChild('barcodeScanner', { static: false })
+  barcodeScanner!: ModalCodebarreScanContinueComponent;
+
+  [x: string]: any;
   exemplaire: IExemplaireDocument = {
     id: '',
     idDocument: '',
@@ -51,6 +69,7 @@ export class NewExemplaireComponent implements OnInit {
     preconisations: [],
     mouvements: [],
     affichagePrix: false,
+    estEncaissable: false,
     contientRessources: false,
     contientDistributeurs: false,
     typeMouvement: 'Neutre',
@@ -64,11 +83,16 @@ export class NewExemplaireComponent implements OnInit {
       mail: '',
       telephone: '',
       qrCodeValue: ''
-    }
+    },
+    formatCode: '',
+    code: '',
+    beneficiaireObligatoire: true,
+    assurance: undefined,
+    promotion: undefined
   };
 
   document: IDocument = {
-    id: '',
+    idDocument: '',
     titre: '',
     description: '',
     etat: false,
@@ -76,11 +100,14 @@ export class NewExemplaireComponent implements OnInit {
     attributs: [],
     categories: [],
     preconisations: [],
-    affichagePrix: false,
-    contientRessources: false,
-    contientDistributeurs: false,
+    affichagePrix: true,
+    estEncaissable: false,
+    contientRessources: true,
+    contientDistributeurs: true,
     typeMouvement: 'Neutre',
-    docEtats: []
+    docEtats: [],
+    formatCode: '',
+    beneficiaireObligatoire: false
   };
 
   attribut: IAttributs = {
@@ -94,6 +121,10 @@ export class NewExemplaireComponent implements OnInit {
     type: IType.Int,
   };
 
+  errorText: String = '';
+  isFalse: boolean = false;
+  isFalseIn: boolean = false;
+  isFalseOut: boolean = false;
   formeExemplaire: FormGroup;
   btnLibelle: string = 'Ajouter';
   submitted: boolean = false;
@@ -112,51 +143,95 @@ export class NewExemplaireComponent implements OnInit {
   typeDate = IType.Date;
   TypeBoolean = IType.Boolean;
   TypeRadio = IType.Radio;
-  typeTextArea= IType.Textarea;
+  typeTextArea = IType.Textarea;
 
   compteur: number = -1;
   totalAttribut: number = 0;
   numerateur: number = -1;
+  selectedOptions!: ICaisses;
   totalAttributSupprime: number = 0;
+  resValidate: IPrecoMvtQte | undefined;
   objetCleValeurSupprime: ObjetCleValeur[] = [];
   tableauAttributsSupprime: IAttributs[] = [];
 
   tempAttributsCpt = new Map()
   tempAttributsObbligatoires = new Map()
-  estValide : boolean = true
-  eValvalide : string = "";
-  titre:string='';  
+  estValide: boolean = true
+  eValvalide: string = "";
+  titre: string = '';
   ressourceControl = new FormControl<string | IRessource>('');
   distributeurControl = new FormControl<string | IDistributeur>('');
+  assuranceControl = new FormControl<string | IDistributeur>('');
   idRessource: string = '';
   ELEMENTS_TABLE_MOUVEMENTS: IMouvement[] = [];
+  LAST_ELEMENTS_TABLE_MOUVEMENTS: IMouvement[] = [];
   dataSourceMouvements = new MatTableDataSource<IMouvement>(
     this.ELEMENTS_TABLE_MOUVEMENTS
   );
   filteredOptionsRessource: IRessource[] | undefined;
   filteredDistributeurOptions: IDistributeur[] | undefined;
+  filteredAssuranceOptions: IDistributeur[] | undefined;
   displayedRessourcesColumns: string[] = [
     'actions',
     'libelle',
     'quantite',
-    'unite',
-    'description'
+    'unite'
   ]; // structure du tableau presentant les Ressources
+  filteredOptionsMouvement: IMouvementCaisses[] | undefined;
+  displayedMouvementsColumns: string[] = [
+    'reférence',
+    'moyen de paiement',
+    'date',
+    'montant'
+  ];
+  ELEMENTS_TABLE_MOUVEMENTCAISSES: IMouvementCaisses[] = [];
+  dataSourceMouvementcaisses = new MatTableDataSource<IMouvementCaisses>(
+    this.ELEMENTS_TABLE_MOUVEMENTCAISSES
+  );
   TABLE_PRECONISATION_RESSOURCES: IPrecoMvt[] = [];
-  montantTotal : number = 0;
-  soustotal : number = 0;
-  distributeur : IDistributeur | undefined;
-  modificationDistributeurActive : boolean = false
-  indexmodificationDistributeur : number = -1
-  typeNeutre : string = TypeMouvement.Neutre
-  typeAjout : string = TypeMouvement.Ajout
-  typeReduire : string = TypeMouvement.Reduire
-  laPersonneRattachee : IPatient | undefined 
+  montantTotal: number = 0;
+  montantTTverse: number = 0;
+  soustotal: number = 0;
+  resteAPayer: number = 0;
+  lastSomme: number = 0;
+  tailleFirstMvts: number = 0;
+  distributeur: IDistributeur | undefined;
+  modificationDistributeurActive: boolean = false
+  indexmodificationDistributeur: number = -1
+  typeNeutre: string = TypeMouvement.Neutre
+  typeAjout: string = TypeMouvement.Ajout
+  typeReduire: string = TypeMouvement.Reduire
+  laPersonneRattachee: IPatient | undefined
+  compte: IComptes | undefined
+  caisses: ICaisses[] = []
+  modalResult: MoyenPaiement[] = [];
+  modalLastResult: MoyenPaiement[] = [];
+  modalResultBilleterie: any;
+  modalLastResultBilleterie: any;
+  tableMvts: IMouvementCaisses[] = []
+  codeControl = new FormControl()
+  promotion: IPromo | undefined
+  distributeurR: string = '';
+  ressource: string = '';
+  mouvements: IMouvement[] = [];
+  assurancePersone: IDistributeur | undefined
+  remisePromo: number = 0 // laveur de la promotion
+  unitePromo: string = "" // laveur de la promotion
+  showText = false
+  promotionsByRessource: { [key: string]: IPromo[] } = {};
+  idMouvement: string = '';
+  scan_val: any | undefined;
+  showScanCodeComponent = false
+  reponse: any;
+  courant: string = '';
+  req: boolean = false;
+
 
   constructor(
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private formBuilder: FormBuilder,
-    private donneeEchangeService:DonneesEchangeService,
+    private donneeEchangeService: DonneesEchangeService,
     private infosPath: ActivatedRoute,
     private serviceRessource: RessourcesService,
     private serviceDistributeur: DistributeursService,
@@ -165,26 +240,57 @@ export class NewExemplaireComponent implements OnInit {
     private serviceExemplaire: ExemplaireDocumentService,
     private datePipe: DatePipe,
     private barService: ModalCodebarreService,
-    private servicePatient: PatientsService
+    private servicePatient: PatientsService,
+    private servicePromo: PromoService,
+    private dialogDef: MatDialog,
+    private mvtCaisseService: MouvementCaisseService,
+    private compteService: ComptesService,
+    private caisseService: CaissesService
   ) {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
       _controlsSupprime: new FormArray([]),
-    });
+      use: [false],
+      montant: ['', [Validators.required]],
+      moyenPaiement: new FormControl<string | ICaisses>(''),
+      referencePaiement: ['', [Validators.required]]
+    })
   }
-  scan_val: any | undefined;
 
   ngOnInit(): void {
-    
-    let idPersonne : string = this.donneeEchangeService.getExemplairePersonneRatachee()
+
+    this.unitePromo = ""
+    this.codeControl.disable()
+    this.donneeEchangeService.dataPromoMouvementCourant = undefined
+    console.log("info doc :", this.exemplaire, this.document);
+
+    this.fCaisse['montant'].disable();
+    let idPersonne: string = this.donneeEchangeService.getExemplairePersonneRatachee()
     this.servicePatient.getPatientById(idPersonne).subscribe(
-      patientTrouve =>{
-        this.laPersonneRattachee =  patientTrouve;
+      patientTrouve => {
+        this.laPersonneRattachee = patientTrouve;
         if (patientTrouve != undefined) {
           this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
+          this.compteService.getCompteByUser(this.laPersonneRattachee.id).subscribe(
+            account => {
+              this.compte = account;
+              if (this.compte?.solde == 0 || this.compte?.solde == null) {
+                this.formeExemplaire.controls['use'].disable()
+              }
+              console.log('compte personne rattaché :', this.compte);
+            }
+          )
         }
+        console.log("personne ratachée :", this.nomPatientCourant);
       }
     )
+    this.caisseService.getAllCaisses().subscribe(
+      (reponse) => {
+        this.caisses = reponse
+        console.log('all caisses :', this.caisses);
+
+      }
+    );
 
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
@@ -196,12 +302,19 @@ export class NewExemplaireComponent implements OnInit {
           .getRessourcesByScanBarCodeorLibelle(this.scan_val)
           .subscribe((response) => {
             this.filteredOptionsRessource = response;
+            const selectedOption = this.filteredOptionsRessource.find(
+              (option) => option.id === this.scan_val
+            );
+            if (selectedOption) {
+              this.filteredOptionsRessource = [selectedOption];
+              // this.dataSource.data = [selectedOption];
+            }
           });
       }
     });
     this.serviceDistributeur.getAllDistributeurs().subscribe(
-      (reponse) =>{
-        this.filteredDistributeurOptions=reponse
+      (reponse) => {
+        this.filteredDistributeurOptions = reponse
       }
     )
     this.compteur = -1;
@@ -213,10 +326,11 @@ export class NewExemplaireComponent implements OnInit {
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
 
     this.initialiseFormExemplaire();
-    this.titre=this.donneeEchangeService.dataEnteteMenu
-    
+    this.cdr.detectChanges();
+    this.titre = this.donneeEchangeService.dataEnteteMenu
+
     this.ressourceControl.valueChanges.subscribe((value) => {
-      const query = value?.toString().toLowerCase(); // Convert to lower case for case-insensitive search
+      const query = value?.toString(); // Convert to lower case for case-insensitive search
       if (query && query.length > 0) {
         // Search by name or ID
         this.serviceRessource
@@ -244,6 +358,17 @@ export class NewExemplaireComponent implements OnInit {
         });
       }
     });
+
+    this.assuranceControl.valueChanges.subscribe((value) => {
+      const raisonSocial =
+        typeof value === 'string' ? value : value?.raisonSocial;
+      if (raisonSocial != undefined && raisonSocial?.length > 0) {
+        this.serviceDistributeur.getDistributeursByraisonSocial(raisonSocial.toLowerCase() as string)
+          .subscribe((reponse) => {
+            this.filteredAssuranceOptions = reponse;
+          });
+      }
+    });
   }
 
   /**
@@ -268,6 +393,11 @@ export class NewExemplaireComponent implements OnInit {
         this._exemplaireDocument.push(this.formBuilder.control(''));
       }
     }
+  }
+
+  onInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.value = inputElement.value.replace(/[^0-9]/g, ''); // Supprime les caractères non numériques
   }
 
   /**
@@ -308,6 +438,79 @@ export class NewExemplaireComponent implements OnInit {
       }
     }
   }
+
+  /**
+   * Méthode permettant de d'enregistrer un mouvement caisse quand l'utilisateur a choisi comme 
+   * moyen de paiement caisse
+   */
+  openModalPaiementDialog() {
+
+    const dialogRef = this.dialogDef.open(ModalMouvementCaisseComponent,
+      {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        height: '100%',
+        width: '100%',
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '1000ms',
+        data: { donnee: this.modalResult, caisses: this.caisses }
+      }
+    )
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+        this.modalResult = result.data;
+        this.modalResult.forEach((element) => {
+          if (element.montant) {
+            this.resteApayer(element.montant);
+          }
+        });
+        console.log('result :', this.modalResult);
+      }
+    });
+  }
+
+  /**
+   * Méthode permettant de d'enregistrer un mouvement caisse quand l'utilisateur a choisi comme 
+   * moyen de paiement cash
+   */
+  openModalBilleterieDialog() {
+
+    const dialogRef = this.dialogDef.open(ModalBilleterieComponent,
+      {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        height: '100%',
+        width: '100%',
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '1000ms',
+        data: { monaies: this.modalResultBilleterie }
+      }
+    )
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+        this.modalResultBilleterie = result.data;
+        if (this.modalResultBilleterie.x1) this.resteApayer(this.modalResultBilleterie.x1);
+        if (this.modalResultBilleterie.x2) this.resteApayer(this.modalResultBilleterie.x2 * 2);
+        if (this.modalResultBilleterie.x5) this.resteApayer(this.modalResultBilleterie.x5 * 5);
+        if (this.modalResultBilleterie.x10) this.resteApayer(this.modalResultBilleterie.x10 * 10);
+        if (this.modalResultBilleterie.x25) this.resteApayer(this.modalResultBilleterie.x25 * 25);
+        if (this.modalResultBilleterie.x50) this.resteApayer(this.modalResultBilleterie.x50 * 50);
+        if (this.modalResultBilleterie.x100) this.resteApayer(this.modalResultBilleterie.x100 * 100);
+        if (this.modalResultBilleterie.x500) this.resteApayer(this.modalResultBilleterie.x500 * 500);
+        if (this.modalResultBilleterie.x500B) this.resteApayer(this.modalResultBilleterie.x500B * 500);
+        if (this.modalResultBilleterie.x1000) this.resteApayer(this.modalResultBilleterie.x1000 * 1000);
+        if (this.modalResultBilleterie.x2000) this.resteApayer(this.modalResultBilleterie.x2000 * 2000);
+        if (this.modalResultBilleterie.x5000) this.resteApayer(this.modalResultBilleterie.x5000 * 5000);
+        if (this.modalResultBilleterie.x10000) this.resteApayer(this.modalResultBilleterie.x10000 * 10000);
+        console.log('result Billeterie:', this.modalResultBilleterie);
+      }
+    });
+  }
+
   initialiseFormExemplaire() {
     if (this.idExemplaire != null && this.idExemplaire !== '') {
       this.btnLibelle = 'Modifier';
@@ -317,18 +520,58 @@ export class NewExemplaireComponent implements OnInit {
         .getExemplaireDocumentById(this.idExemplaire)
         .subscribe((x) => {
           this.exemplaire = x;
-          this.document = x;
+          this.document = x
+          this.document.idDocument = x.idDocument
+          if (x.mouvements) {
+            this.promotion = x.mouvements[0].promotion
+          }
+          this.assurancePersone = x.assurance
+          if (this.assurancePersone) {
+            this.assuranceControl.setValue(this.assurancePersone)
+          }
           if (this.exemplaire.mouvements != undefined) {
             this.ELEMENTS_TABLE_MOUVEMENTS = this.exemplaire.mouvements;
           }
           this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
+          console.log('mvts :', this.dataSourceMouvements.data);
+
+          this.LAST_ELEMENTS_TABLE_MOUVEMENTS = this.ELEMENTS_TABLE_MOUVEMENTS;
+          this.tailleFirstMvts = this.ELEMENTS_TABLE_MOUVEMENTS.length;
+
           this.totalAttribut = x.attributs.length - 1;
           this.rechercherAttributsAbsants();
-         //Bug du mocker apiMemory qui ne met pas à jour les données du document dans exemplaire
-         //pour avoir la donnée fraiche on refait un appel à document
-         //à supprimer lorsqu'on aura un vrai back connecté
+          //Bug du mocker apiMemory qui ne met pas à jour les données du document dans exemplaire
+          //pour avoir la donnée fraiche on refait un appel à document
+          //à supprimer lorsqu'on aura un vrai back connecté
           this.modifierMouvementExemplaire(x.idDocument)
+          this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+          this.lastSomme = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS);
+          this.fCaisse['montant'].setValue(0)
+          this.laPersonneRattachee = this.exemplaire.personneRattachee
+          if (this.exemplaire.personneRattachee != undefined) {
+            this.laPersonneRattachee = this.exemplaire.personneRattachee
+            this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
+          }
+          this.codeControl.setValue(this.exemplaire.code)
+          this.serviceDocument.getDocumentById(x.idDocument).subscribe(
+            (y) => {
+              this.reponse = this.serviceExemplaire.getExemplaireDocumentByOrder(x, y);
+              if (this.reponse) {
+                this.req = this.reponse.sol;
+                if (this.reponse.ele != undefined && this.reponse.ele.etat != undefined) {
+                  this.courant = this.reponse.ele.etat.libelle;
+                }
+              }
+            }
+          )
+          /**
+           * Initialise le montant total a payer, le montant versé a 0 et la somme déjà versée dans la variable lastSomme
+           */
+          this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+          this.lastSomme = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+          this.fCaisse['montant'].setValue(0)
         });
+      this.initialiseMvtCaisses(this.idExemplaire);
     }
     if (this.idDocument != null && this.idDocument !== '') {
       this.serviceDocument
@@ -337,37 +580,109 @@ export class NewExemplaireComponent implements OnInit {
           this.document = document;
           this.totalAttribut = document.attributs.length - 1;
           this.formerEnteteTableauMissions()
-          this.concatMouvementsSousExemplaireDocument()
+          let dateExemplaire = new Date()
+          this.codeControl.setValue(this.setCode(dateExemplaire))
+          if (this.donneeEchangeService.dataDocumentSousDocuments != undefined) {
+            this.concatMouvementsSousExemplaireDocument()
+          }
+          if (this.document.beneficiaireObligatoire) {
+            let idPersonne: string = this.donneeEchangeService.getExemplairePersonneRatachee()
+            this.servicePatient.getPatientById(idPersonne).subscribe(
+              patientTrouve => {
+                this.laPersonneRattachee = patientTrouve;
+                if (patientTrouve != undefined) {
+                  this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
+
+                }
+              }
+            )
+          }
+          this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+          this.lastSomme = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS);
+          this.fCaisse['montant'].setValue(0)
         });
+      this.initialiseMvtCaisses(this.idDocument);
     }
+  }
+
+  initialiseMvtCaisses(id: string) {
+    this.mvtCaisseService.getExemplaireDocumentByIdMvtCaisse(id).subscribe((d) => {
+      console.log("mvt caisses last :", d);
+
+      if (d) {
+        this.ELEMENTS_TABLE_MOUVEMENTCAISSES = d;
+        this.dataSourceMouvementcaisses.data = this.ELEMENTS_TABLE_MOUVEMENTCAISSES;
+      }
+    })
+  }
+
+  /**
+   * Méthode permettant d'initialiser la somme total versée du tableau de mouvement caisse déjà éffectué !
+   */
+  sommeTtVerse(): number {
+    this.montantTTverse = 0;
+    this.ELEMENTS_TABLE_MOUVEMENTCAISSES.forEach((mouvement) => {
+      if (mouvement.montant != undefined || mouvement.montant != null) {
+        this.montantTTverse += mouvement.montant;
+      }
+    });
+    return this.montantTTverse;
+  }
+
+  /**
+   * Méthode qui permet d'initialiser la modal de la billeterie quand un mouvement a été éffectué
+   * @param value 
+   * @returns 
+   */
+  lastValueMvt(value: IMouvement): boolean {
+    let response = false;
+    this.LAST_ELEMENTS_TABLE_MOUVEMENTS = JSON.parse(localStorage.getItem("mvtExempl")!);
+    if (this.LAST_ELEMENTS_TABLE_MOUVEMENTS != undefined) {
+      let ele = this.LAST_ELEMENTS_TABLE_MOUVEMENTS.find((d) => d.id == value.id) as IMouvement;
+      ele != undefined ? response = true : response = false;
+      console.log("ele last table :", ele, response, this.LAST_ELEMENTS_TABLE_MOUVEMENTS);
+    }
+    return response;
   }
 
   /**
    * methode permettant de regrouper les mouvement des sous exemplaires pour
    * pré-former le tableau de mouvement
    */
-  concatMouvementsSousExemplaireDocument(){
-    let sousExelplaires : IExemplaireDocument[] = this.donneeEchangeService.dataDocumentSousDocuments
-    sousExelplaires.forEach(
-      element => {
-        if (element.mouvements) {
-          element.mouvements.forEach(
-            mvt => {
-              this.ELEMENTS_TABLE_MOUVEMENTS.push(mvt)
-          });
-        }     
-    });
+  concatMouvementsSousExemplaireDocument() {
+    let sousExelplaires: IExemplaireDocument[] = [];
+    console.log("données echanges :", this.donneeEchangeService.dataDocumentSousDocuments, JSON.parse(localStorage.getItem("mvtExempl")!));
+
+    if (this.donneeEchangeService.dataDocumentSousDocuments != undefined) {
+      sousExelplaires = this.donneeEchangeService.dataDocumentSousDocuments;
+      localStorage.setItem("mvtExempl", JSON.stringify(this.donneeEchangeService.dataDocumentSousDocuments));
+    } else {
+      sousExelplaires = JSON.parse(localStorage.getItem("mvtExempl")!);
+    }
+    if (sousExelplaires) {
+      sousExelplaires.forEach(
+        element => {
+          if (element.mouvements) {
+            element.mouvements!.forEach(
+              mvt => {
+                this.ELEMENTS_TABLE_MOUVEMENTS.push(mvt)
+              });
+          }
+        });
+    }
     this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
+    this.tailleFirstMvts = this.ELEMENTS_TABLE_MOUVEMENTS.length;
+    console.log(" taille table :", this.tailleFirstMvts, this.ELEMENTS_TABLE_MOUVEMENTS);
   }
 
-/**
- * Methode permettant de former la nouvelle structure du tableau de mouvement de l'exemplaire
- * si les données affiche prix et affiche ressourse sont modifiées dans le document initial 
- * @param document est le model de document inital duquel l'exemplaire a été tiré
- */
-  modifierMouvementExemplaire(idDocument:string){
+  /**
+   * Methode permettant de former la nouvelle structure du tableau de mouvement de l'exemplaire
+   * si les données affiche prix et affiche ressourse sont modifiées dans le document initial 
+   * @param document est le model de document inital duquel l'exemplaire a été tiré
+   */
+  modifierMouvementExemplaire(idDocument: string) {
     this.serviceDocument.getDocumentById(idDocument).subscribe(
-      value=>{
+      value => {
         this.document.affichagePrix = value.affichagePrix
         this.document.contientRessources = value.contientRessources
         this.document.contientDistributeurs = value.contientDistributeurs
@@ -379,22 +694,32 @@ export class NewExemplaireComponent implements OnInit {
   /**
    * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
    */
-  formerEnteteTableauMissions(){
-    if (this.document.contientDistributeurs == true) {
-      let distributeur : string = "distributeur"
+  formerEnteteTableauMissions() {
+    if (this.document.contientDistributeurs == true && !this.document.beneficiaireObligatoire) {
+      let distributeur: string = "distributeur"
+      this.displayedRessourcesColumns.includes('distributeur')
       this.displayedRessourcesColumns.push(distributeur)
     }
     if ((this.document.affichagePrix == true)) {
-      let prix : string = "prix"
-      let montant : string = "montant total"
+      let prix: string = "prix"
+      let pourcentageCharge: string = "pourcentageCharge"
+      let pourcentageChargeRssource: string = "pourcentageChargeRssource"
+      let montantCharge: string = "montantCharge"
+      let montant: string = "montant total"
       if (this.document.typeMouvement == TypeMouvement.Reduire) {
         prix = "prixDeSortie"
-      } else if (this.document.typeMouvement == TypeMouvement.Ajout){
+      } else if (this.document.typeMouvement == TypeMouvement.Ajout) {
         prix = "prixEntrée"
-      }else{
+      } else {
         prix = "prix"
       }
       this.displayedRessourcesColumns.push(prix)
+      if (this.document.beneficiaireObligatoire) {
+        this.displayedRessourcesColumns.push(pourcentageCharge)
+      } else {
+        this.displayedRessourcesColumns.push(pourcentageChargeRssource)
+      }
+      this.displayedRessourcesColumns.push(montantCharge)
       this.displayedRessourcesColumns.push(montant)
     }
   }
@@ -486,13 +811,13 @@ export class NewExemplaireComponent implements OnInit {
     }
 
     let valAttribut = this.rechercherValeurParIdAttribut(attributCategories.attribut.id);
-    this.tempAttributsCpt.set(attributCategories.attribut.id, cpt+1)
-    this.tempAttributsObbligatoires.set(cpt+1, attributCategories.attribut.titre)
+    this.tempAttributsCpt.set(attributCategories.attribut.id, cpt + 1)
+    this.tempAttributsObbligatoires.set(cpt + 1, attributCategories.attribut.titre)
     if (attributCategories.attribut.type == IType.Date && valAttribut != null) {
       // si le type de l'attribut est Date et que la valeur de valAttribut n'est pas vide
       let dateAtt = new Date();
-      if(valAttribut != "PARCOURS_NOT_FOUND_404")
-         dateAtt = new Date(valAttribut); // creatoion d'une nouvelle date avec la valeur de valAttribut
+      if (valAttribut != "PARCOURS_NOT_FOUND_404")
+        dateAtt = new Date(valAttribut); // creatoion d'une nouvelle date avec la valeur de valAttribut
 
       let dateReduite = this.datePipe.transform(dateAtt, 'yyyy-MM-dd'); // changer le format de la date de naissance pour pouvoir l'afficher dans mon input type date
       this.addAttributs(dateReduite, attributCategories.obligatoire);
@@ -502,6 +827,7 @@ export class NewExemplaireComponent implements OnInit {
     this.compteur = this.compteur + 1;
     return this.compteur;
   }
+
   incrementeNumerateur(num: number, attribut: IAttributs): number {
     if (this.numerateur >= -1 && this.numerateur >= this.totalAttributSupprime)
       return num;
@@ -522,7 +848,7 @@ export class NewExemplaireComponent implements OnInit {
    * Methode qui permet de parcourir le formulaire lors de la validation et de repérer les chapms obligatoires non remplis
    * @returns le titre du premier attribut obligatoire non remplis
    */
-  evaluation():string{
+  evaluation(): string {
 
     this.estValide = true
     for (let index = 0; index < this.tempAttributsObbligatoires.size; index++) {
@@ -539,13 +865,64 @@ export class NewExemplaireComponent implements OnInit {
     return this.formeExemplaire.get('_exemplaireDocument') as FormArray;
   }
 
+  get fCaisse() {
+    return this.formeExemplaire.controls;
+  }
+
   /**
-   * Methodr qui permet de faire la somme des montants du tableau de mouvements
+   * Méthode permettant d'incrémenter ou de décrementer la somme déjà versé si l'utilisateur 
+   * décide d'utiliser ou pas son solde courant
+   * @param res 
+   * @returns 
+   */
+  useSolde(res: boolean): number {
+    if (res) {
+      this.fCaisse['montant'].setValue(this.compte?.solde!);
+      this.fCaisse['moyenPaiement'].setValue(this.caisses.find(c => c.type === 'solde')?.type);
+      this.resteAPayer = this.resteApayer(this.fCaisse['montant'].value);
+    } else {
+      this.resteAPayer += this.fCaisse['montant'].value;
+      this.fCaisse['montant'].setValue(0);
+    }
+    return this.resteAPayer;
+  }
+
+  /**
+   * Méthode permettant de faire la différence entre la somme versée et la somme total à payer
+   */
+  resteApayer(montant: number): number {
+    this.resteAPayer -= montant;
+    this.fCaisse['montant'].setValue(this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.resteAPayer)
+    return this.resteAPayer;
+  }
+
+  verifyUseSolde(caisse: string) {
+
+    if (caisse == 'solde' && this.compte?.solde! > 0) {
+      this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+      this.fCaisse['montant'].disable();
+      this.fCaisse['use'].setValue(true);
+      this.fCaisse['montant'].setValue(this.compte?.solde!);
+      this.resteApayer(this.fCaisse['montant'].value);
+    }
+    if (caisse != 'multipaiement' && caisse != 'cash' && caisse != 'solde') {
+      this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+      this.fCaisse['use'].setValue(false),
+        this.fCaisse['montant'].enable();
+      this.fCaisse['montant'].setValue(0);
+
+    }
+    if (caisse == 'multipaiement') this.fCaisse['montant'].disable(), this.openModalPaiementDialog();
+    if (caisse == 'cash') this.fCaisse['montant'].disable(), this.openModalBilleterieDialog();
+  }
+
+  /**
+   * Methode qui permet de faire la somme des montants du tableau de mouvements
    * pour afficher le resultat dans la case montant total
    */
-  sommeMontants(): number {
+  sommeMontants(mouvements: IMouvement[]): number {
     this.montantTotal = 0;
-    this.ELEMENTS_TABLE_MOUVEMENTS.forEach((mouvement) => {
+    mouvements.forEach((mouvement) => {
       if (
         mouvement.ressource != undefined &&
         mouvement.quantite != null &&
@@ -554,26 +931,61 @@ export class NewExemplaireComponent implements OnInit {
         this.montantTotal += mouvement.prix * mouvement.quantite;
       }
     });
+    this.verifySomme();
     return this.montantTotal;
+  }
+
+  /**
+   * Methode qui permet de faire la somme des montants du tableau de mouvements après remise
+   * pour afficher le resultat dans la case montant total à payer
+   */
+  sommeMontantsApresRemise(mouvements: IMouvement[]): number {
+    this.montantTotal = 0;
+    mouvements.forEach((mouvement) => {
+      if (
+        mouvement.ressource != undefined &&
+        mouvement.quantite != null &&
+        mouvement.prix != null
+      ) {
+        this.montantTotal += this.calculRemise(mouvement) * mouvement.quantite;
+      }
+    });
+    return this.montantTotal;
+  }
+
+  getAssurancePersonne(assurance: IDistributeur) {
+    this.assurancePersone = assurance
+  }
+
+  verifySomme() {
+    let reste = 0;
+    if (this.montantTotal >= this.lastSomme) {
+      reste = this.montantTotal - this.lastSomme;
+    } else {
+      reste = this.lastSomme - this.montantTotal;
+      reste = reste * -1;
+    }
+    this.resteAPayer += reste;
+    this.lastSomme = this.montantTotal;
   }
 
   /**
    * methode de validation du formulaire (enregistrement des donnees du formulaire)
    */
-  onSubmit() {
-    const exemplaireDocument = this._exemplaireDocument;
+  onSubmit(data: any) {
     this.submitted = true;
     this.enregistrerObjet();
     this.evaluation();
-    if (this.formeExemplaire.invalid) return;
+    if (this.formeExemplaire.invalid || this.isFalse == true || this.isFalseIn == true || this.isFalseOut == true) return;
 
     let exemplaireTemp: IExemplaireDocument = {
       id: uuidv4(),
-      idDocument: this.document.id,
+      idDocument: this.document.idDocument,
       titre: this.document.titre,
       description: this.document.description,
       missions: this.document.missions,
       attributs: this.document.attributs,
+      estEncaissable: this.document.estEncaissable,
       objetEnregistre: this.exemplaire.objetEnregistre,
       categories: this.document.categories,
       preconisations: this.document.preconisations,
@@ -586,20 +998,131 @@ export class NewExemplaireComponent implements OnInit {
       docEtats: this.document.docEtats,
       ordreEtats: this.exemplaire.ordreEtats,
       dateCreation: new Date,
-      personneRattachee: this.laPersonneRattachee!
+      personneRattachee: this.laPersonneRattachee!,
+      formatCode: this.document.formatCode,
+      code: this.codeControl.value,
+      beneficiaireObligatoire: this.document.beneficiaireObligatoire,
+      promotion: this.promotion,
+      assurance: this.assurancePersone
     };
 
     if (this.exemplaire.id != '') {
       exemplaireTemp.id = this.exemplaire.id;
+      exemplaireTemp.dateCreation = this.exemplaire.dateCreation
     }
-
+    exemplaireTemp.promotion = this.promotion
+    exemplaireTemp.assurance = this.assurancePersone
     this.serviceExemplaire
       .ajouterExemplaireDocument(exemplaireTemp)
       .subscribe((object) => {
-        console.log(" new exemplaire :", exemplaireTemp);
-        
-        this.router.navigate(['parcours/exemplaires/list-exemplaire']);
+        console.log(" new exemplaire :", exemplaireTemp, data.value);
+        this.saveMvt(data.value, exemplaireTemp);
       });
+  }
+
+  displayFnCaisse(element: ICaisses): string {
+    return element && element.libelle ? element.libelle : '';
+  }
+
+  /**
+   * Methode de validation d'un mouvement caisse !
+   * @param selectItem 
+   * @param doc 
+   */
+  saveMvt(selectItem: any, doc: IExemplaireDocument) {
+    let donne: IMouvementCaisses;
+    let ele: any = this.selectedOptions;
+
+    if (selectItem.use) {
+      donne = {
+        id: uuidv4(),
+        etat: selectItem.etat,
+        montant: this.fCaisse['montant'].value,
+        libelle: selectItem.libelle,
+        typeMvt: selectItem.typeMvt,
+        dateCreation: new Date(),
+        moyenPaiement: this.selectedOptions,
+        referencePaiement: selectItem.referencePaiement,
+        compte: this.compte,
+        personnel: this.laPersonneRattachee!,
+        exemplaire: doc
+      }
+
+      this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
+        console.log('Le mouvement a été bien enregistré !', donne);
+        this.router.navigate(['/list-exemplaire']);
+      })
+    }
+
+    if (ele == 'multipaiement') {
+      let uuidEle: string = uuidv4();
+      this.modalResult.forEach((element) => {
+        if (element.montant) {
+          donne = {
+            id: uuidv4(),
+            etat: selectItem.etat,
+            montant: element.montant,
+            libelle: selectItem.libelle,
+            typeMvt: selectItem.typeMvt,
+            dateCreation: new Date(),
+            moyenPaiement: element.moyen,
+            isMultipaiement: uuidEle,
+            referencePaiement: element.reference,
+            compte: this.compte,
+            personnel: this.laPersonneRattachee!,
+            exemplaire: doc
+          }
+
+          this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
+            console.log('Le mouvement a été bien enregistré !', donne);
+          })
+        }
+      });
+      this.router.navigate(['/list-exemplaire']);
+    } else {
+      let billets: Monaies;
+      if (this.selectedOptions.type == 'cash') {
+        billets = {
+          pieces: {
+            x1: this.modalResultBilleterie.x1,
+            x2: this.modalResultBilleterie.x2,
+            x5: this.modalResultBilleterie.x5,
+            x10: this.modalResultBilleterie.x10,
+            x25: this.modalResultBilleterie.x25,
+            x50: this.modalResultBilleterie.x50,
+            x100: this.modalResultBilleterie.x100,
+            x500: this.modalResultBilleterie.x500,
+          },
+          billets: {
+            x500: this.modalResultBilleterie.x500B,
+            x1000: this.modalResultBilleterie.x1000,
+            x2000: this.modalResultBilleterie.x2000,
+            x5000: this.modalResultBilleterie.x5000,
+            x10000: this.modalResultBilleterie.x10000
+          }
+        }
+      }
+
+      donne = {
+        id: uuidv4(),
+        etat: selectItem.etat,
+        montant: this.fCaisse['montant'].value,
+        libelle: selectItem.libelle,
+        typeMvt: selectItem.typeMvt,
+        dateCreation: new Date(),
+        detailJson: billets!,
+        moyenPaiement: this.selectedOptions,
+        referencePaiement: selectItem.referencePaiement,
+        compte: this.compte,
+        personnel: this.laPersonneRattachee!,
+        exemplaire: doc
+      }
+
+      this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
+        console.log('Le mouvement a été bien enregistré !', donne, this.fCaisse['montant'].value);
+        this.router.navigate(['/list-exemplaire']);
+      })
+    }
   }
 
   /**
@@ -610,6 +1133,7 @@ export class NewExemplaireComponent implements OnInit {
   public associerDistributeur(distributeur: IDistributeur) {
     this.distributeur = distributeur;
   }
+
   public rechercherListingRessources(option: IRessource) {
     this.modificationDistributeurActive = false;
     this.indexmodificationDistributeur = -1;
@@ -624,18 +1148,18 @@ export class NewExemplaireComponent implements OnInit {
     });
     if (!tabIdRessource.includes(option.id)) {
       let mvt: IMouvement = {
-        id: '',
+        id: uuidv4(),
         description: '',
         quantite: option.quantite,
         prix: 0,
         dateCreation: new Date(),
-        datePeremption:  new Date(),
+        datePeremption: new Date(),
         ressource: option
       }
 
       if (this.document.typeMouvement == TypeMouvement.Ajout) {
         mvt.prix = option.prixEntree
-      }else if (this.document.typeMouvement == TypeMouvement.Reduire) {
+      } else if (this.document.typeMouvement == TypeMouvement.Reduire) {
         mvt.prix = option.prixDeSortie
       } else {
         mvt.prix = option.prixEntree
@@ -645,13 +1169,142 @@ export class NewExemplaireComponent implements OnInit {
         this.distributeur = undefined
       }
 
-      if(this.distributeur != undefined){
+      if (this.distributeur != undefined) {
         mvt.distributeur = this.distributeur
       }
-
-      this.ELEMENTS_TABLE_MOUVEMENTS.unshift(mvt)
+      if (this.promotion) {
+        mvt.promotion = this.promotion
+        this.appliquerPromotion(mvt)
+      }
+      this.ELEMENTS_TABLE_MOUVEMENTS.push(mvt)
       this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS
     }
+  }
+
+  verificationRessource(qte?: any, prixOut?: any, prixIn?: any, option?: IRessource) {
+    this.document.preconisations.forEach((precoMvt) => {
+      if (precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id)) {
+        this.resValidate = precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id);
+      }
+    })
+    console.log("precoQte : ", this.resValidate);
+    // Vérifiaction de la qté par rapport à la precoMvt !
+    if (qte < this.resValidate!.quantiteMin || qte > this.resValidate!.quantiteMax) {
+      this.isFalse = true;
+      this.errorText = "La valveur ne respecte pas la precomouvement"
+    } else {
+      this.isFalse = false;
+    }
+
+    // Vérification du prix d'entré par rapport à la precoMvt !
+    if (prixIn < this.resValidate!.montantMin || prixIn > this.resValidate!.montantMax) {
+      this.isFalseIn = true;
+      this.errorText = "La valveur ne respecte pas la precomouvement"
+    } else {
+      this.isFalseIn = false;
+    }
+
+    // Vérification du prix de sorti par rapport à la PrecoMvt !
+    if (prixOut < this.resValidate!.montantMin || prixOut > this.resValidate!.montantMax) {
+      this.isFalseOut = true;
+      this.errorText = "La valveur ne respecte pas la precomouvement"
+    } else {
+      this.isFalseOut = false;
+    }
+
+  }
+
+  rechercherListingAssurance(option: IDistributeur) {
+    this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
+      this.promotion = promo!
+      this.showText = false
+      this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
+        mvt => {
+          let mouvementTemp = mvt
+          if (this.promotion) {
+            mouvementTemp.promotion = this.promotion
+            this.appliquerPromotion(mouvementTemp)
+          }
+          if (!this.promotion) {
+            this.showText = true
+          }
+        });
+    })
+  }
+
+  /**
+   * Méthode permettant de déterminer si une assurance pocède une promotion en cours
+   * @param option assurance
+   */
+  verifieSiPromoAppliquable(mouvement: IMouvement): boolean {
+
+    const today = new Date();
+    let dateOk = false
+    let ressourceOk = false
+    let familleOk = false
+
+    // Vérification des Dates : La promotion n'est appliquée que si la date actuelle se situe entre la date de début et la date de fin de la promotion.
+    if (mouvement.promotion && !(today < new Date(mouvement.promotion.dateDebut!) || today > new Date(mouvement.promotion.dateFin!))) {
+      this.promotion = mouvement.promotion
+      dateOk = true
+
+      let ressourceCouverte: boolean = false;
+      let familleCouverte: boolean = false;
+
+      // Vérification des Ressources et Familles : La promotion est appliquée si la ressource ou la famille de la ressource est couverte par la promotion.
+      if (mouvement.promotion.ressource) {
+        ressourceCouverte = mouvement.promotion.ressource?.some(r => r.id === mouvement.ressource.id);
+        ressourceOk = true
+      }
+      if (mouvement.promotion.famille) {
+        familleCouverte = mouvement.promotion.famille?.some(f => f.id === mouvement.ressource.famille.id);
+        familleOk = true
+      }
+    }
+    if (dateOk == true && (ressourceOk == true || familleOk == true)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  // Calcul de la Remise : La remise est calculée soit en pourcentage soit en montant fixe. Si les deux sont présents, seul le pourcentage est utilisé.
+  calculRemise(mouvement: IMouvement): number {
+    if (!mouvement.promotion) {
+      this.remisePromo = 0
+      this.unitePromo = ""
+      return mouvement.prix
+    }
+    let remise = 0;
+
+    if (mouvement.promotion.pourcentageRemise > 0) {
+      remise = mouvement.prix * (mouvement.promotion.pourcentageRemise / 100);
+      this.remisePromo = mouvement.promotion.pourcentageRemise
+      this.unitePromo = "%"
+    } else if (mouvement.promotion.montantRemise > 0) {
+      remise = mouvement.promotion.montantRemise;
+      // remise = (promo.montantRemise/mouvement.prix)*100;
+      this.remisePromo = mouvement.promotion.montantRemise
+      this.unitePromo = "UD"
+    }
+
+    remise = Math.min(remise, mouvement.prix); // S'assurer que la remise n'excède pas le prix
+    const prixReduit = mouvement.prix - remise;
+    // mouvement.prix = prixReduit
+    return prixReduit
+  }
+
+  /**
+   * Ce code permet d'appliquer les promotions en tenant compte des ressources et des familles de ressources concernées dans les mouvements.
+   * @param mouvements ligne de mouvement sur laquelle on applique la promo
+   * @param promo promotion à apliquer
+   * @returns mouvement soldés
+   */
+  appliquerPromotion(mouvement: IMouvement): IMouvement {
+    if (this.verifieSiPromoAppliquable(mouvement)) {
+      this.calculRemise(mouvement)
+    }
+    return mouvement
   }
 
   /**
@@ -664,8 +1317,19 @@ export class NewExemplaireComponent implements OnInit {
     });
     this.ressourceControl.reset();
   }
+  /**
+   * Methode qui permet d'effacer la valeur du control distributeur lorsqu'on a
+   * déjà choisi le distributeur en cliquant dessus
+   */
+  reinitialliseDistributeurControl() {
+    this.serviceDistributeur.getAllDistributeurs().subscribe((resultat) => {
+      this.filteredDistributeurOptions = resultat;
+    });
+    this.distributeurControl.reset();
+    this.distributeur = undefined
+  }
 
-  InitialiseDistributeurControlPourModufication(index : number){
+  InitialiseDistributeurControlPourModufication(index: number) {
     this.modificationDistributeurActive = true
     this.indexmodificationDistributeur = index
     let mouvement = this.ELEMENTS_TABLE_MOUVEMENTS[index]
@@ -680,6 +1344,10 @@ export class NewExemplaireComponent implements OnInit {
       let mouvement =
         this.ELEMENTS_TABLE_MOUVEMENTS[this.indexmodificationDistributeur];
       mouvement.distributeur = this.distributeur;
+      if (this.distributeur == undefined) {
+        mouvement.distributeur = this.distributeur;
+      }
+      mouvement.promotion = undefined
       this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
     }
     this.modificationDistributeurActive = false;
@@ -701,6 +1369,12 @@ export class NewExemplaireComponent implements OnInit {
       : '';
   }
 
+  displayAssuranceFn(assurance: IDistributeur): string {
+    return assurance && assurance.raisonSocial
+      ? assurance.raisonSocial
+      : '';
+  }
+
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
@@ -709,13 +1383,95 @@ export class NewExemplaireComponent implements OnInit {
     }
   }
 
-  getRessourceId(idRessource: string) {
-    this.idRessource = idRessource;
-  }
-
   retirerSelectionRessource(index: number) {
     this.ELEMENTS_TABLE_MOUVEMENTS = this.dataSourceMouvements.data;
     this.ELEMENTS_TABLE_MOUVEMENTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
+  }
+
+  /**
+   * Méthode pour charger les promotions d'une ressource
+   * @param ressource 
+   */
+  getPromotionByRessource(ressource: IRessource) {
+    this.servicePromo.getPromosByRessource(ressource).subscribe(
+      (promos) => {
+        // Associer les promotions à la ressource dans le dictionnaire
+        this.promotionsByRessource[ressource.id] = promos;
+
+      }
+    );
+  }
+
+  /**
+   * Methode pour affecter une promotion à une ligne de mouvement pour une ressource covcernée
+   * @param promoressource 
+   * @param mvt 
+   */
+  applyPromoRessource(promoressource: IPromo, mvt: IMouvement) {
+    if (mvt.promotion) {
+      mvt.promotion = promoressource
+    }
+  }
+  setCode(date: Date) {
+    return this.serviceExemplaire.formatCode(date)
+  }
+
+  getIndexTableauMvtCourant(idMvt: string) {
+    this.idMouvement = idMvt
+  }
+
+  getRessource(ressource: IRessource) {
+    this.idRessource = ressource.id;
+    this.donneeEchangeService.dataRessourceMouvementCourant = ressource
+  }
+
+  openPromotionRessourceDialog() {
+    const dialogRef = this.dialogDef.open(ModalChoixPromotionRessourceComponent,
+      {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        height: '100%',
+        width: '100%',
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '1000ms',
+        data: this.donneeEchangeService.dataPromoMouvementCourant
+
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      for (let index = 0; index < this.ELEMENTS_TABLE_MOUVEMENTS.length; index++) {
+        const element = this.ELEMENTS_TABLE_MOUVEMENTS[index];
+        if (this.idMouvement == element.id) {
+          element.promotion = this.donneeEchangeService.dataPromoMouvementCourant
+          if (this.donneeEchangeService.dataPromoMouvementCourant) {
+            element.distributeur = element.promotion?.emetteur
+          }
+          this.idMouvement = ''
+          break
+        }
+      }
+    });
+  }
+
+  initialisePromotionControl(promotion: IPromo) {
+    this.donneeEchangeService.dataPromoMouvementCourant = promotion;
+  }
+
+  ngAfterViewInit() { }
+
+  openBarcodeScanner(): void {
+    console.log('Attempting to open barcode scanner');
+    if (this.barcodeScanner) {
+      console.log('barcodeScanner initialized');
+      this.barcodeScanner.createMediaStream(); // Make sure to use parentheses to call the function
+    } else {
+      console.log('barcodeScanner is undefined in AfterViewInit');
+    }
+  }
+
+  toogleScanCodeView() {
+    this.showScanCodeComponent = !this.showScanCodeComponent
   }
 }

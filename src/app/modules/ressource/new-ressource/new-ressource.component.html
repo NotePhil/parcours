@@ -40,7 +40,7 @@
                   {{'ressource.table.title3' | translate}} <sup>*</sup>
                 </label>
                 <input type="number" list="" formControlName="quantite" name="quantite" id="quantite"
-                  placeholder=" {{'ressource.table.title3' | translate}}" class="form-control">
+                  placeholder=" {{'ressource.table.title3' | translate}}" class="form-control" [readOnly]="idRessource != null && idRessource !== '' && idRessource != undefined">
               </div>
               <div *ngIf="submitted && f['libelle'].errors" class="alert alert-danger">
                 <div *ngIf="f['libelle'].errors['required']">{{'ressource.form.text1' | translate}}</div>
@@ -83,6 +83,19 @@
             </div>
             <div *ngIf="submitted && f['prixDeSortie'].errors" class="alert alert-danger">
               <div *ngIf="f['prixDeSortie'].errors['required']">{{'ressource.form.text1' | translate}}</div>
+            </div>
+
+            <div class="form-group">
+              <div class="champs">
+                <label for="seuil" class="label">
+                  {{'ressource.table.title15' | translate}}
+                </label>
+                <input type="number" (input)="onInput($event)" pattern="^[0-9]*$" formControlName="seuil" name="seuil" id="seuil"
+                  placeholder=" {{'ressource.table.title15' | translate}}" class="form-control">
+              </div>
+            </div>
+            <div *ngIf="submitted && f['seuil'].errors" class="alert alert-danger">
+              <div *ngIf="f['seuil'].errors['required']">{{'ressource.form.text1' | translate}}</div>
             </div>
 
             <div class="form-group">

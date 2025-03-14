@@ -201,6 +201,9 @@ export class NewPatientComponent implements OnInit {
   get f() {
     return this.forme.controls;
   }
+  return() {
+    this.router.navigate(['/list-patients']);
+  }
 
   public get isButton() : string {
     let res = this.actions!.find((a) => a.bouton == 'true' && a.type == 'global');

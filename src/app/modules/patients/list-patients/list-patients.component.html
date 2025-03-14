@@ -23,7 +23,7 @@
           </form>
 
         </div>
-        <div *ngIf="isButton == 'true'" role="button" id="addUserBotton" routerLink="../patient-nouveau">
+        <div role="button" id="addUserBotton" routerLink="../patient-nouveau">
           <span title="Ajouter un patient">
             <i class="fa fa-user-plus" aria-hidden="true"></i>
           </span>
@@ -90,20 +90,30 @@
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}}
             </th>
             <td class="text-dark containCell" mat-cell *matCellDef="let element">
-              <div id="actions" class="dropdown open">
+              <div id="actions" class="dropdown-open">
                 <button class="btn dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span>...</span>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="triggerId">
-                  <div *ngFor="let action of actions">
-                    <button *ngIf="action.bouton == 'false'" class="dropdown-item nav-link" [routerLink]="[action.lien,element.id]">
-                      <span>{{action.nom}}</span>
-                    </button>
-                    <button *ngIf="action.bouton == 'true'" class="dropdown-item nav-link" (click)="setIdPersonne(element.id, element.nom); openNewTicketDialog()">
-                    <span>{{action.nom}}</span>
+
+                  <button class="dropdown-item nav-link" title="{{'patient.table.actions.link1' | translate}}"
+                    (click)="setIdPersonne(element.id, element.nom); openNewTicketDialog()">
+                    <i class="fa fa-map-pin" aria-hidden="true"></i>
+                    <span>{{'patient.table.actions.link1' | translate}}</span>
                   </button>
-                  </div>
+
+                  <button class="dropdown-item nav-link" [routerLink]="['/detail-patients', element.id]"
+                    title="{{'patient.table.actions.link3' | translate}}">
+                    <i class="fa fa-eye text-secondary" aria-hidden="true"></i>
+                    <span>{{'patient.table.actions.link3' | translate}}</span>
+                  </button>
+                  <button class="dropdown-item nav-link" [routerLink]="['/patient-nouveau',element.id]"
+                    title="{{'patient.table.actions.link2' | translate}}">
+                    <i class="fa fa-pen text-info" aria-hidden="true"></i>
+                    <span>{{'patient.table.actions.link2' | translate}}</span>
+                  </button>
+
                 </div>
               </div>
             </td>

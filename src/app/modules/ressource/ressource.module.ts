@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule,DatePipe } from '@angular/common';
 import { RessourceRoutingModule } from './ressource-routing.module';
 import { NewRessourceComponent } from './new-ressource/new-ressource.component';
+import { SearchRessourceComponent } from './search-ressource/search-ressource.component';
 
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,8 +24,9 @@ import { ModulesRoutingModule } from '../modules-routing.module';
   declarations: [
     NewRessourceComponent,
     ListRessourcesComponent,
+    SearchRessourceComponent,
   ],
-  exports:[NewRessourceComponent, ListRessourcesComponent],
+  exports:[NewRessourceComponent, ListRessourcesComponent, SearchRessourceComponent],
   imports: [
     CommonModule,
     RessourceRoutingModule,

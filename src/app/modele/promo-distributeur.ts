@@ -3,7 +3,7 @@ import { IFamille } from './famille';
 import { IRessource } from './ressource';
 
 
-export interface Promo {
+export interface IPromo {
     emetteur: IDistributeur;
     id: string;
     dateDebut: Date;
