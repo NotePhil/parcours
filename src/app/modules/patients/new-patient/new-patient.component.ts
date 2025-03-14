@@ -209,10 +209,6 @@ export class NewPatientComponent implements OnInit {
     let res = this.actions!.find((a) => a.bouton == 'true' && a.type == 'global');
     return  res ? 'true': 'false';
   }
-  
-  return() {
-    this.router.navigate(['parcours/patients/list-patients']);
-  }
 
   onSubmit(patientInput: any) {
     this.submitted = true;

@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewPromoComponent } from './new-promo/new-promo.component';
 import { ListPromoComponent } from './list-promo/list-promo.component';
+import { CommonModule } from '@angular/common';
 
-const routes: Routes = [
+const routesPromos: Routes = [
   { path: 'promo-nouveau', 
     component: NewPromoComponent },
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesPromos), CommonModule],
   exports: [RouterModule],
 })
 export class PromoRoutingModule {}

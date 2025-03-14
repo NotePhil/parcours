@@ -145,8 +145,7 @@ export class ModalChoixPersonneComponent  implements OnInit{
         width:'100%',
         height:'100%',
         enterAnimationDuration:'1000ms',
-        exitAnimationDuration:'1000ms',
-        // data: this.idDocumentPourExemplaire
+        exitAnimationDuration:'1000ms'
       })
     // }
   }
@@ -170,7 +169,6 @@ export class ModalChoixPersonneComponent  implements OnInit{
           );
           if (selectedOption) {
             this.filteredOptions = [selectedOption];
-            // this.dataSource.data = [selectedOption]; // Update the dataSource with the selected option
           }
         });
     }

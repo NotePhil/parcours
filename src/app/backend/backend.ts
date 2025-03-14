@@ -2,7 +2,6 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { IAttributs } from '../modele/attributs';
 import { IDocument } from '../modele/document';
 import { IDocEtats } from '../modele/doc-etats';
-import { IMenus } from '../modele/menus';
 import { IMission } from '../modele/mission';
 import { IPatient } from '../modele/Patient';
 import { IService } from '../modele/service';
@@ -313,415 +312,7 @@ export class InMemDBService implements InMemoryDbService {
         statut: StatutTicket.actif,
       },
     ];
-    let menus: IMenus[] = [
-      {
-        idUser: 'phil',
-        langue: 'fr',
-        fonctionnalites: [
-          {
-            fonction: 'Personne',
-            icone: 'fas fa-user-cog',
-            actif: 'menu-close',
-            elements: [
-              { nom: 'Créer', lien: 'patients/patient-nouveau', bouton: 'false' },
-              { nom: 'Rechercher', lien: 'patients/list-patients', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Personnel',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: './personnels/nouveau-personnel', bouton: 'false' },
-              { nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Service',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: './services/service-nouveau', bouton: 'false' },
-              { nom: 'Rechercher', lien: './services/list-services', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Validation',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: './validations/nouvelle-validation', bouton: 'false' },
-              {
-                nom: 'Rechercher',
-                lien: './validations/list-validations',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Ticket',
-            icone: 'fas fa-chart-pie',
-            actif: '',
-            elements: [
-              { nom: 'Rechercher', lien: 'tickets/list-tickets', bouton: 'false' },
-              {
-                nom: 'Afficher le panneau',
-                lien: 'tickets/panneau-tickets',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Attribut',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: './attribut-nouveau', bouton: 'false' },
-              { nom: 'Rechercher', lien: './list-attributs', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Mission',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: './missions/mission-nouveau', bouton: 'false' },
-              { nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false' },
-              { nom: 'Exécuter', lien: './missions/page-intermedaire', bouton: 'false' },
-              {
-                nom: 'liste des exemplaires',
-                lien: './missions/list-exemplaire',
-                bouton: 'false',
-              },
-              {
-                nom: 'Historique des documents',
-                lien: './missions/page-intermedaire',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Documents',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              {
-                nom: 'Créer model documents',
-                lien: './documents/document-nouveau',
-                bouton: 'false',
-              },
-              { nom: 'Rechercher', lien: './documents/list-documents', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Famille',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'familles/famille-nouvelle', bouton: 'false' },
-              { nom: 'Rechercher', lien: './familles/list-familles', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Role',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'roles/role-nouveau', bouton: 'false' },
-              { nom: 'Rechercher', lien: './roles/list-roles', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Ressource',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'ressources/ressource-nouvelle', bouton: 'false' },
-              { nom: 'Stocks', lien: './ressources/search-ressource', bouton: 'false' },
-              { nom: 'Rechercher', lien: './ressources/list-ressources', bouton: 'false' },
-
-            ],
-          },
-          {
-            fonction: 'Préconisations',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'preconisations/precomvt-nouvelle', bouton: 'false' },
-              { nom: 'Rechercher', lien: './preconisations/list-precomvts', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Distributeur',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'distributeurs/distributeur-nouveau', bouton: 'false' },
-              {
-                nom: 'Rechercher',
-                lien: './distributeurs/list-distributeurs',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Promo',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'promo-nouveau', bouton: 'false' },
-              {
-                nom: 'Rechercher',
-                lien: './promo/list-promo',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Parcours',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'parcours/nouveau-parours', bouton: 'false' },
-              {
-                nom: 'Rechercher',
-                lien: './parcours/list-parours',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Etats',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'etats/etat-nouveau', bouton: 'false' },
-              { nom: 'rechercher', lien: './etats/list-etats', bouton: 'false' },
-            ],
-          },
-        ],
-      },
-      {
-        idUser: 'phil',
-        langue: 'en',
-        fonctionnalites: [
-          {
-            fonction: 'People',
-            icone: 'fas fa-user-cog',
-            actif: 'menu-close',
-            elements: [
-              { nom: 'New', lien: 'patients/patient-nouveau', bouton: 'false' },
-              { nom: 'Search', lien: 'patients/list-patients', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Service',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: './services/service-nouveau', bouton: 'false' },
-              { nom: 'Search', lien: './services/list-services', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Ticket',
-            icone: 'fas fa-chart-pie',
-            actif: '',
-            elements: [
-              { nom: 'Search', lien: 'tickets/list-tickets', bouton: 'false' },
-              { nom: 'View panel', lien: 'tickets/panneau-tickets', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Attribut',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: './attribut-nouveau', bouton: 'false' },
-              { nom: 'Search', lien: './list-attributs', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Validation',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: './validations/nouvelle-validation', bouton: 'false' },
-              {
-                nom: 'Rechercher',
-                lien: './validations/list-validations',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Mission',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: './missions/mission-nouveau', bouton: 'false' },
-              { nom: 'Search', lien: './missions/list-missions', bouton: 'false' },
-              { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
-              {
-                nom: 'list of exemplaires',
-                lien: './missions/list-exemplaire',
-                bouton: 'false',
-              },
-              {
-                nom: 'Documents history',
-                lien: './missions/page-intermedaire',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Documents',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              {
-                nom: "New document's model",
-                lien: './documents/document-nouveau',
-                bouton: 'false',
-              },
-              { nom: 'Search', lien: './documents/list-documents', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Famille',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'new', lien: 'familles/famille-nouvelle', bouton: 'false' },
-              { nom: 'Search', lien: './familles/list-familles', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Role',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'roles/role-nouveau', bouton: 'false' },
-              { nom: 'search', lien: './roles/list-roles', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Ressource',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: 'ressources/ressource-nouvelle', bouton: 'false' },
-              { nom: 'Stocks', lien: './ressources/search-ressource', bouton: 'false' },
-              { nom: 'Search', lien: './ressources/list-ressources', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Préconisations',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: 'preconisations/precomvt-nouvelle', bouton: 'false' },
-              { nom: 'Search', lien: './preconisations/list-precomvts', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Distributeur',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: 'distributeurs/distributeur-nouveau', bouton: 'false' },
-              { nom: 'search', lien: './distributeurs/list-distributeurs', bouton: 'false' },
-            ],
-          },
-          {
-            fonction: 'Promo',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: 'promo/promo-nouveau', bouton: 'false' },
-              {
-                nom: 'search',
-                lien: './promo/list-promo',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Promo',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: 'promo/promo-nouveau', bouton: 'false' },
-              {
-                nom: 'search',
-                lien: './promo/list-promo',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Promo',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: 'promo/promo-nouveau', bouton: 'false' },
-              {
-                nom: 'search',
-                lien: './promo/list-promo',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Promo',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: 'promo/promo-nouveau', bouton: 'false' },
-              {
-                nom: 'search',
-                lien: './promo/list-promo',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Stage',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              {
-                nom: 'search',
-                lien: './etapes/list-etapes',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Parcours',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'Créer', lien: 'parcours/nouveau-parours', bouton: 'false' },
-              {
-                nom: 'search',
-                lien: './parcours/list-parours',
-                bouton: 'false',
-              },
-            ],
-          },
-          {
-            fonction: 'Statut',
-            icone: 'fas fa-user-cog',
-            actif: '',
-            elements: [
-              { nom: 'New', lien: 'etats/etat-nouveau', bouton: 'false' },
-              { nom: 'search', lien: './etats/list-etats', bouton: 'false' },
-            ],
-          },
-        ],
-      },
-    ];
+    
     let menu: IMenu[] = [
       {
         langue: 'fr',
@@ -789,13 +380,31 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
+            fonction: 'Caisse',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false'},
+              { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false'},
+            ],
+          },
+          {
+            fonction: 'Compte',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
+              { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false'}
+            ],
+          },
+          {
             fonction: 'Mission',
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
               { nom: 'Créer', lien: './missions/mission-nouveau', bouton: 'false' },
               { nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false' },
-              { nom: 'Exécuter', lien: './missions/page-intermedaire', bouton: 'false' },
+              { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
               { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
               { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false'}
             ],
@@ -951,13 +560,31 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
           {
+            fonction: 'Caisse',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false'},
+              { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false'},
+            ],
+          },
+          {
+            fonction: 'Compte',
+            icone: 'fas fa-user-cog',
+            actif: '',
+            elements: [
+              { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
+              { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false'},
+            ],
+          },
+          {
             fonction: 'Mission',
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
               { nom: 'New', lien: './missions/mission-nouveau', bouton: 'false' },
               { nom: 'Search', lien: './missions/list-missions', bouton: 'false' },
-              { nom: 'Execute', lien: './missions/page-intermedaire', bouton: 'false' },
+              { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
               { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
               { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false'}
             ],
@@ -1129,13 +756,31 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
+                fonction: 'Caisse',
+                icone: 'fas fa-user-cog',
+                actif: '',
+                elements: [
+                  { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false'},
+                  { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false' },
+                ],
+              },
+              {
+                fonction: 'Compte',
+                icone: 'fas fa-user-cog',
+                actif: '',
+                elements: [
+                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
+                  { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false'}
+                ],
+              },
+              {
                 fonction: 'Mission',
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
                   { nom: 'Créer', lien: './missions/mission-nouveau', bouton: 'false' },
                   { nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false' },
-                  { nom: 'Exécuter', lien: './missions/page-intermedaire', bouton: 'false' },
+                  { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
                   { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
                   { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false'}
                 ],
@@ -1291,13 +936,31 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
+                fonction: 'Caisse',
+                icone: 'fas fa-user-cog',
+                actif: '',
+                elements: [
+                  { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false' },
+                  { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false' },
+                ],
+              },
+              {
+                fonction: 'Compte',
+                icone: 'fas fa-user-cog',
+                actif: '',
+                elements: [
+                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
+                  { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false'},
+                ],
+              },
+              {
                 fonction: 'Mission',
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
                   { nom: 'New', lien: './missions/mission-nouveau', bouton: 'false' },
                   { nom: 'Search', lien: './missions/list-missions', bouton: 'false' },
-                  { nom: 'Execute', lien: './missions/page-intermedaire', bouton: 'false' },
+                  { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
                   { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
                   { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false'}
                 ],
@@ -1416,11 +1079,29 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
+                fonction: 'Caisse',
+                icone: 'fas fa-user-cog',
+                actif: '',
+                elements: [
+                  { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false'},
+                  { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false' },
+                ],
+              },
+              {
+                fonction: 'Compte',
+                icone: 'fas fa-user-cog',
+                actif: '',
+                elements: [
+                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
+                  { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false'}
+                ],
+              },
+              {
                 fonction: 'Mission',
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Exécuter', lien: './missions/page-intermedaire', bouton: 'false' }
+                  { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' }
                 ],
               },
             ],
@@ -1438,11 +1119,29 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
               {
+                fonction: 'Caisse',
+                icone: 'fas fa-user-cog',
+                actif: '',
+                elements: [
+                  { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false' },
+                  { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false' },
+                ],
+              },
+              {
+                fonction: 'Compte',
+                icone: 'fas fa-user-cog',
+                actif: '',
+                elements: [
+                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
+                  { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false'},
+                ],
+              },
+              {
                 fonction: 'Mission',
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Execute', lien: './missions/page-intermedaire', bouton: 'false' }
+                  { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' }
                 ],
               },
             ],
@@ -26186,11 +25885,35 @@ export class InMemDBService implements InMemoryDbService {
                   ],
                 },
                 {
+                  fonction: 'Caisse',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
+                    { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
+                      { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' }
+                    ] },
+                  ],
+                },
+                {
+                  fonction: 'Compte',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
+                    { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false', action: [
+                      { nom: 'Modifier', lien: '../compte-nouveau', bouton: 'false'}
+                    ] }
+                  ],
+                },
+                {
                   fonction: 'Mission',
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Exécuter', lien: './missions/page-intermedaire', bouton: 'false' }
+                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' }
                   ],
                 },
               ],
@@ -26215,11 +25938,35 @@ export class InMemDBService implements InMemoryDbService {
                   ],
                 },
                 {
+                  fonction: 'Caisse',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
+                    { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
+                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' }
+                    ] },
+                  ],
+                },
+                {
+                  fonction: 'Compte',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
+                    { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false', action: [
+                      { nom: 'Update', lien: '../compte-nouveau', bouton: 'false' }
+                    ] }
+                  ],
+                },
+                {
                   fonction: 'Mission',
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Execute', lien: './missions/page-intermedaire', bouton: 'false' }
+                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' }
                   ],
                 },
               ],
@@ -26269,11 +26016,35 @@ export class InMemDBService implements InMemoryDbService {
                   ],
                 },
                 {
+                  fonction: 'Caisse',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
+                    { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
+                      { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' }
+                    ] },
+                  ],
+                },
+                {
+                  fonction: 'Compte',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Créer', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
+                    { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false', action: [
+                      { nom: 'Modifier', lien: '../compte-nouveau', bouton: 'false' }
+                    ] }
+                  ],
+                },
+                {
                   fonction: 'Mission',
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Exécuter', lien: './missions/page-intermedaire', bouton: 'false' }
+                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' }
                   ],
                 },
               ],
@@ -26298,11 +26069,35 @@ export class InMemDBService implements InMemoryDbService {
                   ],
                 },
                 {
+                  fonction: 'Caisse',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
+                    { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
+                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' }
+                    ] },
+                  ],
+                },
+                {
+                  fonction: 'Compte',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
+                    { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false', action: [
+                      { nom: 'Update', lien: '../compte-nouveau', bouton: 'false' }
+                    ] },
+                  ],
+                },
+                {
                   fonction: 'Mission',
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Execute', lien: './missions/page-intermedaire', bouton: 'false' }
+                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' }
                   ],
                 },
               ],
@@ -26442,6 +26237,28 @@ export class InMemDBService implements InMemoryDbService {
                   ],
                 },
                 {
+                  fonction: 'Caisse',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
+                    { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
+                      { nom: 'Modifier', lien: '../caisse-nouveau', bouton: 'false' }]},
+                  ],
+                },
+                {
+                  fonction: 'Compte',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Créer', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}] },
+                    { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false', action: [
+                      { nom: 'Modifier', lien: '../compte-nouveau', bouton: 'false' }]}
+                  ],
+                },
+                {
                   fonction: 'Mission',
                   icone: 'fas fa-user-cog',
                   actif: '',
@@ -26452,7 +26269,7 @@ export class InMemDBService implements InMemoryDbService {
                     { nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false', action : [
                       { nom: 'Modifier', lien: '../mission-nouveau', bouton: 'false'}
                     ] },
-                    { nom: 'Exécuter', lien: './missions/page-intermedaire', bouton: 'false' },
+                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
                     { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
                     { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false'}
                   ],
@@ -26514,6 +26331,19 @@ export class InMemDBService implements InMemoryDbService {
                       { nom: 'Modifier', lien: '../ressource-nouvelle', bouton: 'false'}
                     ] },
                   ],
+                },
+                {
+                  fonction: 'Promo',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Créer', lien: './promo/promo-nouveau', bouton: 'false', action: [
+                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
+                    ]},
+                    { nom: 'Rechercher', lien: './promo/list-promo', bouton: 'false', action: [
+                      { nom: 'Modifier', lien: '../promo-nouveau', bouton: 'false'}
+                    ] },
+                  ]
                 },
                 {
                   fonction: 'Préconisations',
@@ -26686,6 +26516,29 @@ export class InMemDBService implements InMemoryDbService {
                   ],
                 },
                 {
+                  fonction: 'Caisse',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}]
+                    },
+                    { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
+                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' }]},
+                  ],
+                },
+                {
+                  fonction: 'Compte',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}] },
+                    { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false', action: [
+                      { nom: 'Update', lien: '../compte-nouveau', bouton: 'false' }]}
+                  ],
+                },
+                {
                   fonction: 'Mission',
                   icone: 'fas fa-user-cog',
                   actif: '',
@@ -26696,7 +26549,7 @@ export class InMemDBService implements InMemoryDbService {
                     { nom: 'Search', lien: './missions/list-missions', bouton: 'false', action: [
                       { nom: 'Update', lien: '../mission-nouveau', bouton: 'false' }
                     ] },
-                    { nom: 'Execute', lien: './missions/page-intermedaire', bouton: 'false' },
+                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
                     { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
                     { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false'}
                   ],
@@ -26758,6 +26611,19 @@ export class InMemDBService implements InMemoryDbService {
                       { nom: 'Update', lien: '../ressource-nouvelle', bouton: 'false' }
                     ] },
                   ],
+                },
+                {
+                  fonction: 'Promo',
+                  icone: 'fas fa-user-cog',
+                  actif: '',
+                  elements: [
+                    { nom: 'Create', lien: './promo/promo-nouveau', bouton: 'false', action: [
+                      {nom: 'Create', lien: '', bouton: 'true', type: 'global'}
+                    ]},
+                    { nom: 'Search', lien: './promo/list-promo', bouton: 'false', action: [
+                      { nom: 'Update', lien: '../promo-nouveau', bouton: 'false'}
+                    ] },
+                  ]
                 },
                 {
                   fonction: 'Préconisations',
@@ -39881,7 +39747,6 @@ export class InMemDBService implements InMemoryDbService {
       patients,
       services,
       menu,
-      menus,
       tickets,
       validations,
       mvtCaisses,

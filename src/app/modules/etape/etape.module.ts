@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-
-//import { EtapeRoutingModule } from './etape-routing.module';
 import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -21,7 +19,6 @@ import { ModulesRoutingModule } from '../modules-routing.module';
   declarations: [NewEtapeComponent],
   imports: [
     CommonModule,
-    //EtapeRoutingModule,
     FormsModule,
     ModulesRoutingModule,
     ReactiveFormsModule,

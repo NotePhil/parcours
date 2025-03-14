@@ -16,7 +16,6 @@ import { ParoursService } from 'src/app/services/parours/parours.service';
 import { v4 as uuidv4 } from 'uuid';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewEtapeComponent } from '../../etape/new-etape/new-etape.component';
-import { IAfficheDocument } from 'src/app/modele/affiche-document';
 import { IAfficheEtape } from 'src/app/modele/affiche-etape';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatPaginator } from '@angular/material/paginator';

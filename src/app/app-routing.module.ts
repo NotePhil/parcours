@@ -7,9 +7,6 @@ import { RequestPasswordResetComponent } from './request-password-reset/request-
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './verify-users/auth/auth.guard';
-import { PromoRoutingModule } from './modules/promo/promo-routing.module';
-import { CaissesRoutingModule } from './modules/caisses/caisses-routing.module';
-import { ComptesRoutingModule } from './modules/comptes/comptes-routing.module';
 
 
 
@@ -28,26 +25,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
-    // PersonnelsRoutingModule,
-    // ServicesRoutingModule,
-    // TicketsRoutingModule,
-    // AttributsRoutingModule,
-    // MissionsRoutingModule,
-    // DocumentsRoutingModule,
-    // FamilleRoutingModule,
-    // RessourceRoutingModule,
-    // PromoRoutingModule,
-    // PrecoMvtRoutingModule,
-    // ExemplaireDocumentRoutingModule,
-    // FamilleRoutingModule,
-    // DistributeurRoutingModule,
-    // RoleRoutingModule,
-    // EtatsRoutingModule,
-    // ValidationRoutingModule,
-    // EtapeRoutingModule,
-    // ParoursRoutingModule,
-    // CaissesRoutingModule,
-    // ComptesRoutingModule,
     ModulesRoutingModule
   ],
   exports: [RouterModule]

@@ -22,6 +22,9 @@ import { NotFoundComponent } from '../not-found/not-found.component';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from '../verify-users/auth/auth.guard';
 import { RoleAuthGuard } from '../verify-users/role-users/role-auth.guard';
+import { PromoRoutingModule } from './promo/promo-routing.module';
+import { ComptesRoutingModule } from './comptes/comptes-routing.module';
+import { CaissesRoutingModule } from './caisses/caisses-routing.module';
 
 const routes: Routes = [
   { path: 'parcours', component: ModulesComponent, canActivate: [AuthGuard],
@@ -108,9 +111,19 @@ const routes: Routes = [
         canActivate: [RoleAuthGuard] 
       },
       {
-        path: '',
-        redirectTo: '/parcours',
-        pathMatch: 'full'
+        path: 'promo',
+        loadChildren: () => import('./promo/promo.module').then(m => m.PromoModule),
+        canActivate: [RoleAuthGuard] 
+      },
+      {
+        path: 'comptes',
+        loadChildren: () => import('./comptes/comptes.module').then(m => m.ComptesModule),
+        canActivate: [RoleAuthGuard] 
+      },
+      {
+        path: 'caisses',
+        loadChildren: () => import('./caisses/caisses.module').then(m => m.CaissesModule),
+        canActivate: [RoleAuthGuard] 
       },
       {
         path: '**',
@@ -140,6 +153,9 @@ const routes: Routes = [
     EtapeRoutingModule,
     ParoursRoutingModule,
     PatientsRoutingModule,
+    PromoRoutingModule,
+    ComptesRoutingModule,
+    CaissesRoutingModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],

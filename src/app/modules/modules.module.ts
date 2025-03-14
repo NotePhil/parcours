@@ -34,6 +34,9 @@ import { ModulesComponent } from './modules.component';
 import { MenuComponent } from './menu/menu.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDBService } from '../backend/backend';
+import { PromoModule } from './promo/promo.module';
+import { ComptesModule } from './comptes/comptes.module';
+import { CaissesModule } from './caisses/caisses.module';
 
 
 @NgModule({
@@ -81,7 +84,10 @@ import { InMemDBService } from '../backend/backend';
     MatSlideToggleModule,
     ExemplaireDocumentModule,
     SharedModule,
-    EtatsModule
+    EtatsModule,
+    PromoModule,
+    ComptesModule,
+    CaissesModule
   ]
 })
 export class ModulesModule { }
