@@ -1,35 +1,35 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { IAttributs } from '../modele/attributs';
-import { IDocument } from '../modele/document';
+import { ICaisses } from '../modele/caisses';
+import { IComptes } from '../modele/comptes';
+import { IDistributeur } from '../modele/distributeur';
 import { IDocEtats } from '../modele/doc-etats';
+import { IDocument } from '../modele/document';
+import { IEtape } from '../modele/etape';
+import { IEtats } from '../modele/etats';
+import { IExemplaireDocument } from '../modele/exemplaire-document';
+import { IFamille } from '../modele/famille';
+import { FormatCode } from '../modele/format-code';
 import { IMenus } from '../modele/menus';
 import { IMission } from '../modele/mission';
+import { IMouvementCaisses } from '../modele/mouvement-caisses';
+import { IParours } from '../modele/parours';
 import { IPatient } from '../modele/Patient';
+import { IPersonnel } from '../modele/personnel';
+import { IPrecoMvt } from '../modele/precomvt';
+import { IPromo } from '../modele/promo-distributeur';
+import { IRessource } from '../modele/ressource';
+import { IRole } from '../modele/role';
 import { IService } from '../modele/service';
 import { StatutTicket } from '../modele/statut-ticket';
 import { ITicket } from '../modele/ticket';
 import { IType } from '../modele/type';
-import { IExemplaireDocument } from '../modele/exemplaire-document';
-import { IFamille } from '../modele/famille';
-import { IRessource } from '../modele/ressource';
-import { IPrecoMvt } from '../modele/precomvt';
-import { IDistributeur } from '../modele/distributeur';
-import { IRole } from '../modele/role';
-import { IPersonnel } from '../modele/personnel';
 import { TypeAttribut } from '../modele/type-attributs';
-import { TypeUnite } from '../modele/type-unite';
 import { TypeMvt } from '../modele/type-mvt';
-import { TypeMouvement } from '../modele/typeMouvement';
-import { IEtats } from '../modele/etats';
-import { IValidation } from '../modele/validation';
-import { IEtape } from '../modele/etape';
-import { IParours } from '../modele/parours';
-import { IPromo } from '../modele/promo-distributeur';
+import { TypeUnite } from '../modele/type-unite';
 import { TypeValidation } from '../modele/type-validation';
-import { FormatCode } from '../modele/format-code';
-import { ICaisses } from '../modele/caisses';
-import { IComptes } from '../modele/comptes';
-import { IMouvementCaisses } from '../modele/mouvement-caisses';
+import { TypeMouvement } from '../modele/typeMouvement';
+import { IValidation } from '../modele/validation';
 
 export class InMemDBService implements InMemoryDbService {
   createDb() {
@@ -38481,7 +38481,7 @@ export class InMemDBService implements InMemoryDbService {
       validations,
       mvtCaisses,
       missions,
-      attributs,
+      // attributs,
       documents,
       exemplaires,
       famille,

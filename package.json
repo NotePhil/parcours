@@ -29,6 +29,7 @@
     "angular-in-memory-web-api": "^0.18.0",
     "angularx-qrcode": "^18.0.2",
     "bootstrap": "^4.6.2",
+    "clinique": "file:",
     "date-fns": "^4.1.0",
     "html2canvas": "^1.4.1",
     "jsbarcode": "^3.11.6",
