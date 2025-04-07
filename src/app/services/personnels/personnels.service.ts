@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IPersonnel } from 'src/app/modele/personnel';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersonnelsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllPersonnels(): Observable<IPersonnel[]> {
-    return this.http.get<IPersonnel[]>('api/personnels').pipe(map((x) => x));
+    return this.http.get<IPersonnel[]>(this.param.api+'personnels').pipe(map((x) => x));
   }
 
   getPersonnelById(id: string): Observable<IPersonnel> {
@@ -23,7 +24,7 @@ export class PersonnelsService {
   }
 
   getPersonnelsByName(nom: string): Observable<IPersonnel[]> {
-    return this.http.get<IPersonnel[]>('api/personnels').pipe(
+    return this.http.get<IPersonnel[]>(this.param.api+'personnels').pipe(
       map((x) => {
         return x.filter((p) => p.nom.toLowerCase().startsWith(nom));
       })
@@ -31,7 +32,7 @@ export class PersonnelsService {
   }
 
   getPersonnelsById(id: string): Observable<IPersonnel[]> {
-    return this.http.get<IPersonnel[]>('api/personnels').pipe(
+    return this.http.get<IPersonnel[]>(this.param.api+'personnels').pipe(
       map((x) => {
         return x.filter((p) => p.id.toLowerCase().startsWith(id));
       })
@@ -39,7 +40,7 @@ export class PersonnelsService {
   }
 
   getPersonelsByNameOrId(query: string): Observable<IPersonnel[]> {
-    return this.http.get<IPersonnel[]>('api/personnels').pipe(
+    return this.http.get<IPersonnel[]>(this.param.api+'personnels').pipe(
       map((patients) => {
         const lowerCaseQuery = query.toLowerCase();
 
@@ -54,11 +55,11 @@ export class PersonnelsService {
   }
 
   ajouterPersonnel(personnel: IPersonnel) {
-    return this.http.post('api/personnels', personnel);
+    return this.http.post(this.param.api+'personnels', personnel);
   }
   
   getPersonnelByRole(idRole:string): Observable<IPersonnel[]> {
-    return this.http.get<IPersonnel[]>('api/personnels').pipe(
+    return this.http.get<IPersonnel[]>(this.param.api+'personnels').pipe(
       map(x=>
         {
           return x.filter(e=> e.roles?.some(r=> r.role.id.includes(idRole.toLowerCase())))

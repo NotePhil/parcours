@@ -68,6 +68,7 @@ export class NewServicesComponent implements OnInit {
       id: uuidv4(),
       libelle: serviceInput.libelle,
       etat: serviceInput.etat,
+      codeUnique: "azer5r25IR",
       dateDerniereModification: serviceInput.dateDerniereModification,
       dateAttribution: serviceInput.dateAttribution,
       dateFin: serviceInput.dateFin,
@@ -78,6 +79,7 @@ export class NewServicesComponent implements OnInit {
 
     if(this.service != undefined){
       serviceTemp.id = this.service.id
+      serviceTemp.codeUnique = this.service.codeUnique
     }
 
     this.serviceService.ajouterService(serviceTemp).subscribe(

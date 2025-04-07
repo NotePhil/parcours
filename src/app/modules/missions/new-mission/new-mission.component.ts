@@ -86,7 +86,7 @@ export class NewMissionComponent implements OnInit {
       libelle: missionInput.libelle,
       description: missionInput.description,
       etat: missionInput.etat,
-      //dateCreation: new Date,
+      dateCreation: new Date,
       //dateModification: new Date,
       service: missionInput.service
     }
@@ -94,6 +94,7 @@ export class NewMissionComponent implements OnInit {
     //missionTemp.service = this.service!
     if(this.mission != undefined){
       missionTemp.id = this.mission.id
+      missionTemp.dateCreation = this.mission.dateCreation
     }
     this.missionService.ajouterMission(missionTemp).subscribe(
       object => {
