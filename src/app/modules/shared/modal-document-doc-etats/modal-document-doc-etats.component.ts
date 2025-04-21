@@ -60,7 +60,7 @@ export class ModalDocEtatsComponent implements OnInit {
         wrappingWidth: 150,
       },
     });
-    mermaid.init();
+    mermaid.run();
     this.serviceEtat.getAllEtats().subscribe(
       (resultat) => {
         this.filteredOptions = resultat;
@@ -69,19 +69,6 @@ export class ModalDocEtatsComponent implements OnInit {
     this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocEtatService.dataDocumentEtats;
     this.localElementTableDocEtats = [...this.ELEMENTS_TABLE_DOC_ETATS]; // Initialize the local variable with the existing data
     this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS;
-
-    this.formeDocEtats.valueChanges.subscribe((value) => {
-      console.log("hs:", value);
-
-      if (value != undefined && value?.length > 0) {
-        console.log("avant?");
-
-        this.ngAfterViewInit();
-
-        console.log("après!");
-
-      }
-    });
 
     this.etatControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
@@ -108,32 +95,11 @@ export class ModalDocEtatsComponent implements OnInit {
 
 
     if (this.localElementTableDocEtats != null && this.localElementTableDocEtats.length !== 0) {
-      let AllEtats = this.localElementTableDocEtats.length;
-      console.log(AllEtats);
-      if (AllEtats > 0) {
-        let line = `graph TB;`;
-
-        for (let i = 0; i < AllEtats; i++) {
-          if (this.localElementTableDocEtats[i].etat.etatPrecedant != null && this.localElementTableDocEtats[i].etat.etatPrecedant!.length > 0) {
-            for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatPrecedant!.length; j++) {
-
-              line =
-                line +
-                `${this.localElementTableDocEtats[i].etat.etatPrecedant![j].id}[${this.localElementTableDocEtats[i].etat.etatPrecedant![j].libelle}]-->${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}];`;
-            }
-          }
-          if (this.localElementTableDocEtats[i].etat.etatSuivant != null && this.localElementTableDocEtats[i].etat.etatSuivant!.length > 0) {
-            for (let j = 0; j < this.localElementTableDocEtats[i].etat.etatSuivant!.length; j++) {
-              line =
-                line +
-                `${this.localElementTableDocEtats[i].etat.id}[${this.localElementTableDocEtats[i].etat.libelle}]-->${this.localElementTableDocEtats[i].etat.etatSuivant![j].id}[${this.localElementTableDocEtats[i].etat.etatSuivant![j].libelle}];`;
-            }
-          }
-        }
+      if (this.localElementTableDocEtats.length > 0) {
 
         const { svg, bindFunctions } = await mermaid.render(
           'graphDiv',
-          line
+          this.donneeDocEtatService.genratedgraphe(this.localElementTableDocEtats)
         );
         element.innerHTML = svg;
         bindFunctions?.(element);

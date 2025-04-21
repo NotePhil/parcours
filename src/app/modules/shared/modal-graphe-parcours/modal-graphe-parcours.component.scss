@@ -1,0 +1,32 @@
+#mainBlock{
+    background-color: #ffffff;
+    padding: 5px;
+    width: 50%;
+    margin: auto;
+}
+
+@media screen and (max-width: 950px ) {
+    #mainBlock{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 800px ) {
+    #mainBlock{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 700px ) {
+    #mainBlock{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 600px ) {
+    #mainBlock{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 550px ) {
+    #mainBlock{
+        width: 100%;
+    }
+}

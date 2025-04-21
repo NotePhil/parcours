@@ -53,7 +53,7 @@ export class ViewFormDocumentComponent implements OnInit {
         wrappingWidth: 150,
       },
     });
-    mermaid.init();
+    mermaid.run();
 
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
     if (idDocument != null && idDocument !== '') {
@@ -73,22 +73,17 @@ export class ViewFormDocumentComponent implements OnInit {
   }
 
   public async ngAfterViewInit(): Promise<void> {
-    let nameA = 'DEV';
-    let nameC = 'TEST';
-    let nameD = 'Load Test';
-    let nameE = 'PROD';
-
     const element: any = this.mermaidDivEtatsDoc.nativeElement;
 
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
     if (idDocument != null && idDocument !== '') {
       this.serviceDocument.getDocumentById(idDocument).subscribe(async (x) => {
         let AllEtats = x.docEtats.length;
-        console.log(AllEtats);
-        if (AllEtats > 0) {
+        console.log(AllEtats, x.docEtats.length);
+        if (x.docEtats.length > 0) {
           let line = `graph LR;`;
 
-          for (let i = 0; i < AllEtats; i++) {
+          for (let i = 0; i < x.docEtats.length; i++) {
 
             if (x.docEtats[i].etat.etatPrecedant != null && x.docEtats[i].etat.etatPrecedant!.length > 0) {
               for (let j = 0; j < x.docEtats[i].etat.etatPrecedant!.length; j++) {
@@ -112,16 +107,8 @@ export class ViewFormDocumentComponent implements OnInit {
             }
 
           }
-
-          let phrase = `
-              1[[${nameA}]]-->3[${nameC}];
-    1-->${AllEtats}[${nameD}];
-    3-->5[${nameE}];
-    ${AllEtats}-->5;`;
           const graphDefinition =
-            `graph LR;` +
-            phrase +
-            `
+            `graph LR;
     style 1 fill:#aaffff,stroke:#333,stroke-width:4px
     style 3 fill:#bbf,stroke:#faa,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
     `;

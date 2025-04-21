@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { ElementRef, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TypeMvt } from 'src/app/modele/type-mvt';
 import { TypeValidation } from 'src/app/modele/type-validation';
 import { FormatCode } from 'src/app/modele/format-code';
+import mermaid from 'mermaid';
+import { IDocEtats } from 'src/app/modele/doc-etats';
 
 @Injectable({
   providedIn: 'root',
@@ -110,5 +112,28 @@ export class DonneesEchangeService {
     this.dataExemplairePersonneRatachee =
       sessionStorage.getItem('personneRatachee');
     return this.dataExemplairePersonneRatachee;
+  }
+
+  genratedgraphe(etats: IDocEtats[]): string {
+    let line = `graph TB;`;
+
+        for (let i = 0; i < etats.length; i++) {
+          if (etats[i].etat.etatPrecedant != null && etats[i].etat.etatPrecedant!.length > 0) {
+            for (let j = 0; j < etats[i].etat.etatPrecedant!.length; j++) {
+
+              line =
+                line +
+                `${etats[i].etat.etatPrecedant![j].id}[${etats[i].etat.etatPrecedant![j].libelle}]-->${etats[i].etat.id}[${etats[i].etat.libelle}];`;
+            }
+          }
+          if (etats[i].etat.etatSuivant != null && etats[i].etat.etatSuivant!.length > 0) {
+            for (let j = 0; j < etats[i].etat.etatSuivant!.length; j++) {
+              line =
+                line +
+                `${etats[i].etat.id}[${etats[i].etat.libelle}]-->${etats[i].etat.etatSuivant![j].id}[${etats[i].etat.etatSuivant![j].libelle}];`;
+            }
+          }
+        }
+    return line;
   }
 }
