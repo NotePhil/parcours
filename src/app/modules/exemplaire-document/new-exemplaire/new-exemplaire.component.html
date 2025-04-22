@@ -6,12 +6,12 @@
         </h1>
         <div class="infos">
             <div id="titre">
-                <div *ngIf="this.exemplaire.personneRattachee != undefined">
+                <div *ngIf="this.laPersonneRattachee != undefined">
                     <span class="label">
                         {{ "document.exemplaire.text9" | translate }} :
                     </span>
-                    <span class="title">{{ this.exemplaire.personneRattachee.nom + " " }}
-                        <span class="capitaliseTitle"> {{ this.exemplaire.personneRattachee.prenom! }} </span>
+                    <span class="title">{{ this.laPersonneRattachee.nom + " " }}
+                        <span class="capitaliseTitle"> {{ this.laPersonneRattachee.prenom! }} </span>
                     </span>
                 </div>
                 <div>
