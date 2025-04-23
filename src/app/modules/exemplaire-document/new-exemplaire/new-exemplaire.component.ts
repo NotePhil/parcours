@@ -271,13 +271,13 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         this.laPersonneRattachee = patientTrouve;
         if (patientTrouve != undefined) {
           this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
+              console.log('compte personne rattaché :', this.laPersonneRattachee?.id);
           this.compteService.getCompteByUser(this.laPersonneRattachee.id).subscribe(
             account => {
               this.compte = account;
               if (this.compte?.solde == 0 || this.compte?.solde == null) {
                 this.formeExemplaire.controls['use'].disable()
               }
-              console.log('compte personne rattaché :', this.compte);
             }
           )
         }
@@ -1214,14 +1214,14 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
   }
 
-  rechercherListingAssurance(option: IDistributeur) {
+  rechercherListingAssurance(option: IDistributeur) { 
     this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
       this.promotion = promo!
       this.showText = false
       this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
         mvt => {
           let mouvementTemp = mvt
-          if (this.promotion) {
+          if (this.verifieSiPromoAppliquable(mvt)) {
             mouvementTemp.promotion = this.promotion
             this.appliquerPromotion(mouvementTemp)
           }
