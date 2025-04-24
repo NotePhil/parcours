@@ -1174,7 +1174,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       }
       if (this.promotion) {
         mvt.promotion = this.promotion
-        this.appliquerPromotion(mvt)
+        this.appliquerPromotion(this.promotion, mvt)
       }
       this.ELEMENTS_TABLE_MOUVEMENTS.push(mvt)
       this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS
@@ -1215,7 +1215,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   }
 
   rechercherListingAssurance(option: IDistributeur) { 
-    this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
+    /*this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
       this.promotion = promo!
       this.showText = false
       this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
@@ -1229,7 +1229,18 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
             this.showText = true
           }
         });
-    })
+    })*/
+   
+    this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
+      this.promotion = undefined
+      if (promo) {
+        this.promotion = promo;
+        this.ELEMENTS_TABLE_MOUVEMENTS = this.appliquerPromotionSurMouvementsConcernés(promo, this.ELEMENTS_TABLE_MOUVEMENTS);
+        this.showText = false;
+      } else {
+        this.showText = true;
+      }
+    });
   }
 
   /**
@@ -1242,6 +1253,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     let dateOk = false
     let ressourceOk = false
     let familleOk = false
+    this.promotion = undefined
 
     // Vérification des Dates : La promotion n'est appliquée que si la date actuelle se situe entre la date de début et la date de fin de la promotion.
     if (mouvement.promotion && !(today < new Date(mouvement.promotion.dateDebut!) || today > new Date(mouvement.promotion.dateFin!))) {
@@ -1269,7 +1281,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   }
 
   // Calcul de la Remise : La remise est calculée soit en pourcentage soit en montant fixe. Si les deux sont présents, seul le pourcentage est utilisé.
-  calculRemise(mouvement: IMouvement): number {
+  /**calculRemise(mouvement: IMouvement): number {
     if (!mouvement.promotion) {
       this.remisePromo = 0
       this.unitePromo = ""
@@ -1292,7 +1304,23 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     const prixReduit = mouvement.prix - remise;
     // mouvement.prix = prixReduit
     return prixReduit
+  }*/
+
+    
+calculRemise(mouvement: IMouvement): number {
+  if (!mouvement.promotion) return mouvement.prix;
+
+  let remise = 0;
+
+  if (mouvement.promotion.pourcentageRemise > 0) {
+    remise = mouvement.prix * (mouvement.promotion.pourcentageRemise / 100);
+  } else if (mouvement.promotion.montantRemise > 0) {
+    remise = mouvement.promotion.montantRemise;
   }
+
+  remise = Math.min(remise, mouvement.prix);
+  return mouvement.prix - remise;
+}
 
   /**
    * Ce code permet d'appliquer les promotions en tenant compte des ressources et des familles de ressources concernées dans les mouvements.
@@ -1300,12 +1328,41 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * @param promo promotion à apliquer
    * @returns mouvement soldés
    */
-  appliquerPromotion(mouvement: IMouvement): IMouvement {
-    if (this.verifieSiPromoAppliquable(mouvement)) {
+  appliquerPromotion(promotion: IPromo, mouvement: IMouvement): IMouvement {
+    /*if (this.verifieSiPromoAppliquable(mouvement)) {
       this.calculRemise(mouvement)
     }
-    return mouvement
+    return mouvement*/
+    
+    const today = new Date();
+    const ressource = mouvement.ressource;
+      const famille = ressource.famille;
+  
+      const dateValide = today >= new Date(promotion.dateDebut) && today <= new Date(promotion.dateFin);
+  
+      const ressourceConcernee = promotion.ressource?.some(r => r.id === ressource.id) ?? false;
+      const familleConcernee = promotion.famille?.some(f => f.id === famille.id) ?? false;
+  
+      // On applique la promo uniquement si la date est valide et la ressource OU la famille est concernée
+      if (dateValide && (ressourceConcernee || familleConcernee)) {
+        mouvement.promotion = promotion;
+        //mvt.prix = this.calculRemise(mvt); // Appliquer la réduction
+      } else {
+        mouvement.promotion = undefined; // Pas concerné, on enlève la promo si existante
+      }
+  
+      return mouvement;
   }
+  /**----- autre version-------- */
+
+  appliquerPromotionSurMouvementsConcernés(promotion: IPromo, mouvements: IMouvement[]): IMouvement[] {
+    const today = new Date();
+  
+    return mouvements.map(mvt => {
+      return this.appliquerPromotion(promotion, mvt)
+    });
+  }
+
 
   /**
    * Methode qui permet d'effacer la valeur du control ressource lorsqu'on a
