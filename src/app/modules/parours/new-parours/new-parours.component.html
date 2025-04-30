@@ -118,24 +118,23 @@
 
           <!-- action Column -->
           <ng-container matColumnDef="actions">
-            <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}}
-            </th>
-            <td class="text-dark containCell" mat-cell *matCellDef="let element">
-              <div id="actions" class="dropdown open">
-                <button class="btn dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <span>...</span>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="triggerId">
-                  <button class="dropdown-item nav-link" (click)="openNewEtape(element.id)"
-                    title="{{'patient.table.actions.link2' | translate}}">
-                    <i class="fa fa-pen text-info" aria-hidden="true"></i>
-                    <span>{{'patient.table.actions.link2' | translate}}</span>
-                  </button>
+            <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
+            <td class="containCell" mat-cell *matCellDef="let element">
+                <div id="actions" class="dropdown-open">
+                    <button class="btn dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <span>...</span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                      <button class="dropdown-item nav-link" (click)="openNewEtape(element.id)"
+                        title="{{'patient.table.actions.link2' | translate}}">
+                        <i class="fa fa-pen text-info" aria-hidden="true"></i>
+                        <span>{{'patient.table.actions.link2' | translate}}</span>
+                      </button>
+                    </div>
                 </div>
-              </div>
             </td>
-          </ng-container>
+        </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

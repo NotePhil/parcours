@@ -1,16 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormGroup,
   Validators,
-  FormControl,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
-import { Observable, EMPTY } from 'rxjs';
+import { MatSort } from '@angular/material/sort';
 import { IEtape } from 'src/app/modele/etape';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { EtapesService } from 'src/app/services/etapes/etapes.service';
@@ -18,10 +15,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { DocumentService } from 'src/app/services/documents/document.service';
 import { IDocument } from 'src/app/modele/document';
 import { ModalChoixSousDocumentComponent } from '../../shared/modal-choix-sous-document/modal-choix-sous-document.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ModalEtapesPreorsuivParcoursComponent } from '../../shared/modal-etapes-preorsuiv-parcours/modal-etapes-preorsuiv-parcours.component';
 
 @Component({
   selector: 'app-new-etape',
@@ -35,7 +32,9 @@ export class NewEtapeComponent implements OnInit {
   submitted: boolean = false;
   titre: string = '';
   documents: IDocument[] = [];
+  etapes: IEtape[] = [];
   documentId: string[] = [];
+  etapeId: string[] | undefined = [];
 
   etape: IEtape = {
     id: '',
@@ -61,11 +60,9 @@ export class NewEtapeComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private etapeService: EtapesService,
-    private dataEnteteMenuService: DonneesEchangeService,
     private router: Router,
     private infosPath: ActivatedRoute,
     private datePipe: DatePipe,
-    private serviceDocument: DocumentService,
     private dialogDef: MatDialog,
     private donneeDocCatService: DonneesEchangeService,
     private dialogRef: MatDialogRef<NewEtapeComponent>,
@@ -81,6 +78,7 @@ export class NewEtapeComponent implements OnInit {
       ],
       etat: [true],
       documents: [[]],
+      etapesprecedant: [[]]
     });
   }
 
@@ -99,13 +97,18 @@ export class NewEtapeComponent implements OnInit {
 
         this.etape = x;
         this.documents = this.etape.document;
+        this.etapes = this.etape.etapePrecedant!;
+        this.donneeDocCatService.dataParcoursEtapes = this.etape.etapePrecedant!;
 
         this.forme.patchValue({
           libelle: this.etape.libelle,
           etat: this.etape.etat,
         });
+        this.etapeId = this.etape.etapePrecedant?.map((etape) => etape.id);
         this.documentId = this.etape.document.map((doc) => doc.idDocument);
       });
+    } else {
+      this.donneeDocCatService.dataParcoursEtapes = [];
     }
   }
 
@@ -124,10 +127,8 @@ export class NewEtapeComponent implements OnInit {
     }
     console.log('Preparing to open dialog with document IDs:', this.documentId);
 
-    (dialogConfig.maxWidth = '100vw'),
-      (dialogConfig.maxHeight = '100vh'),
-      (dialogConfig.width = '100%'),
-      (dialogConfig.height = '100%'),
+      (dialogConfig.width = '90%'),
+      (dialogConfig.height = '90%'),
       (dialogConfig.enterAnimationDuration = '1000ms'),
       (dialogConfig.exitAnimationDuration = '1000ms');
 
@@ -141,6 +142,31 @@ export class NewEtapeComponent implements OnInit {
 
       if (this.documents.length > 0) {
         this.documentId = this.documents.map((doc) => doc.idDocument);
+      }
+    });
+  }
+
+  /**
+   * Methode permettant d'ouvrir la modal permettant d'associer des sous documents au document
+   */
+  openEtapePrecedantDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    (dialogConfig.width = '80%'),
+    (dialogConfig.height = '80%'),
+    (dialogConfig.enterAnimationDuration = '1000ms'),
+    (dialogConfig.exitAnimationDuration = '1000ms');
+
+    const dialogRef = this.dialogDef.open(
+      ModalEtapesPreorsuivParcoursComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.etapes = this.donneeDocCatService.dataParcoursEtapes;
+
+      if (this.etapes.length > 0) {
+        this.etapeId = this.etapes.map((etape) => etape.id);
       }
     });
   }
@@ -161,13 +187,14 @@ export class NewEtapeComponent implements OnInit {
       libelle: this.f['libelle'].value,
       etat: this.f['etat'].value,
       document: this.documents,
+      etapeprecedant: this.etapes
     };
-    console.log('etapeTemp', etapeTemp);
 
     // If updating existing etape, set its id
     if (this.etape.id != '') {
       etapeTemp.id = this.etape.id;
     }
+    console.log('etapeTemp', etapeTemp);
 
     this.etapeService.ajouterEtape(etapeTemp).subscribe(() => {
       this.dialogRef.close(etapeTemp);

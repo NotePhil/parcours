@@ -1,5 +1,5 @@
-<div id="mainSection">
-  <div class="card block" id="top2" *ngIf="etape">
+<div id="mainSection" class="bg-light card modalCategorie modalContentScroll">
+  <div *ngIf="etape">
     <div class="card-header" class="entete pt-4 pb-4">
       {{'etape.table.title' | translate}} {{titre}}
     </div>
@@ -51,6 +51,27 @@
                     <p class="pt-3">
                       <span *ngFor="let document of documents">
                         {{ document.titre }} <span>, </span>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="champs">
+                <label for="" class="label">
+                  {{"parours.table.title2" | translate}}
+                </label>
+                <div class="w-100">
+
+                  <!-- Ouvrir le formulair de selection des etapes suivants -->
+                  <div class="listAttr pr-5">
+                    <button type="button" class="btn p-0" (click)="openEtapePrecedantDialog()">
+                      <i class="fas fa-plus-square"></i>
+                    </button>
+                    <p class="pt-3">
+                      <span *ngFor="let etape of etapes">
+                        {{ etape.libelle }} <span>, </span>
                       </span>
                     </p>
                   </div>

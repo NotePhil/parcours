@@ -85,9 +85,8 @@ export class NewParoursComponent implements OnInit {
 
   openNewEtape(etapeId?: string) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '90%';
-    dialogConfig.height = '80%';
-    dialogConfig.autoFocus = true;
+    (dialogConfig.enterAnimationDuration = '1000ms'),
+    (dialogConfig.exitAnimationDuration = '1000ms')
 
     if (etapeId) {
       dialogConfig.data = { idEtape: etapeId }; // Passer l'id de l'etape a la modal
@@ -96,6 +95,8 @@ export class NewParoursComponent implements OnInit {
     const dialogRef = this.dialog.open(NewEtapeComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result) => {
+      console.log("result modal :", result);
+      
       if (result) {
         const currentEtape = this.forme.controls['_etape'].value as IEtape[];
 

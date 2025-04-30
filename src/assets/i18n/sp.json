@@ -655,6 +655,9 @@
   },
   "etape": {
     "title1": "Document",
+    "title2": "Previous step",
+    "title3": "Next step",
+    "title4": "Create previous and next steps",
     "table": {
       "title": "Add",
       "title1": "Libel",

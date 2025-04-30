@@ -1,11 +1,11 @@
-import { ElementRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TypeMvt } from 'src/app/modele/type-mvt';
 import { TypeValidation } from 'src/app/modele/type-validation';
 import { FormatCode } from 'src/app/modele/format-code';
-import mermaid from 'mermaid';
 import { IDocEtats } from 'src/app/modele/doc-etats';
+import { IEtape } from 'src/app/modele/etape';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,7 @@ export class DonneesEchangeService {
   dataDocumentSousDocuments: any;
   dataDocumentSousExemplaireDocuments: any;
   dataDocumentEtats: any;
+  dataParcoursEtapes: any;
   dataRoleValidation: any;
   dataEtapeDocuments: any;
   dataDocumentDocuments: any;
@@ -114,25 +115,46 @@ export class DonneesEchangeService {
     return this.dataExemplairePersonneRatachee;
   }
 
-  genratedgraphe(etats: IDocEtats[]): string {
+  genratedgraphe(etats?: IDocEtats[], etapes?: IEtape[]): string {
     let line = `graph TB;`;
 
-        for (let i = 0; i < etats.length; i++) {
-          if (etats[i].etat.etatPrecedant != null && etats[i].etat.etatPrecedant!.length > 0) {
-            for (let j = 0; j < etats[i].etat.etatPrecedant!.length; j++) {
+        if (etats) {
+          for (let i = 0; i < etats.length; i++) {
+            if (etats[i].etat.etatPrecedant != null && etats[i].etat.etatPrecedant!.length > 0) {
+              for (let j = 0; j < etats[i].etat.etatPrecedant!.length; j++) {
+  
+                line =
+                  line +
+                  `${etats[i].etat.etatPrecedant![j].id}[${etats[i].etat.etatPrecedant![j].libelle}]-->${etats[i].etat.id}[${etats[i].etat.libelle}];`;
+              }
+            }
+            if (etats[i].etat.etatSuivant != null && etats[i].etat.etatSuivant!.length > 0) {
+              for (let j = 0; j < etats[i].etat.etatSuivant!.length; j++) {
+                line =
+                  line +
+                  `${etats[i].etat.id}[${etats[i].etat.libelle}]-->${etats[i].etat.etatSuivant![j].id}[${etats[i].etat.etatSuivant![j].libelle}];`;
+              }
+            }
+          }
+        } 
+        if(etapes) {
+          for (let i = 0; i < etapes.length; i++) {
+          if (etapes[i].etapePrecedant != null && etapes[i].etapePrecedant!.length > 0) {
+            for (let j = 0; j < etapes[i].etapePrecedant!.length; j++) {
 
               line =
                 line +
-                `${etats[i].etat.etatPrecedant![j].id}[${etats[i].etat.etatPrecedant![j].libelle}]-->${etats[i].etat.id}[${etats[i].etat.libelle}];`;
+                `${etapes[i].etapePrecedant![j].id}[${etapes[i].etapePrecedant![j].libelle}]-->${etapes[i].id}[${etapes[i].libelle}];`;
             }
           }
-          if (etats[i].etat.etatSuivant != null && etats[i].etat.etatSuivant!.length > 0) {
-            for (let j = 0; j < etats[i].etat.etatSuivant!.length; j++) {
+          if (etapes[i].etapeSuivant != null && etapes[i].etapeSuivant!.length > 0) {
+            for (let j = 0; j < etapes[i].etapeSuivant!.length; j++) {
               line =
                 line +
-                `${etats[i].etat.id}[${etats[i].etat.libelle}]-->${etats[i].etat.etatSuivant![j].id}[${etats[i].etat.etatSuivant![j].libelle}];`;
+                `${etapes[i].id}[${etapes[i].libelle}]-->${etapes[i].etapeSuivant![j].id}[${etapes[i].etapeSuivant![j].libelle}];`;
             }
           }
+        }
         }
     return line;
   }

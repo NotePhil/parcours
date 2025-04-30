@@ -42,6 +42,8 @@ import { ModalMouvementCaisseCompteComponent } from './modal-mouvement-caisse-co
 import { ModalMouvementCaisseComponent } from './modal-mouvement-caisse/modal-mouvement-caisse.component';
 import { ModalBilleterieComponent } from './modal-billeterie/modal-billeterie.component';
 import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/modal-ajout-montant-compte.component';
+import { ModalEtapesPreorsuivParcoursComponent } from './modal-etapes-preorsuiv-parcours/modal-etapes-preorsuiv-parcours.component';
+import { ModalGrapheParcoursComponent } from './modal-graphe-parcours/modal-graphe-parcours.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/m
     ModalChoixAttributsComponent,
     ModalChoixPreconisationsComponent,
     EnteteComponent,
+    ModalGrapheParcoursComponent,
+    ModalEtapesPreorsuivParcoursComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
     ModalDocEtatsComponent,
@@ -70,6 +74,7 @@ import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/m
   exports: [
     ModalCategoriesComponent,
     EnteteComponent,
+    ModalEtapesPreorsuivParcoursComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
     ModalDocEtatsComponent,
