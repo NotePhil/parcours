@@ -119,8 +119,8 @@ export class NewParoursComponent implements OnInit {
     return etapes.map((etape) => etape.libelle).join(', ');
   }
 
-  getEtapePrecedents(etapes: IEtape[]): string {
-    return etapes.map((etape) => etape.libelle).join(', ');
+  getEtapePrecedents(etapes: IEtape): string {
+    return etapes.etapePrecedant?.map((etape) => etape.libelle).join(', ') ?? '';
   }
 
   ngOnInit(): void {
@@ -247,7 +247,7 @@ export class NewParoursComponent implements OnInit {
     this.submitted = true;
     if (
       this.forme.invalid ||
-      (paroursInput._etape && paroursInput._etape.length < 2)
+      (paroursInput._etape && paroursInput._etape.length < 1)
     )
       return;
 

@@ -124,8 +124,8 @@
           <!-- EtapePrecedant Column -->
           <ng-container matColumnDef="EtapePrecedant">
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'etape.title2' | translate}}</th>
-            <td class="text-dark containCell choixCell champsSelect" mat-cell *matCellDef="let element, let i = index">
-                {{getEtapePrecedents(element.etapePrecedant)}}
+            <td class="text-dark containCell choixCell champsSelect" mat-cell *matCellDef="let element">
+                {{getEtapePrecedents(element)}}
             </td>
         </ng-container>
 
