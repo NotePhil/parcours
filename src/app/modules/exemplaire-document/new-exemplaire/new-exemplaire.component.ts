@@ -189,11 +189,22 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     this.ELEMENTS_TABLE_MOUVEMENTCAISSES
   );
   TABLE_PRECONISATION_RESSOURCES: IPrecoMvt[] = [];
+  //montant total à payer avant remise
   montantTotal: number = 0;
+  //Montant total à payer
+  montantTotalAPayer: number  = 0;
+  //solde compte après retrait de la fraction utilisée
+  soldeCompte:number = 0;
+ //Solde Compte - réprésente la fraction du solde utilisé dans le paiement
+  soldeCompteUtiliser: number = 0;
+  //Montant versé selon le mode de paiement 
+  montantVerser: number = 0;
+  //Reste à payer
+  restAPayer: number = 0;
+  //montant total versé par des mouvements existants en base (historique des versements pour solde impayé)
   montantTTverse: number = 0;
+
   soustotal: number = 0;
-  resteAPayer: number = 0;
-  lastSomme: number = 0;
   tailleFirstMvts: number = 0;
   distributeur: IDistributeur | undefined;
   modificationDistributeurActive: boolean = false
@@ -250,6 +261,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     this.formeExemplaire = this.formBuilder.group({
       _exemplaireDocument: new FormArray([]),
       _controlsSupprime: new FormArray([]),
+      reste: new FormControl<number>(0),
+      solde: new FormControl<number>(0),
       use: [false],
       montant: ['', [Validators.required]],
       moyenPaiement: new FormControl<string | ICaisses>(''),
@@ -263,7 +276,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     this.codeControl.disable()
     this.donneeEchangeService.dataPromoMouvementCourant = undefined
     console.log("info doc :", this.exemplaire, this.document);
-
+    this.fCaisse['solde'].disable();
+    this.fCaisse['reste'].disable();
     this.fCaisse['montant'].disable();
     let idPersonne: string = this.donneeEchangeService.getExemplairePersonneRatachee()
     this.servicePatient.getPatientById(idPersonne).subscribe(
@@ -277,6 +291,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
               this.compte = account;
               if (this.compte?.solde == 0 || this.compte?.solde == null) {
                 this.formeExemplaire.controls['use'].disable()
+              }
+              else if(this.compte?.solde > 0){
+                this.fCaisse['solde'].setValue(this.compte?.solde); 
+                this.soldeCompte = this.compte?.solde!;
               }
             }
           )
@@ -324,7 +342,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
     // recuperation de l'id du document
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
-
+    
     this.initialiseFormExemplaire();
     this.cdr.detectChanges();
     this.titre = this.donneeEchangeService.dataEnteteMenu
@@ -459,14 +477,16 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+        let montantMultiPaiement = 0; 
         this.modalResult = result.data;
         this.modalResult.forEach((element) => {
           if (element.montant) {
-            this.resteApayer(element.montant);
+            montantMultiPaiement += element.montant;
           }
         });
+        console.log("montantMultiPaiement ", montantMultiPaiement);
         console.log('result :', this.modalResult);
+        this.calculerMontantVerserGeneral(montantMultiPaiement);
       }
     });
   }
@@ -491,21 +511,23 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+        let montantBilleterie = 0;
         this.modalResultBilleterie = result.data;
-        if (this.modalResultBilleterie.x1) this.resteApayer(this.modalResultBilleterie.x1);
-        if (this.modalResultBilleterie.x2) this.resteApayer(this.modalResultBilleterie.x2 * 2);
-        if (this.modalResultBilleterie.x5) this.resteApayer(this.modalResultBilleterie.x5 * 5);
-        if (this.modalResultBilleterie.x10) this.resteApayer(this.modalResultBilleterie.x10 * 10);
-        if (this.modalResultBilleterie.x25) this.resteApayer(this.modalResultBilleterie.x25 * 25);
-        if (this.modalResultBilleterie.x50) this.resteApayer(this.modalResultBilleterie.x50 * 50);
-        if (this.modalResultBilleterie.x100) this.resteApayer(this.modalResultBilleterie.x100 * 100);
-        if (this.modalResultBilleterie.x500) this.resteApayer(this.modalResultBilleterie.x500 * 500);
-        if (this.modalResultBilleterie.x500B) this.resteApayer(this.modalResultBilleterie.x500B * 500);
-        if (this.modalResultBilleterie.x1000) this.resteApayer(this.modalResultBilleterie.x1000 * 1000);
-        if (this.modalResultBilleterie.x2000) this.resteApayer(this.modalResultBilleterie.x2000 * 2000);
-        if (this.modalResultBilleterie.x5000) this.resteApayer(this.modalResultBilleterie.x5000 * 5000);
-        if (this.modalResultBilleterie.x10000) this.resteApayer(this.modalResultBilleterie.x10000 * 10000);
+        if (this.modalResultBilleterie.x1) montantBilleterie += this.modalResultBilleterie.x1;
+        if (this.modalResultBilleterie.x2) montantBilleterie += this.modalResultBilleterie.x2 * 2;
+        if (this.modalResultBilleterie.x5) montantBilleterie += this.modalResultBilleterie.x5 * 5;
+        if (this.modalResultBilleterie.x10) montantBilleterie += this.modalResultBilleterie.x10 * 10;
+        if (this.modalResultBilleterie.x25) montantBilleterie += this.modalResultBilleterie.x25 * 25;
+        if (this.modalResultBilleterie.x50) montantBilleterie += this.modalResultBilleterie.x50 * 50;
+        if (this.modalResultBilleterie.x100) montantBilleterie += this.modalResultBilleterie.x100 * 100;
+        if (this.modalResultBilleterie.x500) montantBilleterie += this.modalResultBilleterie.x500 * 500;
+        if (this.modalResultBilleterie.x500B) montantBilleterie += this.modalResultBilleterie.x500B * 500;
+        if (this.modalResultBilleterie.x1000) montantBilleterie += this.modalResultBilleterie.x1000 * 1000;
+        if (this.modalResultBilleterie.x2000) montantBilleterie += this.modalResultBilleterie.x2000 * 2000;
+        if (this.modalResultBilleterie.x5000) montantBilleterie += this.modalResultBilleterie.x5000 * 5000;
+        if (this.modalResultBilleterie.x10000) montantBilleterie += this.modalResultBilleterie.x10000 * 10000;
+        console.log('montantBilleterie = ', montantBilleterie);
+        this.calculerMontantVerserGeneral(montantBilleterie);
         console.log('result Billeterie:', this.modalResultBilleterie);
       }
     });
@@ -543,10 +565,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           //Bug du mocker apiMemory qui ne met pas à jour les données du document dans exemplaire
           //pour avoir la donnée fraiche on refait un appel à document
           //à supprimer lorsqu'on aura un vrai back connecté
-          this.modifierMouvementExemplaire(x.idDocument)
-          this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
-          this.lastSomme = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS);
-          this.fCaisse['montant'].setValue(0)
+          this.modifierMouvementExemplaire(x.idDocument);
           this.laPersonneRattachee = this.exemplaire.personneRattachee
           if (this.exemplaire.personneRattachee != undefined) {
             this.laPersonneRattachee = this.exemplaire.personneRattachee
@@ -564,11 +583,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
               }
             }
           )
-          /**
-           * Initialise le montant total a payer, le montant versé a 0 et la somme déjà versée dans la variable lastSomme
-           */
-          this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
-          this.lastSomme = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.fCaisse['montant'].setValue(0)
         });
       this.initialiseMvtCaisses(this.idExemplaire);
@@ -597,9 +611,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
               }
             )
           }
-          this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
-          this.lastSomme = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS);
-          this.fCaisse['montant'].setValue(0)
         });
       this.initialiseMvtCaisses(this.idDocument);
     }
@@ -626,7 +637,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         this.montantTTverse += mouvement.montant;
       }
     });
-    return this.montantTTverse;
+    //return this.montantTTverse;
+    return 10000;
   }
 
   /**
@@ -875,47 +887,94 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * @param res 
    * @returns 
    */
-  useSolde(res: boolean): number {
+  useSolde(res: boolean) {
     if (res) {
-      this.fCaisse['montant'].setValue(this.compte?.solde!);
-      this.fCaisse['moyenPaiement'].setValue(this.caisses.find(c => c.type === 'solde')?.type);
-      this.resteAPayer = this.resteApayer(this.fCaisse['montant'].value);
+      //this.fCaisse['moyenPaiement'].setValue(this.caisses.find(c => c.type === 'solde')?.type);
+      if(this.restAPayer <= this.compte?.solde!){
+        this.soldeCompteUtiliser =  this.restAPayer;
+        this.soldeCompte = this.compte?.solde! - this.soldeCompteUtiliser;
+      }
+      else{
+        this.soldeCompteUtiliser = this.compte?.solde! ;
+        this.soldeCompte = 0;
+      }
+      this.montantVerser += this.soldeCompteUtiliser;
     } else {
-      this.resteAPayer += this.fCaisse['montant'].value;
-      this.fCaisse['montant'].setValue(0);
+      this.soldeCompte = this.compte?.solde!;
+      this.montantVerser -= this.soldeCompteUtiliser;
+      this.soldeCompteUtiliser = 0;
     }
-    return this.resteAPayer;
+    
+    this.fCaisse['solde'].setValue(this.soldeCompte);
+    this.fCaisse['montant'].setValue(this.montantVerser);
+    this.resteApayerReel();
   }
 
   /**
    * Méthode permettant de faire la différence entre la somme versée et la somme total à payer
    */
-  resteApayer(montant: number): number {
-    this.resteAPayer -= montant;
-    this.fCaisse['montant'].setValue(this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.resteAPayer)
-    return this.resteAPayer;
+  resteApayerReel() {
+    this.restAPayer = this.montantTotalAPayer - this.sommeTtVerse() - this.montantVerser;
+    this.fCaisse['reste'].setValue(this.restAPayer);
   }
+
 
   verifyUseSolde(caisse: string) {
 
-    if (caisse == 'solde' && this.compte?.solde! > 0) {
-      this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
+    if (caisse == 'solde') {
+      
+    }else if (caisse == 'multipaiement') {
       this.fCaisse['montant'].disable();
-      this.fCaisse['use'].setValue(true);
-      this.fCaisse['montant'].setValue(this.compte?.solde!);
-      this.resteApayer(this.fCaisse['montant'].value);
+      this.openModalPaiementDialog();
     }
-    if (caisse != 'multipaiement' && caisse != 'cash' && caisse != 'solde') {
-      this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS) - this.sommeTtVerse();
-      this.fCaisse['use'].setValue(false),
-        this.fCaisse['montant'].enable();
+    else if (caisse == 'cash') {
+      this.fCaisse['montant'].disable();
+      this.openModalBilleterieDialog();
+    }
+    else {
+      this.fCaisse['montant'].enable();
       this.fCaisse['montant'].setValue(0);
-
     }
-    if (caisse == 'multipaiement') this.fCaisse['montant'].disable(), this.openModalPaiementDialog();
-    if (caisse == 'cash') this.fCaisse['montant'].disable(), this.openModalBilleterieDialog();
+    
+    
+  }
+  //à la perte du focus dans le champ montant versé on recalcul les montants (à verser, ...)
+  calculerMontantVerser(montantVerserSaisi : number){
+    this.calculerMontantVerserGeneral(montantVerserSaisi);
+  }
+  //méthode commune pour tous les types de paiement
+  calculerMontantVerserGeneral(nouveauMontantVerser : number){
+    let useIsTrue = false;
+    if(this.fCaisse['use'].value){
+        useIsTrue = true;
+       //reset virtuel temporaire du solde 
+      this.soldeCompte = this.compte?.solde!;
+      this.soldeCompteUtiliser = 0;
+    }
+
+    this.montantVerser = nouveauMontantVerser;
+    this.resteApayerReel();
+
+    if(useIsTrue)
+      this.useSolde(useIsTrue);
+
   }
 
+  calculerResteAPayerSoldeActifOuNon(){
+    let useIsTrue = false;
+    if(this.fCaisse['use'].value){
+      useIsTrue = true;
+       //reset virtuel temporaire du solde 
+      this.soldeCompte = this.compte?.solde!;
+      this.montantVerser -= this.soldeCompteUtiliser;
+      this.soldeCompteUtiliser = 0;
+    }
+    this.resteApayerReel();
+
+    if(useIsTrue)
+      this.useSolde(useIsTrue);
+
+  }
   /**
    * Methode qui permet de faire la somme des montants du tableau de mouvements
    * pour afficher le resultat dans la case montant total
@@ -931,7 +990,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         this.montantTotal += mouvement.prix * mouvement.quantite;
       }
     });
-    this.verifySomme();
     return this.montantTotal;
   }
 
@@ -940,24 +998,26 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * pour afficher le resultat dans la case montant total à payer
    */
   sommeMontantsApresRemise(mouvements: IMouvement[]): number {
-    this.montantTotal = 0;
+    this.montantTotalAPayer = 0;
     mouvements.forEach((mouvement) => {
       if (
         mouvement.ressource != undefined &&
         mouvement.quantite != null &&
         mouvement.prix != null
       ) {
-        this.montantTotal += this.calculRemise(mouvement) * mouvement.quantite;
+        this.montantTotalAPayer += this.calculRemise(mouvement) * mouvement.quantite;
       }
     });
-    return this.montantTotal;
+    this.calculerResteAPayerSoldeActifOuNon();
+    //this.resteApayerReel();
+    return this.montantTotalAPayer;
   }
 
   getAssurancePersonne(assurance: IDistributeur) {
     this.assurancePersone = assurance
   }
 
-  verifySomme() {
+/*   verifySomme() {
     let reste = 0;
     if (this.montantTotal >= this.lastSomme) {
       reste = this.montantTotal - this.lastSomme;
@@ -967,7 +1027,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     }
     this.resteAPayer += reste;
     this.lastSomme = this.montantTotal;
-  }
+  } */
 
   /**
    * methode de validation du formulaire (enregistrement des donnees du formulaire)
