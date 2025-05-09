@@ -637,8 +637,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         this.montantTTverse += mouvement.montant;
       }
     });
-    //return this.montantTTverse;
-    return 10000;
+    return this.montantTTverse;
   }
 
   /**
