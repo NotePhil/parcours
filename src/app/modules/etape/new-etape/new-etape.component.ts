@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -19,6 +20,7 @@ import { IDocument } from 'src/app/modele/document';
 import { ModalChoixSousDocumentComponent } from '../../shared/modal-choix-sous-document/modal-choix-sous-document.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalEtapesPreorsuivParcoursComponent } from '../../shared/modal-etapes-preorsuiv-parcours/modal-etapes-preorsuiv-parcours.component';
+import { IParours } from 'src/app/modele/parours';
 
 @Component({
   selector: 'app-new-etape',
@@ -26,6 +28,7 @@ import { ModalEtapesPreorsuivParcoursComponent } from '../../shared/modal-etapes
   styleUrls: ['./new-etape.component.scss'],
 })
 export class NewEtapeComponent implements OnInit {
+[x: string]: any;
   // : IEtape |undefined;
   forme: FormGroup;
   btnLibelle: string = 'Ajouter';
@@ -41,7 +44,12 @@ export class NewEtapeComponent implements OnInit {
     libelle: '',
     etat: false,
     document: [],
+    etapePrecedant: []
   };
+      etapeControl = new FormControl<string | IEtape>('');
+      filteredOptions: IEtape[] | undefined;
+      ELEMENTS_TABLE_PAR_ETAPES: IEtape[] = [];
+      localElementTableParEtapes: IEtape[] = []; // Local variable to hold the changes
   // variables Document, pour afficher le tableau d'Document sur l'IHM
   ELEMENTS_TABLE_DOCUMENTS: IDocument[] = [];
   dataSourceDocument = new MatTableDataSource<IDocument>(
@@ -78,7 +86,7 @@ export class NewEtapeComponent implements OnInit {
       ],
       etat: [true],
       documents: [[]],
-      etapesprecedant: [[]]
+      etapesprecedant: new FormControl<string | IEtape[]>(''),
     });
   }
 
@@ -88,6 +96,15 @@ export class NewEtapeComponent implements OnInit {
 
   ngOnInit() {
     let idEtape = this.data?.idEtape;
+    let parcour : IParours = this.data.parcours;
+    this.etapeService.getAllEtapes().subscribe(
+      (resultat) => {
+        this.filteredOptions = resultat;
+      }
+    );
+    this.ELEMENTS_TABLE_PAR_ETAPES = parcour.etape;
+    this.localElementTableParEtapes = [...this.ELEMENTS_TABLE_PAR_ETAPES]; // Initialize the local variable with the existing data
+
     if (idEtape != null && idEtape !== '') {
       this.btnLibelle = 'Modifier';
 
@@ -103,7 +120,9 @@ export class NewEtapeComponent implements OnInit {
         this.forme.patchValue({
           libelle: this.etape.libelle,
           etat: this.etape.etat,
+          etapePrecedant: this.etape.etapePrecedant
         });
+        this.forme.controls['etapesprecedant'].setValue(this.etape.etapePrecedant);
         this.etapeId = this.etape.etapePrecedant?.map((etape) => etape.id);
         this.documentId = this.etape.document.map((doc) => doc.idDocument);
       });
@@ -114,6 +133,24 @@ export class NewEtapeComponent implements OnInit {
 
   get f() {
     return this.forme.controls;
+  }
+
+  compareItem(etape1: IEtape, etape2: IEtape) {
+      return etape2 && etape1
+        ? etape2.id === etape1.id
+        : etape2 === etape1;
+    }
+
+  effaceEtapeCourrant(etape: IEtape): IEtape[] {
+    let etapesFinal: IEtape[] = [];
+    this.localElementTableParEtapes.forEach(
+      element => {
+        if (etape.libelle != element.libelle) {
+          etapesFinal.push(element);
+        }
+      }
+    );
+    return etapesFinal;
   }
 
   /**
@@ -187,7 +224,7 @@ export class NewEtapeComponent implements OnInit {
       libelle: this.f['libelle'].value,
       etat: this.f['etat'].value,
       document: this.documents,
-      etapeprecedant: this.etapes
+      etapeprecedant: this.f['etapesprecedant'].value
     };
 
     // If updating existing etape, set its id

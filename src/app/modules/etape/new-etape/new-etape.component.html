@@ -57,27 +57,22 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <div class="champs">
-                <label for="" class="label">
-                  {{"parours.table.title2" | translate}}
-                </label>
-                <div class="w-100">
 
-                  <!-- Ouvrir le formulair de selection des etapes suivants -->
-                  <div class="listAttr pr-5">
-                    <button type="button" class="btn p-0" (click)="openEtapePrecedantDialog()">
-                      <i class="fas fa-plus-square"></i>
-                    </button>
-                    <p class="pt-3">
-                      <span *ngFor="let etape of etapes">
-                        {{ etape.libelle }} <span>, </span>
-                      </span>
-                    </p>
+            <div class="form-group">
+              <div class="champs champsSelect">
+                  <label  for="etapesprecedant" class="label">
+                    {{"parours.table.title2" | translate}}
+                  </label>
+                  <div class="matSelectElement">
+                      <mat-select formControlName="etapesprecedant" multiple [compareWith]="compareItem">
+                          <mat-option *ngFor="let etape of effaceEtapeCourrant(etape)" [value]="etape">{{etape.libelle}}</mat-option>
+                      </mat-select>
                   </div>
-                </div>
               </div>
-            </div>
+              <div  *ngIf="submitted && f['etapesprecedant'].value.length<1"  class="alert alert-danger blockErreur" >
+                  <div>{{'document.form.text3' | translate}}</div>
+              </div>
+          </div>
           </div>
         </div>
         <div class="actionButton valBtn" >
