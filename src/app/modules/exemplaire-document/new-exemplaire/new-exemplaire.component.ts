@@ -567,7 +567,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           /**
            * Initialise le montant total a payer, le montant versé a 0 et la somme déjà versée dans la variable lastSomme
            */
-          this.resteAPayer = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
+          this.resteAPayer = this.sommeMontantsApresRemise(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.lastSomme = this.sommeMontants(this.ELEMENTS_TABLE_MOUVEMENTS);
           this.fCaisse['montant'].setValue(0)
         });
@@ -1356,8 +1356,7 @@ calculRemise(mouvement: IMouvement): number {
   /**----- autre version-------- */
 
   appliquerPromotionSurMouvementsConcernés(promotion: IPromo, mouvements: IMouvement[]): IMouvement[] {
-    const today = new Date();
-  
+   
     return mouvements.map(mvt => {
       return this.appliquerPromotion(promotion, mvt)
     });

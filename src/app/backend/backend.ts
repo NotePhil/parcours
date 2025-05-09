@@ -26315,11 +26315,11 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: 'missions/mission-nouveau', bouton: 'false', action: [
+                    { nom: 'Créer', lien: './missions/mission-nouveau', bouton: 'false', action: [
                       {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
                     ] },
                     { nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false', action : [
-                      { nom: 'Modifier', lien: '../mission-nouveau', bouton: 'false'}
+                      { nom: 'Modifier', lien: '../mission-nouveau', bouton: 'true'}
                     ] },
                     { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
                     { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},

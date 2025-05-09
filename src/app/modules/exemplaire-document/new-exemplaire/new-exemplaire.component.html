@@ -199,10 +199,6 @@
                             <ng-container *ngIf="document.affichagePrix == true && document.typeMouvement != typeNeutre && document.beneficiaireObligatoire" matColumnDef="pourcentageCharge">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title11' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                    <!-- <label class="custom-control">
-                                        <input class="form-control" type="number" value="{{remisePromo }}uu" disabled>
-                                        <span>{{unitePromo}}</span>
-                                    </label>  -->
                                     <label class="custom-control">
                                         <input *ngIf="element.promotion?.pourcentageRemise > 0" class="form-control" type="number" value="{{element.promotion?.pourcentageRemise }}" disabled>
                                         <input *ngIf="element.promotion?.montantRemise > 0" class="form-control" type="number" value="{{element.promotion?.montantRemise }}" disabled>
