@@ -301,11 +301,11 @@
                             <div class=" block1 p-2">
                                 <div class="form-group">
                                     <div class="champs">
-                                        <label for="exemplaire" class="label">
+                                        <label for="solde" class="label">
                                             {{'mvtCaisse.table.title7' | translate}}
                                         </label>
                                         <div class="d-flex" >
-                                            <input type="text" [value]="compte?.solde" disabled class="form-control text-dark">
+                                            <input type="text" formControlName="solde"   class="form-control text-dark">
                                             <input class="ml-6" type="checkbox" name="use" formControlName="use" (change)="useSolde(fCaisse['use'].value)" title="{{'lists.text6' | translate }}">
                                         </div>
                                     </div>
@@ -317,7 +317,7 @@
                                                 {{'mvtCaisse.table.title0' | translate}}
                                             </label>
                                             <div>
-                                                <input type="number" formControlName="montant" name="montant" (input)="onInput($event)" pattern="^[0-9]*$" class="form-control">
+                                                <input type="number" formControlName="montant" value="0" (input)="onInput($event)" pattern="^[0-9]*$" (blur)="calculerMontantVerser(fCaisse['montant'].value)" class="form-control">
                                             </div>
                                         </div>
                                         <div *ngIf="submitted && fCaisse['montant'].errors"  class="alert alert-danger" >
@@ -331,7 +331,7 @@
                                                 {{'mvtCaisse.table.title8' | translate}}
                                             </label>
                                             <div>
-                                                <input type="number" [value]="resteAPayer" (change)="resteAPayer" disabled class="form-control">
+                                                <input type="number" formControlName="reste" class="form-control">
                                             </div>
                                         </div>
                                 </div>
