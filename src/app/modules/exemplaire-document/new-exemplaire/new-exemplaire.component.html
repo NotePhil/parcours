@@ -101,10 +101,10 @@
                                         {{optionDistributeur.raisonSocial}}
                                     </mat-option>
                                 </mat-autocomplete>
-                                <button *ngIf="modificationDistributeurActive == true" id="btnDeleteDistributeur" class="btn btnModifierDistributeurBlock" type="button" (click)="reinitialliseDistributeurControl()" title="{{'lists.button15' | translate}}">
+                                <button *ngIf="modificationDistributeurActive == true" id="btnDeleteDistributeur" class="btn btnModifierElementBlock" type="button" (click)="reinitialliseDistributeurControl()" title="{{'lists.button15' | translate}}">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
-                                <button *ngIf="modificationDistributeurActive == true"  id="btnUpdateDistributeur" class="btn btnModifierDistributeurBlock" type="button" (click)="modifierDistributeur(); reinitialliseDistributeurControl()" title="{{'lists.button6' | translate}}">
+                                <button *ngIf="modificationDistributeurActive == true"  id="btnUpdateDistributeur" class="btn btnModifierElementBlock" type="button" (click)="modifierDistributeur(); reinitialliseDistributeurControl()" title="{{'lists.button6' | translate}}">
                                     <i class="fa fa-check-circle" aria-hidden="true"></i>
                                 </button>
                                 
@@ -115,13 +115,16 @@
                                 <h4>{{'document.exemplaire.text15' | translate}}</h4>
                                 <input type="text" matInput [formControl]="assuranceControl" [matAutocomplete]="autoAssurance">
                                 <mat-autocomplete class="blockAutocomplate" #autoAssurance="matAutocomplete" [displayWith]="displayAssuranceFn">
-                                    <mat-option class="options" *ngFor="let option of filteredAssuranceOptions" [value]="option" (click)="rechercherListingAssurance(option); getAssurancePersonne(option)">
+                                    <mat-option class="options" *ngFor="let option of filteredAssuranceOptions" [value]="option" (click)="rechercherListingAssurance(option)">
                                         {{option.raisonSocial}}
                                     </mat-option>
                                 </mat-autocomplete>
+                                <button id="btnDeleteAssurance" class="btn btnModifierElementBlock" type="button" (click)="reinitialliseAssuranceControl()" title="{{'lists.button15' | translate}}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
                             </form>
                             <div *ngIf="showText == true" class="notfoundPromo">
-                                <p>{{'ressource.table.title12' | translate}}</p>
+                                <p>{{'ressource.table.title13' | translate}}</p>
                             </div>
                         </div>
                     </div>

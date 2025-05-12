@@ -225,7 +225,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   distributeurR: string = '';
   ressource: string = '';
   mouvements: IMouvement[] = [];
-  assurancePersone: IDistributeur | undefined
+  assurancePersonne: IDistributeur | undefined
   remisePromo: number = 0 // laveur de la promotion
   unitePromo: string = "" // laveur de la promotion
   showText = false
@@ -547,9 +547,9 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           if (x.mouvements) {
             this.promotion = x.mouvements[0].promotion
           }
-          this.assurancePersone = x.assurance
-          if (this.assurancePersone) {
-            this.assuranceControl.setValue(this.assurancePersone)
+          this.assurancePersonne = x.assurance
+          if (this.assurancePersonne) {
+            this.assuranceControl.setValue(this.assurancePersonne)
           }
           if (this.exemplaire.mouvements != undefined) {
             this.ELEMENTS_TABLE_MOUVEMENTS = this.exemplaire.mouvements;
@@ -1008,25 +1008,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       }
     });
     this.calculerResteAPayerSoldeActifOuNon();
-    //this.resteApayerReel();
     return this.montantTotalAPayer;
   }
-
-  getAssurancePersonne(assurance: IDistributeur) {
-    this.assurancePersone = assurance
-  }
-
-/*   verifySomme() {
-    let reste = 0;
-    if (this.montantTotal >= this.lastSomme) {
-      reste = this.montantTotal - this.lastSomme;
-    } else {
-      reste = this.lastSomme - this.montantTotal;
-      reste = reste * -1;
-    }
-    this.resteAPayer += reste;
-    this.lastSomme = this.montantTotal;
-  } */
 
   /**
    * methode de validation du formulaire (enregistrement des donnees du formulaire)
@@ -1062,7 +1045,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       code: this.codeControl.value,
       beneficiaireObligatoire: this.document.beneficiaireObligatoire,
       promotion: this.promotion,
-      assurance: this.assurancePersone
+      assurance: this.assurancePersonne
     };
 
     if (this.exemplaire.id != '') {
@@ -1070,7 +1053,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       exemplaireTemp.dateCreation = this.exemplaire.dateCreation
     }
     exemplaireTemp.promotion = this.promotion
-    exemplaireTemp.assurance = this.assurancePersone
+    exemplaireTemp.assurance = this.assurancePersonne
     this.serviceExemplaire
       .ajouterExemplaireDocument(exemplaireTemp)
       .subscribe((object) => {
@@ -1273,23 +1256,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
   }
 
-  rechercherListingAssurance(option: IDistributeur) { 
-    /*this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
-      this.promotion = promo!
-      this.showText = false
-      this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
-        mvt => {
-          let mouvementTemp = mvt
-          if (this.verifieSiPromoAppliquable(mvt)) {
-            mouvementTemp.promotion = this.promotion
-            this.appliquerPromotion(mouvementTemp)
-          }
-          if (!this.promotion) {
-            this.showText = true
-          }
-        });
-    })*/
-   
+  rechercherListingAssurance(option: IDistributeur) {   
     this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
       this.promotion = undefined
       if (promo) {
@@ -1297,6 +1264,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         this.ELEMENTS_TABLE_MOUVEMENTS = this.appliquerPromotionSurMouvementsConcernés(promo, this.ELEMENTS_TABLE_MOUVEMENTS);
         this.showText = false;
       } else {
+        this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
+          mouvement => {
+          mouvement.promotion = undefined
+        });
         this.showText = true;
       }
     });
@@ -1338,33 +1309,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       return false
     }
   }
-
-  // Calcul de la Remise : La remise est calculée soit en pourcentage soit en montant fixe. Si les deux sont présents, seul le pourcentage est utilisé.
-  /**calculRemise(mouvement: IMouvement): number {
-    if (!mouvement.promotion) {
-      this.remisePromo = 0
-      this.unitePromo = ""
-      return mouvement.prix
-    }
-    let remise = 0;
-
-    if (mouvement.promotion.pourcentageRemise > 0) {
-      remise = mouvement.prix * (mouvement.promotion.pourcentageRemise / 100);
-      this.remisePromo = mouvement.promotion.pourcentageRemise
-      this.unitePromo = "%"
-    } else if (mouvement.promotion.montantRemise > 0) {
-      remise = mouvement.promotion.montantRemise;
-      // remise = (promo.montantRemise/mouvement.prix)*100;
-      this.remisePromo = mouvement.promotion.montantRemise
-      this.unitePromo = "UD"
-    }
-
-    remise = Math.min(remise, mouvement.prix); // S'assurer que la remise n'excède pas le prix
-    const prixReduit = mouvement.prix - remise;
-    // mouvement.prix = prixReduit
-    return prixReduit
-  }*/
-
     
 calculRemise(mouvement: IMouvement): number {
   if (!mouvement.promotion) return mouvement.prix;
@@ -1387,12 +1331,7 @@ calculRemise(mouvement: IMouvement): number {
    * @param promo promotion à apliquer
    * @returns mouvement soldés
    */
-  appliquerPromotion(promotion: IPromo, mouvement: IMouvement): IMouvement {
-    /*if (this.verifieSiPromoAppliquable(mouvement)) {
-      this.calculRemise(mouvement)
-    }
-    return mouvement*/
-    
+  appliquerPromotion(promotion: IPromo, mouvement: IMouvement): IMouvement {    
     const today = new Date();
     const ressource = mouvement.ressource;
       const famille = ressource.famille;
@@ -1405,7 +1344,6 @@ calculRemise(mouvement: IMouvement): number {
       // On applique la promo uniquement si la date est valide et la ressource OU la famille est concernée
       if (dateValide && (ressourceConcernee || familleConcernee)) {
         mouvement.promotion = promotion;
-        //mvt.prix = this.calculRemise(mvt); // Appliquer la réduction
       } else {
         mouvement.promotion = undefined; // Pas concerné, on enlève la promo si existante
       }
@@ -1421,6 +1359,18 @@ calculRemise(mouvement: IMouvement): number {
     });
   }
 
+  /**
+   * Methode qui permet d'effacer la valeur du control Assurance annulant ainsi
+   * la promotion en cours
+   */
+  reinitialliseAssuranceControl() {
+    this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
+      current => {
+      current.promotion = undefined
+    });
+    this.assuranceControl.reset();
+    this.promotion = undefined
+  }
 
   /**
    * Methode qui permet d'effacer la valeur du control ressource lorsqu'on a
