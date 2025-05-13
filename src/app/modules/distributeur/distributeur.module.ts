@@ -19,6 +19,8 @@ import { MatTableModule } from '@angular/material/table';
 import { ListDistributeursComponent } from './list-distributeurs/list-distributeurs.component';
 import { SharedModule } from '../shared/shared.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     MatSortModule,
     TicketsModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
       loader: {
           provide: TranslateLoader,

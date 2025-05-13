@@ -26322,7 +26322,11 @@ export class InMemDBService implements InMemoryDbService {
                       { nom: 'Modifier', lien: '../mission-nouveau', bouton: 'true'}
                     ] },
                     { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
-                    { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
+                    { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false', action : [
+                      { nom: 'Detail', lien: '../view-exemplaire', bouton: 'true'},
+                      { nom: 'Modifier', lien: '../exemplaire-nouveau/modify', bouton: 'true'},
+                      { nom: 'Previsualiser', lien: '../previsualisation-exemplaire', bouton: 'true'}
+                    ]},
                     { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false'}
                   ],
                 },
@@ -26602,7 +26606,11 @@ export class InMemDBService implements InMemoryDbService {
                       { nom: 'Update', lien: '../mission-nouveau', bouton: 'false' }
                     ] },
                     { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
-                    { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
+                    { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false', action : [
+                      { nom: 'View', lien: '../view-exemplaire', bouton: 'true'},
+                      { nom: 'Update', lien: '../exemplaire-nouveau/modify', bouton: 'true'},
+                      { nom: 'Previsualise', lien: '../previsualisation-exemplaire', bouton: 'true'}
+                    ]},
                     { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false'}
                   ],
                 },

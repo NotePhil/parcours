@@ -21,6 +21,8 @@ import { SharedModule } from '../shared/shared.module';
 import { DetailPersonnelsComponent } from './detail-personnels/detail-personnels.component';
 import { ModulesRoutingModule } from '../modules-routing.module';
 import { DetailUserComponent } from './detail-user/detail-user.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { DetailUserComponent } from './detail-user/detail-user.component';
     QRCodeModule,
     MatRadioModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

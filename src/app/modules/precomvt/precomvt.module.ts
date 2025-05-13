@@ -23,6 +23,8 @@ import { ViewPrecomvtComponent } from './view-precomvt/view-precomvt.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from '../shared/shared.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     MatCheckboxModule,
     TicketsModule,
     MatDialogModule,

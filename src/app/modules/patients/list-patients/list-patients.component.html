@@ -90,31 +90,15 @@
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}}
             </th>
             <td class="text-dark containCell" mat-cell *matCellDef="let element">
-              <div id="actions" class="dropdown-open">
-                <button class="btn dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <span>...</span>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="triggerId">
-
-                  <button class="dropdown-item nav-link" title="{{'patient.table.actions.link1' | translate}}"
-                    (click)="setIdPersonne(element.id, element.nom); openNewTicketDialog()">
-                    <i class="fa fa-map-pin" aria-hidden="true"></i>
-                    <span>{{'patient.table.actions.link1' | translate}}</span>
-                  </button>
-
-                  <button class="dropdown-item nav-link" [routerLink]="['/detail-patients', element.id]"
-                    title="{{'patient.table.actions.link3' | translate}}">
-                    <i class="fa fa-eye text-secondary" aria-hidden="true"></i>
-                    <span>{{'patient.table.actions.link3' | translate}}</span>
-                  </button>
-                  <button class="dropdown-item nav-link" [routerLink]="['/patient-nouveau',element.id]"
-                    title="{{'patient.table.actions.link2' | translate}}">
-                    <i class="fa fa-pen text-info" aria-hidden="true"></i>
-                    <span>{{'patient.table.actions.link2' | translate}}</span>
-                  </button>
-
-                </div>
+              <div id="actions">
+                  <button mat-button [matMenuTriggerFor]="menu"><span>...</span></button>
+                  <mat-menu #menu="matMenu">
+                      <ng-container *ngFor="let action of actions">
+                          <button mat-menu-item *ngIf="action.bouton == 'false'" [routerLink]="[action.lien,element.id]">
+                              <span>{{action.nom}}</span>
+                          </button>
+                      </ng-container>
+                  </mat-menu>
               </div>
             </td>
           </ng-container>

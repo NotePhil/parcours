@@ -19,6 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SharedModule } from '../shared/shared.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     MatSelectModule,
     MatCheckboxModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,

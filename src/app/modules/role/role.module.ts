@@ -20,6 +20,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MissionsRoleComponent } from './missions-role/missions-role.component';
 import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     TicketsModule,
     TranslateModule.forChild({
       loader: {

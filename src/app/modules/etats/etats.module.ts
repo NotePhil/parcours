@@ -18,6 +18,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     MatTableModule,
     SharedModule,
     MatSortModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,

@@ -56,6 +56,7 @@ export class ViewFormDocumentComponent implements OnInit {
     mermaid.init();
 
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
+    console.log('id ',this.infosPath.snapshot.paramMap.get('idDocument'));
     if (idDocument != null && idDocument !== '') {
       this.serviceDocument.getDocumentById(idDocument).subscribe((x) => {
         this.document = x;

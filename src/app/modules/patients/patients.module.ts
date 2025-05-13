@@ -20,6 +20,8 @@ import { DetailPatientsComponent } from './detail-patients/detail-patients.compo
 import { ModulesRoutingModule } from '../modules-routing.module';
 import { QRCodeModule } from 'angularx-qrcode';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     TicketsModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

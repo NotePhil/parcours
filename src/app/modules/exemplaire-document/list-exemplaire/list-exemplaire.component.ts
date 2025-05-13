@@ -52,7 +52,7 @@ export class ListExemplaireComponent implements OnInit {
       this.receivedActions$.subscribe(a => {
         if (a != null) {
           this.actions = a;
-          console.log("Actions view :", a, this.receivedActions$);
+          console.log("Actions view ex:", a, this.receivedActions$);
         }
       });
     })

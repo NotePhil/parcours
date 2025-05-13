@@ -339,6 +339,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
     // recuperation de l'id de l'exemplaire
     this.idExemplaire = this.infosPath.snapshot.paramMap.get('idExemplaire');
+        console.log('id ',this.infosPath.snapshot.paramMap.get('idExemplaire'));
 
     // recuperation de l'id du document
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument');

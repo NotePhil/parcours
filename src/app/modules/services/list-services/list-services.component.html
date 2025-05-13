@@ -53,21 +53,15 @@
                     <ng-container matColumnDef="actions">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
                         <td class="containCell" mat-cell *matCellDef="let element">
-                            <div id="actions" class="dropdown open">
-                                <button class="btn dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    <span>...</span>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    <div *ngFor="let action of actions">
-                                        <button *ngIf="action.bouton == 'false'" class="dropdown-item nav-link" [routerLink]="[action.lien,element.id]">
-                                          <span>{{action.nom}}</span>
+                            <div id="actions">
+                                <button mat-button [matMenuTriggerFor]="menu"><span>...</span></button>
+                                <mat-menu #menu="matMenu">
+                                    <ng-container *ngFor="let action of actions">
+                                        <button mat-menu-item *ngIf="action.bouton == 'false'" [routerLink]="[action.lien,element.id]">
+                                            <span>{{action.nom}}</span>
                                         </button>
-                                        <!-- <button *ngIf="action.bouton == 'true'" class="dropdown-item nav-link" (click)="openChoixGroupDialog(element.user)">
-                                          <span>{{action.nom}}</span>
-                                        </button> -->
-                                    </div>
-                                </div>
+                                    </ng-container>
+                                </mat-menu>
                             </div>
                         </td>
                     </ng-container>

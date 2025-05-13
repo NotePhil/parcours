@@ -21,6 +21,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EtapeModule } from '../etape/etape.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [NewParoursComponent, ListParoursComponent],
@@ -40,6 +42,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     SharedModule,
     EtapeModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     MatCheckboxModule,
     TranslateModule.forChild({
       loader: {

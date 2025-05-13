@@ -16,6 +16,8 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { NewAttributComponent } from './new-attribut/new-attribut.component';
 import { SharedModule } from '../shared/shared.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     MatTableModule,
     MatSortModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,

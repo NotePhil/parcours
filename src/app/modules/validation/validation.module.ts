@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { NewValidationComponent } from './new-validation/new-validation.component';
 import { ListValidationsComponent } from './list-validations/list-validations.component';
 import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -36,6 +38,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,

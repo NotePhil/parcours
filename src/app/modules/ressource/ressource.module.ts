@@ -18,6 +18,8 @@ import { ListRessourcesComponent } from './list-ressources/list-ressources.compo
 import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from '../shared/shared.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     SharedModule,
     TranslateModule.forChild({
         loader: {
