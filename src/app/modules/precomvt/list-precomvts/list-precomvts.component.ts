@@ -104,10 +104,12 @@ export class ListPrecomvtsComponent implements OnInit {
     openViewPrecoDialog(){
       this.dialogDef.open(ViewPrecomvtComponent, 
       {
-        width:'100%',
-        height:'100%',
-        enterAnimationDuration:'1000ms',
-        exitAnimationDuration:'1000ms',
+        maxWidth: '60vw',
+        maxHeight: '60vh',
+        width: '60%',
+        height: '60%',
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '1000ms',
         data:{
           idPrecoMvt : this.idPrecoMvt
         }

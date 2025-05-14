@@ -73,7 +73,7 @@
                     <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"role.table1.title4" | translate}}</th>
                     <td class="text-dark containCell" mat-cell *matCellDef="let element">
                         <div id="actions">
-                            <button mat-button [matMenuTriggerFor]="menu"><span>...</span></button>
+                            <button  [matMenuTriggerFor]="menu"><span>...</span></button>
                             <mat-menu #menu="matMenu">
                                 <ng-container *ngFor="let action of actions">
                                     <button mat-menu-item *ngIf="action.bouton == 'false'" [routerLink]="[action.lien,element.id]">

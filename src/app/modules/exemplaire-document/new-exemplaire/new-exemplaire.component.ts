@@ -1093,7 +1093,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
       this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
         console.log('Le mouvement a été bien enregistré !', donne);
-        this.router.navigate(['/list-exemplaire']);
+        this.router.navigate(['parcours/mission/list-exemplaire']);
       })
     }
 
@@ -1121,7 +1121,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           })
         }
       });
-      this.router.navigate(['/list-exemplaire']);
+      this.router.navigate(['parcours/mission/list-exemplaire']);
     } else {
       let billets: Monaies;
       if (this.selectedOptions.type == 'cash') {
@@ -1163,7 +1163,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
       this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
         console.log('Le mouvement a été bien enregistré !', donne, this.fCaisse['montant'].value);
-        this.router.navigate(['/list-exemplaire']);
+        this.router.navigate(['parcours/missions/list-exemplaire']);
       })
     }
   }
