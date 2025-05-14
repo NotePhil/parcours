@@ -145,7 +145,7 @@ export class ModalEtapesPreorsuivParcoursComponent implements OnInit {
   
     retirerSelectionEtape(index: number) {
       this.localElementTableParEtapes.splice(index, 1); // Remove the element from the local array
-      this.localElementTableParEtapes[0].etapePrecedant = undefined
+      this.localElementTableParEtapes[0].etapeprecedant = undefined
       this.dataSourceParEtapes.data = this.localElementTableParEtapes; // Update the data source with the modified local array
     }
   

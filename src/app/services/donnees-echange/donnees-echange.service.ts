@@ -139,19 +139,19 @@ export class DonneesEchangeService {
         } 
         if(etapes) {
           for (let i = 0; i < etapes.length; i++) {
-          if (etapes[i].etapePrecedant != null && etapes[i].etapePrecedant!.length > 0) {
-            for (let j = 0; j < etapes[i].etapePrecedant!.length; j++) {
+          if (etapes[i].etapeprecedant != null && etapes[i].etapeprecedant!.length > 0) {
+            for (let j = 0; j < etapes[i].etapeprecedant!.length; j++) {
 
               line =
                 line +
-                `${etapes[i].etapePrecedant![j].id}[${etapes[i].etapePrecedant![j].libelle}]-->${etapes[i].id}[${etapes[i].libelle}];`;
+                `${etapes[i].etapeprecedant![j].id}[${etapes[i].etapeprecedant![j].libelle}]-->${etapes[i].id}[${etapes[i].libelle}];`;
             }
           }
-          if (etapes[i].etapeSuivant != null && etapes[i].etapeSuivant!.length > 0) {
-            for (let j = 0; j < etapes[i].etapeSuivant!.length; j++) {
+          if (etapes[i].etapesuivant != null && etapes[i].etapesuivant!.length > 0) {
+            for (let j = 0; j < etapes[i].etapesuivant!.length; j++) {
               line =
                 line +
-                `${etapes[i].id}[${etapes[i].libelle}]-->${etapes[i].etapeSuivant![j].id}[${etapes[i].etapeSuivant![j].libelle}];`;
+                `${etapes[i].id}[${etapes[i].libelle}]-->${etapes[i].etapesuivant![j].id}[${etapes[i].etapesuivant![j].libelle}];`;
             }
           }
         }

@@ -6,6 +6,6 @@ export interface IEtape {
   etat:boolean,
   libelle:string,
   document: IDocument[],
-  etapeSuivant?: IEtape[],
-  etapePrecedant?: IEtape[]
+  etapesuivant?: IEtape[],
+  etapeprecedant?: IEtape[]
 }

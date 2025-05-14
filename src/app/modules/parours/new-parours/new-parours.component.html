@@ -123,9 +123,11 @@
 
           <!-- EtapePrecedant Column -->
           <ng-container matColumnDef="EtapePrecedant">
-            <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'etape.title2' | translate}}</th>
-            <td class="text-dark containCell choixCell champsSelect" mat-cell *matCellDef="let element">
-                {{getEtapePrecedents(element)}}
+            <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'etape.title2' | translate}}</th>
+            <td class="containCell" mat-cell *matCellDef="let element">
+                <span>
+                  {{element.listEtapeprecedantes}}
+                </span>
             </td>
         </ng-container>
 

@@ -84,11 +84,7 @@ export class NewParoursComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     (dialogConfig.enterAnimationDuration = '1000ms'),
     (dialogConfig.exitAnimationDuration = '1000ms'),
-    (dialogConfig.data = {parcours: this.parours})
-
-    if (etapeId) {
-      dialogConfig.data = { idEtape: etapeId }; // Passer l'id de l'etape a la modal
-    }
+    (dialogConfig.data = {parcours: this.parours, idEtape: etapeId})
 
     const dialogRef = this.dialog.open(NewEtapeComponent, dialogConfig);
 
@@ -105,7 +101,8 @@ export class NewParoursComponent implements OnInit {
           currentEtape.push(result);
         }
         this.forme.controls['_etape'].setValue(currentEtape);
-        this.dataSource.data = currentEtape.map((etape) =>
+        
+        this.dataSource.data = this.forme.controls['_etape'].value.map((etape: IEtape) =>
           this.convertEtapToEtapAffiche(etape)
         );
         this.getEtapeLibelles();
@@ -117,10 +114,6 @@ export class NewParoursComponent implements OnInit {
     const etapes = this.forme.controls['_etape'].value as IEtape[];
 
     return etapes.map((etape) => etape.libelle).join(', ');
-  }
-
-  getEtapePrecedents(etapes: IEtape): string {
-    return etapes.etapePrecedant?.map((etape) => etape.libelle).join(', ') ?? '';
   }
 
   ngOnInit(): void {
@@ -218,12 +211,17 @@ export class NewParoursComponent implements OnInit {
   }
 
   private convertEtapToEtapAffiche(x: IEtape): IAfficheEtape {
+    console.log("donnee send :", x);
+    
+
     let afficheEtape: IAfficheEtape = {
       id: '',
       libelle: '',
       etat: false,
+      etapeprecedant: [],
       document: [],
       listSousDocuments: '',
+      listEtapeprecedantes: ''
     };
     afficheEtape.id = x.id;
     afficheEtape.libelle = x.libelle;
@@ -236,7 +234,16 @@ export class NewParoursComponent implements OnInit {
       /,\s*$/,
       ''
     );
+    x.etapeprecedant?.forEach(
+      (d) => (afficheEtape.listEtapeprecedantes += d.libelle + ', ')
+    );
+    afficheEtape.listEtapeprecedantes = afficheEtape.listEtapeprecedantes.replace(
+      /,\s*$/,
+      ''
+    );
 
+    console.log("affichage :", afficheEtape);
+    
     return afficheEtape;
   }
   return(){

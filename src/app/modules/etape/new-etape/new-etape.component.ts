@@ -44,11 +44,11 @@ export class NewEtapeComponent implements OnInit {
     libelle: '',
     etat: false,
     document: [],
-    etapePrecedant: []
+    etapeprecedant: []
   };
       etapeControl = new FormControl<string | IEtape>('');
       filteredOptions: IEtape[] | undefined;
-      ELEMENTS_TABLE_PAR_ETAPES: IEtape[] = [];
+      ELEMENTS_TABLE_PAR_ETAPES: IEtape[] | undefined = [];
       localElementTableParEtapes: IEtape[] = []; // Local variable to hold the changes
   // variables Document, pour afficher le tableau d'Document sur l'IHM
   ELEMENTS_TABLE_DOCUMENTS: IDocument[] = [];
@@ -102,7 +102,7 @@ export class NewEtapeComponent implements OnInit {
         this.filteredOptions = resultat;
       }
     );
-    this.ELEMENTS_TABLE_PAR_ETAPES = parcour.etape;
+    this.ELEMENTS_TABLE_PAR_ETAPES = parcour?.etape;
     this.localElementTableParEtapes = [...this.ELEMENTS_TABLE_PAR_ETAPES]; // Initialize the local variable with the existing data
 
     if (idEtape != null && idEtape !== '') {
@@ -114,16 +114,16 @@ export class NewEtapeComponent implements OnInit {
 
         this.etape = x;
         this.documents = this.etape.document;
-        this.etapes = this.etape.etapePrecedant!;
-        this.donneeDocCatService.dataParcoursEtapes = this.etape.etapePrecedant!;
+        this.etapes = this.etape.etapeprecedant!;
+        this.donneeDocCatService.dataParcoursEtapes = this.etape.etapeprecedant!;
 
         this.forme.patchValue({
           libelle: this.etape.libelle,
           etat: this.etape.etat,
-          etapePrecedant: this.etape.etapePrecedant
+          etapePrecedant: this.etape.etapeprecedant
         });
-        this.forme.controls['etapesprecedant'].setValue(this.etape.etapePrecedant);
-        this.etapeId = this.etape.etapePrecedant?.map((etape) => etape.id);
+        this.forme.controls['etapesprecedant'].setValue(this.etape.etapeprecedant);
+        this.etapeId = this.etape.etapeprecedant?.map((etape) => etape.id);
         this.documentId = this.etape.document.map((doc) => doc.idDocument);
       });
     } else {
