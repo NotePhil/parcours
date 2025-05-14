@@ -14,9 +14,9 @@ export class DonneesEchangeService {
   dataDocumentCategorie: any;
   dataDocumentPrecoMvts: any;
   dataDocumentAttributs: any;
-  dataDocumentRessourcesAttributs : any;
+  dataDocumentRessourcesAttributs: any;
   dataDocumentCodebarre: any;
-  dataEtatSelectionner : any;
+  dataEtatSelectionner: any;
   dataDocumentSousDocuments: any;
   dataDocumentSousExemplaireDocuments: any;
   dataDocumentEtats: any;
@@ -64,7 +64,7 @@ export class DonneesEchangeService {
     this.dataEtatSelectionner = value;
   }
 
-  getsaveEtatModal(){
+  getsaveEtatModal() {
     return this.dataEtatSelectionner;
   }
 
@@ -72,7 +72,7 @@ export class DonneesEchangeService {
     this.dataMouvementsExemplaire = value;
   }
 
-  getMouvementsExemplaire(){
+  getMouvementsExemplaire() {
     return this.dataMouvementsExemplaire;
   }
 
@@ -115,47 +115,52 @@ export class DonneesEchangeService {
     return this.dataExemplairePersonneRatachee;
   }
 
+
   genratedgraphe(etats?: IDocEtats[], etapes?: IEtape[]): string {
+    const escapeDocs = (libelle: string, docs?: { titre: string }[]) => {
+      const docLines = docs?.map(doc => `- ${doc.titre}`).join('<br>'); // une seule fois \\n
+      return docLines ? `${libelle}<br>${docLines}` : libelle;
+    };
+
     let line = `graph TB;`;
 
-        if (etats) {
-          for (let i = 0; i < etats.length; i++) {
-            if (etats[i].etat.etatPrecedant != null && etats[i].etat.etatPrecedant!.length > 0) {
-              for (let j = 0; j < etats[i].etat.etatPrecedant!.length; j++) {
-  
-                line =
-                  line +
-                  `${etats[i].etat.etatPrecedant![j].id}[${etats[i].etat.etatPrecedant![j].libelle}]-->${etats[i].etat.id}[${etats[i].etat.libelle}];`;
-              }
-            }
-            if (etats[i].etat.etatSuivant != null && etats[i].etat.etatSuivant!.length > 0) {
-              for (let j = 0; j < etats[i].etat.etatSuivant!.length; j++) {
-                line =
-                  line +
-                  `${etats[i].etat.id}[${etats[i].etat.libelle}]-->${etats[i].etat.etatSuivant![j].id}[${etats[i].etat.etatSuivant![j].libelle}];`;
-              }
-            }
-          }
-        } 
-        if(etapes) {
-          for (let i = 0; i < etapes.length; i++) {
-          if (etapes[i].etapeprecedant != null && etapes[i].etapeprecedant!.length > 0) {
-            for (let j = 0; j < etapes[i].etapeprecedant!.length; j++) {
+    if (etats) {
+      for (let i = 0; i < etats.length; i++) {
+        if (etats[i].etat.etatPrecedant != null && etats[i].etat.etatPrecedant!.length > 0) {
+          for (let j = 0; j < etats[i].etat.etatPrecedant!.length; j++) {
 
-              line =
-                line +
-                `${etapes[i].etapeprecedant![j].id}[${etapes[i].etapeprecedant![j].libelle}]-->${etapes[i].id}[${etapes[i].libelle}];`;
-            }
-          }
-          if (etapes[i].etapesuivant != null && etapes[i].etapesuivant!.length > 0) {
-            for (let j = 0; j < etapes[i].etapesuivant!.length; j++) {
-              line =
-                line +
-                `${etapes[i].id}[${etapes[i].libelle}]-->${etapes[i].etapesuivant![j].id}[${etapes[i].etapesuivant![j].libelle}];`;
-            }
+            line =
+              line +
+              `${etats[i].etat.etatPrecedant![j].id}[${etats[i].etat.etatPrecedant![j].libelle}]-->${etats[i].etat.id}[${etats[i].etat.libelle}];`;
           }
         }
+        if (etats[i].etat.etatSuivant != null && etats[i].etat.etatSuivant!.length > 0) {
+          for (let j = 0; j < etats[i].etat.etatSuivant!.length; j++) {
+            line =
+              line +
+              `${etats[i].etat.id}[${etats[i].etat.libelle}]-->${etats[i].etat.etatSuivant![j].id}[${etats[i].etat.etatSuivant![j].libelle}];`;
+          }
         }
+      }
+    }
+    if (etapes) {
+      for (let i = 0; i < etapes.length; i++) {
+        if (etapes[i].etapeprecedant != null && etapes[i].etapeprecedant!.length > 0) {
+          for (let j = 0; j < etapes[i].etapeprecedant!.length; j++) {
+
+            const label = escapeDocs(etapes[i].etapeprecedant![j].libelle, etapes[i].etapeprecedant![j].document);
+            line += `${etapes[i].etapeprecedant![j].id}["${label}"]-->${etapes[i].id}["${escapeDocs(etapes[i].libelle, etapes[i].document)}"];`;
+          }
+        }
+        if (etapes[i].etapesuivant != null && etapes[i].etapesuivant!.length > 0) {
+          for (let j = 0; j < etapes[i].etapesuivant!.length; j++) {
+            line =
+              line +
+              `${etapes[i].id}[${etapes[i].libelle}]-->${etapes[i].etapesuivant![j].id}[${etapes[i].etapesuivant![j].libelle}];`;
+          }
+        }
+      }
+    }
     return line;
   }
 }
