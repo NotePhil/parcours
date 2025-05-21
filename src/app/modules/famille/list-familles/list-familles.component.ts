@@ -28,8 +28,6 @@ export interface User {
 export class ListFamillesComponent implements OnInit, AfterViewInit {
 
   familles$:Observable<IFamille[]>=EMPTY;
-  services$:Observable<IService[]>=EMPTY;
-  tickets$:Observable<ITicket[]>=EMPTY;
 
   id_famille : string = "0";
   id_service : number = 0;
@@ -56,8 +54,6 @@ export class ListFamillesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.services$ = this.getAllServices();
-    this.tickets$ = this.getAllTickets();
 
     this.getAllFamilles().subscribe(valeurs => {
       this.dataSource.data = valeurs;
@@ -118,10 +114,4 @@ export class ListFamillesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private getAllServices(){
-    return this.serviceService.getAllServices();
-  }
-  private getAllTickets(){
-    return this.serviceTicket.getAllTickets();
-  }
 }

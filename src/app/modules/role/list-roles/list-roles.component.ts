@@ -25,8 +25,6 @@ export class ListRolesComponent implements OnInit {
 
 
   roles$:Observable<IRole[]>=EMPTY;
-  services$:Observable<IService[]>=EMPTY;
-  tickets$:Observable<ITicket[]>=EMPTY;
 
   id_role : string = "0";
   id_service : number = 0;
@@ -62,8 +60,6 @@ export class ListRolesComponent implements OnInit {
   constructor(private translate: TranslateService,private router:Router, private serviceRole:RolesService, private _liveAnnouncer: LiveAnnouncer, private serviceService:ServicesService, private serviceTicket:TicketsService){ }
 
   ngOnInit(): void {
-    this.services$ = this.getAllServices();
-    this.tickets$ = this.getAllTickets();
 
     this.getAllRoles().subscribe(valeurs => {
       const tableRoles : any[] = this.tableRoles
@@ -147,12 +143,5 @@ export class ListRolesComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
-  private getAllServices(){
-    return this.serviceService.getAllServices();
-  }
-  private getAllTickets(){
-    return this.serviceTicket.getAllTickets();
-}
 
 }
