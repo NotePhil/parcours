@@ -13,19 +13,15 @@ export class FamillesService {
   constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllFamilles(): Observable<IFamille[]> {
-    return this.http.get<IFamille[]>(this.param.api+ 'famille').pipe(map((x) => x));
+    return this.http.get<IFamille[]>(this.param.api+ 'familles').pipe(map((x) => x));
   }
 
   getFamilleById(id: string): Observable<IFamille> {
-    return this.getAllFamilles().pipe(
-      map((x) => {
-        return x.find((p) => p.id == id) as IFamille;
-      })
-    );
+    return this.http.get<IFamille>(this.param.api+ 'familles/' + id).pipe(map((x) => x));
   }
 
   getFamillesByLibelle(libelle: string): Observable<IFamille[]> {
-    return this.http.get<IFamille[]>(this.param.api+ 'famille').pipe(
+    return this.http.get<IFamille[]>(this.param.api+ 'familles').pipe(
       map((x) => {
         return x.filter((p) => p.libelle.toLowerCase().startsWith(libelle));
       })
@@ -33,7 +29,7 @@ export class FamillesService {
   }
 
   ajouterFamille(famille: IFamille) {
-    return this.http.post(this.param.api+ 'famille', famille);
+    return this.http.post(this.param.api+ 'familles', famille);
   }
 
   getTypeUnite(): Observable<TypeUnite> {
