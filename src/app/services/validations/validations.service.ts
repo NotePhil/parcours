@@ -3,17 +3,18 @@ import { Observable } from 'rxjs';
 import {  map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { IValidation } from 'src/app/modele/validation';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ValidationsService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private param: GlobalVariables) { }
 
   getAllValidations():Observable<IValidation []>
   {
-    return this.http.get<IValidation []>('api/validations').pipe(map(x=>x));
+    return this.http.get<IValidation []>(this.param.api+ 'validations').pipe(map(x=>x));
   }
 
   getValidationById(id:string):Observable<IValidation >{
@@ -26,7 +27,7 @@ export class ValidationsService {
   }
   
   getValidationByCode(code:string): Observable<IValidation[]> {
-    return this.http.get<IValidation[]>('api/validations').pipe(
+    return this.http.get<IValidation[]>(this.param.api+ 'validations').pipe(
       map(x=>
         {
           return x.filter(m=> m.code.toLowerCase().startsWith(code))
@@ -35,7 +36,7 @@ export class ValidationsService {
   }
   
   getValidationByLibelle(libelle:string): Observable<IValidation[]> {
-    return this.http.get<IValidation[]>('api/validations').pipe(
+    return this.http.get<IValidation[]>(this.param.api+ 'validations').pipe(
       map(x=>
         {
           return x.filter(m=> m.libelle.toLowerCase().startsWith(libelle))
@@ -45,6 +46,6 @@ export class ValidationsService {
  
    ajouterValidation(validation:IValidation )
    {
-     return this.http.post("api/validations",validation);
+     return this.http.post(this.param.api+ 'validations',validation);
    }
 }

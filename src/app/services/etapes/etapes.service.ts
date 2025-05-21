@@ -6,15 +6,16 @@ import { IEtape } from 'src/app/modele/etape';
 import { IDocument } from 'src/app/modele/document';
 import { IDocEtats } from 'src/app/modele/doc-etats';
 import { IParours } from 'src/app/modele/parours';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EtapesService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllEtapes(): Observable<IEtape[]> {
-    return this.http.get<IEtape[]>('api/etape').pipe(map((x) => x));
+    return this.http.get<IEtape[]>(this.param.api+ 'etape').pipe(map((x) => x));
   }
 
   getEtapeById(id: string): Observable<IEtape> {
@@ -26,7 +27,7 @@ export class EtapesService {
   }
 
   getEtapesBylibelle(libelle: string): Observable<IEtape[]> {
-    return this.http.get<IEtape[]>('api/etape').pipe(
+    return this.http.get<IEtape[]>(this.param.api+ 'etape').pipe(
       map((x) => {
         return x.filter((p) => p.libelle.toLowerCase().startsWith(libelle));
       })
@@ -35,7 +36,7 @@ export class EtapesService {
 
   ajouterEtape(etape: IEtape): Observable<any> {
     console.log('etape', etape);
-    return this.http.post('api/etape', etape);
+    return this.http.post(this.param.api+ 'etape', etape);
   }
 
   updateDocEtatsWithCheckedEtapes(etape: IEtape) {
@@ -51,14 +52,14 @@ export class EtapesService {
 
   getEtapesByParours(paroursId: string): Observable<IEtape[]> {
     return this.http
-      .get<IParours>(`api/parours/${paroursId}`)
+      .get<IParours>(this.param.api+ 'parours/${paroursId}')
       .pipe(map((parours) => parours.etape));
   }
 
   getDocumentsByEtapeId(etapeId: string): Observable<IDocument[]> {
     // Perform a search in the iEtat table to find etapes personnesRatacheesd with the given etape ID
     // Then return the documents personnesRatacheesd with those etapes
-    return this.http.get<IDocEtats[]>('api/iEtat').pipe(
+    return this.http.get<IDocEtats[]>(this.param.api+ 'iEtat').pipe(
       map((docEtats) => {
         const personnesRatacheesdDocuments: IDocument[] = [];
         docEtats.forEach((docEtat) => {

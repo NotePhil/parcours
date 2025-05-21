@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ICategoriesAttributs } from 'src/app/modele/categories-attributs';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategorieAttributService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private param: GlobalVariables) { }
 
   getAllCategoriesAttributs():Observable<ICategoriesAttributs[]>
   {
-    return this.http.get<ICategoriesAttributs[]>('api/categoriesAttributs');
+    return this.http.get<ICategoriesAttributs[]>(this.param.api+ 'categoriesAttributs');
   }
 
   getCategoriesAttributsById(id:string):Observable<ICategoriesAttributs>{
@@ -25,7 +26,7 @@ export class CategorieAttributService {
   }
   
   getCategoriesAttributsByNom(nom:string): Observable<ICategoriesAttributs[]> {
-    return this.http.get<ICategoriesAttributs[]>('api/categoriesAttributs').pipe(
+    return this.http.get<ICategoriesAttributs[]>(this.param.api+ 'categoriesAttributs').pipe(
       map(x=>
         {
           return x.filter(d=> d.nom.toLowerCase().startsWith(nom))
@@ -35,6 +36,6 @@ export class CategorieAttributService {
  
    ajouterCategoriesAttributs(categoriesAttributs:ICategoriesAttributs )
    {
-     return this.http.post("api/categoriesAttributs",categoriesAttributs);
+     return this.http.post(this.param.api+ 'categoriesAttributs',categoriesAttributs);
    }
 }

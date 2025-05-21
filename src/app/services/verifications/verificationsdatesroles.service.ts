@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IObjetDates } from 'src/app/modele/objet-dates';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root'

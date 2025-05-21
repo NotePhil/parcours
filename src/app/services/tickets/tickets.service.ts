@@ -4,6 +4,7 @@ import { Observable, map, of, filter, EMPTY } from 'rxjs';
 import { StatutTicket } from 'src/app/modele/statut-ticket';
 import { ITicket } from 'src/app/modele/ticket';
 import {v4 as uuidv4} from 'uuid';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class TicketsService {
   statutTicketAttente = StatutTicket.attente
   statutTicketTraite = StatutTicket.traite
   
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private param: GlobalVariables) { }
 
   getAllTickets():Observable<ITicket[]>
   {
-    return this.http.get<ITicket[]>('api/tickets').pipe();
+    return this.http.get<ITicket[]>(this.param.api+ 'tickets').pipe();
   }
 
   getTicketById(id:string):Observable<ITicket>{
@@ -30,7 +31,7 @@ export class TicketsService {
     );
   }
   getTicketByIdUnique(uniqueId:string): Observable<ITicket[]> {
-   return this.http.get<ITicket[]>('api/tickets').pipe(
+   return this.http.get<ITicket[]>(this.param.api+ 'tickets').pipe(
      map(x=>
        {
          return x.filter(t=> t.idUnique.toLowerCase().startsWith(uniqueId))
@@ -88,7 +89,7 @@ export class TicketsService {
 
   modifierTicket(ticket:ITicket)
   {
-    return this.http.post("api/tickets",ticket);
+    return this.http.post(this.param.api+ 'tickets',ticket);
   }
   attribuerTicket(id_patient : string | null, id_service : string | null):Observable<ITicket>
   {
@@ -101,7 +102,7 @@ export class TicketsService {
       statut: this.statutTicketActif
     };
 
-    this.http.post("api/tickets",ticket).subscribe();
+    this.http.post(this.param.api+ 'tickets',ticket).subscribe();
 
     return of(ticket);
   }
@@ -120,7 +121,7 @@ export class TicketsService {
 
     ticketRecent = ticket
 
-    return of (ticketRecent);
+    return of (ticketRecent); 
   }
   
 }

@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ICaisses } from 'src/app/modele/caisses';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CaissesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private param: GlobalVariables) { }
 
   getAllCaisses():Observable<ICaisses[]>
   {
-    return this.http.get<ICaisses[]>('api/caisses').pipe(map(x=>x));
+    return this.http.get<ICaisses[]>(this.param.api+'caisses').pipe(map(x=>x));
   }
 
   getCaisseById(id:string):Observable<ICaisses>{
@@ -25,7 +26,7 @@ export class CaissesService {
   }
 
   getCaissesByLibelle(libelle:string): Observable<ICaisses[]> {
-    return this.http.get<ICaisses[]>('api/caisses').pipe(
+    return this.http.get<ICaisses[]>(this.param.api+'caisses').pipe(
       map(x=>
         {
           return x.filter(p=> p.libelle.toLowerCase().startsWith(libelle))
@@ -35,6 +36,6 @@ export class CaissesService {
 
   ajouterCaisse(caisse:ICaisses)
   {
-    return this.http.post("api/caisses",caisse);
+    return this.http.post(this.param.api+"caisses",caisse);
   }
 }

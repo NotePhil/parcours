@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IEtats } from 'src/app/modele/etats';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EtatService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private param: GlobalVariables) { }
 
   getAllEtats():Observable<IEtats[]>
   {
-    return this.http.get<IEtats[]>('api/etats').pipe(map(x=>x));
+    return this.http.get<IEtats[]>(this.param.api+ 'etats').pipe(map(x=>x));
   }
 
   getEtatById(id:string):Observable<IEtats>{
@@ -25,7 +26,7 @@ export class EtatService {
   }
 
    getEtatByLibelle(libelle:string): Observable<IEtats[]> {
-    return this.http.get<IEtats[]>('api/etats').pipe(
+    return this.http.get<IEtats[]>(this.param.api+ 'etats').pipe(
       map(x=>
         {
           return x.filter(e=> e.libelle.toLowerCase().startsWith(libelle))
@@ -35,6 +36,6 @@ export class EtatService {
 
   ajouterEtat(etat:IEtats)
   {
-    return this.http.post("api/etats",etat);
+    return this.http.post(this.param.api+ 'etats',etat);
   }
 }

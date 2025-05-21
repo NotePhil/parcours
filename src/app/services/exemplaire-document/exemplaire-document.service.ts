@@ -6,6 +6,7 @@ import { IOrdreEtat } from 'src/app/modele/ordreEtat';
 import { DocumentService } from '../documents/document.service';
 import { IDocument } from 'src/app/modele/document';
 import { DatePipe } from '@angular/common';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,13 @@ export class ExemplaireDocumentService {
   ordreEtat!: IOrdreEtat;
   constructor(
     private http: HttpClient,
+    private param: GlobalVariables,
     private documentService: DocumentService,
     private datePipe: DatePipe
   ) {}
 
   getAllExemplaireDocuments(): Observable<IExemplaireDocument[]> {
-    return this.http.get<IExemplaireDocument[]>('api/exemplaires');
+    return this.http.get<IExemplaireDocument[]>(this.param.api+ 'exemplaires');
   }
 
   getExemplaireDocumentById(id: string): Observable<IExemplaireDocument> {
@@ -52,7 +54,7 @@ export class ExemplaireDocumentService {
   }
   
   getExemplaireDocumentByIdPersonneRatachee(idPersonne:string): Observable<IExemplaireDocument[]> {
-    return this.http.get<IExemplaireDocument[]>('api/exemplaires').pipe(
+    return this.http.get<IExemplaireDocument[]>(this.param.api+ 'exemplaires').pipe(
       map(x=>
         {
           return x.filter(e=> e.personneRattachee?.id.toLowerCase() == idPersonne)
@@ -63,7 +65,7 @@ export class ExemplaireDocumentService {
   getExemplaireDocumentByTitre(
     titre: string
   ): Observable<IExemplaireDocument[]> {
-    return this.http.get<IExemplaireDocument[]>('api/exemplaires').pipe(
+    return this.http.get<IExemplaireDocument[]>(this.param.api+ 'exemplaires').pipe(
       map((x) => {
         return x.filter((e) => e.titre.toLowerCase().startsWith(titre));
       })
@@ -71,7 +73,7 @@ export class ExemplaireDocumentService {
   }
 
   ajouterExemplaireDocument(exemplaire: IExemplaireDocument) {
-    return this.http.post('api/exemplaires', exemplaire);
+    return this.http.post(this.param.api+ 'exemplaires', exemplaire);
   }
 
   // Methode permettant de creer le code de l'exemplaire en fonction du format de code

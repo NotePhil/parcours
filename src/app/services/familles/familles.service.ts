@@ -4,15 +4,16 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IFamille } from 'src/app/modele/famille';
 import { TypeUnite } from 'src/app/modele/type-unite';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FamillesService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllFamilles(): Observable<IFamille[]> {
-    return this.http.get<IFamille[]>('api/famille').pipe(map((x) => x));
+    return this.http.get<IFamille[]>(this.param.api+ 'famille').pipe(map((x) => x));
   }
 
   getFamilleById(id: string): Observable<IFamille> {
@@ -24,7 +25,7 @@ export class FamillesService {
   }
 
   getFamillesByLibelle(libelle: string): Observable<IFamille[]> {
-    return this.http.get<IFamille[]>('api/famille').pipe(
+    return this.http.get<IFamille[]>(this.param.api+ 'famille').pipe(
       map((x) => {
         return x.filter((p) => p.libelle.toLowerCase().startsWith(libelle));
       })
@@ -32,7 +33,7 @@ export class FamillesService {
   }
 
   ajouterFamille(famille: IFamille) {
-    return this.http.post('api/famille', famille);
+    return this.http.post(this.param.api+ 'famille', famille);
   }
 
   getTypeUnite(): Observable<TypeUnite> {
