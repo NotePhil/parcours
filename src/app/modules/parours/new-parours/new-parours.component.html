@@ -29,15 +29,16 @@
                   {{"parours.table.title2" | translate}}<span aria-label="required"><sup>*</sup></span>
                 </label>
                 <div class="w-100">
-
-                  <!-- Ouvrir le formulair de creation des Etapes -->
-                  <div class="listAttr">
-                    <input readonly type="text" formControlName="_etape" [value]="getEtapeLibelles()" name="_etape"
-                      id="_etape" placeholder="etape" class="form-control" required>
-
+<!-- Ouvrir le formulair de selection des documents -->
+<div class="listAttr pr-5">
                     <button type="button" class="btn p-0" (click)="openNewEtape()">
                       <i class="fas fa-plus-square"></i>
                     </button>
+                    <p class="pt-3">
+                      <span *ngFor="let etape of etapes">
+                        {{ etape.libelle }} <span>, </span>
+                      </span>
+                    </p>
                   </div>
                   
                 </div>
@@ -141,7 +142,7 @@
                         <span>...</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
-                      <button class="dropdown-item nav-link" (click)="openNewEtape(element.id)"
+                      <button class="dropdown-item nav-link" (click)="openNewEtape(element)"
                         title="{{'patient.table.actions.link2' | translate}}">
                         <i class="fa fa-pen text-info" aria-hidden="true"></i>
                         <span>{{'patient.table.actions.link2' | translate}}</span>

@@ -95,7 +95,7 @@ export class NewEtapeComponent implements OnInit {
   }
 
   ngOnInit() {
-    let idEtape = this.data?.idEtape;
+    let idEtape : IEtape = this.data?.idEtape;
     let parcour : IParours = this.data.parcours;
     this.etapeService.getAllEtapes().subscribe(
       (resultat) => {
@@ -105,27 +105,25 @@ export class NewEtapeComponent implements OnInit {
     this.ELEMENTS_TABLE_PAR_ETAPES = parcour?.etape;
     this.localElementTableParEtapes = [...this.ELEMENTS_TABLE_PAR_ETAPES]; // Initialize the local variable with the existing data
 
-    if (idEtape != null && idEtape !== '') {
+    if (idEtape != null && idEtape !== undefined) {
       this.btnLibelle = 'Modifier';
 
       //trouver un autre moyen d'initialiser avec des valeurs
-      this.etapeService.getEtapeById(idEtape).subscribe((x) => {
-        console.log('x', x);
+        console.log('x', idEtape);
 
-        this.etape = x;
-        this.documents = this.etape.document;
-        this.etapes = this.etape.etapeprecedant!;
-        this.donneeDocCatService.dataParcoursEtapes = this.etape.etapeprecedant!;
+        this.etape = idEtape;
+        this.documents = idEtape.document;
+        this.etapes = idEtape.etapeprecedant!;
+        this.donneeDocCatService.dataParcoursEtapes = idEtape.etapeprecedant!;
 
         this.forme.patchValue({
-          libelle: this.etape.libelle,
-          etat: this.etape.etat,
-          etapePrecedant: this.etape.etapeprecedant
+          libelle: idEtape.libelle,
+          etat: idEtape.etat,
+          etapePrecedant: idEtape.etapeprecedant
         });
-        this.forme.controls['etapesprecedant'].setValue(this.etape.etapeprecedant);
-        this.etapeId = this.etape.etapeprecedant?.map((etape) => etape.id);
-        this.documentId = this.etape.document.map((doc) => doc.idDocument);
-      });
+        this.forme.controls['etapesprecedant'].setValue(idEtape.etapeprecedant);
+        this.etapeId = idEtape.etapeprecedant?.map((etape) => etape.id);
+        this.documentId = idEtape.document.map((doc) => doc.idDocument);
     } else {
       this.donneeDocCatService.dataParcoursEtapes = [];
     }

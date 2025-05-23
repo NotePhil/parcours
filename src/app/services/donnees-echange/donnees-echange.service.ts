@@ -147,9 +147,11 @@ export class DonneesEchangeService {
       for (let i = 0; i < etapes.length; i++) {
         if (etapes[i].etapeprecedant != null && etapes[i].etapeprecedant!.length > 0) {
           for (let j = 0; j < etapes[i].etapeprecedant!.length; j++) {
-
+            
             const label = escapeDocs(etapes[i].etapeprecedant![j].libelle, etapes[i].etapeprecedant![j].document);
-            line += `${etapes[i].etapeprecedant![j].id}["${label}"]-->${etapes[i].id}["${escapeDocs(etapes[i].libelle, etapes[i].document)}"];`;
+            const label1 = escapeDocs(etapes[i].libelle, etapes[i].document);
+            line += `${etapes[i].etapeprecedant![j].id}["${etapes[i].etapeprecedant![j].libelle}<br>${etapes[i].etapeprecedant![j].document?.map(doc => `- ${doc.titre}`).join('<br>')}"]-->${etapes[i].id}["${label1}"];`;
+            console.log("labels modal:", `${etapes[i].etapeprecedant![j].libelle}<br>${etapes[i].etapeprecedant![j].document?.map(doc => `- ${doc.titre}`).join('<br>')}`, label1);
           }
         }
         if (etapes[i].etapesuivant != null && etapes[i].etapesuivant!.length > 0) {

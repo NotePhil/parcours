@@ -108,6 +108,8 @@ export class ListParoursComponent implements OnInit {
   }
 
   openModalGrapheParcours(parcours: IParours) {
+    console.log("parcours graphe :", parcours);
+    
     const dialogRef = this.dialogDef.open(ModalGrapheParcoursComponent, {
           height: '90%',
           width: '65%',
