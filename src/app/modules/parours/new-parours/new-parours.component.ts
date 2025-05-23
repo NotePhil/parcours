@@ -86,7 +86,7 @@ export class NewParoursComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     (dialogConfig.enterAnimationDuration = '1000ms'),
     (dialogConfig.exitAnimationDuration = '1000ms'),
-    (dialogConfig.data = {parcours: this.parours, idEtape: etape})
+    (dialogConfig.data = {etapes: this.etapes, idEtape: etape})
 
     const dialogRef = this.dialog.open(NewEtapeComponent, dialogConfig);
 

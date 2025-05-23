@@ -96,13 +96,13 @@ export class NewEtapeComponent implements OnInit {
 
   ngOnInit() {
     let idEtape : IEtape = this.data?.idEtape;
-    let parcour : IParours = this.data.parcours;
+    let etapes : IEtape[] = this.data.etapes;
     this.etapeService.getAllEtapes().subscribe(
       (resultat) => {
         this.filteredOptions = resultat;
       }
     );
-    this.ELEMENTS_TABLE_PAR_ETAPES = parcour?.etape;
+    this.ELEMENTS_TABLE_PAR_ETAPES = etapes;
     this.localElementTableParEtapes = [...this.ELEMENTS_TABLE_PAR_ETAPES]; // Initialize the local variable with the existing data
 
     if (idEtape != null && idEtape !== undefined) {
