@@ -48,7 +48,8 @@ export class ViewExemplaireComponent implements OnInit {
     },
     formatCode: '',
     code: '',
-    beneficiaireObligatoire: true
+    beneficiaireObligatoire: true,
+    mouvementDeCaisse: []
   };
   titre: string = '';
   courant: string = '';

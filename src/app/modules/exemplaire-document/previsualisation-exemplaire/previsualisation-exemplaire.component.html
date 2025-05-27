@@ -192,6 +192,40 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- tableau listing des mouvements de caisse -->            
+
+            <h2 *ngIf="exemplaire.mouvementDeCaisse!.length > 0">{{'mvtCaisse.title2' | translate}}</h2>
+            <div *ngIf="exemplaire.mouvementDeCaisse!.length > 0" class="card-body p-0 tableBlock table-responsive">
+                <table class="table table-striped table-sm table-inverse table-bordered">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>{{'mvtCaisse.table.title1' | translate}}</th>
+                            <th>{{'validation.form.label2' | translate}}</th>
+                            <th>{{'mvtCaisse.table.title3' | translate}}</th>
+                            <th>{{'mvtCaisse.table.title0' | translate}}</th>
+                            <th>{{'mvtCaisse.table.title2' | translate}}</th>
+                            <th>{{'mvtCaisse.table.title4' | translate}}</th>
+                            <th>{{'mvtCaisse.table.title7' | translate}}</th>
+                            <th>{{'validation.table.title4' | translate}}</th>
+                            <th>{{'validation.form.label3' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let mouvementCaisse of exemplaire.mouvementDeCaisse">
+                            <td>{{mouvementCaisse.libelle}}</td>
+                            <td>{{mouvementCaisse.etat}}</td>
+                            <td>{{mouvementCaisse.typeMvt}}</td>
+                            <td>{{mouvementCaisse.montant}}</td>
+                            <td>{{mouvementCaisse.moyenPaiement}}</td>
+                            <td>{{mouvementCaisse.referencePaiement}}</td>
+                            <td>{{mouvementCaisse.compte?.solde}}</td>
+                            <td>{{mouvementCaisse.personnel}}</td>
+                            <td>{{mouvementCaisse.dateCreation | date:'dd/MM/yyyy' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="actionButton valBtn mb-2">
             <button title="{{'lists.button7' | translate}}" type="button" [routerLink]="['../../exemplaire-nouveau/modify/',exemplaire.id]" class="btn modifier">

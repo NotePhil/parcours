@@ -88,7 +88,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     code: '',
     beneficiaireObligatoire: true,
     assurance: undefined,
-    promotion: undefined
+    promotion: undefined,
+    mouvementDeCaisse: []
   };
 
   document: IDocument = {
@@ -1046,7 +1047,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       code: this.codeControl.value,
       beneficiaireObligatoire: this.document.beneficiaireObligatoire,
       promotion: this.promotion,
-      assurance: this.assurancePersonne
+      assurance: this.assurancePersonne,
+      mouvementDeCaisse: this.dataSourceMouvementcaisses.data
     };
 
     if (this.exemplaire.id != '') {

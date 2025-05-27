@@ -52,7 +52,8 @@ export class HistoriqueParPersonneComponent implements OnInit {
     },
     formatCode: '',
     code: '',
-    beneficiaireObligatoire: false
+    beneficiaireObligatoire: false,
+    mouvementDeCaisse: []
   };
   titre:string='';
   mouvements : IMouvement[] = []
