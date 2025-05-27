@@ -1018,6 +1018,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    */
   onSubmit(data: any) {
     this.submitted = true;
+    alert(this.fCaisse['use'].value);
     this.enregistrerObjet();
     this.evaluation();
     if (this.formeExemplaire.invalid || this.isFalse == true || this.isFalseIn == true || this.isFalseOut == true) return;
@@ -1076,6 +1077,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    */
   saveMvt(selectItem: any, doc: IExemplaireDocument) {
     let donne: IMouvementCaisses;
+    let listeMvtCaisse: IMouvementCaisses[] = [];
     let ele: any = this.selectedOptions;
 
     if (selectItem.use) {
@@ -1099,6 +1101,22 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       })
     }
 
+    if(this.fCaisse['uses'].value){
+      let mvtCaisse : IMouvementCaisses = {
+        id: uuidv4(),
+        etat: true,
+        montant: this.soldeCompteUtiliser,
+        libelle: 'Paiement par solde',
+        typeMvt: selectItem.typeMvt,
+        dateCreation: new Date(),
+        moyenPaiement: 'Solde',
+        referencePaiement: this.fCaisse['referencePaiement'].value ,
+        compte: this.compte,
+        personnel: this.laPersonneRattachee!
+      }
+      listeMvtCaisse.push(mvtCaisse)  ;
+    }
+
     if (ele == 'multipaiement') {
       let uuidEle: string = uuidv4();
       this.modalResult.forEach((element) => {
@@ -1110,14 +1128,12 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
             libelle: selectItem.libelle,
             typeMvt: selectItem.typeMvt,
             dateCreation: new Date(),
-            moyenPaiement: element.moyen,
-            isMultipaiement: uuidEle,
+            moyenPaiement: 'multipaiement',
             referencePaiement: element.reference,
             compte: this.compte,
-            personnel: this.laPersonneRattachee!,
-            exemplaire: doc
+            personnel: this.laPersonneRattachee!
           }
-
+          listeMvtCaisse.push(donne)  ;
           this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
             console.log('Le mouvement a été bien enregistré !', donne);
           })
@@ -1156,13 +1172,12 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         typeMvt: selectItem.typeMvt,
         dateCreation: new Date(),
         detailJson: billets!,
-        moyenPaiement: this.selectedOptions,
+        moyenPaiement: this.selectedOptions.type,
         referencePaiement: selectItem.referencePaiement,
         compte: this.compte,
-        personnel: this.laPersonneRattachee!,
-        exemplaire: doc
+        personnel: this.laPersonneRattachee!
       }
-
+      listeMvtCaisse.push(donne)  ;
       this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
         console.log('Le mouvement a été bien enregistré !', donne, this.fCaisse['montant'].value);
         this.router.navigate(['parcours/missions/list-exemplaire']);
