@@ -1088,7 +1088,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         libelle: selectItem.libelle,
         typeMvt: selectItem.typeMvt,
         dateCreation: new Date(),
-        moyenPaiement: this.selectedOptions,
+        moyenPaiement: "this.selectedOptions",
         referencePaiement: selectItem.referencePaiement,
         compte: this.compte,
         personnel: this.laPersonneRattachee!,
