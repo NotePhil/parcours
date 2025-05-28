@@ -206,7 +206,8 @@
       "title1": "Libel",
       "title2": "Status",
       "title3": "location",
-      "title4": "description"
+      "title4": "description",
+      "title5": "Code Unique"
     },
     "form": {
       "label1": "Libel",
@@ -214,6 +215,7 @@
       "label3": "location",
       "label4": "description",
       "label5": "est encaissable",
+      "label6": "Code Unique",
       "text1": "Libel is requied",
       "text2": "Status is requied",
       "text3": "the Last modification's date is requied"

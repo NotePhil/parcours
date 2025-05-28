@@ -8,4 +8,5 @@ export interface IService {
     nombreTotalAttributions?:number,
     localisation:string,
     description:string,
+    codeUnique?:string
 }

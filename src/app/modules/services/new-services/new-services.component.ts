@@ -28,7 +28,8 @@ export class NewServicesComponent implements OnInit {
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       etat:[true],
       localisation:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      description:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
+      description:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      codeUnique:['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]]
     })
   }
 
@@ -44,7 +45,8 @@ export class NewServicesComponent implements OnInit {
             libelle: this.service.libelle,
             etat: this.service.etat,
             localisation: this.service.localisation,
-            description: this.service.description
+            description: this.service.description,
+            codeUnique: this.service.codeUnique
           })
       });
     }
@@ -73,7 +75,8 @@ export class NewServicesComponent implements OnInit {
       dateFin: serviceInput.dateFin,
       nombreTotalAttributions: serviceInput.nombreTotalAttributions,
       localisation: serviceInput.localisation,
-      description: serviceInput.description
+      description: serviceInput.description,
+      codeUnique: serviceInput.codeUnique
     }
 
     if(this.service != undefined){
