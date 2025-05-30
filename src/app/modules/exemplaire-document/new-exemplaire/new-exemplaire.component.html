@@ -1,5 +1,5 @@
 <div class="mainBlock" id="top2">
-     <form [formGroup]="formeExemplaire" (ngSubmit)="onSubmit(formeExemplaire)" *ngIf="formeExemplaire" >
+     <form [formGroup]="formeExemplaire" (ngSubmit)="onSubmit()" *ngIf="formeExemplaire" >
         <h1>
             {{this.document.titre}} 
             <!-- {{titre}} -->
@@ -323,9 +323,6 @@
                                                 <input type="number" formControlName="montant" value="0" (input)="onInput($event)" pattern="^[0-9]*$" (blur)="calculerMontantVerser(fCaisse['montant'].value)" class="form-control">
                                             </div>
                                         </div>
-                                        <div *ngIf="submitted && fCaisse['montant'].errors"  class="alert alert-danger" >
-                                            <div *ngIf="fCaisse['montant'].errors['required']">{{'mvtCaisse.form.text1' | translate}}</div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -339,26 +336,23 @@
                                         </div>
                                 </div>
                                 <div class="form-group">
-                                        <div class="champs">
-                                            <label for="moyenPaiement" class="label">
-                                                {{'mvtCaisse.table.title2' | translate}}
-                                            </label>
-                                            <mat-form-field appearance="fill">
-                                                <mat-label>Choisissez des options</mat-label>
-                                                <mat-select 
-                                                  [multiple]="false"
-                                                  [(value)]="selectedOptions"
-                                                  >
-                                                  <mat-option *ngFor="let option of caisses" [value]="option" (click)="verifyUseSolde(option.type)">
-                                                    {{ option.type }}
-                                                  </mat-option>
-                                                  <mat-option (click)="verifyUseSolde('multipaiement')" value="multipaiement">{{'mvtCaisse.table.title12' | translate}}</mat-option>
-                                                </mat-select>
-                                              </mat-form-field>
-                                        </div>
-                                        <div *ngIf="submitted && fCaisse['moyenPaiement'].errors"  class="alert alert-danger" >
-                                            <div *ngIf="fCaisse['moyenPaiement'].errors['required']">{{'mvtCaisse.form.text3' | translate}}</div>
-                                        </div>
+                                    <div class="champs">
+                                        <label for="moyenPaiement" class="label">
+                                            {{'mvtCaisse.table.title2' | translate}}
+                                        </label>
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Choisissez des options</mat-label>
+                                            <mat-select 
+                                                [multiple]="false"
+                                                [(value)]="selectedOptions"
+                                                >
+                                                <mat-option *ngFor="let option of caisses" [value]="option" (click)="verifyUseSolde(option.type); getLibelleMoyentPaiementCaisse(option.type)">
+                                                {{ option.type }}
+                                                </mat-option>
+                                                <mat-option (click)="verifyUseSolde('multipaiement')" value="multipaiement">{{'mvtCaisse.table.title12' | translate}}</mat-option>
+                                            </mat-select>
+                                            </mat-form-field>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                         <div class="champs">
@@ -366,9 +360,6 @@
                                                 {{'mvtCaisse.table.title4' | translate}}
                                             </label>
                                             <input type="text" formControlName="referencePaiement" name="referencePaiement" class="form-control">
-                                        </div>
-                                        <div *ngIf="submitted && fCaisse['referencePaiement'].errors"  class="alert alert-danger" >
-                                            <div *ngIf="fCaisse['referencePaiement'].errors['required']">{{'mvtCaisse.form.text4' | translate}}</div>
                                         </div>
                                 </div>
                             </div>

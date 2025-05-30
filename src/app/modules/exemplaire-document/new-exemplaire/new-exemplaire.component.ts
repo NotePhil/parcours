@@ -45,6 +45,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalMouvementCaisseComponent } from '../../shared/modal-mouvement-caisse/modal-mouvement-caisse.component';
 import { ModalBilleterieComponent } from '../../shared/modal-billeterie/modal-billeterie.component';
 import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
+import { log } from 'mermaid/dist/logger';
 
 @Component({
   selector: 'app-new-exemplaire',
@@ -220,7 +221,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   modalLastResult: MoyenPaiement[] = [];
   modalResultBilleterie: any;
   modalLastResultBilleterie: any;
-  tableMvts: IMouvementCaisses[] = []
   codeControl = new FormControl()
   promotion: IPromo | undefined
   distributeurR: string = '';
@@ -236,8 +236,13 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   showScanCodeComponent = false
   reponse: any;
   courant: string = '';
-  req: boolean = false;
-
+  req: boolean = false; 
+  
+  /**cette variable sert à enregistrer les informations de caisse pour exemplaire, 
+   * et sa valeur finale sera affectée à l'objet mouvementDeCaisse à l'exemplaire lors de l'enregistrement
+   * */
+  mvtsCaisseDeExemplaire: IMouvementCaisses | undefined
+  libelleMoyentPaiementCaisse : string = ""
 
   constructor(
     private router: Router,
@@ -265,9 +270,9 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       reste: new FormControl<number>(0),
       solde: new FormControl<number>(0),
       use: [false],
-      montant: ['', [Validators.required]],
+      montant: [''],
       moyenPaiement: new FormControl<string | ICaisses>(''),
-      referencePaiement: ['', [Validators.required]]
+      referencePaiement: ['']
     })
   }
 
@@ -619,14 +624,14 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   }
 
   initialiseMvtCaisses(id: string) {
-    this.mvtCaisseService.getExemplaireDocumentByIdMvtCaisse(id).subscribe((d) => {
-      console.log("mvt caisses last :", d);
+    // this.mvtCaisseService.getExemplaireDocumentByIdMvtCaisse(id).subscribe((d) => {
+    //   console.log("mvt caisses last :", d);
 
-      if (d) {
-        this.ELEMENTS_TABLE_MOUVEMENTCAISSES = d;
-        this.dataSourceMouvementcaisses.data = this.ELEMENTS_TABLE_MOUVEMENTCAISSES;
-      }
-    })
+    //   if (d) {
+    //     this.ELEMENTS_TABLE_MOUVEMENTCAISSES = d;
+    //   }
+    // })
+    this.dataSourceMouvementcaisses.data = this.exemplaire.mouvementDeCaisse!;
   }
 
   /**
@@ -734,6 +739,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       }
       this.displayedRessourcesColumns.push(montantCharge)
       this.displayedRessourcesColumns.push(montant)
+      console.log("displayedRessourcesColumns",this.displayedRessourcesColumns);
+      
     }
   }
   /**
@@ -806,6 +813,16 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     return this.formeExemplaire.get(
       '_controlsAutocomplateDistributeur'
     ) as FormArray;
+  }
+  /**
+   * methode permettant de recupérer l'institulé du moyen de payement à l'IHM
+   * et de le reutiliser ici.
+   * @param moyenPaiement libelé du moyen de paiement
+   * @returns 
+   */
+  getLibelleMoyentPaiementCaisse(moyenPaiement : string):string {
+    this.libelleMoyentPaiementCaisse = moyenPaiement
+    return this.libelleMoyentPaiementCaisse
   }
 
   /**
@@ -1016,7 +1033,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   /**
    * methode de validation du formulaire (enregistrement des donnees du formulaire)
    */
-  onSubmit(data: any) {
+  onSubmit() {
     this.submitted = true;
     alert(this.fCaisse['use'].value);
     this.enregistrerObjet();
@@ -1058,12 +1075,12 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     }
     exemplaireTemp.promotion = this.promotion
     exemplaireTemp.assurance = this.assurancePersonne
-    this.serviceExemplaire
-      .ajouterExemplaireDocument(exemplaireTemp)
-      .subscribe((object) => {
-        console.log(" new exemplaire :", exemplaireTemp, data.value);
-        this.saveMvt(data.value, exemplaireTemp);
-      });
+    this.saveMvt();
+    this.serviceExemplaire.ajouterExemplaireDocument(exemplaireTemp).subscribe((object) => {
+      console.log("exemplaireTemp", exemplaireTemp);
+      
+      this.router.navigate(['parcours/mission/list-exemplaire']);
+    });
   }
 
   displayFnCaisse(element: ICaisses): string {
@@ -1075,114 +1092,58 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * @param selectItem 
    * @param doc 
    */
-  saveMvt(selectItem: any, doc: IExemplaireDocument) {
-    let donne: IMouvementCaisses;
-    let listeMvtCaisse: IMouvementCaisses[] = [];
-    let ele: any = this.selectedOptions;
-
-    if (selectItem.use) {
-      donne = {
-        id: uuidv4(),
-        etat: selectItem.etat,
-        montant: this.fCaisse['montant'].value,
-        libelle: selectItem.libelle,
-        typeMvt: selectItem.typeMvt,
-        dateCreation: new Date(),
-        moyenPaiement: "this.selectedOptions",
-        referencePaiement: selectItem.referencePaiement,
-        compte: this.compte,
-        personnel: this.laPersonneRattachee!,
-        exemplaire: doc
-      }
-
-      this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
-        console.log('Le mouvement a été bien enregistré !', donne);
-        this.router.navigate(['parcours/mission/list-exemplaire']);
-      })
+  saveMvt() {
+    let mvtsCaisseDeExemplaireTemp : IMouvementCaisses = {
+      id: "",
+      etat: false,
+      montant: 0,
+      libelle: '',
+      typeMvt: this.exemplaire.typeMouvement,
+      dateCreation: this.exemplaire.dateCreation,
+      moyenPaiement: '',
+      referencePaiement: this.fCaisse['referencePaiement'].value,
+      personnel: this.laPersonneRattachee!
     }
 
-    if(this.fCaisse['uses'].value){
-      let mvtCaisse : IMouvementCaisses = {
-        id: uuidv4(),
-        etat: true,
-        montant: this.soldeCompteUtiliser,
-        libelle: 'Paiement par solde',
-        typeMvt: selectItem.typeMvt,
-        dateCreation: new Date(),
-        moyenPaiement: 'Solde',
-        referencePaiement: this.fCaisse['referencePaiement'].value ,
-        compte: this.compte,
-        personnel: this.laPersonneRattachee!
-      }
-      listeMvtCaisse.push(mvtCaisse)  ;
-    }
-
-    if (ele == 'multipaiement') {
-      let uuidEle: string = uuidv4();
+    if(this.fCaisse['uses'].value == true){
+      this.libelleMoyentPaiementCaisse = ""
+      mvtsCaisseDeExemplaireTemp.montant = this.fCaisse['montant'].value,
+      this.libelleMoyentPaiementCaisse = "solde"
+    } else if (this.libelleMoyentPaiementCaisse == 'multipaiement') {
       this.modalResult.forEach((element) => {
         if (element.montant) {
-          donne = {
-            id: uuidv4(),
-            etat: selectItem.etat,
-            montant: element.montant,
-            libelle: selectItem.libelle,
-            typeMvt: selectItem.typeMvt,
-            dateCreation: new Date(),
-            moyenPaiement: 'multipaiement',
-            referencePaiement: element.reference,
-            compte: this.compte,
-            personnel: this.laPersonneRattachee!
-          }
-          listeMvtCaisse.push(donne)  ;
-          this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
-            console.log('Le mouvement a été bien enregistré !', donne);
-          })
+          mvtsCaisseDeExemplaireTemp.montant = element.montant
         }
       });
-      this.router.navigate(['parcours/mission/list-exemplaire']);
-    } else {
+    } else if (this.libelleMoyentPaiementCaisse == 'cash') {
       let billets: Monaies;
-      if (this.selectedOptions.type == 'cash') {
-        billets = {
-          pieces: {
-            x1: this.modalResultBilleterie.x1,
-            x2: this.modalResultBilleterie.x2,
-            x5: this.modalResultBilleterie.x5,
-            x10: this.modalResultBilleterie.x10,
-            x25: this.modalResultBilleterie.x25,
-            x50: this.modalResultBilleterie.x50,
-            x100: this.modalResultBilleterie.x100,
-            x500: this.modalResultBilleterie.x500,
-          },
-          billets: {
-            x500: this.modalResultBilleterie.x500B,
-            x1000: this.modalResultBilleterie.x1000,
-            x2000: this.modalResultBilleterie.x2000,
-            x5000: this.modalResultBilleterie.x5000,
-            x10000: this.modalResultBilleterie.x10000
-          }
+      
+      billets = {
+        pieces: {
+          x1: this.modalResultBilleterie.x1,
+          x2: this.modalResultBilleterie.x2,
+          x5: this.modalResultBilleterie.x5,
+          x10: this.modalResultBilleterie.x10,
+          x25: this.modalResultBilleterie.x25,
+          x50: this.modalResultBilleterie.x50,
+          x100: this.modalResultBilleterie.x100,
+          x500: this.modalResultBilleterie.x500,
+        },
+        billets: {
+          x500: this.modalResultBilleterie.x500B,
+          x1000: this.modalResultBilleterie.x1000,
+          x2000: this.modalResultBilleterie.x2000,
+          x5000: this.modalResultBilleterie.x5000,
+          x10000: this.modalResultBilleterie.x10000
         }
       }
-
-      donne = {
-        id: uuidv4(),
-        etat: selectItem.etat,
-        montant: this.fCaisse['montant'].value,
-        libelle: selectItem.libelle,
-        typeMvt: selectItem.typeMvt,
-        dateCreation: new Date(),
-        detailJson: billets!,
-        moyenPaiement: this.selectedOptions.type,
-        referencePaiement: selectItem.referencePaiement,
-        compte: this.compte,
-        personnel: this.laPersonneRattachee!
-      }
-      listeMvtCaisse.push(donne)  ;
-      this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
-        console.log('Le mouvement a été bien enregistré !', donne, this.fCaisse['montant'].value);
-        this.router.navigate(['parcours/missions/list-exemplaire']);
-      })
+      
+      mvtsCaisseDeExemplaireTemp.montant = this.fCaisse['montant'].value,
+      mvtsCaisseDeExemplaireTemp.detailJson = billets
     }
+    mvtsCaisseDeExemplaireTemp.moyenPaiement = this.libelleMoyentPaiementCaisse
+    mvtsCaisseDeExemplaireTemp.libelle = mvtsCaisseDeExemplaireTemp.referencePaiement + mvtsCaisseDeExemplaireTemp.montant
+    this.exemplaire.mouvementDeCaisse?.push(mvtsCaisseDeExemplaireTemp)
   }
 
   /**
