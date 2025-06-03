@@ -1079,7 +1079,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     this.serviceExemplaire.ajouterExemplaireDocument(exemplaireTemp).subscribe((object) => {
       console.log("exemplaireTemp", exemplaireTemp);
       
-      this.router.navigate(['parcours/mission/list-exemplaire']);
+      this.router.navigate(['parcours/missions/list-exemplaire']);
     });
   }
 
