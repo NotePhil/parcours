@@ -25473,7 +25473,21 @@ export class InMemDBService implements InMemoryDbService {
       },
     ];
     let caisses: ICaisses[] = [
-      {id: "1", libelle: "caisse 1", type: "cash", solde: 100000.00},
+      {id: "1", libelle: "caisse 1", type: "cash", solde: 180000.00, detailsJson: {
+        x1: 0,
+        x2: 0,
+        x5: 0,
+        x10: 0,
+        x25: 0,
+        x50: 200,
+        x100: 100,
+        x500: 15,
+        x500B: 15,
+        x1000: 20,
+        x2000: 10,
+        x5000: 1,
+        x10000: 9
+      }},
       {id: "7", libelle: "caisse 7", type: "solde", solde: 700000.00},
       {id: "2", libelle: "caisse 2", type: "chèque", solde: 200000.00},
       {id: "3", libelle: "caisse 3", type: "carte bleue", solde: 300000.00},

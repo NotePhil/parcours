@@ -1,0 +1,147 @@
+/* Conteneur principal */
+.financial-table-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Centrage vertical et horizontal */
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Prend toute la hauteur de l'écran */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Adaptation de votre carte existante */
+.card {
+  width: 100%;
+  max-width: 95vw; /* 95% de la largeur de l'écran */
+  margin: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Ajustement du tableau financier */
+.financial-table-container {
+  width: 100%;
+  overflow: auto;
+  max-height: 80vh; /* Limite la hauteur à 80% de l'écran */
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 768px) {
+  .centered-container {
+    padding: 10px;
+    align-items: flex-start; /* Alignement en haut sur mobile */
+  }
+  
+  .card {
+    max-width: 100%;
+  }
+}
+
+/* Wrapper pour le tableau */
+.financial-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
+}
+
+/* Table responsive */
+.table-responsive {
+  display: block;
+  width: fit-content; /* S'adapte au contenu */
+  min-width: 100%; /* Au moins la largeur du conteneur */
+}
+
+/* Styles du tableau */
+.financial-table {
+  width: auto;
+  white-space: nowrap; /* Empêche le retour à la ligne */
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+/* En-têtes fixes optionnels */
+.financial-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #27ae60;
+  z-index: 10;
+}
+
+/* Styles des cellules */
+.financial-table th, 
+.financial-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border: 1px solid #ddd;
+  min-width: 60px; /* Largeur minimale pour chaque colonne */
+}
+
+/* Styles spécifiques */
+.row-label {
+  position: sticky;
+  left: 0;
+  background-color: #f8f9fa;
+  z-index: 5;
+}
+
+/* Barre de défilement stylisée */
+.financial-table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.financial-table-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.financial-table-wrapper::-webkit-scrollbar-thumb {
+  background: #27ae60;
+  border-radius: 4px;
+}
+
+.financial-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #1e8449;
+}
+
+/* Conserver les autres styles existants */
+.financial-table th {
+  color: white;
+  font-weight: bold;
+}
+
+.financial-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.total-cell {
+  font-weight: bold;
+  color: #2c3e50;
+  background-color: #e8f4fc;
+}
+
+.input-field {
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.positive { color: #27ae60; }
+.negative { color: #e74c3c; }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

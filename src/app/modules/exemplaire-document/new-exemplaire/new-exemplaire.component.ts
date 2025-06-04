@@ -485,7 +485,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         width: '100%',
         enterAnimationDuration: '1000ms',
         exitAnimationDuration: '1000ms',
-        data: { monaies: this.modalResultBilleterie }
+        data: { monaies: this.modalResultBilleterie, sommes: this.resteAPayer }
       }
     )
 
