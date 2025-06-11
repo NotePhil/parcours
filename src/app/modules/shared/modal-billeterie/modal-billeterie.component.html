@@ -6,6 +6,11 @@
     </div>
     <div class="financial-table-container">
       <h2>Montant à verser : {{ formatNumber(montantAVerser) }}</h2>
+      <h2>Reste à verser : 
+        <span class="total-cell" [class.positive]="calculateResteAverser() >= 0" [class.negative]="calculateResteAverser() < 0">
+         {{ formatNumber(calculateResteAverser()) }}
+        </span>
+      </h2>
       <div class="financial-table-wrapper">
         <form [formGroup]="formePaiement" (ngSubmit)="onSubmit()" class="financial-form">
           <div class="table-responsive">

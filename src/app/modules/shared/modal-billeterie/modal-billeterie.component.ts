@@ -113,6 +113,28 @@ export class ModalBilleterieComponent implements OnInit {
     return this.formePaiement.controls;
   }
 
+  calculateResteAverser() {
+    const values = this.formePaiement.value;
+    // Calcul du total reçu
+    const totalRecu =
+      (values.x10000 || 0) * 10000 +
+      (values.x5000 || 0) * 5000 +
+      (values.x2000 || 0) * 2000 +
+      (values.x1000 || 0) * 1000 +
+      (values.x500 || 0) * 500 +
+      (values.x500B || 0) * 500 +
+      (values.x100 || 0) * 100 +
+      (values.x50 || 0) * 50 +
+      (values.x25 || 0) * 25 +
+      (values.x10 || 0) * 10 +
+      (values.x5 || 0) * 5 +
+      (values.x2 || 0) * 2 +
+      (values.x1 || 0) * 1;
+
+    // Calcul du reste à verser
+     return this.montantAVerser = this.data.sommes - totalRecu;
+  }
+
   calculateTotals() {
     const values = this.formePaiement.value;
     // Calcul du total reçu

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
-import { CaissesRoutingModule } from './caisses-routing.module';
 import { NewCaisseComponent } from './new-caisse/new-caisse.component';
 import { ListCaissesComponent } from './list-caisses/list-caisses.component';
 import { HttpClient } from '@angular/common/http';
@@ -18,6 +17,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { AttributsRoutingModule } from '../attributs/attributs-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -36,6 +36,7 @@ import { SharedModule } from '../shared/shared.module';
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
+    MatSelectModule,
     MatSortModule,
     SharedModule,
     TranslateModule.forChild({

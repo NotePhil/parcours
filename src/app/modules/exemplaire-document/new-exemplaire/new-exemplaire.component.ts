@@ -35,8 +35,8 @@ import { IPromo } from 'src/app/modele/promo-distributeur';
 import { PromoService } from 'src/app/services/promo/promo.service';
 import { ModalChoixPromotionRessourceComponent } from '../../shared/modal-choix-promotion-ressource/modal-choix-promotion-ressource.component';
 import { ModalCodebarreScanContinueComponent } from '../../shared/modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
-import { IMouvementCaisses, Monaies, MoyenPaiement } from 'src/app/modele/mouvement-caisses';
-import { ICaisses } from 'src/app/modele/caisses';
+import { IMouvementCaisses, MoyenPaiement } from 'src/app/modele/mouvement-caisses';
+import { DetailsJson, ICaisses } from 'src/app/modele/caisses';
 import { IComptes } from 'src/app/modele/comptes';
 import { MouvementCaisseService } from 'src/app/services/mouvement-caisse/mouvement-caisse.service';
 import { ComptesService } from 'src/app/services/comptes/comptes.service';
@@ -252,7 +252,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       _controlsSupprime: new FormArray([]),
       use: [false],
       montant: ['', [Validators.required]],
-      moyenPaiement: new FormControl<string | ICaisses>(''),
+      //moyenPaiement: new FormControl<string | ICaisses>(''),
       referencePaiement: ['', [Validators.required]]
     })
   }
@@ -1080,10 +1080,9 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       });
       this.router.navigate(['/list-exemplaire']);
     } else {
-      let billets: Monaies;
+      let billets: DetailsJson;
       if (this.selectedOptions.type == 'cash') {
         billets = {
-          pieces: {
             x1: this.modalResultBilleterie.x1,
             x2: this.modalResultBilleterie.x2,
             x5: this.modalResultBilleterie.x5,
@@ -1092,14 +1091,11 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
             x50: this.modalResultBilleterie.x50,
             x100: this.modalResultBilleterie.x100,
             x500: this.modalResultBilleterie.x500,
-          },
-          billets: {
-            x500: this.modalResultBilleterie.x500B,
+            x500B: this.modalResultBilleterie.x500B,
             x1000: this.modalResultBilleterie.x1000,
             x2000: this.modalResultBilleterie.x2000,
             x5000: this.modalResultBilleterie.x5000,
             x10000: this.modalResultBilleterie.x10000
-          }
         }
       }
 
