@@ -23,8 +23,6 @@ export class ModalBilleterieComponent implements OnInit {
     private dialogRef: MatDialogRef<ModalBilleterieComponent>,
     private formBuilder: FormBuilder,
     private donneeEchangeService: DonneesEchangeService,
-    private infosPath: ActivatedRoute,
-    private datePipe: DatePipe,
     private mvtCaisseService: MouvementCaisseService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {

@@ -487,8 +487,25 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         let montantMultiPaiement = 0; 
         this.modalResult = result.data;
         this.modalResult.forEach((element) => {
+            let mvtDeCaisse : IMouvementCaisses = {
+              id: '',
+              etat: false,
+              montant: 0,
+              libelle: '',
+              typeMvt: '',
+              dateCreation: this.exemplaire.dateCreation,
+              moyenPaiement: '',
+              referencePaiement: '',
+              personnel: this.exemplaire.personneRattachee!
+            }
           if (element.montant) {
             montantMultiPaiement += element.montant;
+
+            mvtDeCaisse.montant = element.montant
+            mvtDeCaisse.moyenPaiement = element.moyen.type
+            mvtDeCaisse.referencePaiement = element.reference
+
+            this.dataSourceMouvementcaisses.data.push(mvtDeCaisse)
           }
         });
         console.log("montantMultiPaiement ", montantMultiPaiement);
@@ -1075,7 +1092,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     }
     exemplaireTemp.promotion = this.promotion
     exemplaireTemp.assurance = this.assurancePersonne
-    this.saveMvt();
+    // this.saveMvt();
     this.serviceExemplaire.ajouterExemplaireDocument(exemplaireTemp).subscribe((object) => {
       console.log("exemplaireTemp", exemplaireTemp);
       
