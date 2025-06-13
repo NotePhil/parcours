@@ -57,7 +57,6 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   private getMenus(){
-   // return this.menuService.getMenuByUserAndLangue(this.userId,this.langueParent);
     return this.menuService.getMenuByUserAndLangue(this.authService.currentUserValue.login,this.langueParent);
   }
 

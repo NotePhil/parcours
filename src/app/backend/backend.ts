@@ -26321,7 +26321,11 @@ export class InMemDBService implements InMemoryDbService {
                     { nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false', action : [
                       { nom: 'Modifier', lien: '../mission-nouveau', bouton: 'true'}
                     ] },
-                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
+                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false', action : [
+                      { nom: 'Detail', lien: '../view-exemplaire', bouton: 'true'},
+                      { nom: 'Modifier', lien: '../exemplaire-nouveau/modify', bouton: 'true'},
+                      { nom: 'Previsualiser', lien: '../previsualisation-exemplaire', bouton: 'true'}
+                    ]},
                     { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false', action : [
                       { nom: 'Detail', lien: '../view-exemplaire', bouton: 'true'},
                       { nom: 'Modifier', lien: '../exemplaire-nouveau/modify', bouton: 'true'},
@@ -26605,7 +26609,11 @@ export class InMemDBService implements InMemoryDbService {
                     { nom: 'Search', lien: './missions/list-missions', bouton: 'false', action: [
                       { nom: 'Update', lien: '../mission-nouveau', bouton: 'false' }
                     ] },
-                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
+                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false', action : [
+                      { nom: 'View', lien: '../view-exemplaire', bouton: 'true'},
+                      { nom: 'Update', lien: '../exemplaire-nouveau/modify', bouton: 'true'},
+                      { nom: 'Previsualise', lien: '../previsualisation-exemplaire', bouton: 'true'}
+                    ]},
                     { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false', action : [
                       { nom: 'View', lien: '../view-exemplaire', bouton: 'true'},
                       { nom: 'Update', lien: '../exemplaire-nouveau/modify', bouton: 'true'},

@@ -578,6 +578,11 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           if (this.exemplaire.mouvements != undefined) {
             this.ELEMENTS_TABLE_MOUVEMENTS = this.exemplaire.mouvements;
           }
+          if (this.exemplaire.mouvementDeCaisse) {
+            this.ELEMENTS_TABLE_MOUVEMENTCAISSES = this.exemplaire.mouvementDeCaisse
+          }
+
+          this.dataSourceMouvementcaisses.data = this.ELEMENTS_TABLE_MOUVEMENTCAISSES
           this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
           console.log('mvts :', this.dataSourceMouvements.data);
 
@@ -609,7 +614,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           )
           this.fCaisse['montant'].setValue(0)
         });
-      this.initialiseMvtCaisses(this.idExemplaire);
+      // this.initialiseMvtCaisses(this.idExemplaire);
     }
     if (this.idDocument != null && this.idDocument !== '') {
       this.serviceDocument
@@ -636,7 +641,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
             )
           }
         });
-      this.initialiseMvtCaisses(this.idDocument);
+      // this.initialiseMvtCaisses(this.idDocument);
     }
   }
 
@@ -648,7 +653,9 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     //     this.ELEMENTS_TABLE_MOUVEMENTCAISSES = d;
     //   }
     // })
-    this.dataSourceMouvementcaisses.data = this.exemplaire.mouvementDeCaisse!;
+    if (this.exemplaire.mouvementDeCaisse) {
+      this.ELEMENTS_TABLE_MOUVEMENTCAISSES = this.exemplaire.mouvementDeCaisse
+    }
   }
 
   /**
@@ -1052,7 +1059,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    */
   onSubmit() {
     this.submitted = true;
-    alert(this.fCaisse['use'].value);
     this.enregistrerObjet();
     this.evaluation();
     if (this.formeExemplaire.invalid || this.isFalse == true || this.isFalseIn == true || this.isFalseOut == true) return;
@@ -1109,59 +1115,59 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * @param selectItem 
    * @param doc 
    */
-  saveMvt() {
-    let mvtsCaisseDeExemplaireTemp : IMouvementCaisses = {
-      id: "",
-      etat: false,
-      montant: 0,
-      libelle: '',
-      typeMvt: this.exemplaire.typeMouvement,
-      dateCreation: this.exemplaire.dateCreation,
-      moyenPaiement: '',
-      referencePaiement: this.fCaisse['referencePaiement'].value,
-      personnel: this.laPersonneRattachee!
-    }
+  // saveMvt() {
+  //   let mvtsCaisseDeExemplaireTemp : IMouvementCaisses = {
+  //     id: "",
+  //     etat: false,
+  //     montant: 0,
+  //     libelle: '',
+  //     typeMvt: this.exemplaire.typeMouvement,
+  //     dateCreation: this.exemplaire.dateCreation,
+  //     moyenPaiement: '',
+  //     referencePaiement: this.fCaisse['referencePaiement'].value,
+  //     personnel: this.laPersonneRattachee!
+  //   }
 
-    if(this.fCaisse['uses'].value == true){
-      this.libelleMoyentPaiementCaisse = ""
-      mvtsCaisseDeExemplaireTemp.montant = this.fCaisse['montant'].value,
-      this.libelleMoyentPaiementCaisse = "solde"
-    } else if (this.libelleMoyentPaiementCaisse == 'multipaiement') {
-      this.modalResult.forEach((element) => {
-        if (element.montant) {
-          mvtsCaisseDeExemplaireTemp.montant = element.montant
-        }
-      });
-    } else if (this.libelleMoyentPaiementCaisse == 'cash') {
-      let billets: Monaies;
+  //   if(this.fCaisse['uses'].value == true){
+  //     this.libelleMoyentPaiementCaisse = ""
+  //     mvtsCaisseDeExemplaireTemp.montant = this.fCaisse['montant'].value,
+  //     this.libelleMoyentPaiementCaisse = "solde"
+  //   } else if (this.libelleMoyentPaiementCaisse == 'multipaiement') {
+  //     this.modalResult.forEach((element) => {
+  //       if (element.montant) {
+  //         mvtsCaisseDeExemplaireTemp.montant = element.montant
+  //       }
+  //     });
+  //   } else if (this.libelleMoyentPaiementCaisse == 'cash') {
+  //     let billets: Monaies;
       
-      billets = {
-        pieces: {
-          x1: this.modalResultBilleterie.x1,
-          x2: this.modalResultBilleterie.x2,
-          x5: this.modalResultBilleterie.x5,
-          x10: this.modalResultBilleterie.x10,
-          x25: this.modalResultBilleterie.x25,
-          x50: this.modalResultBilleterie.x50,
-          x100: this.modalResultBilleterie.x100,
-          x500: this.modalResultBilleterie.x500,
-        },
-        billets: {
-          x500: this.modalResultBilleterie.x500B,
-          x1000: this.modalResultBilleterie.x1000,
-          x2000: this.modalResultBilleterie.x2000,
-          x5000: this.modalResultBilleterie.x5000,
-          x10000: this.modalResultBilleterie.x10000
-        }
-      }
+  //     billets = {
+  //       pieces: {
+  //         x1: this.modalResultBilleterie.x1,
+  //         x2: this.modalResultBilleterie.x2,
+  //         x5: this.modalResultBilleterie.x5,
+  //         x10: this.modalResultBilleterie.x10,
+  //         x25: this.modalResultBilleterie.x25,
+  //         x50: this.modalResultBilleterie.x50,
+  //         x100: this.modalResultBilleterie.x100,
+  //         x500: this.modalResultBilleterie.x500,
+  //       },
+  //       billets: {
+  //         x500: this.modalResultBilleterie.x500B,
+  //         x1000: this.modalResultBilleterie.x1000,
+  //         x2000: this.modalResultBilleterie.x2000,
+  //         x5000: this.modalResultBilleterie.x5000,
+  //         x10000: this.modalResultBilleterie.x10000
+  //       }
+  //     }
       
-      mvtsCaisseDeExemplaireTemp.montant = this.fCaisse['montant'].value,
-      mvtsCaisseDeExemplaireTemp.detailJson = billets
-    }
-    mvtsCaisseDeExemplaireTemp.moyenPaiement = this.libelleMoyentPaiementCaisse
-    mvtsCaisseDeExemplaireTemp.libelle = mvtsCaisseDeExemplaireTemp.referencePaiement + mvtsCaisseDeExemplaireTemp.montant
-    this.exemplaire.mouvementDeCaisse?.push(mvtsCaisseDeExemplaireTemp)
-  }
+  //     mvtsCaisseDeExemplaireTemp.montant = this.fCaisse['montant'].value,
+  //     mvtsCaisseDeExemplaireTemp.detailJson = billets
+  //   }
+  //   mvtsCaisseDeExemplaireTemp.moyenPaiement = this.libelleMoyentPaiementCaisse
+  //   mvtsCaisseDeExemplaireTemp.libelle = mvtsCaisseDeExemplaireTemp.referencePaiement + mvtsCaisseDeExemplaireTemp.montant
+  //   this.exemplaire.mouvementDeCaisse?.push(mvtsCaisseDeExemplaireTemp)
+  // }
 
   /**
    * Methode permettant de récupérer un distributeur dans le template et de l'associer à 
