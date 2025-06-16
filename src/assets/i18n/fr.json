@@ -85,18 +85,25 @@
       "title0": "Solde",
       "title1": "libellé",
       "title2": "type",
-      "title3": "detailJson",
+      "title3": "Observation",
+      "title4": "Etat",
+      "title5": "Nouveau solde",
+      "title6": "Montant écart",
+      "title7": "commentaire",
       "actions": {
         "link1": "Ajouter",
         "link2": "Modifier",
         "link3": "Détails",
-        "link4": "Supprimer"
+        "link4": "Supprimer",
+        "link5": "Ecart"
       }
     },
     "form": {
       "text1": "Le solde est obligatoire.",
       "text2": "le libelle est obligatoire.",
-      "text3": "le type est obligatoire."
+      "text3": "le type est obligatoire.",
+      "text4": "le commentaire est obligatoire.",
+      "text5": "le nouveau solde est obligatoire."
     }
   },
   "compte": {

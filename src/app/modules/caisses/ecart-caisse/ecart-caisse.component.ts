@@ -6,13 +6,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DetailsJson, ICaisses } from 'src/app/modele/caisses';
 import { CaissesService } from 'src/app/services/caisses/caisses.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
+import { IMouvementCaisses } from 'src/app/modele/mouvement-caisses';
+import { MouvementCaisseService } from 'src/app/services/mouvement-caisse/mouvement-caisse.service';
 
 @Component({
-  selector: 'app-new-caisse',
-  templateUrl: './new-caisse.component.html',
-  styleUrls: ['./new-caisse.component.scss']
+  selector: 'app-ecart-caisse',
+  templateUrl: './ecart-caisse.component.html',
+  styleUrls: ['./ecart-caisse.component.scss']
 })
-export class NewCaisseComponent implements OnInit {
+export class EcartCaisseComponent implements OnInit {
   caisse: ICaisses | undefined;
   forme: FormGroup;
   titre: string = '';
@@ -26,6 +28,7 @@ export class NewCaisseComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dataEnteteMenuService: DonneesEchangeService,
     private caisseService: CaissesService,
+    private mvtCaisseService: MouvementCaisseService,
     private router: Router,
     private infosPath: ActivatedRoute,
     private datePipe: DatePipe
@@ -39,6 +42,9 @@ export class NewCaisseComponent implements OnInit {
       ],
       etat: [true],
       solde: [''],
+      newsolde: ['', [Validators.required]],
+      mntecart: [''],
+      commentaire: ['', [Validators.required]],
       x1: [''],
       x2: [''],
       x5: [''],
@@ -56,17 +62,20 @@ export class NewCaisseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let idCaisse = this.infosPath.snapshot.paramMap.get('idCaisse');
+    let idCaisse = this.infosPath.snapshot.paramMap.get('caisseId');
     if (idCaisse != null && idCaisse !== '') {
       this.btnLibelle = 'Modifier';
-      this.titre = 'Caisse à Modifier';
+      this.titre = 'Ecart de caisse';
       this.caisseService.getCaisseById(idCaisse).subscribe((x) => {
         this.caisse = x;
         // Remplissage du formulaire avec les données de la caisse
         this.forme.setValue({
-          libelle: this.caisse.libelle,
+          libelle: '',
           solde: this.caisse.solde,
           etat: this.caisse.etat,
+          newsolde: '', // Initialisation du nouveau solde avec l'ancien solde
+          mntecart: '', // Champ pour l'écart de caisse
+          commentaire: '', // Champ pour le commentaire
           // Initialisation des champs de billets avec les valeurs de detailsJson ou des valeurs par défaut
           x1: this.caisse.detailsJson?.x1 || '',
           x2: this.caisse.detailsJson?.x2 || '',
@@ -130,10 +139,10 @@ export class NewCaisseComponent implements OnInit {
 
   onSubmit(caisseInput: ICaisses) {
     this.submitted = true;
-    if (this.forme.invalid || (this.selectedOptions == undefined || this.selectedOptions == '')) return;
+    if (this.forme.invalid) return;
 
     let billets: DetailsJson;
-    if (this.selectedOptions == 'cash') {
+    if (this.caisse?.type == 'cash') {
       const values = this.forme.value;
       billets = {
         x1: values.x1,
@@ -155,9 +164,9 @@ export class NewCaisseComponent implements OnInit {
     let caisseTemp: ICaisses = {
       id: uuidv4(),
       libelle: caisseInput.libelle,
-      solde: caisseInput.solde,
+      solde: this.forme.value.newsolde,
       etat: caisseInput.etat,
-      type: this.selectedOptions,
+      type: this.caisse?.type ?? '',
       detailsJson: billets!,
     };
 
@@ -165,9 +174,25 @@ export class NewCaisseComponent implements OnInit {
       caisseTemp.id = this.caisse.id;
     }
 
-    console.log('valeur final :', caisseTemp);
+    let donne: IMouvementCaisses;
+
+    donne = {
+      id: uuidv4(),
+      etat: caisseInput.etat,
+      montant: this.caisse?.solde! - this.forme.value.newsolde,
+      libelle: 'Ecart de caisse',
+      typeMvt: this.forme.value.mntecart > 0 ? 'ENTREE' : 'SORTIE',
+      dateCreation: new Date(),
+      moyenPaiement: caisseTemp,
+      referencePaiement: this.forme.value.commentaire
+    }
 
     this.caisseService.ajouterCaisse(caisseTemp).subscribe((object) => {
+      this.mvtCaisseService.ajouterMouvement(donne).subscribe((obj) => {
+        console.log('Le mouvement a été bien enregistré !', donne);
+      })
+
+      console.log('valeur final :', caisseTemp);
       this.router.navigate(['/list-caisses']);
     });
   }

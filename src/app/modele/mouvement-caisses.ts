@@ -16,8 +16,8 @@ export interface IMouvementCaisses {
     isMultipaiement?: string,
     referencePaiement: string,
     compte?: IComptes,
-    personnel: IPatient,
-    exemplaire: IExemplaireDocument
+    personnel?: IPatient,
+    exemplaire?: IExemplaireDocument
 }
 
 export interface MoyenPaiement {

@@ -226,7 +226,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   courant: string = '';
   req: boolean = false;
 
-
   constructor(
     private router: Router,
     private cdr: ChangeDetectorRef,

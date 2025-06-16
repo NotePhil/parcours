@@ -18,12 +18,14 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { AttributsRoutingModule } from '../attributs/attributs-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MatSelectModule } from '@angular/material/select';
+import { EcartCaisseComponent } from './ecart-caisse/ecart-caisse.component';
 
 
 @NgModule({
   declarations: [
     NewCaisseComponent,
-    ListCaissesComponent
+    ListCaissesComponent,
+    EcartCaisseComponent
   ],
   imports: [
     CommonModule,
