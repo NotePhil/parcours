@@ -132,7 +132,7 @@ export class NewPersonnelComponent implements OnInit {
             let userTemp: IUtilisateurs = {
               id: res.id,
               login: res.login,
-              passWord: res.passWord,
+              mdp: res.mdp,
               groupe: res.groupe,
               menu: res.menu,
               user: personnelTemp,
@@ -149,7 +149,7 @@ export class NewPersonnelComponent implements OnInit {
           let userTemp: IUtilisateurs = {
             id: uuidv4(),
             login: personnelTemp.email,
-            passWord: personnelTemp.nom + '_' + personnelTemp.id,
+            mdp: personnelTemp.nom + '_' + personnelTemp.id,
             user: personnelTemp,
           };
           this.userService.ajouterUser(userTemp).subscribe((obj) => {});
