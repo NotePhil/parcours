@@ -568,8 +568,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           this.exemplaire = x;
           this.document = x
           this.document.idDocument = x.idDocument
-          if (x.mouvements) {
-            this.promotion = x.mouvements[0].promotion
+          if (x.promotion) {
+            this.promotion = x.promotion
           }
           this.assurancePersonne = x.assurance
           if (this.assurancePersonne) {
@@ -584,7 +584,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
           this.dataSourceMouvementcaisses.data = this.ELEMENTS_TABLE_MOUVEMENTCAISSES
           this.dataSourceMouvements.data = this.ELEMENTS_TABLE_MOUVEMENTS;
-          console.log('mvts :', this.dataSourceMouvements.data);
+          console.log('mvts :', this.dataSourceMouvementcaisses.data);
 
           this.LAST_ELEMENTS_TABLE_MOUVEMENTS = this.ELEMENTS_TABLE_MOUVEMENTS;
           this.tailleFirstMvts = this.ELEMENTS_TABLE_MOUVEMENTS.length;
