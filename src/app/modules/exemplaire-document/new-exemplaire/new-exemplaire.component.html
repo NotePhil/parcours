@@ -398,7 +398,7 @@
                                 <!-- montant total -->
                                 <div class="total">
                                     <span class="mr-2">{{'ressource.table2.title11' | translate}}</span>
-                                    <input type="text" [value]="sommeTtVerse()" disabled>
+                                    <input type="text" formControlName="sommeMontantTotalVerse">
                                 </div>
         
                                 <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]"

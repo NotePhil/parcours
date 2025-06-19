@@ -272,7 +272,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       use: [false],
       montant: [''],
       moyenPaiement: new FormControl<string | ICaisses>(''),
-      referencePaiement: ['']
+      referencePaiement: [''],
+      sommeMontantTotalVerse: new FormControl<number>(0), // chant concernant le montant total des transaction à la modification
     })
   }
 
@@ -285,6 +286,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     this.fCaisse['solde'].disable();
     this.fCaisse['reste'].disable();
     this.fCaisse['montant'].disable();
+    this.fCaisse['sommeMontantTotalVerse'].disable();
     let idPersonne: string = this.donneeEchangeService.getExemplairePersonneRatachee()
     this.servicePatient.getPatientById(idPersonne).subscribe(
       patientTrouve => {
@@ -511,6 +513,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         console.log("montantMultiPaiement ", montantMultiPaiement);
         console.log('result :', this.modalResult);
         this.calculerMontantVerserGeneral(montantMultiPaiement);
+        this.useSolde(this.fCaisse['use'].value)
       }
     });
   }
@@ -580,6 +583,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           }
           if (this.exemplaire.mouvementDeCaisse) {
             this.ELEMENTS_TABLE_MOUVEMENTCAISSES = this.exemplaire.mouvementDeCaisse
+            
+            this.fCaisse['sommeMontantTotalVerse'].setValue(this.sommeTtVerse());
           }
 
           this.dataSourceMouvementcaisses.data = this.ELEMENTS_TABLE_MOUVEMENTCAISSES
@@ -1098,6 +1103,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     }
     exemplaireTemp.promotion = this.promotion
     exemplaireTemp.assurance = this.assurancePersonne
+    this.compte!.solde = this.soldeCompte
     // this.saveMvt();
     this.serviceExemplaire.ajouterExemplaireDocument(exemplaireTemp).subscribe((object) => {
       console.log("exemplaireTemp", exemplaireTemp);
