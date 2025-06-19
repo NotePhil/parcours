@@ -5,7 +5,7 @@ import { IPersonnel } from "./personnel";
 export interface IUtilisateurs {
     id: string,
     login: string,
-    passWord: string,
+    mdp: string,
     menu?: IMenu[],
     groupe?: IGroupes,
     user: IPersonnel
