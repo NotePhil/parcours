@@ -34,13 +34,7 @@ export class EcartCaisseComponent implements OnInit {
     private datePipe: DatePipe
   ) {
     this.forme = this.formBuilder.group({
-      libelle: [
-        '',
-        [
-          Validators.required
-        ],
-      ],
-      etat: [true],
+      libelle: [''],
       solde: [''],
       newsolde: ['', [Validators.required]],
       mntecart: [''],
@@ -70,10 +64,9 @@ export class EcartCaisseComponent implements OnInit {
         this.caisse = x;
         // Remplissage du formulaire avec les données de la caisse
         this.forme.setValue({
-          libelle: '',
+          libelle: this.caisse.libelle,
           solde: this.caisse.solde,
-          etat: this.caisse.etat,
-          newsolde: '', // Initialisation du nouveau solde avec l'ancien solde
+          newsolde: this.caisse.solde, // Initialisation du nouveau solde avec l'ancien solde
           mntecart: '', // Champ pour l'écart de caisse
           commentaire: '', // Champ pour le commentaire
           // Initialisation des champs de billets avec les valeurs de detailsJson ou des valeurs par défaut
@@ -120,7 +113,7 @@ export class EcartCaisseComponent implements OnInit {
       (values.x1 || 0) * 1
 
     // Calcul du total général
-    this.forme.controls['solde'].setValue(totalRecu);
+    this.forme.controls['newsolde'].setValue(totalRecu);
   }
 
   verify() {

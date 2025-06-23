@@ -89,7 +89,6 @@ export class ModalBilleterieComponent implements OnInit {
         (this.caisse?.detailsJson?.x1 || 0) * 1
     });
 
-    this.montantAVerser = this.data.sommes || 0;
     if (this.data.monaies) {
       this.formePaiement.setValue({
         x1: this.data.monaies.x1,
@@ -131,8 +130,24 @@ export class ModalBilleterieComponent implements OnInit {
       (values.x2 || 0) * 2 +
       (values.x1 || 0) * 1;
 
+      // Calcul du total rendu
+    const totalRendu =
+      (values.rendu10000 || 0) * 10000 +
+      (values.rendu5000 || 0) * 5000 +
+      (values.rendu2000 || 0) * 2000 +
+      (values.rendu1000 || 0) * 1000 +
+      (values.rendu500 || 0) * 500 +
+      (values.rendu500B || 0) * 500 +
+      (values.rendu100 || 0) * 100 +
+      (values.rendu50 || 0) * 50 +
+      (values.rendu25 || 0) * 25 +
+      (values.rendu10 || 0) * 10 +
+      (values.rendu5 || 0) * 5 +
+      (values.rendu2 || 0) * 2 +
+      (values.rendu1 || 0) * 1;
+
     // Calcul du reste à verser
-     return this.montantAVerser = this.data.sommes - totalRecu;
+     return this.montantAVerser = this.data.sommes - totalRecu + totalRendu;
   }
 
   calculateTotals() {
