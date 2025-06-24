@@ -237,11 +237,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   reponse: any;
   courant: string = '';
   req: boolean = false;
-
-  /* variable qui retient l'indice du tableau de mouvement-caisse lorsqu'on clique sur le solde.
-   cet indice sera par la suite utilisée pour supprimer la ligne de mouvement-caisse avec solde lorsqu'on décoche le solde
-  */
-  indiceMouvementCaisseAvecSolde : number = 0
   
   /**cette variable sert à enregistrer les informations de caisse pour exemplaire, 
    * et sa valeur finale sera affectée à l'objet mouvementDeCaisse à l'exemplaire lors de l'enregistrement
@@ -940,17 +935,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * @returns 
    */
   useSolde(res: boolean) {
-    let mvtDeCaisse : IMouvementCaisses = {
-      id: '',
-      etat: false,
-      montant: 0,
-      libelle: '',
-      typeMvt: '',
-      dateCreation: this.exemplaire.dateCreation,
-      moyenPaiement: '',
-      referencePaiement: '',
-      personnel: this.exemplaire.personneRattachee!
-    }
     if (res) {
       if(this.restAPayer <= this.compte?.solde!){
         this.soldeCompteUtiliser =  this.restAPayer;
@@ -960,15 +944,9 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         this.soldeCompteUtiliser = this.compte?.solde! ;
         this.soldeCompte = 0;
       }
-    mvtDeCaisse.montant = this.soldeCompteUtiliser
-    mvtDeCaisse.moyenPaiement = 'solde'
-    mvtDeCaisse.referencePaiement = uuidv4()
 
-    this.dataSourceMouvementcaisses.data.push(mvtDeCaisse)
-    this.indiceMouvementCaisseAvecSolde = this.dataSourceMouvementcaisses.data.length - 1
-      this.montantVerser += this.soldeCompteUtiliser;
+    this.montantVerser += this.soldeCompteUtiliser;
     } else {
-      this.dataSourceMouvementcaisses.data.slice(this.indiceMouvementCaisseAvecSolde)
       this.soldeCompte = this.compte?.solde!;
       this.montantVerser -= this.soldeCompteUtiliser;
       this.soldeCompteUtiliser = 0;
@@ -1129,6 +1107,23 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     exemplaireTemp.assurance = this.assurancePersonne
     this.compte!.solde = this.soldeCompte
     // this.saveMvt();
+
+    if (this.fCaisse['use'].value) {
+      let mvtDeCaisse : IMouvementCaisses = {
+        id: '',
+        etat: false,
+        montant: this.soldeCompteUtiliser,
+        libelle: '',
+        typeMvt: '',
+        dateCreation: this.exemplaire.dateCreation,
+        moyenPaiement: 'solde',
+        referencePaiement: uuidv4(),
+        personnel: this.exemplaire.personneRattachee!
+      }
+
+       exemplaireTemp.mouvementDeCaisse!.push(mvtDeCaisse)
+    }
+
     this.serviceExemplaire.ajouterExemplaireDocument(exemplaireTemp).subscribe((object) => {
       console.log("exemplaireTemp", exemplaireTemp);
       
