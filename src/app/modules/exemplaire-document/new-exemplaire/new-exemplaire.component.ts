@@ -619,7 +619,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           )
           this.fCaisse['montant'].setValue(0)
         });
-      // this.initialiseMvtCaisses(this.idExemplaire);
     }
     if (this.idDocument != null && this.idDocument !== '') {
       this.serviceDocument
@@ -646,18 +645,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
             )
           }
         });
-      // this.initialiseMvtCaisses(this.idDocument);
     }
   }
 
   initialiseMvtCaisses(id: string) {
-    // this.mvtCaisseService.getExemplaireDocumentByIdMvtCaisse(id).subscribe((d) => {
-    //   console.log("mvt caisses last :", d);
-
-    //   if (d) {
-    //     this.ELEMENTS_TABLE_MOUVEMENTCAISSES = d;
-    //   }
-    // })
     if (this.exemplaire.mouvementDeCaisse) {
       this.ELEMENTS_TABLE_MOUVEMENTCAISSES = this.exemplaire.mouvementDeCaisse
     }
@@ -963,7 +954,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * Méthode permettant de faire la différence entre la somme versée et la somme total à payer
    */
   resteApayerReel() {
-    this.restAPayer = this.montantTotalAPayer - this.sommeTtVerse() - this.montantVerser;
+    this.restAPayer = this.montantTotalAPayer - this.montantVerser;
     this.fCaisse['reste'].setValue(this.restAPayer);
   }
 
