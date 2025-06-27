@@ -513,7 +513,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         console.log("montantMultiPaiement ", montantMultiPaiement);
         console.log('result :', this.modalResult);
         this.calculerMontantVerserGeneral(montantMultiPaiement);
-        this.useSolde(this.fCaisse['use'].value)
+        //this.useSolde(this.fCaisse['use'].value)
       }
     });
   }
@@ -954,7 +954,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * Méthode permettant de faire la différence entre la somme versée et la somme total à payer
    */
   resteApayerReel() {
-    this.restAPayer = this.montantTotalAPayer - this.montantVerser;
+    this.restAPayer = this.montantTotalAPayer - this.montantVerser - this.montantTTverse;
     this.fCaisse['reste'].setValue(this.restAPayer);
   }
 
@@ -993,6 +993,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     }
 
     this.montantVerser = nouveauMontantVerser;
+    this.fCaisse['montant'].setValue(this.montantVerser);
     this.resteApayerReel();
 
     if(useIsTrue)
