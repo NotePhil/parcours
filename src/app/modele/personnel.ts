@@ -21,4 +21,6 @@ export interface IPersonnel {
     }
   ];
   qrCodeValue: string;
+  dateCreation?: Date;
+  dateModification?: Date;
 }
