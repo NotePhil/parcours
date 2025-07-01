@@ -29,7 +29,7 @@
                 </div>
                 <div *ngIf="this.idExemplaire">
                     <span class="label"> {{ "document.title7" | translate }} : </span>
-                    {{ courant }}
+                    {{ courant! }}
                 </div>
                 <div class="codeInput">
                     <label for="">{{'document.exemplaire.text11' | translate}} </label>
@@ -340,18 +340,21 @@
                                         <label for="moyenPaiement" class="label">
                                             {{'mvtCaisse.table.title2' | translate}}
                                         </label>
-                                        <mat-form-field appearance="fill">
+                                        <div>
+                                            <input type="text" role="button" (click)="openModalPaiementDialog()" class="form-control" placeholder="{{'mvtCaisse.table.title13' | translate}}">
+                                        </div>
+                                        <!-- <mat-form-field appearance="fill">
                                             <mat-label>Choisissez des options</mat-label>
                                             <mat-select 
                                                 [multiple]="false"
                                                 [(value)]="selectedOptions"
                                                 >
-                                                <mat-option *ngFor="let option of caisses" [value]="option" (click)="verifyUseSolde(option.type); getLibelleMoyentPaiementCaisse(option.type)">
+                                                <mat-option *ngFor="let option of caisses" [value]="option" (click)="verifyUseSolde(option.type)">
                                                 {{ option.type }}
                                                 </mat-option>
                                                 <mat-option (click)="verifyUseSolde('multipaiement')" value="multipaiement">{{'mvtCaisse.table.title12' | translate}}</mat-option>
                                             </mat-select>
-                                            </mat-form-field>
+                                        </mat-form-field> -->
                                     </div>
                                 </div>
                                 <div class="form-group">

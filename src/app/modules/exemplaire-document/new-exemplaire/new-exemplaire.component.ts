@@ -242,7 +242,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * et sa valeur finale sera affectée à l'objet mouvementDeCaisse à l'exemplaire lors de l'enregistrement
    * */
   mvtsCaisseDeExemplaire: IMouvementCaisses | undefined
-  libelleMoyentPaiementCaisse : string = ""
 
   constructor(
     private router: Router,
@@ -489,31 +488,42 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         let montantMultiPaiement = 0; 
         this.modalResult = result.data;
         this.modalResult.forEach((element) => {
-            let mvtDeCaisse : IMouvementCaisses = {
-              id: '',
-              etat: false,
-              montant: 0,
-              libelle: '',
-              typeMvt: '',
-              dateCreation: this.exemplaire.dateCreation,
-              moyenPaiement: '',
-              referencePaiement: '',
-              personnel: this.exemplaire.personneRattachee!
-            }
           if (element.montant) {
             montantMultiPaiement += element.montant;
-
-            mvtDeCaisse.montant = element.montant
-            mvtDeCaisse.moyenPaiement = element.moyen.type
-            mvtDeCaisse.referencePaiement = element.reference
-
-            this.dataSourceMouvementcaisses.data.push(mvtDeCaisse)
           }
         });
         console.log("montantMultiPaiement ", montantMultiPaiement);
         console.log('result :', this.modalResult);
         this.calculerMontantVerserGeneral(montantMultiPaiement);
-        //this.useSolde(this.fCaisse['use'].value)
+      }
+    });
+  }
+
+  /**
+   * Methode permettant de retenir chaque ligne du tableau modalResult ayant un montant non nul et de les ajouter
+   * au tableau final de mouvements caisses
+   */
+  convertModalResultInFinalMvtCaisse(){
+
+    this.modalResult.forEach((element) => {
+      let mvtDeCaisse : IMouvementCaisses = {
+        id: '',
+        etat: false,
+        montant: 0,
+        libelle: '',
+        typeMvt: '',
+        dateCreation: this.exemplaire.dateCreation,
+        moyenPaiement: '',
+        referencePaiement: '',
+        personnel: this.exemplaire.personneRattachee!
+      }
+      if (element.montant) {
+
+        mvtDeCaisse.montant = element.montant
+        mvtDeCaisse.moyenPaiement = element.moyen.type
+        mvtDeCaisse.referencePaiement = element.reference
+
+        this.ELEMENTS_TABLE_MOUVEMENTCAISSES.push(mvtDeCaisse)
       }
     });
   }
@@ -834,16 +844,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       '_controlsAutocomplateDistributeur'
     ) as FormArray;
   }
-  /**
-   * methode permettant de recupérer l'institulé du moyen de payement à l'IHM
-   * et de le reutiliser ici.
-   * @param moyenPaiement libelé du moyen de paiement
-   * @returns 
-   */
-  getLibelleMoyentPaiementCaisse(moyenPaiement : string):string {
-    this.libelleMoyentPaiementCaisse = moyenPaiement
-    return this.libelleMoyentPaiementCaisse
-  }
 
   /**
    * Permet d'incrémenter les index des différents inputs contenus dans les formControl
@@ -959,25 +959,25 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   }
 
 
-  verifyUseSolde(caisse: string) {
+  // verifyUseSolde(caisse: string) {
 
-    if (caisse == 'solde') {
+  //   if (caisse == 'solde') {
       
-    }else if (caisse == 'multipaiement') {
-      this.fCaisse['montant'].disable();
-      this.openModalPaiementDialog();
-    }
-    else if (caisse == 'cash') {
-      this.fCaisse['montant'].disable();
-      this.openModalBilleterieDialog();
-    }
-    else {
-      this.fCaisse['montant'].enable();
-      this.fCaisse['montant'].setValue(0);
-    }
+  //   }else if (caisse == 'multipaiement') {
+  //     this.fCaisse['montant'].disable();
+  //     this.openModalPaiementDialog();
+  //   }
+  //   else if (caisse == 'cash') {
+  //     this.fCaisse['montant'].disable();
+  //     this.openModalBilleterieDialog();
+  //   }
+  //   else {
+  //     this.fCaisse['montant'].enable();
+  //     this.fCaisse['montant'].setValue(0);
+  //   }
     
     
-  }
+  // }
   //à la perte du focus dans le champ montant versé on recalcul les montants (à verser, ...)
   calculerMontantVerser(montantVerserSaisi : number){
     this.calculerMontantVerserGeneral(montantVerserSaisi);
@@ -1088,7 +1088,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       beneficiaireObligatoire: this.document.beneficiaireObligatoire,
       promotion: this.promotion,
       assurance: this.assurancePersonne,
-      mouvementDeCaisse: this.dataSourceMouvementcaisses.data
+      mouvementDeCaisse: []
     };
 
     if (this.exemplaire.id != '') {
@@ -1098,7 +1098,9 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     exemplaireTemp.promotion = this.promotion
     exemplaireTemp.assurance = this.assurancePersonne
     this.compte!.solde = this.soldeCompte
-    // this.saveMvt();
+    
+    this.convertModalResultInFinalMvtCaisse()
+    exemplaireTemp.mouvementDeCaisse = this.ELEMENTS_TABLE_MOUVEMENTCAISSES
 
     if (this.fCaisse['use'].value) {
       let mvtDeCaisse : IMouvementCaisses = {
@@ -1126,65 +1128,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   displayFnCaisse(element: ICaisses): string {
     return element && element.libelle ? element.libelle : '';
   }
-
-  /**
-   * Methode de validation d'un mouvement caisse !
-   * @param selectItem 
-   * @param doc 
-   */
-  // saveMvt() {
-  //   let mvtsCaisseDeExemplaireTemp : IMouvementCaisses = {
-  //     id: "",
-  //     etat: false,
-  //     montant: 0,
-  //     libelle: '',
-  //     typeMvt: this.exemplaire.typeMouvement,
-  //     dateCreation: this.exemplaire.dateCreation,
-  //     moyenPaiement: '',
-  //     referencePaiement: this.fCaisse['referencePaiement'].value,
-  //     personnel: this.laPersonneRattachee!
-  //   }
-
-  //   if(this.fCaisse['uses'].value == true){
-  //     this.libelleMoyentPaiementCaisse = ""
-  //     mvtsCaisseDeExemplaireTemp.montant = this.fCaisse['montant'].value,
-  //     this.libelleMoyentPaiementCaisse = "solde"
-  //   } else if (this.libelleMoyentPaiementCaisse == 'multipaiement') {
-  //     this.modalResult.forEach((element) => {
-  //       if (element.montant) {
-  //         mvtsCaisseDeExemplaireTemp.montant = element.montant
-  //       }
-  //     });
-  //   } else if (this.libelleMoyentPaiementCaisse == 'cash') {
-  //     let billets: Monaies;
-      
-  //     billets = {
-  //       pieces: {
-  //         x1: this.modalResultBilleterie.x1,
-  //         x2: this.modalResultBilleterie.x2,
-  //         x5: this.modalResultBilleterie.x5,
-  //         x10: this.modalResultBilleterie.x10,
-  //         x25: this.modalResultBilleterie.x25,
-  //         x50: this.modalResultBilleterie.x50,
-  //         x100: this.modalResultBilleterie.x100,
-  //         x500: this.modalResultBilleterie.x500,
-  //       },
-  //       billets: {
-  //         x500: this.modalResultBilleterie.x500B,
-  //         x1000: this.modalResultBilleterie.x1000,
-  //         x2000: this.modalResultBilleterie.x2000,
-  //         x5000: this.modalResultBilleterie.x5000,
-  //         x10000: this.modalResultBilleterie.x10000
-  //       }
-  //     }
-      
-  //     mvtsCaisseDeExemplaireTemp.montant = this.fCaisse['montant'].value,
-  //     mvtsCaisseDeExemplaireTemp.detailJson = billets
-  //   }
-  //   mvtsCaisseDeExemplaireTemp.moyenPaiement = this.libelleMoyentPaiementCaisse
-  //   mvtsCaisseDeExemplaireTemp.libelle = mvtsCaisseDeExemplaireTemp.referencePaiement + mvtsCaisseDeExemplaireTemp.montant
-  //   this.exemplaire.mouvementDeCaisse?.push(mvtsCaisseDeExemplaireTemp)
-  // }
 
   /**
    * Methode permettant de récupérer un distributeur dans le template et de l'associer à 
