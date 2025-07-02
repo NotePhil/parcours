@@ -32,7 +32,6 @@ import { IAssociationCategorieAttributs } from 'src/app/modele/association-categ
 import { TypeMouvement } from 'src/app/modele/typeMouvement';
 import { ModalDocEtatsComponent } from '../../shared/modal-document-doc-etats/modal-document-doc-etats.component';
 import { IDocEtats } from 'src/app/modele/doc-etats';
-import { log } from 'node:console';
 
 @Component({
   selector: 'app-new-form-document',

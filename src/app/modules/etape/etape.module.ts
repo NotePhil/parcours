@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { TicketsModule } from '../tickets/tickets.module';
 import { SharedModule } from '../shared/shared.module';
@@ -24,6 +25,7 @@ import { ModulesRoutingModule } from '../modules-routing.module';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,

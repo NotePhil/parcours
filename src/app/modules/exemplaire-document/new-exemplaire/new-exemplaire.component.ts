@@ -769,8 +769,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       }
       this.displayedRessourcesColumns.push(montantCharge)
       this.displayedRessourcesColumns.push(montant)
-      console.log("displayedRessourcesColumns",this.displayedRessourcesColumns);
-      
     }
   }
   /**
@@ -958,30 +956,12 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     this.fCaisse['reste'].setValue(this.restAPayer);
   }
 
-
-  // verifyUseSolde(caisse: string) {
-
-  //   if (caisse == 'solde') {
-      
-  //   }else if (caisse == 'multipaiement') {
-  //     this.fCaisse['montant'].disable();
-  //     this.openModalPaiementDialog();
-  //   }
-  //   else if (caisse == 'cash') {
-  //     this.fCaisse['montant'].disable();
-  //     this.openModalBilleterieDialog();
-  //   }
-  //   else {
-  //     this.fCaisse['montant'].enable();
-  //     this.fCaisse['montant'].setValue(0);
-  //   }
-    
-    
-  // }
   //à la perte du focus dans le champ montant versé on recalcul les montants (à verser, ...)
   calculerMontantVerser(montantVerserSaisi : number){
     this.calculerMontantVerserGeneral(montantVerserSaisi);
   }
+
+
   //méthode commune pour tous les types de paiement
   calculerMontantVerserGeneral(nouveauMontantVerser : number){
     let useIsTrue = false;
@@ -1218,21 +1198,22 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
   }
 
-  rechercherListingAssurance(option: IDistributeur) {   
+  rechercherListingAssurance(option: IDistributeur) {
     this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
-      this.promotion = undefined
-      if (promo) {
-        this.promotion = promo;
-        this.ELEMENTS_TABLE_MOUVEMENTS = this.appliquerPromotionSurMouvementsConcernés(promo, this.ELEMENTS_TABLE_MOUVEMENTS);
-        this.showText = false;
-      } else {
-        this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
-          mouvement => {
-          mouvement.promotion = undefined
+      this.promotion = promo!
+      this.showText = false
+      this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
+        mvt => {
+          let mouvementTemp = mvt
+          if (this.promotion) {
+            mouvementTemp.promotion = this.promotion
+            this.appliquerPromotion(this.promotion, mouvementTemp)
+          }
+          if (!this.promotion) {
+            this.showText = true
+          }
         });
-        this.showText = true;
-      }
-    });
+    })
   }
 
   /**

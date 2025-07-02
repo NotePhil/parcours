@@ -37,7 +37,7 @@ export class NewParoursComponent implements OnInit {
   ELEMENTS_TABLE: IAfficheEtape[] = [];
   filteredOptions: IEtape[] | undefined;
 
-  displayedColumns: string[] = ['libelle', 'etat', 'Document', 'actions'];
+  displayedColumns: string[] = ['libelle', 'etat', 'Document', 'EtapePrecedant', 'actions'];
 
   dataSource = new MatTableDataSource<IAfficheEtape>(this.ELEMENTS_TABLE);
 
@@ -50,12 +50,14 @@ export class NewParoursComponent implements OnInit {
     etape: [],
   };
   etapes: IEtape[] = [];
+  etapesPar: IEtape[] = [];
   forme: FormGroup;
   btnLibelle: string = 'Ajouter';
   submitted: boolean = false;
   etape$: Observable<IEtape[]> = EMPTY;
   idService: string = '';
   titre: string = '';
+  libelleEtapes: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -76,45 +78,39 @@ export class NewParoursComponent implements OnInit {
           Validators.minLength(2)
         ],
       ],
-      _etape: new FormControl<IEtape[]>([]),
+      _etape: [[]],
     });
   }
 
-  openNewEtape(etapeId?: string) {
+  openNewEtape(etape?: IEtape) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '90%';
-    dialogConfig.height = '80%';
-    dialogConfig.autoFocus = true;
-
-    if (etapeId) {
-      dialogConfig.data = { idEtape: etapeId }; // Passer l'id de l'etape a la modal
-    }
+    (dialogConfig.enterAnimationDuration = '1000ms'),
+    (dialogConfig.exitAnimationDuration = '1000ms'),
+    (dialogConfig.data = {etapes: this.etapes, idEtape: etape})
 
     const dialogRef = this.dialog.open(NewEtapeComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: IEtape) => {
+      console.log("result modal :", result);
+      
       if (result) {
-        const currentEtape = this.forme.controls['_etape'].value as IEtape[];
-
-        const index = currentEtape.findIndex((et) => et.id === result.id);
+        
+        const index = this.etapes.findIndex((et) => et.id === result.id);
         if (index >= 0) {
-          currentEtape[index] = result;
+          this.etapes[index] = result;
+          this.etapes.forEach((etape) => {
+            etape.etapeprecedant = etape.etapeprecedant?.map((etapeprecedant) => etapeprecedant.id === result.id ? result : etapeprecedant);
+          });
         } else {
-          currentEtape.push(result);
+          this.etapes.push(result);
         }
-        this.forme.controls['_etape'].setValue(currentEtape);
-        this.dataSource.data = currentEtape.map((etape) =>
+        this.dataSource.data = this.etapes.map((etape: IEtape) =>
           this.convertEtapToEtapAffiche(etape)
         );
-        this.getEtapeLibelles();
+        console.log("all element :", this.etapes);
+        
       }
     });
-  }
-
-  getEtapeLibelles(): string {
-    const etapes = this.forme.controls['_etape'].value as IEtape[];
-
-    return etapes.map((etape) => etape.libelle).join(', ');
   }
 
   ngOnInit(): void {
@@ -210,16 +206,23 @@ export class NewParoursComponent implements OnInit {
   }
 
   private convertEtapToEtapAffiche(x: IEtape): IAfficheEtape {
+    console.log("donnee send :", x);
+    
+
     let afficheEtape: IAfficheEtape = {
       id: '',
       libelle: '',
       etat: false,
+      etapeprecedant: [],
       document: [],
       listSousDocuments: '',
+      listEtapeprecedantes: ''
     };
     afficheEtape.id = x.id;
     afficheEtape.libelle = x.libelle;
     afficheEtape.etat = x.etat;
+    afficheEtape.document = x.document;
+    afficheEtape.etapeprecedant = x.etapeprecedant;
 
     x.document.forEach(
       (d) => (afficheEtape.listSousDocuments += d.titre + ', ')
@@ -228,7 +231,16 @@ export class NewParoursComponent implements OnInit {
       /,\s*$/,
       ''
     );
+    x.etapeprecedant?.forEach(
+      (d) => (afficheEtape.listEtapeprecedantes += d.libelle + ', ')
+    );
+    afficheEtape.listEtapeprecedantes = afficheEtape.listEtapeprecedantes.replace(
+      /,\s*$/,
+      ''
+    );
 
+    console.log("affichage :", afficheEtape);
+    
     return afficheEtape;
   }
   return(){
@@ -239,14 +251,14 @@ export class NewParoursComponent implements OnInit {
     this.submitted = true;
     if (
       this.forme.invalid ||
-      (paroursInput._etape && paroursInput._etape.length < 1)
+      (this.etapes && this.etapes.length < 1)
     )
       return;
 
     let paroursTemp: IParours = {
       id: uuidv4(),
       libelle: paroursInput.libelle,
-      etape: paroursInput._etape,
+      etape: this.etapes,
     };
 
     if (this.parours.id != '') {

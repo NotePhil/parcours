@@ -3,7 +3,9 @@ import { IDocument } from "./document";
 
 export interface IEtape {
   id:string,
-  libelle:string,
   etat:boolean,
+  libelle:string,
   document: IDocument[],
+  etapesuivant?: IEtape[],
+  etapeprecedant?: IEtape[]
 }

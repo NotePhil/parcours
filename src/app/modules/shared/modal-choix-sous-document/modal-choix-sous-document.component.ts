@@ -47,6 +47,9 @@ export class ModalChoixSousDocumentComponent implements OnInit {
 
   // Annuler et fermer la boîte de dialogue
   onCancel() {
+    this.donneeDocCatService.dataDocumentSousDocuments = this.ELEMENTS_TABLE_DOCUMENTS;
+    this.ELEMENTS_TABLE_DOCUMENTS = [];
+    this.ELEMENTS_TABLE_DOCUMENTS_TEMP = [];
     this.dialogRef.close();
   }
 
@@ -187,7 +190,6 @@ export class ModalChoixSousDocumentComponent implements OnInit {
   // Sauvegarder les changements et fermer la boîte de dialogue
   onSave() {
     this.ELEMENTS_TABLE_DOCUMENTS = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP]; // Finaliser les changements
-    this.donneeDocCatService.dataDocumentSousDocuments = this.ELEMENTS_TABLE_DOCUMENTS;
-    this.dialogRef.close(this.ELEMENTS_TABLE_DOCUMENTS);
+    this.onCancel();
   }
 }

@@ -3,51 +3,51 @@
         <form class="w-100" id="mainBlockDockEtat">
             <div class="form-group mt-5">
                 <div class='card-hearder'>
-                    <h2 class="modal-title">{{'document.title6' | translate}}</h2>
+                    <h2 class="modal-title">{{'etape.title4' | translate}}</h2>
                 </div>
                 <div class="newAttSection">
                     <div class="searchBlock">
-                        <form [formGroup]="formeDocEtats" *ngIf="formeDocEtats" class="example-form-entete">
-                            <div class="etatInput">
-                                <label>{{'doc-etats.button1' | translate}}</label>
-                                <input placeholder="{{'patient.search-bar' | translate}}" type="text" class="form-control inputMat" matInput aria-label="Rechercher" [formControl]="etatControl" [matAutocomplete]="auto">
+                        <form [formGroup]="formeParEtapes" *ngIf="formeParEtapes" class="example-form-entete">
+                            <div class="etapeInput">
+                                <label>{{"parours.table.title2" | translate}}</label>
+                                <input placeholder="{{'patient.search-bar' | translate}}" type="text" class="form-control inputMat" matInput aria-label="Rechercher" [formControl]="etapeControl" [matAutocomplete]="auto">
                                 <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
-                                    <mat-option class="options" *ngFor="let option of filteredOptions" [value]="option" (click)="rechercherListingEtat(option); reinitialliseRessourceControl()">
+                                    <mat-option class="options" *ngFor="let option of filteredOptions" [value]="option" (click)="rechercherListingEtape(option); reinitialliseRessourceControl()">
                                         {{option.libelle}}
                                     </mat-option>
                                 </mat-autocomplete>
                             </div>
                         </form>
-                        <div *ngIf="selected && etatExiste" class="texteErreur">
+                        <div *ngIf="selected && etapeExiste" class="texteErreur">
                             <p>{{'doc-etats.form.text5' | translate}}</p>
                         </div>
                     </div>
     
-                    <!-- tableau listing des etats du document -->
+                    <!-- tableau listing des etapes du parcours -->
     
                     <div class="card-body p-0 tableBlock" id="tableBlock">
                         <div class='table-responsive w-100'>
-                            <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceDocEtats">
+                            <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSourceParEtapes">
     
                                 <!-- libelle Column -->
                                 <ng-container matColumnDef="libelle">
                                     <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'preconisation.table.title1' | translate}} </th>
-                                    <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.etat.libelle}} </td>
+                                    <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
                                 </ng-container>
     
                                 <!-- validation Column -->
-                                <ng-container matColumnDef="validation">
+                                <!-- <ng-container matColumnDef="validation">
                                     <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'doc-etats.form.text6' | translate}} </th>
                                     <td class="text-dark containCell" mat-cell *matCellDef="let element">{{element.validation?.libelle}}</td>
-                                </ng-container>
+                                </ng-container> -->
     
-                                <!-- EtatPrecedant Column -->
-                                <ng-container matColumnDef="EtatPrecedant">
-                                    <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'etats.table.title2' | translate}}</th>
+                                <!-- EtapePrecedant Column -->
+                                <ng-container matColumnDef="EtapePrecedant">
+                                    <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'etape.title2' | translate}}</th>
                                     <td class="text-dark containCell choixCell champsSelect" mat-cell *matCellDef="let element, let i = index">
                                         <div class="matSelectElement selectInputTab">
-                                            <mat-select [disabled]="i == 0" [(ngModel)]="element.etat.etatPrecedant" [ngModelOptions]="{standalone: true}" multiple>
-                                                <mat-option *ngFor="let etat of effaceEtatCourrant(element)" (click)="ngAfterViewInit()" [value]="etat.etat">{{etat.etat.libelle}}</mat-option>
+                                            <mat-select [disabled]="i == 0" [(ngModel)]="element.etatPrecedant" [ngModelOptions]="{standalone: true}" multiple>
+                                                <mat-option *ngFor="let etape of effaceEtapeCourrant(element)" (click)="ngAfterViewInit()" [value]="etape">{{etape.libelle}}</mat-option>
                                             </mat-select>
                                         </div>
                                         <div class="coverFull" *ngIf="i == 0">
@@ -61,20 +61,14 @@
                                     <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
                                     <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                         <div class="actions">
-                                            <button class="btn" [value]="element.id" title="{{'lists.button3' | translate}}" (click)="retirerSelectionEtat(i)">
+                                            <button class="btn" [value]="element.id" title="{{'lists.button3' | translate}}" (click)="retirerSelectionEtape(i)">
                                                 <i class="fa fa-trash text-danger" aria-hidden="true"></i>
-                                            </button>
-                                            <button class="btn" title="{{'preconisation.table.title4' | translate}}">
-                                                <i class="fa fa-info-circle text-info ml-1" aria-hidden="true"></i>
-                                            </button>
-                                            <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(); getIdDocEtat(element.id); initialiseValidationControl(element.validation)">
-                                                <i class="fa fa-plus text-warning" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </ng-container>
-                                <tr mat-header-row *matHeaderRowDef="displayedDocEtatsColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedDocEtatsColumns;"></tr>
+                                <tr mat-header-row *matHeaderRowDef="displayedParEtapesColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedParEtapesColumns;"></tr>
                             </table>
     
                             <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]"
@@ -95,5 +89,5 @@
             </div>
         </form>
     </div>
-    <div class="d-flex align-items-center" #mermaidDivEtatsDoc></div>
+    <div class="d-flex align-items-center" #mermaidDivEtapesPar></div>
 </div>

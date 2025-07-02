@@ -672,6 +672,9 @@
   },
   "etape": {
     "title1": "Document",
+    "title2": "Etape précédente",
+    "title3": "Etape suivante",
+    "title4": "Créer les étapes précédantes et suivantes",
     "table": {
       "title": "Ajouter ",
       "title1": "libelle",

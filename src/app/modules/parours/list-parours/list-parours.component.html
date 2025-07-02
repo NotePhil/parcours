@@ -29,7 +29,10 @@
                   <!-- libelle Column -->
                   <ng-container matColumnDef="libelle">
                       <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"parours.table1.title1"| translate}}</th>
-                      <td class="containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+                      <td class="containCell align-items-center" mat-cell *matCellDef="let element"> 
+                        <i class="fa fa-info mr-2 p-3" title="Visualiser le graphe" (click)="openModalGrapheParcours(element)" style="cursor: pointer; text-decoration: black;" aria-hidden="true"></i>
+                        {{element.libelle}}
+                      </td>
                   </ng-container>
 
                   <!-- etape Column -->

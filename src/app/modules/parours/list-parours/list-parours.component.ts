@@ -11,6 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { IElements } from 'src/app/modele/elements';
 import { EMPTY, Observable } from 'rxjs';
 import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
+import { ModalGrapheParcoursComponent } from '../../shared/modal-graphe-parcours/modal-graphe-parcours.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-parours',
@@ -45,6 +48,8 @@ export class ListParoursComponent implements OnInit {
   };
   constructor(
     private translate: TranslateService,
+    private router: Router,
+    private dialogDef: MatDialog,
     private _liveAnnouncer: LiveAnnouncer,
     private serviceParour: ParoursService,
     private actionsview: PassActionService
@@ -110,8 +115,27 @@ export class ListParoursComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
   private getAllParours() {
     return this.serviceParour.getAllParours();
+  }
+
+  openModalGrapheParcours(parcours: IParours) {
+    console.log("parcours graphe :", parcours);
+    
+    const dialogRef = this.dialogDef.open(ModalGrapheParcoursComponent, {
+          height: '90%',
+          width: '65%',
+          maxWidth: '100vw',
+          maxHeight: '100vh',
+          enterAnimationDuration: '1000ms',
+          exitAnimationDuration: '1000ms',
+          data: {parcour: parcours},
+        });
+    
+        dialogRef.afterClosed().subscribe((result) => {
+          
+        });
   }
 
   private convertParToParAffiche(x: IParours): IAfficheParours {

@@ -46,6 +46,8 @@ import { ModulesRoutingModule } from '../modules-routing.module';
 import { ModalChoixGroupsComponent } from './modal-choix-groups/modal-choix-groups.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { ModalEtapesPreorsuivParcoursComponent } from './modal-etapes-preorsuiv-parcours/modal-etapes-preorsuiv-parcours.component';
+import { ModalGrapheParcoursComponent } from './modal-graphe-parcours/modal-graphe-parcours.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ModalChoixAttributsComponent,
     ModalChoixPreconisationsComponent,
     EnteteComponent,
+    ModalGrapheParcoursComponent,
+    ModalEtapesPreorsuivParcoursComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
     ModalDocEtatsComponent,
@@ -76,6 +80,7 @@ import { MatMenuModule } from '@angular/material/menu';
   exports: [
     ModalCategoriesComponent,
     EnteteComponent,
+    ModalEtapesPreorsuivParcoursComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
     ModalDocEtatsComponent,

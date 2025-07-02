@@ -53,10 +53,9 @@ export class ViewFormDocumentComponent implements OnInit {
         wrappingWidth: 150,
       },
     });
-    mermaid.init();
+    mermaid.run();
 
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
-    console.log('id ',this.infosPath.snapshot.paramMap.get('idDocument'));
     if (idDocument != null && idDocument !== '') {
       this.serviceDocument.getDocumentById(idDocument).subscribe((x) => {
         this.document = x;
@@ -65,8 +64,8 @@ export class ViewFormDocumentComponent implements OnInit {
     this.titre = this.dataEnteteMenuService.dataEnteteMenu;
   }
 
-  listEtats(etats: IEtats[]): string{
-    let lists : string = "";
+  listEtats(etats: IEtats[]): string {
+    let lists: string = "";
     etats?.forEach(element => {
       lists += element.libelle + ', ';
     });
@@ -74,62 +73,42 @@ export class ViewFormDocumentComponent implements OnInit {
   }
 
   public async ngAfterViewInit(): Promise<void> {
-    let nameA = 'DEV';
-    let nameC = 'TEST';
-    let nameD = 'Load Test';
-    let nameE = 'PROD';
-
     const element: any = this.mermaidDivEtatsDoc.nativeElement;
 
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
     if (idDocument != null && idDocument !== '') {
       this.serviceDocument.getDocumentById(idDocument).subscribe(async (x) => {
         let AllEtats = x.docEtats.length;
-        console.log(AllEtats);
-        if (AllEtats > 0) {
+        console.log(AllEtats, x.docEtats.length);
+        if (x.docEtats.length > 0) {
           let line = `graph LR;`;
 
-          for (let i = 0; i < AllEtats; i++) {
+          for (let i = 0; i < x.docEtats.length; i++) {
 
-            if (i == 0) {
-              line = line + `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i + 1].etat.id}[${x.docEtats[i + 1].etat.libelle}];`;
-            } else {
-            console.log("elsei++:", i);
+            if (x.docEtats[i].etat.etatPrecedant != null && x.docEtats[i].etat.etatPrecedant!.length > 0) {
+              for (let j = 0; j < x.docEtats[i].etat.etatPrecedant!.length; j++) {
+                console.log("j++:", j);
 
-              if (x.docEtats[i].etat.etatPrecedant != null && x.docEtats[i].etat.etatPrecedant!.length > 0) {
-                for (let j = 0; j < x.docEtats[i].etat.etatPrecedant!.length; j++) {
-                  console.log("j++:", j);
-  
-                  line =
-                    line +
-                    `${x.docEtats[i].etat.etatPrecedant![j].id}[${x.docEtats[i].etat.etatPrecedant![j].libelle}]-->${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}];`;
-                }
-                console.log("PREi++:", i);
+                line =
+                  line +
+                  `${x.docEtats[i].etat.etatPrecedant![j].id}[${x.docEtats[i].etat.etatPrecedant![j].libelle}]-->${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}];`;
               }
-              if (x.docEtats[i].etat.etatSuivant != null && x.docEtats[i].etat.etatSuivant!.length > 0) {
-                for (let j = 0; j < x.docEtats[i].etat.etatSuivant!.length; j++) {
-                  console.log("j++:", j);
-  
-                  line =
-                    line +
-                    `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i].etat.etatSuivant![j].id}[${x.docEtats[i].etat.etatSuivant![j].libelle}];`;
-                }
-                console.log("SUIi++:", i);
-              }
+              console.log("PREi++:", i);
             }
-            console.log("i++:", i);
-            
-          }
+            if (x.docEtats[i].etat.etatSuivant != null && x.docEtats[i].etat.etatSuivant!.length > 0) {
+              for (let j = 0; j < x.docEtats[i].etat.etatSuivant!.length; j++) {
+                console.log("j++:", j);
 
-          let phrase = `
-              1[[${nameA}]]-->3[${nameC}];
-    1-->${AllEtats}[${nameD}];
-    3-->5[${nameE}];
-    ${AllEtats}-->5;`;
+                line =
+                  line +
+                  `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i].etat.etatSuivant![j].id}[${x.docEtats[i].etat.etatSuivant![j].libelle}];`;
+              }
+              console.log("SUIi++:", i);
+            }
+
+          }
           const graphDefinition =
-            `graph LR;` +
-            phrase +
-            `
+            `graph LR;
     style 1 fill:#aaffff,stroke:#333,stroke-width:4px
     style 3 fill:#bbf,stroke:#faa,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
     `;
