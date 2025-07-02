@@ -49,15 +49,18 @@ export class LoginComponent {
     this.submitted = true;
     if (this.forme.invalid) return;
     
-    this.error = undefined;
-    this.authService.login(this.forme.value.mail, this.forme.value.pwd).subscribe({
-      next: () => {
-      this.router.navigate([this.returnUrl]);
-      },
-      error: (err) => {
-      this.error = err?.error?.message || 'Échec de la connexion. Veuillez réessayer.';
-      }
-    });
+    this.authService.login(this.forme.value.mail, this.forme.value.pwd)
+    .subscribe(
+        res => {
+          console.log("response :", res);
+          
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.error = error;
+          console.log("error :", error);
+          
+        });
   }
 
 }

@@ -28,7 +28,7 @@ export class AuthentificationService {
     // Si l'authentification est réussie, définissez authenticated à true
     return this.utilisateur.getUtilisateurByMailMdp(username, password).pipe(map(user => {
       // stocker les détails de l'utilisateur et le jeton jwt dans le stockage local pour garder l'utilisateur connecté entre les rafraîchissements de la page
-      const { mdp, ...userSamme } = user;
+      const { passWord, ...userSamme } = user;
       localStorage.setItem('currentUser', JSON.stringify(userSamme));
         this.currentUserSubject.next(userSamme);
         this.authenticated = user; // Exemple simplifié
