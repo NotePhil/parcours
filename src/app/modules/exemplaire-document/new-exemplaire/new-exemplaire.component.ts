@@ -35,8 +35,8 @@ import { IPromo } from 'src/app/modele/promo-distributeur';
 import { PromoService } from 'src/app/services/promo/promo.service';
 import { ModalChoixPromotionRessourceComponent } from '../../shared/modal-choix-promotion-ressource/modal-choix-promotion-ressource.component';
 import { ModalCodebarreScanContinueComponent } from '../../shared/modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
-import { IMouvementCaisses, Monaies, MoyenPaiement } from 'src/app/modele/mouvement-caisses';
-import { ICaisses } from 'src/app/modele/caisses';
+import { IMouvementCaisses, MoyenPaiement } from 'src/app/modele/mouvement-caisses';
+import { DetailsJson, ICaisses } from 'src/app/modele/caisses';
 import { IComptes } from 'src/app/modele/comptes';
 import { MouvementCaisseService } from 'src/app/services/mouvement-caisse/mouvement-caisse.service';
 import { ComptesService } from 'src/app/services/comptes/comptes.service';
@@ -45,7 +45,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalMouvementCaisseComponent } from '../../shared/modal-mouvement-caisse/modal-mouvement-caisse.component';
 import { ModalBilleterieComponent } from '../../shared/modal-billeterie/modal-billeterie.component';
 import { IPrecoMvtQte } from 'src/app/modele/precomvtqte';
-import { log } from 'mermaid/dist/logger';
 
 @Component({
   selector: 'app-new-exemplaire',
@@ -542,7 +541,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         width: '100%',
         enterAnimationDuration: '1000ms',
         exitAnimationDuration: '1000ms',
-        data: { monaies: this.modalResultBilleterie }
+        data: { monaies: this.modalResultBilleterie, sommes: this.restAPayer }
       }
     )
 

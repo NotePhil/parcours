@@ -3,17 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListCaissesComponent } from './list-caisses/list-caisses.component';
 import { NewCaisseComponent } from './new-caisse/new-caisse.component';
 import { CommonModule } from '@angular/common';
+import { EcartCaisseComponent } from './ecart-caisse/ecart-caisse.component';
 
 const routesCaisses: Routes = [
   {
     path: 'caisse-nouveau',
-    title: 'Creer un nouvel caisse',
+    title: 'Creer une nouvelle caisse',
     component: NewCaisseComponent
   },
   {
     path: 'caisse-nouveau/:idCaisse',
-    title: 'Modifier un caisse',
+    title: 'Modifier une caisse',
     component: NewCaisseComponent
+  },
+  {
+    path: 'caisse-ecart/:caisseId',
+    title: 'Ecart de caisse',
+    component: EcartCaisseComponent
   },
   {
     path: 'list-caisses',

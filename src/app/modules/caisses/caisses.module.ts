@@ -17,12 +17,15 @@ import { SharedModule } from '../shared/shared.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { EcartCaisseComponent } from './ecart-caisse/ecart-caisse.component';
 
 
 @NgModule({
   declarations: [
     NewCaisseComponent,
-    ListCaissesComponent
+    ListCaissesComponent,
+    EcartCaisseComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +38,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
+    MatSelectModule,
     MatSortModule,
     SharedModule,
     MatButtonModule,

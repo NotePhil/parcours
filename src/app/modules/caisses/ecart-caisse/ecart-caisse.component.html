@@ -1,7 +1,7 @@
 <div id="mainSection">
     <div class="card block" id="top2">
         <div class="card-header" class="entete pt-4 pb-4">
-            {{"personnel.title1" | translate}} {{titre}}
+            {{titre}}
         </div>
         <div class="card-body">
             <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme">
@@ -14,9 +14,8 @@
                                         {{'caisse.table.title1' | translate}}<span style="color: red;"
                                             aria-label="required">*</span>
                                     </label>
-                                    <input type="text" formControlName="libelle" name="nom" id="libelle"
-                                        placeholder="{{'caisse.table.title1' | translate}}" class="form-control"
-                                        required>
+                                    <input type="text" formControlName="libelle" name="nom" id="libelle" readonly
+                                        placeholder="{{'caisse.table.title1' | translate}}" class="form-control">
                                 </div>
                                 <div *ngIf="submitted && f['libelle'].errors" class="alert alert-danger">
                                     <div *ngIf="f['libelle'].errors['required']">{{'caisse.form.text2' | translate}}
@@ -28,16 +27,39 @@
                             <div>
                                 <div class="champs">
                                     <label for="solde" class="label">
+                                        {{"caisse.table.title5" | translate}}<span style="color: red;"
+                                            aria-label="required">*</span>
+                                    </label>
+                                    <input type="number" formControlName="newsolde" name="newsolde" id="newsolde"
+                                        [readOnly]="selectedOptions == 'cash'"
+                                        placeholder="{{'caisse.table.title5' | translate}}" class="form-control">
+                                </div>
+                                <div *ngIf="submitted && f['newsolde'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['newsolde'].errors['required']">{{'caisse.form.text1' | translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <div class="champs">
+                                    <label for="solde" class="label">
                                         {{"caisse.table.title0" | translate}}<span style="color: red;"
                                             aria-label="required">*</span>
                                     </label>
-                                    <input type="number" formControlName="solde" name="solde" id="solde"
-                                        [readOnly]="btnLibelle == 'Modifier' || selectedOptions == 'cash'"
+                                    <input type="number" formControlName="solde" name="solde" id="solde" readonly
                                         placeholder="{{'caisse.table.title0' | translate}}" class="form-control"
                                         required>
                                 </div>
-                                <div *ngIf="submitted && f['solde'].errors" class="alert alert-danger">
-                                    <div *ngIf="f['solde'].errors['required']">{{'caisse.form.text1' | translate}}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <div class="champs">
+                                    <label for="mntecart" class="label">
+                                        {{"caisse.table.title6" | translate}}
+                                    </label>
+                                    <input type="number" formControlName="mntecart" name="mntecart" id="mntecart" readonly
+                                        [value]="forme.get('solde')?.value - forme.get('newsolde')?.value" placeholder="{{'caisse.table.title6' | translate}}" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -48,9 +70,25 @@
                                         {{'etape.table.title2' | translate}}
                                     </label>
                                     <p class="w-100 d-flex align-items-center choix">
-                                        <input type="checkbox" checked value="true" formControlName="etat" name="etat"
+                                        <input readonly type="checkbox" checked value="true" formControlName="etat" name="etat"
                                             class="form-control" id="etat">
                                     </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <div class="champs">
+                                    <label for="commentaire" class="label">
+                                        {{"caisse.table.title7" | translate}}<span style="color: red;"
+                                            aria-label="required">*</span>
+                                    </label>
+                                    <input type="text" formControlName="commentaire" name="commentaire" id="commentaire"
+                                        placeholder="{{'caisse.table.title7' | translate}}" class="form-control"
+                                        required>
+                                </div>
+                                <div *ngIf="submitted && f['commentaire'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['commentaire'].errors['required']">{{'caisse.form.text4' | translate}}</div>
                                 </div>
                             </div>
                         </div>
@@ -80,31 +118,31 @@
                                         Découpes<!-- {{"caisse.table.title3" | translate}} -->
                                     </label>
                                     <div class="financial-table-wrapper">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x10000"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x10000"
                                             placeholder="10000" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x5000"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x5000"
                                             placeholder="5000" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x2000"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x2000"
                                             placeholder="2000" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x1000"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x1000"
                                             placeholder="1000" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x500"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x500"
                                             placeholder="500" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x500B"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x500B"
                                             placeholder="500B" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x100"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x100"
                                             placeholder="100" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x50"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x50"
                                             placeholder="50" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x25"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x25"
                                             placeholder="25" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x10"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x10"
                                             placeholder="10" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x5"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x5"
                                             placeholder="5" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x2"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x2"
                                             placeholder="2" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x1"
+                                        <input readonly type="number" (input)="calculateTotals()" formControlName="x1"
                                             placeholder="1" class="input-field">
                                     </div>
                                 </div><!-- 

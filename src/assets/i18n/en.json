@@ -67,17 +67,25 @@
       "title0": "Solde",
       "title1": "libellé",
       "title2": "type",
-      "title3": "detailJson",
+      "title3": "Observation",
+      "title4": "Etat",
+      "title5": "Nouveau solde",
+      "title6": "Montant écart",
+      "title7": "commentaire",
       "actions": {
         "link1": "Add",
         "link2": "Update",
-        "link3": "Détails"
+        "link3": "Détails",
+        "link4": "Delete",
+        "link5": "Ecart"
       }
     },
     "form": {
       "text1": "solde is required",
       "text2": "libelle is required",
-      "text3": "type is required"
+      "text3": "type is required",
+      "text4": "comment is required.",
+      "text5": "new solde is required."
     }
   },
   "compte": {
