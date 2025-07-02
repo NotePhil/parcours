@@ -8,5 +8,8 @@ export interface IUtilisateurs {
     mdp: string,
     menu?: IMenu[],
     groupe?: IGroupes,
-    user: IPersonnel
+    user: IPersonnel,
+    token?: string,
+    dateCreation?: Date,
+    dateModification?: Date,
 }
