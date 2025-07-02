@@ -9,6 +9,10 @@ import { GlobalVariables } from 'src/globalVariables';
   providedIn: 'root',
 })
 export class PersonnelsService {
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+  
   constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllPersonnels(): Observable<IPersonnel[]> {
@@ -65,5 +69,18 @@ export class PersonnelsService {
           return x.filter(e=> e.roles?.some(r=> r.role.id.includes(idRole.toLowerCase())))
         })
     );        
+  }
+
+  updatePersonnel(personnel: IPersonnel) {
+    return this.http.put('api/personnels', personnel, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateUser'))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console instead
+      return of(result as T);
+    };
   }
 }
