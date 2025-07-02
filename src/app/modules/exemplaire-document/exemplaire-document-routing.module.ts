@@ -6,8 +6,9 @@ import { ViewExemplaireComponent } from './view-exemplaire/view-exemplaire.compo
 import { PrevisualisationExemplaireComponent } from './previsualisation-exemplaire/previsualisation-exemplaire.component';
 import { HistoriqueParPersonneComponent } from './historique-par-personne/historique-par-personne.component';
 import { PageIntermediaireComponent } from './page-intermediaire/page-intermediaire.component';
+import { CommonModule } from '@angular/common';
 
-const routes: Routes = [
+const routesExem: Routes = [
   {
     path: 'exemplaire-nouveau/:idDocument',
     title: 'Nouvel exemplaire de documents',
@@ -46,7 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesExem), CommonModule],
   exports: [RouterModule]
 })
 export class ExemplaireDocumentRoutingModule { }

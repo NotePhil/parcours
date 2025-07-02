@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { FormGroup, FormBuilder, MaxLengthValidator,MinLengthValidator,ReactiveFormsModule, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EMPTY, Observable, isEmpty } from 'rxjs';
-import { IService } from 'src/app/modele/service';
-import { ServicesService } from 'src/app/services/services/services.service';
 import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
 import {v4 as uuidv4} from 'uuid';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
-
-
 
 @Component({
   selector: 'app-new-famille',
@@ -23,8 +18,6 @@ export class NewFamilleComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string="Enregistrer";
   submitted: boolean=false;
-  titre:string='';
-
 
   constructor(private formBuilder:FormBuilder, private familleService:FamillesService,private dataEnteteMenuService:DonneesEchangeService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme =  this.formBuilder.group({
@@ -41,8 +34,6 @@ export class NewFamilleComponent implements OnInit {
     if((idFamille != null) && idFamille!==''){
 
       this.btnLibelle="Envoyer";
-
-
       //trouver un autre moyen d'initialiser avec des valeurs
       this.familleService.getFamilleById(idFamille).subscribe(x =>
         {
@@ -55,14 +46,13 @@ export class NewFamilleComponent implements OnInit {
           })
         });
     }
-    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
   get f(){
     return this.forme.controls;
   }
   return() {
-    this.router.navigate(['/list-familles']);
+    this.router.navigate(['parcours/familles/list-familles']);
   }
 
   onSubmit(familleInput:any){
@@ -84,7 +74,7 @@ export class NewFamilleComponent implements OnInit {
     }
     this.familleService.ajouterFamille(familleTemp).subscribe(
       object => {
-        this.router.navigate(['/list-familles']);
+        this.router.navigate(['parcours/familles/list-familles']);
       }
     )
 

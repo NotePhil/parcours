@@ -1,7 +1,7 @@
 <div id="mainSection" class="bg-light card modalCategorie modalContentScroll">
   <div *ngIf="etape">
     <div class="card-header" class="entete pt-4 pb-4">
-      {{'etape.table.title' | translate}} {{titre}}
+      {{'etape.table.title' | translate}}
     </div>
     <div class="card-body">
       <form [formGroup]="forme" (ngSubmit)="onSubmit()" *ngIf="forme">

@@ -67,7 +67,7 @@ h3{
     border: none;
     h3{
         font-size: 15px;
-        color: red;
+        color: #ff0000;
         opacity: 0.5;
         margin: 10px 0;
         i{
@@ -227,7 +227,7 @@ th{
         bottom: -30px;
         width: 306px;
         text-align: right;
-        color: red;
+        color: #ff0000;
         font-style: italic;
         font-size: 10px;
         opacity: 1;
@@ -236,7 +236,7 @@ th{
         animation-delay: 3s;
     }
 }
-.btnModifierDistributeurBlock{
+.btnModifierElementBlock{
     color: #ffffff;
     width: 50px;
     height: 32px;
@@ -257,14 +257,18 @@ th{
         color: #ffffffdf;
     }
 }
-#btnDeleteDistributeur{
-    border: 1px solid red;
-    background-color: red;
+#btnDeleteDistributeur, #btnDeleteAssurance{
+    border: 1px solid #ff0000;
+    background-color: #ff0000;
     font-size: 12px;
     &:hover{
-        box-shadow: 0 0 6px red;
+        box-shadow: 0 0 6px #ff0000;
         color: #ffffffdf;
     }
+}
+#btnDeleteAssurance{
+    width: 32px;
+    height: 29.8px;
 }
 .blockScan{
     width: fit-content;

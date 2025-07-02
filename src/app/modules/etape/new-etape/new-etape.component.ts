@@ -4,7 +4,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
@@ -33,7 +33,6 @@ export class NewEtapeComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string = 'Ajouter';
   submitted: boolean = false;
-  titre: string = '';
   documents: IDocument[] = [];
   etapes: IEtape[] = [];
   documentId: string[] = [];

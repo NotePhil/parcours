@@ -5,7 +5,6 @@ import { RoleRoutingModule } from './role-routing.module';
 import { NewRoleComponent } from './new-role/new-role.component';
 import { ListRolesComponent } from './list-roles/list-roles.component';
 
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -20,6 +19,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MissionsRoleComponent } from './missions-role/missions-role.component';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -32,15 +34,17 @@ import { MissionsRoleComponent } from './missions-role/missions-role.component';
     CommonModule,
     RoleRoutingModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    ModulesRoutingModule,
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     TicketsModule,
     TranslateModule.forChild({
       loader: {
@@ -49,8 +53,7 @@ import { MissionsRoleComponent } from './missions-role/missions-role.component';
           deps: [HttpClient]
       },
       extend:true
-  }),
-  BrowserModule
+  })
 ],
 providers: [DatePipe],
 })

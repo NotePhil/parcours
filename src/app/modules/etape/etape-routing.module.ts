@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { NewParoursComponent } from '../parours/new-parours/new-parours.component';
+import { CommonModule } from '@angular/common';
 
-const routes = [
+const routesEtapes: Routes = [
   {
     path: 'etape-nouvelle',
     title: 'Enregistrer une nouvelle etape',
@@ -22,7 +23,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesEtapes), CommonModule],
   exports: [RouterModule],
 })
 export class EtapeRoutingModule {}

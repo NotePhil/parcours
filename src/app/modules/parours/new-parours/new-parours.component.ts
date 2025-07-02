@@ -150,8 +150,6 @@ export class NewParoursComponent implements OnInit {
       this.etapes = [];
       this.dataSource.data = [];
     }
-
-    this.titre = this.dataEnteteMenuService.dataEnteteMenu;
   }
 
   setIdEtape(id_etape: string, libelle_etape: string) {
@@ -246,7 +244,7 @@ export class NewParoursComponent implements OnInit {
     return afficheEtape;
   }
   return(){
-    this.router.navigate(['/list-parours']);
+    this.router.navigate(['parcours/parcours/list-parours']);
   }
 
   onSubmit(paroursInput: any) {
@@ -272,7 +270,7 @@ export class NewParoursComponent implements OnInit {
   }
 
   onReturn() {
-    this.router.navigate(['/list-parours']);
+    this.router.navigate(['parcours/parcours/list-parours']);
   }
 
   compareItem(etape1: IEtape, etape2: IEtape) {

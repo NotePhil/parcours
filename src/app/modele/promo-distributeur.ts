@@ -14,5 +14,5 @@ export interface IPromo {
     dateCreation: Date;
     famille?: IFamille[];
     ressource?: IRessource[];
-}
+  }
   

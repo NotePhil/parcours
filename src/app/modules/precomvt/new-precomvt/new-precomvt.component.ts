@@ -585,6 +585,6 @@ export class NewPrecomvtComponent implements OnInit {
     sessionStorage.removeItem('Etape courante');
   }
   onReturn() {
-    this.router.navigate(['/list-precomvts']);
+    this.router.navigate(['parcours/preconisations/list-precomvts']);
   }
 }

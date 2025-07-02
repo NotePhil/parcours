@@ -86,7 +86,6 @@ export class NewAttributComponent implements OnInit {
         this.inputValeur = this.attribut?.valeursParDefaut;
       });
     }
-    this.titre = this.dataEnteteMenuService.dataEnteteMenu;
   }
 
   get f() {
@@ -270,7 +269,7 @@ export class NewAttributComponent implements OnInit {
   }
 
   return(){
-    this.router.navigate(['/list-attributs']);
+    this.router.navigate(['parcours/attributs/list-attributs']);
   }
 
   onSubmit(attributInput: any) {
@@ -295,7 +294,7 @@ export class NewAttributComponent implements OnInit {
       console.log('valeur final :', attributTemp);
 
       this.attributService.ajouterAttribut(attributTemp).subscribe((object) => {
-        this.router.navigate(['/list-attributs']);
+        this.router.navigate(['parcours/attributs/list-attributs']);
       });
     }
   }

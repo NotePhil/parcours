@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { IPersonnel } from 'src/app/modele/personnel';
 import { GlobalVariables } from 'src/globalVariables';
 
@@ -38,7 +38,7 @@ export class PersonnelsService {
       })
     );
   }
-
+  
   getPersonelsByNameOrId(query: string): Observable<IPersonnel[]> {
     return this.http.get<IPersonnel[]>(this.param.api+'personnels').pipe(
       map((patients) => {

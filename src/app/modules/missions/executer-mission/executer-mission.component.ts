@@ -84,7 +84,7 @@ export class ExecuterMissionComponent implements OnInit {
         data: this.idDocumentPourExemplaire
       })
     }else{
-      this.router.navigate(['exemplaire-nouveau/'.concat(this.idDocumentPourExemplaire)])
+      this.router.navigate(['parcours/missions/exemplaire-nouveau/'.concat(this.idDocumentPourExemplaire)])
     }
   }
 }

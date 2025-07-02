@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { TicketCourantComponent } from './ticket-courant/ticket-courant.component';
 import { NgxPrintModule } from 'ngx-print';
@@ -21,6 +20,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from '../shared/shared.module';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -34,9 +36,9 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     TicketsRoutingModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    ModulesRoutingModule,
     MatInputModule,
     MatFormFieldModule,
     MatPaginatorModule,
@@ -44,6 +46,8 @@ import { SharedModule } from '../shared/shared.module';
     MatSortModule,
     MatDialogModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,
@@ -52,7 +56,6 @@ import { SharedModule } from '../shared/shared.module';
         },
         extend:true
     }),
-    BrowserModule,
     // ngx-print
     NgxPrintModule,
   ],

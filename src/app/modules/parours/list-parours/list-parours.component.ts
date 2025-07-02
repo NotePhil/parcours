@@ -4,14 +4,16 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
-import { Observable, EMPTY } from 'rxjs';
 import { IParours } from 'src/app/modele/parours';
 import { ParoursService } from 'src/app/services/parours/parours.service';
 import { IAfficheParours } from 'src/app/modele/affiche-parours';
 import { TranslateService } from '@ngx-translate/core';
+import { IElements } from 'src/app/modele/elements';
+import { EMPTY, Observable } from 'rxjs';
+import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
 import { ModalGrapheParcoursComponent } from '../../shared/modal-graphe-parcours/modal-graphe-parcours.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-parours',
@@ -21,6 +23,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class ListParoursComponent implements OnInit {
   //parours$:Observable<IParours[]>=EMPTY;
   myControl = new FormControl<string | IParours>('');
+  receivedActions$: Observable<IElements[]>=EMPTY;
+  actions : IElements[] | undefined;
 
   //ELEMENTS_TABLE: IParours[] = [];
   ELEMENTS_TABLE: IAfficheParours[] = [];
@@ -47,13 +51,22 @@ export class ListParoursComponent implements OnInit {
     private router: Router,
     private dialogDef: MatDialog,
     private _liveAnnouncer: LiveAnnouncer,
-    private serviceParour: ParoursService
+    private serviceParour: ParoursService,
+    private actionsview: PassActionService
   ) {}
 
   ngOnInit(): void {
+    this.actionsview.langueData$.subscribe(data => {
+      this.receivedActions$ = this.actionsview.getActions();
+      this.receivedActions$.subscribe(a => {
+        if (a != null) {
+          this.actions = a;
+          console.log("Actions view :", a, this.receivedActions$);
+        }
+      });
+    })
     this.getAllParours().subscribe((valeurs) => {
       const tableParours: IAfficheParours[] = [];
-
       valeurs.forEach((x) => {
         tableParours.push(this.convertParToParAffiche(x));
       });

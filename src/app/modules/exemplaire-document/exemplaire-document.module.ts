@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 
 import { ExemplaireDocumentRoutingModule } from './exemplaire-document-routing.module';
-import { NewExemplaireComponent } from './new-exemplaire/new-exemplaire.component';
 import { ViewExemplaireComponent } from './view-exemplaire/view-exemplaire.component';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +13,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ListExemplaireComponent } from './list-exemplaire/list-exemplaire.component';
 import { SharedModule } from '../shared/shared.module';
@@ -22,10 +20,14 @@ import { PrevisualisationExemplaireComponent } from './previsualisation-exemplai
 import { HistoriqueParPersonneComponent } from './historique-par-personne/historique-par-personne.component';
 import { PageIntermediaireComponent } from './page-intermediaire/page-intermediaire.component';
 import { NgxPrintModule } from 'ngx-print';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { NewExemplaireComponent } from './new-exemplaire/new-exemplaire.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -41,7 +43,7 @@ import { MatSelectModule } from '@angular/material/select';
     CommonModule,
     ExemplaireDocumentRoutingModule,
     FormsModule,
-    AppRoutingModule,
+    ModulesRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     SharedModule,
@@ -54,6 +56,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSlideToggleModule,
     MatIconModule,
     MatToolbarModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -62,7 +66,6 @@ import { MatSelectModule } from '@angular/material/select';
       },
       extend: true,
     }),
-    BrowserModule,
     NgxPrintModule
   ],
   providers : [DecimalPipe]

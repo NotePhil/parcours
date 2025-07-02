@@ -11,6 +11,8 @@ import { RessourcesService } from 'src/app/services/ressources/ressources.servic
 import { IRessource } from 'src/app/modele/ressource';
 import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
+import { IElements } from 'src/app/modele/elements';
+import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
 
 @Component({
   selector: 'app-list-ressources',
@@ -19,6 +21,8 @@ import { FamillesService } from 'src/app/services/familles/familles.service';
 })
 export class ListRessourcesComponent implements OnInit {
   ressources$: Observable<IRessource> = EMPTY;
+  receivedActions$: Observable<IElements[]>=EMPTY;
+  actions : IElements[] | undefined;
 
   forme: FormGroup;
   filteredOptionsFamilly: IFamille[] | undefined;
@@ -53,7 +57,8 @@ export class ListRessourcesComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private serviceFamille:FamillesService,
     private serviceRessource: RessourcesService,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private actionsview: PassActionService
   ) {
     this.forme = formBuilder.group({
           min: [undefined],
@@ -94,6 +99,15 @@ export class ListRessourcesComponent implements OnInit {
         }
       }
     );
+    this.actionsview.langueData$.subscribe(data => {
+      this.receivedActions$ = this.actionsview.getActions();
+      this.receivedActions$.subscribe(a => {
+        if (a != null) {
+          this.actions = a;
+          console.log("Actions view :", a, this.receivedActions$);
+        }
+      });
+    })
 
     this.myControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;

@@ -10,7 +10,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ModalCategoriesComponent } from './modal-categories/modal-categories.component';
 import {
@@ -42,6 +41,11 @@ import { ModalMouvementCaisseCompteComponent } from './modal-mouvement-caisse-co
 import { ModalMouvementCaisseComponent } from './modal-mouvement-caisse/modal-mouvement-caisse.component';
 import { ModalBilleterieComponent } from './modal-billeterie/modal-billeterie.component';
 import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/modal-ajout-montant-compte.component';
+import { ModalResetPwdComponent } from './modal-reset-pwd/modal-reset-pwd.component';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { ModalChoixGroupsComponent } from './modal-choix-groups/modal-choix-groups.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 import { ModalEtapesPreorsuivParcoursComponent } from './modal-etapes-preorsuiv-parcours/modal-etapes-preorsuiv-parcours.component';
 import { ModalGrapheParcoursComponent } from './modal-graphe-parcours/modal-graphe-parcours.component';
 
@@ -70,6 +74,8 @@ import { ModalGrapheParcoursComponent } from './modal-graphe-parcours/modal-grap
     ModalMouvementCaisseComponent,
     ModalBilleterieComponent,
     ModalAjoutMontantCompteComponent,
+    ModalResetPwdComponent,
+    ModalChoixGroupsComponent,
   ],
   exports: [
     ModalCategoriesComponent,
@@ -90,9 +96,9 @@ import { ModalGrapheParcoursComponent } from './modal-graphe-parcours/modal-grap
     CommonModule,
     SharedRoutingModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    ModulesRoutingModule,
     MatInputModule,
     MatRadioModule,
     MatPaginatorModule,
@@ -103,6 +109,8 @@ import { ModalGrapheParcoursComponent } from './modal-graphe-parcours/modal-grap
     MatCheckboxModule,
     MatRadioModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

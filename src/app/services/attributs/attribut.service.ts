@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {  map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { IAttributs } from 'src/app/modele/attributs';
 import { TypeAttribut } from 'src/app/modele/type-attributs';
 import { GlobalVariables } from 'src/globalVariables';
