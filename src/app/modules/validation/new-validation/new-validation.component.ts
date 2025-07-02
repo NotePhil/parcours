@@ -19,7 +19,6 @@ export class NewValidationComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string="Enregistrer";
   submitted: boolean=false;
-  titre:string='';
   roles: IRole[]|undefined;
   initialDateCreation = new FormControl(new Date());
   initialDateModification = new FormControl(new Date());
@@ -66,7 +65,6 @@ export class NewValidationComponent implements OnInit {
     );
     if((idValidation != null) && idValidation!==''){
       this.btnLibelle="Modifier";
-      this.titre="Modifier validation";
       this.validationservice.getValidationById(idValidation).subscribe(x =>
         {
           this.validation = x;
@@ -95,7 +93,7 @@ export class NewValidationComponent implements OnInit {
     return this.roleservices.getAllRoles();
   }
   return(){
-    this.router.navigate(['/list-validations']); 
+    this.router.navigate(['parcours/validations/list-validations']); 
   }
 
   onSubmit(validationInput:any){
@@ -121,7 +119,7 @@ export class NewValidationComponent implements OnInit {
     }
     this.validationservice.ajouterValidation(validationTemp).subscribe(
       object => {
-        this.router.navigate(['/list-validations']);
+        this.router.navigate(['parcours/validations/list-validations']);
       }
     )
   }

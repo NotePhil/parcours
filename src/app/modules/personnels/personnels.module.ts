@@ -2,7 +2,6 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NewPersonnelComponent } from './new-personnel/new-personnel.component';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -20,6 +19,10 @@ import { ListPersonnelsComponent } from './list-personnels/list-personnels.compo
 import { RolesPersonnelComponent } from './roles-personnel/roles-personnel.component';
 import { SharedModule } from '../shared/shared.module';
 import { DetailPersonnelsComponent } from './detail-personnels/detail-personnels.component';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { DetailUserComponent } from './detail-user/detail-user.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -27,11 +30,12 @@ import { DetailPersonnelsComponent } from './detail-personnels/detail-personnels
     ListPersonnelsComponent,
     RolesPersonnelComponent,
     DetailPersonnelsComponent,
+    DetailUserComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule,
+    ModulesRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
@@ -43,6 +47,8 @@ import { DetailPersonnelsComponent } from './detail-personnels/detail-personnels
     QRCodeModule,
     MatRadioModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -50,8 +56,7 @@ import { DetailPersonnelsComponent } from './detail-personnels/detail-personnels
         deps: [HttpClient],
       },
       extend: true,
-    }),
-    BrowserModule,
+    })
   ],
   providers: [DatePipe],
 })

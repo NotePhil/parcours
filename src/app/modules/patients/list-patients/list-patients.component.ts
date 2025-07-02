@@ -10,8 +10,6 @@ import { ServicesService } from 'src/app/services/services/services.service';
 import { TicketsService } from 'src/app/services/tickets/tickets.service';
 import {
   FormControl,
-  FormsModule,
-  ReactiveFormsModule,
   FormBuilder,
   FormGroup,
   FormArray,
@@ -24,6 +22,8 @@ import { NewTicketComponent } from '../../tickets/new-ticket/new-ticket.componen
 import { MatDialog } from '@angular/material/dialog';
 import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
 import { ModalCodebarreScanContinueComponent } from '../../shared/modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
+import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
+import { IElements } from 'src/app/modele/elements';
 
 export interface User {
   nom: string;
@@ -46,6 +46,8 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   nom_patient: string = '';
   libelle_service: string = '';
   currentDate: Date = new Date();
+  receivedActions$: Observable<IElements[]>=EMPTY;
+  actions : IElements[] | undefined;
 
   myControl = new FormControl<string | IPatient>('');
 
@@ -81,7 +83,8 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     private serviceTicket: TicketsService,
     private formBuilder: FormBuilder,
     private dialogDef: MatDialog,
-    private barService: ModalCodebarreService
+    private barService: ModalCodebarreService,
+    private actionsview: PassActionService
   ) {
     this.formPatient = this.formBuilder.group({
       _listPatient: new FormArray([]),
@@ -91,6 +94,15 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   scan_val: any | undefined;
 
   ngOnInit(): void {
+    this.actionsview.langueData$.subscribe(data => {
+      this.receivedActions$ = this.actionsview.getActions();
+      this.receivedActions$.subscribe(a => {
+        if (a != null) {
+          this.actions = a;
+          console.log("Actions view :", a, this.receivedActions$);
+        }
+      });
+    })
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
       this.myControl.setValue(this.scan_val); // Définit la valeur initiale dans la barre de recherche
@@ -159,6 +171,13 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     return this.servicePatient.getAllPatients();
   }
 
+  
+  public get isButton() : string {
+    let res = this.actions!.find((a) => a.bouton == 'true' && a.type == 'global');
+    return  res ? 'true': 'false';
+  }
+  
+
   openNewTicketDialog() {
     this.dialogDef.open(NewTicketComponent, {
       height: '500px',
@@ -195,9 +214,6 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
       });
     }
   }
-  
-  
-  
 
   public rechercherListingPersonne(option: IPatient){
     this.servicePatient.getPatientsByName(option.nom.toLowerCase()).subscribe(

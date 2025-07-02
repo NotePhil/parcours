@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, EMPTY } from 'rxjs';
 import { ICaisses } from 'src/app/modele/caisses';
+import { IElements } from 'src/app/modele/elements';
+import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
 import { CaissesService } from 'src/app/services/caisses/caisses.service';
 
 @Component({
@@ -20,6 +22,9 @@ export class ListCaissesComponent implements OnInit {
 
   myControl = new FormControl<string | ICaisses>('');
 
+  receivedActions$: Observable<IElements[]>=EMPTY;
+  actions : IElements[] | undefined;
+  
   ELEMENTS_TABLE: ICaisses[] = [];
   filteredOptions: ICaisses[] | undefined;
 
@@ -32,13 +37,25 @@ export class ListCaissesComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private translate: TranslateService,private router:Router, private serviceCaisse:CaissesService, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private translate: TranslateService,private router:Router, private serviceCaisse:CaissesService, private _liveAnnouncer: LiveAnnouncer,
+    private actionsview: PassActionService
+  ) { }
 
   ngOnInit(): void {
     this.getAllCaisses().subscribe(valeurs => {
       this.dataSource.data = valeurs;
         this.filteredOptions = valeurs
     });
+
+    this.actionsview.langueData$.subscribe(data => {
+      this.receivedActions$ = this.actionsview.getActions();
+      this.receivedActions$.subscribe(a => {
+        if (a != null) {
+          this.actions = a;
+          console.log("Actions view :", a, this.receivedActions$);
+        }
+      });
+    })
 
     this.myControl.valueChanges.subscribe(
       value => {

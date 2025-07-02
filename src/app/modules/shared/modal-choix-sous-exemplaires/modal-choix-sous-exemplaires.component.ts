@@ -101,7 +101,7 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
         documentSource = x
         console.log('doc : ', documentSource)
     if (documentSource != undefined) {
-        this.router.navigate(['exemplaire-nouveau/'.concat(valeurIdDocument!)]);
+        this.router.navigate(['parcours/missions/exemplaire-nouveau/'.concat(valeurIdDocument!)]);
       // if (documentSource.beneficiaireObligatoire == true) {
       //   this.router.navigate(['page-intermedaire']);
       // }else{

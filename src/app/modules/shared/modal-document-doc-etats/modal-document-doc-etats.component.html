@@ -67,7 +67,7 @@
                                             <button class="btn" title="{{'preconisation.table.title4' | translate}}">
                                                 <i class="fa fa-info-circle text-info ml-1" aria-hidden="true"></i>
                                             </button>
-                                            <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(); getIdDocEtat(element.id); initialiseValidationControl(element.validation)">
+                                            <button  class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(); getIdDocEtat(element.id); initialiseValidationControl(element.validation)">
                                                 <i class="fa fa-plus text-warning" aria-hidden="true"></i>
                                             </button>
                                         </div>
@@ -86,7 +86,7 @@
                             <button class="btn retour" [mat-dialog-close] title="{{'lists.button2' | translate}}">
                                 <i class="fa fa-undo" aria-hidden="true"></i>
                             </button>
-                            <button mat-button [mat-dialog-close] cdkFocusInitial class="btn btnValidation" title="{{'lists.button6' | translate}}" (click)="onSave()">
+                            <button  [mat-dialog-close] cdkFocusInitial class="btn btnValidation" title="{{'lists.button6' | translate}}" (click)="onSave()">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </button>                       
                         </div>

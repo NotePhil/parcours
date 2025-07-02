@@ -8,15 +8,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpClient } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { MatSelectModule } from '@angular/material/select';
 
 import { NewValidationComponent } from './new-validation/new-validation.component';
 import { ListValidationsComponent } from './list-validations/list-validations.component';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -28,15 +29,17 @@ import { ListValidationsComponent } from './list-validations/list-validations.co
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    ModulesRoutingModule,
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,
@@ -44,8 +47,7 @@ import { ListValidationsComponent } from './list-validations/list-validations.co
             deps: [HttpClient]
         },
         extend:true
-    }),
-    BrowserModule
+    })
   ],
   providers: [DatePipe],
 })

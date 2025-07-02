@@ -119,6 +119,7 @@
     "title10": "Enter number",
     "title11": "Pieces",
     "title12": "Multi-payment",
+    "title13": "Add payment",
     "actions": {
       "link1": "Add",
       "link2": "Edit",
@@ -183,13 +184,17 @@
       "title14": "Title",
       "title15": "Description",
       "title16": "Status",
+      "title17": "New password",
+      "title18": "previous password",
+      "title19": "repeat new password",
       "actions": {
         "link2": "Update",
         "link3": "View",
         "link4": "Delete",
         "link5": "Roles",
         "link1": "Add",
-        "link6": "Cancel"
+        "link6": "Cancel",
+        "link7": "Account Detail"
       }
     },
     "form": {
@@ -369,7 +374,7 @@
       "text12": "Transmission mode",
       "text13": "Transmission",
       "text14": "Document's history is not available for dose who don't be associate to people",
-      "text15": "Search an assurence",
+      "text15": "Search an assurance",
       "text16": "Generate PDF"
     }
   },
@@ -422,7 +427,7 @@
       "title9": "sell prise",
       "title11": "Percentage value",
       "title12": "Remaining balance",
-      "title13": "No promotion for this assurence",
+      "title13": "No promotion for this assurance",
       "title14": "Promotion",
       "title15": "Limit"
     },

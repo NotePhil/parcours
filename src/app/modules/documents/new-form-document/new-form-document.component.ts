@@ -32,6 +32,7 @@ import { IAssociationCategorieAttributs } from 'src/app/modele/association-categ
 import { TypeMouvement } from 'src/app/modele/typeMouvement';
 import { ModalDocEtatsComponent } from '../../shared/modal-document-doc-etats/modal-document-doc-etats.component';
 import { IDocEtats } from 'src/app/modele/doc-etats';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-new-form-document',
@@ -136,6 +137,8 @@ export class NewFormDocumentComponent implements OnInit {
 
     // chargement de la page a partir d'un Id pour la modification d'un document
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
+    console.log('id ',this.infosPath.snapshot.paramMap.get('idDocument'));
+    
     if (idDocument != null && idDocument !== '') {
       this.btnLibelle = 'Modifier';
       this.titre = 'Document à Modifier';
@@ -380,7 +383,7 @@ export class NewFormDocumentComponent implements OnInit {
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP = categorieAttributsFinal;
   }
   return(){
-    this.router.navigate(['/list-documents']);
+    this.router.navigate(['parcours/documents/list-documents']);
   }
   onSubmit(documentInput: any) {
     this.submitted = true;
@@ -466,7 +469,7 @@ export class NewFormDocumentComponent implements OnInit {
     documentTemp.idDocument = documentTemp.id!
 
     this.serviceDocument.ajouterDocument(documentTemp).subscribe((object) => {
-      this.router.navigate(['/list-documents']);
+      this.router.navigate(['parcours/documents/list-documents']);
       
     });
     this.donneeDocCatService.dataDocumentAttributs = [];

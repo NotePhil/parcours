@@ -3,7 +3,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { PrecoMvtRoutingModule } from './precomvt-routing.module';
 import { NewPrecomvtComponent } from './new-precomvt/new-precomvt.component';
 
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +22,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { ViewPrecomvtComponent } from './view-precomvt/view-precomvt.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from '../shared/shared.module';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     PrecoMvtRoutingModule,
     FormsModule,
-    AppRoutingModule,
+    ModulesRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
@@ -46,6 +48,8 @@ import { SharedModule } from '../shared/shared.module';
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     MatCheckboxModule,
     TicketsModule,
     MatDialogModule,
@@ -57,8 +61,7 @@ import { SharedModule } from '../shared/shared.module';
             deps: [HttpClient]
         },
         extend:true
-    }),
-    BrowserModule
+    })
   ],
   providers: [DatePipe],
 })

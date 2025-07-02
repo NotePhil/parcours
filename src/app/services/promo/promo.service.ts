@@ -41,17 +41,6 @@ export class PromoService {
     );
   }
   
-  // getPromosByRessource(ressource:IRessource): Observable<IPromo[]> {
-  //   return this.http.get<IPromo[]>('api/promo').pipe(
-  //     map(x=>
-  //       {
-  //        return  x.filter((p) => 
-  //         p.ressource?.some((r) => (r.id === ressource.id)) ||
-  //         p.famille?.some((f) => (f.id === ressource.famille.id))
-  //       )
-  //       })
-  //   );        
-  // }
   getPromosByRessource(ressource: IRessource): Observable<IPromo[]> {
     return this.http.get<IPromo[]>('api/promo').pipe(
       map(promos => 

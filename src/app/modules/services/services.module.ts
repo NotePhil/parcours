@@ -5,9 +5,7 @@ import { ListServicesComponent } from './list-services/list-services.component';
 import { NewServicesComponent } from './new-services/new-services.component';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +14,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -27,9 +28,9 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     ServicesRoutingModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    ModulesRoutingModule,
     MatInputModule,
     MatFormFieldModule,
     MatPaginatorModule,
@@ -37,6 +38,8 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     MatSortModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,
@@ -44,8 +47,7 @@ import { SharedModule } from '../shared/shared.module';
             deps: [HttpClient]
         },
         extend:true
-    }),
-    BrowserModule
+    })
   ],
   providers: [DatePipe],
 })

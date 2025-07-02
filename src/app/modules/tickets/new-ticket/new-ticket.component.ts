@@ -130,7 +130,7 @@ export class NewTicketComponent implements OnInit {
     if (this.data?.step === 1) {
       console.log("hello", this.data.step);
       
-      this.router.navigate(['/list-patient']);
+      this.router.navigate(['parcours/patients/list-patient']);
       this.dialogRef?.close();
     }
   }

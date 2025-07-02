@@ -13,12 +13,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ListFormDocumentComponent } from './list-form-document/list-form-document.component';
 import { ViewFormDocumentComponent } from './view-form-document/view-form-document.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatSelectModule } from '@angular/material/select';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -31,7 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
     CommonModule,
     DocumentsRoutingModule,
     FormsModule,
-    AppRoutingModule,
+    ModulesRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
@@ -40,6 +42,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     SharedModule,
     TranslateModule.forChild({
         loader: {
@@ -48,8 +52,7 @@ import { MatSelectModule } from '@angular/material/select';
             deps: [HttpClient]
         },
         extend:true
-    }),
-    BrowserModule
+    })
   ],
   providers: [DatePipe],
 })

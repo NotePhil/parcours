@@ -17,8 +17,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../shared/shared.module';
 import { DetailPatientsComponent } from './detail-patients/detail-patients.component';
+import { ModulesRoutingModule } from '../modules-routing.module';
 import { QRCodeModule } from 'angularx-qrcode';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule,
+    ModulesRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
@@ -41,6 +44,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     TicketsModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -48,8 +53,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         deps: [HttpClient],
       },
       extend: true,
-    }),
-    BrowserModule,
+    })
   ],
   providers: [DatePipe],
 })

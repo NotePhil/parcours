@@ -7,9 +7,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, EMPTY } from 'rxjs';
+import { IElements } from 'src/app/modele/elements';
 import { IPatient } from 'src/app/modele/Patient';
 import { StatutTicket } from 'src/app/modele/statut-ticket';
 import { ITicket } from 'src/app/modele/ticket';
+import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
 import { PatientsService } from 'src/app/services/patients/patients.service';
 import { TicketsService } from 'src/app/services/tickets/tickets.service';
 
@@ -21,13 +23,15 @@ import { TicketsService } from 'src/app/services/tickets/tickets.service';
 export class ListTicketsComponent implements OnInit, AfterViewInit {
   tickets$: Observable<ITicket[]> = EMPTY;
   ticketImpression: ITicket | undefined;
+  receivedActions$: Observable<IElements[]>=EMPTY;
+  actions : IElements[] | undefined;
   patientCorrespondant: IPatient = {
     id: '',
     nom: '',
     adresse: '',
     mail: '',
     telephone: '',
-    qrCodeValue: '',
+    qrCodeValue: ''
   };
   idTicketImpression: string = '';
   statutTicketActif = StatutTicket.actif;
@@ -59,10 +63,20 @@ export class ListTicketsComponent implements OnInit, AfterViewInit {
     private router: Router,
     private serviceTicket: TicketsService,
     private _liveAnnouncer: LiveAnnouncer,
-    private servicePatient: PatientsService
+    private servicePatient: PatientsService, 
+    private actionsview: PassActionService
   ) {}
 
   ngOnInit(): void {
+    this.actionsview.langueData$.subscribe(data => {
+      this.receivedActions$ = this.actionsview.getActions();
+      this.receivedActions$.subscribe(a => {
+        if (a != null) {
+          this.actions = a;
+          console.log("Actions view :", a, this.receivedActions$);
+        }
+      });
+    })
     this.tickets$ = this.getAllTickets();
     this.ticketImpression = {
       id: '1',

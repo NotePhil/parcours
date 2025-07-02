@@ -15,9 +15,9 @@
                         </mat-autocomplete>
                     </form>
                 </div>
-                <div role="button" id="addUserBotton" routerLink="../service-nouveau">
+                <div role="button" id="addItemBotton" routerLink="../service-nouveau">
                     <span title="Ajouter un service">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
                     </span>
                 </div>
             </div>
@@ -53,18 +53,15 @@
                     <ng-container matColumnDef="actions">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
                         <td class="containCell" mat-cell *matCellDef="let element">
-                            <div id="actions" class="dropdown open">
-                                <button class="btn dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    <span>...</span>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-
-                                    <button class="dropdown-item nav-link" [routerLink]="['/service-nouveau',element.id]" title="{{'patient.table.actions.link2' | translate}}">
-                                        <i class="fa fa-pen text-info" aria-hidden="true"></i>
-                                        <span>{{'patient.table.actions.link2' | translate}}</span>
-                                    </button>
-                                </div>
+                            <div id="actions">
+                                <button mat-button [matMenuTriggerFor]="menu"><span>...</span></button>
+                                <mat-menu #menu="matMenu">
+                                    <ng-container *ngFor="let action of actions">
+                                        <button mat-menu-item *ngIf="action.bouton == 'false'" [routerLink]="[action.lien,element.id]">
+                                            <span>{{action.nom}}</span>
+                                        </button>
+                                    </ng-container>
+                                </mat-menu>
                             </div>
                         </td>
                     </ng-container>
