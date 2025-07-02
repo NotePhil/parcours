@@ -78,7 +78,7 @@ export class ModalChoixGroupsComponent implements OnInit {
           id: res.id,
           login: res.login,
           user: this.person!,
-          mdp: res.mdp,
+          passWord: res.passWord,
           groupe: selectItem.groupe
         }
         
