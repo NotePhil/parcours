@@ -168,7 +168,7 @@ export class NewCaisseComponent implements OnInit {
     console.log('valeur final :', caisseTemp);
 
     this.caisseService.ajouterCaisse(caisseTemp).subscribe((object) => {
-      this.router.navigate(['/list-caisses']);
+      this.router.navigate(['parcours/caisses/list-caisses']);
     });
   }
 }

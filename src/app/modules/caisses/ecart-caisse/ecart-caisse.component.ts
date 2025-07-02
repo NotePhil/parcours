@@ -176,7 +176,7 @@ export class EcartCaisseComponent implements OnInit {
       libelle: 'Ecart de caisse',
       typeMvt: this.forme.value.mntecart > 0 ? 'ENTREE' : 'SORTIE',
       dateCreation: new Date(),
-      moyenPaiement: caisseTemp,
+      moyenPaiement: caisseTemp.type,
       referencePaiement: this.forme.value.commentaire
     }
 

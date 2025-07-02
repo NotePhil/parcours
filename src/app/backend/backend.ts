@@ -25968,7 +25968,8 @@ export class InMemDBService implements InMemoryDbService {
                     { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
                       {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
                     { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' }
+                      { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' },
+                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
                     ] },
                   ],
                 },
@@ -26021,7 +26022,8 @@ export class InMemDBService implements InMemoryDbService {
                     { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
                       {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
                     { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' }
+                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' },
+                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
                     ] },
                   ],
                 },
@@ -26099,7 +26101,8 @@ export class InMemDBService implements InMemoryDbService {
                     { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
                       {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
                     { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' }
+                      { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' },
+                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
                     ] },
                   ],
                 },
@@ -26152,7 +26155,8 @@ export class InMemDBService implements InMemoryDbService {
                     { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
                       {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
                     { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' }
+                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' },
+                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
                     ] },
                   ],
                 },
@@ -26320,7 +26324,9 @@ export class InMemDBService implements InMemoryDbService {
                     { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
                       {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
                     { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../caisse-nouveau', bouton: 'false' }]},
+                      { nom: 'Modifier', lien: '../caisse-nouveau', bouton: 'false' },
+                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
+                    ]}
                   ],
                 },
                 {
@@ -26608,7 +26614,9 @@ export class InMemDBService implements InMemoryDbService {
                       {nom: 'New', lien: '', bouton: 'true', type: 'global'}]
                     },
                     { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' }]},
+                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' },
+                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
+                    ]}
                   ],
                 },
                 {
