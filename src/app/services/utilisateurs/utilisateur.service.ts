@@ -57,16 +57,11 @@ export class UtilisateurService {
     );
   }
 
-  getUtilisateurByMailMdp(name: string, mdp: string): Observable<IUtilisateurs> {
-    return this.http.post('api/utilisateurs', {username: name, password: mdp}).pipe(
+  getUtilisateurByMailMdp(mail: string, mdp: string): Observable<IUtilisateurs> {
+    return this.getAllUtilisateurs().pipe(
       map((x) => {
-        if (x) {
-          return x as IUtilisateurs;
-        } else {
-          throw new Error('Utilisateur non trouvé');
-        }
-      }),
-      catchError(this.handleError<IUtilisateurs>('getUtilisateurByMailMdp', undefined))
+        return x.find((p) => p.login == mail && p.passWord == mdp) as IUtilisateurs;
+      })
     );
   }
 
