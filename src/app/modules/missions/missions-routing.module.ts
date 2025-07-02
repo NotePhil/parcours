@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ExecuterMissionComponent } from './executer-mission/executer-mission.component';
 import { ListMissionComponent } from './list-mission/list-mission.component';
 import { NewMissionComponent } from './new-mission/new-mission.component';
+import { CommonModule } from '@angular/common';
+import { RoleAuthGuard } from 'src/app/verify-users/role-users/role-auth.guard';
 
-const routes: Routes = [
+const routesMissions: Routes = [
   {
     path: 'mission-nouveau',
     title: 'Creer un nouvel mission',
@@ -28,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesMissions), CommonModule],
   exports: [RouterModule]
 })
 export class MissionsRoutingModule { }

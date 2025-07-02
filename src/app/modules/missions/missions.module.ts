@@ -11,15 +11,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpClient } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ExecuterMissionComponent } from './executer-mission/executer-mission.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SharedModule } from '../shared/shared.module';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     MissionsRoutingModule,
     FormsModule,
-    AppRoutingModule,
+    ModulesRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
@@ -43,6 +44,8 @@ import { SharedModule } from '../shared/shared.module';
     MatSelectModule,
     MatCheckboxModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,
@@ -50,8 +53,7 @@ import { SharedModule } from '../shared/shared.module';
             deps: [HttpClient]
         },
         extend:true
-    }),
-    BrowserModule
+    })
   ],
   providers: [DatePipe],
 })

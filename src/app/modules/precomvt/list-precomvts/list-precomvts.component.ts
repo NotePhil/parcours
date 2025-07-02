@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,8 +9,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, EMPTY } from 'rxjs';
 import { IPrecoMvt } from 'src/app/modele/precomvt';
 import { PrecoMvtsService } from 'src/app/services/precomvts/precomvts.service';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ViewPrecomvtComponent } from '../view-precomvt/view-precomvt.component';
+import { IElements } from 'src/app/modele/elements';
+import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
 
 @Component({
   selector: 'app-list-precomvts',
@@ -20,6 +22,8 @@ import { ViewPrecomvtComponent } from '../view-precomvt/view-precomvt.component'
 export class ListPrecomvtsComponent implements OnInit {
 
     precomvt$:Observable<IPrecoMvt>=EMPTY;
+    receivedActions$: Observable<IElements[]>=EMPTY;
+    actions : IElements[] | undefined;
 
     myControl = new FormControl<string | IPrecoMvt>('');
 
@@ -36,9 +40,19 @@ export class ListPrecomvtsComponent implements OnInit {
     idPrecoMvt: string = '';
 
     constructor(private translate: TranslateService,private router:Router, private servicePrecoMvt:PrecoMvtsService, private _liveAnnouncer: LiveAnnouncer,
+    private actionsview: PassActionService,
       private dialogDef: MatDialog) { }
 
     ngOnInit(): void {
+      this.actionsview.langueData$.subscribe(data => {
+        this.receivedActions$ = this.actionsview.getActions();
+        this.receivedActions$.subscribe(a => {
+          if (a != null) {
+            this.actions = a;
+            console.log("Actions view :", a, this.receivedActions$);
+          }
+        });
+      })
       this.getAllPrecomvts().subscribe((valeurs: IPrecoMvt[]) => {
         this.dataSource.data = valeurs;
         this.filteredOptions = valeurs
@@ -90,10 +104,12 @@ export class ListPrecomvtsComponent implements OnInit {
     openViewPrecoDialog(){
       this.dialogDef.open(ViewPrecomvtComponent, 
       {
-        width:'100%',
-        height:'100%',
-        enterAnimationDuration:'1000ms',
-        exitAnimationDuration:'1000ms',
+        maxWidth: '60vw',
+        maxHeight: '60vh',
+        width: '60%',
+        height: '60%',
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '1000ms',
         data:{
           idPrecoMvt : this.idPrecoMvt
         }

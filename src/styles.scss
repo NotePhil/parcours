@@ -41,6 +41,7 @@ body, table, .mat-table {
 display: flex;
 flex-direction: column;
 align-items: center;
+justify-content: center;
 }
 .block{
 width: 60%;
@@ -281,7 +282,7 @@ mat-option{
 //entete des pages de listing
 .tableTools{
   padding-bottom: 15px;
-  #addUserBotton{
+  #addItemBotton{
       background-color: #FFD700;
       color: white;
       font-size: 14px;
@@ -330,7 +331,7 @@ display: flex;
 }
 #tableBlock{
   height: fit-content !important;
-
+  z-index: 0;
     .table{
       margin-bottom: 0 !important;
     }
@@ -347,6 +348,9 @@ display: flex;
                     font-size: 28px;
                     margin-right: 5px;
                 }
+            }
+            .dropdown-menu{
+              z-index: 100;
             }
             div{
                 button{

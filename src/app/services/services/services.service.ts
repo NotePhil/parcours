@@ -3,16 +3,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { IService } from 'src/app/modele/service';
+import { GlobalVariables } from 'src/globalVariables';
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private param: GlobalVariables) { }
 
   getAllServices():Observable<IService []>
   {
-    return this.http.get<IService []>('api/services').pipe(map(x=>x));
+    return this.http.get<IService []>(this.param.api+'services').pipe(map(x=>x));
   }
 
   getServiceById(id:string):Observable<IService >{
@@ -24,7 +25,7 @@ export class ServicesService {
     );
   }
   getServiceByLibelle(libelle:string): Observable<IService[]> {
-   return this.http.get<IService[]>('api/services').pipe(
+   return this.http.get<IService[]>(this.param.api+'services').pipe(
      map(x=>
        {
          return x.filter(s=> s.libelle.toLowerCase().startsWith(libelle))
@@ -34,6 +35,6 @@ export class ServicesService {
 
   ajouterService(service:IService )
   {
-    return this.http.post("api/services",service);
+    return this.http.post(this.param.api+"services",service);
   }
 }

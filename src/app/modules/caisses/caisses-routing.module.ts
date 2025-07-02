@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListCaissesComponent } from './list-caisses/list-caisses.component';
 import { NewCaisseComponent } from './new-caisse/new-caisse.component';
+import { CommonModule } from '@angular/common';
 import { EcartCaisseComponent } from './ecart-caisse/ecart-caisse.component';
 
-const routes: Routes = [
+const routesCaisses: Routes = [
   {
     path: 'caisse-nouveau',
     title: 'Creer une nouvelle caisse',
@@ -28,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesCaisses), CommonModule],
   exports: [RouterModule]
 })
 export class CaissesRoutingModule { }

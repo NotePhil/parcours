@@ -19,7 +19,6 @@ export class NewRoleComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string="Enregistrer";
   submitted: boolean=false;
-  titre:string='';
   //TODO validation du formulaire. particulièrment les mail
   constructor(private formBuilder:FormBuilder, private roleService:RolesService,private dataEnteteMenuService:DonneesEchangeService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe){
     this.forme = this.formBuilder.group({
@@ -47,7 +46,6 @@ export class NewRoleComponent implements OnInit {
         })
       });
     }
-    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
 
@@ -56,7 +54,7 @@ export class NewRoleComponent implements OnInit {
   }
 
   return(){
-    this.router.navigate(['/list-roles']);
+    this.router.navigate(['parcours/roles/list-roles']);
   }
 
   onSubmit(roleInput:any){
@@ -76,7 +74,7 @@ export class NewRoleComponent implements OnInit {
     }
     this.roleService.ajouterRole(roleTemp).subscribe(
       object => {
-        this.router.navigate(['/list-roles']);
+        this.router.navigate(['parcours/roles/list-roles']);
       }
     )
   }

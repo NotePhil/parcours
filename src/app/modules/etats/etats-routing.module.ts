@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListEtatsComponent } from './list-etats/list-etats.component';
 import { NewEtatComponent } from './new-etat/new-etat.component';
+import { CommonModule } from '@angular/common';
 
-const routes: Routes = [
+const routesEtats: Routes = [
   {
     path: 'etat-nouveau',
     title: 'Creer un nouvel etat',
@@ -22,7 +23,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesEtats), CommonModule],
   exports: [RouterModule]
 })
 export class EtatsRoutingModule { }

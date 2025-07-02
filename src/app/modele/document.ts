@@ -10,7 +10,7 @@ export interface IDocument {
     titre:string,
     description:string,
     etat:boolean,
-    typeMouvement: String,
+    typeMouvement: string,
     affichagePrix:boolean,
     contientRessources:boolean,
     contientDistributeurs:boolean,

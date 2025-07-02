@@ -12,11 +12,11 @@ export class RessourcesService {
   constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllRessources(): Observable<IRessource[]> {
-    return this.http.get<IRessource[]>(this.param.api+'ressource').pipe(map((x) => x));
+    return this.http.get<IRessource[]>(this.param.api+'ressources').pipe(map((x) => x));
   }
 
   getAllRessourcesBySeuil(): Observable<IRessource[]> {
-    return this.http.get<IRessource[]>(this.param.api+'ressource').pipe(map((x) => {
+    return this.http.get<IRessource[]>(this.param.api+'ressources').pipe(map((x) => {
       return x.sort((r1, r2) => Math.abs(r1.quantite - r1.seuil) - Math.abs(r2.quantite - r2.seuil))
     }));
   }
@@ -30,7 +30,7 @@ export class RessourcesService {
   }
 
   getRessourcesByLibelle(libelle: string): Observable<IRessource[]> {
-    return this.http.get<IRessource[]>(this.param.api+'ressource').pipe(
+    return this.http.get<IRessource[]>(this.param.api+'ressources').pipe(
       map((x) => {
         return x.filter((p) => p.libelle.toLowerCase().startsWith(libelle));
       })
@@ -48,7 +48,7 @@ export class RessourcesService {
 
     console.log('service elements :', libelleRessource, libelleFamilly, min, max, prixnimnim, prixmaxim);
 
-    return this.http.get<IRessource[]>(this.param.api+'ressource').pipe(
+    return this.http.get<IRessource[]>(this.param.api+'ressources').pipe(
       map((resources) => {
         
         return resources.filter(
@@ -75,7 +75,7 @@ export class RessourcesService {
   } 
 
   getRessourcesFamilleByLibelle(libelle: string): Observable<IRessource[]> {
-    return this.http.get<IRessource[]>(this.param.api+'ressource').pipe(
+    return this.http.get<IRessource[]>(this.param.api+'ressources').pipe(
       map((x) => {
         return x.filter((p) => p.famille.libelle.toLowerCase().startsWith(libelle));
       })
@@ -83,7 +83,7 @@ export class RessourcesService {
   }
 
   getRessourcesByScanBarCodeorLibelle(query: string): Observable<IRessource[]> {
-    return this.http.get<IRessource[]>(this.param.api+'ressource').pipe(
+    return this.http.get<IRessource[]>(this.param.api+'ressources').pipe(
       map((resources) => {
         const lowerCaseQuery = query.toLowerCase();
 
@@ -98,6 +98,6 @@ export class RessourcesService {
   }
 
   ajouterRessource(ressource: IRessource) {
-    return this.http.post(this.param.api+'ressource', ressource);
+    return this.http.post(this.param.api+'ressources', ressource);
   }
 }

@@ -111,39 +111,39 @@
     }
   },
   "mvtCaisse": {
-  "title1": "Add",
-  "search-bar": "Search",
-  "table": {
-    "title0": "Amount Paid",
-    "title1": "Label",
-    "title2": "Payment Method",
-    "title3": "Movement Type",
-    "title4": "Payment Reference",
-    "title5": "Cash Register",
-    "title6": "Copy",
-    "title7": "Acount Balance",
-    "title8": "remainder to pay",
-    "title9": "Bills",
-    "title10": "Enter number",
-    "title11": "Pieces",
-    "title12": "Multi-payment",
-    "actions": {
-      "link1": "Add",
-      "link2": "Edit",
-      "link3": "Details",
-      "link4": "Delete"
+    "title1": "Add",
+    "search-bar": "Search",
+    "table": {
+      "title0": "Amount Paid",
+      "title1": "Label",
+      "title2": "Payment Method",
+      "title3": "Movement Type",
+      "title4": "Payment Reference",
+      "title5": "Cash Register",
+      "title6": "Copy",
+      "title7": "Acount Balance",
+      "title8": "remainder to pay",
+      "title9": "Bills",
+      "title10": "Enter number",
+      "title11": "Pieces",
+      "title12": "Multi-payment",
+      "actions": {
+        "link1": "Add",
+        "link2": "Edit",
+        "link3": "Details",
+        "link4": "Delete"
+      }
+    },
+    "form": {
+      "text1": "The amount is required.",
+      "text2": "The label is required.",
+      "text3": "The payment method is required.",
+      "text4": "The payment reference is required.",
+      "text5": "The cash register is required.",
+      "text6": "The copy is required.",
+      "text7": "the type is required."
     }
   },
-  "form": {
-    "text1": "The amount is required.",
-    "text2": "The label is required.",
-    "text3": "The payment method is required.",
-    "text4": "The payment reference is required.",
-    "text5": "The cash register is required.",
-    "text6": "The copy is required.",
-      "text7": "the type is required."
-  }
-},
   "patient": {
     "title1": "Add patient",
     "search-bar": "search",
@@ -191,13 +191,17 @@
       "title14": "Title",
       "title15": "Description",
       "title16": "Status",
+      "title17": "New password",
+      "title18": "previous password",
+      "title19": "repeat new password",
       "actions": {
         "link2": "Update",
         "link3": "View",
         "link4": "Delete",
         "link5": "Roles",
         "link1": "Add",
-        "link6": "Cancel"
+        "link6": "Cancel",
+        "link7": "Account Detail"
       }
     },
     "form": {
@@ -377,7 +381,7 @@
       "text12": "Transmission mode",
       "text13": "Transmission",
       "text14": "Document's history is not available for dose who don't be associate to people",
-      "text15": "Search an assurence",
+      "text15": "Search an assurance",
       "text16": "Generate PDF"
     }
   },
@@ -430,7 +434,7 @@
       "title9": "sell prise",
       "title11": "Percentage value",
       "title12": "Remaining balance",
-      "title13": "No promotion for this assurence",
+      "title13": "No promotion for this assurance",
       "title14": "Promotion",
       "title15": "Limit"
     },
@@ -663,6 +667,9 @@
   },
   "etape": {
     "title1": "Document",
+    "title2": "Previous step",
+    "title3": "Next step",
+    "title4": "Create previous and next steps",
     "table": {
       "title": "Add",
       "title1": "Libel",

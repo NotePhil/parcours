@@ -4,7 +4,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { DistributeurRoutingModule } from './distributeur-routing.module';
 import { NewDistributeurComponent } from './new-distributeur/new-distributeur.component';
 
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -19,6 +18,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ListDistributeursComponent } from './list-distributeurs/list-distributeurs.component';
 import { SharedModule } from '../shared/shared.module';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     DistributeurRoutingModule,
     FormsModule,
-    AppRoutingModule,
+    ModulesRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
@@ -39,6 +41,8 @@ import { SharedModule } from '../shared/shared.module';
     MatSortModule,
     TicketsModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
       loader: {
           provide: TranslateLoader,
@@ -46,8 +50,7 @@ import { SharedModule } from '../shared/shared.module';
           deps: [HttpClient]
       },
       extend:true
-  }),
-  BrowserModule
+  })
 ],
 providers: [DatePipe],
 })

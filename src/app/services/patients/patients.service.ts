@@ -3,19 +3,19 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPatient } from 'src/app/modele/Patient';
 import { forkJoin, of } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
-import { log } from 'console';
+import { map, switchMap } from 'rxjs/operators';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PatientsService {
   selectedpersonnesRatacheess: IPatient[] = [];
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   // Récupérer tous les patients
   getAllPatients(): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>('api/patients').pipe(map((x) => x));
+    return this.http.get<IPatient[]>(this.param.api+'patients').pipe(map((x) => x));
   }
 
   // Récupérer un patient par son ID
@@ -29,7 +29,7 @@ export class PatientsService {
 
   // Récupérer des patients par leur nom
   getPatientsByName(nom: string): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>('api/patients').pipe(
+    return this.http.get<IPatient[]>(this.param.api+'patients').pipe(
       map((x) => {
         return x.filter((p) => p.nom.toLowerCase().startsWith(nom));
       })
@@ -38,7 +38,7 @@ export class PatientsService {
 
   // Récupérer des patients par leur nom ou leur ID
   getPatientsByNameOrId(query: string): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>('api/patients').pipe(
+    return this.http.get<IPatient[]>(this.param.api+'patients').pipe(
       map((patients) => {
         const lowerCaseQuery = query.toLowerCase();
 
@@ -53,7 +53,7 @@ export class PatientsService {
   }
 
   getPatientsByQrcode(query: string): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>('api/patients').pipe(
+    return this.http.get<IPatient[]>(this.param.api+'patients').pipe(
       switchMap((patients) => {
         const lowerCaseQuery = query.toLowerCase();
         const matchingPatients = patients.filter((p) =>

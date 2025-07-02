@@ -10,7 +10,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ModalCategoriesComponent } from './modal-categories/modal-categories.component';
 import {
@@ -42,6 +41,13 @@ import { ModalMouvementCaisseCompteComponent } from './modal-mouvement-caisse-co
 import { ModalMouvementCaisseComponent } from './modal-mouvement-caisse/modal-mouvement-caisse.component';
 import { ModalBilleterieComponent } from './modal-billeterie/modal-billeterie.component';
 import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/modal-ajout-montant-compte.component';
+import { ModalResetPwdComponent } from './modal-reset-pwd/modal-reset-pwd.component';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { ModalChoixGroupsComponent } from './modal-choix-groups/modal-choix-groups.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { ModalEtapesPreorsuivParcoursComponent } from './modal-etapes-preorsuiv-parcours/modal-etapes-preorsuiv-parcours.component';
+import { ModalGrapheParcoursComponent } from './modal-graphe-parcours/modal-graphe-parcours.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +55,8 @@ import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/m
     ModalChoixAttributsComponent,
     ModalChoixPreconisationsComponent,
     EnteteComponent,
+    ModalGrapheParcoursComponent,
+    ModalEtapesPreorsuivParcoursComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
     ModalDocEtatsComponent,
@@ -66,10 +74,13 @@ import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/m
     ModalMouvementCaisseComponent,
     ModalBilleterieComponent,
     ModalAjoutMontantCompteComponent,
+    ModalResetPwdComponent,
+    ModalChoixGroupsComponent,
   ],
   exports: [
     ModalCategoriesComponent,
     EnteteComponent,
+    ModalEtapesPreorsuivParcoursComponent,
     ModalChoixSousDocumentComponent,
     ModalChoixSousExemplairesComponent,
     ModalDocEtatsComponent,
@@ -85,9 +96,9 @@ import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/m
     CommonModule,
     SharedRoutingModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    ModulesRoutingModule,
     MatInputModule,
     MatRadioModule,
     MatPaginatorModule,
@@ -98,6 +109,8 @@ import { ModalAjoutMontantCompteComponent } from './modal-ajout-montant-compte/m
     MatCheckboxModule,
     MatRadioModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

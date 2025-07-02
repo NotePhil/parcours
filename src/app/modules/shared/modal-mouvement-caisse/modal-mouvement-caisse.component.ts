@@ -33,8 +33,6 @@ export class ModalMouvementCaisseComponent implements OnInit {
     private router: Router,
     private dialogRef: MatDialogRef<ModalMouvementCaisseComponent>,
     private formBuilder: FormBuilder,
-    private infosPath: ActivatedRoute,
-    private datePipe: DatePipe,
     private dialogDef: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -143,7 +141,6 @@ export class ModalMouvementCaisseComponent implements OnInit {
 
   resteApayer(montant: number): number {
     this.resteAPayer += montant;
-    //this.elements['montant'].setValue(this.sommeMontants() - this.resteAPayer)
     return this.resteAPayer;
   }
 

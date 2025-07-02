@@ -12,7 +12,7 @@ export interface IMouvementCaisses {
     typeMvt: string,
     dateCreation: Date,
     detailJson?: DetailsJson,
-    moyenPaiement: ICaisses,
+    moyenPaiement: string,
     isMultipaiement?: string,
     referencePaiement: string,
     compte?: IComptes,

@@ -4,14 +4,15 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { IPromo } from 'src/app/modele/promo-distributeur';
 import { IRessource } from 'src/app/modele/ressource';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromoService {
-  private apiUrl = 'api/promo'; 
+  private apiUrl = this.param.api+'promotions'; 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllPromos(): Observable<IPromo[]> {
     return this.http.get<IPromo[]>(this.apiUrl).pipe(map(x => x));
@@ -41,19 +42,8 @@ export class PromoService {
     );
   }
   
-  // getPromosByRessource(ressource:IRessource): Observable<IPromo[]> {
-  //   return this.http.get<IPromo[]>('api/promo').pipe(
-  //     map(x=>
-  //       {
-  //        return  x.filter((p) => 
-  //         p.ressource?.some((r) => (r.id === ressource.id)) ||
-  //         p.famille?.some((f) => (f.id === ressource.famille.id))
-  //       )
-  //       })
-  //   );        
-  // }
   getPromosByRessource(ressource: IRessource): Observable<IPromo[]> {
-    return this.http.get<IPromo[]>('api/promo').pipe(
+    return this.http.get<IPromo[]>(this.apiUrl).pipe(
       map(promos => 
         promos.filter(promo => 
           // Vérifier la correspondance des ressources
