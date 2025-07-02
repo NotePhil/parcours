@@ -8,8 +8,5 @@ export interface IUtilisateurs {
     passWord: string,
     menu?: IMenu[],
     groupe?: IGroupes,
-    user: IPersonnel,
-    token?: string,
-    dateCreation?: Date,
-    dateModification?: Date,
+    user: IPersonnel
 }

@@ -4,7 +4,5 @@ import { IPersonnel } from "./personnel";
 export interface IMenu {
     user? : IPersonnel,
     langue: string,
-    fonctionnalites: IFonctionnalites[],
-    dateCreation?: Date;
-    dateModification?: Date;
+    fonctionnalites: IFonctionnalites[]
 }
