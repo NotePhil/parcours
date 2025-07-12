@@ -10,7 +10,6 @@ export interface IUtilisateurs {
     groupe?: IGroupes,
     user: IPersonnel,
     roles?: string,
-    token?: string,
     dateCreation?: Date,
     dateModification?: Date,
 }

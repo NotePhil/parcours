@@ -29,7 +29,7 @@ export class MenusService {
         {
           user = x.find(p => p.login == login);
           if (user!.menu != null) {
-            return user!.menu.find((p: { langue: string; }) => p.langue == langue) as unknown as IMenu;
+            return user!.menu as IMenu;
           } else {
             return user!.groupe!.menu.find((p: { langue: string; }) => p.langue == langue) as unknown as IMenu;
           }
