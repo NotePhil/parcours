@@ -60,7 +60,8 @@ export class PrevisualisationExemplaireComponent implements OnInit {
     },
     formatCode: '',
     code: '',
-    beneficiaireObligatoire: true
+    beneficiaireObligatoire: true,
+    mouvementDeCaisse: []
   };
   titre:string='';
   mouvements : IMouvement[] = []
@@ -350,7 +351,8 @@ export class PrevisualisationExemplaireComponent implements OnInit {
             dateCreation: new Date(),
             personneRattachee: this.exemplaire.personneRattachee,
             formatCode: this.exemplaire.formatCode,
-            beneficiaireObligatoire:  this.exemplaire.beneficiaireObligatoire
+            beneficiaireObligatoire: this.exemplaire.beneficiaireObligatoire,
+            mouvementDeCaisse: this.exemplaire.mouvementDeCaisse
           };
           this.rechercheDocEtatCourant(this.NextEtats.etat.id)
           
@@ -407,7 +409,8 @@ export class PrevisualisationExemplaireComponent implements OnInit {
       dateCreation: new Date(),
       personneRattachee: this.exemplaire.personneRattachee,
       formatCode: this.exemplaire.formatCode,
-      beneficiaireObligatoire: true
+      beneficiaireObligatoire: true,
+      mouvementDeCaisse: this.exemplaire.mouvementDeCaisse
     };
 
     if (this.exemplaire.id != '') {

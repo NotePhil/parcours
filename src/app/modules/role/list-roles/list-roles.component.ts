@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IRole } from 'src/app/modele/role';
-
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { EMPTY, Observable } from 'rxjs';
@@ -14,7 +13,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort, Sort} from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { RolesService } from 'src/app/services/roles/roles.service';
-import { log } from 'console';
+import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
+import { IElements } from 'src/app/modele/elements';
 
 @Component({
   selector: 'app-list-roles',
@@ -25,6 +25,8 @@ export class ListRolesComponent implements OnInit {
 
 
   roles$:Observable<IRole[]>=EMPTY;
+  receivedActions$: Observable<IElements[]>=EMPTY;
+  actions : IElements[] | undefined;
 
   id_role : string = "0";
   id_service : number = 0;
@@ -57,9 +59,19 @@ export class ListRolesComponent implements OnInit {
   }
 
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private translate: TranslateService,private router:Router, private serviceRole:RolesService, private _liveAnnouncer: LiveAnnouncer, private serviceService:ServicesService, private serviceTicket:TicketsService){ }
+  constructor(private translate: TranslateService,private router:Router, private serviceRole:RolesService, private _liveAnnouncer: LiveAnnouncer, private serviceService:ServicesService, private serviceTicket:TicketsService, private actionsview: PassActionService
+  ){ }
 
   ngOnInit(): void {
+    this.actionsview.langueData$.subscribe(data => {
+      this.receivedActions$ = this.actionsview.getActions();
+      this.receivedActions$.subscribe(a => {
+        if (a != null) {
+          this.actions = a;
+          console.log("Actions view :", a, this.receivedActions$);
+        }
+      });
+    })
 
     this.getAllRoles().subscribe(valeurs => {
       const tableRoles : any[] = this.tableRoles

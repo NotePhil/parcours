@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { IPersonnel } from 'src/app/modele/personnel';
 import { GlobalVariables } from 'src/globalVariables';
 
@@ -9,6 +9,9 @@ import { GlobalVariables } from 'src/globalVariables';
   providedIn: 'root',
 })
 export class PersonnelsService {
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllPersonnels(): Observable<IPersonnel[]> {
@@ -38,7 +41,7 @@ export class PersonnelsService {
       })
     );
   }
-
+  
   getPersonelsByNameOrId(query: string): Observable<IPersonnel[]> {
     return this.http.get<IPersonnel[]>(this.param.api+ 'personnels').pipe(
       map((patients) => {
@@ -65,5 +68,18 @@ export class PersonnelsService {
           return x.filter(e=> e.roles?.some(r=> r.role.id.includes(idRole.toLowerCase())))
         })
     );        
+  }
+
+  updatePersonnel(personnel: IPersonnel) {
+    return this.http.put('api/personnels', personnel, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateUser'))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console instead
+      return of(result as T);
+    };
   }
 }

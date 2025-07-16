@@ -91,7 +91,7 @@ export class NewCompteComponent {
   }
 
   return() {
-    this.router.navigate(['/list-comptes']);
+    this.router.navigate(['/parcours/comptes/list-comptes']);
   }
 
   onSubmit(compteInput: any) {

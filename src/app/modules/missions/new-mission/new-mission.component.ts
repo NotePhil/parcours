@@ -23,7 +23,6 @@ export class NewMissionComponent implements OnInit {
   services$: Observable<IService[]>=EMPTY;
   idService: string = ""
   service : IService | undefined
-  titre:string='';
   initialDateCreation = new FormControl(new Date());
   initialDateModification = new FormControl(new Date());
 
@@ -40,7 +39,6 @@ export class NewMissionComponent implements OnInit {
     let idMission = this.infosPath.snapshot.paramMap.get('idMission');
     if((idMission != null) && idMission!==''){
       this.btnLibelle="Modifier";
-      this.titre="service à Modifier";
       this.missionService.getMissionById(idMission).subscribe(x =>
         {
           this.mission = x;
@@ -55,7 +53,6 @@ export class NewMissionComponent implements OnInit {
       });
     }
     this.services$ = this.getAllServices();
-    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
   /*associerService(event: any){
@@ -73,7 +70,7 @@ export class NewMissionComponent implements OnInit {
     return this.forme.controls;
   }
   return(){
-    this.router.navigate(['/list-missions']);
+    this.router.navigate(['parcours/missions/list-missions']);
   }
 
   onSubmit(missionInput:any){
@@ -86,7 +83,7 @@ export class NewMissionComponent implements OnInit {
       libelle: missionInput.libelle,
       description: missionInput.description,
       etat: missionInput.etat,
-      //dateCreation: new Date,
+      dateCreation: new Date,
       //dateModification: new Date,
       service: missionInput.service
     }
@@ -94,10 +91,11 @@ export class NewMissionComponent implements OnInit {
     //missionTemp.service = this.service!
     if(this.mission != undefined){
       missionTemp.id = this.mission.id
+      missionTemp.dateCreation = this.mission.dateCreation
     }
     this.missionService.ajouterMission(missionTemp).subscribe(
       object => {
-        this.router.navigate(['/list-missions']);
+        this.router.navigate(['parcours/missions/list-missions']);
       }
     )
   }

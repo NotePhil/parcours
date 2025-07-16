@@ -5,7 +5,6 @@ import { ParoursRoutingModule } from './parours-routing.module';
 import { NewParoursComponent } from './new-parours/new-parours.component';
 import { ListParoursComponent } from './list-parours/list-parours.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,6 +20,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EtapeModule } from '../etape/etape.module';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [NewParoursComponent, ListParoursComponent],
@@ -28,7 +30,7 @@ import { EtapeModule } from '../etape/etape.module';
     CommonModule,
     ParoursRoutingModule,
     FormsModule,
-    AppRoutingModule,
+    ModulesRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
@@ -40,6 +42,8 @@ import { EtapeModule } from '../etape/etape.module';
     SharedModule,
     EtapeModule,
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     MatCheckboxModule,
     TranslateModule.forChild({
       loader: {
@@ -48,8 +52,7 @@ import { EtapeModule } from '../etape/etape.module';
         deps: [HttpClient],
       },
       extend: true,
-    }),
-    BrowserModule,
+    })
   ],
   providers: [DatePipe],
 })

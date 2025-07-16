@@ -9,6 +9,8 @@ import { DocumentService } from 'src/app/services/documents/document.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ExemplaireDocumentService } from 'src/app/services/exemplaire-document/exemplaire-document.service';
 import { IOrdreEtat } from 'src/app/modele/ordreEtat';
+import { IDocument } from 'src/app/modele/document';
+import { ModalChoixDocEtatComponent } from '../../shared/modal-choix-doc-etat/modal-choix-doc-etat.component';
 
 @Component({
   selector: 'app-view-exemplaire',
@@ -46,7 +48,8 @@ export class ViewExemplaireComponent implements OnInit {
     },
     formatCode: '',
     code: '',
-    beneficiaireObligatoire: true
+    beneficiaireObligatoire: true,
+    mouvementDeCaisse: []
   };
   titre: string = '';
   courant: string = '';
@@ -94,6 +97,9 @@ export class ViewExemplaireComponent implements OnInit {
           }
           this.courant = x.ordreEtats![x.ordreEtats!.length - 1].etat.libelle;
 
+          if (this.exemplaire.mouvements != undefined) {
+            this.mouvements = this.exemplaire.mouvements;
+          }
         });
     }
     this.titre = this.dataEnteteMenuService.dataEnteteMenu;

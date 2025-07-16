@@ -25,6 +25,15 @@ export class CaissesService {
     );
   }
 
+  getCaissesByType(type:string): Observable<ICaisses> {
+    return this.getAllCaisses().pipe(
+      map(x=>
+        {
+          return x.find(p=>p.type==type) as ICaisses
+        })
+    );
+   }
+
   getCaissesByLibelle(libelle:string): Observable<ICaisses[]> {
     return this.http.get<ICaisses[]>(this.param.api+'caisses').pipe(
       map(x=>

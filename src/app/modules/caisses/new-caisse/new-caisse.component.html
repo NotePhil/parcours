@@ -1,34 +1,42 @@
 <div id="mainSection">
     <div class="card block" id="top2">
         <div class="card-header" class="entete pt-4 pb-4">
-          {{"personnel.title1" | translate}} {{titre}}
+            {{"personnel.title1" | translate}} {{titre}}
         </div>
-        <div class="card-body" >
-            <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
+        <div class="card-body">
+            <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme">
                 <div class="">
                     <div class="">
                         <div class="form-group">
                             <div>
                                 <div class="champs">
                                     <label for="libelle" class="label">
-                                        {{'caisse.table.title1' | translate}}<span style="color: red;" aria-label="required">*</span>
+                                        {{'caisse.table.title1' | translate}}<span style="color: red;"
+                                            aria-label="required">*</span>
                                     </label>
-                                    <input type="text" formControlName="libelle" name="nom" id="libelle"  placeholder="{{'caisse.table.title1' | translate}}"  class="form-control" required>
+                                    <input type="text" formControlName="libelle" name="nom" id="libelle"
+                                        placeholder="{{'caisse.table.title1' | translate}}" class="form-control"
+                                        required>
                                 </div>
-                                <div  *ngIf="submitted && f['libelle'].errors"  class="alert alert-danger" >
-                                    <div *ngIf="f['libelle'].errors['required']">{{'caisse.form.text2' | translate}}</div>
+                                <div *ngIf="submitted && f['libelle'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['libelle'].errors['required']">{{'caisse.form.text2' | translate}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div>
                                 <div class="champs">
-                                    <label for="solde" class="label" >
-                                        {{"caisse.table.title0" | translate}}<span style="color: red;" aria-label="required">*</span>
+                                    <label for="solde" class="label">
+                                        {{"caisse.table.title0" | translate}}<span style="color: red;"
+                                            aria-label="required">*</span>
                                     </label>
-                                    <input  type="text" formControlName="solde" name="solde" id="solde" placeholder="{{'caisse.table.title0' | translate}}" class="form-control"  required  >
+                                    <input type="number" formControlName="solde" name="solde" id="solde"
+                                        [readOnly]="btnLibelle == 'Modifier' || selectedOptions == 'cash'"
+                                        placeholder="{{'caisse.table.title0' | translate}}" class="form-control"
+                                        required>
                                 </div>
-                                <div  *ngIf="submitted && f['solde'].errors"  class="alert alert-danger" >
+                                <div *ngIf="submitted && f['solde'].errors" class="alert alert-danger">
                                     <div *ngIf="f['solde'].errors['required']">{{'caisse.form.text1' | translate}}</div>
                                 </div>
                             </div>
@@ -36,23 +44,69 @@
                         <div class="form-group">
                             <div>
                                 <div class="champs">
-                                    <label for="type" class="label" >
-                                        {{"caisse.table.title2" | translate}}
+                                    <label for="etat" class="label">
+                                        {{'etape.table.title2' | translate}}
                                     </label>
-                                    <input  type="text" formControlName="type"  name="type" id="type" placeholder="{{'caisse.table.title2' | translate}}" value="" required class="form-control">
-                                </div>
-                                <div  *ngIf="submitted && f['type'].errors"  class="alert alert-danger" >
-                                    <div *ngIf="f['type'].errors['required']">{{'caisse.form.text3' | translate}}</div>
+                                    <p class="w-100 d-flex align-items-center choix">
+                                        <input type="checkbox" checked value="true" formControlName="etat" name="etat"
+                                            class="form-control" id="etat">
+                                    </p>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div>
                                 <div class="champs">
-                                    <label for="detailsJson" class="label" >
-                                        {{"caisse.table.title3" | translate}}
+                                    <label for="type" class="label">
+                                        {{"caisse.table.title2" | translate}}
                                     </label>
-                                    <input  type="text" formControlName="detailsJson"  name="detailsJson" id="detailsJson" placeholder="{{'caisse.table.title3' | translate}}" value="" class="form-control">
+                                    <mat-form-field appearance="fill" class="w-100">
+                                        <mat-label>Choisissez des options</mat-label>
+                                        <mat-select [multiple]="false" [(value)]="selectedOptions"
+                                            [disabled]="btnLibelle == 'Modifier'">
+                                            <mat-option (click)="verify()" name="type" id="type"
+                                                *ngFor="let option of caisses" [value]="option">
+                                                {{ option }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="selectedOptions == 'cash'">
+                            <div>
+                                <div class="champs">
+                                    <label for="detailsJson" class="label">
+                                        Découpes<!-- {{"caisse.table.title3" | translate}} -->
+                                    </label>
+                                    <div class="financial-table-wrapper">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x10000"
+                                            placeholder="10000" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x5000"
+                                            placeholder="5000" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x2000"
+                                            placeholder="2000" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x1000"
+                                            placeholder="1000" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x500"
+                                            placeholder="500" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x500B"
+                                            placeholder="500B" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x100"
+                                            placeholder="100" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x50"
+                                            placeholder="50" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x25"
+                                            placeholder="25" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x10"
+                                            placeholder="10" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x5"
+                                            placeholder="5" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x2"
+                                            placeholder="2" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x1"
+                                            placeholder="1" class="input-field">
+                                    </div>
                                 </div><!-- 
                                 <div  *ngIf="submitted && f['detailsJson'].errors"  class="alert alert-danger" >
                                     <div *ngIf="f['detailsJson'].errors['required']">{{'personnel.form.text5' | translate}}</div>
@@ -61,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="actionButton valBtn" >
+                <div class="actionButton valBtn">
                     <button class="btn retour" (click)="return()" title="{{'lists.button2' | translate}}">
                         <i class="fa fa-reply mr-1" aria-hidden="true"></i>
                     </button>

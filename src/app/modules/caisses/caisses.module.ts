@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-
-import { CaissesRoutingModule } from './caisses-routing.module';
 import { NewCaisseComponent } from './new-caisse/new-caisse.component';
 import { ListCaissesComponent } from './list-caisses/list-caisses.component';
 import { HttpClient } from '@angular/common/http';
@@ -12,32 +10,39 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { AttributsRoutingModule } from '../attributs/attributs-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { EcartCaisseComponent } from './ecart-caisse/ecart-caisse.component';
 
 
 @NgModule({
   declarations: [
     NewCaisseComponent,
-    ListCaissesComponent
+    ListCaissesComponent,
+    EcartCaisseComponent
   ],
   imports: [
     CommonModule,
     AttributsRoutingModule,
     FormsModule,
-    AppRoutingModule,
+    ModulesRoutingModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
+    MatSelectModule,
     MatSortModule,
     SharedModule,
+    MatButtonModule,
+    MatMenuModule,
     TranslateModule.forChild({
         loader: {
             provide: TranslateLoader,
@@ -45,8 +50,7 @@ import { SharedModule } from '../shared/shared.module';
             deps: [HttpClient]
         },
         extend:true
-    }),
-    BrowserModule
+    })
   ],
   providers: [DatePipe],
 })

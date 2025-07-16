@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NewPromoComponent } from './new-promo/new-promo.component';
 import { ListPromoComponent } from './list-promo/list-promo.component';
-import { PromoRoutingModule } from './promo-routing.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -17,6 +16,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { SharedModule } from '../shared/shared.module';
+import { ModulesRoutingModule } from '../modules-routing.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -25,8 +27,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    PromoRoutingModule,
     MatFormFieldModule,
+    ModulesRoutingModule,
     MatInputModule,
     SharedModule,
     MatAutocompleteModule,
@@ -45,6 +47,8 @@ import { SharedModule } from '../shared/shared.module';
       extend: true,
     }),
     MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
     MatCheckboxModule,
   ],
   providers: [DatePipe],

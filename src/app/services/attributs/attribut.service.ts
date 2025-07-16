@@ -11,13 +11,10 @@ import { GlobalVariables } from 'src/globalVariables';
 })
 export class AttributService {
 
-  
-
   constructor(private http:HttpClient, private param: GlobalVariables) { }
-
   getAllAttributs():Observable<IAttributs[]>
   {
-    return this.http.get<IAttributs[]>(this.param.api+'attributs').pipe(map((x)=>x));
+    return this.http.get<IAttributs[]>(this.param.api+'attributs').pipe(map(x=>x));
   }
 
   getAttributById(id:string):Observable<IAttributs>{
@@ -40,17 +37,12 @@ export class AttributService {
 
   ajouterAttribut(attribut:IAttributs)
   {
-    return this.http.post(this.param.api+'attributs',attribut);
-  }
-
-  modifierAttribut(attribut:IAttributs)
-  {
-    return this.http.post(this.param.api+'attributs',attribut);
+    return this.http.post(this.param.api+"attributs",attribut);
   }
 
   getTypeAttribut():Observable<TypeAttribut>
   {
-    return this.http.get<TypeAttribut>('api/typeAttribut').pipe(map(x=>x));
+    return this.http.get<TypeAttribut>(this.param.api+'typeAttribut').pipe(map(x=>x));
   }
 
 }

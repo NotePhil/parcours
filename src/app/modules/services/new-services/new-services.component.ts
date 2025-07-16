@@ -22,7 +22,6 @@ export class NewServicesComponent implements OnInit {
   initialDateDerniereModification = new FormControl(new Date());
   initialDateAttribution = new FormControl(new Date());
   initialDateFin = new FormControl(new Date());
-  titre:string='';
   constructor(private formBuilder:FormBuilder,private dataEnteteMenuService:DonneesEchangeService, private serviceService:ServicesService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
       libelle: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -37,7 +36,6 @@ export class NewServicesComponent implements OnInit {
     let idService = this.infosPath.snapshot.paramMap.get('idService');
     if((idService != null) && idService!==''){
       this.btnLibelle="Modifier";
-      this.titre="service à Modifier";
       this.serviceService.getServiceById(idService).subscribe(x =>
         {
           this.service = x;
@@ -50,7 +48,6 @@ export class NewServicesComponent implements OnInit {
           })
       });
     }
-    this.titre=this.dataEnteteMenuService.dataEnteteMenu
   }
 
   get f(){
@@ -58,7 +55,7 @@ export class NewServicesComponent implements OnInit {
   }
 
   return() {
-    this.router.navigate(['/list-services']);
+    this.router.navigate(['parcours/services/list-services']);
   }
 
   onSubmit(serviceInput:any){
@@ -70,22 +67,23 @@ export class NewServicesComponent implements OnInit {
       id: uuidv4(),
       libelle: serviceInput.libelle,
       etat: serviceInput.etat,
+      codeUnique: "azer5r25IR",
       dateDerniereModification: serviceInput.dateDerniereModification,
       dateAttribution: serviceInput.dateAttribution,
       dateFin: serviceInput.dateFin,
       nombreTotalAttributions: serviceInput.nombreTotalAttributions,
       localisation: serviceInput.localisation,
-      description: serviceInput.description,
-      codeUnique: serviceInput.codeUnique
+      description: serviceInput.description
     }
 
     if(this.service != undefined){
       serviceTemp.id = this.service.id
+      serviceTemp.codeUnique = this.service.codeUnique
     }
 
     this.serviceService.ajouterService(serviceTemp).subscribe(
       object => {
-        this.router.navigate(['/list-services']);
+        this.router.navigate(['parcours/services/list-services']);
       }
     )
   }

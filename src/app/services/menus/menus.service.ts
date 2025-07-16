@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { IMenus } from 'src/app/modele/menus';
+import { IMenu } from 'src/app/modele/menu';
+import { IUtilisateurs } from 'src/app/modele/utilisateurs';
 import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
@@ -11,23 +12,33 @@ export class MenusService {
 
   constructor(private http:HttpClient, private param: GlobalVariables) { }
 
-  getMenu():Observable<IMenus[]>
+  getMenus():Observable<IMenu[]>
   {
-    return this.http.get<IMenus[]>(this.param.api+ 'menus').pipe(map(x=>x));
+    return this.http.get<IMenu[]>(this.param.api+ 'menu').pipe(map(x=>x));
+  }
+  getMenu():Observable<IUtilisateurs[]>
+  {
+    return this.http.get<IUtilisateurs[]>(this.param.api+ 'utilisateurs').pipe(map(x=>x));
   }
 
-  getMenuByUserAndLangue(login:string, langue:string):Observable<IMenus>{
+  getMenuByUserAndLangue(login:string, langue:string):Observable<IMenu>{
+    let user : IUtilisateurs | undefined;
     return this.getMenu().pipe(
       map(x=>
         {
-          return x.find(p=>p.idUser==login && p.langue==langue) as IMenus
+          user = x.find(p => p.login == login);
+          if (user!.menu != null) {
+            return user!.menu.find((p: { langue: string; }) => p.langue == langue) as unknown as IMenu;
+          } else {
+            return user!.groupe!.menu.find((p: { langue: string; }) => p.langue == langue) as unknown as IMenu;
+          }
         })
     );
   }
 
-  ajouterMenu(menu:IMenus)
+  ajouterMenu(menu:IMenu)
   {
-    return this.http.post(this.param.api+ 'menus',menu);
+    return this.http.post(this.param.api+ 'menu',menu);
   }
 
 }

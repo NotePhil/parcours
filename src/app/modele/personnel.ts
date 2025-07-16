@@ -1,6 +1,8 @@
+import { IGroupes } from './groupes';
 import { IRole } from './role';
 
 export interface IPersonnel {
+  [x: string]: any;
   id: string;
   nom: string;
   prenom: string;

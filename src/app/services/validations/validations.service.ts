@@ -27,7 +27,7 @@ export class ValidationsService {
   }
   
   getValidationByCode(code:string): Observable<IValidation[]> {
-    return this.http.get<IValidation[]>(this.param.api+ 'validations').pipe(
+    return this.http.get<IValidation[]>(this.param.api+'validations').pipe(
       map(x=>
         {
           return x.filter(m=> m.code.toLowerCase().startsWith(code))

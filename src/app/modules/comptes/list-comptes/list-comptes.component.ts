@@ -11,6 +11,8 @@ import { IComptes } from 'src/app/modele/comptes';
 import { ComptesService } from 'src/app/services/comptes/comptes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAjoutMontantCompteComponent } from '../../shared/modal-ajout-montant-compte/modal-ajout-montant-compte.component';
+import { IElements } from 'src/app/modele/elements';
+import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
 
 @Component({
   selector: 'app-list-comptes',
@@ -19,6 +21,9 @@ import { ModalAjoutMontantCompteComponent } from '../../shared/modal-ajout-monta
 })
 export class ListComptesComponent implements OnInit {
   comptes$:Observable<IComptes>=EMPTY;
+  
+  receivedActions$: Observable<IElements[]>=EMPTY;
+  actions : IElements[] | undefined;
 
   myControl = new FormControl<string | IComptes>('');
 
@@ -34,13 +39,25 @@ export class ListComptesComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private translate: TranslateService, private router:Router, private serviceCompte:ComptesService, private dialogDef : MatDialog, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private translate: TranslateService, private router:Router, private serviceCompte:ComptesService, private dialogDef : MatDialog, private _liveAnnouncer: LiveAnnouncer,
+    private actionsview: PassActionService
+  ) { }
 
   ngOnInit(): void {
     this.getAllComptes().subscribe(valeurs => {
       this.dataSource.data = valeurs;
         this.filteredOptions = valeurs
     });
+    
+    this.actionsview.langueData$.subscribe(data => {
+      this.receivedActions$ = this.actionsview.getActions();
+      this.receivedActions$.subscribe(a => {
+        if (a != null) {
+          this.actions = a;
+          console.log("Actions view :", a, this.receivedActions$);
+        }
+      });
+    })
 
     this.myControl.valueChanges.subscribe(
       value => {

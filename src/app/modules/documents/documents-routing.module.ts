@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListFormDocumentComponent } from './list-form-document/list-form-document.component';
 import { NewFormDocumentComponent } from './new-form-document/new-form-document.component';
 import { ViewFormDocumentComponent } from './view-form-document/view-form-document.component';
+import { CommonModule } from '@angular/common';
 
-const routes: Routes = [
+const routesDoc: Routes = [
   {
     path: 'document-nouveau',
     title: 'Nouveau formulaire de documents',
@@ -28,7 +29,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routesDoc)
+  ],
   exports: [RouterModule]
 })
 export class DocumentsRoutingModule { }
