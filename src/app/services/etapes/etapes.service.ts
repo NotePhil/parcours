@@ -15,7 +15,7 @@ export class EtapesService {
   constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllEtapes(): Observable<IEtape[]> {
-    return this.http.get<IEtape[]>(this.param.api+ 'etape').pipe(map((x) => x));
+    return this.http.get<IEtape[]>(this.param.api+ 'etapes').pipe(map((x) => x));
   }
 
   getEtapeById(id: string): Observable<IEtape> {
@@ -27,7 +27,7 @@ export class EtapesService {
   }
 
   getEtapesBylibelle(libelle: string): Observable<IEtape[]> {
-    return this.http.get<IEtape[]>(this.param.api+ 'etape').pipe(
+    return this.http.get<IEtape[]>(this.param.api+ 'etapes').pipe(
       map((x) => {
         return x.filter((p) => p.libelle.toLowerCase().startsWith(libelle));
       })
@@ -36,7 +36,7 @@ export class EtapesService {
 
   ajouterEtape(etape: IEtape): Observable<any> {
     console.log('etape', etape);
-    return this.http.post(this.param.api+ 'etape', etape);
+    return this.http.post(this.param.api+ 'etapes', etape);
   }
 
   updateDocEtatsWithCheckedEtapes(etape: IEtape) {

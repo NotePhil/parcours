@@ -182,7 +182,7 @@ export class NewRessourceComponent implements OnInit {
     this.ressourceService
       .ajouterRessource(ressourceTemp)
       .subscribe((object) => {
-        this.router.navigate(['parcours /ressources/list-ressources']);
+        this.router.navigate(['parcours/ressources/list-ressources']);
       }
     )
     this.dataEnteteMenuService.dataDocumentRessourcesAttributs = []

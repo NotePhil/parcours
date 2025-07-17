@@ -260,7 +260,7 @@ export class NewPromoComponent implements OnInit {
 
     this.promoService.ajouterPromo(promoTemp).subscribe(
       () => {
-        this.router.navigate(['parcours/promos/list-promo']);
+        this.router.navigate(['parcours/promo/list-promo']);
       },
       (error) => {
         console.error('Error saving promo:', error);
@@ -269,7 +269,7 @@ export class NewPromoComponent implements OnInit {
   }
 
   return(): void {
-    this.router.navigate(['parcours/promos/list-promo']);
+    this.router.navigate(['parcours/promo/list-promo']);
   }
 
   resetForm(): void {

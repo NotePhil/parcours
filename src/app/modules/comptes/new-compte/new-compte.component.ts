@@ -116,7 +116,7 @@ export class NewCompteComponent {
     console.log('valeur final :', compteTemp);
 
     this.compteService.ajouterCompte(compteTemp).subscribe((object) => {
-      this.router.navigate(['/list-comptes']);
+      this.router.navigate(['/parcours/comptes/list-comptes']);
     });
   }
 }

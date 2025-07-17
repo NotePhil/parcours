@@ -25240,7 +25240,7 @@ export class InMemDBService implements InMemoryDbService {
         ]
       }
     ];
-    let promo: IPromo[] = [
+    let promotions: IPromo[] = [
       {
         id: '1',
         emetteur: {
@@ -25417,7 +25417,7 @@ export class InMemDBService implements InMemoryDbService {
         ]
       }
     ]
-    let ressource: IRessource[] = [
+    let ressources: IRessource[] = [
       {
         id: '1',
         libelle: 'transfusion',
@@ -25522,7 +25522,7 @@ export class InMemDBService implements InMemoryDbService {
         scanBarCode: 'hello',
       },
     ];
-    let famille: IFamille[] = [
+    let familles: IFamille[] = [
       { id: '1', libelle: 'Electronique', description: 'sang', etat: true },
       { id: '2', libelle: 'Medical', description: 'nouveau-né', etat: false },
       {
@@ -25780,7 +25780,7 @@ export class InMemDBService implements InMemoryDbService {
         ],
       },
     ];
-    let distributeur: IDistributeur[] = [
+    let distributeurs: IDistributeur[] = [
       {
         id: '1',
         raisonSocial: 'Total Energie',
@@ -26468,22 +26468,6 @@ export class InMemDBService implements InMemoryDbService {
                   ],
                 },
                 {
-                  fonction: 'Etape',
-                  icone: 'fas fa-user-cog',
-                  actif: '',
-                  elements: [
-                    {
-                      nom: 'Créer', lien: 'etapes/etape-nouvelle', bouton: 'false', action: [
-                        {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                      ] }/* ,
-                    {
-                      nom: 'Rechercher',
-                      lien: './etapes/list-etapes',
-                      bouton: 'false',
-                    }, */
-                  ],
-                },
-                {
                   fonction: 'Parcours',
                   icone: 'fas fa-user-cog',
                   actif: '',
@@ -26896,7 +26880,7 @@ export class InMemDBService implements InMemoryDbService {
       {id: "5", libelle: "urgence", solde: 500.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2017')},
       {id: "6", libelle: "courant", solde: 1000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2020')}
     ];
-    let etape: IEtape[] = [
+    let etapes: IEtape[] = [
       {
         id: '1',
         libelle: 'Acceuil',
@@ -52886,17 +52870,17 @@ export class InMemDBService implements InMemoryDbService {
       services,
       menu,
       tickets,
-      //validations,
+      validations,
       mvtCaisses,
       missions,
-      // attributs,
+      attributs,
       documents,
       exemplaires,
-      famille,
-      ressource,
+      familles,
+      ressources,
       precomvt,
-      distributeur,
-      promo,
+      distributeurs,
+      promotions,
       role,
       personnels,
       typeAttribut,
@@ -52905,8 +52889,8 @@ export class InMemDBService implements InMemoryDbService {
       etats,
       caisses,
       comptes,
-      //etape,
-      //parours,
+      etapes,
+      parours,
       typeValidation,
       formatCode,
       groupes,

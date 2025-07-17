@@ -15,7 +15,7 @@ export class DistributeursService {
 
   getAllDistributeurs():Observable<IDistributeur[]>
   {
-    return this.http.get<IDistributeur[]>(this.param.api+ 'distributeur').pipe(map(x=>x));
+    return this.http.get<IDistributeur[]>(this.param.api+ 'distributeurs').pipe(map(x=>x));
   }
 
   getDistributeurById(id:string):Observable<IDistributeur>{
@@ -28,7 +28,7 @@ export class DistributeursService {
   }
 
    getDistributeursByraisonSocial(raisonSocial:string): Observable<IDistributeur[]> {
-    return this.http.get<IDistributeur[]>(this.param.api+ 'distributeur').pipe(
+    return this.http.get<IDistributeur[]>(this.param.api+ 'distributeurs').pipe(
       map(x=>
         {
           return x.filter(p=> p.raisonSocial.toLowerCase().startsWith(raisonSocial))
@@ -38,6 +38,6 @@ export class DistributeursService {
 
   ajouterDistributeur(distributeur:IDistributeur)
   {
-    return this.http.post(this.param.api+ 'distributeur',distributeur);
+    return this.http.post(this.param.api+ 'distributeurs',distributeur);
   }
 }

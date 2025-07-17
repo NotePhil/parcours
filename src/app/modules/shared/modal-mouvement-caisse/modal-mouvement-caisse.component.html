@@ -18,7 +18,7 @@
                       <tbody formArrayName="elements">
                         <tr *ngFor="let element of elements.controls; let i = index" [formGroupName]="i">
                           <th scope="row">
-                            <input type="text" matInput [matAutocomplete]="auto" class="form-control" formControlName="moyen" [disabled]="true">
+                            <input type="text" matInput [matAutocomplete]="auto" class="form-control" formControlName="moyen">
                             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                             </mat-autocomplete>
                           </th>
@@ -30,10 +30,10 @@
               </div>
               <div class="actionButton valBtn">
                 <button class="btn retour" [mat-dialog-close]="" title="{{'lists.button2' | translate}}">
-                    <i class="fa fa-undo" aria-hidden="true"></i>
+                    <i class="fa fa-undo"></i>
                 </button>
                 <button type="submit" cdkFocusInitial class="btn btnValidation" title="{{btnLibelle}}">
-                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <i class="fa fa-check"></i>
                 </button>
               </div>
           </form>

@@ -10,7 +10,7 @@ import { GlobalVariables } from 'src/globalVariables';
   providedIn: 'root'
 })
 export class PromoService {
-  private apiUrl = this.param.api+ 'promo'; 
+  private apiUrl = this.param.api+ 'promotions'; 
 
   constructor(private http: HttpClient, private param: GlobalVariables) {}
 
@@ -43,7 +43,7 @@ export class PromoService {
   }
   
   getPromosByRessource(ressource: IRessource): Observable<IPromo[]> {
-    return this.http.get<IPromo[]>(this.param.api+ 'promo').pipe(
+    return this.http.get<IPromo[]>(this.param.api+ 'promotions').pipe(
       map(promos => 
         promos.filter(promo => 
           // Vérifier la correspondance des ressources
