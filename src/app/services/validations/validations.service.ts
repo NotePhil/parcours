@@ -14,7 +14,7 @@ export class ValidationsService {
 
   getAllValidations():Observable<IValidation []>
   {
-    return this.http.get<IValidation []>(this.param.api+'validations').pipe(map(x=>x));
+    return this.http.get<IValidation []>(this.param.api+ 'validations').pipe(map(x=>x));
   }
 
   getValidationById(id:string):Observable<IValidation >{
@@ -36,7 +36,7 @@ export class ValidationsService {
   }
   
   getValidationByLibelle(libelle:string): Observable<IValidation[]> {
-    return this.http.get<IValidation[]>(this.param.api+'validations').pipe(
+    return this.http.get<IValidation[]>(this.param.api+ 'validations').pipe(
       map(x=>
         {
           return x.filter(m=> m.libelle.toLowerCase().startsWith(libelle))
@@ -46,6 +46,6 @@ export class ValidationsService {
  
    ajouterValidation(validation:IValidation )
    {
-     return this.http.post(this.param.api+"validations",validation);
+     return this.http.post(this.param.api+ 'validations',validation);
    }
 }

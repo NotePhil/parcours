@@ -38,8 +38,6 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   @ViewChild('barcodeScanner', { static: false })
   barcodeScanner!: ModalCodebarreScanContinueComponent;
   patients$: Observable<IPatient[]> = EMPTY;
-  services$: Observable<IService[]> = EMPTY;
-  tickets$: Observable<ITicket[]> = EMPTY;
 
   id_personne: string = '0';
   id_service: number = 0;
@@ -79,8 +77,6 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     private router: Router,
     private servicePatient: PatientsService,
     private _liveAnnouncer: LiveAnnouncer,
-    private serviceService: ServicesService,
-    private serviceTicket: TicketsService,
     private formBuilder: FormBuilder,
     private dialogDef: MatDialog,
     private barService: ModalCodebarreService,
@@ -117,9 +113,6 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
         this.handleScanValChange
       }
     });
-
-    this.services$ = this.getAllServices();
-    this.tickets$ = this.getAllTickets();
 
     this.getAllPatients().subscribe((valeurs) => {
       this.dataSource.data = valeurs;
@@ -234,10 +227,4 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private getAllServices() {
-    return this.serviceService.getAllServices();
-  }
-  private getAllTickets() {
-    return this.serviceTicket.getAllTickets();
-  }
 }

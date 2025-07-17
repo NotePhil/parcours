@@ -4,15 +4,16 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IParours } from 'src/app/modele/parours';
 import { IEtape } from 'src/app/modele/etape';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ParoursService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllParours(): Observable<IParours[]> {
-    return this.http.get<IParours[]>('api/parours').pipe(map((x) => x));
+    return this.http.get<IParours[]>(this.param.api+ 'parours').pipe(map((x) => x));
   }
 
   getParoursById(id: string): Observable<IParours> {
@@ -24,7 +25,7 @@ export class ParoursService {
   }
 
   getParoursBylibelle(libelle: string): Observable<IParours[]> {
-    return this.http.get<IParours[]>('api/parours').pipe(
+    return this.http.get<IParours[]>(this.param.api+ 'parours').pipe(
       map((x) => {
         return x.filter((p) => p.libelle.toLowerCase().startsWith(libelle));
       })
@@ -32,11 +33,11 @@ export class ParoursService {
   }
 
   ajouterParours(parours: IParours) {
-    return this.http.post('api/parours', parours);
+    return this.http.post(this.param.api+ 'parours', parours);
   }
   getEtapesByParoursId(paroursId: string): Observable<IEtape[]> {
     return this.http
-      .get<IEtape[]>(`api/parours/${paroursId}/etapes`)
+      .get<IEtape[]>(this.param.api+ 'parours/${paroursId}/etapes')
       .pipe(map((x) => x));
   }
 }

@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IMouvementCaisses } from 'src/app/modele/mouvement-caisses';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MouvementCaisseService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private param: GlobalVariables) { }
 
   getAllMvtCaisse():Observable<IMouvementCaisses[]>
   {
@@ -44,14 +45,15 @@ export class MouvementCaisseService {
 
   ajouterMouvement(mvt:IMouvementCaisses)
   {
-    return this.http.post("api/mvtCaisses",mvt);
+    return this.http.post('api/mvtCaisses',mvt);
   }
 
+  //mauvais usage
   ajouterMouvementTable(mvt: IMouvementCaisses[])
   {
     for (let index = 0; index < mvt.length; index++) {
-      return this.http.post("api/mvtCaisses",mvt[index]);
+      return this.http.post('api/mvtCaisses',mvt[index]);
     }
-    return this.http.post("api/mvtCaisses",mvt[mvt.length - 1]);
+    return this.http.post('api/mvtCaisses',mvt[mvt.length - 1]);
   }
 }

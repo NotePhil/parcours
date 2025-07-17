@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IDocument } from 'src/app/modele/document';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +12,10 @@ export class DocumentService {
   private selectedEtats: { [documentId: string]: string } = {};
   private selectedDocuments: Set<string> = new Set();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllDocuments(): Observable<IDocument[]> {
-    return this.http.get<IDocument[]>('api/documents');
+    return this.http.get<IDocument[]>(this.param.api+ 'documents');
   }
 
   getDocumentById(id: string): Observable<IDocument> {
@@ -25,19 +26,19 @@ export class DocumentService {
 
   getDocumentByTitre(titre: string): Observable<IDocument[]> {
     return this.http
-      .get<IDocument[]>('api/documents')
+      .get<IDocument[]>(this.param.api+ 'documents')
       .pipe(
         map((x) => x.filter((d) => d.titre.toLowerCase().startsWith(titre)))
       );
   }
 
   ajouterDocument(document: IDocument) {
-    return this.http.post('api/documents', document);
+    return this.http.post(this.param.api+ 'documents', document);
   }
 
   getDocumentByMission(idMission: string): Observable<IDocument[]> {
     return this.http
-      .get<IDocument[]>('api/documents')
+      .get<IDocument[]>(this.param.api+ 'documents')
       .pipe(
         map((x) => x.filter((d) => d.missions.some((m) => m.id === idMission)))
       );

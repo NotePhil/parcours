@@ -49,7 +49,11 @@
                         <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'services.table.title4' | translate}}</th>
                         <td class="containCell" mat-cell *matCellDef="let element"> {{element.description}} </td>
                     </ng-container>
-
+                    <!--  codeUnique -->
+                    <ng-container matColumnDef="codeUnique">
+                        <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{'services.table.title5' | translate}}</th>
+                        <td class="containCell" mat-cell *matCellDef="let element"> {{element.codeUnique}} </td>
+                    </ng-container>
                     <ng-container matColumnDef="actions">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
                         <td class="containCell" mat-cell *matCellDef="let element">

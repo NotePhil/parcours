@@ -25,8 +25,6 @@ export class ListRolesComponent implements OnInit {
 
 
   roles$:Observable<IRole[]>=EMPTY;
-  services$:Observable<IService[]>=EMPTY;
-  tickets$:Observable<ITicket[]>=EMPTY;
   receivedActions$: Observable<IElements[]>=EMPTY;
   actions : IElements[] | undefined;
 
@@ -65,8 +63,6 @@ export class ListRolesComponent implements OnInit {
   ){ }
 
   ngOnInit(): void {
-    this.services$ = this.getAllServices();
-    this.tickets$ = this.getAllTickets();
     this.actionsview.langueData$.subscribe(data => {
       this.receivedActions$ = this.actionsview.getActions();
       this.receivedActions$.subscribe(a => {
@@ -159,12 +155,5 @@ export class ListRolesComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
-  private getAllServices(){
-    return this.serviceService.getAllServices();
-  }
-  private getAllTickets(){
-    return this.serviceTicket.getAllTickets();
-}
 
 }

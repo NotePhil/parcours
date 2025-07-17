@@ -270,7 +270,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       use: [false],
       montant: [''],
       moyenPaiement: new FormControl<string | ICaisses>(''),
-      referencePaiement: [''],
       sommeMontantTotalVerse: new FormControl<number>(0), // chant concernant le montant total des transaction à la modification
     })
   }
@@ -1076,7 +1075,9 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     }
     exemplaireTemp.promotion = this.promotion
     exemplaireTemp.assurance = this.assurancePersonne
-    this.compte!.solde = this.soldeCompte
+    if (this.compte) {
+      this.compte.solde = this.soldeCompte;
+    }
     
     this.convertModalResultInFinalMvtCaisse()
     exemplaireTemp.mouvementDeCaisse = this.ELEMENTS_TABLE_MOUVEMENTCAISSES

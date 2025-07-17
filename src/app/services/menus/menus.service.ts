@@ -3,23 +3,22 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { IMenu } from 'src/app/modele/menu';
 import { IUtilisateurs } from 'src/app/modele/utilisateurs';
-
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenusService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private param: GlobalVariables) { }
 
   getMenus():Observable<IMenu[]>
   {
-    return this.http.get<IMenu[]>('api/menu').pipe(map(x=>x));
+    return this.http.get<IMenu[]>(this.param.api+ 'menu').pipe(map(x=>x));
   }
-
   getMenu():Observable<IUtilisateurs[]>
   {
-    return this.http.get<IUtilisateurs[]>('api/utilisateurs').pipe(map(x=>x));
+    return this.http.get<IUtilisateurs[]>(this.param.api+ 'utilisateurs').pipe(map(x=>x));
   }
 
   getMenuByUserAndLangue(login:string, langue:string):Observable<IMenu>{
@@ -39,7 +38,7 @@ export class MenusService {
 
   ajouterMenu(menu:IMenu)
   {
-    return this.http.post("api/menu",menu);
+    return this.http.post(this.param.api+ 'menu',menu);
   }
 
 }

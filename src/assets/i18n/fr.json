@@ -238,7 +238,8 @@
       "title1": "Libelle",
       "title2": "Etat",
       "title3": "localisation",
-      "title4": "description"
+      "title4": "description",
+      "title5": "Code Unique"
     },
     "form": {
       "label1": "libelle",
@@ -246,6 +247,7 @@
       "label3": "localisation",
       "label4": "description",
       "label5": "est encaissable",
+      "label6": "Code Unique",
       "text1": "Le libelle est obligatoire.",
       "text2": "L'etat est obligatoire.",
       "text3": "La date de derniere modification est obligatoire."

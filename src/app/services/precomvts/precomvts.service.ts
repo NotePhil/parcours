@@ -3,15 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IPrecoMvt } from 'src/app/modele/precomvt';
+import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PrecoMvtsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllPrecomvts(): Observable<IPrecoMvt[]> {
-    return this.http.get<IPrecoMvt[]>('api/precomvt').pipe(map((x) => x));
+    return this.http.get<IPrecoMvt[]>(this.param.api+ 'precomvt').pipe(map((x) => x));
   }
 
   getPrecomvtById(id: string): Observable<IPrecoMvt> {
@@ -23,7 +24,7 @@ export class PrecoMvtsService {
   }
 
   getPrecomvtsByLibelle(libelle: string): Observable<IPrecoMvt[]> {
-    return this.http.get<IPrecoMvt[]>('api/precomvt').pipe(
+    return this.http.get<IPrecoMvt[]>(this.param.api+ 'precomvt').pipe(
       map((x) => {
         return x.filter((p) => p.libelle.toLowerCase().startsWith(libelle));
       })
@@ -31,6 +32,6 @@ export class PrecoMvtsService {
   }
 
   ajouterPrecomvt(precomvt: IPrecoMvt) {
-    return this.http.post('api/precomvt', precomvt);
+    return this.http.post(this.param.api+ 'precomvt', precomvt);
   }
 }

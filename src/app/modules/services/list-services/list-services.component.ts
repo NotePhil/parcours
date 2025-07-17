@@ -32,7 +32,7 @@ export class ListServicesComponent implements OnInit, AfterViewInit {
   ELEMENTS_TABLE: IService[] = [];
   filteredOptions: IService[] | undefined;
 
-  displayedColumns: string[] = ['libelle','description','actions'];
+  displayedColumns: string[] = ['libelle','description','codeUnique','actions'];
 
   dataSource = new MatTableDataSource<IService>(this.ELEMENTS_TABLE);
 

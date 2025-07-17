@@ -228,7 +228,7 @@ export class NewPrecomvtComponent implements OnInit {
     });
     if (precomvtTemp.precomvtqte.length > 1) {
       this.precoMvtService.ajouterPrecomvt(precomvtTemp).subscribe((object) => {
-        this.router.navigate(['list-precomvts']);
+        this.router.navigate(['parcours/preconisations/list-precomvts']);
       });
     } else
       alert('vous devez enregistrer au moins une ressource ou une famille');
