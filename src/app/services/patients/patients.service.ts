@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPatient } from 'src/app/modele/Patient';
 import { forkJoin, of } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
-import { log } from 'console';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
