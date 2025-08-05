@@ -82,7 +82,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       adresse: '',
       mail: '',
       telephone: '',
-      qrCodeValue: ''
+      qrCodeValue: '',
+      type: ''
     },
     formatCode: '',
     code: '',

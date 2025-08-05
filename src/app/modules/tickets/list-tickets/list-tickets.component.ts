@@ -31,7 +31,8 @@ export class ListTicketsComponent implements OnInit, AfterViewInit {
     adresse: '',
     mail: '',
     telephone: '',
-    qrCodeValue: ''
+    qrCodeValue: '',
+    type: ''
   };
   idTicketImpression: string = '';
   statutTicketActif = StatutTicket.actif;

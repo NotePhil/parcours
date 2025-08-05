@@ -56,7 +56,8 @@ export class PrevisualisationExemplaireComponent implements OnInit {
       adresse: '',
       mail: '',
       telephone: '',
-      qrCodeValue: ''
+      qrCodeValue: '',
+      type: ''
     },
     formatCode: '',
     code: '',

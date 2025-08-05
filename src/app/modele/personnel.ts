@@ -12,6 +12,7 @@ export interface IPersonnel {
   telephone: string;
   dateEntree?: Date;
   dateSortie?: Date;
+  type : string;
   roles?: [
     {
       role: IRole;

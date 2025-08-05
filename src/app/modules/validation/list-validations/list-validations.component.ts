@@ -47,6 +47,7 @@ export class ListValidationsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllValidations().subscribe(valeurs => {
       this.dataSource.data = valeurs;
+          console.log("this.dataSource.data :", this.dataSource.data);
     });
     this.actionsview.langueData$.subscribe(data => {
       this.receivedActions$ = this.actionsview.getActions();

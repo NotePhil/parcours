@@ -121,6 +121,7 @@ export class NewPersonnelComponent implements OnInit {
       dateEntree: personnelInput.dateEntree,
       dateSortie: personnelInput.dateSortie,
       qrCodeValue: personnelInput.qrCodeValue,
+      type: 'personnel'
     };
 
     if (this.personnel != undefined) {

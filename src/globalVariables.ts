@@ -4,6 +4,6 @@ import { Injectable } from "@angular/core";
     providedIn: 'root',
   })
 export class GlobalVariables {
-    // api: string = "http://localhost:8684/documentparcours/";
-    api: string = "http://localhost:4200/parcours/";
+    api: string = "http://localhost:8684/documentparcours/";
+    // api: string = "http://localhost:4200/parcours/";
 }

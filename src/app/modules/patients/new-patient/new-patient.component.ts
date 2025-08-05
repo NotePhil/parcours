@@ -234,7 +234,8 @@ export class NewPatientComponent implements OnInit {
       telephone: patientInput.telephone,
       dateNaissance: patientInput.dateNaissance,
       qrCodeValue: patientInput.qrCodeValue,
-      personnesRatachees: this.personnesRatachees
+      personnesRatachees: this.personnesRatachees,
+      type: 'personnePhysique'
     };
 
     patientTemp.dateNaissance = this.initialDate.value!;

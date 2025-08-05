@@ -23,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { BarcodeScannerComponent } from "../shared/BarcodeScanner/barcode-scanner/barcode-scanner.component";
 
 
 @NgModule({
@@ -54,11 +55,12 @@ import { MatButtonModule } from '@angular/material/button';
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
         },
-        extend:true
+        extend: true
     }),
     // ngx-print
     NgxPrintModule,
-  ],
+    BarcodeScannerComponent
+],
   providers: [DatePipe],
   exports: [
     NewTicketComponent,

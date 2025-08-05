@@ -66,12 +66,12 @@ export class NewDistributeurComponent implements OnInit {
 
     let distributeurTemp : IDistributeur={
       id: uuidv4(),
-      raisonSocial:distributeurInput.raisonSocial,
-      etat:distributeurInput.etat,
-      adresse:distributeurInput.adresse,
-      telephone:distributeurInput.telephone,
-      mail:distributeurInput.mail,
-
+      raisonSocial: distributeurInput.raisonSocial,
+      etat: distributeurInput.etat,
+      adresse: distributeurInput.adresse,
+      telephone: distributeurInput.telephone,
+      mail: distributeurInput.mail,
+      type: 'personneMorale'
     }
 
     if(this.distributeur != undefined){

@@ -44,7 +44,8 @@ export class ViewExemplaireComponent implements OnInit {
       adresse: '',
       mail: '',
       telephone: '',
-      qrCodeValue: ''
+      qrCodeValue: '',
+      type: ''
     },
     formatCode: '',
     code: '',

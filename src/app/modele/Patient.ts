@@ -7,6 +7,7 @@ export interface IPatient {
   adresse: string;
   mail: string;
   telephone: string;
+  type: string;
   qrCodeValue: string;
   personnesRatachees?: IPatient[];
 }

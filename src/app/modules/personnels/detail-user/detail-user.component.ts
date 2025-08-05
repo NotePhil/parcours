@@ -82,6 +82,7 @@ export class DetailUserComponent implements OnInit {
         dateEntree: personnelInput.dateEntree,
         dateSortie: personnelInput.dateSortie,
         qrCodeValue: personnelInput.qrCodeValue,
+        type: 'personnel'
       };
     } else {
       this.submitted = true;

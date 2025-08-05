@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0 --port 4200 --disable-host-check",
+    "serve:network": "ng serve --host 0.0.0.0 --port 4200 --disable-host-check",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -32,6 +33,7 @@
     "clinique": "file:",
     "date-fns": "^4.1.0",
     "html2canvas": "^1.4.1",
+    "html5-qrcode": "^2.3.8",
     "jsbarcode": "^3.11.6",
     "jspdf": "^2.5.2",
     "mermaid": "^11.4.1",

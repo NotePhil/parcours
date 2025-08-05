@@ -45,6 +45,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999090',
         mail: 'ngong@yad.fr',
         dateNaissance: new Date('07/07/1989'),
+        type: 'personnePhysique',
         qrCodeValue: '',
         personnesRatachees: [
           {
@@ -56,6 +57,7 @@ export class InMemDBService implements InMemoryDbService {
             adresse: 'Yaoundé',
             telephone: '090999090',
             mail: 'ngong@yad.fr',
+            type: 'personnePhysique',
             qrCodeValue: '78',
           },
         ],
@@ -69,6 +71,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        type: 'personnePhysique',
         qrCodeValue: '6911989109209',
       },
       {
@@ -80,6 +83,7 @@ export class InMemDBService implements InMemoryDbService {
         adresse: 'Yaoundé',
         telephone: '090999090',
         mail: 'ngong@yad.fr',
+        type: 'personnePhysique',
         qrCodeValue: '78',
       },
       {
@@ -91,6 +95,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        type: 'personnePhysique',
         qrCodeValue: '8759678',
       },
       {
@@ -102,6 +107,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        type: 'personnePhysique',
         qrCodeValue: '',
         personnesRatachees: [
           {
@@ -113,6 +119,7 @@ export class InMemDBService implements InMemoryDbService {
             telephone: '090999091',
             mail: 'ouang@yad.fr',
             dateNaissance: new Date('07/03/1990'),
+            type: 'personnePhysique',
             qrCodeValue: '6911989109209',
           },
         ],
@@ -127,6 +134,7 @@ export class InMemDBService implements InMemoryDbService {
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
         qrCodeValue: '5',
+        type: 'personnePhysique',
         personnesRatachees: [
           
         ],
@@ -141,6 +149,7 @@ export class InMemDBService implements InMemoryDbService {
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
         qrCodeValue: '6',
+        type: 'personnePhysique',
         personnesRatachees: [
          
         ],
@@ -155,6 +164,7 @@ export class InMemDBService implements InMemoryDbService {
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
         qrCodeValue: '15',
+        type: 'personnePhysique',
         personnesRatachees: [
         ],
       },
@@ -167,6 +177,7 @@ export class InMemDBService implements InMemoryDbService {
         telephone: '090999091',
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
+        type: 'personnePhysique',
         qrCodeValue: '',
         personnesRatachees: [
           {
@@ -178,6 +189,7 @@ export class InMemDBService implements InMemoryDbService {
             adresse: 'Yaoundé',
             telephone: '090999090',
             mail: 'ngong@yad.fr',
+            type: 'personnePhysique',
             qrCodeValue: '78',
           },
         ],
@@ -192,6 +204,7 @@ export class InMemDBService implements InMemoryDbService {
         mail: 'ouang@yad.fr',
         dateNaissance: new Date('07/03/1990'),
         qrCodeValue: '9',
+        type: 'personnePhysique',
         personnesRatachees: [],
       },
     ];
@@ -362,10 +375,10 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-chart-pie',
             actif: '',
             elements: [
-              { nom: 'Rechercher', lien: 'tickets/list-tickets', bouton: 'false' },
+              { nom: 'Rechercher', lien: './tickets/list-tickets', bouton: 'false' },
               {
                 nom: 'Afficher le panneau',
-                lien: 'tickets/panneau-tickets',
+                lien: './tickets/panneau-tickets',
                 bouton: 'false',
               },
             ],
@@ -533,8 +546,8 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-chart-pie',
             actif: '',
             elements: [
-              { nom: 'Search', lien: 'tickets/list-tickets', bouton: 'false' },
-              { nom: 'View panel', lien: 'tickets/panneau-tickets', bouton: 'false' },
+              { nom: 'Search', lien: './tickets/list-tickets', bouton: 'false' },
+              { nom: 'View panel', lien: './tickets/panneau-tickets', bouton: 'false' },
             ],
           },
           {
@@ -738,10 +751,10 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-chart-pie',
                 actif: '',
                 elements: [
-                  { nom: 'Rechercher', lien: 'tickets/list-tickets', bouton: 'false' },
+                  { nom: 'Rechercher', lien: './tickets/list-tickets', bouton: 'false' },
                   {
                     nom: 'Afficher le panneau',
-                    lien: 'tickets/panneau-tickets',
+                    lien: './tickets/panneau-tickets',
                     bouton: 'false',
                   },
                 ],
@@ -909,8 +922,8 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-chart-pie',
                 actif: '',
                 elements: [
-                  { nom: 'Search', lien: 'tickets/list-tickets', bouton: 'false' },
-                  { nom: 'View panel', lien: 'tickets/panneau-tickets', bouton: 'false' },
+                  { nom: 'Search', lien: './tickets/list-tickets', bouton: 'false' },
+                  { nom: 'View panel', lien: './tickets/panneau-tickets', bouton: 'false' },
                 ],
               },
               {
@@ -1999,6 +2012,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -2007,6 +2021,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -2015,6 +2030,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -2508,6 +2524,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -2516,6 +2533,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -2524,6 +2542,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -3010,6 +3029,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -3018,6 +3038,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -3026,6 +3047,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -3459,6 +3481,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -3467,6 +3490,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -3475,6 +3499,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -3909,6 +3934,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -3917,6 +3943,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -3925,6 +3952,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -4526,6 +4554,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -4534,6 +4563,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -4542,6 +4572,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -4975,6 +5006,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -4983,6 +5015,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -4991,6 +5024,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -5621,6 +5655,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -5629,6 +5664,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -5637,6 +5673,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -6135,6 +6172,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -6143,6 +6181,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -6151,6 +6190,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -6640,6 +6680,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -6648,6 +6689,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -6656,6 +6698,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -7092,6 +7135,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -7100,6 +7144,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -7108,6 +7153,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -7604,6 +7650,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -7612,6 +7659,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -7620,6 +7668,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -8107,6 +8156,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -8115,6 +8165,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -8123,6 +8174,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -8558,6 +8610,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -8566,6 +8619,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -8574,6 +8628,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -9193,6 +9248,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -9201,6 +9257,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -9209,6 +9266,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -9704,6 +9762,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -9712,6 +9771,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -9720,6 +9780,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -10365,6 +10426,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -10373,6 +10435,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -10381,6 +10444,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -10912,6 +10976,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -10920,6 +10985,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -10928,6 +10994,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -11363,6 +11430,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -11371,6 +11439,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -11379,6 +11448,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -11998,6 +12068,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -12006,6 +12077,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -12014,6 +12086,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -12512,6 +12585,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -12520,6 +12594,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -12528,6 +12603,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -12986,6 +13062,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -12994,6 +13071,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -13002,6 +13080,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -13029,6 +13108,7 @@ export class InMemDBService implements InMemoryDbService {
           telephone: '090999090',
           mail: 'ngong@yad.fr',
           dateNaissance: new Date('07/07/1989'),
+          type: 'personnePhysique',
           qrCodeValue: '',
           personnesRatachees: [
             {
@@ -13040,6 +13120,7 @@ export class InMemDBService implements InMemoryDbService {
               adresse: 'Yaoundé',
               telephone: '090999090',
               mail: 'ngong@yad.fr',
+              type: 'personnePhysique',
               qrCodeValue: '78',
             },
           ],
@@ -13648,6 +13729,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -13656,6 +13738,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -13664,6 +13747,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -14354,6 +14438,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -14362,6 +14447,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -14370,6 +14456,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -14986,6 +15073,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -14994,6 +15082,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -15002,6 +15091,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -15042,6 +15132,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '1',
               raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Dla',
               telephone: '655554488',
@@ -15099,6 +15190,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '3',
               raisonSocial: 'Total Energie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Buéa',
               telephone: '655554486',
@@ -15132,6 +15224,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '4',
               raisonSocial: 'Eneo',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Ydé',
               telephone: '655554481',
@@ -15156,6 +15249,7 @@ export class InMemDBService implements InMemoryDbService {
           mail: 'ngong@yad.fr',
           dateNaissance: new Date('07/07/1989'),
           qrCodeValue: '',
+          type: 'personnePhysique',
           personnesRatachees: [
             {
               id: '78',
@@ -15166,6 +15260,7 @@ export class InMemDBService implements InMemoryDbService {
               adresse: 'Yaoundé',
               telephone: '090999090',
               mail: 'ngong@yad.fr',
+              type: 'personnePhysique',
               qrCodeValue: '78',
             },
           ],
@@ -15695,6 +15790,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -15703,6 +15799,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -15711,6 +15808,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -16237,6 +16335,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -16245,6 +16344,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -16253,6 +16353,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -16869,6 +16970,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -16877,6 +16979,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -16885,6 +16988,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -17380,6 +17484,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -17388,6 +17493,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -17396,6 +17502,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -17436,6 +17543,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '2',
               raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Ydé',
               telephone: '655554481',
@@ -17494,6 +17602,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '1',
               raisonSocial: 'Total Energie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Dla',
               telephone: '655554488',
@@ -17517,6 +17626,7 @@ export class InMemDBService implements InMemoryDbService {
           telephone: '090999090',
           mail: 'ngong@yad.fr',
           dateNaissance: new Date('07/07/1989'),
+          type: 'personnePhysique',
           qrCodeValue: '',
           personnesRatachees: [
             {
@@ -17528,6 +17638,7 @@ export class InMemDBService implements InMemoryDbService {
               adresse: 'Yaoundé',
               telephone: '090999090',
               mail: 'ngong@yad.fr',
+              type: 'personnePhysique',
               qrCodeValue: '78',
             },
           ],
@@ -18126,6 +18237,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -18134,6 +18246,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -18142,6 +18255,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -18835,6 +18949,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -18843,6 +18958,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -18851,6 +18967,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -19469,6 +19586,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -19477,6 +19595,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -19485,6 +19604,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -19525,6 +19645,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '1',
               raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Dla',
               telephone: '655554488',
@@ -19582,6 +19703,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '3',
               raisonSocial: 'Total Energie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Buéa',
               telephone: '655554486',
@@ -19615,6 +19737,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '4',
               raisonSocial: 'Eneo',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Ydé',
               telephone: '655554481',
@@ -19638,6 +19761,7 @@ export class InMemDBService implements InMemoryDbService {
           telephone: '090999090',
           mail: 'ngong@yad.fr',
           dateNaissance: new Date('07/07/1989'),
+          type: 'personnePhysique',
           qrCodeValue: '',
           personnesRatachees: [
             {
@@ -19649,6 +19773,7 @@ export class InMemDBService implements InMemoryDbService {
               adresse: 'Yaoundé',
               telephone: '090999090',
               mail: 'ngong@yad.fr',
+              type: 'personnePhysique',
               qrCodeValue: '78',
             },
           ],
@@ -20127,6 +20252,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -20135,6 +20261,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -20143,6 +20270,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -20670,6 +20798,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -20678,6 +20807,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -20686,6 +20816,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -21183,6 +21314,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -21191,6 +21323,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -21199,6 +21332,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -21239,6 +21373,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '2',
               raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Ydé',
               telephone: '655554481',
@@ -21297,6 +21432,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '1',
               raisonSocial: 'Total Energie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Dla',
               telephone: '655554488',
@@ -21320,6 +21456,7 @@ export class InMemDBService implements InMemoryDbService {
           telephone: '090999091',
           mail: 'ouang@yad.fr',
           dateNaissance: new Date('07/03/1990'),
+          type: 'personnePhysique',
           qrCodeValue: '',
           personnesRatachees: [
             {
@@ -21332,6 +21469,7 @@ export class InMemDBService implements InMemoryDbService {
               telephone: '090999090',
               mail: 'ngong@yad.fr',
               qrCodeValue: '418',
+              type: 'personnePhysique',
             },
           ],
         },
@@ -21694,6 +21832,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -21702,6 +21841,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -21710,6 +21850,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -22299,6 +22440,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -22307,6 +22449,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -22315,6 +22458,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -22380,6 +22524,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '1',
               raisonSocial: 'Total Energie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Dla',
               telephone: '655554488',
@@ -22404,6 +22549,7 @@ export class InMemDBService implements InMemoryDbService {
           mail: 'ouang@yad.fr',
           dateNaissance: new Date('07/03/1990'),
           qrCodeValue: '',
+          type: 'personnePhysique',
           personnesRatachees: [
             {
               id: '418',
@@ -22414,6 +22560,7 @@ export class InMemDBService implements InMemoryDbService {
               adresse: 'Yaoundé',
               telephone: '090999090',
               mail: 'ngong@yad.fr',
+              type: 'personnePhysique',
               qrCodeValue: '418',
             },
           ],
@@ -23023,6 +23170,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -23031,6 +23179,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -23039,6 +23188,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -23730,6 +23880,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -23738,6 +23889,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -23746,6 +23898,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -24363,6 +24516,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -24371,6 +24525,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -24379,6 +24534,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -24419,6 +24575,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '1',
               raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Dla',
               telephone: '655554488',
@@ -24476,6 +24633,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '3',
               raisonSocial: 'Total Energie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Buéa',
               telephone: '655554486',
@@ -24509,6 +24667,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '4',
               raisonSocial: 'Eneo',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Ydé',
               telephone: '655554481',
@@ -24920,6 +25079,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '1',
               raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Dla',
               telephone: '655554488',
@@ -24977,6 +25137,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '3',
               raisonSocial: 'Total Energie',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Buéa',
               telephone: '655554486',
@@ -25010,6 +25171,7 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: {
               id: '4',
               raisonSocial: 'Eneo',
+                        type: 'personneMorale',
               etat: true,
               adresse: 'Ydé',
               telephone: '655554481',
@@ -25212,6 +25374,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Dla',
                     telephone: '655554488',
@@ -25220,6 +25383,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     raisonSocial: 'guinness',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Ydé',
                     telephone: '655554481',
@@ -25228,6 +25392,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                     etat: true,
                     adresse: 'Buéa',
                     telephone: '655554486',
@@ -25246,6 +25411,7 @@ export class InMemDBService implements InMemoryDbService {
         emetteur: {
           id: '1',
           raisonSocial: 'Total Energie',
+                        type: 'personneMorale',
           etat: true,
           adresse: 'Dla',
           telephone: '655554488',
@@ -25324,6 +25490,7 @@ export class InMemDBService implements InMemoryDbService {
         emetteur: {
           id: '2',
           raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
           etat: true,
           adresse: 'Dla',
           telephone: '655554488',
@@ -25377,6 +25544,7 @@ export class InMemDBService implements InMemoryDbService {
         emetteur: {
           id: '3',
           raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
           etat: true,
           adresse: 'Buéa',
           telephone: '655554486',
@@ -25754,6 +25922,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                 etat: true,
                 adresse: 'Dla',
                 telephone: '655554488',
@@ -25762,6 +25931,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 raisonSocial: 'guinness',
+                        type: 'personneMorale',
                 etat: true,
                 adresse: 'Ydé',
                 telephone: '655554481',
@@ -25770,6 +25940,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                 etat: true,
                 adresse: 'Buéa',
                 telephone: '655554486',
@@ -25784,6 +25955,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '1',
         raisonSocial: 'Total Energie',
+                        type: 'personneMorale',
         etat: true,
         adresse: 'Dla',
         telephone: '655554488',
@@ -25792,6 +25964,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '2',
         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
         etat: true,
         adresse: 'Ydé',
         telephone: '655554481',
@@ -25800,6 +25973,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '3',
         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
         etat: true,
         adresse: 'Buéa',
         telephone: '655554486',
@@ -25808,6 +25982,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '4',
         raisonSocial: 'Eneo',
+                        type: 'personneMorale',
         etat: true,
         adresse: 'Buéa',
         telephone: '655554486',
@@ -25841,6 +26016,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '1',
         nom: 'Tagne',
+        type: 'personnel',
         prenom: 'Willy',
         telephone: '655455487',
         email: 'tagnewillie@gmail.com',
@@ -25874,6 +26050,7 @@ export class InMemDBService implements InMemoryDbService {
         dateNaissance: new Date('10/08/2004'),
         dateEntree: new Date(),
         dateSortie: undefined,
+        type: 'personnel',
         roles: [
           {
             role: 
@@ -25901,6 +26078,7 @@ export class InMemDBService implements InMemoryDbService {
         dateNaissance: new Date('10/10/2002'),
         dateEntree: new Date(),
         dateSortie: undefined,
+        type: 'personnel',
         roles: [
           {
             role: {
@@ -25933,6 +26111,7 @@ export class InMemDBService implements InMemoryDbService {
           dateNaissance: new Date('10/04/2000'),
           dateEntree: new Date(),
           dateSortie: undefined,
+          type: 'personnel',
           roles: undefined,
           qrCodeValue: 'hello'
         },
@@ -26066,6 +26245,7 @@ export class InMemDBService implements InMemoryDbService {
           dateNaissance: new Date('10/08/2004'),
           dateEntree: new Date(),
           dateSortie: undefined,
+          type: 'personnel',
           roles: undefined,
           qrCodeValue: 'hello'
         },
@@ -26199,6 +26379,7 @@ export class InMemDBService implements InMemoryDbService {
           dateNaissance: new Date('10/10/2002'),
           dateEntree: new Date(),
           dateSortie: undefined,
+          type: 'personnel',
           roles: [
           {
             role: {
@@ -26293,12 +26474,12 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-chart-pie',
                   actif: '',
                   elements: [
-                    { nom: 'Rechercher', lien: 'tickets/list-tickets', bouton: 'false', action: [
+                    { nom: 'Rechercher', lien: './tickets/list-tickets', bouton: 'false', action: [
                       { nom: 'Imprimer', lien: '', bouton: 'true' }
                     ] },
                     {
                       nom: 'Afficher le panneau',
-                      lien: '/panneau-tickets',
+                      lien: 'tickets/panneau-tickets',
                       bouton: 'false',
                     },
                   ],
@@ -26553,10 +26734,10 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-chart-pie',
                   actif: '',
                   elements: [
-                    { nom: 'Search', lien: 'tickets/list-tickets', bouton: 'false', action: [
+                    { nom: 'Search', lien: './tickets/list-tickets', bouton: 'false', action: [
                       { nom: 'Print', lien: '', bouton: 'true' }
                     ] },
-                    { nom: 'View panel', lien: 'tickets/panneau-tickets', bouton: 'false' },
+                    { nom: 'View panel', lien: './tickets/panneau-tickets', bouton: 'false' },
                   ],
                 },
                 {
@@ -26850,30 +27031,34 @@ export class InMemDBService implements InMemoryDbService {
       {id: "6", libelle: "caisse 6", type: "orange money", etat: false, solde: 600000.00},
     ];
     let comptes: IComptes[] = [
-      {id: "1", libelle: "courant", solde: 1000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2020'), beneficiaire: {
-        id: '6911989109209',
-        nom: 'NGONGANG',
-        prenom: 'Philippe',
-        sexe: 'M',
-        adresse: 'Yaoundé',
-        telephone: '090999090',
-        mail: 'ngong@yad.fr',
-        dateNaissance: new Date('07/07/1989'),
-        qrCodeValue: '',
-        personnesRatachees: [
-          {
-            id: '78',
-            nom: 'Tchakounte',
-            prenom: 'Simpice',
-            sexe: 'm',
-            dateNaissance: new Date('07/07/1989'),
-            adresse: 'Yaoundé',
-            telephone: '090999090',
-            mail: 'ngong@yad.fr',
-            qrCodeValue: '78',
-          },
-        ],
-      }},
+      {id: "1", libelle: "courant", solde: 1000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2020'), 
+        beneficiaire: {
+          id: '6911989109209',
+          nom: 'NGONGANG',
+          prenom: 'Philippe',
+          sexe: 'M',
+          adresse: 'Yaoundé',
+          telephone: '090999090',
+          mail: 'ngong@yad.fr',
+          dateNaissance: new Date('07/07/1989'),
+          type: 'personnePhysique',
+          qrCodeValue: '',
+          personnesRatachees: [
+            {
+              id: '78',
+              nom: 'Tchakounte',
+              prenom: 'Simpice',
+              sexe: 'm',
+              dateNaissance: new Date('07/07/1989'),
+              adresse: 'Yaoundé',
+              telephone: '090999090',
+              mail: 'ngong@yad.fr',
+              qrCodeValue: '78',
+              type: 'personnePhysique',
+            },
+          ],
+        }
+      },
       {id: "2", libelle: "enfants", solde: 70000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2010')},
       {id: "3", libelle: "personnel", solde: 0.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2022')},
       {id: "4", libelle: "courant", solde: 10000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2024')},
@@ -27375,6 +27560,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -27383,6 +27569,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -27391,6 +27578,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -27888,6 +28076,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -27896,6 +28085,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -27904,6 +28094,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -28391,6 +28582,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -28399,6 +28591,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -28407,6 +28600,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -28840,6 +29034,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -28848,6 +29043,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -28856,6 +29052,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -29291,6 +29488,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -29299,6 +29497,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -29307,6 +29506,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -29911,6 +30111,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -29919,6 +30120,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -29927,6 +30129,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -30361,6 +30564,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -30369,6 +30573,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -30377,6 +30582,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -31009,6 +31215,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -31017,6 +31224,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -31025,6 +31233,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -31526,6 +31735,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -31534,6 +31744,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -31542,6 +31753,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -32033,6 +32245,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -32041,6 +32254,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -32049,6 +32263,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -32556,6 +32771,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -32564,6 +32780,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -32572,6 +32789,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -33069,6 +33287,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -33077,6 +33296,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -33085,6 +33305,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -33572,6 +33793,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -33580,6 +33802,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -33588,6 +33811,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -34021,6 +34245,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -34029,6 +34254,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -34037,6 +34263,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -34472,6 +34699,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -34480,6 +34708,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -34488,6 +34717,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -35092,6 +35322,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -35100,6 +35331,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -35108,6 +35340,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -35542,6 +35775,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -35550,6 +35784,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -35558,6 +35793,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -36190,6 +36426,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -36198,6 +36435,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -36206,6 +36444,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -36707,6 +36946,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -36715,6 +36955,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -36723,6 +36964,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -37214,6 +37456,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -37222,6 +37465,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -37230,6 +37474,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -37737,6 +37982,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -37745,6 +37991,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -37753,6 +38000,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -38250,6 +38498,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -38258,6 +38507,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -38266,6 +38516,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -38753,6 +39004,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -38761,6 +39013,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -38769,6 +39022,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -39202,6 +39456,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -39210,6 +39465,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -39218,6 +39474,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -39653,6 +39910,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -39661,6 +39919,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -39669,6 +39928,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -40273,6 +40533,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -40281,6 +40542,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -40289,6 +40551,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -40723,6 +40986,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -40731,6 +40995,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -40739,6 +41004,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -41371,6 +41637,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -41379,6 +41646,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -41387,6 +41655,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -41888,6 +42157,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -41896,6 +42166,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -41904,6 +42175,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -42395,6 +42667,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -42403,6 +42676,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -42411,6 +42685,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -42918,6 +43193,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -42926,6 +43202,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -42934,6 +43211,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -43431,6 +43709,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -43439,6 +43718,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -43447,6 +43727,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -43934,6 +44215,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -43942,6 +44224,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -43950,6 +44233,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -44383,6 +44667,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -44391,6 +44676,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -44399,6 +44685,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -44834,6 +45121,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -44842,6 +45130,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -44850,6 +45139,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -45454,6 +45744,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -45462,6 +45753,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -45470,6 +45762,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -45904,6 +46197,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -45912,6 +46206,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -45920,6 +46215,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -46552,6 +46848,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -46560,6 +46857,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -46568,6 +46866,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -47069,6 +47368,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -47077,6 +47377,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -47085,6 +47386,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -47576,6 +47878,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '1',
                         raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Dla',
                         telephone: '655554488',
@@ -47584,6 +47887,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '2',
                         raisonSocial: 'guinness',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Ydé',
                         telephone: '655554481',
@@ -47592,6 +47896,7 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                         etat: true,
                         adresse: 'Buéa',
                         telephone: '655554486',
@@ -48137,6 +48442,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -48145,6 +48451,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -48153,6 +48460,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -48588,6 +48896,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '1',
                                 raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -48596,6 +48905,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '2',
                                 raisonSocial: 'guinness',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Ydé',
                                 telephone: '655554481',
@@ -48604,6 +48914,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '3',
                                 raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Buéa',
                                 telephone: '655554486',
@@ -49223,6 +49534,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '1',
                                 raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -49231,6 +49543,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '2',
                                 raisonSocial: 'guinness',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Ydé',
                                 telephone: '655554481',
@@ -49239,6 +49552,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '3',
                                 raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Buéa',
                                 telephone: '655554486',
@@ -49737,6 +50051,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '1',
                                 raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -49745,6 +50060,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '2',
                                 raisonSocial: 'guinness',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Ydé',
                                 telephone: '655554481',
@@ -49753,6 +50069,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '3',
                                 raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Buéa',
                                 telephone: '655554486',
@@ -50206,6 +50523,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '1',
                             raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Dla',
                             telephone: '655554488',
@@ -50214,6 +50532,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '2',
                             raisonSocial: 'guinness',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Ydé',
                             telephone: '655554481',
@@ -50222,6 +50541,7 @@ export class InMemDBService implements InMemoryDbService {
                           {
                             id: '3',
                             raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                             etat: true,
                             adresse: 'Buéa',
                             telephone: '655554486',
@@ -50719,6 +51039,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '1',
                                 raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -50727,6 +51048,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '2',
                                 raisonSocial: 'guinness',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Ydé',
                                 telephone: '655554481',
@@ -50735,6 +51057,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '3',
                                 raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Buéa',
                                 telephone: '655554486',
@@ -51223,6 +51546,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '1',
                                 raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -51231,6 +51555,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '2',
                                 raisonSocial: 'guinness',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Ydé',
                                 telephone: '655554481',
@@ -51239,6 +51564,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '3',
                                 raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Buéa',
                                 telephone: '655554486',
@@ -51675,6 +52001,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '1',
                                 raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -51683,6 +52010,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '2',
                                 raisonSocial: 'guinness',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Ydé',
                                 telephone: '655554481',
@@ -51691,6 +52019,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '3',
                                 raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Buéa',
                                 telephone: '655554486',
@@ -52312,6 +52641,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '1',
                                 raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -52320,6 +52650,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '2',
                                 raisonSocial: 'guinness',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Ydé',
                                 telephone: '655554481',
@@ -52328,6 +52659,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '3',
                                 raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Buéa',
                                 telephone: '655554486',
@@ -52828,6 +53160,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '1',
                                 raisonSocial: 'Brasserie',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Dla',
                                 telephone: '655554488',
@@ -52836,6 +53169,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '2',
                                 raisonSocial: 'guinness',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Ydé',
                                 telephone: '655554481',
@@ -52844,6 +53178,7 @@ export class InMemDBService implements InMemoryDbService {
                               {
                                 id: '3',
                                 raisonSocial: 'papeterie yvan',
+                        type: 'personneMorale',
                                 etat: true,
                                 adresse: 'Buéa',
                                 telephone: '655554486',
@@ -52866,31 +53201,31 @@ export class InMemDBService implements InMemoryDbService {
 
     ];
     return {
-      patients,
-      services,
-      menu,
-      tickets,
-      validations,
-      mvtCaisses,
-      missions,
-      attributs,
-      documents,
-      exemplaires,
-      familles,
-      ressources,
-      precomvt,
-      distributeurs,
-      promotions,
-      role,
-      personnels,
+      // patients,
+      // services,
+      // menu,
+      // tickets,
+      // validations,
+      // mvtCaisses,
+      // missions,
+      // attributs,
+      // documents,
+      // exemplaires,
+      // familles,
+      // ressources,
+      // precomvt,
+      // distributeurs,
+      // promotions,
+      // role,
+      // personnels,
       typeAttribut,
       typeUnite,
       typeMvt,
-      etats,
-      caisses,
-      comptes,
-      etapes,
-      parours,
+      // etats,
+      // caisses,
+      // comptes,
+      // etapes,
+      // parours,
       typeValidation,
       formatCode,
       groupes,
