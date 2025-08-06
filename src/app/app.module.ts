@@ -23,6 +23,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { RequestPasswordResetComponent } from './request-password-reset/request-password-reset.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthGuard } from './verify-users/auth/auth.guard';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, NotFoundComponent, RequestPasswordResetComponent, ResetPasswordComponent],
@@ -39,6 +40,7 @@ import { AuthGuard } from './verify-users/auth/auth.guard';
     }),
     // ngx-translate and the loader module
     HttpClientModule,
+    IonicModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -11,6 +11,7 @@ import { AuthGuard } from './verify-users/auth/auth.guard';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'requestPassword', component: RequestPasswordResetComponent},
   { path: 'resetPassword', component: ResetPasswordComponent},
@@ -24,7 +25,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {
+    useHash: true, // évite les problèmes de routage dans WebView Android
+    }),
     ModulesRoutingModule
   ],
   exports: [RouterModule]
