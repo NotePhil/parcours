@@ -67,7 +67,7 @@ export class NewServicesComponent implements OnInit {
       id: uuidv4(),
       libelle: serviceInput.libelle,
       etat: serviceInput.etat,
-      codeUnique: "azer5r25IR",
+      codeUnique: serviceInput.codeUnique,
       dateDerniereModification: serviceInput.dateDerniereModification,
       dateAttribution: serviceInput.dateAttribution,
       dateFin: serviceInput.dateFin,
