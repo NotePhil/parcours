@@ -202,7 +202,7 @@ export class NewPatientComponent implements OnInit {
     return this.forme.controls;
   }
   return() {
-    this.router.navigate(['/list-patients']);
+    this.router.navigate(['/parcours/patients/list-patients']);
   }
 
   public get isButton() : string {

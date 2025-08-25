@@ -130,7 +130,7 @@ export class EcartCaisseComponent implements OnInit {
   }
 
   return() {
-    this.router.navigate(['/list-caisses']);
+    this.router.navigate(['/parcours/caisses/list-caisses']);
   }
 
   onSubmit(caisseInput: ICaisses) {
