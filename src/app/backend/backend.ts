@@ -26132,7 +26132,7 @@ export class InMemDBService implements InMemoryDbService {
                       {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
                     ] },
                     { nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Modifier', lien: '../update-personnel', bouton: 'false'},
+                      {nom: 'Modifier', lien: '../nouveau-personnel', bouton: 'false'},
                       {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
                       {nom: 'Groupe', lien: '', bouton: 'true', type: 'global'},
                       {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'}
@@ -26186,7 +26186,7 @@ export class InMemDBService implements InMemoryDbService {
                       {nom: 'New', lien: '', bouton: 'true', type: 'global'}
                     ] },
                     { nom: 'Search', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Update', lien: '../update-personnel', bouton: 'false'},
+                      {nom: 'Update', lien: '../nouveau-personnel', bouton: 'false'},
                       {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
                       {nom: 'Group', lien: '', bouton: 'true', type: 'global'},
                       {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'}
@@ -26266,7 +26266,7 @@ export class InMemDBService implements InMemoryDbService {
                       {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
                     ] },
                     { nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Modifier', lien: '../update-personnel', bouton: 'false'},
+                      {nom: 'Modifier', lien: '../nouveau-personnel', bouton: 'false'},
                       {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
                       {nom: 'Groupe', lien: '', bouton: 'true', type: 'global'},
                       {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'}
@@ -26320,7 +26320,7 @@ export class InMemDBService implements InMemoryDbService {
                       {nom: 'New', lien: '', bouton: 'true', type: 'global'}
                     ] },
                     { nom: 'Search', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Update', lien: '../update-personnel', bouton: 'false'},
+                      {nom: 'Update', lien: '../nouveau-personnel', bouton: 'false'},
                       {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
                       {nom: 'Group', lien: '', bouton: 'true', type: 'global'},
                       {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'}
@@ -26428,7 +26428,7 @@ export class InMemDBService implements InMemoryDbService {
                       {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
                     ] },
                     { nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Modifier', lien: '../update-personnel', bouton: 'false'},
+                      {nom: 'Modifier', lien: '../nouveau-personnel', bouton: 'false'},
                       {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
                       {nom: 'Groupe', lien: '', bouton: 'true', type: 'global'},
                       {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'},
@@ -26708,7 +26708,7 @@ export class InMemDBService implements InMemoryDbService {
                       {nom: 'Create', lien: '', bouton: 'true', type: 'global'}
                     ] },
                     { nom: 'Search', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Update', lien: '../update-personnel', bouton: 'false'},
+                      {nom: 'Update', lien: '../nouveau-personnel', bouton: 'false'},
                       {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
                       {nom: 'Group', lien: '', bouton: 'true', type: 'global'},
                       {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'},

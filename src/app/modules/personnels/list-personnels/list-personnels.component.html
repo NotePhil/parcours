@@ -16,7 +16,7 @@
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
               <mat-option *ngFor="let option of filteredOptions" [value]="option"
                 (onSelectionChange)="rechercherListingPersonnel(option)">
-                {{option.user.nom}}
+                {{option.nom}}
               </mat-option>
             </mat-autocomplete>
           </form>
@@ -37,21 +37,21 @@
           <ng-container matColumnDef="nom">
             <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
               {{"personnel.table.title1" | translate}} </th>
-            <td class="containCell" mat-cell *matCellDef="let element"> {{element.user.nom}} </td>
+            <td class="containCell" mat-cell *matCellDef="let element"> {{element.nom}} </td>
           </ng-container>
 
           <!-- prenom Column -->
           <ng-container matColumnDef="prenom">
             <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
               {{"personnel.table.title2" | translate}} </th>
-            <td class="containCell" mat-cell *matCellDef="let element"> {{element.user.prenom}} </td>
+            <td class="containCell" mat-cell *matCellDef="let element"> {{element.prenom}} </td>
           </ng-container>
 
           <!-- birthday Column -->
           <ng-container matColumnDef="dateNaissance">
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"personnel.table.title3" |
               translate}} </th>
-            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.user.dateNaissance | date:
+            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateNaissance | date:
               'dd/MM/yyyy'}} </td>
           </ng-container>
 
@@ -59,21 +59,21 @@
           <ng-container matColumnDef="sexe">
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"personnel.table.title4" |
               translate}} </th>
-            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.user.sexe}} </td>
+            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.sexe}} </td>
           </ng-container>
 
           <!-- mail Column -->
           <ng-container matColumnDef="email">
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"personnel.table.title5" |
               translate}} </th>
-            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.email}} </td>
           </ng-container>
 
           <!-- telephone Column -->
           <ng-container matColumnDef="telephone">
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"personnel.table.title7" |
               translate}} </th>
-            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.user.telephone}} </td>
+            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.telephone}} </td>
           </ng-container>
 
           <!-- groupe Column -->
@@ -86,14 +86,14 @@
           <ng-container matColumnDef="dateEntree">
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"personnel.table.title6" |
               translate}} </th>
-            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.user.dateEntree}} </td>
+            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateEntree}} </td>
           </ng-container>
 
           <!-- dateSortie Column -->
           <ng-container matColumnDef="dateSortie">
             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"personnel.table.title8" |
               translate}} </th>
-            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.user.dateSortie}} </td>
+            <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.dateSortie}} </td>
           </ng-container>
 
           <!-- action Column -->
@@ -108,7 +108,7 @@
                                 <button mat-menu-item *ngIf="action.bouton == 'false'" [routerLink]="[action.lien,element.id]">
                                     <span>{{action.nom}}</span>
                                 </button>
-                                <button mat-menu-item *ngIf="action.bouton == 'true'" (click)="openChoixGroupDialog(element.user)">
+                                <button mat-menu-item *ngIf="action.bouton == 'true'" (click)="openChoixGroupDialog(element)">
                                   <span>{{action.nom}}</span>
                                 </button>
                             </ng-container>

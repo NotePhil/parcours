@@ -23,7 +23,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ModulesRoutingModule } from '../modules-routing.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { BarcodeScannerComponent } from "../shared/BarcodeScanner/barcode-scanner/barcode-scanner.component";
+// import { BarcodeScannerComponent } from "../shared/BarcodeScanner/barcode-scanner/barcode-scanner.component";
 
 
 @NgModule({
@@ -59,7 +59,7 @@ import { BarcodeScannerComponent } from "../shared/BarcodeScanner/barcode-scanne
     }),
     // ngx-print
     NgxPrintModule,
-    BarcodeScannerComponent
+    // BarcodeScannerComponent
 ],
   providers: [DatePipe],
   exports: [

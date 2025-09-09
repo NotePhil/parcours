@@ -124,39 +124,45 @@ export class NewPersonnelComponent implements OnInit {
       type: 'personnel'
     };
 
+    // if (this.personnel != undefined) {
+    //   personnelTemp.id = this.personnel.id;
+    //   this.personnelService
+    //     .updatePersonnel(personnelTemp)
+    //     .subscribe((object) => {
+    //       this.userService.getUserById(this.personnel!.id).subscribe((res) => {
+    //         let userTemp: IUtilisateurs = {
+    //           id: res.id,
+    //           login: res.login,
+    //           passWord: res.passWord,
+    //           groupe: res.groupe,
+    //           menu: res.menu,
+    //           user: personnelTemp,
+    //         };
+    //         this.userService.updateUser(userTemp).subscribe((obj) => {});
+    //         console.log('User update :', userTemp);
+    //       });
+    //     });
+    // } else {
+    //   // Save personnel data
+    //   this.personnelService
+    //     .ajouterPersonnel(personnelTemp)
+    //     .subscribe((object) => {
+    //       let userTemp: IUtilisateurs = {
+    //         id: uuidv4(),
+    //         login: personnelTemp.email,
+    //         passWord: personnelTemp.nom + '_' + personnelTemp.id,
+    //         user: personnelTemp,
+    //       };
+    //       this.userService.ajouterUser(userTemp).subscribe((obj) => {});
+    //       console.log('User create :', userTemp);
+    //     });
+    // }
+    
     if (this.personnel != undefined) {
       personnelTemp.id = this.personnel.id;
-      this.personnelService
-        .updatePersonnel(personnelTemp)
-        .subscribe((object) => {
-          this.userService.getUserById(this.personnel!.id).subscribe((res) => {
-            let userTemp: IUtilisateurs = {
-              id: res.id,
-              login: res.login,
-              passWord: res.passWord,
-              groupe: res.groupe,
-              menu: res.menu,
-              user: personnelTemp,
-            };
-            this.userService.updateUser(userTemp).subscribe((obj) => {});
-            console.log('User update :', userTemp);
-          });
-        });
-    } else {
-      // Save personnel data
-      this.personnelService
-        .ajouterPersonnel(personnelTemp)
-        .subscribe((object) => {
-          let userTemp: IUtilisateurs = {
-            id: uuidv4(),
-            login: personnelTemp.email,
-            passWord: personnelTemp.nom + '_' + personnelTemp.id,
-            user: personnelTemp,
-          };
-          this.userService.ajouterUser(userTemp).subscribe((obj) => {});
-          console.log('User create :', userTemp);
-        });
     }
-    this.router.navigate(['parcours/personnels/list-personnels']);
+    this.personnelService.ajouterPersonnel(personnelTemp).subscribe((object) => {
+      this.router.navigate(['parcours/personnels/list-personnels']);
+    });
   }
 }

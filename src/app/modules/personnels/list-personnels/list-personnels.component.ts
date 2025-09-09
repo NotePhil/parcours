@@ -11,7 +11,6 @@ import { PersonnelsService } from 'src/app/services/personnels/personnels.servic
 import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
 import { ModalCodebarreScanContinueComponent } from '../../shared/modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
 import { UtilisateurService } from 'src/app/services/utilisateurs/utilisateur.service';
-import { IUtilisateurs } from 'src/app/modele/utilisateurs';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalChoixGroupsComponent } from '../../shared/modal-choix-groups/modal-choix-groups.component';
 import { AuthentificationService } from 'src/app/services/authentifications/authentification.service';
@@ -32,9 +31,9 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
   @Input()
   langue :string = localStorage.getItem('langue')!;
 
-  ELEMENTS_TABLE: IUtilisateurs[] = [];
-  filteredOptions: IUtilisateurs[] | undefined;
-  user : IUtilisateurs | undefined;
+  ELEMENTS_TABLE: IPersonnel[] = [];
+  filteredOptions: IPersonnel[] | undefined;
+  user : IPersonnel | undefined;
   receivedActions$: Observable<IElements[]>=EMPTY;
   actions : IElements[] | undefined;
 
@@ -51,7 +50,7 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
     'actions',
   ];
 
-  dataSource = new MatTableDataSource<IUtilisateurs>(this.ELEMENTS_TABLE);
+  dataSource = new MatTableDataSource<IPersonnel>(this.ELEMENTS_TABLE);
 
   formPersonnel: FormGroup;
 
@@ -68,7 +67,7 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
     public authService: AuthentificationService,
     private _liveAnnouncer: LiveAnnouncer,
     private barService: ModalCodebarreService,
-    private userService: UtilisateurService,
+    private personnelService: PersonnelsService,
     private actionsview: PassActionService
   ) {
     this.formPersonnel = this.formBuilder.group({
@@ -77,7 +76,7 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
   }
 
   private getAllPersonnels() {
-    return this.userService.getAllUtilisateurs();
+    return this.personnelService.getAllPersonnels();
   }
 
   displayFn(user: IPersonnel): string {
@@ -89,9 +88,9 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  public rechercherListingPersonnel(option: IUtilisateurs) {
-    this.userService
-      .getUsersByName(option.user.nom.toLowerCase())
+  public rechercherListingPersonnel(option: IPersonnel) {
+    this.personnelService
+      .getPersonnelsByName(option.nom.toLowerCase())
       .subscribe((valeurs) => {
         this.dataSource.data = valeurs;
       });
@@ -126,8 +125,8 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
 
       if (this.scan_val) {
         // If scan_val is set, perform a search to get the corresponding libelle
-        this.userService
-          .getUsersByNameOrId(this.scan_val)
+        this.personnelService
+          .getPersonelsByNameOrId(this.scan_val)
           .subscribe((response) => {
             this.filteredOptions = response;
             const selectedOption = this.filteredOptions.find(
@@ -150,8 +149,8 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
       const query = value?.toString().toLowerCase(); // Convert to lower case for case-insensitive search
       if (query && query.length > 0) {
         // Search by name or ID
-        this.userService
-          .getUsersByNameOrId(query)
+        this.personnelService
+          .getPersonelsByNameOrId(query)
           .subscribe((reponse) => {
             this.filteredOptions = reponse;
           });
