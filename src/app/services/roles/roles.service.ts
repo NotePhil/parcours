@@ -15,7 +15,7 @@ export class RolesService {
 
   getAllRoles():Observable<IRole[]>
   {
-    return this.http.get<IRole[]>(this.param.api+ 'role').pipe(map(x=>x));
+    return this.http.get<IRole[]>(this.param.api+ 'roles').pipe(map(x=>x));
   }
 
   getRoleById(id:string):Observable<IRole>{
@@ -28,7 +28,7 @@ export class RolesService {
   }
 
    getRolesBytitre(titre:string): Observable<IRole[]> {
-    return this.http.get<IRole[]>(this.param.api+ 'role').pipe(
+    return this.http.get<IRole[]>(this.param.api+ 'roles').pipe(
       map(x=>
         {
           return x.filter(p=> p.titre.toLowerCase().startsWith(titre))
@@ -38,6 +38,6 @@ export class RolesService {
 
   ajouterRole(role:IRole)
   {
-    return this.http.post(this.param.api+ 'role',role);
+    return this.http.post(this.param.api+ 'roles',role);
   }
 }
