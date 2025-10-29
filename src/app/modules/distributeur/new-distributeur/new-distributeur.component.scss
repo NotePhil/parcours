@@ -1,0 +1,51 @@
+/* Mobile : formulaire full width */
+@media (max-width: 767px) {
+  .form-label {
+    font-size: 14px;
+  }
+  input.form-control {
+    font-size: 14px;
+  }
+}
+
+/* Tablette */
+@media (min-width: 768px) and (max-width: 991px) {
+  .form-label {
+    font-size: 15px;
+  }
+  input.form-control {
+    font-size: 15px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+  .form-label {
+    font-size: 16px;
+  }
+  input.form-control {
+    font-size: 16px;
+  }
+}
+/* Très grand écran */
+@media (min-width: 1200px) {
+  .form-label {
+    font-size: 18px;
+  }
+  input.form-control {
+    font-size: 18px;
+  }
+}
+/* Sur très petit écran, champs en full width */
+@media (max-width: 480px) {
+  .form-group {
+    flex: 1 1 100%; /* 1 par ligne */
+  }
+}
+/* Boutons en full width sur mobile */
+@media (max-width: 767px) {
+  .btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,16 @@
+/* Rendre la table lisible sur petit écran */
+.table td, .table th {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  #addItemBotton {
+    align-self: flex-end;
+  }
+  table {
+    font-size: 0.85rem;
+  }
+  .form-inline input {
+    font-size: 0.9rem;
+  }
+}

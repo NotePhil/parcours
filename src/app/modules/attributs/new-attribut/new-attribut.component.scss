@@ -1,0 +1,9 @@
+/* Sur mobile : form labels plus petits */
+@media (max-width: 768px) {
+  .label {
+    font-size: 0.9rem;
+  }
+  .btn {
+    width: 100%; /* boutons prennent toute la largeur en mobile */
+  }
+}

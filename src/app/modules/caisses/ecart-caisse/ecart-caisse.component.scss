@@ -5,6 +5,7 @@
   text-align: center;
   border: 1px solid #ddd;
   border-radius: 4px;
+  flex: 0 0 auto; /* évite que les champs rétrécissent */
 }
 
 ::ng-deep .readonly-select {
@@ -13,38 +14,54 @@
   color: black;
 }
 
-
-/* Wrapper pour le tableau */
+/* Wrapper : on utilise flex au lieu d’une seule ligne scrollable */
 .financial-table-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* autorise le retour à la ligne */
+  gap: 8px;
   width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
 }
 
-/* Barre de défilement stylisée */
+/* Scroll stylisé conservé si jamais beaucoup de colonnes */
 .financial-table-wrapper::-webkit-scrollbar {
-  height: 10px;
+  height: 8px;
 }
-
 .financial-table-wrapper::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-
 .financial-table-wrapper::-webkit-scrollbar-thumb {
   background: #27ae60;
   border-radius: 4px;
 }
-
 .financial-table-wrapper::-webkit-scrollbar-thumb:hover {
   background: #1e8449;
 }
 
+/* Supprimer les flèches sur input number */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .input-field {
+    width: 70px;  /* un peu plus large pour mobile */
+    flex: 1 1 calc(25% - 10px); /* 4 par ligne */
+  }
+
+  .actionButton .btn {
+    width: 100%; /* boutons prennent toute la largeur */
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .input-field {
+    width: 100%;  /* pleine largeur sur très petit écran */
+    flex: 1 1 100%; /* 1 par ligne */
+  }
 }

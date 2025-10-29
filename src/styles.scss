@@ -111,6 +111,7 @@ justify-content: space-around;
 margin: 10px 0;
 label{
     width: 300px;
+    color: #3d3d3d;
     font-weight: normal !important;
 }
 sup{
@@ -787,12 +788,104 @@ mat-paginator{
         border: none;
         border-radius: 5px;
         i{
-            box-shadow: 0 0 2px rgb(220, 220, 220);
+            box-shadow: 0 0 2px rgb(165, 162, 162);
             color: #FFD700;
             opacity: 0.8;
 
         }
     }
+}
+
+/* Conteneur principal */
+#mainSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bloc formulaire */
+.block {
+  width: 60%; /* taille par défaut sur desktop */
+}
+
+/* Champs du formulaire */
+.champs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.champs label {
+  width: 300px;
+  font-weight: normal !important;
+}
+
+.champs input,
+.champs textarea,
+.champs select {
+  flex: 1;
+  height: 30px;
+  font-size: 15px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+/* ================== RESPONSIVE ================== */
+
+/* Tablette (écran moyen) */
+@media screen and (max-width: 1024px) {
+  .block {
+    width: 93%; /* formulaire un peu plus large */
+  }
+
+  .champs label {
+    width: 200px; /* labels plus petits */
+  }
+}
+
+/* Mobile (petits écrans) */
+@media screen and (max-width: 768px) {
+  .block {
+    width: 93%; /* 4/5 de l’écran */
+  }
+
+  .champs {
+    flex-direction: column; /* label au-dessus */
+    align-items: flex-start;
+  }
+
+  .champs label {
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .champs input,
+  .champs textarea,
+  .champs select {
+    width: 100%; /* input prend toute la largeur */
+    font-size: 14px;
+  }
+}
+
+/* Très petit écran (< 480px) */
+@media screen and (max-width: 480px) {
+  .block {
+    width: 98%; /* encore plus étroit mais lisible */
+  }
+
+  .champs label {
+    font-size: 13px;
+  }
+
+  .champs input,
+  .champs textarea,
+  .champs select {
+    font-size: 13px;
+    height: 28px;
+  }
 }
 
 //reglage des ecrans
@@ -817,4 +910,13 @@ mat-paginator{
     .listAttr{
         width: 100%;
     }
+}
+
+/* ✅ Colonnes masquées sur petit écran */
+@media (max-width: 768px) {
+  th:nth-child(3), td:nth-child(3),   /* montantMax */
+  th:nth-child(4), td:nth-child(4),   /* bénéficiaire */
+  th:nth-child(5), td:nth-child(5) {  /* dateCreation */
+    display: none;
+  }
 }

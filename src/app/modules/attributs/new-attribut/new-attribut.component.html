@@ -1,92 +1,87 @@
 <div id="mainSection">
     <div class="card block" id="top2">
-      <!--<div class="card-header" class="entete pt-4 pb-4">{{ titre }}</div>-->
-        <div class="card-header" class="entete pt-4 pb-4">
-          {{"attributs.title1" | translate}} {{titre}}
+        <div class="card-header entete pt-4 pb-4">
+            {{"attributs.title1" | translate}} {{titre}}
         </div>
+
         <div class="card-body">
-            <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
-                <div class="">
-                    <div class="">
-                        <div class="form-group">
-                            <div>
-                                <div class="champs">
-                                    <label for="titre" class="label">
-                                        {{'attributs.table.title1' | translate}} <span style="color: red;" aria-label="required">*</span>
-                                    </label>
-                                    <input type="text" formControlName="titre" name="titre" id="titre"  placeholder="{{'attributs.table.title1' | translate}}"  class="form-control">
-                                </div>
-                                <div  *ngIf="submitted && f['titre'].errors"  class="alert alert-danger" >
-                                    <div *ngIf="f['titre'].errors['required']">{{'attributs.form.text1' | translate}}</div>
-                                </div>
-  
+            <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme">
+
+                <div class="row">
+                    <!-- Titre -->
+                    <div class="col-12 col-md-6 mb-3">
+                        <label for="titre" class="label">
+                            {{'attributs.table.title1' | translate}} <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" formControlName="titre" id="titre"
+                            placeholder="{{'attributs.table.title1' | translate}}" class="form-control">
+                        <div *ngIf="submitted && f['titre'].errors" class="alert alert-danger mt-1">
+                            <div *ngIf="f['titre'].errors['required']">{{'attributs.form.text1' | translate}}</div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-12 col-md-6 mb-3">
+                        <label for="description" class="label">
+                            {{'attributs.table.title2' | translate}} <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" formControlName="description" id="description"
+                            placeholder="{{'attributs.table.title2' | translate}}" class="form-control">
+                        <div *ngIf="submitted && f['description'].errors" class="alert alert-danger mt-1">
+                            <div *ngIf="f['description'].errors['required']">{{'attributs.form.text2' | translate}}
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div>
-                                <div class="champs">
-                                    <label for="description" class="label" >
-                                        {{'attributs.table.title2' | translate}}  <span style="color: red;" aria-label="required">*</span>
-                                    </label>
-                                    <input  type="text" formControlName="description"  name="description" id="description" placeholder="{{'attributs.table.title2' | translate}}" value="" class="form-control">
-                                </div>
-                                <div  *ngIf="submitted && f['description'].errors"  class="alert alert-danger" >
-                                    <div *ngIf="f['description'].errors['required']">{{'attributs.form.text2' | translate}}</div>
-                                </div>
-                            </div>
+                    </div>
+
+                    <!-- Etat -->
+                    <div class="col-12 col-md-6 mb-3">
+                        <label for="etat" class="label">{{'attributs.table.title3' | translate}}</label>
+                        <div class="form-check">
+                            <input type="checkbox" formControlName="etat" id="etat" class="form-check-input">
+                            <label for="etat" class="form-check-label">{{'attributs.form.text3b' | translate}}</label>
                         </div>
-                        <div class="form-group" id="eta">
-                            <div>
-                                <div class="champs">
-                                    <label for="etat" class="label" >
-                                        {{'attributs.table.title3' | translate}}
-                                    </label>
-                                    <p class="w-100 d-flex align-items-center choix" >
-                                    <input type="checkbox" [checked]="forme.get('etat')?.value" value="true"  formControlName="etat"  name="etat" id="etat" placeholder="{{'attributs.table.title3' | translate}}"  class="form-control">
-                                  </p>
-                                </div>
-                                <div  *ngIf="submitted && f['etat'].errors"  class="alert alert-danger" >
-                                    <div *ngIf="f['etat'].errors['required']">{{'attributs.form.text3' | translate}}</div>
-                                </div>
-                            </div>
+                        <div *ngIf="submitted && f['etat'].errors" class="alert alert-danger mt-1">
+                            <div *ngIf="f['etat'].errors['required']">{{'attributs.form.text3' | translate}}</div>
                         </div>
-                        <div class="form-group">
-                            <div class="champs">
-                                <label  for="type" class="label">
-                                    {{"attributs.table.title6" | translate}}<span style="color: red;" aria-label="required">*</span>
-                                </label>
-                                <select  class="form-control" formControlName="type" name="type" id="type" required>
-                                    <option *ngFor="let item of typeAttribut" value="{{item}}">{{item}}</option>
-                                </select>
-                            </div>
-                            <div  *ngIf="submitted && f['type'].errors"  class="alert alert-danger" >
-                              <div *ngIf="f['type'].errors['required']">{{'attributs.form.text4' | translate}}</div>
-                            </div>
+                    </div>
+
+                    <!-- Type -->
+                    <div class="col-12 col-md-6 mb-3">
+                        <label for="type" class="label">
+                            {{"attributs.table.title6" | translate}} <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-control" formControlName="type" id="type" required>
+                            <option *ngFor="let item of typeAttribut" [value]="item">{{item}}</option>
+                        </select>
+                        <div *ngIf="submitted && f['type'].errors" class="alert alert-danger mt-1">
+                            <div *ngIf="f['type'].errors['required']">{{'attributs.form.text4' | translate}}</div>
                         </div>
-                        <div *ngIf="forme.get('type')?.value" class="form-group">
-                            <div class="champs">
-                                <label  for="valeursParDefaut"  class="label" >
-                                    {{'attributs.table.title9' | translate}}
-                                </label>
-                                <input type="text" [(ngModel)]="inputValeur" (input)="onInputChange()" formControlName="valeursParDefaut" name="valeursParDefaut" id="valeursParDefaut" placeholder="{{'attributs.table.title10' | translate}}" class="form-control">
-                            </div>
-                            <div  *ngIf="errorNb" class="alert alert-danger" >
-                              <div>{{textError}}</div>
-                            </div>
-                        </div>
-  
-  
+                    </div>
+
+                    <!-- Valeur par défaut -->
+                    <div class="col-12 mb-3" *ngIf="forme.get('type')?.value">
+                        <label for="valeursParDefaut" class="label">
+                            {{'attributs.table.title9' | translate}}
+                        </label>
+                        <input type="text" [(ngModel)]="inputValeur" (input)="onInputChange()"
+                            formControlName="valeursParDefaut" id="valeursParDefaut"
+                            placeholder="{{'attributs.table.title10' | translate}}" class="form-control">
+                        <div *ngIf="errorNb" class="alert alert-danger mt-1">{{textError}}</div>
                     </div>
                 </div>
-                <div class="actionButton valBtn" >
-                    <button class="btn retour" (click)="return()" title="{{'lists.button2' | translate}}">
-                        <i class="fa fa-reply mr-1" aria-hidden="true"></i>
+
+                <!-- Actions -->
+                <div class="actionButton valBtn d-flex flex-column flex-sm-row justify-content-end mt-4">
+                    <button type="button" class="btn retour btn-secondary mb-2 mb-sm-0 mr-sm-2" (click)="return()"
+                        title="{{'lists.button2' | translate}}">
+                        <i class="fa fa-reply mr-1"></i> {{'lists.button2' | translate}}
                     </button>
                     <button type="submit" (click)="onInputChange()" class="btn btnValidation" title="{{btnLibelle}}">
-                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <i class="fa fa-check"></i> {{btnLibelle}}
                     </button>
                 </div>
             </form>
         </div>
-      </div>
-  </div>
+    </div>
+
+</div>

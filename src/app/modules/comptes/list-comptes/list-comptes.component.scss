@@ -1,0 +1,36 @@
+/* ✅ Table wrapper responsive */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ✅ Outils du header */
+.tableTools {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tableTools .form-inline {
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+
+/* ✅ Bouton Ajouter */
+#addItemBotton {
+  cursor: pointer;
+  margin-left: 8px;
+}
+@media (max-width: 576px) {
+  #addItemBotton {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+
+/* ✅ Colonnes masquées sur petit écran */
+@media (max-width: 768px) {
+  th:nth-child(3), td:nth-child(3),   /* montantMax */
+  th:nth-child(4), td:nth-child(4),   /* bénéficiaire */
+  th:nth-child(5), td:nth-child(5) {  /* dateCreation */
+    display: none;
+  }
+}

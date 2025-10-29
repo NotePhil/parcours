@@ -1,82 +1,69 @@
 <div id="mainSection">
-  <div class="card block" id="top2">
-    <!--<div class="card-header pt-4 pb-4 entete" class="entete pt-4 pb-4 ">{{'distributeur.table.title' | translate}}</div>-->
-      <div class="card-header" class="entete pt-4 pb-4">
-        {{'distributeur.table.title' | translate}}
-      </div>
-      <div class="card-body">
-          <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
-              <div class="">
-                  <div class="">
-                      <div class="form-group">
-                          <div>
-                              <div class="champs">
-                                  <label for="raisonSocial" class="label">
-                                    {{'distributeur.table.title1' | translate}}<span style="color: red;" aria-label="required">*</span>
-                                  </label>
-                                  <input type="text" formControlName="raisonSocial" name="raisonSocial" id="raisonSocial"  placeholder="{{'distributeur.table.title1' | translate}}"  class="form-control" required>
-                              </div>
-                              <div  *ngIf="submitted && f['raisonSocial'].errors"  class="alert alert-danger" >
-                                  <div *ngIf="f['raisonSocial'].errors['required']">{{'distributeur.form.text1' | translate}}</div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group" >
-                        <div>
-                            <div class="champs">
-                              <label for="etat" class="label" >
-                                {{'distributeur.table.title2' | translate}}
-                              </label>
-                              <p class="w-100 d-flex align-items-center choix" >
-                              <input  type="checkbox" checked value="true" formControlName="etat" name="etat" class="form-control" id="etat" >
-                            </p>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div>
-                            <div class="champs">
-                                <label for="adresse" class="label" >
-                                  {{'distributeur.table.title3' | translate}}
-                                </label>
-                                <input type="text" formControlName="adresse"  name="adresse"  id="adresse" placeholder="{{'distributeur.table.title3' | translate}}" class="form-control" >
-                            </div>
-                        </div>
-                    </div>
-                      <div class="form-group">
-                          <div class="champs">
-                              <label  for="telephone"  class="label" >
-                                {{'distributeur.table.title4' | translate}}
-                              </label>
-                              <input type="text" formControlName="telephone" name="telephone" id="telephone" placeholder="{{'distributeur.table.title4' | translate}}" class="form-control" >
-                          </div>
-                      </div>
+  <div class="card block container-fluid" id="top2">
+    <div class="card-header pt-4 pb-4">
+      {{'distributeur.table.title' | translate}}
+    </div>
 
-                      <div class="form-group">
-                        <div>
-                            <div class="champs">
-                                <label for="mail" class="label" >
-                                  {{'distributeur.table.title5' | translate}}<span style="color: red;" aria-label="required">*</span>
-                                </label>
-                                <input type="email" formControlName="mail"  name="mail"  id="mail" placeholder="{{'distributeur.table.title5' | translate}}"   required  class="form-control" >
-                            </div>
-                            <div  *ngIf="submitted && f['mail'].errors"  class="alert alert-danger" >
-                            <div *ngIf="f['mail'].errors['required']">{{'distributeur.form.text2' | translate}}</div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="actionButton valBtn" >
-                <button class="btn retour" (click)="return()" title="{{'lists.button2' | translate}}">
-                  <i class="fa fa-undo" aria-hidden="true"></i>
-              </button>
-                <button type="submit" class="btn btnValidation" title="{{btnLibelle}}">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </button>
-              </div>
-          </form>
-      </div>
+    <div class="card-body">
+      <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme">
+
+        <div class="row">
+          <!-- Raison Sociale -->
+          <div class="col-12 col-md-6 mb-3">
+            <label for="raisonSocial" class="form-label">
+              {{'distributeur.table.title1' | translate}}<span class="text-danger">*</span>
+            </label>
+            <input type="text" formControlName="raisonSocial" id="raisonSocial"
+              placeholder="{{'distributeur.table.title1' | translate}}" class="form-control" required>
+            <div *ngIf="submitted && f['raisonSocial'].errors" class="alert alert-danger mt-1">
+              <div *ngIf="f['raisonSocial'].errors['required']">{{'distributeur.form.text1' | translate}}</div>
+            </div>
+          </div>
+
+          <!-- Etat -->
+          <div class="col-12 col-md-6 mb-3 d-flex align-items-center">
+            <label for="etat" class="form-label mr-2">{{'distributeur.table.title2' | translate}}</label>
+            <input type="checkbox" checked value="true" formControlName="etat" id="etat">
+          </div>
+
+          <!-- Adresse -->
+          <div class="col-12 col-md-6 mb-3">
+            <label for="adresse" class="form-label">{{'distributeur.table.title3' | translate}}</label>
+            <input type="text" formControlName="adresse" id="adresse"
+              placeholder="{{'distributeur.table.title3' | translate}}" class="form-control">
+          </div>
+
+          <!-- Téléphone -->
+          <div class="col-12 col-md-6 mb-3">
+            <label for="telephone" class="form-label">{{'distributeur.table.title4' | translate}}</label>
+            <input type="text" formControlName="telephone" id="telephone"
+              placeholder="{{'distributeur.table.title4' | translate}}" class="form-control">
+          </div>
+
+          <!-- Mail -->
+          <div class="col-12 col-md-6 mb-3">
+            <label for="mail" class="form-label">
+              {{'distributeur.table.title5' | translate}}<span class="text-danger">*</span>
+            </label>
+            <input type="email" formControlName="mail" id="mail"
+              placeholder="{{'distributeur.table.title5' | translate}}" class="form-control" required>
+            <div *ngIf="submitted && f['mail'].errors" class="alert alert-danger mt-1">
+              <div *ngIf="f['mail'].errors['required']">{{'distributeur.form.text2' | translate}}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="actionButton valBtn d-flex flex-wrap justify-content-start mt-3">
+          <button class="btn btn-secondary mr-2 mb-2" (click)="return()" title="{{'lists.button2' | translate}}">
+            <i class="fa fa-undo"></i>
+          </button>
+          <button type="submit" class="btn btnValidation mb-2" title="{{btnLibelle}}">
+            <i class="fa fa-check"></i>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 
+</div>
