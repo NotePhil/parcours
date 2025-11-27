@@ -65,11 +65,11 @@
                             </div>
                             <div class="form-group ml-2">
                                 <div>
-                                        <label for="estEncaissable" class="estEncaissable" >
+                                        <label for="estencaissable" class="estencaissable" >
                                             {{"services.form.label5" | translate}}
                                         </label>
-                                        <span id="estEncaissable" class="ml-2">
-                                            <input type="checkbox" checked value="false" formControlName="estEncaissable" name="estEncaissable">
+                                        <span id="estencaissable" class="ml-2">
+                                            <input type="checkbox" checked value="false" formControlName="estencaissable" name="estencaissable">
                                         </span>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                                         </button>
                                         <p>
                                             <span *ngFor="let listeCategories of TABLE_CATEGORIE_AFFICHAGE_TEMP">
-                                                {{listeCategories.nom | lowercase}}<span>, </span>
+                                                {{listeCategories.libelle | lowercase}}<span>, </span>
                                             </span> 
                                         </p>
                                     </div>

@@ -66,10 +66,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     attributs: [],
     objetEnregistre: [],
     categories: [],
-    preconisations: [],
+    precoMouvements: [],
     mouvements: [],
     affichagePrix: false,
-    estEncaissable: false,
+    estencaissable: false,
     contientRessources: false,
     contientDistributeurs: false,
     typeMouvement: 'Neutre',
@@ -101,9 +101,9 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     missions: [],
     attributs: [],
     categories: [],
-    preconisations: [],
+    precoMouvements: [],
     affichagePrix: true,
-    estEncaissable: false,
+    estencaissable: false,
     contientRessources: true,
     contientDistributeurs: true,
     typeMouvement: 'Neutre',
@@ -1048,10 +1048,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       description: this.document.description,
       missions: this.document.missions,
       attributs: this.document.attributs,
-      estEncaissable: this.document.estEncaissable,
+      estencaissable: this.document.estencaissable,
       objetEnregistre: this.exemplaire.objetEnregistre,
       categories: this.document.categories,
-      preconisations: this.document.preconisations,
+      precoMouvements: this.document.precoMouvements,
       mouvements: this.ELEMENTS_TABLE_MOUVEMENTS,
       etat: this.document.etat,
       affichagePrix: this.document.affichagePrix,
@@ -1167,7 +1167,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   }
 
   verificationRessource(qte?: any, prixOut?: any, prixIn?: any, option?: IRessource) {
-    this.document.preconisations.forEach((precoMvt) => {
+    this.document.precoMouvements.forEach((precoMvt) => {
       if (precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id)) {
         this.resValidate = precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id);
       }

@@ -49,12 +49,12 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     listeMissions: '',
     listAttributs: '',
     listCategories: '',
-    listPreconisations: '',
-    preconisations: [],
+    listPrecoMouvements: '',
+    precoMouvements: [],
     sousDocuments: [],
     listSousDocuments: '',
     etat: false,
-    estEncaissable: false,
+    estencaissable: false,
     typeMouvement: 'Neutre',
     affichagePrix: false,
     contientRessources: false,
@@ -149,14 +149,14 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
      listeMissions: '',
      listAttributs: '',
      listCategories: '',
-     listPreconisations: '',
+     listPrecoMouvements: '',
      listSousDocuments: '',
      listDocEtats: '',
      idDocument: x.idDocument,
      titre: x.titre,
      description: x.description,
      etat: x.etat,
-     estEncaissable: x.estEncaissable,
+     estencaissable: x.estencaissable,
      typeMouvement: x.typeMouvement,
      affichagePrix:  x.affichagePrix,
      contientRessources:  x.contientRessources,
@@ -164,28 +164,39 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
      missions:  x.missions,
      attributs:  x.attributs,
      categories:  x.categories,
-     preconisations:  x.preconisations,
+     precoMouvements:  x.precoMouvements,
      docEtats:  x.docEtats,
      formatCode:  x.formatCode,
      beneficiaireObligatoire:  x.beneficiaireObligatoire
    }
-    x.missions.forEach(
-      m => {
-        afficheDocument.listeMissions += m.libelle + ", ";
-      }
-    )
-    x.attributs.forEach(
-      a => afficheDocument.listAttributs += a.titre + ", "
-    )
-    x.categories.forEach(
-      c => afficheDocument.listCategories += c.nom + ", "
-    )
-    x.preconisations.forEach(
-      p => afficheDocument.listPreconisations += p.libelle + ", "
-    )
+
+   if (x.missions) {
+      x.missions.forEach(
+        m => {
+          afficheDocument.listeMissions += m.libelle + ", ";
+        }
+      )
+   }
+   if (x.attributs) {
+      x.attributs.forEach(
+        a => afficheDocument.listAttributs += a.titre + ", "
+      )
+   }
+   if (x.categories) {
+      x.categories.forEach(
+        c => afficheDocument.listCategories += c.libelle + ", "
+      )
+   }
+   if (x.precoMouvements) {
+      x.precoMouvements.forEach(
+        p => afficheDocument.listPrecoMouvements += p.libelle + ", "
+      )
+   }
+   if (x.docEtats) {
     x.docEtats.forEach(
       de => afficheDocument.listDocEtats += de.etat.libelle + ", "
     )
+   }
     return afficheDocument;
   }
 }

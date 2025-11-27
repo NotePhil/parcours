@@ -27,7 +27,7 @@ export class ViewExemplaireComponent implements OnInit {
     idDocument: '',
     objetEnregistre: [],
     categories: [],
-    preconisations: [],
+    precoMouvements: [],
     mouvements: [],
     ordreEtats: [],
     etat: false,
@@ -37,7 +37,7 @@ export class ViewExemplaireComponent implements OnInit {
     typeMouvement: TypeMouvement.Neutre,
     docEtats: [],
     dateCreation: new Date,
-    estEncaissable: false,
+    estencaissable: false,
     personneRattachee: {
       id: '',
       nom: '',

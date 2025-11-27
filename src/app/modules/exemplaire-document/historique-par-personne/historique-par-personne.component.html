@@ -37,10 +37,10 @@
                 </div>
             </div>
         <div class="block1" *ngFor="let attributParCategorie of exemplaire.categories">
-            <div class="pb-3" *ngIf="attributParCategorie.nom">
-                <h4>{{attributParCategorie.nom}}</h4>
+            <div class="pb-3" *ngIf="attributParCategorie.libelle">
+                <h4>{{attributParCategorie.libelle}}</h4>
                 <div class="contentBlock">
-                    <div class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories; let i = index">
+                    <div class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.attributs; let i = index">
                         <label>{{attributParCategorie.attribut.titre}} : </label>
                         <div class="valAttribut">
                         <span>{{rechercherValeurParIdAttribut(attributParCategorie.attribut.id,attributParCategorie.attribut.type)}}</span>

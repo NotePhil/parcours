@@ -2,7 +2,7 @@ import { IAssociationCategorieAttributs } from "./association-categorie-attribut
 
 export interface ICategoriesAttributs {
     id:string,
-    nom:string,
+    libelle:string,
     ordre : number,
-    listAttributsParCategories : IAssociationCategorieAttributs[]
+    attributs : IAssociationCategorieAttributs[]
 }

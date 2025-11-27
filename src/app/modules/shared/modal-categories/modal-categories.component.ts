@@ -37,7 +37,7 @@ export class ModalCategoriesComponent implements OnInit {
   // structure du tableau presentant les categories creees avec leurs attributs
   displayedCategoriesAttributsColumns: string[] = [
     'actions',
-    'nomCategorie',
+    'libelleCategorie',
     'ordreCat',
     'libelleAttribut',
     'ordreAtrParCat',
@@ -61,9 +61,9 @@ export class ModalCategoriesComponent implements OnInit {
 
   categorieAttributs: ICategoriesAttributs = {
     id: '',
-    nom: '',
+    libelle: '',
     ordre: 0,
-    listAttributsParCategories: [],
+    attributs: [],
   };
   attributTemp: IAttributs = {
     id: '',
@@ -104,7 +104,7 @@ export class ModalCategoriesComponent implements OnInit {
   ) {
     this.formeCategorieAttribut = this.formBuilder.group({
       ordreCategorie: ['', [Validators.required, Validators.minLength(1)]],
-      nomCategorie: ['', [Validators.required, Validators.minLength(1)]],
+      libelleCategorie: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
@@ -219,7 +219,7 @@ export class ModalCategoriesComponent implements OnInit {
       let ordreAttributExiste: number =
         this.verifierSiExisteCategorieAttributOrdre(
           attribut.ordre,
-          categorieAttributInput.nomCategorie,
+          categorieAttributInput.libelleCategorie,
           categorieAttributInput.ordreCategorie
         );
       if (ordreAttributExiste == 1) {
@@ -237,7 +237,7 @@ export class ModalCategoriesComponent implements OnInit {
       } else {
         let categorieAttributsTemp: ICategorieAffichage = {
           id: uuidv4(),
-          nom: categorieAttributInput.nomCategorie,
+          nom: categorieAttributInput.libelleCategorie,
           ordre: categorieAttributInput.ordreCategorie,
           attributCategories: attribut,
         };
@@ -271,13 +271,13 @@ export class ModalCategoriesComponent implements OnInit {
    * Methode qui permet de vérifier dans le second tableau si chaque catégorie a un ordre distinct
    * et si tous les attributs d'une même catégorie ont des ordres distincts
    * @param ordreAttribut
-   * @param nomCategorie
+   * @param libelleCategorie
    * @param ordreCategorie
    * @returns
    */
   verifierSiExisteCategorieAttributOrdre(
     ordreAttribut: number,
-    nomCategorie: string,
+    libelleCategorie: string,
     ordreCategorie: number
   ): number {
     let tmpTab = this.tableResultatsCategoriesAffichage.data;
@@ -285,7 +285,7 @@ export class ModalCategoriesComponent implements OnInit {
 
     for (let index = 0; index < tmpTab.length; index++) {
       const element = tmpTab[index];
-      if (element.nom.localeCompare(nomCategorie) == 0) {
+      if (element.nom.localeCompare(libelleCategorie) == 0) {
         //si deux attributs de la meme catégorie ont un meme ordre
         if (element.attributCategories.ordre == ordreAttribut) {
           ordreAttributExiste = 1;

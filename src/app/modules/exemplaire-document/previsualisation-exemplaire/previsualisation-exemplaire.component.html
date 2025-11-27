@@ -52,11 +52,11 @@
                     </div>
                 </div>
                 <div class="block1" *ngFor="let attributParCategorie of exemplaire.categories">
-                    <div class="pb-3" *ngIf="attributParCategorie.nom">
-                        <h4>{{ attributParCategorie.nom }}</h4>
+                    <div class="pb-3" *ngIf="attributParCategorie.libelle">
+                        <h4>{{ attributParCategorie.libelle }}</h4>
                         <div class="contentBlock">
                             <div class="inputBlock" *ngFor="
-                                let attributParCategorie of attributParCategorie.listAttributsParCategories">
+                                let attributParCategorie of attributParCategorie.attributs">
                                 <label class="">{{ attributParCategorie.attribut.titre }} :
                                 </label>
                                 <div class="valAttribut">
@@ -238,7 +238,7 @@
                 ngxPrint>
                 <i class="fas fa-print"></i>
             </button>
-            <button *ngIf="exemplaire.estEncaissable" title="{{'lists.button14' | translate}}" type="button" (click)="openModalDialog(exemplaire.personneRattachee!, sommeMontants(exemplaire.mouvements!), exemplaire)" class="btn bg-success">
+            <button *ngIf="exemplaire.estencaissable" title="{{'lists.button14' | translate}}" type="button" (click)="openModalDialog(exemplaire.personneRattachee!, sommeMontants(exemplaire.mouvements!), exemplaire)" class="btn bg-success">
                 <i class="fas fa-wallet"></i>
             </button>
             <button *ngIf="req" (click)="openModal(exemplaire)" type="button"

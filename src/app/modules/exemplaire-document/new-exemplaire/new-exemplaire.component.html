@@ -41,10 +41,10 @@
                 <div >{{eValvalide}} {{'lists.text3' | translate}}</div>
             </div>
             <div class="block1" *ngFor="let attributParCategorie of document.categories">
-                <div class="pb-3" *ngIf="attributParCategorie.nom">
-                    <h3>{{attributParCategorie.nom}}</h3>
+                <div class="pb-3" *ngIf="attributParCategorie.libelle">
+                    <h3>{{attributParCategorie.libelle}}</h3>
                     <div class="contentBlock">
-                        <div formArrayName="_exemplaireDocument" class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories; let i = index" [ngClass]="{'inputSpecial':(attribut.type == TypeRadio) || (attribut.type == TypeBoolean)}">
+                        <div formArrayName="_exemplaireDocument" class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.attributs; let i = index" [ngClass]="{'inputSpecial':(attribut.type == TypeRadio) || (attribut.type == TypeBoolean)}">
                             <label [for]="attributParCategorie.attribut.id" class="form-label">{{attributParCategorie.attribut.titre}}<span *ngIf="attributParCategorie.obligatoire == true"> *</span></label>
                             <input  *ngIf="(attributParCategorie.attribut.type != typeTextArea) && (attributParCategorie.attribut.type != TypeRadio) && (attributParCategorie.attribut.type != TypeBoolean)" [formControlName]="incrementeCompteur(compteur,attributParCategorie)" [type]="attributParCategorie.attribut.type" class="form-control" placeholder="{{'lists.text4' | translate}}">
                             <textarea *ngIf="attributParCategorie.attribut.type == typeTextArea" class="form-control"  [formControlName]="incrementeCompteur(compteur,attributParCategorie)" placeholder="{{'lists.text4' | translate}}"></textarea>
