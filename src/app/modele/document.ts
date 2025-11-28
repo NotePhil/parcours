@@ -11,10 +11,11 @@ export interface IDocument {
     description:string,
     etat:boolean,
     typeMouvement: string,
-    affichagePrix:boolean,
+    afficherPrix:boolean,
     contientRessources:boolean,
-    contientDistributeurs:boolean,
+    afficherDistributeur:boolean,
     beneficiaireObligatoire:boolean,
+    estencaissable: boolean
     missions : IMission[],
     attributs : IAttributs[],
     categories : ICategoriesAttributs[],
@@ -22,5 +23,4 @@ export interface IDocument {
     sousDocuments? : IDocument[],
     docEtats : IDocEtats[],
     formatCode : string,
-    estencaissable: boolean
 }

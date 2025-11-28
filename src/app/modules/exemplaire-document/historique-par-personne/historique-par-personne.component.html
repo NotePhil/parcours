@@ -87,7 +87,7 @@
                     </ng-container>
 
                     <!-- prix Column -->
-                    <ng-container *ngIf="exemplaire.affichagePrix == true && exemplaire.typeMouvement == typeNeutre" matColumnDef="prix">
+                    <ng-container *ngIf="exemplaire.afficherPrix == true && exemplaire.typeMouvement == typeNeutre" matColumnDef="prix">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title7' | translate}} </th>
                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
                             {{separateurDeMilliers(element.prix)}}
@@ -95,7 +95,7 @@
                     </ng-container>
 
                     <!-- prixEntrée Column -->
-                    <ng-container *ngIf="exemplaire.affichagePrix == true && exemplaire.typeMouvement == typeAjout" matColumnDef="prixEntrée">
+                    <ng-container *ngIf="exemplaire.afficherPrix == true && exemplaire.typeMouvement == typeAjout" matColumnDef="prixEntrée">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title5' | translate}} </th>
                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
                             {{separateurDeMilliers(element.prix)}}
@@ -103,7 +103,7 @@
                     </ng-container>
 
                     <!-- prixDeSortie Column -->
-                    <ng-container *ngIf="exemplaire.affichagePrix == true && exemplaire.typeMouvement == typeReduire" matColumnDef="prixDeSortie">
+                    <ng-container *ngIf="exemplaire.afficherPrix == true && exemplaire.typeMouvement == typeReduire" matColumnDef="prixDeSortie">
                         <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title9' | translate}} </th>
                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
                             {{separateurDeMilliers(element.prix)}} 
@@ -111,13 +111,13 @@
                     </ng-container>
 
                     <!-- montant total Column -->
-                    <ng-container *ngIf="exemplaire.affichagePrix == true" matColumnDef="montant total">
+                    <ng-container *ngIf="exemplaire.afficherPrix == true" matColumnDef="montant total">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table2.title10' | translate}}</th>
                             <td class="text-dark containCell" mat-cell *matCellDef="let element">{{separateurDeMilliers(element.quantite*element.prix)}}</td>
                     </ng-container>
 
                     <!-- distributeur Column -->
-                    <ng-container *ngIf="exemplaire.contientDistributeurs == true" matColumnDef="distributeur">
+                    <ng-container *ngIf="exemplaire.afficherDistributeur == true" matColumnDef="distributeur">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'preconisation.table.title5' | translate}} </th>
                             <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index"><div class="modifierDistributeurBlock">{{element.distributeur?.raisonSocial}}</div></td>
                     </ng-container>
@@ -126,7 +126,7 @@
                 </table>
 
                 <!-- montant total -->
-                <div class="total" *ngIf="exemplaire.affichagePrix == true && exemplaire.mouvements?.length">
+                <div class="total" *ngIf="exemplaire.afficherPrix == true && exemplaire.mouvements?.length">
                     <span class="mr-2">{{'ressource.table2.title11' | translate}}</span>
                     <input type="text" [value]="separateurDeMilliers(sommeMontants())" disabled>
                 </div>

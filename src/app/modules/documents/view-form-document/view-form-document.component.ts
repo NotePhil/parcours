@@ -26,9 +26,9 @@ export class ViewFormDocumentComponent implements OnInit {
     precoMouvements: [],
     etat: false,
     estencaissable: false,
-    affichagePrix: false,
+    afficherPrix: false,
     contientRessources: false,
-    contientDistributeurs: false,
+    afficherDistributeur: false,
     typeMouvement: TypeMouvement.Neutre,
     docEtats: [],
     formatCode: '',
@@ -78,11 +78,12 @@ export class ViewFormDocumentComponent implements OnInit {
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
     if (idDocument != null && idDocument !== '') {
       this.serviceDocument.getDocumentById(idDocument).subscribe(async (x) => {
-        let AllEtats = x.docEtats.length;
-        console.log(AllEtats, x.docEtats.length);
-        if (x.docEtats.length > 0) {
+        
+        if (x.docEtats && x.docEtats.length > 0) {
           let line = `graph LR;`;
-
+          let AllEtats = x.docEtats.length;
+          console.log(AllEtats, x.docEtats.length);
+          
           for (let i = 0; i < x.docEtats.length; i++) {
 
             if (x.docEtats[i].etat.etatPrecedant != null && x.docEtats[i].etat.etatPrecedant!.length > 0) {

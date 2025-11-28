@@ -36,9 +36,9 @@ export class HistoriqueParPersonneComponent implements OnInit {
     mouvements: [],
     etat: false,
     estencaissable: false,
-    affichagePrix: false,
+    afficherPrix: false,
     contientRessources: false,
-    contientDistributeurs: false,
+    afficherDistributeur: false,
     typeMouvement: TypeMouvement.Neutre,
     docEtats: [],
     dateCreation: new Date,
@@ -204,11 +204,11 @@ export class HistoriqueParPersonneComponent implements OnInit {
    * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
    */
   formerEnteteTableauMissions(){
-    if (this.exemplaire.contientDistributeurs == true) {
+    if (this.exemplaire.afficherDistributeur == true) {
       let distributeur : string = "distributeur"
       this.displayedRessourcesColumns.push(distributeur)
     }
-    if ((this.exemplaire.affichagePrix == true)) {
+    if ((this.exemplaire.afficherPrix == true)) {
       let prix : string = "prix"
       let montant : string = "montant total"
       if (this.exemplaire.typeMouvement == TypeMouvement.Reduire) {

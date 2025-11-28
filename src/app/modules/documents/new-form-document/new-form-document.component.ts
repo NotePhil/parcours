@@ -48,10 +48,10 @@ export class NewFormDocumentComponent implements OnInit {
     attributs: [],
     categories: [],
     precoMouvements: [],
-    affichagePrix: false,
+    afficherPrix: false,
     estencaissable: false,
     contientRessources: false,
-    contientDistributeurs: false,
+    afficherDistributeur: false,
     typeMouvement: TypeMouvement.Neutre,
     docEtats: [],
     formatCode: '',
@@ -119,17 +119,17 @@ export class NewFormDocumentComponent implements OnInit {
       typeMouvement: ['', [Validators.required]],
       etat: new FormControl(true),
       estencaissable: new FormControl(true),
-      affichagePrix: new FormControl(false),
+      afficherPrix: new FormControl(false),
       contientRessources: new FormControl(false),
-      contientDistributeurs: new FormControl(false),
+      afficherDistributeur: new FormControl(false),
       beneficiaireObligatoire: new FormControl(true),
       formatCode: [ '', [ Validators.required]]
     });
   }
   ngOnInit(): void {
     this.mission$ = this.getAllMissions();
-    this.forme.controls['affichagePrix'].disable()
-    this.forme.controls['contientDistributeurs'].disable()    
+    this.forme.controls['afficherPrix'].disable()
+    this.forme.controls['afficherDistributeur'].disable()    
     this.documentParentDesactive = true
     this.donneeDocCatService.getTypeMvt().subscribe((x) => (this.typeMvt = x.type));
     this.donneeDocCatService.getFormatCode().subscribe((f) => (this.formatsCode = f.type));
@@ -144,8 +144,8 @@ export class NewFormDocumentComponent implements OnInit {
       this.serviceDocument.getDocumentById(idDocument).subscribe((x) => {
         this.document = x;
         if (this.document.contientRessources == true) {
-          this.forme.controls['affichagePrix'].enable()
-          this.forme.controls['contientDistributeurs'].enable()    
+          this.forme.controls['afficherPrix'].enable()
+          this.forme.controls['afficherDistributeur'].enable()    
           this.documentParentDesactive = false
         }
         this.forme.setValue({
@@ -154,13 +154,13 @@ export class NewFormDocumentComponent implements OnInit {
           etat: this.document.etat,
           estencaissable: this.document.estencaissable,
           typeMouvement: this.document.typeMouvement,
-          affichagePrix: this.document.affichagePrix,
+          afficherPrix: this.document.afficherPrix,
           contientRessources: this.document.contientRessources,
-          contientDistributeurs: this.document.contientDistributeurs,
-          beneficiaireObligatoire: this.document.beneficiaireObligatoire,
+          afficherDistributeur: this.document.afficherDistributeur,
+          beneficiaireObligatoire: true,
           _missions: this.document.missions,
           _attributs: [],
-          formatCode : this.document.formatCode
+          formatCode : "this.document.formatCode"
         });
         this.forme.controls['_missions'].setValue(this.document.missions);
 
@@ -406,9 +406,9 @@ export class NewFormDocumentComponent implements OnInit {
       categories: [],
       precoMouvements: [],
       sousDocuments: [],
-      affichagePrix: documentInput.affichagePrix,
+      afficherPrix: documentInput.afficherPrix,
       contientRessources: documentInput.contientRessources,
-      contientDistributeurs: documentInput.contientDistributeurs,
+      afficherDistributeur: documentInput.afficherDistributeur,
       beneficiaireObligatoire: documentInput.beneficiaireObligatoire,
       docEtats: [],
       formatCode: documentInput.formatCode
@@ -432,13 +432,16 @@ export class NewFormDocumentComponent implements OnInit {
 
     if (this.documentParentDesactive == true) {
       documentTemp.sousDocuments = undefined
-      documentTemp.affichagePrix = false
-      documentTemp.contientDistributeurs = false
+      documentTemp.afficherPrix = false
+      documentTemp.afficherDistributeur = false
     }
 
-    this.ELEMENTS_TABLE_DOC_ETATS.forEach(
-      docEtat => documentTemp.docEtats.push(docEtat)
-    )
+    if (this.ELEMENTS_TABLE_DOC_ETATS) {
+        
+      this.ELEMENTS_TABLE_DOC_ETATS.forEach(
+        docEtat => documentTemp.docEtats.push(docEtat)
+      )
+    }
 
     if (this.TABLE_CATEGORIE_AFFICHAGE_TEMP.length < 1) {
       let categorieAttributs: ICategoriesAttributs = {
@@ -490,12 +493,12 @@ export class NewFormDocumentComponent implements OnInit {
   }
   desactiveElementsLieRessource(event: any){
     if (!event.target.checked) {
-      this.forme.controls['affichagePrix'].disable()
-      this.forme.controls['contientDistributeurs'].disable()    
+      this.forme.controls['afficherPrix'].disable()
+      this.forme.controls['afficherDistributeur'].disable()    
       this.documentParentDesactive = true
     }else{
-      this.forme.controls['affichagePrix'].enable()
-      this.forme.controls['contientDistributeurs'].enable()
+      this.forme.controls['afficherPrix'].enable()
+      this.forme.controls['afficherDistributeur'].enable()
       this.documentParentDesactive = false
     }
   }

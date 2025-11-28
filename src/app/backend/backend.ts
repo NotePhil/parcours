@@ -1581,9 +1581,9 @@ export class InMemDBService implements InMemoryDbService {
         ],
         typeMouvement: 'Ajout',
         etat: true,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         missions: [
           {
@@ -2096,9 +2096,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -2598,9 +2598,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -3068,9 +3068,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -3520,9 +3520,9 @@ export class InMemDBService implements InMemoryDbService {
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -3973,9 +3973,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
             etat: true,
             typeMouvement: TypeMouvement.Ajout,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -4593,9 +4593,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -5044,9 +5044,9 @@ export class InMemDBService implements InMemoryDbService {
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             typeMouvement: 'Ajout',
             docEtats: [
@@ -5694,9 +5694,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -6248,9 +6248,9 @@ export class InMemDBService implements InMemoryDbService {
         ],
         typeMouvement: 'Ajout',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: false,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         missions: [
           {
@@ -6719,9 +6719,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: false,
         typeMouvement: 'Neutre',
         etat: true,
-        affichagePrix: false,
+        afficherPrix: false,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -7220,9 +7220,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -7724,9 +7724,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -8195,9 +8195,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -8649,9 +8649,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -9286,9 +9286,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -9803,9 +9803,9 @@ export class InMemDBService implements InMemoryDbService {
         beneficiaireObligatoire: true,
         typeMouvement: 'Reduire',
         etat: true,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -10465,9 +10465,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
         typeMouvement: 'Neutre',
         etat: true,
-        affichagePrix: false,
+        afficherPrix: false,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
             formatCode: 'FACT',
         docEtats: [
           {
@@ -11015,9 +11015,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -11469,9 +11469,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -12107,9 +12107,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -12650,9 +12650,9 @@ export class InMemDBService implements InMemoryDbService {
         ],
         typeMouvement: 'Ajout',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         missions: [
           {
@@ -13130,9 +13130,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Reduire',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -14010,9 +14010,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -14476,9 +14476,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -15270,9 +15270,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 2 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Neutre',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -15920,9 +15920,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -16373,9 +16373,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -17008,9 +17008,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -17648,9 +17648,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 3 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Reduire',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -18519,9 +18519,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -18987,9 +18987,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -19783,9 +19783,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 4 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Neutre',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -20382,9 +20382,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -20836,9 +20836,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -21478,9 +21478,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 5 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Neutre',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -21962,9 +21962,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -22570,9 +22570,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Reduire',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -23451,9 +23451,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -23918,9 +23918,9 @@ export class InMemDBService implements InMemoryDbService {
             beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -24686,9 +24686,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
         etat: false,
         typeMouvement: 'Ajout',
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         beneficiaireObligatoire: false,
         estencaissable: true,
@@ -27126,9 +27126,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -27645,9 +27645,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -28150,9 +28150,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -28621,9 +28621,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -29073,9 +29073,9 @@ export class InMemDBService implements InMemoryDbService {
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -29527,9 +29527,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 etat: true,
                 typeMouvement: TypeMouvement.Ajout,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -30150,9 +30150,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Reduire',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -30602,9 +30602,9 @@ export class InMemDBService implements InMemoryDbService {
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
@@ -31254,9 +31254,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -31811,9 +31811,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: false,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: false,
-            contientDistributeurs: false,
+            afficherDistributeur: false,
         formatCode: 'FACT',
             missions: [
               {
@@ -32337,9 +32337,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -32856,9 +32856,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -33361,9 +33361,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -33832,9 +33832,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -34284,9 +34284,9 @@ export class InMemDBService implements InMemoryDbService {
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -34738,9 +34738,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 etat: true,
                 typeMouvement: TypeMouvement.Ajout,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -35361,9 +35361,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Reduire',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -35813,9 +35813,9 @@ export class InMemDBService implements InMemoryDbService {
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
@@ -36465,9 +36465,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -37022,9 +37022,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: false,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: false,
-            contientDistributeurs: false,
+            afficherDistributeur: false,
         formatCode: 'FACT',
             missions: [
               {
@@ -37548,9 +37548,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -38067,9 +38067,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -38572,9 +38572,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -39043,9 +39043,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -39495,9 +39495,9 @@ export class InMemDBService implements InMemoryDbService {
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -39949,9 +39949,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 etat: true,
                 typeMouvement: TypeMouvement.Ajout,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -40572,9 +40572,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Reduire',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -41024,9 +41024,9 @@ export class InMemDBService implements InMemoryDbService {
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
@@ -41676,9 +41676,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -42233,9 +42233,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: false,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: false,
-            contientDistributeurs: false,
+            afficherDistributeur: false,
         formatCode: 'FACT',
             missions: [
               {
@@ -42759,9 +42759,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -43278,9 +43278,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -43783,9 +43783,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -44254,9 +44254,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -44706,9 +44706,9 @@ export class InMemDBService implements InMemoryDbService {
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -45160,9 +45160,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 etat: true,
                 typeMouvement: TypeMouvement.Ajout,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -45783,9 +45783,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Reduire',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -46235,9 +46235,9 @@ export class InMemDBService implements InMemoryDbService {
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
@@ -46887,9 +46887,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -47444,9 +47444,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: false,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: false,
-            contientDistributeurs: false,
+            afficherDistributeur: false,
         formatCode: 'FACT',
             missions: [
               {
@@ -47931,9 +47931,9 @@ export class InMemDBService implements InMemoryDbService {
                         beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: false,
+                afficherPrix: false,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
                     formatCode: 'FACT',
                 docEtats: [
                   {
@@ -48481,9 +48481,9 @@ export class InMemDBService implements InMemoryDbService {
                         beneficiaireObligatoire: false,
                     typeMouvement: 'Neutre',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
                     formatCode: 'FACT',
                     docEtats: [
                       {
@@ -48935,9 +48935,9 @@ export class InMemDBService implements InMemoryDbService {
                         beneficiaireObligatoire: true,
                     typeMouvement: 'Reduire',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
                     formatCode: 'FACT',
                     docEtats: [
                       {
@@ -49573,9 +49573,9 @@ export class InMemDBService implements InMemoryDbService {
                         beneficiaireObligatoire: true,
                     typeMouvement: 'Neutre',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
                     formatCode: 'FACT',
                     docEtats: [
                       {
@@ -50106,9 +50106,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: false,
+                afficherPrix: false,
                 contientRessources: true,
-                contientDistributeurs: false,
+                afficherDistributeur: false,
                 formatCode: 'FACT',
                 docEtats: [
                   {
@@ -50608,9 +50608,9 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                     typeMouvement: 'Ajout',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
             formatCode: 'FACT',
                     missions: [
                       {
@@ -51113,9 +51113,9 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                     typeMouvement: 'Ajout',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
             formatCode: 'FACT',
                     missions: [
                       {
@@ -51585,9 +51585,9 @@ export class InMemDBService implements InMemoryDbService {
                     beneficiaireObligatoire: false,
                     typeMouvement: 'Neutre',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
                     formatCode: 'FACT',
                     docEtats: [
                       {
@@ -52040,9 +52040,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                     typeMouvement: 'Reduire',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
             formatCode: 'FACT',
                     docEtats: [
                       {
@@ -52680,9 +52680,9 @@ export class InMemDBService implements InMemoryDbService {
                 beneficiaireObligatoire: true,
                     typeMouvement: 'Neutre',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
             formatCode: 'FACT',
                     docEtats: [
                       {

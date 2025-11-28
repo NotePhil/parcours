@@ -43,10 +43,10 @@ export class PrevisualisationExemplaireComponent implements OnInit {
     precoMouvements: [],
     mouvements: [],
     etat: false,
-    affichagePrix: false,
+    afficherPrix: false,
     estencaissable: false,
     contientRessources: false,
-    contientDistributeurs: false,
+    afficherDistributeur: false,
     typeMouvement: TypeMouvement.Neutre,
     docEtats: [],
     dateCreation: new Date,
@@ -224,11 +224,11 @@ export class PrevisualisationExemplaireComponent implements OnInit {
    * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
    */
   formerEnteteTableauMissions(){
-    if (this.exemplaire.contientDistributeurs == true) {
+    if (this.exemplaire.afficherDistributeur == true) {
       let distributeur : string = "distributeur"
       this.displayedRessourcesColumns.push(distributeur)
     }
-    if ((this.exemplaire.affichagePrix == true)) {
+    if ((this.exemplaire.afficherPrix == true)) {
       let prix : string = "prix"
       let montant : string = "montant total"
       if (this.exemplaire.typeMouvement == TypeMouvement.Reduire) {
@@ -343,9 +343,9 @@ export class PrevisualisationExemplaireComponent implements OnInit {
             mouvements: this.exemplaire.mouvements,
             estencaissable: this.exemplaire.estencaissable,
             etat: this.exemplaire.etat,
-            affichagePrix: this.exemplaire.affichagePrix,
+            afficherPrix: this.exemplaire.afficherPrix,
             contientRessources: this.exemplaire.contientRessources,
-            contientDistributeurs: this.exemplaire.contientDistributeurs,
+            afficherDistributeur: this.exemplaire.afficherDistributeur,
             typeMouvement: this.exemplaire.typeMouvement,
             ordreEtats: this.ExempleOrdre,
             docEtats: [],
@@ -401,9 +401,9 @@ export class PrevisualisationExemplaireComponent implements OnInit {
       estencaissable: this.exemplaire.estencaissable,
       mouvements: this.exemplaire.mouvements,
       etat: this.exemplaire.etat,
-      affichagePrix: this.exemplaire.affichagePrix,
+      afficherPrix: this.exemplaire.afficherPrix,
       contientRessources: this.exemplaire.contientRessources,
-      contientDistributeurs: this.exemplaire.contientDistributeurs,
+      afficherDistributeur: this.exemplaire.afficherDistributeur,
       typeMouvement: this.exemplaire.typeMouvement,
       ordreEtats: this.ExempleOrdre,
       docEtats: [],
