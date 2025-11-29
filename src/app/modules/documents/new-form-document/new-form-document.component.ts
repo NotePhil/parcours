@@ -197,8 +197,8 @@ export class NewFormDocumentComponent implements OnInit {
                   etat: false,
                   dateCreation: new Date(),
                   dateModification: new Date(),
-                  valeursParDefaut: '',
-                  type: IType.Int,
+                  valeurParDefaut: '',
+                  type_attribut: IType.Int,
                 },
               },
             };

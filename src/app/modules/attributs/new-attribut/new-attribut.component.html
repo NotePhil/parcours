@@ -55,20 +55,20 @@
                                 <label  for="type" class="label">
                                     {{"attributs.table.title6" | translate}}<span style="color: red;" aria-label="required">*</span>
                                 </label>
-                                <select  class="form-control" formControlName="type" name="type" id="type" required>
+                                <select  class="form-control" formControlName="type_attribut" name="type_attribut" id="type_attribut" required>
                                     <option *ngFor="let item of typeAttribut" value="{{item}}">{{item}}</option>
                                 </select>
                             </div>
-                            <div  *ngIf="submitted && f['type'].errors"  class="alert alert-danger" >
-                              <div *ngIf="f['type'].errors['required']">{{'attributs.form.text4' | translate}}</div>
+                            <div  *ngIf="submitted && f['type_attribut'].errors"  class="alert alert-danger" >
+                              <div *ngIf="f['type_attribut'].errors['required']">{{'attributs.form.text4' | translate}}</div>
                             </div>
                         </div>
-                        <div *ngIf="forme.get('type')?.value" class="form-group">
+                        <div *ngIf="forme.get('type_attribut')?.value" class="form-group">
                             <div class="champs">
-                                <label  for="valeursParDefaut"  class="label" >
+                                <label  for="valeurParDefaut"  class="label" >
                                     {{'attributs.table.title9' | translate}}
                                 </label>
-                                <input type="text" [(ngModel)]="inputValeur" (input)="onInputChange()" formControlName="valeursParDefaut" name="valeursParDefaut" id="valeursParDefaut" placeholder="{{'attributs.table.title10' | translate}}" class="form-control">
+                                <input type="text" [(ngModel)]="inputValeur" (input)="onInputChange()" formControlName="valeurParDefaut" name="valeurParDefaut" id="valeurParDefaut" placeholder="{{'attributs.table.title10' | translate}}" class="form-control">
                             </div>
                             <div  *ngIf="errorNb" class="alert alert-danger" >
                               <div>{{textError}}</div>

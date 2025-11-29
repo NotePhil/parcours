@@ -8,6 +8,6 @@ export interface IAttributs {
     etat:boolean,
     dateCreation?:Date,
     dateModification?:Date,
-    valeursParDefaut: string,
-    type:IType
+    valeurParDefaut: string,
+    type_attribut:IType
 }

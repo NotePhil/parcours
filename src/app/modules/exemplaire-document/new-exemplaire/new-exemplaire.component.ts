@@ -119,8 +119,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     etat: false,
     dateCreation: new Date(),
     dateModification: new Date(),
-    valeursParDefaut: '',
-    type: IType.Int,
+    valeurParDefaut: '',
+    type_attribut: IType.Int,
   };
 
   errorText: String = '';
@@ -860,8 +860,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     let valAttribut = this.rechercherValeurParIdAttribut(attributCategories.attribut.id);
     this.tempAttributsCpt.set(attributCategories.attribut.id, cpt + 1)
     this.tempAttributsObbligatoires.set(cpt + 1, attributCategories.attribut.titre)
-    if (attributCategories.attribut.type == IType.Date && valAttribut != null) {
-      // si le type de l'attribut est Date et que la valeur de valAttribut n'est pas vide
+    if (attributCategories.attribut.type_attribut == IType.Date && valAttribut != null) {
+      // si le type_attribut de l'attribut est Date et que la valeur de valAttribut n'est pas vide
       let dateAtt = new Date();
       if (valAttribut != "PARCOURS_NOT_FOUND_404")
         dateAtt = new Date(valAttribut); // creatoion d'une nouvelle date avec la valeur de valAttribut
@@ -880,7 +880,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       return num;
 
     let valAttribut = this.rechercherValeurParIdAttribut(attribut.id);
-    if (attribut.type == IType.Date && valAttribut != null) {
+    if (attribut.type_attribut == IType.Date && valAttribut != null) {
       let date = new Date(valAttribut);
       let dateReduite = this.datePipe.transform(date, 'yyyy-MM-dd');
       this.ajouterDisabledAttributs(dateReduite);

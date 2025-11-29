@@ -48,7 +48,7 @@ export class ModalCategoriesComponent implements OnInit {
     'actions',
     'titre',
     'description',
-    'type',
+    '',
     'ordreAtrParCat',
     'obligatoire',
   ];
@@ -72,8 +72,8 @@ export class ModalCategoriesComponent implements OnInit {
     etat: false,
     dateCreation: new Date(),
     dateModification: new Date(),
-    valeursParDefaut: '',
-    type: IType.Int,
+    valeurParDefaut: '',
+    type_attribut: IType.Int,
   };
 
   // tableau contenant les categories creees a partir du premier tableau de la modal
@@ -401,8 +401,8 @@ export class ModalCategoriesComponent implements OnInit {
             titre: '',
             description: '',
             etat: false,
-            valeursParDefaut: '',
-            type: IType.Int,
+            valeurParDefaut: '',
+            type_attribut: IType.Int,
           },
         },
       };

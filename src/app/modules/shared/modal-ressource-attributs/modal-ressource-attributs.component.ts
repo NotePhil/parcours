@@ -56,12 +56,12 @@ export class ModalRessourceAttributsComponent implements OnInit {
     'actions',
     'titre',
     'description',
-    'type',
+    'type_attribut',
   ]; // structure du tableau presentant les attributs
   displayedResultAttributsColumns: string[] = [
     'actions',
     'titre',
-    'type',
+    'type_attribut',
     'valeur',
   ];
   dataSourceAttribut = new MatTableDataSource<IAttributs>();
@@ -74,8 +74,8 @@ export class ModalRessourceAttributsComponent implements OnInit {
     etat: false,
     dateCreation: new Date(),
     dateModification: new Date(),
-    valeursParDefaut: '',
-    type: IType.Int,
+    valeurParDefaut: '',
+    type_attribut: IType.Int,
   } 
   att = {
     attribut : this.attRes,
@@ -249,7 +249,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
   {
     console.log('element select : ', element);
 
-      if (element.attributs.type == 'Text') {
+      if (element.attributs.type_attribut == 'Text') {
         if (event.target.value) {
           this.valid = false;
         } else {
@@ -257,7 +257,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
         }   
       }
     
-      if (element.attributs.type == 'Number') {
+      if (element.attributs.type_attribut == 'Number') {
         // Test si la valeur est un nombre
         if (!isNaN(parseFloat(event.target.value))) {
           this.valid = false;
@@ -268,8 +268,8 @@ export class ModalRessourceAttributsComponent implements OnInit {
         }
       }
 
-      //----------- cas du type date --------//
-      if (element.attributs.type == 'Date') {
+      //----------- cas du type_attribut date --------//
+      if (element.attributs.type_attribut == 'Date') {
         if (this.isValidDate(event.target.value)) {
           // Si la conversion en date réussie, la validation réussie
           this.valid = false;
@@ -280,10 +280,10 @@ export class ModalRessourceAttributsComponent implements OnInit {
         }
       }
 
-      //----------- cas de type radio et checkbox ------------//
+      //----------- cas de type_attribut radio et checkbox ------------//
       if (
-        element.attributs.type == 'Checkbox' ||
-        element.attributs.type == 'Radio'
+        element.attributs.type_attribut == 'Checkbox' ||
+        element.attributs.type_attribut == 'Radio'
       ) {
         if (event.target.value == null || event.target.value == '') {
           this.valid = true;
@@ -292,8 +292,8 @@ export class ModalRessourceAttributsComponent implements OnInit {
         }
       }
 
-      //----------- cas de type Email ---------------//
-      if (element.attributs.type == 'Email') {
+      //----------- cas de type_attribut Email ---------------//
+      if (element.attributs.type_attribut == 'Email') {
         if (this.verifierEmail(event.target.value)) {
           this.valid = false;
           console.log('La valeur saisie est une address mail.', event.target.value);
@@ -303,8 +303,8 @@ export class ModalRessourceAttributsComponent implements OnInit {
         }
       }
 
-      //----------- cas de type URL ---------------//
-      if (element.attributs.type == 'Url') {
+      //----------- cas de type_attribut URL ---------------//
+      if (element.attributs.type_attribut == 'Url') {
         if (this.verifierURL(event.target.value)) {
           this.valid = false;
           console.log('La valeur saisie est une Url valide.', event.target.value);

@@ -499,7 +499,7 @@ export class PrevisualisationExemplaireComponent implements OnInit {
                                 <span> ${
                                   this.rechercherValeurParIdAttribut(
                                   attributParCategorie.attribut.id,
-                                  attributParCategorie.attribut.type
+                                  attributParCategorie.attribut.type_attribut
                                   )
                                   }
                                 </span>

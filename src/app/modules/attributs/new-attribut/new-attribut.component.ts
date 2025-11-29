@@ -54,7 +54,7 @@ export class NewAttributComponent implements OnInit {
         ],
       ],
       etat: [true],
-      type: [
+      type_attribut: [
         '',
         [
           Validators.required,
@@ -62,13 +62,13 @@ export class NewAttributComponent implements OnInit {
           Validators.maxLength(50),
         ],
       ],
-      valeursParDefaut: [''],
+      valeurParDefaut: [''],
     });
   }
 
   ngOnInit(): void {
     this.attributService.getTypeAttribut().subscribe((t) => {
-      this.typeAttribut = t.type;
+      this.typeAttribut = t.type_attribut;
     });
     let idAttribut = this.infosPath.snapshot.paramMap.get('idAttribut');
     if (idAttribut != null && idAttribut !== '') {
@@ -80,10 +80,10 @@ export class NewAttributComponent implements OnInit {
           titre: this.attribut.titre,
           description: this.attribut.description,
           etat: this.attribut.etat,
-          type: this.attribut.type,
-          valeursParDefaut: this.attribut?.valeursParDefaut,
+          type_attribut: this.attribut.type_attribut,
+          valeurParDefaut: this.attribut?.valeurParDefaut,
         });
-        this.inputValeur = this.attribut?.valeursParDefaut;
+        this.inputValeur = this.attribut?.valeurParDefaut;
       });
     }
   }
@@ -137,12 +137,12 @@ export class NewAttributComponent implements OnInit {
   onInputChange() {
     this.errorNb = false;
 
-    //----------- cas de type radio et checkbox ------------//
+    //----------- cas de type_attribut radio et checkbox ------------//
     if (
-      this.forme.get('type')?.value == 'Checkbox' ||
-      this.forme.get('type')?.value == 'Radio'
+      this.forme.get('type_attribut')?.value == 'Checkbox' ||
+      this.forme.get('type_attribut')?.value == 'Radio'
     ) {
-      // Vérifier le type et séparer les valeurs
+      // Vérifier le type_attribut et séparer les valeurs
       //const valeursSeparees: string[] = this.inputValeur.split(';');
       // Remplacez les espaces par des points-virgules
       this.inputValeur = this.inputValeur.replace(/\s+/g, ';');
@@ -157,28 +157,28 @@ export class NewAttributComponent implements OnInit {
         .split(';')
         .map((value) => value.trim());
       console.log('valeur separe :', valeurs);
-      if (this.forme.get('type')?.value == 'Radio') {
+      if (this.forme.get('type_attribut')?.value == 'Radio') {
         if (valeurs.length < 2 || valeurs[1] == '') {
           this.errorNb = true;
           this.textError =
-            'Au moins deux valeurs doivent être saisies pour ce type';
+            'Au moins deux valeurs doivent être saisies pour ce type_attribut';
         } else {
           this.errorNb = false;
         }
       }
 
-      if (this.forme.get('type')?.value == 'Checkbox') {
+      if (this.forme.get('type_attribut')?.value == 'Checkbox') {
         if (valeurs.length < 1 || valeurs[0] == '') {
           this.errorNb = true;
-          this.textError = 'Au moins une valeur doit être saisie pour ce type';
+          this.textError = 'Au moins une valeur doit être saisie pour ce type_attribut';
         } else {
           this.errorNb = false;
         }
       }
     }
 
-    //----------- cas du type date --------//
-    if (this.forme.get('type')?.value == 'Date') {
+    //----------- cas du type_attribut date --------//
+    if (this.forme.get('type_attribut')?.value == 'Date') {
       this.inputValeur = this.inputValeur.replace(/-/g, '/');
       if (this.inputValeur.includes(';')) {
         this.errorNb = true;
@@ -197,7 +197,7 @@ export class NewAttributComponent implements OnInit {
         this.errorNb = false;
       } else {
         this.errorNb = true;
-        this.textError = 'votre saisie ne respecte pas le format de ce type';
+        this.textError = 'votre saisie ne respecte pas le format de ce type_attribut';
         console.log(
           "La valeur saisie n'est pas une date.",
           this.inputValeur,
@@ -206,8 +206,8 @@ export class NewAttributComponent implements OnInit {
       }
     }
 
-    //----------- cas de type Number ---------------//
-    if (this.forme.get('type')?.value == 'Number') {
+    //----------- cas de type_attribut Number ---------------//
+    if (this.forme.get('type_attribut')?.value == 'Number') {
       if (this.inputValeur.includes(';')) {
         this.errorNb = true;
         this.inputValeur = this.inputValeur.replace(/;/g, '');
@@ -220,7 +220,7 @@ export class NewAttributComponent implements OnInit {
           console.log('La valeur saisie est un nombre.', this.inputValeur);
         } else {
           this.errorNb = true;
-          this.textError = 'votre saisie ne respecte pas le format de ce type';
+          this.textError = 'votre saisie ne respecte pas le format de ce type_attribut';
           console.log(
             "La valeur saisie n'est pas un nombre.",
             this.inputValeur
@@ -228,13 +228,13 @@ export class NewAttributComponent implements OnInit {
         }
       } else {
         this.errorNb = true;
-        this.textError = 'votre saisie ne respecte pas le format de ce type';
+        this.textError = 'votre saisie ne respecte pas le format de ce type_attribut';
         console.log("La valeur saisie n'est pas un nombre.", this.inputValeur);
       }
     }
 
-    //----------- cas de type Email ---------------//
-    if (this.forme.get('type')?.value == 'Email') {
+    //----------- cas de type_attribut Email ---------------//
+    if (this.forme.get('type_attribut')?.value == 'Email') {
       if (this.inputValeur.includes(';')) {
         this.errorNb = true;
         this.inputValeur = this.inputValeur.replace(/;/g, '');
@@ -245,13 +245,13 @@ export class NewAttributComponent implements OnInit {
         console.log('La valeur saisie est une address mail.', this.inputValeur);
       } else {
         this.errorNb = true;
-        this.textError = 'votre saisie ne respecte pas le format de ce type';
+        this.textError = 'votre saisie ne respecte pas le format de ce type_attribut';
         console.log("La valeur saisie n'est pas un email.", this.inputValeur);
       }
     }
 
-    //----------- cas de type URL ---------------//
-    if (this.forme.get('type')?.value == 'Url') {
+    //----------- cas de type_attribut URL ---------------//
+    if (this.forme.get('type_attribut')?.value == 'Url') {
       if (this.inputValeur.includes(';')) {
         this.errorNb = true;
         this.inputValeur = this.inputValeur.replace(/;/g, '');
@@ -262,7 +262,7 @@ export class NewAttributComponent implements OnInit {
         console.log('La valeur saisie est une Url valide.', this.inputValeur);
       } else {
         this.errorNb = true;
-        this.textError = 'votre saisie ne respecte pas le format de ce type';
+        this.textError = 'votre saisie ne respecte pas le format de ce type_attribut';
         console.log("La valeur saisie n'est pas une url.", this.inputValeur);
       }
     }
@@ -283,8 +283,8 @@ export class NewAttributComponent implements OnInit {
         titre: attributInput.titre,
         description: attributInput.description,
         etat: attributInput.etat,
-        type: attributInput.type,
-        valeursParDefaut: attributInput.valeursParDefaut,
+        type_attribut: attributInput.type_attribut,
+        valeurParDefaut: attributInput.valeurParDefaut,
       };
 
       if (this.attribut != undefined) {

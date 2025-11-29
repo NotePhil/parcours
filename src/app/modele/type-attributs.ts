@@ -1,3 +1,3 @@
 export interface TypeAttribut {
-  type : string[];
+  type_attribut : string[];
 }
