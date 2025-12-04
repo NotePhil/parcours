@@ -26413,8 +26413,8 @@ export class InMemDBService implements InMemoryDbService {
                       {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
                     ] },
                     { nom: 'Rechercher', lien: './patients/list-patients', bouton: 'false', action: [
-                      {nom: 'Ticket', lien: '', bouton: 'true', type: 'global'},
                       {nom: 'Detail', lien: '../detail-patients', bouton: 'false'},
+                      {nom: 'Ticket', lien: '', bouton: 'true', type: 'global'},
                       {nom: 'Modifier', lien: '../patient-nouveau', bouton: 'false'}
                     ] },
                   ],
