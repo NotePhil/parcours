@@ -25,11 +25,11 @@ export class CategorieAttributService {
     );
   }
   
-  getCategoriesAttributsByNom(nom:string): Observable<ICategoriesAttributs[]> {
+  getCategoriesAttributsByLibelle(libelle:string): Observable<ICategoriesAttributs[]> {
     return this.http.get<ICategoriesAttributs[]>(this.param.api+ 'categoriesAttributs').pipe(
       map(x=>
         {
-          return x.filter(d=> d.nom.toLowerCase().startsWith(nom))
+          return x.filter(d=> d.libelle.toLowerCase().startsWith(libelle))
         })
     );        
   }

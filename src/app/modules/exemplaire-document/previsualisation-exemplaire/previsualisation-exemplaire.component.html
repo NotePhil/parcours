@@ -52,11 +52,11 @@
                     </div>
                 </div>
                 <div class="block1" *ngFor="let attributParCategorie of exemplaire.categories">
-                    <div class="pb-3" *ngIf="attributParCategorie.nom">
-                        <h4>{{ attributParCategorie.nom }}</h4>
+                    <div class="pb-3" *ngIf="attributParCategorie.libelle">
+                        <h4>{{ attributParCategorie.libelle }}</h4>
                         <div class="contentBlock">
                             <div class="inputBlock" *ngFor="
-                                let attributParCategorie of attributParCategorie.listAttributsParCategories">
+                                let attributParCategorie of attributParCategorie.attributs">
                                 <label class="">{{ attributParCategorie.attribut.titre }} :
                                 </label>
                                 <div class="valAttribut">
@@ -121,7 +121,7 @@
 
                         <!-- prix Column -->
                         <ng-container *ngIf="
-                exemplaire.affichagePrix == true &&
+                exemplaire.afficherPrix == true &&
                 exemplaire.typeMouvement == typeNeutre
                 " matColumnDef="prix">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
@@ -134,7 +134,7 @@
 
                         <!-- prixEntrée Column -->
                         <ng-container *ngIf="
-                exemplaire.affichagePrix == true &&
+                exemplaire.afficherPrix == true &&
                 exemplaire.typeMouvement == typeAjout
                 " matColumnDef="prixEntrée">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
@@ -147,7 +147,7 @@
 
                         <!-- prixDeSortie Column -->
                         <ng-container *ngIf="
-                exemplaire.affichagePrix == true &&
+                exemplaire.afficherPrix == true &&
                 exemplaire.typeMouvement == typeReduire
                 " matColumnDef="prixDeSortie">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
@@ -159,7 +159,7 @@
                         </ng-container>
 
                         <!-- montant total Column -->
-                        <ng-container *ngIf="exemplaire.affichagePrix == true" matColumnDef="montant total">
+                        <ng-container *ngIf="exemplaire.afficherPrix == true" matColumnDef="montant total">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
                                 {{ "ressource.table2.title10" | translate }}
                             </th>
@@ -169,7 +169,7 @@
                         </ng-container>
 
                         <!-- distributeur Column -->
-                        <ng-container *ngIf="exemplaire.contientDistributeurs == true" matColumnDef="distributeur">
+                        <ng-container *ngIf="exemplaire.afficherDistributeur == true" matColumnDef="distributeur">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
                                 {{ "preconisation.table.title5" | translate }}
                             </th>
@@ -185,7 +185,7 @@
 
                     <!-- montant total -->
                     <div class="total" *ngIf="
-                exemplaire.affichagePrix == true && exemplaire.mouvements?.length
+                exemplaire.afficherPrix == true && exemplaire.mouvements?.length
             ">
                         <span class="mr-2">{{ "ressource.table2.title11" | translate }}</span>
                         <input type="text" [value]="separateurDeMilliers(sommeMontants(this.exemplaire.mouvements!))" disabled />
@@ -238,7 +238,7 @@
                 ngxPrint>
                 <i class="fas fa-print"></i>
             </button>
-            <button *ngIf="exemplaire.estEncaissable" title="{{'lists.button14' | translate}}" type="button" (click)="openModalDialog(exemplaire.personneRattachee!, sommeMontants(exemplaire.mouvements!), exemplaire)" class="btn bg-success">
+            <button *ngIf="exemplaire.estencaissable" title="{{'lists.button14' | translate}}" type="button" (click)="openModalDialog(exemplaire.personneRattachee!, sommeMontants(exemplaire.mouvements!), exemplaire)" class="btn bg-success">
                 <i class="fas fa-wallet"></i>
             </button>
             <button *ngIf="req" (click)="openModal(exemplaire)" type="button"

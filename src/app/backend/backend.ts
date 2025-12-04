@@ -467,8 +467,8 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Créer', lien: 'preconisations/precomvt-nouvelle', bouton: 'false' },
-              { nom: 'Rechercher', lien: './preconisations/list-precomvts', bouton: 'false' },
+              { nom: 'Créer', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false' },
+              { nom: 'Rechercher', lien: './precoMouvements/list-precomvts', bouton: 'false' },
             ],
           },
           {
@@ -647,8 +647,8 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'New', lien: 'preconisations/precomvt-nouvelle', bouton: 'false' },
-              { nom: 'Search', lien: './preconisations/list-precomvts', bouton: 'false' },
+              { nom: 'New', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false' },
+              { nom: 'Search', lien: './precoMouvements/list-precomvts', bouton: 'false' },
             ],
           },
           {
@@ -843,8 +843,8 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Créer', lien: 'preconisations/precomvt-nouvelle', bouton: 'false' },
-                  { nom: 'Rechercher', lien: './preconisations/list-precomvts', bouton: 'false' },
+                  { nom: 'Créer', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false' },
+                  { nom: 'Rechercher', lien: './precoMouvements/list-precomvts', bouton: 'false' },
                 ],
               },
               {
@@ -1023,8 +1023,8 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'New', lien: 'preconisations/precomvt-nouvelle', bouton: 'false' },
-                  { nom: 'Search', lien: './preconisations/list-precomvts', bouton: 'false' },
+                  { nom: 'New', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false' },
+                  { nom: 'Search', lien: './precoMouvements/list-precomvts', bouton: 'false' },
                 ],
               },
               {
@@ -1529,7 +1529,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         idDocument: '1',
         titre: 'Note intervention',
-        estEncaissable: false,
+        estencaissable: false,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -1581,9 +1581,9 @@ export class InMemDBService implements InMemoryDbService {
         ],
         typeMouvement: 'Ajout',
         etat: true,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         missions: [
           {
@@ -1713,9 +1713,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '1',
                 ordre: 11,
@@ -1765,9 +1765,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '1',
                 ordre: 1,
@@ -1817,7 +1817,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -2045,7 +2045,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '1',
             titre: 'Note intervention',
-            estEncaissable: false,
+            estencaissable: false,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             docEtats: [
@@ -2096,9 +2096,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -2227,9 +2227,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 11,
@@ -2279,9 +2279,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 1,
@@ -2330,7 +2330,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -2557,7 +2557,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '2',
             titre: 'Fiche de suivi',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -2598,9 +2598,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -2730,9 +2730,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 2,
@@ -2783,9 +2783,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -2835,7 +2835,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -3062,15 +3062,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '3',
             titre: 'Fiche de soin',
-            estEncaissable: false,
+            estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -3214,9 +3214,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -3253,9 +3253,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -3289,7 +3289,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -3514,15 +3514,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: false,
+            estencaissable: false,
             typeMouvement: 'Ajout',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -3666,9 +3666,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -3703,9 +3703,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -3739,7 +3739,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -3967,15 +3967,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             etat: true,
             typeMouvement: TypeMouvement.Ajout,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -4190,9 +4190,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -4242,9 +4242,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -4279,9 +4279,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '3',
-                nom: 'informations de suivi medical',
+                libelle: 'informations de suivi medical',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -4360,7 +4360,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -4587,15 +4587,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -4739,9 +4739,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -4776,9 +4776,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -4812,7 +4812,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -5039,14 +5039,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             typeMouvement: 'Ajout',
             docEtats: [
@@ -5267,9 +5267,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -5322,9 +5322,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 3,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -5376,9 +5376,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '3',
-                nom: 'informations de suivi medical',
+                libelle: 'informations de suivi medical',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -5461,7 +5461,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -5688,15 +5688,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '5',
             titre: 'ordonnance',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -5872,9 +5872,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -5926,9 +5926,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -5978,7 +5978,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -6207,7 +6207,7 @@ export class InMemDBService implements InMemoryDbService {
       {
         idDocument: '2',
         titre: 'Fiche de suivi',
-        estEncaissable: false,
+        estencaissable: false,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -6248,9 +6248,9 @@ export class InMemDBService implements InMemoryDbService {
         ],
         typeMouvement: 'Ajout',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: false,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         missions: [
           {
@@ -6381,9 +6381,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '1',
                 ordre: 2,
@@ -6433,9 +6433,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -6485,7 +6485,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -6713,15 +6713,15 @@ export class InMemDBService implements InMemoryDbService {
       {
         idDocument: '3',
         titre: 'Fiche de soin',
-        estEncaissable: true,
+        estencaissable: true,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
         typeMouvement: 'Neutre',
         etat: true,
-        affichagePrix: false,
+        afficherPrix: false,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -6867,9 +6867,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -6904,9 +6904,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -6940,7 +6940,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -7168,7 +7168,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '1',
             titre: 'Note intervention',
-            estEncaissable: false,
+            estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -7220,9 +7220,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -7352,9 +7352,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 11,
@@ -7404,9 +7404,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 1,
@@ -7456,7 +7456,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -7683,7 +7683,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '2',
             titre: 'Fiche de suivi',
-            estEncaissable: false,
+            estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -7724,9 +7724,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -7856,9 +7856,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 2,
@@ -7910,9 +7910,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -7962,7 +7962,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -8189,15 +8189,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '3',
             titre: 'Fiche de soin',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -8341,9 +8341,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -8380,9 +8380,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -8416,7 +8416,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -8643,15 +8643,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -8866,9 +8866,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -8920,9 +8920,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 3,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -8973,9 +8973,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '3',
-                nom: 'informations de suivi medical',
+                libelle: 'informations de suivi medical',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -9054,7 +9054,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -9281,14 +9281,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '5',
             titre: 'ordonnance',
-            estEncaissable: true,
+            estencaissable: true,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -9463,9 +9463,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -9517,9 +9517,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -9568,7 +9568,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -9797,15 +9797,15 @@ export class InMemDBService implements InMemoryDbService {
       {
         idDocument: '4',
         titre: 'Formulaire de sortie',
-        estEncaissable: true,
+        estencaissable: true,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
         beneficiaireObligatoire: true,
         typeMouvement: 'Reduire',
         etat: true,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -10020,9 +10020,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -10072,9 +10072,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 3,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -10125,9 +10125,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '3',
-            nom: 'informations de suivi medical',
+            libelle: 'informations de suivi medical',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -10206,7 +10206,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -10459,15 +10459,15 @@ export class InMemDBService implements InMemoryDbService {
       {
         idDocument: '5',
         titre: 'ordonnance',
-        estEncaissable: true,
+        estencaissable: true,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
         typeMouvement: 'Neutre',
         etat: true,
-        affichagePrix: false,
+        afficherPrix: false,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
             formatCode: 'FACT',
         docEtats: [
           {
@@ -10677,9 +10677,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -10729,9 +10729,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -10781,7 +10781,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -11009,15 +11009,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '3',
             titre: 'Fiche de soin',
-            estEncaissable: false,
+            estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -11161,9 +11161,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -11200,9 +11200,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -11236,7 +11236,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -11463,15 +11463,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: false,
+            estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -11686,9 +11686,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -11740,9 +11740,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 3,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -11793,9 +11793,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '3',
-                nom: 'informations de suivi medical',
+                libelle: 'informations de suivi medical',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -11874,7 +11874,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -12101,15 +12101,15 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '5',
             titre: 'ordonnance',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -12285,9 +12285,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -12339,9 +12339,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -12391,7 +12391,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -12623,7 +12623,7 @@ export class InMemDBService implements InMemoryDbService {
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
         beneficiaireObligatoire: false,
-        estEncaissable: true,
+        estencaissable: true,
         docEtats: [
           {
             id: '2',
@@ -12650,9 +12650,9 @@ export class InMemDBService implements InMemoryDbService {
         ],
         typeMouvement: 'Ajout',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         missions: [
           {
@@ -12763,9 +12763,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '1',
                 ordre: 2,
@@ -12815,9 +12815,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -12867,7 +12867,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -13098,7 +13098,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '1',
         code: '03072024-120000-123',
         idDocument: '4',
-        estEncaissable: false,
+        estencaissable: false,
         personneRattachee: {
           id: '6911989109209',
           nom: 'NGONGANG',
@@ -13130,9 +13130,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Reduire',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -13347,9 +13347,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -13399,9 +13399,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 3,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -13451,9 +13451,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '3',
-            nom: 'informations de suivi medical',
+            libelle: 'informations de suivi medical',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -13532,7 +13532,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -13959,7 +13959,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '1',
             titre: 'Note intervention',
-            estEncaissable: false,
+            estencaissable: false,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             docEtats: [
@@ -14010,9 +14010,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -14141,9 +14141,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 11,
@@ -14193,9 +14193,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 1,
@@ -14244,7 +14244,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -14471,14 +14471,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: false,
+            estencaissable: false,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -14692,9 +14692,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -14746,9 +14746,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 3,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -14798,9 +14798,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '3',
-                nom: 'informations de suivi medical',
+                libelle: 'informations de suivi medical',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -14879,7 +14879,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -15238,7 +15238,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '2',
         code: '21052021-120000-123',
         idDocument: '5',
-        estEncaissable: true,
+        estencaissable: true,
         personneRattachee: {
           id: '6911989109209',
           nom: 'NGONGANG',
@@ -15270,9 +15270,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 2 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Neutre',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -15490,9 +15490,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -15542,9 +15542,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -15593,7 +15593,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -15915,14 +15915,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '3',
             titre: 'Fiche de soin',
-            estEncaissable: false,
+            estencaissable: false,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -16066,9 +16066,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -16105,9 +16105,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -16141,7 +16141,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -16368,14 +16368,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: true,
+            estencaissable: true,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -16589,9 +16589,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -16643,9 +16643,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 3,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -16695,9 +16695,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '3',
-                nom: 'informations de suivi medical',
+                libelle: 'informations de suivi medical',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -16776,7 +16776,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -17003,14 +17003,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '5',
             titre: 'ordonnance',
-            estEncaissable: false,
+            estencaissable: false,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -17185,9 +17185,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -17239,9 +17239,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -17290,7 +17290,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -17616,7 +17616,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '3',
         code: '05072021-120000-123',
         idDocument: '4',
-        estEncaissable: false,
+        estencaissable: false,
         personneRattachee: {
           id: '6911989109209',
           nom: 'NGONGANG',
@@ -17648,9 +17648,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 3 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Reduire',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -17854,9 +17854,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -17906,9 +17906,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 3,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -17958,9 +17958,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '3',
-            nom: 'informations de suivi medical',
+            libelle: 'informations de suivi medical',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -18039,7 +18039,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -18468,7 +18468,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '1',
             titre: 'Note intervention',
-            estEncaissable: false,
+            estencaissable: false,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             docEtats: [
@@ -18519,9 +18519,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -18651,9 +18651,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 11,
@@ -18703,9 +18703,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 1,
@@ -18754,7 +18754,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -18982,14 +18982,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: true,
+            estencaissable: true,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -19204,9 +19204,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -19258,9 +19258,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 3,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -19310,9 +19310,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '3',
-                nom: 'informations de suivi medical',
+                libelle: 'informations de suivi medical',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -19391,7 +19391,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -19751,7 +19751,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '4',
         code: '03072013-120000-123',
         idDocument: '5',
-        estEncaissable: false,
+        estencaissable: false,
         personneRattachee: {
           id: '6911989109209',
           nom: 'NGONGANG',
@@ -19783,9 +19783,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 4 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Neutre',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -19951,9 +19951,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -20003,9 +20003,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -20054,7 +20054,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -20377,14 +20377,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '3',
             titre: 'Fiche de soin',
-            estEncaissable: false,
+            estencaissable: false,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -20528,9 +20528,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -20567,9 +20567,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -20603,7 +20603,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -20831,14 +20831,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '5',
             titre: 'ordonnance',
-            estEncaissable: true,
+            estencaissable: true,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -21014,9 +21014,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -21068,9 +21068,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -21119,7 +21119,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -21446,7 +21446,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '5',
         code: '03072023-120000-123',
         idDocument: '1',
-        estEncaissable: true,
+        estencaissable: true,
         personneRattachee: {
           id: '290',
           nom: 'Oubian',
@@ -21478,9 +21478,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 5 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Neutre',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -21615,9 +21615,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -21667,9 +21667,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -21718,7 +21718,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -21957,14 +21957,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '5',
             titre: 'ordonnance',
-            estEncaissable: true,
+            estencaissable: true,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -22140,9 +22140,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -22194,9 +22194,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -22245,7 +22245,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -22538,7 +22538,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '6',
         code: '03072010-120000-123',
         idDocument: '4',
-        estEncaissable: false,
+        estencaissable: false,
         personneRattachee: {
           id: '290',
           nom: 'Oubian',
@@ -22570,9 +22570,9 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
         typeMouvement: 'Reduire',
         etat: false,
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: false,
+        afficherDistributeur: false,
         formatCode: 'FACT',
         docEtats: [
           {
@@ -22787,9 +22787,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -22839,9 +22839,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 3,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -22891,9 +22891,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '3',
-            nom: 'informations de suivi medical',
+            libelle: 'informations de suivi medical',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 1,
@@ -22972,7 +22972,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -23400,7 +23400,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '1',
             titre: 'Note intervention',
-            estEncaissable: false,
+            estencaissable: false,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             docEtats: [
@@ -23451,9 +23451,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -23582,9 +23582,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 11,
@@ -23634,9 +23634,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 1,
@@ -23685,7 +23685,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -23913,14 +23913,14 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '4',
             titre: 'Formulaire de sortie',
-            estEncaissable: false,
+            estencaissable: false,
             description: "Document delivre par le medecin ou un infirmier de l'etablissement",
             beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             docEtats: [
               {
@@ -24134,9 +24134,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -24188,9 +24188,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 3,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -24240,9 +24240,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '3',
-                nom: 'informations de suivi medical',
+                libelle: 'informations de suivi medical',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 1,
@@ -24321,7 +24321,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -24686,12 +24686,12 @@ export class InMemDBService implements InMemoryDbService {
         description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
         etat: false,
         typeMouvement: 'Ajout',
-        affichagePrix: true,
+        afficherPrix: true,
         contientRessources: true,
-        contientDistributeurs: true,
+        afficherDistributeur: true,
         formatCode: 'FACT',
         beneficiaireObligatoire: false,
-        estEncaissable: true,
+        estencaissable: true,
         objetEnregistre: [
           {
             key: {
@@ -24947,9 +24947,9 @@ export class InMemDBService implements InMemoryDbService {
         categories: [
           {
             id: '1',
-            nom: 'informations personelles',
+            libelle: 'informations personelles',
             ordre: 1,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '1',
                 ordre: 2,
@@ -24999,9 +24999,9 @@ export class InMemDBService implements InMemoryDbService {
           },
           {
             id: '2',
-            nom: 'informations de sante',
+            libelle: 'informations de sante',
             ordre: 2,
-            listAttributsParCategories: [
+            attributs: [
               {
                 id: '',
                 ordre: 2,
@@ -25179,7 +25179,7 @@ export class InMemDBService implements InMemoryDbService {
             },
           },
         ],
-        preconisations: [
+        precoMouvements: [
           {
             id: '1',
             libelle: 'rachat',
@@ -26621,10 +26621,10 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: 'preconisations/precomvt-nouvelle', bouton: 'false', action: [
+                    { nom: 'Créer', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false', action: [
                       {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
                     ] },
-                    { nom: 'Rechercher', lien: './preconisations/list-precomvts', bouton: 'false', action: [
+                    { nom: 'Rechercher', lien: './precoMouvements/list-precomvts', bouton: 'false', action: [
                       { nom: 'Modifier', lien: '../precomvt-nouvelle', bouton: 'false'},
                       { nom: 'patient.table.actions.link3', lien: '', bouton: 'true'}
                     ] },
@@ -26895,10 +26895,10 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: 'preconisations/precomvt-nouvelle', bouton: 'false', action: [
+                    { nom: 'New', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false', action: [
                       {nom: 'New', lien: '', bouton: 'true', type: 'global'}
                     ] },
-                    { nom: 'Search', lien: './preconisations/list-precomvts', bouton: 'false', action: [
+                    { nom: 'Search', lien: './precoMouvements/list-precomvts', bouton: 'false', action: [
                       { nom: 'Update', lien: '../precomvt-nouvelle', bouton: 'false' },
                       { nom: 'patient.table.actions.link3', lien: '', bouton: 'true'}
                     ] },
@@ -27074,7 +27074,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '1',
             titre: 'Note intervention',
-            estEncaissable: false,
+            estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -27126,9 +27126,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -27259,9 +27259,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 11,
@@ -27311,9 +27311,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 1,
@@ -27363,7 +27363,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -27593,7 +27593,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '1',
                 titre: 'Note intervention',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -27645,9 +27645,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -27777,9 +27777,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 11,
@@ -27829,9 +27829,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 1,
@@ -27881,7 +27881,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -28109,7 +28109,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '2',
                 titre: 'Fiche de suivi',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -28150,9 +28150,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -28282,9 +28282,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 2,
@@ -28335,9 +28335,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -28387,7 +28387,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -28615,15 +28615,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '3',
                 titre: 'Fiche de soin',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -28767,9 +28767,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -28806,9 +28806,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -28842,7 +28842,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -29067,15 +29067,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 typeMouvement: 'Ajout',
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -29219,9 +29219,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -29256,9 +29256,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -29292,7 +29292,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -29521,15 +29521,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
                 typeMouvement: TypeMouvement.Ajout,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -29744,9 +29744,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -29796,9 +29796,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -29833,9 +29833,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '3',
-                    nom: 'informations de suivi medical',
+                    libelle: 'informations de suivi medical',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -29915,7 +29915,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -30144,15 +30144,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Reduire',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -30296,9 +30296,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -30333,9 +30333,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -30369,7 +30369,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -30597,14 +30597,14 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
@@ -30825,9 +30825,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -30880,9 +30880,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 3,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -30934,9 +30934,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '3',
-                    nom: 'informations de suivi medical',
+                    libelle: 'informations de suivi medical',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -31020,7 +31020,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -31248,15 +31248,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '5',
                 titre: 'ordonnance',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -31433,9 +31433,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -31487,9 +31487,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -31539,7 +31539,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -31770,7 +31770,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '2',
             titre: 'Fiche de suivi',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -31811,9 +31811,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: false,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: false,
-            contientDistributeurs: false,
+            afficherDistributeur: false,
         formatCode: 'FACT',
             missions: [
               {
@@ -31945,9 +31945,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 2,
@@ -31997,9 +31997,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -32049,7 +32049,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -32285,7 +32285,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '1',
             titre: 'Note intervention',
-            estEncaissable: false,
+            estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -32337,9 +32337,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -32470,9 +32470,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 11,
@@ -32522,9 +32522,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 1,
@@ -32574,7 +32574,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -32804,7 +32804,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '1',
                 titre: 'Note intervention',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -32856,9 +32856,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -32988,9 +32988,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 11,
@@ -33040,9 +33040,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 1,
@@ -33092,7 +33092,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -33320,7 +33320,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '2',
                 titre: 'Fiche de suivi',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -33361,9 +33361,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -33493,9 +33493,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 2,
@@ -33546,9 +33546,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -33598,7 +33598,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -33826,15 +33826,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '3',
                 titre: 'Fiche de soin',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -33978,9 +33978,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -34017,9 +34017,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -34053,7 +34053,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -34278,15 +34278,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 typeMouvement: 'Ajout',
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -34430,9 +34430,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -34467,9 +34467,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -34503,7 +34503,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -34732,15 +34732,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
                 typeMouvement: TypeMouvement.Ajout,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -34955,9 +34955,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -35007,9 +35007,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -35044,9 +35044,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '3',
-                    nom: 'informations de suivi medical',
+                    libelle: 'informations de suivi medical',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -35126,7 +35126,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -35355,15 +35355,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Reduire',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -35507,9 +35507,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -35544,9 +35544,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -35580,7 +35580,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -35808,14 +35808,14 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
@@ -36036,9 +36036,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -36091,9 +36091,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 3,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -36145,9 +36145,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '3',
-                    nom: 'informations de suivi medical',
+                    libelle: 'informations de suivi medical',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -36231,7 +36231,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -36459,15 +36459,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '5',
                 titre: 'ordonnance',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -36644,9 +36644,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -36698,9 +36698,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -36750,7 +36750,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -36981,7 +36981,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '2',
             titre: 'Fiche de suivi',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -37022,9 +37022,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: false,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: false,
-            contientDistributeurs: false,
+            afficherDistributeur: false,
         formatCode: 'FACT',
             missions: [
               {
@@ -37156,9 +37156,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 2,
@@ -37208,9 +37208,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -37260,7 +37260,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -37496,7 +37496,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '1',
             titre: 'Note intervention',
-            estEncaissable: false,
+            estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -37548,9 +37548,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -37681,9 +37681,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 11,
@@ -37733,9 +37733,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 1,
@@ -37785,7 +37785,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -38015,7 +38015,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '1',
                 titre: 'Note intervention',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -38067,9 +38067,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -38199,9 +38199,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 11,
@@ -38251,9 +38251,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 1,
@@ -38303,7 +38303,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -38531,7 +38531,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '2',
                 titre: 'Fiche de suivi',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -38572,9 +38572,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -38704,9 +38704,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 2,
@@ -38757,9 +38757,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -38809,7 +38809,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -39037,15 +39037,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '3',
                 titre: 'Fiche de soin',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -39189,9 +39189,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -39228,9 +39228,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -39264,7 +39264,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -39489,15 +39489,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 typeMouvement: 'Ajout',
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -39641,9 +39641,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -39678,9 +39678,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -39714,7 +39714,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -39943,15 +39943,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
                 typeMouvement: TypeMouvement.Ajout,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -40166,9 +40166,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -40218,9 +40218,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -40255,9 +40255,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '3',
-                    nom: 'informations de suivi medical',
+                    libelle: 'informations de suivi medical',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -40337,7 +40337,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -40566,15 +40566,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Reduire',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -40718,9 +40718,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -40755,9 +40755,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -40791,7 +40791,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -41019,14 +41019,14 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
@@ -41247,9 +41247,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -41302,9 +41302,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 3,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -41356,9 +41356,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '3',
-                    nom: 'informations de suivi medical',
+                    libelle: 'informations de suivi medical',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -41442,7 +41442,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -41670,15 +41670,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '5',
                 titre: 'ordonnance',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -41855,9 +41855,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -41909,9 +41909,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -41961,7 +41961,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -42192,7 +42192,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '2',
             titre: 'Fiche de suivi',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -42233,9 +42233,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: false,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: false,
-            contientDistributeurs: false,
+            afficherDistributeur: false,
         formatCode: 'FACT',
             missions: [
               {
@@ -42367,9 +42367,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 2,
@@ -42419,9 +42419,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -42471,7 +42471,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -42707,7 +42707,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '1',
             titre: 'Note intervention',
-            estEncaissable: false,
+            estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -42759,9 +42759,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: true,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: true,
-            contientDistributeurs: true,
+            afficherDistributeur: true,
             formatCode: 'FACT',
             missions: [
               {
@@ -42892,9 +42892,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 11,
@@ -42944,9 +42944,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 1,
@@ -42996,7 +42996,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -43226,7 +43226,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '1',
                 titre: 'Note intervention',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -43278,9 +43278,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -43410,9 +43410,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 11,
@@ -43462,9 +43462,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 1,
@@ -43514,7 +43514,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -43742,7 +43742,7 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '2',
                 titre: 'Fiche de suivi',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -43783,9 +43783,9 @@ export class InMemDBService implements InMemoryDbService {
                 ],
                 typeMouvement: 'Ajout',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 missions: [
                   {
@@ -43915,9 +43915,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '1',
                         ordre: 2,
@@ -43968,9 +43968,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -44020,7 +44020,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -44248,15 +44248,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '3',
                 titre: 'Fiche de soin',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -44400,9 +44400,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -44439,9 +44439,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -44475,7 +44475,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -44700,15 +44700,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 typeMouvement: 'Ajout',
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -44852,9 +44852,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -44889,9 +44889,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -44925,7 +44925,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -45154,15 +45154,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
                 typeMouvement: TypeMouvement.Ajout,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -45377,9 +45377,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -45429,9 +45429,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -45466,9 +45466,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '3',
-                    nom: 'informations de suivi medical',
+                    libelle: 'informations de suivi medical',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -45548,7 +45548,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -45777,15 +45777,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Reduire',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -45929,9 +45929,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -45966,9 +45966,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -46002,7 +46002,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -46230,14 +46230,14 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '4',
                 titre: 'Formulaire de sortie',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
@@ -46458,9 +46458,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -46513,9 +46513,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 3,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -46567,9 +46567,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '3',
-                    nom: 'informations de suivi medical',
+                    libelle: 'informations de suivi medical',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -46653,7 +46653,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -46881,15 +46881,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '5',
                 titre: 'ordonnance',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: true,
+                afficherPrix: true,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
             formatCode: 'FACT',
                 docEtats: [
                   {
@@ -47066,9 +47066,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -47120,9 +47120,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -47172,7 +47172,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -47403,7 +47403,7 @@ export class InMemDBService implements InMemoryDbService {
           {
             idDocument: '2',
             titre: 'Fiche de suivi',
-            estEncaissable: true,
+            estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -47444,9 +47444,9 @@ export class InMemDBService implements InMemoryDbService {
             ],
             typeMouvement: 'Ajout',
             etat: false,
-            affichagePrix: true,
+            afficherPrix: true,
             contientRessources: false,
-            contientDistributeurs: false,
+            afficherDistributeur: false,
         formatCode: 'FACT',
             missions: [
               {
@@ -47578,9 +47578,9 @@ export class InMemDBService implements InMemoryDbService {
             categories: [
               {
                 id: '1',
-                nom: 'informations personelles',
+                libelle: 'informations personelles',
                 ordre: 1,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '1',
                     ordre: 2,
@@ -47630,9 +47630,9 @@ export class InMemDBService implements InMemoryDbService {
               },
               {
                 id: '2',
-                nom: 'informations de sante',
+                libelle: 'informations de sante',
                 ordre: 2,
-                listAttributsParCategories: [
+                attributs: [
                   {
                     id: '',
                     ordre: 2,
@@ -47682,7 +47682,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            preconisations: [
+            precoMouvements: [
               {
                 id: '1',
                 libelle: 'rachat',
@@ -47925,15 +47925,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '5',
                 titre: 'ordonnance',
-                estEncaissable: true,
+                estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                         beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: false,
+                afficherPrix: false,
                 contientRessources: true,
-                contientDistributeurs: true,
+                afficherDistributeur: true,
                     formatCode: 'FACT',
                 docEtats: [
                   {
@@ -48143,9 +48143,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -48195,9 +48195,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -48247,7 +48247,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -48475,15 +48475,15 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     idDocument: '3',
                     titre: 'Fiche de soin',
-                    estEncaissable: false,
+                    estencaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
                         beneficiaireObligatoire: false,
                     typeMouvement: 'Neutre',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
                     formatCode: 'FACT',
                     docEtats: [
                       {
@@ -48627,9 +48627,9 @@ export class InMemDBService implements InMemoryDbService {
                     categories: [
                       {
                         id: '1',
-                        nom: 'informations personelles',
+                        libelle: 'informations personelles',
                         ordre: 1,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 2,
@@ -48666,9 +48666,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        nom: 'informations de sante',
+                        libelle: 'informations de sante',
                         ordre: 2,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 1,
@@ -48702,7 +48702,7 @@ export class InMemDBService implements InMemoryDbService {
                         ],
                       },
                     ],
-                    preconisations: [
+                    precoMouvements: [
                       {
                         id: '1',
                         libelle: 'rachat',
@@ -48929,15 +48929,15 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     idDocument: '4',
                     titre: 'Formulaire de sortie',
-                    estEncaissable: false,
+                    estencaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
                         beneficiaireObligatoire: true,
                     typeMouvement: 'Reduire',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
                     formatCode: 'FACT',
                     docEtats: [
                       {
@@ -49152,9 +49152,9 @@ export class InMemDBService implements InMemoryDbService {
                     categories: [
                       {
                         id: '1',
-                        nom: 'informations personelles',
+                        libelle: 'informations personelles',
                         ordre: 1,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 1,
@@ -49206,9 +49206,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        nom: 'informations de sante',
+                        libelle: 'informations de sante',
                         ordre: 3,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 2,
@@ -49259,9 +49259,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '3',
-                        nom: 'informations de suivi medical',
+                        libelle: 'informations de suivi medical',
                         ordre: 2,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 1,
@@ -49340,7 +49340,7 @@ export class InMemDBService implements InMemoryDbService {
                         ],
                       },
                     ],
-                    preconisations: [
+                    precoMouvements: [
                       {
                         id: '1',
                         libelle: 'rachat',
@@ -49567,15 +49567,15 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     idDocument: '5',
                     titre: 'ordonnance',
-                    estEncaissable: true,
+                    estencaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
                         beneficiaireObligatoire: true,
                     typeMouvement: 'Neutre',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
                     formatCode: 'FACT',
                     docEtats: [
                       {
@@ -49751,9 +49751,9 @@ export class InMemDBService implements InMemoryDbService {
                     categories: [
                       {
                         id: '1',
-                        nom: 'informations personelles',
+                        libelle: 'informations personelles',
                         ordre: 1,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 2,
@@ -49805,9 +49805,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        nom: 'informations de sante',
+                        libelle: 'informations de sante',
                         ordre: 2,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 2,
@@ -49857,7 +49857,7 @@ export class InMemDBService implements InMemoryDbService {
                         ],
                       },
                     ],
-                    preconisations: [
+                    precoMouvements: [
                       {
                         id: '1',
                         libelle: 'rachat',
@@ -50100,15 +50100,15 @@ export class InMemDBService implements InMemoryDbService {
               {
                 idDocument: '3',
                 titre: 'Fiche de soin',
-                estEncaissable: false,
+                estencaissable: false,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
                 typeMouvement: 'Neutre',
                 etat: true,
-                affichagePrix: false,
+                afficherPrix: false,
                 contientRessources: true,
-                contientDistributeurs: false,
+                afficherDistributeur: false,
                 formatCode: 'FACT',
                 docEtats: [
                   {
@@ -50254,9 +50254,9 @@ export class InMemDBService implements InMemoryDbService {
                 categories: [
                   {
                     id: '1',
-                    nom: 'informations personelles',
+                    libelle: 'informations personelles',
                     ordre: 1,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 2,
@@ -50291,9 +50291,9 @@ export class InMemDBService implements InMemoryDbService {
                   },
                   {
                     id: '2',
-                    nom: 'informations de sante',
+                    libelle: 'informations de sante',
                     ordre: 2,
-                    listAttributsParCategories: [
+                    attributs: [
                       {
                         id: '',
                         ordre: 1,
@@ -50327,7 +50327,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                preconisations: [
+                precoMouvements: [
                   {
                     id: '1',
                     libelle: 'rachat',
@@ -50556,7 +50556,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     idDocument: '1',
                     titre: 'Note intervention',
-                    estEncaissable: false,
+                    estencaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
@@ -50608,9 +50608,9 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                     typeMouvement: 'Ajout',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
             formatCode: 'FACT',
                     missions: [
                       {
@@ -50740,9 +50740,9 @@ export class InMemDBService implements InMemoryDbService {
                     categories: [
                       {
                         id: '1',
-                        nom: 'informations personelles',
+                        libelle: 'informations personelles',
                         ordre: 1,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '1',
                             ordre: 11,
@@ -50792,9 +50792,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        nom: 'informations de sante',
+                        libelle: 'informations de sante',
                         ordre: 2,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '1',
                             ordre: 1,
@@ -50844,7 +50844,7 @@ export class InMemDBService implements InMemoryDbService {
                         ],
                       },
                     ],
-                    preconisations: [
+                    precoMouvements: [
                       {
                         id: '1',
                         libelle: 'rachat',
@@ -51072,7 +51072,7 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     idDocument: '2',
                     titre: 'Fiche de suivi',
-                    estEncaissable: false,
+                    estencaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: false,
@@ -51113,9 +51113,9 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                     typeMouvement: 'Ajout',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
             formatCode: 'FACT',
                     missions: [
                       {
@@ -51245,9 +51245,9 @@ export class InMemDBService implements InMemoryDbService {
                     categories: [
                       {
                         id: '1',
-                        nom: 'informations personelles',
+                        libelle: 'informations personelles',
                         ordre: 1,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '1',
                             ordre: 2,
@@ -51299,9 +51299,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        nom: 'informations de sante',
+                        libelle: 'informations de sante',
                         ordre: 2,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 2,
@@ -51351,7 +51351,7 @@ export class InMemDBService implements InMemoryDbService {
                         ],
                       },
                     ],
-                    preconisations: [
+                    precoMouvements: [
                       {
                         id: '1',
                         libelle: 'rachat',
@@ -51579,15 +51579,15 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     idDocument: '3',
                     titre: 'Fiche de soin',
-                    estEncaissable: false,
+                    estencaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
                     beneficiaireObligatoire: false,
                     typeMouvement: 'Neutre',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
                     formatCode: 'FACT',
                     docEtats: [
                       {
@@ -51731,9 +51731,9 @@ export class InMemDBService implements InMemoryDbService {
                     categories: [
                       {
                         id: '1',
-                        nom: 'informations personelles',
+                        libelle: 'informations personelles',
                         ordre: 1,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 2,
@@ -51770,9 +51770,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        nom: 'informations de sante',
+                        libelle: 'informations de sante',
                         ordre: 2,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 1,
@@ -51806,7 +51806,7 @@ export class InMemDBService implements InMemoryDbService {
                         ],
                       },
                     ],
-                    preconisations: [
+                    precoMouvements: [
                       {
                         id: '1',
                         libelle: 'rachat',
@@ -52034,15 +52034,15 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     idDocument: '4',
                     titre: 'Formulaire de sortie',
-                    estEncaissable: true,
+                    estencaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                     typeMouvement: 'Reduire',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
             formatCode: 'FACT',
                     docEtats: [
                       {
@@ -52257,9 +52257,9 @@ export class InMemDBService implements InMemoryDbService {
                     categories: [
                       {
                         id: '1',
-                        nom: 'informations personelles',
+                        libelle: 'informations personelles',
                         ordre: 1,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 1,
@@ -52311,9 +52311,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        nom: 'informations de sante',
+                        libelle: 'informations de sante',
                         ordre: 3,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 2,
@@ -52364,9 +52364,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '3',
-                        nom: 'informations de suivi medical',
+                        libelle: 'informations de suivi medical',
                         ordre: 2,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 1,
@@ -52446,7 +52446,7 @@ export class InMemDBService implements InMemoryDbService {
                         ],
                       },
                     ],
-                    preconisations: [
+                    precoMouvements: [
                       {
                         id: '1',
                         libelle: 'rachat',
@@ -52674,15 +52674,15 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     idDocument: '5',
                     titre: 'ordonnance',
-                    estEncaissable: true,
+                    estencaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
                 beneficiaireObligatoire: true,
                     typeMouvement: 'Neutre',
                     etat: true,
-                    affichagePrix: true,
+                    afficherPrix: true,
                     contientRessources: true,
-                    contientDistributeurs: true,
+                    afficherDistributeur: true,
             formatCode: 'FACT',
                     docEtats: [
                       {
@@ -52859,9 +52859,9 @@ export class InMemDBService implements InMemoryDbService {
                     categories: [
                       {
                         id: '1',
-                        nom: 'informations personelles',
+                        libelle: 'informations personelles',
                         ordre: 1,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 2,
@@ -52913,9 +52913,9 @@ export class InMemDBService implements InMemoryDbService {
                       },
                       {
                         id: '2',
-                        nom: 'informations de sante',
+                        libelle: 'informations de sante',
                         ordre: 2,
-                        listAttributsParCategories: [
+                        attributs: [
                           {
                             id: '',
                             ordre: 2,
@@ -52965,7 +52965,7 @@ export class InMemDBService implements InMemoryDbService {
                         ],
                       },
                     ],
-                    preconisations: [
+                    precoMouvements: [
                       {
                         id: '1',
                         libelle: 'rachat',

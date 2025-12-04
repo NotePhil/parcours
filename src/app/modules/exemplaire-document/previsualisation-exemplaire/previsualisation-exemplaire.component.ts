@@ -40,13 +40,13 @@ export class PrevisualisationExemplaireComponent implements OnInit {
     idDocument: '',
     objetEnregistre: [],
     categories: [],
-    preconisations: [],
+    precoMouvements: [],
     mouvements: [],
     etat: false,
-    affichagePrix: false,
-    estEncaissable: false,
+    afficherPrix: false,
+    estencaissable: false,
     contientRessources: false,
-    contientDistributeurs: false,
+    afficherDistributeur: false,
     typeMouvement: TypeMouvement.Neutre,
     docEtats: [],
     dateCreation: new Date,
@@ -224,11 +224,11 @@ export class PrevisualisationExemplaireComponent implements OnInit {
    * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
    */
   formerEnteteTableauMissions(){
-    if (this.exemplaire.contientDistributeurs == true) {
+    if (this.exemplaire.afficherDistributeur == true) {
       let distributeur : string = "distributeur"
       this.displayedRessourcesColumns.push(distributeur)
     }
-    if ((this.exemplaire.affichagePrix == true)) {
+    if ((this.exemplaire.afficherPrix == true)) {
       let prix : string = "prix"
       let montant : string = "montant total"
       if (this.exemplaire.typeMouvement == TypeMouvement.Reduire) {
@@ -339,13 +339,13 @@ export class PrevisualisationExemplaireComponent implements OnInit {
             attributs: this.exemplaire.attributs,
             objetEnregistre: this.exemplaire.objetEnregistre,
             categories: this.exemplaire.categories,
-            preconisations: this.exemplaire.preconisations,
+            precoMouvements: this.exemplaire.precoMouvements,
             mouvements: this.exemplaire.mouvements,
-            estEncaissable: this.exemplaire.estEncaissable,
+            estencaissable: this.exemplaire.estencaissable,
             etat: this.exemplaire.etat,
-            affichagePrix: this.exemplaire.affichagePrix,
+            afficherPrix: this.exemplaire.afficherPrix,
             contientRessources: this.exemplaire.contientRessources,
-            contientDistributeurs: this.exemplaire.contientDistributeurs,
+            afficherDistributeur: this.exemplaire.afficherDistributeur,
             typeMouvement: this.exemplaire.typeMouvement,
             ordreEtats: this.ExempleOrdre,
             docEtats: [],
@@ -397,13 +397,13 @@ export class PrevisualisationExemplaireComponent implements OnInit {
       attributs: this.exemplaire.attributs,
       objetEnregistre: this.exemplaire.objetEnregistre,
       categories: this.exemplaire.categories,
-      preconisations: this.exemplaire.preconisations,
-      estEncaissable: this.exemplaire.estEncaissable,
+      precoMouvements: this.exemplaire.precoMouvements,
+      estencaissable: this.exemplaire.estencaissable,
       mouvements: this.exemplaire.mouvements,
       etat: this.exemplaire.etat,
-      affichagePrix: this.exemplaire.affichagePrix,
+      afficherPrix: this.exemplaire.afficherPrix,
       contientRessources: this.exemplaire.contientRessources,
-      contientDistributeurs: this.exemplaire.contientDistributeurs,
+      afficherDistributeur: this.exemplaire.afficherDistributeur,
       typeMouvement: this.exemplaire.typeMouvement,
       ordreEtats: this.ExempleOrdre,
       docEtats: [],
@@ -486,12 +486,12 @@ export class PrevisualisationExemplaireComponent implements OnInit {
                   <div class="block1" *ngFor="let attributParCategorie of exemplaire.categories">
                   
                     ${this.exemplaire.categories.map(attributParCategorie => `
-                      <div class="pb-3" *ngIf="attributParCategorie.nom">
-                        <h4> ${ attributParCategorie.nom }</h4>
+                      <div class="pb-3" *ngIf="attributParCategorie.libelle">
+                        <h4> ${ attributParCategorie.libelle }</h4>
                         <div class="contentBlock">
                           <div class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.listAttributsParCategories">
                           
-                            ${attributParCategorie.listAttributsParCategories.map(attributParCategorie => `
+                            ${attributParCategorie.attributs.map(attributParCategorie => `
 
                               <label class=""> ${ attributParCategorie.attribut.titre } :
                               </label>

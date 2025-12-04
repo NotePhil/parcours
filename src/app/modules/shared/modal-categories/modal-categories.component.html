@@ -8,10 +8,10 @@
                         <label for="categories" class="label">
                             {{'document.table.title8' | translate}}
                         </label>
-                        <input type="text" formControlName="nomCategorie" name="categories" id="categories"  placeholder="{{'document.table.title9' | translate}}"  class="form-control" required>
+                        <input type="text" formControlName="libelleCategorie" name="categories" id="categories"  placeholder="{{'document.table.title9' | translate}}"  class="form-control" required>
                     </div>
-                    <div  *ngIf="validation && f['nomCategorie'].errors"  class="alert alert-danger blockErreur" >
-                        <div *ngIf="f['nomCategorie'].errors['required']">{{'attributs.form.text5' | translate}}</div>
+                    <div  *ngIf="validation && f['libelleCategorie'].errors"  class="alert alert-danger blockErreur" >
+                        <div *ngIf="f['libelleCategorie'].errors['required']">{{'attributs.form.text5' | translate}}</div>
                     </div>
                 </div>
                 <div class="content">
@@ -82,7 +82,7 @@
                                 <td class="text-dark containCell"  mat-cell *matCellDef="let element;  let i=index">
                                     <div class="actions">
                                         <button class="btn p-0" name=""  [value]="element.attribut.id" id="" title="clicker pour ajouter un attributs a la categorie"  (change)="selectionnerCategorieCheck(formeCategorieAttribut.value,element, i, $event);">
-                                            <span><input type="checkbox" [disabled] = "((formeCategorieAttribut.value.ordreCategorie < 0 ) || (formeCategorieAttribut.value.ordreCategorie == 0 )  || (formeCategorieAttribut.value.nomCategorie == '' ) )" name="" id="" class=""></span>
+                                            <span><input type="checkbox" [disabled] = "((formeCategorieAttribut.value.ordreCategorie < 0 ) || (formeCategorieAttribut.value.ordreCategorie == 0 )  || (formeCategorieAttribut.value.libelleCategorie == '' ) )" name="" id="" class=""></span>
                                         </button>
                                     </div>
                                 </td>
@@ -112,10 +112,10 @@
                 <div class="card-body p-0 tableBlock" id="tableResultats">
                     <div class='table-responsive w-100 m-0 modaleTableConteneur'>
                         <table class='table table-sm table-centered table-striped w-100' mat-table [dataSource]="tableResultatsCategoriesAffichage" matSort (matSortChange)="announceSortChange($event)">
-                            <!-- nomCategorie Column -->
-                            <ng-container matColumnDef="nomCategorie">
+                            <!-- libelleCategorie Column -->
+                            <ng-container matColumnDef="libelleCategorie">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title8' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.nom}} </td>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.libelle}} </td>
                             </ng-container>
                             <!-- libelleAttribut Column -->
                             <ng-container matColumnDef="libelleAttribut">

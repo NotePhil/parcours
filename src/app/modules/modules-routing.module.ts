@@ -86,7 +86,7 @@ const routes: Routes = [
         canActivate: [RoleAuthGuard]
       },
       {
-        path: 'preconisations',
+        path: 'precoMouvements',
         loadChildren: () => import('./precomvt/precomvt.module').then(m => m.PrecomvtModule),
         canActivate: [RoleAuthGuard]
       },

@@ -66,12 +66,12 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     attributs: [],
     objetEnregistre: [],
     categories: [],
-    preconisations: [],
+    precoMouvements: [],
     mouvements: [],
-    affichagePrix: false,
-    estEncaissable: false,
+    afficherPrix: false,
+    estencaissable: false,
     contientRessources: false,
-    contientDistributeurs: false,
+    afficherDistributeur: false,
     typeMouvement: 'Neutre',
     docEtats: [],
     ordreEtats: [],
@@ -101,11 +101,11 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     missions: [],
     attributs: [],
     categories: [],
-    preconisations: [],
-    affichagePrix: true,
-    estEncaissable: false,
+    precoMouvements: [],
+    afficherPrix: true,
+    estencaissable: false,
     contientRessources: true,
-    contientDistributeurs: true,
+    afficherDistributeur: true,
     typeMouvement: 'Neutre',
     docEtats: [],
     formatCode: '',
@@ -730,9 +730,9 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   modifierMouvementExemplaire(idDocument: string) {
     this.serviceDocument.getDocumentById(idDocument).subscribe(
       value => {
-        this.document.affichagePrix = value.affichagePrix
+        this.document.afficherPrix = value.afficherPrix
         this.document.contientRessources = value.contientRessources
-        this.document.contientDistributeurs = value.contientDistributeurs
+        this.document.afficherDistributeur = value.afficherDistributeur
         this.document.typeMouvement = value.typeMouvement
         this.formerEnteteTableauMissions();
       })
@@ -742,12 +742,12 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
    */
   formerEnteteTableauMissions() {
-    if (this.document.contientDistributeurs == true && !this.document.beneficiaireObligatoire) {
+    if (this.document.afficherDistributeur == true && !this.document.beneficiaireObligatoire) {
       let distributeur: string = "distributeur"
       this.displayedRessourcesColumns.includes('distributeur')
       this.displayedRessourcesColumns.push(distributeur)
     }
-    if ((this.document.affichagePrix == true)) {
+    if ((this.document.afficherPrix == true)) {
       let prix: string = "prix"
       let pourcentageCharge: string = "pourcentageCharge"
       let pourcentageChargeRssource: string = "pourcentageChargeRssource"
@@ -1048,15 +1048,15 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       description: this.document.description,
       missions: this.document.missions,
       attributs: this.document.attributs,
-      estEncaissable: this.document.estEncaissable,
+      estencaissable: this.document.estencaissable,
       objetEnregistre: this.exemplaire.objetEnregistre,
       categories: this.document.categories,
-      preconisations: this.document.preconisations,
+      precoMouvements: this.document.precoMouvements,
       mouvements: this.ELEMENTS_TABLE_MOUVEMENTS,
       etat: this.document.etat,
-      affichagePrix: this.document.affichagePrix,
+      afficherPrix: this.document.afficherPrix,
       contientRessources: this.document.contientRessources,
-      contientDistributeurs: this.document.contientDistributeurs,
+      afficherDistributeur: this.document.afficherDistributeur,
       typeMouvement: this.document.typeMouvement,
       docEtats: this.document.docEtats,
       ordreEtats: this.exemplaire.ordreEtats,
@@ -1167,7 +1167,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   }
 
   verificationRessource(qte?: any, prixOut?: any, prixIn?: any, option?: IRessource) {
-    this.document.preconisations.forEach((precoMvt) => {
+    this.document.precoMouvements.forEach((precoMvt) => {
       if (precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id)) {
         this.resValidate = precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id);
       }

@@ -47,11 +47,11 @@ export class NewFormDocumentComponent implements OnInit {
     missions: [],
     attributs: [],
     categories: [],
-    preconisations: [],
-    affichagePrix: false,
-    estEncaissable: false,
+    precoMouvements: [],
+    afficherPrix: false,
+    estencaissable: false,
     contientRessources: false,
-    contientDistributeurs: false,
+    afficherDistributeur: false,
     typeMouvement: TypeMouvement.Neutre,
     docEtats: [],
     formatCode: '',
@@ -77,14 +77,14 @@ export class NewFormDocumentComponent implements OnInit {
   // variables pour la gestion des categories
   categorieAttributs: ICategoriesAttributs = {
     id: '',
-    nom: '',
+    libelle: '',
     ordre: 0,
-    listAttributsParCategories: [],
+    attributs: [],
   };
   TABLE_CATEGORIE_AFFICHAGE_TEMP: ICategoriesAttributs[] = []; // tableau qui doit contenir la synthese des categories du doc
   TABLE_CATEGORIE_AFFICHAGE_TEMPO: ICategorieAffichage[] = []; // tableau contenant les categories creees dans la modale
 
-  //tableau contenent les preconisations
+  //tableau contenent les precoMouvements
   ELEMENTS_TABLE_PRECONISATIONS: IPrecoMvt[] = [];
 
   //tableau contenent les sous documents
@@ -118,18 +118,18 @@ export class NewFormDocumentComponent implements OnInit {
       description: [''],
       typeMouvement: ['', [Validators.required]],
       etat: new FormControl(true),
-      estEncaissable: new FormControl(true),
-      affichagePrix: new FormControl(false),
+      estencaissable: new FormControl(true),
+      afficherPrix: new FormControl(false),
       contientRessources: new FormControl(false),
-      contientDistributeurs: new FormControl(false),
+      afficherDistributeur: new FormControl(false),
       beneficiaireObligatoire: new FormControl(true),
       formatCode: [ '', [ Validators.required]]
     });
   }
   ngOnInit(): void {
     this.mission$ = this.getAllMissions();
-    this.forme.controls['affichagePrix'].disable()
-    this.forme.controls['contientDistributeurs'].disable()    
+    this.forme.controls['afficherPrix'].disable()
+    this.forme.controls['afficherDistributeur'].disable()    
     this.documentParentDesactive = true
     this.donneeDocCatService.getTypeMvt().subscribe((x) => (this.typeMvt = x.type));
     this.donneeDocCatService.getFormatCode().subscribe((f) => (this.formatsCode = f.type));
@@ -144,31 +144,31 @@ export class NewFormDocumentComponent implements OnInit {
       this.serviceDocument.getDocumentById(idDocument).subscribe((x) => {
         this.document = x;
         if (this.document.contientRessources == true) {
-          this.forme.controls['affichagePrix'].enable()
-          this.forme.controls['contientDistributeurs'].enable()    
+          this.forme.controls['afficherPrix'].enable()
+          this.forme.controls['afficherDistributeur'].enable()    
           this.documentParentDesactive = false
         }
         this.forme.setValue({
           titre: this.document.titre,
           description: this.document.description,
           etat: this.document.etat,
-          estEncaissable: this.document.estEncaissable,
+          estencaissable: this.document.estencaissable,
           typeMouvement: this.document.typeMouvement,
-          affichagePrix: this.document.affichagePrix,
+          afficherPrix: this.document.afficherPrix,
           contientRessources: this.document.contientRessources,
-          contientDistributeurs: this.document.contientDistributeurs,
-          beneficiaireObligatoire: this.document.beneficiaireObligatoire,
+          afficherDistributeur: this.document.afficherDistributeur,
+          beneficiaireObligatoire: true,
           _missions: this.document.missions,
           _attributs: [],
-          formatCode : this.document.formatCode
+          formatCode : "this.document.formatCode"
         });
         this.forme.controls['_missions'].setValue(this.document.missions);
 
         // Initialisation du tableau d'attributs du document
         this.ELEMENTS_TABLE_ATTRIBUTS = this.document.attributs;
 
-        // Initialisation du tableau de preconisations du document
-        this.ELEMENTS_TABLE_PRECONISATIONS = this.document.preconisations;
+        // Initialisation du tableau de precoMouvements du document
+        this.ELEMENTS_TABLE_PRECONISATIONS = this.document.precoMouvements;
 
         // Initialisation du tableau de sous documents du document
         if (this.document.sousDocuments != undefined) {
@@ -182,7 +182,7 @@ export class NewFormDocumentComponent implements OnInit {
         // le deuxieme tableau de la modal
         let categorieAfficheFinal: ICategorieAffichage[] = [];
         this.document.categories.forEach((catAttribut) => {
-          catAttribut.listAttributsParCategories.forEach((att) => {
+          catAttribut.attributs.forEach((att) => {
             let categorieAfficheTemp: ICategorieAffichage = {
               id: '',
               nom: '',
@@ -203,7 +203,7 @@ export class NewFormDocumentComponent implements OnInit {
               },
             };
             categorieAfficheTemp.id = catAttribut.id;
-            categorieAfficheTemp.nom = catAttribut.nom;
+            categorieAfficheTemp.nom = catAttribut.libelle;
             categorieAfficheTemp.ordre = catAttribut.ordre;
             categorieAfficheTemp.attributCategories = att;
             categorieAfficheFinal.push(categorieAfficheTemp);
@@ -211,7 +211,7 @@ export class NewFormDocumentComponent implements OnInit {
         });
         //sauvegarde dans le service pour le communiquer à la modale
         this.donneeDocCatService.dataDocumentCategorie = categorieAfficheFinal
-        this.donneeDocCatService.dataDocumentPrecoMvts = this.document.preconisations
+        this.donneeDocCatService.dataDocumentPrecoMvts = this.document.precoMouvements
         this.donneeDocCatService.dataDocumentAttributs = this.document.attributs
         this.donneeDocCatService.dataDocumentSousDocuments = this.document.sousDocuments
         this.donneeDocCatService.dataDocumentEtats = this.document.docEtats
@@ -271,7 +271,7 @@ export class NewFormDocumentComponent implements OnInit {
   }
 
   /**
-   * Methode permettant d'ouvrir la modal de selection des preconisations du dociment
+   * Methode permettant d'ouvrir la modal de selection des precoMouvements du dociment
    */
   openPrecoMvtDialog() {
     const dialogRef = this.dialogDef.open(ModalChoixPreconisationsComponent, {
@@ -353,16 +353,16 @@ export class NewFormDocumentComponent implements OnInit {
     this.TABLE_CATEGORIE_AFFICHAGE_TEMPO.forEach((objet) => {
       let categorieAttributTemp: ICategoriesAttributs = {
         id: '',
-        nom: '',
+        libelle: '',
         ordre: 0,
-        listAttributsParCategories: [],
+        attributs: [],
       };
       //si la map ne contient pas la catégorie courante
       if (tmpCatAtt.get(objet.nom) == null) {
         categorieAttributTemp.id = objet.id;
-        categorieAttributTemp.nom = objet.nom;
+        categorieAttributTemp.libelle = objet.nom;
         categorieAttributTemp.ordre = objet.ordre;
-        categorieAttributTemp.listAttributsParCategories.push(
+        categorieAttributTemp.attributs.push(
           objet.attributCategories
         );
 
@@ -373,7 +373,7 @@ export class NewFormDocumentComponent implements OnInit {
         //si la valeur est trouvée dans la map
         let index: number = tmpCatAtt.get(objet.nom); // récuperation de l'indice de l'élément enregistré
         categorieAttributTemp = categorieAttributsFinal[index];
-        categorieAttributTemp.listAttributsParCategories.push(
+        categorieAttributTemp.attributs.push(
           objet.attributCategories
         );
         categorieAttributsFinal[index] = categorieAttributTemp;
@@ -399,16 +399,16 @@ export class NewFormDocumentComponent implements OnInit {
       titre: documentInput.titre,
       description: documentInput.description,
       etat: documentInput.etat,
-      estEncaissable: documentInput.estEncaissable,
+      estencaissable: documentInput.estencaissable,
       typeMouvement: documentInput.typeMouvement,
       missions: documentInput._missions,
       attributs: [],
       categories: [],
-      preconisations: [],
+      precoMouvements: [],
       sousDocuments: [],
-      affichagePrix: documentInput.affichagePrix,
+      afficherPrix: documentInput.afficherPrix,
       contientRessources: documentInput.contientRessources,
-      contientDistributeurs: documentInput.contientDistributeurs,
+      afficherDistributeur: documentInput.afficherDistributeur,
       beneficiaireObligatoire: documentInput.beneficiaireObligatoire,
       docEtats: [],
       formatCode: documentInput.formatCode
@@ -423,7 +423,7 @@ export class NewFormDocumentComponent implements OnInit {
     );
 
     this.ELEMENTS_TABLE_PRECONISATIONS.forEach((preco) =>
-      documentTemp.preconisations.push(preco)
+      documentTemp.precoMouvements.push(preco)
     );
 
     this.ELEMENTS_TABLE_SOUS_DOCUMENTS.forEach((doc) =>
@@ -432,20 +432,23 @@ export class NewFormDocumentComponent implements OnInit {
 
     if (this.documentParentDesactive == true) {
       documentTemp.sousDocuments = undefined
-      documentTemp.affichagePrix = false
-      documentTemp.contientDistributeurs = false
+      documentTemp.afficherPrix = false
+      documentTemp.afficherDistributeur = false
     }
 
-    this.ELEMENTS_TABLE_DOC_ETATS.forEach(
-      docEtat => documentTemp.docEtats.push(docEtat)
-    )
+    if (this.ELEMENTS_TABLE_DOC_ETATS) {
+        
+      this.ELEMENTS_TABLE_DOC_ETATS.forEach(
+        docEtat => documentTemp.docEtats.push(docEtat)
+      )
+    }
 
     if (this.TABLE_CATEGORIE_AFFICHAGE_TEMP.length < 1) {
       let categorieAttributs: ICategoriesAttributs = {
         id: '',
-        nom: 'Autres',
+        libelle: 'Autres',
         ordre: 100,
-        listAttributsParCategories: [],
+        attributs: [],
       };
       this.ELEMENTS_TABLE_ATTRIBUTS.forEach((element) => {
         let associationCategorieAttributs: IAssociationCategorieAttributs = {
@@ -453,7 +456,7 @@ export class NewFormDocumentComponent implements OnInit {
           obligatoire: false,
           attribut: element,
         };
-        categorieAttributs.listAttributsParCategories.push(
+        categorieAttributs.attributs.push(
           associationCategorieAttributs
         );
       });
@@ -490,12 +493,12 @@ export class NewFormDocumentComponent implements OnInit {
   }
   desactiveElementsLieRessource(event: any){
     if (!event.target.checked) {
-      this.forme.controls['affichagePrix'].disable()
-      this.forme.controls['contientDistributeurs'].disable()    
+      this.forme.controls['afficherPrix'].disable()
+      this.forme.controls['afficherDistributeur'].disable()    
       this.documentParentDesactive = true
     }else{
-      this.forme.controls['affichagePrix'].enable()
-      this.forme.controls['contientDistributeurs'].enable()
+      this.forme.controls['afficherPrix'].enable()
+      this.forme.controls['afficherDistributeur'].enable()
       this.documentParentDesactive = false
     }
   }
