@@ -14,6 +14,7 @@ import { IMission } from 'src/app/modele/mission';
 import { MissionsService } from 'src/app/services/missions/missions.service';
 import { VerificationsdatesrolesService } from 'src/app/services/verifications/verificationsdatesroles.service';
 import { TranslateService } from '@ngx-translate/core';
+import { log } from 'console';
 
 @Component({
   selector: 'app-missions-role',
@@ -344,8 +345,13 @@ export class MissionsRoleComponent {
   }
 
   onSubmit(roleInput: any) {
-    this.role.missions = roleInput.filteredData;
-
+    if (this.ELEMENTS_TABLE.length > 0) {
+      this.ELEMENTS_TABLE.forEach(element => {
+        this.role.missions?.push(element) 
+      });
+    }
+    console.log(this.role.missions);
+    
     this.rolesServices
       .ajouterRole(this.role)
       .subscribe((object) => {
