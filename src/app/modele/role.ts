@@ -8,14 +8,14 @@ export interface IRole {
   etat:boolean,
   dateCreation?:Date,
   validations?: IValidation[],
-  missions?: [{
-    mission:IMission,
+  missions?: {
+    mission: IMission,
     etat: boolean,
-    dateDebut:Date,
-    dateFin?:Date,
+    dateDebut: Date,
+    dateFin?: Date,
     droitDajouter: boolean,
     droitModifier: boolean,
     droitDevalider: boolean,
     droitConsulter: boolean
-}]
+  }[]
 }

@@ -51,6 +51,7 @@ export class MissionsRoleComponent {
   ];
   dataSource = new MatTableDataSource<IMission>();
   dataSourceMissionResultat = new MatTableDataSource<any>();
+  localSelectedMissions: any[] = [];
   newdates: IObjetDates | undefined;
   olddates: IObjetDates | undefined;
   idMission: string = '';
@@ -107,8 +108,9 @@ export class MissionsRoleComponent {
       this.rolesServices.getRoleById(idRole).subscribe((x) => {
         this.role = x;
         this.titreRole = this.role?.titre;
-        this.dataSourceMissionResultat.data = this.role?.missions!;
         if (this.role?.missions) {
+          this.localSelectedMissions = this.role?.missions;
+          this.dataSourceMissionResultat.data = this.localSelectedMissions;
           this.modif = true;
         }
       });
@@ -187,12 +189,12 @@ export class MissionsRoleComponent {
    */
   verificationValeursDate(idElement:String, newdates:IObjetDates, indexElement:number) : boolean {
     var j = 0;
-    while (j < this.dataSourceMissionResultat.data.length) {
-      if (this.dataSourceMissionResultat.data[j].mission.id == idElement && j != indexElement) {
+    while (j < this.localSelectedMissions.length) {
+      if (this.localSelectedMissions[j].mission.id == idElement && j != indexElement) {
         
         let olddates : IObjetDates = {
-          dateDebut: this.dataSourceMissionResultat.data[j].dateDebut,
-          dateFin: this.dataSourceMissionResultat.data[j].dateFin,
+          dateDebut: this.localSelectedMissions[j].dateDebut,
+          dateFin: this.localSelectedMissions[j].dateFin,
         };
 
         if(!this.verificationsServices.OncheckedDatesRoles(olddates, newdates)) {
@@ -297,17 +299,17 @@ export class MissionsRoleComponent {
   }
 
   retirerSelectionMission(index: number) {
-    let temp = this.dataSourceMissionResultat.data;
+    let temp = this.localSelectedMissions;
     temp.splice(index, 1); // je supprime un seul element du tableau a la position 'i'
-    this.dataSourceMissionResultat.data = temp;
+    this.localSelectedMissions = temp;
+    this.dataSourceMissionResultat.data = this.localSelectedMissions;
   }
 
   validateElement() {
-    let tabTemp = this.dataSourceMissionResultat.data;
-    this.ELEMENTS_TABLE.forEach((elt) => tabTemp.push(elt));
-    this.dataSourceMissionResultat.data = tabTemp;
+    this.ELEMENTS_TABLE.forEach((elt) => this.localSelectedMissions.push(elt));
+    this.dataSourceMissionResultat.data = this.localSelectedMissions;
     this.datas.forEach((c) => (c.event.target.checked = false));
-    this.VERIF_TABLE = this.dataSourceMissionResultat.data;
+    this.VERIF_TABLE = this.localSelectedMissions;
     this.ELEMENTS_TABLE = [];
     this.datas = [];
   }
@@ -344,14 +346,27 @@ export class MissionsRoleComponent {
     }
   }
 
-  onSubmit(roleInput: any) {
-    if (this.ELEMENTS_TABLE.length > 0) {
-      this.ELEMENTS_TABLE.forEach(element => {
-        this.role.missions?.push(element) 
+  onSubmit() {
+    if (!this.role) {
+      console.error('Role is undefined on submit');
+      return;
+    }
+
+    if (this.role.missions == undefined) {
+      this.role.missions = [];
+    }
+    if (this.localSelectedMissions.length > 0) {
+      this.localSelectedMissions.forEach(element => {
+        this.role.missions!.push(element)
+        console.log("element", element);
       });
     }
-    console.log(this.role.missions);
+    console.log("role mission", this.role.missions);
+    console.log("this.localSelectedMissions", this.localSelectedMissions);
+    console.log("this.dataSourceMissionResultat.data", this.dataSourceMissionResultat.data);
     
+    
+
     this.rolesServices
       .ajouterRole(this.role)
       .subscribe((object) => {
