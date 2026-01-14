@@ -146,7 +146,7 @@ export class MissionsRoleComponent {
     
     if (action.target.checked) {
       if (text == "add") {
-        element.droitDajouter = true
+        element.droitAjouter = true
       }
       if (text == "mod") {
         element.droitModifier = true
@@ -155,7 +155,7 @@ export class MissionsRoleComponent {
         element.droitConsulter = true
       }
       if (text == "val") {
-        element.droitDevalider = true
+        element.droitDeValider = true
       }
       if (text == "eta") {
         element.etat = true
@@ -163,7 +163,7 @@ export class MissionsRoleComponent {
     } else {
       action.target.checked = false
       if (text == "add") {
-        element.droitDajouter = false
+        element.droitAjouter = false
       }
       if (text == "mod") {
         element.droitModifier = false
@@ -172,7 +172,7 @@ export class MissionsRoleComponent {
         element.droitConsulter = false
       }
       if (text == "val") {
-        element.droitDevalider = false
+        element.droitDeValider = false
       }
       if (text == "eta") {
         element.etat = false
@@ -327,9 +327,9 @@ export class MissionsRoleComponent {
       etat: false,
       dateDebut: this.forme.value.dateEntree,
       dateFin: this.forme.value.dateFin,
-      droitDajouter: false,
+      droitAjouter: false,
       droitModifier: false,
-      droitDevalider: false,
+      droitDeValider: false,
       droitConsulter: false,
     });
   }
@@ -353,8 +353,8 @@ export class MissionsRoleComponent {
     }
 
     if (this.role.missions == undefined) {
-      this.role.missions = [];
     }
+      this.role.missions = [];
     if (this.localSelectedMissions.length > 0) {
       this.localSelectedMissions.forEach(element => {
         this.role.missions!.push(element)

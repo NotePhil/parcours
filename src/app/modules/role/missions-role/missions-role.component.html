@@ -166,7 +166,7 @@
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>droit ajout</th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                                 <label style="width: 2px;" for="role">
-                                                    <input type="checkbox" [checked]="element.droitDajouter" (change)="checkdroitmission($event, element, 'add')">
+                                                    <input type="checkbox" [checked]="element.droitAjouter" (change)="checkdroitmission($event, element, 'add')">
                                                 </label>
                                             </td>
                                         </ng-container>
@@ -196,7 +196,7 @@
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>droit de valider</th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                                 <label style="width: 2px;" for="role">
-                                                    <input type="checkbox" [checked]="element.droitDevalider" (change)="checkdroitmission($event, element, 'val')">
+                                                    <input type="checkbox" [checked]="element.droitDeValider" (change)="checkdroitmission($event, element, 'val')">
                                                 </label>
                                             </td>
                                         </ng-container>

@@ -13,9 +13,9 @@ export interface IRole {
     etat: boolean,
     dateDebut: Date,
     dateFin?: Date,
-    droitDajouter: boolean,
+    droitAjouter: boolean,
     droitModifier: boolean,
-    droitDevalider: boolean,
+    droitDeValider: boolean,
     droitConsulter: boolean
   }[]
 }
