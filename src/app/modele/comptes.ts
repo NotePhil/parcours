@@ -6,5 +6,6 @@ export interface IComptes {
     libelle: string,
     dateCreation: Date,
     beneficiaire?: IPatient,
-    montantDecouvertMax?: number
+    montantDecouvertMax?: number,
+    etat : boolean
 }

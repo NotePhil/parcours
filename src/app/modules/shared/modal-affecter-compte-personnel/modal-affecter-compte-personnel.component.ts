@@ -76,7 +76,8 @@ export class ModalAffecterComptePersonnelComponent {
           solde: res.solde,
           dateCreation: res.dateCreation,
           montantDecouvertMax: res.montantDecouvertMax,
-          beneficiaire: selectItem.personnel
+          beneficiaire: selectItem.personnel,
+          etat: res.etat
         }
         
         this.compteService.ajouterCompte(compte).subscribe((obj) => {}); 

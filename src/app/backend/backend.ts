@@ -27031,7 +27031,8 @@ export class InMemDBService implements InMemoryDbService {
       {id: "6", libelle: "caisse 6", type: "orange money", etat: false, solde: 600000.00},
     ];
     let comptes: IComptes[] = [
-      {id: "1", libelle: "courant", solde: 1000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2020'), 
+      {
+        id: "1", libelle: "courant", solde: 1000.0, montantDecouvertMax: 100000.0, dateCreation: new Date('10/06/2020'),
         beneficiaire: {
           id: '6911989109209',
           nom: 'NGONGANG',
@@ -27057,13 +27058,29 @@ export class InMemDBService implements InMemoryDbService {
               type: 'personnePhysique',
             },
           ],
-        }
+        },
+        etat: false
       },
-      {id: "2", libelle: "enfants", solde: 70000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2010')},
-      {id: "3", libelle: "personnel", solde: 0.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2022')},
-      {id: "4", libelle: "courant", solde: 10000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2024')},
-      {id: "5", libelle: "urgence", solde: 500.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2017')},
-      {id: "6", libelle: "courant", solde: 1000.0, montantDecouvertMax: 100000.0, dateCreation:new Date('10/06/2020')}
+      {
+        id: "2", libelle: "enfants", solde: 70000.0, montantDecouvertMax: 100000.0, dateCreation: new Date('10/06/2010'),
+        etat: false
+      },
+      {
+        id: "3", libelle: "personnel", solde: 0.0, montantDecouvertMax: 100000.0, dateCreation: new Date('10/06/2022'),
+        etat: false
+      },
+      {
+        id: "4", libelle: "courant", solde: 10000.0, montantDecouvertMax: 100000.0, dateCreation: new Date('10/06/2024'),
+        etat: false
+      },
+      {
+        id: "5", libelle: "urgence", solde: 500.0, montantDecouvertMax: 100000.0, dateCreation: new Date('10/06/2017'),
+        etat: false
+      },
+      {
+        id: "6", libelle: "courant", solde: 1000.0, montantDecouvertMax: 100000.0, dateCreation: new Date('10/06/2020'),
+        etat: false
+      }
     ];
     let etapes: IEtape[] = [
       {

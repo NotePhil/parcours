@@ -68,10 +68,11 @@ export class ModalAjoutMontantCompteComponent {
         let compte: IComptes = {
           id: res.id,
           libelle: res.libelle,
-          solde: res.solde+selectItem.montant,
+          solde: res.solde + selectItem.montant,
           dateCreation: res.dateCreation,
           montantDecouvertMax: res.montantDecouvertMax,
-          beneficiaire: res.beneficiaire
+          beneficiaire: res.beneficiaire,
+          etat: res.etat
         }
         
         this.compteService.ajouterCompte(compte).subscribe((obj) => {

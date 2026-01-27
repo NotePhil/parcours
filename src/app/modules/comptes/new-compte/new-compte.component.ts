@@ -105,6 +105,7 @@ export class NewCompteComponent {
       dateCreation: new Date(),
       montantDecouvertMax: compteInput.montantDecouvert,
       beneficiaire: compteInput.beneficiaire,
+      etat: compteInput.etat
     };
 
     if (this.compte != undefined) {

@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IPersonnel } from 'src/app/modele/personnel';
-import { IUtilisateurs } from 'src/app/modele/utilisateurs';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { PersonnelsService } from 'src/app/services/personnels/personnels.service';
 import { UtilisateurService } from 'src/app/services/utilisateurs/utilisateur.service';
