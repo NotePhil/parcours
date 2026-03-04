@@ -30,6 +30,7 @@ export class NewValidationComponent implements OnInit {
       libelle: ['', [Validators.required]],
       typeVote: ['', [Validators.required]],
       dureeVote: [0, [Validators.required]],
+      quota: [0],
       typeValidation: ["Simple", [Validators.required]],
       roleval: new FormControl<string | IRole>(''),
       etat: [true]
@@ -110,7 +111,8 @@ export class NewValidationComponent implements OnInit {
       typeValidation: validationInput.typeValidation,
       dureeVote: validationInput.dureeVote,
       role: validationInput.roleval,
-      dateCreation: new Date
+      dateCreation: new Date,
+      quota: 0
     }
 
     if(this.validation != undefined){

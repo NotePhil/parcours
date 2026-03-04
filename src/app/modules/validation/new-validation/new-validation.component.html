@@ -76,13 +76,27 @@
                         <div class="form-group">
                             <div class="champs">
                                 <label for="dureeVote" class="label">
-                                    {{ "validation.form.label5" | translate }}
+                                    {{ "validation.form.label5" | translate }} {{ "validation.form.label8" | translate }}<span style="color: red" aria-label="required">*</span>
                                 </label>
                                 <input type="number" required formControlName="dureeVote" name="dureeVote" id="dureeVote"
                                      class="form-control" />
                             </div>
                             <div *ngIf="submitted && f['dureeVote'].errors" class="alert alert-danger">
                                 <div *ngIf="f['dureeVote'].errors['required']">
+                                    {{ "validation.form.text1" | translate }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="champs">
+                                <label for="quota" class="label">
+                                    {{ "validation.form.label9" | translate }} {{ "validation.form.label10" | translate }}
+                                </label>
+                                <input type="number" required formControlName="quota" name="quota" id="quota"
+                                     class="form-control" />
+                            </div>
+                            <div *ngIf="submitted && f['quota'].errors" class="alert alert-danger">
+                                <div *ngIf="f['quota'].errors['required']">
                                     {{ "validation.form.text1" | translate }}
                                 </div>
                             </div>

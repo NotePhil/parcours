@@ -75,6 +75,9 @@
       "label5": "Duree vote",
       "label6": "role",
       "label7": "Type de validation",
+      "label8": "en jours",
+      "label9": "Quota",
+      "label10": "en %",
       "text1": "Champ Obligatoire"
     }
   },

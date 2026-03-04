@@ -9,5 +9,6 @@ export interface IValidation {
     typeVote: string,
     dureeVote: number,
     dateCreation: Date,
-    typeValidation: string
+    typeValidation: string,
+    quota: number
 }
