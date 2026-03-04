@@ -62,9 +62,9 @@
                                     {{ "validation.form.label4" | translate }}<span style="color: red" aria-label="required">*</span>
                                 </label>
                                 <select class="form-control" formControlName="typeVote" name="typeVote" id="typeVote" required>
-                                    <option>Unitaire</option>
-                                    <option>Unanime</option>
-                                    <option>Majoritaire</option>
+                                    <option value="unitaire" selected="selected">unitaire</option>
+                                    <option value="multiple">multiple</option>
+                                    <option value="majoritaire">majoritaire</option>
                                 </select>
                             </div>
                             <div *ngIf="submitted && f['typeVote'].errors" class="alert alert-danger">

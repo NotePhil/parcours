@@ -26984,7 +26984,7 @@ export class InMemDBService implements InMemoryDbService {
     };
     let typeUnite: TypeUnite = { type: ['Litre', 'Kg', 'Packs', 'Boite'] };
     let typeMvt: TypeMvt = { type: ['Neutre', 'Ajout', 'Reduire'] };
-    let typeValidation: TypeValidation = { type: ['Simple', 'Transmission', 'Traitement'] };
+    let typeValidation: TypeValidation = { type: ['rechargeable', 'Transmission', 'Traitement', 'prioritaire'] };
     let formatCode: FormatCode = { type: ['FACT', 'ALPHA', 'ASCII'] };
     let etats: IEtats[] = [
       {

@@ -76,6 +76,7 @@ export class NewValidationComponent implements OnInit {
             typeVote: this.validation.typeVote,
             typeValidation: this.validation.typeValidation,
             dureeVote: this.validation.dureeVote,
+            quota: this.validation.quota,
             roleval: this.validation.role
           })
       });
@@ -112,7 +113,7 @@ export class NewValidationComponent implements OnInit {
       dureeVote: validationInput.dureeVote,
       role: validationInput.roleval,
       dateCreation: new Date,
-      quota: 0
+      quota: validationInput.quota
     }
 
     if(this.validation != undefined){

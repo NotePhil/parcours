@@ -33,7 +33,7 @@ export class ListValidationsComponent implements OnInit {
   ELEMENTS_TABLE: IValidation[] = [];
   filteredOptions: IValidation[] | undefined;
 
-  displayedColumns: string[] = ['code', 'libelle', 'type', 'durée', 'role', 'etat', 'date', 'actions'];
+  displayedColumns: string[] = ['code', 'libelle', 'typeVote', 'durée', 'quota', 'role', 'etat', 'date', 'actions'];
 
   dataSource = new MatTableDataSource<IValidation>(this.ELEMENTS_TABLE);
 
