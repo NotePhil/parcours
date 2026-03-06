@@ -98,7 +98,7 @@
                                 <input type="text" matInput [formControl]="distributeurControl" [matAutocomplete]="autoDistributeur">
                                 <mat-autocomplete class="blockAutocomplate" #autoDistributeur="matAutocomplete" [displayWith]="displayDistributeurFn">
                                     <mat-option class="options" *ngFor="let optionDistributeur of filteredDistributeurOptions" [value]="optionDistributeur" (click)="associerDistributeur(optionDistributeur)">
-                                        {{optionDistributeur.raisonSocial}}
+                                        {{optionDistributeur.raisonSociale}}
                                     </mat-option>
                                 </mat-autocomplete>
                                 <button *ngIf="modificationDistributeurActive == true" id="btnDeleteDistributeur" class="btn btnModifierElementBlock" type="button" (click)="reinitialliseDistributeurControl()" title="{{'lists.button15' | translate}}">
@@ -116,7 +116,7 @@
                                 <input type="text" matInput [formControl]="assuranceControl" [matAutocomplete]="autoAssurance">
                                 <mat-autocomplete class="blockAutocomplate" #autoAssurance="matAutocomplete" [displayWith]="displayAssuranceFn">
                                     <mat-option class="options" *ngFor="let option of filteredAssuranceOptions" [value]="option" (click)="rechercherListingAssurance(option)">
-                                        {{option.raisonSocial}}
+                                        {{option.raisonSociale}}
                                     </mat-option>
                                 </mat-autocomplete>
                                 <button id="btnDeleteAssurance" class="btn btnModifierElementBlock" type="button" (click)="reinitialliseAssuranceControl()" title="{{'lists.button15' | translate}}">
@@ -246,8 +246,8 @@
                           <ng-container *ngIf="document.afficherDistributeur == true && !document.beneficiaireObligatoire" matColumnDef="distributeur">
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'preconisation.table.title5' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
-                                    <div class="modifierDistributeurBlock" title="{{element.distributeur?.raisonSocial}}">
-                                        {{element.distributeur?.raisonSocial}}
+                                    <div class="modifierDistributeurBlock" title="{{element.distributeur?.raisonSociale}}">
+                                        {{element.distributeur?.raisonSociale}}
                                         <span role="button" title="{{'document.exemplaire.text3' | translate}}" (click)="InitialiseDistributeurControlPourModufication(i)">
                                             <i class="fa fa-pen-alt text-warning"></i>
                                         </span>

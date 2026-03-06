@@ -69,7 +69,7 @@
                         <td>{{ressourcesExemplaire.quantite*ressourcesExemplaire.prix}}</td>
                         <td>{{ressourcesExemplaire.description}}</td>
                         <td>{{ressourcesExemplaire.datePeremption | date:'dd/MM/yyyy' }}</td>
-                        <td *ngIf="exemplaire.afficherDistributeur == true">{{ressourcesExemplaire.distributeur?.raisonSocial!}}</td>
+                        <td *ngIf="exemplaire.afficherDistributeur == true">{{ressourcesExemplaire.distributeur?.raisonSociale!}}</td>
                     </tr>
                 </tbody>
             </table>

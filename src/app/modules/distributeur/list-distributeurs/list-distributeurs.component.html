@@ -10,7 +10,7 @@
                     <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingDistributeur(option)">
-                        {{option.raisonSocial}}
+                        {{option.raisonSociale}}
                     </mat-option>
                     </mat-autocomplete>
                   </form>
@@ -27,20 +27,15 @@
               <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
 
                 <!-- nom Column -->
-                <ng-container matColumnDef="raisonSocial">
+                <ng-container matColumnDef="raisonSociale">
                   <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"distributeur.table2.title1"| translate}}</th>
-                  <td class="containCell" mat-cell *matCellDef="let element"> {{element.raisonSocial}} </td>
+                  <td class="containCell" mat-cell *matCellDef="let element"> {{element.raisonSociale}} </td>
                 </ng-container>
 
                 <!-- adresse Column -->
                 <ng-container matColumnDef="adresse">
                   <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>{{"distributeur.table2.title2"| translate}}</th>
                   <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.adresse}} </td>
-                </ng-container>
-                  <!-- libellé Column -->
-                  <ng-container matColumnDef="etat">
-                    <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"distributeur.table2.title3"| translate}}</th>
-                    <td class="containCell" mat-cell *matCellDef="let element"> {{element.etat}} </td>
                 </ng-container>
 
                 <!-- telephone Column -->

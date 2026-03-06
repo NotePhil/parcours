@@ -20,7 +20,7 @@ import { IDocument } from 'src/app/modele/document';
 import { ModalChoixSousDocumentComponent } from '../../shared/modal-choix-sous-document/modal-choix-sous-document.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalEtapesPreorsuivParcoursComponent } from '../../shared/modal-etapes-preorsuiv-parcours/modal-etapes-preorsuiv-parcours.component';
-import { IParours } from 'src/app/modele/parours';
+import { IParcours } from 'src/app/modele/parcours';
 
 @Component({
   selector: 'app-new-etape',

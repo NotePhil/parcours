@@ -8,7 +8,7 @@ import { EtatsRoutingModule } from './etats/etats-routing.module';
 import { ExemplaireDocumentRoutingModule } from './exemplaire-document/exemplaire-document-routing.module';
 import { FamilleRoutingModule } from './famille/famille-routing.module';
 import { MissionsRoutingModule } from './missions/missions-routing.module';
-import { ParoursRoutingModule } from './parours/parours-routing.module';
+import { ParcoursRoutingModule } from './parcours/parcours-routing.module';
 import { PatientsRoutingModule } from './patients/patient-routing.module';
 import { PersonnelsRoutingModule } from './personnels/personnels-routing.module';
 import { PrecoMvtRoutingModule } from './precomvt/precomvt-routing.module';
@@ -102,7 +102,7 @@ const routes: Routes = [
       },
       {
         path: 'parcours',
-        loadChildren: () => import('./parours/parours.module').then(m => m.ParoursModule),
+        loadChildren: () => import('./parcours/parcours.module').then(m => m.ParcoursModule),
         canActivate: [RoleAuthGuard]
       },
       {
@@ -151,7 +151,7 @@ const routes: Routes = [
     EtatsRoutingModule,
     ValidationRoutingModule,
     EtapeRoutingModule,
-    ParoursRoutingModule,
+    ParcoursRoutingModule,
     PatientsRoutingModule,
     PromoRoutingModule,
     ComptesRoutingModule,

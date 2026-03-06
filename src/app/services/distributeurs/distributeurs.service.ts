@@ -27,11 +27,11 @@ export class DistributeursService {
     );
   }
 
-   getDistributeursByraisonSocial(raisonSocial:string): Observable<IDistributeur[]> {
+   getDistributeursByraisonSociale(raisonSociale:string): Observable<IDistributeur[]> {
     return this.http.get<IDistributeur[]>(this.param.api+ 'distributeurs').pipe(
       map(x=>
         {
-          return x.filter(p=> p.raisonSocial.toLowerCase().startsWith(raisonSocial))
+          return x.filter(p=> p.raisonSociale.toLowerCase().startsWith(raisonSociale))
         })
     );
   }

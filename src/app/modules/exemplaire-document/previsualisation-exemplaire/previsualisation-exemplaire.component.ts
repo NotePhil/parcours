@@ -441,7 +441,7 @@ export class PrevisualisationExemplaireComponent implements OnInit {
     // Itérer sur chaque distributeur et générer un PDF
     Object.keys(mouvementsParDistributeur).forEach((distributeurId, index) => {
       const mouvements = mouvementsParDistributeur[distributeurId];
-      const distributeurName = mouvements[0]?.distributeur?.raisonSocial || '';
+      const distributeurName = mouvements[0]?.distributeur?.raisonSociale || '';
 
       // Créez un conteneur temporaire pour le contenu de chaque PDF
       const container = document.createElement('div');

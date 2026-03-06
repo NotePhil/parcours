@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
-import { ParoursRoutingModule } from './parours-routing.module';
-import { NewParoursComponent } from './new-parours/new-parours.component';
-import { ListParoursComponent } from './list-parours/list-parours.component';
+import { ParcoursRoutingModule } from './parcours-routing.module';
+import { NewParcoursComponent } from './new-parcours/new-parcours.component';
+import { ListParcoursComponent } from './list-parcours/list-parcours.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
@@ -25,10 +25,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [NewParoursComponent, ListParoursComponent],
+  declarations: [NewParcoursComponent, ListParcoursComponent],
   imports: [
     CommonModule,
-    ParoursRoutingModule,
+    ParcoursRoutingModule,
     FormsModule,
     ModulesRoutingModule,
     ReactiveFormsModule,
@@ -56,4 +56,4 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   providers: [DatePipe],
 })
-export class ParoursModule {}
+export class ParcoursModule {}

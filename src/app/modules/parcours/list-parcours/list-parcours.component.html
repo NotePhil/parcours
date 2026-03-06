@@ -10,13 +10,13 @@
                   <form class="example-form-entete">
                         <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
                         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                          <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingParours(option)">
+                          <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="rechercherListingParcours(option)">
                             {{option.libelle}}
                           </mat-option>
                         </mat-autocomplete>
                   </form>
               </div>
-              <div role="button" id="addItemBotton" routerLink="../nouveau-parours">
+              <div role="button" id="addItemBotton" routerLink="../nouveau-parcours">
                   <span title="Ajouter un parcours">
                       <i class="fa fa-plus" aria-hidden="true"></i>
                   </span>
@@ -28,7 +28,7 @@
               <table class='table table-sm table-centered table-striped table-bordered w-100' mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
                   <!-- libelle Column -->
                   <ng-container matColumnDef="libelle">
-                      <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"parours.table1.title1"| translate}}</th>
+                      <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"parcours.table1.title1"| translate}}</th>
                       <td class="containCell align-items-center" mat-cell *matCellDef="let element"> 
                         <i class="fa fa-info mr-2 p-3" title="Visualiser le graphe" (click)="openModalGrapheParcours(element)" style="cursor: pointer; text-decoration: black;" aria-hidden="true"></i>
                         {{element.libelle}}
@@ -37,7 +37,7 @@
 
                   <!-- etape Column -->
                   <ng-container matColumnDef="etape">
-                    <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"parours.table1.title2"| translate}}</th>
+                    <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"parcours.table1.title2"| translate}}</th>
                     <td class="containCell" mat-cell *matCellDef="let element">
                         <span> {{element.listeEtape}} </span>
                     </td>

@@ -115,7 +115,7 @@ export class NewPromoComponent implements OnInit {
       .valueChanges.pipe(
         startWith(''),
         map((value) =>
-          typeof value === 'string' ? value : value?.raisonSocial || ''
+          typeof value === 'string' ? value : value?.raisonSociale || ''
         ),
         switchMap((value) => this._filterDistributeurs(value || ''))
       );
@@ -133,8 +133,8 @@ export class NewPromoComponent implements OnInit {
   }
 
   displayDistributeur(distributeur: IDistributeur): string {
-    return distributeur && distributeur.raisonSocial
-      ? distributeur.raisonSocial
+    return distributeur && distributeur.raisonSociale
+      ? distributeur.raisonSociale
       : '';
   }
 
@@ -159,7 +159,7 @@ export class NewPromoComponent implements OnInit {
       .pipe(
         map((distributeurs) =>
           distributeurs.filter((distributeur) =>
-            distributeur.raisonSocial
+            distributeur.raisonSociale
               .toLowerCase()
               .includes(value.toLowerCase())
           )

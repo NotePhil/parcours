@@ -541,7 +541,7 @@
     "title": "listing ",
     "search-bar": "Rechercher",
     "table2": {
-      "title1": "raisonSocial",
+      "title1": "raisonSociale",
       "title2": "adresse",
       "title3": "etat",
       "title4": "telephone",
@@ -709,7 +709,7 @@
       }
     }
   },
-  "parours": {
+  "parcours": {
     "table": {
       "title": "Ajouter ",
       "title1": "libelle",

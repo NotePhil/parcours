@@ -21,8 +21,7 @@ export class NewDistributeurComponent implements OnInit {
   //TODO validation du formulaire. particulièrment les mail
   constructor(private formBuilder:FormBuilder, private distributeurService:DistributeursService,private dataEnteteMenuService:DonneesEchangeService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe){
     this.forme = this.formBuilder.group({
-    raisonSocial: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-    etat: [true],
+    raisonSociale: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
     adresse: [''],
     telephone: [''],
     mail: ['', [Validators.required, Validators.email, Validators.pattern(".+@.+\.{1}[a-z]{2,3}")]],
@@ -41,8 +40,7 @@ export class NewDistributeurComponent implements OnInit {
       {
         this.distributeur = x;
         this.forme.setValue({
-          raisonSocial: this.distributeur.raisonSocial,
-          etat:this.distributeur. etat,
+          raisonSociale: this.distributeur.raisonSociale,
           adresse: this.distributeur.adresse,
           telephone: this.distributeur.telephone,
           mail: this.distributeur.mail,
@@ -66,8 +64,7 @@ export class NewDistributeurComponent implements OnInit {
 
     let distributeurTemp : IDistributeur={
       id: uuidv4(),
-      raisonSocial: distributeurInput.raisonSocial,
-      etat: distributeurInput.etat,
+      raisonSociale: distributeurInput.raisonSociale,
       adresse: distributeurInput.adresse,
       telephone: distributeurInput.telephone,
       mail: distributeurInput.mail,

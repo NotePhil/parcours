@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewParoursComponent } from './new-parours/new-parours.component';
-import { ListParoursComponent } from './list-parours/list-parours.component';
+import { NewParcoursComponent } from './new-parcours/new-parcours.component';
+import { ListParcoursComponent } from './list-parcours/list-parcours.component';
 import { NewEtapeComponent } from '../etape/new-etape/new-etape.component';
 
 const routes = [
   {
-    path: 'nouveau-parours',
+    path: 'nouveau-parcours',
     title: 'Enregistrer un nouveau parcours',
-    component: NewParoursComponent,
+    component: NewParcoursComponent,
   },
   {
-    path: 'nouveau-parours/:idParours',
+    path: 'nouveau-parcours/:idParcours',
     title: 'Modifier un parcours',
-    component: NewParoursComponent,
+    component: NewParcoursComponent,
   },
   {
-    path: 'list-parours',
+    path: 'list-parcours',
     title: 'Recherche de parcours',
-    component: ListParoursComponent,
+    component: ListParcoursComponent,
   },
   {
     path: 'nouvelle-etape',
@@ -30,4 +30,4 @@ const routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ParoursRoutingModule {}
+export class ParcoursRoutingModule {}
