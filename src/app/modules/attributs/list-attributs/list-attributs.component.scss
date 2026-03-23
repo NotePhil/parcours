@@ -39,3 +39,78 @@ th{
     color: #28a745 !important;
 }
 
+
+
+
+
+:host, .card, .container-fluid {
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+
+
+table {
+  width: 100% !important;
+  table-layout: fixed !important; /* Force les colonnes à respecter la largeur */
+}
+
+
+th, td {
+  font-size: 9px !important; /* Très petit pour éviter le scroll */
+  padding: 4px 2px !important;
+  word-break: break-all !important; /* Coupe les mots s'ils sont trop longs */
+  text-align: center !important;
+}
+
+
+.card-footer {
+  background-color: #28a745 !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 5px !important;
+  margin: 0 !important;
+}
+
+
+@media (max-width: 500px) {
+  .mat-column-idUnique, .mat-column-statut { 
+    display: none !important; 
+  }
+}
+
+/* --- SOLUTION "TEXTE MINI" PAR AICHA --- */
+
+/* 1. On force le tableau à ne JAMAIS dépasser l'écran */
+table {
+  width: 100% !important;
+  max-width: 100% !important;
+  table-layout: fixed !important; /* C'est LA règle magique pour bloquer la largeur */
+}
+
+/* 2. On réduit tout au maximum */
+th, td {
+  font-size: 8px !important; /* Très petit */
+  padding: 2px !important; /* On enlève l'espace vide autour du texte */
+  letter-spacing: -0.5px !important; /* On serre les lettres entre elles */
+  word-break: break-all !important; /* Force l'ordinateur à couper les longs numéros */
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; /* Ajoute "..." si c'est vraiment trop long */
+}
+
+/* 3. On ajuste le bloc vert pour qu'il suive l'écran et non le tableau */
+.card-footer {
+  background-color: #28a745 !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 5px !important;
+}
+
+/* 4. On réduit aussi les boutons de navigation en bas */
+.mat-paginator-container {
+    min-height: 30px !important;
+    justify-content: center !important;
+}
