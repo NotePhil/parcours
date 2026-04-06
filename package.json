@@ -26,7 +26,6 @@
     "@zxing/browser": "^0.1.5",
     "@zxing/library": "^0.21.3",
     "@zxing/ngx-scanner": "^18.0.1",
-    "admin-lte": "^3.2.0",
     "angular-in-memory-web-api": "^0.18.0",
     "angularx-qrcode": "^18.0.2",
     "bootstrap": "^4.6.2",
@@ -40,6 +39,7 @@
     "ng-multiselect-dropdown": "^1.0.0",
     "ngx-print": "^1.5.1",
     "ngx-translate-messageformat-compiler": "^7.0.0",
+    "package.json": "^2.0.1",
     "rxjs": "~7.5.2",
     "tslib": "^2.8.1",
     "uuid": "^11.0.3",
@@ -60,6 +60,6 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.5.4"
+    "typescript": "^5.5.4"
   }
 }
