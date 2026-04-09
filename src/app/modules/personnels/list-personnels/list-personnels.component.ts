@@ -42,7 +42,7 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
     'prenom',
     'dateNaissance',
     'sexe',
-    'email',
+    'mail',
     'telephone',
     'groupe',
     'dateEntree',

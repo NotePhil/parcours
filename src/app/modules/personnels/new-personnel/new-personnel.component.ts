@@ -49,7 +49,7 @@ export class NewPersonnelComponent implements OnInit {
         ],
       ],
       sexe: ['', Validators.required],
-      email: [
+      mail: [
         '',
         [
           Validators.required,
@@ -77,7 +77,7 @@ export class NewPersonnelComponent implements OnInit {
           nom: this.personnel?.nom,
           prenom: this.personnel?.prenom,
           sexe: this.personnel?.sexe,
-          email: this.personnel?.email,
+          mail: this.personnel?.mail,
           dateNaissance: this.datePipe.transform(
             this.personnel?.dateNaissance,
             'yyyy-MM-dd'
@@ -114,7 +114,7 @@ export class NewPersonnelComponent implements OnInit {
       nom: personnelInput.nom,
       prenom: personnelInput.prenom,
       sexe: personnelInput.sexe,
-      email: personnelInput.email,
+      mail: personnelInput.mail,
       telephone: personnelInput.telephone,
       dateNaissance: personnelInput.dateNaissance,
       dateEntree: personnelInput.dateEntree,
@@ -148,7 +148,7 @@ export class NewPersonnelComponent implements OnInit {
     //     .subscribe((object) => {
     //       let userTemp: IUtilisateurs = {
     //         id: uuidv4(),
-    //         login: personnelTemp.email,
+    //         login: personnelTemp.mail,
     //         passWord: personnelTemp.nom + '_' + personnelTemp.id,
     //         user: personnelTemp,
     //       };

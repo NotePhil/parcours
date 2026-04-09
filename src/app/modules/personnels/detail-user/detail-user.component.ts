@@ -76,7 +76,7 @@ export class DetailUserComponent implements OnInit {
         nom: personnelInput.nom,
         prenom: personnelInput.prenom,
         sexe: personnelInput.sexe,
-        email: personnelInput.email,
+        mail: personnelInput.mail,
         telephone: personnelInput.telephone,
         dateNaissance: personnelInput.dateNaissance,
         dateEntree: personnelInput.dateEntree,
