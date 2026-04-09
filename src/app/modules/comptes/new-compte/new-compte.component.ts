@@ -111,6 +111,7 @@ export class NewCompteComponent {
       compteTemp.id = this.compte.id;
       compteTemp.solde = this.compte.solde;
       compteTemp.dateCreation = this.compte.dateCreation;
+      compteTemp.beneficiaire = this.compte.beneficiaire;
     }
 
     console.log('valeur final :', compteTemp);
