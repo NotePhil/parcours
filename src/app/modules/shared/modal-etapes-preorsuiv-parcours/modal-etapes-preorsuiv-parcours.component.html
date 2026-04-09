@@ -9,7 +9,7 @@
                     <div class="searchBlock">
                         <form [formGroup]="formeParEtapes" *ngIf="formeParEtapes" class="example-form-entete">
                             <div class="etapeInput">
-                                <label>{{"parours.table.title2" | translate}}</label>
+                                <label>{{"parcours.table.title2" | translate}}</label>
                                 <input placeholder="{{'patient.search-bar' | translate}}" type="text" class="form-control inputMat" matInput aria-label="Rechercher" [formControl]="etapeControl" [matAutocomplete]="auto">
                                 <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
                                     <mat-option class="options" *ngFor="let option of filteredOptions" [value]="option" (click)="rechercherListingEtape(option); reinitialliseRessourceControl()">

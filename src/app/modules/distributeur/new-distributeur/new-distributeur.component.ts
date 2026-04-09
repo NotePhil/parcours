@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { DatePipe } from '@angular/common';
 import { IDistributeur } from 'src/app/modele/distributeur';
 import { DistributeursService } from 'src/app/services/distributeurs/distributeurs.service';
@@ -14,35 +14,32 @@ import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-
 })
 export class NewDistributeurComponent implements OnInit {
 
-  distributeur : IDistributeur |undefined;
+  distributeur: IDistributeur | undefined;
   forme: FormGroup;
-  btnLibelle: string="Enregistrer";
-  submitted: boolean=false;
+  btnLibelle: string = "Enregistrer";
+  submitted: boolean = false;
   //TODO validation du formulaire. particulièrment les mail
-  constructor(private formBuilder:FormBuilder, private distributeurService:DistributeursService,private dataEnteteMenuService:DonneesEchangeService,private router:Router, private infosPath:ActivatedRoute, private datePipe: DatePipe){
+  constructor(private formBuilder: FormBuilder, private distributeurService: DistributeursService, private dataEnteteMenuService: DonneesEchangeService, private router: Router, private infosPath: ActivatedRoute, private datePipe: DatePipe) {
     this.forme = this.formBuilder.group({
-    raisonSocial: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-    etat: [true],
-    adresse: [''],
-    telephone: [''],
-    mail: ['', [Validators.required, Validators.email, Validators.pattern(".+@.+\.{1}[a-z]{2,3}")]],
-  })
+      raisonSociale: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      adresse: [''],
+      telephone: [''],
+      mail: ['', [Validators.required, Validators.email, Validators.pattern(".+@.+\.{1}[a-z]{2,3}")]],
+    })
   }
 
   ngOnInit() {
     let idDistributeur = this.infosPath.snapshot.paramMap.get('idDistributeur');
-    if((idDistributeur != null) && idDistributeur!==''){
+    if ((idDistributeur != null) && idDistributeur !== '') {
 
-      this.btnLibelle="Modifier";
+      this.btnLibelle = "Modifier";
 
 
       //trouver un autre moyen d'initialiser avec des valeurs
-      this.distributeurService.getDistributeurById(idDistributeur).subscribe(x =>
-      {
+      this.distributeurService.getDistributeurById(idDistributeur).subscribe(x => {
         this.distributeur = x;
         this.forme.setValue({
-          raisonSocial: this.distributeur.raisonSocial,
-          etat:this.distributeur. etat,
+          raisonSociale: this.distributeur.raisonSociale,
           adresse: this.distributeur.adresse,
           telephone: this.distributeur.telephone,
           mail: this.distributeur.mail,
@@ -52,29 +49,28 @@ export class NewDistributeurComponent implements OnInit {
     }
   }
 
-  get f(){
+  get f() {
     return this.forme.controls;
   }
-  return(){
+  return() {
     this.router.navigate(['parcours/distributeurs/list-distributeurs']);
   }
 
-  onSubmit(distributeurInput:any){
-    this.submitted=true;
+  onSubmit(distributeurInput: any) {
+    this.submitted = true;
     //Todo la validation d'element non conforme passe
-    if(this.forme.invalid) return;
+    if (this.forme.invalid) return;
 
-    let distributeurTemp : IDistributeur={
+    let distributeurTemp: IDistributeur = {
       id: uuidv4(),
-      raisonSocial: distributeurInput.raisonSocial,
-      etat: distributeurInput.etat,
+      raisonSociale: distributeurInput.raisonSociale,
       adresse: distributeurInput.adresse,
       telephone: distributeurInput.telephone,
       mail: distributeurInput.mail,
-      type: 'personneMorale'
+      type: 'distributeur'
     }
 
-    if(this.distributeur != undefined){
+    if (this.distributeur != undefined) {
       distributeurTemp.id = this.distributeur.id
     }
     this.distributeurService.ajouterDistributeur(distributeurTemp).subscribe(

@@ -24,7 +24,7 @@ import { TypeValidation } from '../modele/type-validation';
 import { TypeMouvement } from '../modele/typeMouvement';
 import { IValidation } from '../modele/validation';
 import { IEtape } from '../modele/etape';
-import { IParours } from '../modele/parours';
+import { IParcours } from '../modele/parcours';
 import { FormatCode } from '../modele/format-code';
 import { ICaisses } from '../modele/caisses';
 import { IComptes } from '../modele/comptes';
@@ -136,7 +136,7 @@ export class InMemDBService implements InMemoryDbService {
         qrCodeValue: '5',
         type: 'personnePhysique',
         personnesRatachees: [
-          
+
         ],
       },
       {
@@ -151,7 +151,7 @@ export class InMemDBService implements InMemoryDbService {
         qrCodeValue: '6',
         type: 'personnePhysique',
         personnesRatachees: [
-         
+
         ],
       },
       {
@@ -325,7 +325,7 @@ export class InMemDBService implements InMemoryDbService {
         statut: StatutTicket.actif,
       },
     ];
-    
+
     let menu: IMenu[] = [
       {
         langue: 'fr',
@@ -397,8 +397,8 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false'},
-              { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false'},
+              { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false' },
+              { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false' },
             ],
           },
           {
@@ -406,8 +406,8 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
-              { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false'}
+              { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false' },
+              { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false' }
             ],
           },
           {
@@ -418,8 +418,8 @@ export class InMemDBService implements InMemoryDbService {
               { nom: 'Créer', lien: './missions/mission-nouveau', bouton: 'false' },
               { nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false' },
               { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
-              { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
-              { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false'}
+              { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false' },
+              { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false' }
             ],
           },
           {
@@ -501,10 +501,10 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Créer', lien: 'parcours/nouveau-parours', bouton: 'false' },
+              { nom: 'Créer', lien: 'parcours/nouveau-parcours', bouton: 'false' },
               {
                 nom: 'Rechercher',
-                lien: './parcours/list-parours',
+                lien: './parcours/list-parcours',
                 bouton: 'false',
               },
             ],
@@ -577,8 +577,8 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false'},
-              { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false'},
+              { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false' },
+              { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false' },
             ],
           },
           {
@@ -586,8 +586,8 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
-              { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false'},
+              { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false' },
+              { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false' },
             ],
           },
           {
@@ -598,8 +598,8 @@ export class InMemDBService implements InMemoryDbService {
               { nom: 'New', lien: './missions/mission-nouveau', bouton: 'false' },
               { nom: 'Search', lien: './missions/list-missions', bouton: 'false' },
               { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
-              { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
-              { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false'}
+              { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false' },
+              { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false' }
             ],
           },
           {
@@ -677,10 +677,10 @@ export class InMemDBService implements InMemoryDbService {
             icone: 'fas fa-user-cog',
             actif: '',
             elements: [
-              { nom: 'Créer', lien: 'parcours/nouveau-parours', bouton: 'false' },
+              { nom: 'Créer', lien: 'parcours/nouveau-parcours', bouton: 'false' },
               {
                 nom: 'search',
-                lien: './parcours/list-parours',
+                lien: './parcours/list-parcours',
                 bouton: 'false',
               },
             ],
@@ -773,7 +773,7 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false'},
+                  { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false' },
                   { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false' },
                 ],
               },
@@ -782,8 +782,8 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
-                  { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false'}
+                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false' },
+                  { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false' }
                 ],
               },
               {
@@ -794,8 +794,8 @@ export class InMemDBService implements InMemoryDbService {
                   { nom: 'Créer', lien: './missions/mission-nouveau', bouton: 'false' },
                   { nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false' },
                   { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
-                  { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
-                  { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false'}
+                  { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false' },
+                  { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false' }
                 ],
               },
               {
@@ -877,10 +877,10 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Créer', lien: 'parcours/nouveau-parours', bouton: 'false' },
+                  { nom: 'Créer', lien: 'parcours/nouveau-parcours', bouton: 'false' },
                   {
                     nom: 'Rechercher',
-                    lien: './parcours/list-parours',
+                    lien: './parcours/list-parcours',
                     bouton: 'false',
                   },
                 ],
@@ -962,8 +962,8 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
-                  { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false'},
+                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false' },
+                  { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false' },
                 ],
               },
               {
@@ -974,8 +974,8 @@ export class InMemDBService implements InMemoryDbService {
                   { nom: 'New', lien: './missions/mission-nouveau', bouton: 'false' },
                   { nom: 'Search', lien: './missions/list-missions', bouton: 'false' },
                   { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false' },
-                  { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false'},
-                  { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false'}
+                  { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false' },
+                  { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false' }
                 ],
               },
               {
@@ -1053,10 +1053,10 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Créer', lien: 'parcours/nouveau-parours', bouton: 'false' },
+                  { nom: 'Créer', lien: 'parcours/nouveau-parcours', bouton: 'false' },
                   {
                     nom: 'search',
-                    lien: './parcours/list-parours',
+                    lien: './parcours/list-parcours',
                     bouton: 'false',
                   },
                 ],
@@ -1096,7 +1096,7 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false'},
+                  { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false' },
                   { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false' },
                 ],
               },
@@ -1105,8 +1105,8 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
-                  { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false'}
+                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false' },
+                  { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false' }
                 ],
               },
               {
@@ -1145,8 +1145,8 @@ export class InMemDBService implements InMemoryDbService {
                 icone: 'fas fa-user-cog',
                 actif: '',
                 elements: [
-                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false'},
-                  { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false'},
+                  { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false' },
+                  { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false' },
                 ],
               },
               {
@@ -1179,6 +1179,7 @@ export class InMemDBService implements InMemoryDbService {
           dateCreation: new Date('07/03/2000'),
         },
         dateCreation: new Date('10/02/2023'),
+        quota: 0,
       },
       {
         id: '2',
@@ -1196,6 +1197,7 @@ export class InMemDBService implements InMemoryDbService {
           dateCreation: new Date('07/03/2000'),
         },
         dateCreation: new Date('01/04/2014'),
+        quota: 0,
       },
       {
         id: '3',
@@ -1213,6 +1215,7 @@ export class InMemDBService implements InMemoryDbService {
           dateCreation: new Date('07/03/2000'),
         },
         dateCreation: new Date('10/10/2015'),
+        quota: 0,
       },
     ];
     let missions: IMission[] = [
@@ -1532,7 +1535,7 @@ export class InMemDBService implements InMemoryDbService {
         estencaissable: false,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+        beneficiaireObligatoire: true,
         docEtats: [
           {
             id: '1',
@@ -2011,27 +2014,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -2523,27 +2523,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -2560,7 +2557,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+            beneficiaireObligatoire: false,
             docEtats: [
               {
                 id: '1',
@@ -3028,27 +3025,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -3065,7 +3059,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+            beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
             afficherPrix: true,
@@ -3480,27 +3474,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -3518,7 +3509,7 @@ export class InMemDBService implements InMemoryDbService {
             typeMouvement: 'Ajout',
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             etat: true,
             afficherPrix: true,
             contientRessources: true,
@@ -3933,27 +3924,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -3970,7 +3958,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             etat: true,
             typeMouvement: TypeMouvement.Ajout,
             afficherPrix: true,
@@ -4553,27 +4541,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -4590,7 +4575,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             afficherPrix: true,
@@ -5005,27 +4990,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -5042,7 +5024,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             etat: true,
             afficherPrix: true,
             contientRessources: true,
@@ -5654,27 +5636,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -5691,7 +5670,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
             afficherPrix: true,
@@ -6171,27 +6150,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -6210,7 +6186,7 @@ export class InMemDBService implements InMemoryDbService {
         estencaissable: false,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+        beneficiaireObligatoire: false,
         docEtats: [
           {
             id: '1',
@@ -6679,27 +6655,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -6716,7 +6689,7 @@ export class InMemDBService implements InMemoryDbService {
         estencaissable: true,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+        beneficiaireObligatoire: false,
         typeMouvement: 'Neutre',
         etat: true,
         afficherPrix: false,
@@ -7134,27 +7107,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -7171,7 +7141,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -7649,27 +7619,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -7686,7 +7653,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+            beneficiaireObligatoire: false,
             docEtats: [
               {
                 id: '1',
@@ -8155,27 +8122,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -8192,7 +8156,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+            beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
             afficherPrix: true,
@@ -8609,27 +8573,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -8646,7 +8607,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             afficherPrix: true,
@@ -9247,27 +9208,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -9761,27 +9719,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -10425,27 +10380,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -10462,13 +10414,13 @@ export class InMemDBService implements InMemoryDbService {
         estencaissable: true,
         description:
           "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+        beneficiaireObligatoire: true,
         typeMouvement: 'Neutre',
         etat: true,
         afficherPrix: false,
         contientRessources: true,
         afficherDistributeur: true,
-            formatCode: 'FACT',
+        formatCode: 'FACT',
         docEtats: [
           {
             id: '1',
@@ -10488,13 +10440,13 @@ export class InMemDBService implements InMemoryDbService {
             etat: {
               id: '2',
               libelle: 'etat 2',
-              etatSuivant:[
-                  {
-                    id: '3',
-                    libelle: 'etat 3',
-                    description: 'troisième état du document',
-                    dateCreation: new Date('07/21/2024'),
-                  },
+              etatSuivant: [
+                {
+                  id: '3',
+                  libelle: 'etat 3',
+                  description: 'troisième état du document',
+                  dateCreation: new Date('07/21/2024'),
+                },
               ],
               description: 'deuxième état du document',
               dateCreation: new Date('07/21/2024'),
@@ -10515,6 +10467,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
               },
               dateCreation: new Date('01/04/2014'),
+              quota: 7
             }
           },
           {
@@ -10975,27 +10928,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -11012,7 +10962,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+            beneficiaireObligatoire: false,
             typeMouvement: 'Neutre',
             etat: true,
             afficherPrix: true,
@@ -11429,27 +11379,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -11466,7 +11413,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             typeMouvement: 'Reduire',
             etat: true,
             afficherPrix: true,
@@ -12067,27 +12014,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -12104,7 +12048,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             typeMouvement: 'Neutre',
             etat: true,
             afficherPrix: true,
@@ -12584,27 +12528,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -13061,27 +13002,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -13728,27 +13666,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -14437,27 +14372,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -15072,27 +15004,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -15131,9 +15060,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '1',
-              raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Brasserie',
+              type: 'distributeur',
               adresse: 'Dla',
               telephone: '655554488',
               mail: 'ngong@yad.fr',
@@ -15189,9 +15117,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '3',
-              raisonSocial: 'Total Energie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Total Energie',
+              type: 'distributeur',
               adresse: 'Buéa',
               telephone: '655554486',
               mail: 'ngong@yad.fr',
@@ -15223,9 +15150,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '4',
-              raisonSocial: 'Eneo',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Eneo',
+              type: 'distributeur',
               adresse: 'Ydé',
               telephone: '655554481',
               mail: 'ngong@yad.fr',
@@ -15312,6 +15238,7 @@ export class InMemDBService implements InMemoryDbService {
                 dateCreation: new Date('07/03/2000'),
               },
               dateCreation: new Date('01/04/2014'),
+              quota: 7
             }
           },
           {
@@ -15789,27 +15716,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -16334,27 +16258,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -16969,27 +16890,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -17483,27 +17401,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -17542,9 +17457,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '2',
-              raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Brasserie',
+              type: 'distributeur',
               adresse: 'Ydé',
               telephone: '655554481',
               mail: 'ngong@yad.fr',
@@ -17601,9 +17515,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '1',
-              raisonSocial: 'Total Energie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Total Energie',
+              type: 'distributeur',
               adresse: 'Dla',
               telephone: '655554488',
               mail: 'ngong@yad.fr',
@@ -18236,27 +18149,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -18948,27 +18858,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -19585,27 +19492,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -19644,9 +19548,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '1',
-              raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Brasserie',
+              type: 'distributeur',
               adresse: 'Dla',
               telephone: '655554488',
               mail: 'ngong@yad.fr',
@@ -19702,9 +19605,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '3',
-              raisonSocial: 'Total Energie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Total Energie',
+              type: 'distributeur',
               adresse: 'Buéa',
               telephone: '655554486',
               mail: 'ngong@yad.fr',
@@ -19736,9 +19638,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '4',
-              raisonSocial: 'Eneo',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Eneo',
+              type: 'distributeur',
               adresse: 'Ydé',
               telephone: '655554481',
               mail: 'ngong@yad.fr',
@@ -20251,27 +20152,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -20797,27 +20695,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -21313,27 +21208,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -21372,9 +21264,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '2',
-              raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Brasserie',
+              type: 'distributeur',
               adresse: 'Ydé',
               telephone: '655554481',
               mail: 'ngong@yad.fr',
@@ -21431,9 +21322,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '1',
-              raisonSocial: 'Total Energie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Total Energie',
+              type: 'distributeur',
               adresse: 'Dla',
               telephone: '655554488',
               mail: 'ngong@yad.fr',
@@ -21831,27 +21721,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -22439,27 +22326,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -22523,9 +22407,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '1',
-              raisonSocial: 'Total Energie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Total Energie',
+              type: 'distributeur',
               adresse: 'Dla',
               telephone: '655554488',
               mail: 'ngong@yad.fr',
@@ -23169,27 +23052,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -23879,27 +23759,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -24515,27 +24392,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -24574,9 +24448,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '1',
-              raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Brasserie',
+              type: 'distributeur',
               adresse: 'Dla',
               telephone: '655554488',
               mail: 'ngong@yad.fr',
@@ -24632,9 +24505,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '3',
-              raisonSocial: 'Total Energie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Total Energie',
+              type: 'distributeur',
               adresse: 'Buéa',
               telephone: '655554486',
               mail: 'ngong@yad.fr',
@@ -24666,9 +24538,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '4',
-              raisonSocial: 'Eneo',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Eneo',
+              type: 'distributeur',
               adresse: 'Ydé',
               telephone: '655554481',
               mail: 'ngong@yad.fr',
@@ -24681,7 +24552,7 @@ export class InMemDBService implements InMemoryDbService {
         id: '7',
         code: '03092020-120000-123',
         idDocument: '6',
-        dateCreation:  new Date('09/03/2020'),
+        dateCreation: new Date('09/03/2020'),
         titre: 'Fiche de commande',
         description: "Document 1 delivre par le medecin ou un infirmier de l'etablissement",
         etat: false,
@@ -24898,7 +24769,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-    
+
             type_attribut: IType.String,
             valeurParDefaut: '',
           },
@@ -24939,7 +24810,7 @@ export class InMemDBService implements InMemoryDbService {
             etat: true,
             dateCreation: new Date('07/03/2000'),
             dateModification: new Date('07/03/1990'),
-    
+
             type_attribut: IType.String,
             valeurParDefaut: '',
           },
@@ -25078,9 +24949,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '1',
-              raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Brasserie',
+              type: 'distributeur',
               adresse: 'Dla',
               telephone: '655554488',
               mail: 'ngong@yad.fr',
@@ -25136,9 +25006,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '3',
-              raisonSocial: 'Total Energie',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Total Energie',
+              type: 'distributeur',
               adresse: 'Buéa',
               telephone: '655554486',
               mail: 'ngong@yad.fr',
@@ -25170,9 +25039,8 @@ export class InMemDBService implements InMemoryDbService {
             },
             distributeur: {
               id: '4',
-              raisonSocial: 'Eneo',
-                        type: 'personneMorale',
-              etat: true,
+              raisonSociale: 'Eneo',
+              type: 'distributeur',
               adresse: 'Ydé',
               telephone: '655554481',
               mail: 'ngong@yad.fr',
@@ -25373,27 +25241,24 @@ export class InMemDBService implements InMemoryDbService {
                 distributeur: [
                   {
                     id: '1',
-                    raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'Brasserie',
+                    type: 'distributeur',
                     adresse: 'Dla',
                     telephone: '655554488',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '2',
-                    raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'guinness',
+                    type: 'distributeur',
                     adresse: 'Ydé',
                     telephone: '655554481',
                     mail: 'ngong@yad.fr',
                   },
                   {
                     id: '3',
-                    raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                    etat: true,
+                    raisonSociale: 'papeterie yvan',
+                    type: 'distributeur',
                     adresse: 'Buéa',
                     telephone: '655554486',
                     mail: 'ngong@yad.fr',
@@ -25410,18 +25275,17 @@ export class InMemDBService implements InMemoryDbService {
         id: '1',
         emetteur: {
           id: '1',
-          raisonSocial: 'Total Energie',
-                        type: 'personneMorale',
-          etat: true,
+          raisonSociale: 'Total Energie',
+          type: 'distributeur',
           adresse: 'Dla',
           telephone: '655554488',
           mail: 'ngong@yad.fr',
         },
-        codeUnique:"A01B",
+        codeUnique: "A01B",
         dateDebut: new Date('12/03/2023'),
         dateFin: new Date('12/03/2025'),
         montantRemise: 100,
-        pourcentageRemise:0,
+        pourcentageRemise: 0,
         dateCreation: new Date(),
         famille: [
           {
@@ -25489,18 +25353,17 @@ export class InMemDBService implements InMemoryDbService {
         id: '2',
         emetteur: {
           id: '2',
-          raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-          etat: true,
+          raisonSociale: 'Brasserie',
+          type: 'distributeur',
           adresse: 'Dla',
           telephone: '655554488',
           mail: 'ngong@yad.fr'
         },
-        codeUnique:"A01F",
+        codeUnique: "A01F",
         dateDebut: new Date('12/03/2023'),
         dateFin: new Date('12/03/2025'),
         montantRemise: 0,
-        pourcentageRemise:10,
+        pourcentageRemise: 10,
         dateCreation: new Date(),
         ressource: [
           {
@@ -25543,18 +25406,17 @@ export class InMemDBService implements InMemoryDbService {
         id: '3',
         emetteur: {
           id: '3',
-          raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-          etat: true,
+          raisonSociale: 'papeterie yvan',
+          type: 'distributeur',
           adresse: 'Buéa',
           telephone: '655554486',
           mail: 'ngong@yad.fr',
         },
-        codeUnique:"A02E",
+        codeUnique: "A02E",
         dateDebut: new Date('01/06/2024'),
         dateFin: new Date('05/01/2026'),
         montantRemise: 0,
-        pourcentageRemise:5,
+        pourcentageRemise: 5,
         dateCreation: new Date(),
         ressource: [
           {
@@ -25575,7 +25437,7 @@ export class InMemDBService implements InMemoryDbService {
             }
           }
         ],
-        famille:[
+        famille: [
           {
             id: '3',
             libelle: 'pediatrie',
@@ -25921,27 +25783,24 @@ export class InMemDBService implements InMemoryDbService {
             distributeur: [
               {
                 id: '1',
-                raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                etat: true,
+                raisonSociale: 'Brasserie',
+                type: 'distributeur',
                 adresse: 'Dla',
                 telephone: '655554488',
                 mail: 'ngong@yad.fr',
               },
               {
                 id: '2',
-                raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                etat: true,
+                raisonSociale: 'guinness',
+                type: 'distributeur',
                 adresse: 'Ydé',
                 telephone: '655554481',
                 mail: 'ngong@yad.fr',
               },
               {
                 id: '3',
-                raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                etat: true,
+                raisonSociale: 'papeterie yvan',
+                type: 'distributeur',
                 adresse: 'Buéa',
                 telephone: '655554486',
                 mail: 'ngong@yad.fr',
@@ -25954,36 +25813,32 @@ export class InMemDBService implements InMemoryDbService {
     let distributeurs: IDistributeur[] = [
       {
         id: '1',
-        raisonSocial: 'Total Energie',
-                        type: 'personneMorale',
-        etat: true,
+        raisonSociale: 'Total Energie',
+        type: 'distributeur',
         adresse: 'Dla',
         telephone: '655554488',
         mail: 'ngong@yad.fr',
       },
       {
         id: '2',
-        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-        etat: true,
+        raisonSociale: 'Brasserie',
+        type: 'distributeur',
         adresse: 'Ydé',
         telephone: '655554481',
         mail: 'ngong@yad.fr',
       },
       {
         id: '3',
-        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-        etat: true,
+        raisonSociale: 'papeterie yvan',
+        type: 'distributeur',
         adresse: 'Buéa',
         telephone: '655554486',
         mail: 'ngong@yad.fr',
       },
       {
         id: '4',
-        raisonSocial: 'Eneo',
-                        type: 'personneMorale',
-        etat: true,
+        raisonSociale: 'Eneo',
+        type: 'distributeur',
         adresse: 'Buéa',
         telephone: '655554486',
         mail: 'ngong@yad.fr',
@@ -26033,9 +25888,9 @@ export class InMemDBService implements InMemoryDbService {
               etat: true,
               dateCreation: new Date('07/03/2000'),
             },
-            status : true,
-            dateDebut : new Date(),
-            dateFin : new Date()
+            status: true,
+            dateDebut: new Date(),
+            dateFin: new Date()
           }
         ],
         qrCodeValue: 'hello',
@@ -26053,7 +25908,7 @@ export class InMemDBService implements InMemoryDbService {
         type: 'personnel',
         roles: [
           {
-            role: 
+            role:
             {
               id: '2',
               titre: 'traiteur',
@@ -26061,9 +25916,9 @@ export class InMemDBService implements InMemoryDbService {
               etat: true,
               dateCreation: new Date('07/03/2000'),
             },
-            status : true,
-            dateDebut : new Date(),
-            dateFin : new Date()
+            status: true,
+            dateDebut: new Date(),
+            dateFin: new Date()
           }
         ],
         qrCodeValue: 'hello',
@@ -26088,9 +25943,9 @@ export class InMemDBService implements InMemoryDbService {
               etat: true,
               dateCreation: new Date('07/03/2000'),
             },
-            status : true,
-            dateDebut : new Date(),
-            dateFin : new Date()
+            status: true,
+            dateDebut: new Date(),
+            dateFin: new Date()
           }
         ],
         qrCodeValue: 'hello',
@@ -26128,15 +25983,19 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Modifier', lien: '../nouveau-personnel', bouton: 'false'},
-                      {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
-                      {nom: 'Groupe', lien: '', bouton: 'true', type: 'global'},
-                      {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../nouveau-personnel', bouton: 'false' },
+                        { nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false' },
+                        { nom: 'Groupe', lien: '', bouton: 'true', type: 'global' },
+                        { nom: 'Detail', lien: '../detail-personnels', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26144,12 +26003,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
-                    { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' },
-                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' },
+                        { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26157,11 +26020,15 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
-                    { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../compte-nouveau', bouton: 'false'}
-                    ] }
+                    {
+                      nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../compte-nouveau', bouton: 'false' }
+                      ]
+                    }
                   ],
                 },
                 {
@@ -26182,15 +26049,19 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Update', lien: '../nouveau-personnel', bouton: 'false'},
-                      {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
-                      {nom: 'Group', lien: '', bouton: 'true', type: 'global'},
-                      {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'New', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './personnels/list-personnels', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../nouveau-personnel', bouton: 'false' },
+                        { nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false' },
+                        { nom: 'Group', lien: '', bouton: 'true', type: 'global' },
+                        { nom: 'Detail', lien: '../detail-personnels', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26198,12 +26069,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
-                    { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' },
-                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' },
+                        { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26211,11 +26086,15 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
-                    { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../compte-nouveau', bouton: 'false' }
-                    ] }
+                    {
+                      nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Search', lien: './comptes/list-comptes', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../compte-nouveau', bouton: 'false' }
+                      ]
+                    }
                   ],
                 },
                 {
@@ -26262,15 +26141,19 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Modifier', lien: '../nouveau-personnel', bouton: 'false'},
-                      {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
-                      {nom: 'Groupe', lien: '', bouton: 'true', type: 'global'},
-                      {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../nouveau-personnel', bouton: 'false' },
+                        { nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false' },
+                        { nom: 'Groupe', lien: '', bouton: 'true', type: 'global' },
+                        { nom: 'Detail', lien: '../detail-personnels', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26278,12 +26161,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
-                    { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' },
-                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../caisses-nouveau', bouton: 'false' },
+                        { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26291,11 +26178,15 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './comptes/compte-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
-                    { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../compte-nouveau', bouton: 'false' }
-                    ] }
+                    {
+                      nom: 'Créer', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../compte-nouveau', bouton: 'false' }
+                      ]
+                    }
                   ],
                 },
                 {
@@ -26316,15 +26207,19 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Update', lien: '../nouveau-personnel', bouton: 'false'},
-                      {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
-                      {nom: 'Group', lien: '', bouton: 'true', type: 'global'},
-                      {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'New', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './personnels/list-personnels', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../nouveau-personnel', bouton: 'false' },
+                        { nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false' },
+                        { nom: 'Group', lien: '', bouton: 'true', type: 'global' },
+                        { nom: 'Detail', lien: '../detail-personnels', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26332,12 +26227,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
-                    { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' },
-                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' },
+                        { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26345,11 +26244,15 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
-                    { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../compte-nouveau', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Search', lien: './comptes/list-comptes', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../compte-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26381,19 +26284,19 @@ export class InMemDBService implements InMemoryDbService {
           dateSortie: undefined,
           type: 'personnel',
           roles: [
-          {
-            role: {
-              id: '3',
-              titre: 'marcheur',
-              description: 'commercial sur le terrain',
-              etat: true,
-              dateCreation: new Date('07/03/2000'),
-            },
-            status : true,
-            dateDebut : new Date(),
-            dateFin : new Date()
-          }
-        ],
+            {
+              role: {
+                id: '3',
+                titre: 'marcheur',
+                description: 'commercial sur le terrain',
+                etat: true,
+                dateCreation: new Date('07/03/2000'),
+              },
+              status: true,
+              dateDebut: new Date(),
+              dateFin: new Date()
+            }
+          ],
           qrCodeValue: 'hello',
         },
         groupe: {
@@ -26409,14 +26312,18 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: 'menu-close',
                   elements: [
-                    { nom: 'Créer', lien: './patients/patient-nouveau', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './patients/list-patients', bouton: 'false', action: [
-                      {nom: 'Detail', lien: '../detail-patients', bouton: 'false'},
-                      {nom: 'Ticket', lien: '', bouton: 'true', type: 'global'},
-                      {nom: 'Modifier', lien: '../patient-nouveau', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: './patients/patient-nouveau', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './patients/list-patients', bouton: 'false', action: [
+                        { nom: 'Detail', lien: '../detail-patients', bouton: 'false' },
+                        { nom: 'Ticket', lien: '', bouton: 'true', type: 'global' },
+                        { nom: 'Modifier', lien: '../patient-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26424,16 +26331,20 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Modifier', lien: '../nouveau-personnel', bouton: 'false'},
-                      {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
-                      {nom: 'Groupe', lien: '', bouton: 'true', type: 'global'},
-                      {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'},
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './personnels/list-personnels', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../nouveau-personnel', bouton: 'false' },
+                        { nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false' },
+                        { nom: 'Groupe', lien: '', bouton: 'true', type: 'global' },
+                        { nom: 'Detail', lien: '../detail-personnels', bouton: 'false' },
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26441,13 +26352,17 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './services/service-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './services/list-services', bouton: 'false', action: [
-                      {nom: 'Modifier', lien: '../service-nouveau', bouton: 'false'},
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: './services/service-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './services/list-services', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../service-nouveau', bouton: 'false' },
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26455,16 +26370,18 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './validations/nouvelle-validation', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global' }, 
-                    ] },
+                    {
+                      nom: 'Créer', lien: './validations/nouvelle-validation', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' },
+                      ]
+                    },
                     {
                       nom: 'Rechercher',
                       lien: './validations/list-validations',
                       bouton: 'false',
                       action: [
-                        {nom: 'Modifier', lien: '../nouvelle-validation', bouton: 'false'},
-                        {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}
+                        { nom: 'Modifier', lien: '../nouvelle-validation', bouton: 'false' },
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }
                       ]
                     },
                   ],
@@ -26474,9 +26391,11 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-chart-pie',
                   actif: '',
                   elements: [
-                    { nom: 'Rechercher', lien: './tickets/list-tickets', bouton: 'false', action: [
-                      { nom: 'Imprimer', lien: '', bouton: 'true' }
-                    ] },
+                    {
+                      nom: 'Rechercher', lien: './tickets/list-tickets', bouton: 'false', action: [
+                        { nom: 'Imprimer', lien: '', bouton: 'true' }
+                      ]
+                    },
                     {
                       nom: 'Afficher le panneau',
                       lien: 'tickets/panneau-tickets',
@@ -26489,12 +26408,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './attributs/attribut-nouveau', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './attributs/list-attributs', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../attribut-nouveau', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'Créer', lien: './attributs/attribut-nouveau', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './attributs/list-attributs', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../attribut-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26502,12 +26425,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}]},
-                    { nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../caisse-nouveau', bouton: 'false' },
-                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
-                    ]}
+                    {
+                      nom: 'Créer', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './caisses/list-caisses', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../caisse-nouveau', bouton: 'false' },
+                        { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
+                      ]
+                    }
                   ],
                 },
                 {
@@ -26515,10 +26442,14 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './comptes/compte-nouveau', bouton: 'false', action: [
-                      {nom: 'Créer', lien: '', bouton: 'true', type: 'global'}] },
-                    { nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../compte-nouveau', bouton: 'false' }]}
+                    {
+                      nom: 'Créer', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                        { nom: 'Créer', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './comptes/list-comptes', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../compte-nouveau', bouton: 'false' }]
+                    }
                   ],
                 },
                 {
@@ -26526,23 +26457,31 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './missions/mission-nouveau', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false', action : [
-                      { nom: 'Modifier', lien: '../mission-nouveau', bouton: 'true'}
-                    ] },
-                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false', action : [
-                      { nom: 'Detail', lien: '../view-exemplaire', bouton: 'true'},
-                      { nom: 'Modifier', lien: '../exemplaire-nouveau/modify', bouton: 'true'},
-                      { nom: 'Previsualiser', lien: '../previsualisation-exemplaire', bouton: 'true'}
-                    ]},
-                    { nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false', action : [
-                      { nom: 'Detail', lien: '../view-exemplaire', bouton: 'true'},
-                      { nom: 'Modifier', lien: '../exemplaire-nouveau/modify', bouton: 'true'},
-                      { nom: 'Previsualiser', lien: '../previsualisation-exemplaire', bouton: 'true'}
-                    ]},
-                    { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false'}
+                    {
+                      nom: 'Créer', lien: './missions/mission-nouveau', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './missions/list-missions', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../mission-nouveau', bouton: 'true' }
+                      ]
+                    },
+                    {
+                      nom: 'Execute', lien: './missions/executer-missions', bouton: 'false', action: [
+                        { nom: 'Detail', lien: '../view-exemplaire', bouton: 'true' },
+                        { nom: 'Modifier', lien: '../exemplaire-nouveau/modify', bouton: 'true' },
+                        { nom: 'Previsualiser', lien: '../previsualisation-exemplaire', bouton: 'true' }
+                      ]
+                    },
+                    {
+                      nom: 'liste des exemplaires', lien: './missions/list-exemplaire', bouton: 'false', action: [
+                        { nom: 'Detail', lien: '../view-exemplaire', bouton: 'true' },
+                        { nom: 'Modifier', lien: '../exemplaire-nouveau/modify', bouton: 'true' },
+                        { nom: 'Previsualiser', lien: '../previsualisation-exemplaire', bouton: 'true' }
+                      ]
+                    },
+                    { nom: 'Historique des documents', lien: './missions/page-intermedaire', bouton: 'false' }
                   ],
                 },
                 {
@@ -26554,13 +26493,15 @@ export class InMemDBService implements InMemoryDbService {
                       nom: 'Créer model documents',
                       lien: './documents/document-nouveau',
                       bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ]
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
                     },
-                    { nom: 'Rechercher', lien: './documents/list-documents', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../document-nouveau', bouton: 'false'},
-                      { nom: 'Vue', lien: '../view-document', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Rechercher', lien: './documents/list-documents', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../document-nouveau', bouton: 'false' },
+                        { nom: 'Vue', lien: '../view-document', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26568,12 +26509,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: 'familles/famille-nouvelle', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './familles/list-familles', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../famille-nouvelle', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: 'familles/famille-nouvelle', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './familles/list-familles', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../famille-nouvelle', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26581,13 +26526,17 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: 'roles/role-nouveau', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './roles/list-roles', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../role-nouveau', bouton: 'false'},
-                      { nom: 'Affecter Mission', lien: '../affecte-mission-role', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: 'roles/role-nouveau', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './roles/list-roles', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../role-nouveau', bouton: 'false' },
+                        { nom: 'Affecter Mission', lien: '../affecte-mission-role', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26595,12 +26544,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: 'ressources/ressource-nouvelle', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './ressources/list-ressources', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../ressource-nouvelle', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: 'ressources/ressource-nouvelle', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './ressources/list-ressources', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../ressource-nouvelle', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26608,12 +26561,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: './promo/promo-nouveau', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ]},
-                    { nom: 'Rechercher', lien: './promo/list-promo', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../promo-nouveau', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: './promo/promo-nouveau', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './promo/list-promo', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../promo-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ]
                 },
                 {
@@ -26621,13 +26578,17 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Rechercher', lien: './precoMouvements/list-precomvts', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../precomvt-nouvelle', bouton: 'false'},
-                      { nom: 'patient.table.actions.link3', lien: '', bouton: 'true'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Rechercher', lien: './precoMouvements/list-precomvts', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../precomvt-nouvelle', bouton: 'false' },
+                        { nom: 'patient.table.actions.link3', lien: '', bouton: 'true' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26635,15 +26596,17 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: 'distributeurs/distributeur-nouveau', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: 'distributeurs/distributeur-nouveau', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
                     {
                       nom: 'Rechercher',
                       lien: './distributeurs/list-distributeurs',
                       bouton: 'false',
                       action: [
-                        { nom: 'Modifier', lien: '../distributeur-nouveau', bouton: 'false'}
+                        { nom: 'Modifier', lien: '../distributeur-nouveau', bouton: 'false' }
                       ]
                     },
                   ],
@@ -26653,15 +26616,17 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: 'parcours/nouveau-parours', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: 'parcours/nouveau-parcours', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
                     {
                       nom: 'Rechercher',
-                      lien: './parcours/list-parours',
+                      lien: './parcours/list-parcours',
                       bouton: 'false',
                       action: [
-                        { nom: 'Modifier', lien: '../nouveau-parours', bouton: 'false'}
+                        { nom: 'Modifier', lien: '../nouveau-parcours', bouton: 'false' }
                       ]
                     },
                   ],
@@ -26671,12 +26636,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Créer', lien: 'etats/etat-nouveau', bouton: 'false', action: [
-                      {nom: 'Creer', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'rechercher', lien: './etats/list-etats', bouton: 'false', action: [
-                      { nom: 'Modifier', lien: '../etat-nouveau', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Créer', lien: 'etats/etat-nouveau', bouton: 'false', action: [
+                        { nom: 'Creer', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'rechercher', lien: './etats/list-etats', bouton: 'false', action: [
+                        { nom: 'Modifier', lien: '../etat-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
               ],
@@ -26689,14 +26658,18 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: 'menu-close',
                   elements: [
-                    { nom: 'New', lien: 'patients/patient-nouveau', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: 'patients/list-patients', bouton: 'false', action: [
-                      {nom: 'Ticket', lien: '', bouton: 'true', type: 'global'},
-                      {nom: 'Detail', lien: '/detail-patients', bouton: 'false'},
-                      {nom: 'Update', lien: '/patient-nouveau', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'New', lien: 'patients/patient-nouveau', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: 'patients/list-patients', bouton: 'false', action: [
+                        { nom: 'Ticket', lien: '', bouton: 'true', type: 'global' },
+                        { nom: 'Detail', lien: '/detail-patients', bouton: 'false' },
+                        { nom: 'Update', lien: '/patient-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26704,16 +26677,20 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Create', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
-                      {nom: 'Create', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: './personnels/list-personnels', bouton: 'false', action: [
-                      {nom: 'Update', lien: '../nouveau-personnel', bouton: 'false'},
-                      {nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false'},
-                      {nom: 'Group', lien: '', bouton: 'true', type: 'global'},
-                      {nom: 'Detail', lien: '../detail-personnels', bouton: 'false'},
-                      {nom: 'Create', lien: '', bouton: 'true', type: 'global'}
-                    ] },
+                    {
+                      nom: 'Create', lien: './personnels/nouveau-personnel', bouton: 'false', action: [
+                        { nom: 'Create', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './personnels/list-personnels', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../nouveau-personnel', bouton: 'false' },
+                        { nom: 'Roles', lien: '../affecte-role-personnel', bouton: 'false' },
+                        { nom: 'Group', lien: '', bouton: 'true', type: 'global' },
+                        { nom: 'Detail', lien: '../detail-personnels', bouton: 'false' },
+                        { nom: 'Create', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26721,12 +26698,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: './services/service-nouveau', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: './services/list-services', bouton: 'false', action: [
-                      { nom: 'New', lien: '../service-nouveau', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'New', lien: './services/service-nouveau', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './services/list-services', bouton: 'false', action: [
+                        { nom: 'New', lien: '../service-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26734,9 +26715,11 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-chart-pie',
                   actif: '',
                   elements: [
-                    { nom: 'Search', lien: './tickets/list-tickets', bouton: 'false', action: [
-                      { nom: 'Print', lien: '', bouton: 'true' }
-                    ] },
+                    {
+                      nom: 'Search', lien: './tickets/list-tickets', bouton: 'false', action: [
+                        { nom: 'Print', lien: '', bouton: 'true' }
+                      ]
+                    },
                     { nom: 'View panel', lien: './tickets/panneau-tickets', bouton: 'false' },
                   ],
                 },
@@ -26745,12 +26728,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: './attributs/attribut-nouveau', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: './attributs/list-attributs', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../attribut-nouveau', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'New', lien: './attributs/attribut-nouveau', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './attributs/list-attributs', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../attribut-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26758,9 +26745,11 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: './validations/nouvelle-validation', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
+                    {
+                      nom: 'New', lien: './validations/nouvelle-validation', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
                     {
                       nom: 'Search',
                       lien: './validations/list-validations',
@@ -26775,13 +26764,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}]
+                    {
+                      nom: 'Create', lien: './caisses/caisse-nouveau', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }]
                     },
-                    { nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' },
-                      { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
-                    ]}
+                    {
+                      nom: 'Search', lien: './caisses/list-caisses', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../caisse-nouveau', bouton: 'false' },
+                        { nom: 'Ecart', lien: '../caisse-ecart', bouton: 'false' }
+                      ]
+                    }
                   ],
                 },
                 {
@@ -26789,10 +26781,14 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}] },
-                    { nom: 'Search', lien: './comptes/list-comptes', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../compte-nouveau', bouton: 'false' }]}
+                    {
+                      nom: 'Create', lien: './comptes/compte-nouveau', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }]
+                    },
+                    {
+                      nom: 'Search', lien: './comptes/list-comptes', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../compte-nouveau', bouton: 'false' }]
+                    }
                   ],
                 },
                 {
@@ -26800,23 +26796,31 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: 'missions/mission-nouveau', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: './missions/list-missions', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../mission-nouveau', bouton: 'false' }
-                    ] },
-                    { nom: 'Execute', lien: './missions/executer-missions', bouton: 'false', action : [
-                      { nom: 'View', lien: '../view-exemplaire', bouton: 'true'},
-                      { nom: 'Update', lien: '../exemplaire-nouveau/modify', bouton: 'true'},
-                      { nom: 'Previsualise', lien: '../previsualisation-exemplaire', bouton: 'true'}
-                    ]},
-                    { nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false', action : [
-                      { nom: 'View', lien: '../view-exemplaire', bouton: 'true'},
-                      { nom: 'Update', lien: '../exemplaire-nouveau/modify', bouton: 'true'},
-                      { nom: 'Previsualise', lien: '../previsualisation-exemplaire', bouton: 'true'}
-                    ]},
-                    { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false'}
+                    {
+                      nom: 'New', lien: 'missions/mission-nouveau', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './missions/list-missions', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../mission-nouveau', bouton: 'false' }
+                      ]
+                    },
+                    {
+                      nom: 'Execute', lien: './missions/executer-missions', bouton: 'false', action: [
+                        { nom: 'View', lien: '../view-exemplaire', bouton: 'true' },
+                        { nom: 'Update', lien: '../exemplaire-nouveau/modify', bouton: 'true' },
+                        { nom: 'Previsualise', lien: '../previsualisation-exemplaire', bouton: 'true' }
+                      ]
+                    },
+                    {
+                      nom: 'list of exemplaires', lien: './missions/list-exemplaire', bouton: 'false', action: [
+                        { nom: 'View', lien: '../view-exemplaire', bouton: 'true' },
+                        { nom: 'Update', lien: '../exemplaire-nouveau/modify', bouton: 'true' },
+                        { nom: 'Previsualise', lien: '../previsualisation-exemplaire', bouton: 'true' }
+                      ]
+                    },
+                    { nom: "Documents history", lien: './missions/page-intermedaire', bouton: 'false' }
                   ],
                 },
                 {
@@ -26828,13 +26832,15 @@ export class InMemDBService implements InMemoryDbService {
                       nom: "New document's model",
                       lien: './documents/document-nouveau',
                       bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ]
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
                     },
-                    { nom: 'Search', lien: './documents/list-documents', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../document-nouveau', bouton: 'false' },
-                      { nom: 'View', lien: '../view-document', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Search', lien: './documents/list-documents', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../document-nouveau', bouton: 'false' },
+                        { nom: 'View', lien: '../view-document', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26842,12 +26848,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'new', lien: 'familles/famille-nouvelle', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: './familles/list-familles', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../famille-nouvelle', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'new', lien: 'familles/famille-nouvelle', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './familles/list-familles', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../famille-nouvelle', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26855,13 +26865,17 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: 'roles/role-nouveau', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'search', lien: './roles/list-roles', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../role-nouveau', bouton: 'false' },
-                      { nom: 'Mission', lien: '../affecte-mission-role', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'New', lien: 'roles/role-nouveau', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'search', lien: './roles/list-roles', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../role-nouveau', bouton: 'false' },
+                        { nom: 'Mission', lien: '../affecte-mission-role', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26869,12 +26883,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: 'ressources/ressource-nouvelle', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: './ressources/list-ressources', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../ressource-nouvelle', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'New', lien: 'ressources/ressource-nouvelle', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './ressources/list-ressources', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../ressource-nouvelle', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26882,12 +26900,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'Create', lien: './promo/promo-nouveau', bouton: 'false', action: [
-                      {nom: 'Create', lien: '', bouton: 'true', type: 'global'}
-                    ]},
-                    { nom: 'Search', lien: './promo/list-promo', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../promo-nouveau', bouton: 'false'}
-                    ] },
+                    {
+                      nom: 'Create', lien: './promo/promo-nouveau', bouton: 'false', action: [
+                        { nom: 'Create', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './promo/list-promo', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../promo-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ]
                 },
                 {
@@ -26895,13 +26917,17 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'Search', lien: './precoMouvements/list-precomvts', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../precomvt-nouvelle', bouton: 'false' },
-                      { nom: 'patient.table.actions.link3', lien: '', bouton: 'true'}
-                    ] },
+                    {
+                      nom: 'New', lien: 'precoMouvements/precomvt-nouvelle', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'Search', lien: './precoMouvements/list-precomvts', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../precomvt-nouvelle', bouton: 'false' },
+                        { nom: 'patient.table.actions.link3', lien: '', bouton: 'true' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26909,12 +26935,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: 'distributeurs/distributeur-nouveau', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'search', lien: './distributeurs/list-distributeurs', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../distributeur-nouveau', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'New', lien: 'distributeurs/distributeur-nouveau', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'search', lien: './distributeurs/list-distributeurs', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../distributeur-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
                 {
@@ -26934,12 +26964,14 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: 'parcours/nouveau-parours', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
+                    {
+                      nom: 'New', lien: 'parcours/nouveau-parcours', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
                     {
                       nom: 'search',
-                      lien: './parcours/list-parours',
+                      lien: './parcours/list-parcours',
                       bouton: 'false', action: [
                         { nom: 'Update', lien: '../nouveau-parcours', bouton: 'false' }
                       ]
@@ -26951,12 +26983,16 @@ export class InMemDBService implements InMemoryDbService {
                   icone: 'fas fa-user-cog',
                   actif: '',
                   elements: [
-                    { nom: 'New', lien: 'etats/etat-nouveau', bouton: 'false', action: [
-                      {nom: 'New', lien: '', bouton: 'true', type: 'global'}
-                    ] },
-                    { nom: 'search', lien: './etats/list-etats', bouton: 'false', action: [
-                      { nom: 'Update', lien: '../etat-nouveau', bouton: 'false' }
-                    ] },
+                    {
+                      nom: 'New', lien: 'etats/etat-nouveau', bouton: 'false', action: [
+                        { nom: 'New', lien: '', bouton: 'true', type: 'global' }
+                      ]
+                    },
+                    {
+                      nom: 'search', lien: './etats/list-etats', bouton: 'false', action: [
+                        { nom: 'Update', lien: '../etat-nouveau', bouton: 'false' }
+                      ]
+                    },
                   ],
                 },
               ],
@@ -26979,7 +27015,7 @@ export class InMemDBService implements InMemoryDbService {
     };
     let typeUnite: TypeUnite = { type: ['Litre', 'Kg', 'Packs', 'Boite'] };
     let typeMvt: TypeMvt = { type: ['Neutre', 'Ajout', 'Reduire'] };
-    let typeValidation: TypeValidation = { type: ['Simple', 'Transmission', 'Traitement'] };
+    let typeValidation: TypeValidation = { type: ['rechargeable', 'Transmission', 'Traitement', 'prioritaire'] };
     let formatCode: FormatCode = { type: ['FACT', 'ALPHA', 'ASCII'] };
     let etats: IEtats[] = [
       {
@@ -27008,27 +27044,29 @@ export class InMemDBService implements InMemoryDbService {
       },
     ];
     let caisses: ICaisses[] = [
-      {id: "1", libelle: "caisse 1", type: "cash", etat: false, solde: 180000.00, detailsJson: {
-        x1: 0,
-        x2: 0,
-        x5: 0,
-        x10: 0,
-        x25: 0,
-        x50: 200,
-        x100: 100,
-        x500: 15,
-        x500B: 15,
-        x1000: 20,
-        x2000: 10,
-        x5000: 1,
-        x10000: 9
-      }},
-      {id: "7", libelle: "caisse 7", type: "solde", etat: false, solde: 700000.00},
-      {id: "2", libelle: "caisse 2", type: "chèque", etat: false, solde: 200000.00},
-      {id: "3", libelle: "caisse 3", type: "carte bleue", etat: false, solde: 300000.00},
-      {id: "5", libelle: "caisse 5", type: "mtn money", etat: false, solde: 500000.00},
-      {id: "4", libelle: "caisse 4", type: "mobile money", etat: false, solde: 400000.00},
-      {id: "6", libelle: "caisse 6", type: "orange money", etat: false, solde: 600000.00},
+      {
+        id: "1", libelle: "caisse 1", type: "cash", etat: false, solde: 180000.00, detailsJson: {
+          x1: 0,
+          x2: 0,
+          x5: 0,
+          x10: 0,
+          x25: 0,
+          x50: 200,
+          x100: 100,
+          x500: 15,
+          x500B: 15,
+          x1000: 20,
+          x2000: 10,
+          x5000: 1,
+          x10000: 9
+        }
+      },
+      { id: "7", libelle: "caisse 7", type: "solde", etat: false, solde: 700000.00 },
+      { id: "2", libelle: "caisse 2", type: "chèque", etat: false, solde: 200000.00 },
+      { id: "3", libelle: "caisse 3", type: "carte bleue", etat: false, solde: 300000.00 },
+      { id: "5", libelle: "caisse 5", type: "mtn money", etat: false, solde: 500000.00 },
+      { id: "4", libelle: "caisse 4", type: "mobile money", etat: false, solde: 400000.00 },
+      { id: "6", libelle: "caisse 6", type: "orange money", etat: false, solde: 600000.00 },
     ];
     let comptes: IComptes[] = [
       {
@@ -27094,7 +27132,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -27576,27 +27614,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -27665,7 +27700,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -28092,27 +28127,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -28170,7 +28202,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -28598,27 +28630,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -28641,7 +28670,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -29050,27 +29079,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -29093,7 +29119,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -29504,27 +29530,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -29547,7 +29570,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -30127,27 +30150,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -30170,7 +30190,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -30580,27 +30600,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -30622,7 +30639,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
                   {
@@ -31231,27 +31248,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -31274,7 +31288,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -31751,27 +31765,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -31790,7 +31801,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+            beneficiaireObligatoire: false,
             docEtats: [
               {
                 id: '1',
@@ -31831,7 +31842,7 @@ export class InMemDBService implements InMemoryDbService {
             afficherPrix: true,
             contientRessources: false,
             afficherDistributeur: false,
-        formatCode: 'FACT',
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -32261,27 +32272,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -32305,7 +32313,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -32787,27 +32795,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -32876,7 +32881,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -33303,27 +33308,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -33381,7 +33383,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -33809,27 +33811,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -33852,7 +33851,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -34261,27 +34260,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -34304,7 +34300,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -34715,27 +34711,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -34758,7 +34751,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -35338,27 +35331,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -35381,7 +35371,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -35791,27 +35781,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -35833,7 +35820,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
                   {
@@ -36442,27 +36429,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -36485,7 +36469,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -36962,27 +36946,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -37001,7 +36982,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+            beneficiaireObligatoire: false,
             docEtats: [
               {
                 id: '1',
@@ -37042,7 +37023,7 @@ export class InMemDBService implements InMemoryDbService {
             afficherPrix: true,
             contientRessources: false,
             afficherDistributeur: false,
-        formatCode: 'FACT',
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -37472,27 +37453,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -37516,7 +37494,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -37998,27 +37976,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -38087,7 +38062,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -38514,27 +38489,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -38592,7 +38564,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -39020,27 +38992,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -39063,7 +39032,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -39472,27 +39441,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -39515,7 +39481,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -39926,27 +39892,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -39969,7 +39932,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -40549,27 +40512,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -40592,7 +40552,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -41002,27 +40962,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -41044,7 +41001,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
                   {
@@ -41653,27 +41610,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -41696,7 +41650,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -42173,27 +42127,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -42212,7 +42163,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+            beneficiaireObligatoire: false,
             docEtats: [
               {
                 id: '1',
@@ -42253,7 +42204,7 @@ export class InMemDBService implements InMemoryDbService {
             afficherPrix: true,
             contientRessources: false,
             afficherDistributeur: false,
-        formatCode: 'FACT',
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -42683,27 +42634,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -42727,7 +42675,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: false,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+            beneficiaireObligatoire: true,
             docEtats: [
               {
                 id: '1',
@@ -43209,27 +43157,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -43298,7 +43243,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -43725,27 +43670,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -43803,7 +43745,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 missions: [
                   {
                     id: '1',
@@ -44231,27 +44173,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -44274,7 +44213,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -44683,27 +44622,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -44726,7 +44662,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -45137,27 +45073,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -45180,7 +45113,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -45760,27 +45693,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -45803,7 +45733,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '2',
@@ -46213,27 +46143,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -46255,7 +46182,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 typeMouvement: 'Ajout',
                 docEtats: [
                   {
@@ -46864,27 +46791,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -46907,7 +46831,7 @@ export class InMemDBService implements InMemoryDbService {
                 afficherPrix: true,
                 contientRessources: true,
                 afficherDistributeur: true,
-            formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -47384,27 +47308,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -47423,7 +47344,7 @@ export class InMemDBService implements InMemoryDbService {
             estencaissable: true,
             description:
               "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+            beneficiaireObligatoire: false,
             docEtats: [
               {
                 id: '1',
@@ -47464,7 +47385,7 @@ export class InMemDBService implements InMemoryDbService {
             afficherPrix: true,
             contientRessources: false,
             afficherDistributeur: false,
-        formatCode: 'FACT',
+            formatCode: 'FACT',
             missions: [
               {
                 id: '1',
@@ -47894,27 +47815,24 @@ export class InMemDBService implements InMemoryDbService {
                     distributeur: [
                       {
                         id: '1',
-                        raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'Brasserie',
+                        type: 'distributeur',
                         adresse: 'Dla',
                         telephone: '655554488',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '2',
-                        raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'guinness',
+                        type: 'distributeur',
                         adresse: 'Ydé',
                         telephone: '655554481',
                         mail: 'ngong@yad.fr',
                       },
                       {
                         id: '3',
-                        raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                        etat: true,
+                        raisonSociale: 'papeterie yvan',
+                        type: 'distributeur',
                         adresse: 'Buéa',
                         telephone: '655554486',
                         mail: 'ngong@yad.fr',
@@ -47928,7 +47846,7 @@ export class InMemDBService implements InMemoryDbService {
         ],
       },
     ];
-    let parours: IParours[] = [
+    let parcours: IParcours[] = [
       {
         id: '1',
         libelle: 'debut',
@@ -47945,13 +47863,13 @@ export class InMemDBService implements InMemoryDbService {
                 estencaissable: true,
                 description:
                   "Document delivre par le medecin ou un infirmier de l'etablissement",
-                        beneficiaireObligatoire: true,
+                beneficiaireObligatoire: true,
                 typeMouvement: 'Neutre',
                 etat: true,
                 afficherPrix: false,
                 contientRessources: true,
                 afficherDistributeur: true,
-                    formatCode: 'FACT',
+                formatCode: 'FACT',
                 docEtats: [
                   {
                     id: '1',
@@ -47971,13 +47889,13 @@ export class InMemDBService implements InMemoryDbService {
                     etat: {
                       id: '2',
                       libelle: 'etat 2',
-                      etatSuivant:[
-                          {
-                            id: '3',
-                            libelle: 'etat 3',
-                            description: 'troisième état du document',
-                            dateCreation: new Date('07/21/2024'),
-                          },
+                      etatSuivant: [
+                        {
+                          id: '3',
+                          libelle: 'etat 3',
+                          description: 'troisième état du document',
+                          dateCreation: new Date('07/21/2024'),
+                        },
                       ],
                       description: 'deuxième état du document',
                       dateCreation: new Date('07/21/2024'),
@@ -47998,6 +47916,7 @@ export class InMemDBService implements InMemoryDbService {
                         dateCreation: new Date('07/03/2000'),
                       },
                       dateCreation: new Date('01/04/2014'),
+                      quota: 7
                     }
                   },
                   {
@@ -48111,7 +48030,7 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
-        
+
                     type_attribut: IType.String,
                     valeurParDefaut: '',
                   },
@@ -48152,7 +48071,7 @@ export class InMemDBService implements InMemoryDbService {
                     etat: true,
                     dateCreation: new Date('07/03/2000'),
                     dateModification: new Date('07/03/1990'),
-        
+
                     type_attribut: IType.String,
                     valeurParDefaut: '',
                   },
@@ -48458,27 +48377,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -48495,7 +48411,7 @@ export class InMemDBService implements InMemoryDbService {
                     estencaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
-                        beneficiaireObligatoire: false,
+                    beneficiaireObligatoire: false,
                     typeMouvement: 'Neutre',
                     etat: true,
                     afficherPrix: true,
@@ -48658,7 +48574,7 @@ export class InMemDBService implements InMemoryDbService {
                               etat: true,
                               dateCreation: new Date('07/03/2000'),
                               dateModification: new Date('07/03/1990'),
-        
+
                               type_attribut: IType.Double,
                               valeurParDefaut: '',
                             },
@@ -48674,7 +48590,7 @@ export class InMemDBService implements InMemoryDbService {
                               etat: true,
                               dateCreation: new Date('07/03/2000'),
                               dateModification: new Date('07/03/1990'),
-        
+
                               type_attribut: IType.Double,
                               valeurParDefaut: '',
                             },
@@ -48912,27 +48828,24 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'Brasserie',
+                                type: 'distributeur',
                                 adresse: 'Dla',
                                 telephone: '655554488',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '2',
-                                raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'guinness',
+                                type: 'distributeur',
                                 adresse: 'Ydé',
                                 telephone: '655554481',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '3',
-                                raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'papeterie yvan',
+                                type: 'distributeur',
                                 adresse: 'Buéa',
                                 telephone: '655554486',
                                 mail: 'ngong@yad.fr',
@@ -48949,7 +48862,7 @@ export class InMemDBService implements InMemoryDbService {
                     estencaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
-                        beneficiaireObligatoire: true,
+                    beneficiaireObligatoire: true,
                     typeMouvement: 'Reduire',
                     etat: true,
                     afficherPrix: true,
@@ -49198,7 +49111,7 @@ export class InMemDBService implements InMemoryDbService {
                               etat: true,
                               dateCreation: new Date('07/03/2000'),
                               dateModification: new Date('07/03/1990'),
-        
+
                               type_attribut: IType.Double,
                               valeurParDefaut: '',
                             },
@@ -49214,7 +49127,7 @@ export class InMemDBService implements InMemoryDbService {
                               etat: true,
                               dateCreation: new Date('07/03/2000'),
                               dateModification: new Date('07/03/1990'),
-        
+
                               type_attribut: IType.Double,
                               valeurParDefaut: '',
                             },
@@ -49550,27 +49463,24 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'Brasserie',
+                                type: 'distributeur',
                                 adresse: 'Dla',
                                 telephone: '655554488',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '2',
-                                raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'guinness',
+                                type: 'distributeur',
                                 adresse: 'Ydé',
                                 telephone: '655554481',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '3',
-                                raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'papeterie yvan',
+                                type: 'distributeur',
                                 adresse: 'Buéa',
                                 telephone: '655554486',
                                 mail: 'ngong@yad.fr',
@@ -49587,7 +49497,7 @@ export class InMemDBService implements InMemoryDbService {
                     estencaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
-                        beneficiaireObligatoire: true,
+                    beneficiaireObligatoire: true,
                     typeMouvement: 'Neutre',
                     etat: true,
                     afficherPrix: true,
@@ -49782,7 +49692,7 @@ export class InMemDBService implements InMemoryDbService {
                               etat: true,
                               dateCreation: new Date('07/03/2000'),
                               dateModification: new Date('07/03/1990'),
-        
+
                               type_attribut: IType.Double,
                               valeurParDefaut: '',
                             },
@@ -49798,7 +49708,7 @@ export class InMemDBService implements InMemoryDbService {
                               etat: true,
                               dateCreation: new Date('07/03/2000'),
                               dateModification: new Date('07/03/1990'),
-        
+
                               type_attribut: IType.Double,
                               valeurParDefaut: '',
                             },
@@ -50067,27 +49977,24 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'Brasserie',
+                                type: 'distributeur',
                                 adresse: 'Dla',
                                 telephone: '655554488',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '2',
-                                raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'guinness',
+                                type: 'distributeur',
                                 adresse: 'Ydé',
                                 telephone: '655554481',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '3',
-                                raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'papeterie yvan',
+                                type: 'distributeur',
                                 adresse: 'Buéa',
                                 telephone: '655554486',
                                 mail: 'ngong@yad.fr',
@@ -50539,27 +50446,24 @@ export class InMemDBService implements InMemoryDbService {
                         distributeur: [
                           {
                             id: '1',
-                            raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'Brasserie',
+                            type: 'distributeur',
                             adresse: 'Dla',
                             telephone: '655554488',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '2',
-                            raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'guinness',
+                            type: 'distributeur',
                             adresse: 'Ydé',
                             telephone: '655554481',
                             mail: 'ngong@yad.fr',
                           },
                           {
                             id: '3',
-                            raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                            etat: true,
+                            raisonSociale: 'papeterie yvan',
+                            type: 'distributeur',
                             adresse: 'Buéa',
                             telephone: '655554486',
                             mail: 'ngong@yad.fr',
@@ -50576,7 +50480,7 @@ export class InMemDBService implements InMemoryDbService {
                     estencaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+                    beneficiaireObligatoire: true,
                     docEtats: [
                       {
                         id: '1',
@@ -50628,7 +50532,7 @@ export class InMemDBService implements InMemoryDbService {
                     afficherPrix: true,
                     contientRessources: true,
                     afficherDistributeur: true,
-            formatCode: 'FACT',
+                    formatCode: 'FACT',
                     missions: [
                       {
                         id: '1',
@@ -51055,27 +50959,24 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'Brasserie',
+                                type: 'distributeur',
                                 adresse: 'Dla',
                                 telephone: '655554488',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '2',
-                                raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'guinness',
+                                type: 'distributeur',
                                 adresse: 'Ydé',
                                 telephone: '655554481',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '3',
-                                raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'papeterie yvan',
+                                type: 'distributeur',
                                 adresse: 'Buéa',
                                 telephone: '655554486',
                                 mail: 'ngong@yad.fr',
@@ -51092,7 +50993,7 @@ export class InMemDBService implements InMemoryDbService {
                     estencaissable: false,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: false,
+                    beneficiaireObligatoire: false,
                     docEtats: [
                       {
                         id: '1',
@@ -51133,7 +51034,7 @@ export class InMemDBService implements InMemoryDbService {
                     afficherPrix: true,
                     contientRessources: true,
                     afficherDistributeur: true,
-            formatCode: 'FACT',
+                    formatCode: 'FACT',
                     missions: [
                       {
                         id: '1',
@@ -51562,27 +51463,24 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'Brasserie',
+                                type: 'distributeur',
                                 adresse: 'Dla',
                                 telephone: '655554488',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '2',
-                                raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'guinness',
+                                type: 'distributeur',
                                 adresse: 'Ydé',
                                 telephone: '655554481',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '3',
-                                raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'papeterie yvan',
+                                type: 'distributeur',
                                 adresse: 'Buéa',
                                 telephone: '655554486',
                                 mail: 'ngong@yad.fr',
@@ -52017,27 +51915,24 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'Brasserie',
+                                type: 'distributeur',
                                 adresse: 'Dla',
                                 telephone: '655554488',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '2',
-                                raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'guinness',
+                                type: 'distributeur',
                                 adresse: 'Ydé',
                                 telephone: '655554481',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '3',
-                                raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'papeterie yvan',
+                                type: 'distributeur',
                                 adresse: 'Buéa',
                                 telephone: '655554486',
                                 mail: 'ngong@yad.fr',
@@ -52054,13 +51949,13 @@ export class InMemDBService implements InMemoryDbService {
                     estencaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+                    beneficiaireObligatoire: true,
                     typeMouvement: 'Reduire',
                     etat: true,
                     afficherPrix: true,
                     contientRessources: true,
                     afficherDistributeur: true,
-            formatCode: 'FACT',
+                    formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '2',
@@ -52657,27 +52552,24 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'Brasserie',
+                                type: 'distributeur',
                                 adresse: 'Dla',
                                 telephone: '655554488',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '2',
-                                raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'guinness',
+                                type: 'distributeur',
                                 adresse: 'Ydé',
                                 telephone: '655554481',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '3',
-                                raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'papeterie yvan',
+                                type: 'distributeur',
                                 adresse: 'Buéa',
                                 telephone: '655554486',
                                 mail: 'ngong@yad.fr',
@@ -52694,13 +52586,13 @@ export class InMemDBService implements InMemoryDbService {
                     estencaissable: true,
                     description:
                       "Document delivre par le medecin ou un infirmier de l'etablissement",
-                beneficiaireObligatoire: true,
+                    beneficiaireObligatoire: true,
                     typeMouvement: 'Neutre',
                     etat: true,
                     afficherPrix: true,
                     contientRessources: true,
                     afficherDistributeur: true,
-            formatCode: 'FACT',
+                    formatCode: 'FACT',
                     docEtats: [
                       {
                         id: '1',
@@ -53176,27 +53068,24 @@ export class InMemDBService implements InMemoryDbService {
                             distributeur: [
                               {
                                 id: '1',
-                                raisonSocial: 'Brasserie',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'Brasserie',
+                                type: 'distributeur',
                                 adresse: 'Dla',
                                 telephone: '655554488',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '2',
-                                raisonSocial: 'guinness',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'guinness',
+                                type: 'distributeur',
                                 adresse: 'Ydé',
                                 telephone: '655554481',
                                 mail: 'ngong@yad.fr',
                               },
                               {
                                 id: '3',
-                                raisonSocial: 'papeterie yvan',
-                        type: 'personneMorale',
-                                etat: true,
+                                raisonSociale: 'papeterie yvan',
+                                type: 'distributeur',
                                 adresse: 'Buéa',
                                 telephone: '655554486',
                                 mail: 'ngong@yad.fr',
@@ -53242,7 +53131,7 @@ export class InMemDBService implements InMemoryDbService {
       // caisses,
       // comptes,
       // etapes,
-      // parours,
+      // parcours,
       typeValidation,
       formatCode,
       groupes,

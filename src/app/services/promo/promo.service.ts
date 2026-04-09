@@ -36,9 +36,9 @@ export class PromoService {
     );
   }
 
-  getPromoByRaisonSocialAssurance(raisonSocialAssurance: string): Observable<IPromo[]> {
+  getPromoByRaisonSocialAssurance(raisonSocialeAssurance: string): Observable<IPromo[]> {
     return this.http.get<IPromo[]>(this.apiUrl).pipe(
-      map(x =>{ return  x.filter(p => p.emetteur.raisonSocial.toLowerCase().startsWith(raisonSocialAssurance))})
+      map(x =>{ return  x.filter(p => p.emetteur.raisonSociale.toLowerCase().startsWith(raisonSocialeAssurance))})
     );
   }
   

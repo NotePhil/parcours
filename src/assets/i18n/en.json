@@ -639,12 +639,16 @@
     },
     "form": {
       "label1": "code",
-      "label2": "etat",
-      "label3": "Creation day",
+      "label2": "Status",
+      "label3": "Creating date",
       "label4": "Voting Type",
-      "label5": "Duration vote",
+      "label5": "Vote duration",
       "label6": "role",
-      "label7": "Type de validation"
+      "label7": "Validation's type",
+      "label8": "in days",
+      "label9": "Quota",
+      "label10": "in %",
+      "text1": "Field Required"
     }
   },
   "etats": {
@@ -695,7 +699,7 @@
       }
     }
   },
-  "parours": {
+  "parcours": {
     "table": {
       "title": "Add ",
       "title1": "libel",

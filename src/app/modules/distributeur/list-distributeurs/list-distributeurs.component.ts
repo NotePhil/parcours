@@ -16,7 +16,7 @@ import { IElements } from 'src/app/modele/elements';
 
 
 export interface User {
-  raisonSocial: string;
+  raisonSociale: string;
 }
 
 
@@ -29,8 +29,8 @@ export class ListDistributeursComponent implements OnInit {
 
   id_distributeur : string = "0";
   id_service : number = 0;
-  raisonSocial_distributeur : string = "";
-  raisonSocial_service : string = "";
+  raisonSociale_distributeur : string = "";
+  raisonSociale_service : string = "";
 
 
   myControl = new FormControl<string | IDistributeur>('');
@@ -40,7 +40,7 @@ export class ListDistributeursComponent implements OnInit {
   ELEMENTS_TABLE: IDistributeur[] = [];
   filteredOptions: IDistributeur[] | undefined;
 
-  displayedColumns: string[] = ['raisonSocial', 'etat','adresse', 'telephone', 'mail', 'actions'];
+  displayedColumns: string[] = ['raisonSociale','adresse', 'telephone', 'mail', 'actions'];
 
   dataSource = new MatTableDataSource<IDistributeur>(this.ELEMENTS_TABLE);
 
@@ -70,9 +70,9 @@ export class ListDistributeursComponent implements OnInit {
 
     this.myControl.valueChanges.subscribe(
       value => {
-        const name = typeof value === 'string' ? value : value?.raisonSocial;
+        const name = typeof value === 'string' ? value : value?.raisonSociale;
         if(name != undefined && name?.length >0){
-          this.serviceDistributeur.getDistributeursByraisonSocial(name.toLowerCase() as string).subscribe(
+          this.serviceDistributeur.getDistributeursByraisonSociale(name.toLowerCase() as string).subscribe(
             reponse => {
               this.filteredOptions = reponse;
             }
@@ -96,7 +96,7 @@ export class ListDistributeursComponent implements OnInit {
   }
 
   displayFn(user: IDistributeur): string {
-    return user && user.raisonSocial ? user.raisonSocial: '';
+    return user && user.raisonSociale ? user.raisonSociale: '';
   }
 
   ngAfterViewInit() {
@@ -105,7 +105,7 @@ export class ListDistributeursComponent implements OnInit {
   }
 
   public rechercherListingDistributeur(option: IDistributeur){
-    this.serviceDistributeur.getDistributeursByraisonSocial(option.raisonSocial.toLowerCase()).subscribe(
+    this.serviceDistributeur.getDistributeursByraisonSociale(option.raisonSociale.toLowerCase()).subscribe(
         valeurs => {this.dataSource.data = valeurs;}
     )
   }

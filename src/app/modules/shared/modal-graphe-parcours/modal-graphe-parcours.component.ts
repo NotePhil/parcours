@@ -4,7 +4,7 @@ import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import mermaid from 'mermaid';
-import { IParours } from 'src/app/modele/parours';
+import { IParcours } from 'src/app/modele/parcours';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 
 @Component({
@@ -45,7 +45,7 @@ export class ModalGrapheParcoursComponent implements OnInit {
   public async ngAfterViewInit(): Promise<void> {
 
     const element: any = this.mermaidDivEtatsDoc.nativeElement;
-    let parcours: IParours = this.data.parcour;
+    let parcours: IParcours = this.data.parcour;
     console.log('Data modal :', parcours);
     if (parcours.etape != null && parcours.etape.length !== 0) {
       if (parcours.etape.length > 0) {

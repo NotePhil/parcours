@@ -4,9 +4,9 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IParours } from 'src/app/modele/parours';
-import { ParoursService } from 'src/app/services/parours/parours.service';
-import { IAfficheParours } from 'src/app/modele/affiche-parours';
+import { IParcours } from 'src/app/modele/parcours';
+import { ParcoursService } from 'src/app/services/parcours/parcours.service';
+import { IAfficheParcours } from 'src/app/modele/affiche-parcours';
 import { TranslateService } from '@ngx-translate/core';
 import { IElements } from 'src/app/modele/elements';
 import { EMPTY, Observable } from 'rxjs';
@@ -16,31 +16,31 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-list-parours',
-  templateUrl: './list-parours.component.html',
-  styleUrls: ['./list-parours.component.scss'],
+  selector: 'app-list-parcours',
+  templateUrl: './list-parcours.component.html',
+  styleUrls: ['./list-parcours.component.scss'],
 })
-export class ListParoursComponent implements OnInit {
-  //parours$:Observable<IParours[]>=EMPTY;
-  myControl = new FormControl<string | IParours>('');
+export class ListParcoursComponent implements OnInit {
+  //parcours$:Observable<IParcours[]>=EMPTY;
+  myControl = new FormControl<string | IParcours>('');
   receivedActions$: Observable<IElements[]>=EMPTY;
   actions : IElements[] | undefined;
 
-  //ELEMENTS_TABLE: IParours[] = [];
-  ELEMENTS_TABLE: IAfficheParours[] = [];
-  filteredOptions: IParours[] | undefined;
+  //ELEMENTS_TABLE: IParcours[] = [];
+  ELEMENTS_TABLE: IAfficheParcours[] = [];
+  filteredOptions: IParcours[] | undefined;
 
   displayedColumns: string[] = ['libelle', 'etape', 'actions'];
 
-  dataSource = new MatTableDataSource<IParours>(this.ELEMENTS_TABLE);
+  dataSource = new MatTableDataSource<IParcours>(this.ELEMENTS_TABLE);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  tableParours: IAfficheParours[] = [];
-  afficheParours: IAfficheParours = {
+  tableParcours: IAfficheParcours[] = [];
+  afficheParcours: IAfficheParcours = {
     id: '',
     libelle: '',
     etape: [],
@@ -51,7 +51,7 @@ export class ListParoursComponent implements OnInit {
     private router: Router,
     private dialogDef: MatDialog,
     private _liveAnnouncer: LiveAnnouncer,
-    private serviceParour: ParoursService,
+    private serviceParcours: ParcoursService,
     private actionsview: PassActionService
   ) {}
 
@@ -65,19 +65,19 @@ export class ListParoursComponent implements OnInit {
         }
       });
     })
-    this.getAllParours().subscribe((valeurs) => {
-      const tableParours: IAfficheParours[] = [];
+    this.getAllParcours().subscribe((valeurs) => {
+      const tableParcours: IAfficheParcours[] = [];
       valeurs.forEach((x) => {
-        tableParours.push(this.convertParToParAffiche(x));
+        tableParcours.push(this.convertParToParAffiche(x));
       });
-      this.dataSource.data = tableParours;
+      this.dataSource.data = tableParcours;
     });
 
     this.myControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
       if (libelle != undefined && libelle?.length > 0) {
-        this.serviceParour
-          .getParoursBylibelle(libelle.toLowerCase() as string)
+        this.serviceParcours
+          .getParcoursBylibelle(libelle.toLowerCase() as string)
           .subscribe((reponse) => {
             this.filteredOptions = reponse;
           });
@@ -87,8 +87,8 @@ export class ListParoursComponent implements OnInit {
     });
   }
 
-  displayFn(parours: IParours): string {
-    return parours && parours.libelle ? parours.libelle : '';
+  displayFn(parcours: IParcours): string {
+    return parcours && parcours.libelle ? parcours.libelle : '';
   }
 
   ngAfterViewInit() {
@@ -96,15 +96,15 @@ export class ListParoursComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  public rechercherListingParours(option: IParours) {
-    this.serviceParour
-      .getParoursBylibelle(option.libelle.toLowerCase())
+  public rechercherListingParcours(option: IParcours) {
+    this.serviceParcours
+      .getParcoursBylibelle(option.libelle.toLowerCase())
       .subscribe((valeurs) => {
-        const tableParours: IAfficheParours[] = [];
+        const tableParcours: IAfficheParcours[] = [];
         valeurs.forEach((x) => {
-          tableParours.push(this.convertParToParAffiche(x));
+          tableParcours.push(this.convertParToParAffiche(x));
         });
-        this.dataSource.data = tableParours;
+        this.dataSource.data = tableParcours;
       });
   }
 
@@ -116,11 +116,11 @@ export class ListParoursComponent implements OnInit {
     }
   }
 
-  private getAllParours() {
-    return this.serviceParour.getAllParours();
+  private getAllParcours() {
+    return this.serviceParcours.getAllParcours();
   }
 
-  openModalGrapheParcours(parcours: IParours) {
+  openModalGrapheParcours(parcours: IParcours) {
     console.log("parcours graphe :", parcours);
     
     const dialogRef = this.dialogDef.open(ModalGrapheParcoursComponent, {
@@ -138,20 +138,20 @@ export class ListParoursComponent implements OnInit {
         });
   }
 
-  private convertParToParAffiche(x: IParours): IAfficheParours {
-    let afficheParours: IAfficheParours = {
+  private convertParToParAffiche(x: IParcours): IAfficheParcours {
+    let afficheParcours: IAfficheParcours = {
       id: '',
       libelle: '',
       etape: [],
       listeEtape: '',
     };
-    console.log('parc', afficheParours);
-    afficheParours.id = x.id;
-    afficheParours.libelle = x.libelle;
-    afficheParours.etape = x.etape;
+    console.log('parc', afficheParcours);
+    afficheParcours.id = x.id;
+    afficheParcours.libelle = x.libelle;
+    afficheParcours.etape = x.etape;
     x.etape.forEach((e) => {
-      afficheParours.listeEtape += e.libelle + ', ';
+      afficheParcours.listeEtape += e.libelle + ', ';
     });
-    return afficheParours;
+    return afficheParcours;
   }
 }

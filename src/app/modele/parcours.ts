@@ -1,6 +1,6 @@
 import { IEtape } from "./etape";
 
-export interface IParours {
+export interface IParcours {
   id:string,
   libelle:string,
   dateCreation?:Date,

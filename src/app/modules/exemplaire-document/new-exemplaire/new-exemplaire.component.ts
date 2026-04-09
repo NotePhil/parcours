@@ -369,11 +369,11 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     });
 
     this.distributeurControl.valueChanges.subscribe((value) => {
-      const raisonSocial =
-        typeof value === 'string' ? value : value?.raisonSocial;
-      if (raisonSocial != undefined && raisonSocial?.length > 0) {
+      const raisonSociale =
+        typeof value === 'string' ? value : value?.raisonSociale;
+      if (raisonSociale != undefined && raisonSociale?.length > 0) {
         this.serviceDistributeur
-          .getDistributeursByraisonSocial(raisonSocial.toLowerCase() as string)
+          .getDistributeursByraisonSociale(raisonSociale.toLowerCase() as string)
           .subscribe((reponse) => {
             this.filteredDistributeurOptions = reponse;
           });
@@ -385,10 +385,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     });
 
     this.assuranceControl.valueChanges.subscribe((value) => {
-      const raisonSocial =
-        typeof value === 'string' ? value : value?.raisonSocial;
-      if (raisonSocial != undefined && raisonSocial?.length > 0) {
-        this.serviceDistributeur.getDistributeursByraisonSocial(raisonSocial.toLowerCase() as string)
+      const raisonSociale =
+        typeof value === 'string' ? value : value?.raisonSociale;
+      if (raisonSociale != undefined && raisonSociale?.length > 0) {
+        this.serviceDistributeur.getDistributeursByraisonSociale(raisonSociale.toLowerCase() as string)
           .subscribe((reponse) => {
             this.filteredAssuranceOptions = reponse;
           });
@@ -1373,14 +1373,14 @@ calculRemise(mouvement: IMouvement): number {
   }
 
   displayDistributeurFn(distributeur: IDistributeur): string {
-    return distributeur && distributeur.raisonSocial
-      ? distributeur.raisonSocial
+    return distributeur && distributeur.raisonSociale
+      ? distributeur.raisonSociale
       : '';
   }
 
   displayAssuranceFn(assurance: IDistributeur): string {
-    return assurance && assurance.raisonSocial
-      ? assurance.raisonSocial
+    return assurance && assurance.raisonSociale
+      ? assurance.raisonSociale
       : '';
   }
 

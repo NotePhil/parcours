@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListParoursComponent } from './list-parours.component';
+import { NewParcoursComponent } from './new-parcours.component';
 
-describe('ListParoursComponent', () => {
-  let component: ListParoursComponent;
-  let fixture: ComponentFixture<ListParoursComponent>;
+describe('NewParcoursComponent', () => {
+  let component: NewParcoursComponent;
+  let fixture: ComponentFixture<NewParcoursComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListParoursComponent ]
+      declarations: [ NewParcoursComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListParoursComponent);
+    fixture = TestBed.createComponent(NewParcoursComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,10 +9,10 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, EMPTY } from 'rxjs';
 import { IEtape } from 'src/app/modele/etape';
-import { IParours } from 'src/app/modele/parours';
+import { IParcours } from 'src/app/modele/parcours';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { EtapesService } from 'src/app/services/etapes/etapes.service';
-import { ParoursService } from 'src/app/services/parours/parours.service';
+import { ParcoursService } from 'src/app/services/parcours/parcours.service';
 import { v4 as uuidv4 } from 'uuid';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewEtapeComponent } from '../../etape/new-etape/new-etape.component';
@@ -23,11 +23,11 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-new-parours',
-  templateUrl: './new-parours.component.html',
-  styleUrls: ['./new-parours.component.scss'],
+  selector: 'app-new-parcours',
+  templateUrl: './new-parcours.component.html',
+  styleUrls: ['./new-parcours.component.scss'],
 })
-export class NewParoursComponent implements OnInit {
+export class NewParcoursComponent implements OnInit {
   id_etape: string = '0';
   id_service: number = 0;
   libelle_etape: string = '';
@@ -44,7 +44,7 @@ export class NewParoursComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  parours: IParours = {
+  parcours: IParcours = {
     id: '',
     libelle: '',
     etape: [],
@@ -62,7 +62,7 @@ export class NewParoursComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dataEnteteMenuService: DonneesEchangeService,
-    private serviceParours: ParoursService,
+    private serviceParcours: ParcoursService,
     private router: Router,
     private infosPath: ActivatedRoute,
     private datePipe: DatePipe,
@@ -127,23 +127,23 @@ export class NewParoursComponent implements OnInit {
       }
     });
 
-    const idParours: string | null =
-      this.infosPath.snapshot.paramMap.get('idParours');
-    if (idParours) {
+    const idParcours: string | null =
+      this.infosPath.snapshot.paramMap.get('idParcours');
+    if (idParcours) {
       this.btnLibelle = 'Modifier';
       this.titre = 'Service à Modifier';
 
-      this.serviceParours.getParoursById(idParours).subscribe((parours) => {
-        this.parours = parours;
-        this.serviceEtape.getEtapesByParours(idParours).subscribe((etapes) => {
+      this.serviceParcours.getParcoursById(idParcours).subscribe((parcours) => {
+        this.parcours = parcours;
+        this.serviceEtape.getEtapesByParcours(idParcours).subscribe((etapes) => {
           this.etapes = etapes;
           this.dataSource.data = this.etapes.map((etape) =>
             this.convertEtapToEtapAffiche(etape)
           );
         });
         this.forme.setValue({
-          libelle: this.parours.libelle,
-          _etape: this.parours.etape,
+          libelle: this.parcours.libelle,
+          _etape: this.parcours.etape,
         });
       });
     } else {
@@ -244,10 +244,10 @@ export class NewParoursComponent implements OnInit {
     return afficheEtape;
   }
   return(){
-    this.router.navigate(['parcours/parcours/list-parours']);
+    this.router.navigate(['parcours/parcours/list-parcours']);
   }
 
-  onSubmit(paroursInput: any) {
+  onSubmit(parcoursInput: any) {
     this.submitted = true;
     if (
       this.forme.invalid ||
@@ -255,22 +255,22 @@ export class NewParoursComponent implements OnInit {
     )
       return;
 
-    let paroursTemp: IParours = {
+    let parcoursTemp: IParcours = {
       id: uuidv4(),
-      libelle: paroursInput.libelle,
+      libelle: parcoursInput.libelle,
       etape: this.etapes,
     };
 
-    if (this.parours.id != '') {
-      paroursTemp.id = this.parours.id;
+    if (this.parcours.id != '') {
+      parcoursTemp.id = this.parcours.id;
     }
-    this.serviceParours.ajouterParours(paroursTemp).subscribe(() => {
+    this.serviceParcours.ajouterParcours(parcoursTemp).subscribe(() => {
       this.onReturn();
     });
   }
 
   onReturn() {
-    this.router.navigate(['parcours/parcours/list-parours']);
+    this.router.navigate(['parcours/parcours/list-parcours']);
   }
 
   compareItem(etape1: IEtape, etape2: IEtape) {

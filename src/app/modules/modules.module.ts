@@ -20,7 +20,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ExemplaireDocumentModule } from './exemplaire-document/exemplaire-document.module';
 import { FamilleModule } from './famille/famille.module';
 import { MissionsModule } from './missions/missions.module';
-import { ParoursModule } from './parours/parours.module';
+import { ParcoursModule } from './parcours/parcours.module';
 import { PatientsModule } from './patients/patients.module';
 import { PersonnelsModule } from './personnels/personnels.module';
 import { PrecomvtModule } from './precomvt/precomvt.module';
@@ -63,7 +63,7 @@ import { CaissesModule } from './caisses/caisses.module';
     RoleModule,
     ValidationModule,
     EtapeModule,
-    ParoursModule,
+    ParcoursModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemDBService, {
       dataEncapsulation: false,
       passThruUnknownUrl: true,

@@ -185,7 +185,7 @@
               </label>
               <div class="matSelectElement">
                   <mat-select formControlName="distributeur" multiple [compareWith]="compareItem1">
-                    <mat-option *ngFor="let membre of distributeurs$ |async" [value]="membre">{{membre.raisonSocial}}</mat-option>
+                    <mat-option *ngFor="let membre of distributeurs$ |async" [value]="membre">{{membre.raisonSociale}}</mat-option>
                   </mat-select>
               </div>
             </div>

@@ -74,9 +74,8 @@ export class NewCompteComponent {
           libelle: this.compte?.libelle,
           solde: this.compte?.solde,
           montantDecouvert: this.compte?.montantDecouvertMax,
-          beneficiaire: null,
+          beneficiaire: this.compte.beneficiaire,
         });
-        if(this.compte.beneficiaire) this.forme.controls['beneficiaire'].setValue(this.compte.beneficiaire);
       });
     }
     this.titre = this.dataEnteteMenuService.dataEnteteMenu;

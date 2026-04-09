@@ -39,7 +39,7 @@
                   </ng-container>
 
                   <!-- type Column -->
-                  <ng-container matColumnDef="type">
+                  <ng-container matColumnDef="typeVote">
                     <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"validation.form.label4" | translate}}</th>
                     <td class="containCell" mat-cell *matCellDef="let element"> {{element.typeVote}} </td>
                   </ng-container>
@@ -48,6 +48,12 @@
                   <ng-container matColumnDef="durée">
                     <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"validation.form.label5" | translate}}</th>
                     <td class="containCell" mat-cell *matCellDef="let element"> {{element.dureeVote}} </td>
+                  </ng-container>
+
+                  <!-- quota Column -->
+                  <ng-container matColumnDef="quota">
+                    <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header>{{"validation.form.label9" | translate}}</th>
+                    <td class="containCell" mat-cell *matCellDef="let element"> {{element.quota}} </td>
                   </ng-container>
 
                   <!-- role Column -->
@@ -88,11 +94,12 @@
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
-                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                
+              </div>
+               <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                 showFirstLastButtons
                 aria-label="Select page of periodic elements">
                 </mat-paginator>
-              </div>
   
         </div>
   

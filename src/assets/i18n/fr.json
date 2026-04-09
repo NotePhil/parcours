@@ -75,6 +75,9 @@
       "label5": "Duree vote",
       "label6": "role",
       "label7": "Type de validation",
+      "label8": "en jours",
+      "label9": "Quota",
+      "label10": "en %",
       "text1": "Champ Obligatoire"
     }
   },
@@ -538,7 +541,7 @@
     "title": "listing ",
     "search-bar": "Rechercher",
     "table2": {
-      "title1": "raisonSocial",
+      "title1": "raisonSociale",
       "title2": "adresse",
       "title3": "etat",
       "title4": "telephone",
@@ -706,7 +709,7 @@
       }
     }
   },
-  "parours": {
+  "parcours": {
     "table": {
       "title": "Ajouter ",
       "title1": "libelle",

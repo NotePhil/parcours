@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { IEtape } from 'src/app/modele/etape';
 import { IDocument } from 'src/app/modele/document';
 import { IDocEtats } from 'src/app/modele/doc-etats';
-import { IParours } from 'src/app/modele/parours';
+import { IParcours } from 'src/app/modele/parcours';
 import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
@@ -50,10 +50,10 @@ export class EtapesService {
     });
   }
 
-  getEtapesByParours(paroursId: string): Observable<IEtape[]> {
+  getEtapesByParcours(parcoursId: string): Observable<IEtape[]> {
     return this.http
-      .get<IParours>(this.param.api+ 'parours/${paroursId}')
-      .pipe(map((parours) => parours.etape));
+      .get<IParcours>(this.param.api+ 'parcours/${parcoursId}')
+      .pipe(map((parcours) => parcours.etape));
   }
 
   getDocumentsByEtapeId(etapeId: string): Observable<IDocument[]> {

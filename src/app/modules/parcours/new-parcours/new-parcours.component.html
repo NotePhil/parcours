@@ -1,7 +1,7 @@
 <div id="mainSection">
   <div class="card block" id="top2">
     <div class="card-header" class="entete pt-4 pb-4">
-      {{"parours.table.title" | translate}} {{titre}}
+      {{"parcours.table.title" | translate}} {{titre}}
     </div>
     <div class="card-body">
       <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme">
@@ -11,13 +11,13 @@
               <div>
                 <div class="champs">
                   <label for="libelle" class="label">
-                    {{"parours.table.title1" | translate}}<span aria-label="required"><sup>*</sup></span>
+                    {{"parcours.table.title1" | translate}}<span aria-label="required"><sup>*</sup></span>
                   </label>
                   <input type="text" formControlName="libelle" name="libelle" id="libelle" placeholder="libelle"
                     class="form-control" required>
                 </div>
                 <div *ngIf="submitted && f['libelle'].errors" class="alert alert-danger">
-                  <div *ngIf="f['libelle'].errors['required']">{{"parours.form.text1" | translate}}</div>
+                  <div *ngIf="f['libelle'].errors['required']">{{"parcours.form.text1" | translate}}</div>
                 </div>
 
               </div>
@@ -26,7 +26,7 @@
             <div class="form-group">
               <div class="champs">
                 <label for="_etape" class="label">
-                  {{"parours.table.title2" | translate}}<span aria-label="required"><sup>*</sup></span>
+                  {{"parcours.table.title2" | translate}}<span aria-label="required"><sup>*</sup></span>
                 </label>
                 <div class="w-100">
 <!-- Ouvrir le formulair de selection des documents -->
@@ -44,7 +44,7 @@
                 </div>
               </div>
               <div *ngIf="submitted && f['_etape'].value.length<1" class="alert alert-danger blockErreur">
-                <div>{{"parours.form.text1" | translate}}</div>
+                <div>{{"parcours.form.text1" | translate}}</div>
               </div>
             </div>
 

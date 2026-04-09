@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewEtapeComponent } from './new-etape/new-etape.component';
-import { NewParoursComponent } from '../parours/new-parours/new-parours.component';
+import { NewParcoursComponent } from '../parcours/new-parcours/new-parcours.component';
 import { CommonModule } from '@angular/common';
 
 const routesEtapes: Routes = [
@@ -13,7 +13,7 @@ const routesEtapes: Routes = [
   {
     path: 'parcours-nouveau',
     title: 'Enregistrer un nouveau parcours',
-    component: NewParoursComponent,
+    component: NewParcoursComponent,
   },
   {
     path: 'etape-nouvelle/:idEtape',
