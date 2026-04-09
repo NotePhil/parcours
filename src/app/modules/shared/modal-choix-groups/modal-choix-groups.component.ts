@@ -49,7 +49,7 @@ export class ModalChoixGroupsComponent implements OnInit {
       }
     );
 
-    this.userService.getUtilisateurByMail(this.person!.email).subscribe((res) => {
+    this.userService.getUtilisateurByMail(this.person!.mail).subscribe((res) => {
       if (res) {
         this.forme.setValue({
           groupe: res.groupe
@@ -71,7 +71,7 @@ export class ModalChoixGroupsComponent implements OnInit {
 
     if(this.forme.invalid) return;
 
-    this.userService.getUtilisateurByMail(this.person!.email).subscribe((res) => {
+    this.userService.getUtilisateurByMail(this.person!.mail).subscribe((res) => {
 
       if (res) {
         let user: IUtilisateurs = {
