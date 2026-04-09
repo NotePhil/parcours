@@ -13,7 +13,7 @@ const routes = [
     component: NewPersonnelComponent,
   },
   {
-    path: 'update-personnel/:idPersonnel',
+    path: 'nouveau-personnel/:idPersonnel',
     title: 'Modifier un personnel',
     component: NewPersonnelComponent,
   },
