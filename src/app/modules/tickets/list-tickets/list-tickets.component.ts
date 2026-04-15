@@ -69,15 +69,17 @@ export class ListTicketsComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.actionsview.langueData$.subscribe(data => {
-      this.receivedActions$ = this.actionsview.getActions();
-      this.receivedActions$.subscribe(a => {
-        if (a != null) {
-          this.actions = a;
-          console.log("Actions view :", a, this.receivedActions$);
-        }
-      });
-    })
+    this.receivedActions$ = this.actionsview.getActions();
+
+    this.receivedActions$.subscribe(a => {
+
+      if (a != null) {
+
+        this.actions = a;
+
+      }
+
+    });
     this.tickets$ = this.getAllTickets();
     this.ticketImpression = {
       id: '1',

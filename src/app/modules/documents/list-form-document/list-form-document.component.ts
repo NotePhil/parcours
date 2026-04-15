@@ -71,15 +71,17 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.actionsview.langueData$.subscribe(data => {
-      this.receivedActions$ = this.actionsview.getActions();
-      this.receivedActions$.subscribe(a => {
-        if (a != null) {
-          this.actions = a;
-          console.log("Actions view :", a, this.receivedActions$);
-        }
-      });
-    })
+    this.receivedActions$ = this.actionsview.getActions();
+
+    this.receivedActions$.subscribe(a => {
+
+      if (a != null) {
+
+        this.actions = a;
+
+      }
+
+    });
     this.getAllDocuments().subscribe(valeurs => {
      const tableDocuments : IAfficheDocument[] = [];
 

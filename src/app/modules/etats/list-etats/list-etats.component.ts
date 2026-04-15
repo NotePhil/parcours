@@ -43,15 +43,17 @@ export class ListEtatsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.services$ = this.getAllEtats();
-    this.actionsview.langueData$.subscribe(data => {
-      this.receivedActions$ = this.actionsview.getActions();
-      this.receivedActions$.subscribe(a => {
-        if (a != null) {
-          this.actions = a;
-          console.log("Actions view :", a, this.receivedActions$);
-        }
-      });
-    })
+    this.receivedActions$ = this.actionsview.getActions();
+
+    this.receivedActions$.subscribe(a => {
+
+      if (a != null) {
+
+        this.actions = a;
+
+      }
+
+    });
 
     this.getAllEtats().subscribe(valeurs => {
       this.dataSource.data = valeurs;

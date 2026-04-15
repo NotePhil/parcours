@@ -45,15 +45,17 @@ export class ListPromoComponent implements OnInit, AfterViewInit {
       this.dataSource.data = valeurs;
       this.filteredOptions = valeurs;
     });
-    this.actionsview.langueData$.subscribe(data => {
-      this.receivedActions$ = this.actionsview.getActions();
-      this.receivedActions$.subscribe(a => {
-        if (a != null) {
-          this.actions = a;
-          console.log("Actions view :", a, this.receivedActions$);
-        }
-      });
-    })
+    this.receivedActions$ = this.actionsview.getActions();
+
+    this.receivedActions$.subscribe(a => {
+
+      if (a != null) {
+
+        this.actions = a;
+
+      }
+
+    });
 
     this.myControl.valueChanges.subscribe(value => {
       const codeUnique = typeof value === 'string' ? value : value?.codeUnique;

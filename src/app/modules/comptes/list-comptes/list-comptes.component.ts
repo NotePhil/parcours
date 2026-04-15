@@ -49,15 +49,22 @@ export class ListComptesComponent implements OnInit {
         this.filteredOptions = valeurs
     });
     
-    this.actionsview.langueData$.subscribe(data => {
-      this.receivedActions$ = this.actionsview.getActions();
-      this.receivedActions$.subscribe(a => {
-        if (a != null) {
-          this.actions = a;
-          console.log("Actions view :", a, this.receivedActions$);
-        }
-      });
-    })
+    this.receivedActions$ = this.actionsview.getActions();
+
+    
+    this.receivedActions$.subscribe(a => {
+
+    
+      if (a != null) {
+
+    
+        this.actions = a;
+
+    
+      }
+
+    
+    });
 
     this.myControl.valueChanges.subscribe(
       value => {

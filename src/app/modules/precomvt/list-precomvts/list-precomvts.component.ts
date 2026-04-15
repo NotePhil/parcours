@@ -44,15 +44,17 @@ export class ListPrecomvtsComponent implements OnInit {
       private dialogDef: MatDialog) { }
 
     ngOnInit(): void {
-      this.actionsview.langueData$.subscribe(data => {
-        this.receivedActions$ = this.actionsview.getActions();
-        this.receivedActions$.subscribe(a => {
-          if (a != null) {
-            this.actions = a;
-            console.log("Actions view :", a, this.receivedActions$);
-          }
-        });
-      })
+      this.receivedActions$ = this.actionsview.getActions();
+
+      this.receivedActions$.subscribe(a => {
+
+        if (a != null) {
+
+          this.actions = a;
+
+        }
+
+      });
       this.getAllPrecomvts().subscribe((valeurs: IPrecoMvt[]) => {
         this.dataSource.data = valeurs;
         this.filteredOptions = valeurs

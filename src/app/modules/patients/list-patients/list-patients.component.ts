@@ -90,15 +90,17 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   scan_val: any | undefined;
 
   ngOnInit(): void {
-    this.actionsview.langueData$.subscribe(data => {
-      this.receivedActions$ = this.actionsview.getActions();
-      this.receivedActions$.subscribe(a => {
-        if (a != null) {
-          this.actions = a;
-          console.log("Actions view :", a, this.receivedActions$);
-        }
-      });
-    })
+    this.receivedActions$ = this.actionsview.getActions();
+
+    this.receivedActions$.subscribe(a => {
+
+      if (a != null) {
+
+        this.actions = a;
+
+      }
+
+    });
     this.barService.getCode().subscribe((dt) => {
       this.scan_val = dt;
       this.myControl.setValue(this.scan_val); // Définit la valeur initiale dans la barre de recherche

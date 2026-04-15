@@ -45,15 +45,17 @@ export class ListServicesComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.services$ = this.getAllServices();
-    this.actionsview.langueData$.subscribe(data => {
-      this.receivedActions$ = this.actionsview.getActions();
-      this.receivedActions$.subscribe(a => {
-        if (a != null) {
-          this.actions = a;
-          console.log("Actions view :", a, this.receivedActions$);
-        }
-      });
-    })
+    this.receivedActions$ = this.actionsview.getActions();
+
+    this.receivedActions$.subscribe(a => {
+
+      if (a != null) {
+
+        this.actions = a;
+
+      }
+
+    });
 
     this.getAllServices().subscribe(valeurs => {
       this.dataSource.data = valeurs;
