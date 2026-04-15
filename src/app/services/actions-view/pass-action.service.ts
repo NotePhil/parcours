@@ -8,23 +8,30 @@ import { IElements } from 'src/app/modele/elements';
 })
 export class PassActionService {
 
+  private langueDataSubject = new BehaviorSubject<string>(localStorage.getItem('langue') || 'fr');
+  langueData$: Observable<string> = this.langueDataSubject.asObservable();
+
+  private actionsSubject = new BehaviorSubject<IElements[]>(this.getInitialActions());
+  actions$: Observable<IElements[]> = this.actionsSubject.asObservable();
+
   constructor() { }
 
-  private langueDataSubject = new BehaviorSubject<string>('fr' || localStorage.getItem('langue'));
-  langueData$: Observable<string> = this.langueDataSubject.asObservable();
+  private getInitialActions(): IElements[] {
+    const data = localStorage.getItem('actions');
+    return data ? JSON.parse(data) : [];
+  }
 
   updateLangueData(langue: string) {
     this.langueDataSubject.next(langue);
+    localStorage.setItem('langue', langue);
   }
 
   setActions(actions: IElements[]) {
     localStorage.setItem('actions', JSON.stringify(actions));
+    this.actionsSubject.next(actions);
   }
 
   getActions(): Observable<IElements[]> {
-    const data = localStorage.getItem('actions');
-    let parentDataSubject = new BehaviorSubject<IElements[]>(JSON.parse(data!));
-    let parentData$ = parentDataSubject.asObservable();
-    return parentData$;
+    return this.actions$;
   }
 }

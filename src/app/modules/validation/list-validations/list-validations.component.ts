@@ -49,15 +49,13 @@ export class ListValidationsComponent implements OnInit {
       this.dataSource.data = valeurs;
           console.log("this.dataSource.data :", this.dataSource.data);
     });
-    this.actionsview.langueData$.subscribe(data => {
-      this.receivedActions$ = this.actionsview.getActions();
-      this.receivedActions$.subscribe(a => {
-        if (a != null) {
-          this.actions = a;
-          console.log("Actions view :", a, this.receivedActions$);
-        }
-      });
-    })
+    this.receivedActions$ = this.actionsview.getActions();
+    this.receivedActions$.subscribe(a => {
+      if (a != null) {
+        this.actions = a;
+        console.log("Actions view :", a);
+      }
+    });
 
     this.myControl.valueChanges.subscribe(
       value => {
