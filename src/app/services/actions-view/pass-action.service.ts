@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IElements } from 'src/app/modele/elements';
 
 @Injectable({
@@ -18,7 +18,18 @@ export class PassActionService {
 
   private getInitialActions(): IElements[] {
     const data = localStorage.getItem('actions');
-    return data ? JSON.parse(data) : [];
+    console.log("PassActionService - Initialisation depuis le localStorage. Data brute :", data);
+    try {
+      if (data && data !== 'undefined' && data !== 'null') {
+        const parsed = JSON.parse(data);
+        console.log("PassActionService - Data parsée proprement :", parsed);
+        return parsed;
+      }
+    } catch (e) {
+      console.error("PassActionService - Erreur de parsing :", e);
+    }
+    console.warn("PassActionService - Fallback : retour d'un tableau vide []");
+    return [];
   }
 
   updateLangueData(langue: string) {
@@ -27,11 +38,18 @@ export class PassActionService {
   }
 
   setActions(actions: IElements[]) {
-    localStorage.setItem('actions', JSON.stringify(actions));
-    this.actionsSubject.next(actions);
+    console.log("PassActionService - setActions appelé avec :", actions);
+    if (actions) {
+      localStorage.setItem('actions', JSON.stringify(actions));
+      this.actionsSubject.next(actions);
+    } else {
+      localStorage.setItem('actions', '[]');
+      this.actionsSubject.next([]);
+    }
   }
 
   getActions(): Observable<IElements[]> {
+    console.log("PassActionService - getActions() appelé. Retourne le BehaviorSubject.");
     return this.actions$;
   }
 }
