@@ -7,8 +7,8 @@ import { DonneesEchangeService } from '../../services/donnees-echange/donnees-ec
 import { AuthentificationService } from 'src/app/services/authentifications/authentification.service';
 import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
 import { IElements } from 'src/app/modele/elements';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -20,7 +20,27 @@ export class MenuComponent implements OnInit, OnChanges {
   @Input()
   langueParent :string = 'fr';
   userId !:any;
-  constructor(private menuService:MenusService,private dataEnteteMenuService:DonneesEchangeService, private authService: AuthentificationService, private actionView: PassActionService, private route: ActivatedRoute ) { }
+  constructor(private menuService:MenusService,private dataEnteteMenuService:DonneesEchangeService, private authService: AuthentificationService, private actionView: PassActionService, private route: ActivatedRoute, private router: Router ) { 
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.updateActionsFromUrl(event.urlAfterRedirects);
+    });
+  }
+
+  private updateActionsFromUrl(url: string) {
+    if (this.fonctionnalites && this.fonctionnalites.length > 0) {
+      for (const menu of this.fonctionnalites) {
+        if (menu.elements) {
+          const matchedElement = menu.elements.find(elt => elt.lien && url.includes(elt.lien));
+          if (matchedElement) {
+            this.sendAction(matchedElement.action!, matchedElement.lien!);
+            return; // on a trouvé, on sort
+          }
+        }
+      }
+    }
+  }
 
   ngOnInit(): void {
     if(localStorage.getItem("currentUser")!=null){
@@ -36,6 +56,7 @@ export class MenuComponent implements OnInit, OnChanges {
       
       if(x!=null && x.fonctionnalites!=null){
         this.fonctionnalites = x.fonctionnalites;
+        this.updateActionsFromUrl(this.router.url);
       }
     });
   }
