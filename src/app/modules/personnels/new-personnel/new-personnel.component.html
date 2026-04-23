@@ -86,10 +86,10 @@
                                     <label for="email" class="label" >
                                         {{"personnel.table.title5" | translate}}<span style="color: red;" aria-label="required">*</span>
                                     </label>
-                                    <input type="email" formControlName="email"  name="email"  id="email" placeholder="{{'personnel.table.title5' | translate}}"   required  class="form-control" >
+                                    <input type="email" formControlName="mail"  name="mail"  id="mail" placeholder="{{'personnel.table.title5' | translate}}"   required  class="form-control" >
                                 </div>
-                                <div  *ngIf="submitted && f['email'].errors"  class="alert alert-danger" >
-                                <div *ngIf="f['email'].errors['required']">{{'personnel.form.text4' | translate}}</div>
+                                <div  *ngIf="submitted && f['mail'].errors"  class="alert alert-danger" >
+                                <div *ngIf="f['mail'].errors['required']">{{'personnel.form.text4' | translate}}</div>
                                 </div>
                             </div>
                         </div>
