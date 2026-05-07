@@ -78,7 +78,7 @@ export class NewServicesComponent implements OnInit {
 
     if(this.service != undefined){
       serviceTemp.id = this.service.id
-      serviceTemp.codeUnique = this.service.codeUnique
+      //serviceTemp.codeUnique = this.service.codeUnique
     }
 
     this.serviceService.ajouterService(serviceTemp).subscribe(
