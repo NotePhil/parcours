@@ -40,7 +40,7 @@ export class ModalRoleValidationComponent implements OnInit{
     this.validationCourente = this.donneeRoleValidationService.dataRoleValidation
     
     if (this.validationCourente != undefined) {
-      this.rechercherPersonnelDuRole(this.validationCourente.role.id).subscribe(valeurs => {
+      this.rechercherPersonnelDuRole(this.validationCourente.role.id!).subscribe(valeurs => {
         this.personnelRole = valeurs
       });
     }
@@ -82,12 +82,12 @@ export class ModalRoleValidationComponent implements OnInit{
 
   public rechercherListingRole(option: IValidation){
     this.validationCourente = option
-    this.serviceValidation.getValidationById(option.id).subscribe(
+    this.serviceValidation.getValidationById(option.id!).subscribe(
         valeurs => {
           this.donneeRoleValidationService.dataRoleValidation = valeurs
         }
     )
-    this.rechercherPersonnelDuRole(option.role.id).subscribe(valeurs => {
+    this.rechercherPersonnelDuRole(option.role.id!).subscribe(valeurs => {
       this.personnelRole = valeurs
     });
   }

@@ -1,5 +1,5 @@
 export interface IPatient {
-  id: string;
+  id?: string;
   nom: string;
   prenom?: string;
   sexe?: string;

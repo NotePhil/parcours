@@ -32,7 +32,7 @@ export class PromoService {
 
   getPromoByIdAssurance(idAssurance: string): Observable<IPromo> {
     return this.getAllPromos().pipe(
-      map(x => x.find(p => p.emetteur.id.toLowerCase() == idAssurance) as IPromo)
+      map(x => x.find(p => p.emetteur.id!.toLowerCase() == idAssurance) as IPromo)
     );
   }
 

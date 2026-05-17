@@ -22,6 +22,7 @@ import jsPDF from 'jspdf';
 import { IPatient } from 'src/app/modele/Patient';
 import { ModalMouvementCaisseCompteComponent } from '../../shared/modal-mouvement-caisse-compte/modal-mouvement-caisse-compte.component';
 import { float } from '@zxing/library/esm/customTypings';
+import { NextEtats } from 'src/app/modele/nextEtats';
 
 @Component({
   selector: 'app-previsualisation-exemplaire',
@@ -85,7 +86,7 @@ export class PrevisualisationExemplaireComponent implements OnInit {
   EtatsSuivant: any;
   selectedEtatsMap: any;
   TabOrdre: any;
-  NextEtats: { id: any; ordre: number; etat: any; dateCreation: Date; } | undefined;
+  nextEtats: NextEtats | undefined;
   ExempleOrdre: any;
   error!: string;
   courant: string = '';
@@ -134,7 +135,7 @@ export class PrevisualisationExemplaireComponent implements OnInit {
                 this.req = this.reponse.sol;
                 if (this.reponse.ele != undefined && this.reponse.ele.etat != undefined) {
                   this.courant = this.reponse.ele.etat.libelle;
-                  this.rechercheDocEtatCourant(this.reponse.ele.etat.id)
+                  this.rechercheDocEtatCourant(this.reponse.ele.etat.id!)
                 }
               }
             }
@@ -319,20 +320,19 @@ export class PrevisualisationExemplaireComponent implements OnInit {
             ordre = this.TabOrdre[this.TabOrdre.length - 1].ordre;
           }
 
-          this.NextEtats = {
-            id: uuidv4(),
+          this.nextEtats ={
             ordre: ordre + 1,
             etat: this.selectedEtatsMap!.etat,
             dateCreation: new Date(),
           };
 
-          this.TabOrdre.push(this.NextEtats);
+          this.TabOrdre.push(this.nextEtats);
           this.ExempleOrdre = this.TabOrdre;
 
-          let exemplaireTemp: IExemplaireDocument = {
-            id: uuidv4(),
+            let exemplaireTemp: IExemplaireDocument = {
+            // id optional
             code: this.exemplaire.code,
-            idDocument: this.exemplaire.id,
+            idDocument: this.exemplaire.id!,
             titre: this.exemplaire.titre,
             description: this.exemplaire.description,
             missions: this.exemplaire.missions,
@@ -355,7 +355,7 @@ export class PrevisualisationExemplaireComponent implements OnInit {
             beneficiaireObligatoire: this.exemplaire.beneficiaireObligatoire,
             mouvementDeCaisse: this.exemplaire.mouvementDeCaisse
           };
-          this.rechercheDocEtatCourant(this.NextEtats.etat.id)
+          this.rechercheDocEtatCourant(this.nextEtats.etat.id!)
           
           
           if (this.exemplaire.id != '') {
@@ -387,10 +387,10 @@ export class PrevisualisationExemplaireComponent implements OnInit {
   }
 
   orderSuivant() {
-    let exemplaireTemp: IExemplaireDocument = {
-      id: uuidv4(),
+  let exemplaireTemp: IExemplaireDocument = {
+      // id optional
       code: this.exemplaire.code,
-      idDocument: this.exemplaire.id,
+  idDocument: this.exemplaire.id!,
       titre: this.exemplaire.titre,
       description: this.exemplaire.description,
       missions: this.exemplaire.missions,
@@ -498,7 +498,7 @@ export class PrevisualisationExemplaireComponent implements OnInit {
                               <div class="valAttribut">
                                 <span> ${
                                   this.rechercherValeurParIdAttribut(
-                                  attributParCategorie.attribut.id,
+                                  attributParCategorie.attribut.id!,
                                   attributParCategorie.attribut.type_attribut
                                   )
                                   }

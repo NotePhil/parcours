@@ -182,7 +182,7 @@ export class NewParcoursComponent implements OnInit {
       .subscribe((etapes) => {
         if (etapes.length > 0) {
           const etape = etapes[0];
-          this.serviceEtape.getEtapeById(etape.id).subscribe((documents) => {
+    this.serviceEtape.getEtapeById(etape.id!).subscribe((documents) => {
             const tableDocuments: IAfficheEtape[] = [];
             tableDocuments.push(this.convertEtapToEtapAffiche(etape));
             this.dataSource.data = tableDocuments;
@@ -256,7 +256,7 @@ export class NewParcoursComponent implements OnInit {
       return;
 
     let parcoursTemp: IParcours = {
-      id: uuidv4(),
+      // id optional
       libelle: parcoursInput.libelle,
       etape: this.etapes,
     };

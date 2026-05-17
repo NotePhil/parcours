@@ -38,7 +38,7 @@ export class MouvementCaisseService {
     return this.http.get<IMouvementCaisses[]>('api/mvtCaisses').pipe(
       map(x=>
         {
-          return x.filter(e=> e.exemplaire!.id.toLowerCase() == idDoc)
+          return x.filter(e=> e.exemplaire!.id!.toLowerCase() == idDoc)
         })
     );        
   }

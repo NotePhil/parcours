@@ -1,5 +1,5 @@
 export interface IDistributeur {
-  id:string,
+  id?: string,
   raisonSociale:string,
   type : string,
   adresse:string,

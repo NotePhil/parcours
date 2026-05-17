@@ -137,7 +137,7 @@ export class ModalRessourceAttributsComponent implements OnInit {
   loadSelectedAttributes() {
     this.selectedAttributeIds =
       this.donneeDocCatService.dataDocumentRessourcesAttributs.map(
-        (attr: { attributs: IAttributs; valeur: string }) => attr.attributs.id
+        (attr: { attributs: IAttributs; valeur: string }) => attr.attributs.id!
       );
   }
 
@@ -145,13 +145,13 @@ export class ModalRessourceAttributsComponent implements OnInit {
     let listIdAttTemp: string[] = [];
     this.ELEMENTS_TABLE_ATTRIBUTS.forEach((ele: any) => {
       console.log('element :', ele.attributs.id);
-      listIdAttTemp.push(ele.attributs.id);
+      listIdAttTemp.push(ele.attributs.id!);
     });
 
     if (event.target.checked) {
       console.log('listtemp :', listIdAttTemp, element.id);
 
-      if (!listIdAttTemp.includes(element.id)) {
+      if (!listIdAttTemp.includes(element.id!)) {
         this.ajoutSelectionAttribut(element);
         this.datas.push({ id: element.id, event: event });
         this.verif = false;

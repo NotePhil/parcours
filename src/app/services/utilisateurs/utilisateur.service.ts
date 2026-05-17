@@ -37,7 +37,7 @@ export class UtilisateurService {
   getUsersByName(nom: string): Observable<IUtilisateurs[]> {
     return this.http.get<IUtilisateurs[]>('api/utilisateurs').pipe(
       map((x) => {
-        return x.filter((p) => p.user.nom.toLowerCase().startsWith(nom));
+        return x.filter((p) => p.user!.nom.toLowerCase().startsWith(nom));
       })
     );
   }
@@ -50,8 +50,8 @@ export class UtilisateurService {
         // Filter by ID or name
         return patients.filter(
           (p) =>
-            p.user.id.toString().startsWith(query) ||
-            p.user.nom.toLowerCase().startsWith(lowerCaseQuery)
+            p.user!.id!.toString().startsWith(query) ||
+            p.user!.nom.toLowerCase().startsWith(lowerCaseQuery)
         );
       })
     );
@@ -68,7 +68,7 @@ export class UtilisateurService {
   getUtilisateursById(id: string): Observable<IUtilisateurs[]> {
     return this.http.get<IUtilisateurs[]>('api/utilisateurs').pipe(
       map((x) => {
-        return x.filter((p) => p.id.toLowerCase().startsWith(id));
+        return x.filter((p) => p.id!.toLowerCase().startsWith(id));
       })
     );
   }
@@ -76,7 +76,7 @@ export class UtilisateurService {
   getUserById(id: string): Observable<IUtilisateurs> {
     return this.getAllUtilisateurs().pipe(
       map((x) => {
-        return x.find((p) => p.user.id.toLowerCase().startsWith(id)) as IUtilisateurs;
+        return x.find((p) => p.user!.id!.toLowerCase().startsWith(id)) as IUtilisateurs;
       })
     );
   }

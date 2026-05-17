@@ -75,7 +75,7 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
     let indexDocumentCourant : number = 0
     this.donneeExemplaireDocService.dataDocumentSousDocuments?.forEach(
       (element: IExemplaireDocument) => {
-        listidDocumentTemp.push(element.id)
+  listidDocumentTemp.push(element.id!)
         positionsDocument.set(element.id, indexDocumentCourant++)
     });
     if (event.target.checked) {

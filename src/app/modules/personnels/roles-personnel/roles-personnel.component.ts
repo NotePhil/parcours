@@ -142,7 +142,7 @@ export class RolesPersonnelComponent implements OnInit {
           dateFin: this.forme.value.dateFin,
         };
 
-        if (this.verificationValeursDate(element.id, newdates, -2)) {
+        if (this.verificationValeursDate(element.id!, newdates, -2)) {
           this.ajoutSelectionRole(element);
           this.datas.push({ id: element.id, event: event });
           this.verif = false;

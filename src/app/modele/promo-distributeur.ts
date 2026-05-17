@@ -5,7 +5,7 @@ import { IRessource } from './ressource';
 
 export interface IPromo {
     emetteur: IDistributeur;
-    id: string;
+  id?: string;
     dateDebut: Date;
     dateFin: Date;
     codeUnique: string;

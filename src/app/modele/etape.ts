@@ -2,7 +2,7 @@ import { IDocument } from "./document";
 
 
 export interface IEtape {
-  id:string,
+  id?: string,
   etat:boolean,
   libelle:string,
   document: IDocument[],

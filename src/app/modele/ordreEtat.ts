@@ -1,7 +1,7 @@
 import { IEtats } from "./etats";
 
 export interface IOrdreEtat {
-    id: string,
+    id?: string,
     ordre : number,
     etat : IEtats,
     dateCreation: Date

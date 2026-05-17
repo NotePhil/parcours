@@ -63,7 +63,7 @@ export class NewFamilleComponent implements OnInit {
 
 
     let familleTemp : IFamille={
-      id: uuidv4(),
+      // id optional
       libelle:familleInput.libelle,
       description:familleInput.description,
       etat:familleInput.etat,

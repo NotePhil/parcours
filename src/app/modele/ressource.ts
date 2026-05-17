@@ -3,7 +3,7 @@ import { IFamille } from "./famille";
 
 
 export interface IRessource {
-    id:string,
+    id?: string,
     libelle:string,
     etat:boolean,
     seuil:number,

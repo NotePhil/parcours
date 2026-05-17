@@ -3,7 +3,7 @@ import { IPromo } from "./promo-distributeur";
 import { IRessource } from "./ressource";
 
 export interface IMouvement {
-    id:string,
+    id?: string,
     description:string,
     quantite:number,
     prix:number,

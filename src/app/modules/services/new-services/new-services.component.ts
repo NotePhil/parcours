@@ -64,7 +64,6 @@ export class NewServicesComponent implements OnInit {
     if(this.forme.invalid) return;
 
     let serviceTemp : IService={
-      id: uuidv4(),
       libelle: serviceInput.libelle,
       etat: serviceInput.etat,
       codeUnique: serviceInput.codeUnique,

@@ -3,7 +3,7 @@ import { IValidation } from './validation';
 import { IEtape } from './etape';
 
 export interface IDocEtats {
-  id: string;
+  id?: string;
   etat: IEtats;
   ordre: number;
   dateCreation: Date;

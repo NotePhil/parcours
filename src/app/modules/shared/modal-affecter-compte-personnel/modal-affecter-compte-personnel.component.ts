@@ -46,7 +46,7 @@ export class ModalAffecterComptePersonnelComponent {
       }
     );
 
-    this.compteService.getCompteById(this.compte!.id).subscribe((res) => {
+  this.compteService.getCompteById(this.compte!.id!).subscribe((res) => {
       if (res) {
         this.forme.setValue({
           personnel: res.beneficiaire
@@ -68,7 +68,7 @@ export class ModalAffecterComptePersonnelComponent {
 
     if(this.forme.invalid) return;
 
-    this.compteService.getCompteById(this.compte!.id).subscribe((res) => {
+  this.compteService.getCompteById(this.compte!.id!).subscribe((res) => {
 
         let compte: IComptes = {
           id: res.id,

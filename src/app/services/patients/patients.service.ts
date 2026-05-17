@@ -45,7 +45,7 @@ export class PatientsService {
         // Filtrer par ID ou nom
         return patients.filter(
           (p) =>
-            p.id.toString().startsWith(query) ||
+            p.id!.toString().startsWith(query) ||
             p.nom.toLowerCase().startsWith(lowerCaseQuery)
         );
       })
@@ -64,7 +64,7 @@ export class PatientsService {
 
         // Get all patients who have matchingPatients in their personnesRatachees
         const attachedPatients$ = matchingPatients.map((patient) =>
-          this.getPatientsWithPersonnesRatachees(patient.id)
+          this.getPatientsWithPersonnesRatachees(patient.id!)
         );
 
         return forkJoin([of(matchingPatients), ...attachedPatients$]).pipe(
@@ -109,7 +109,7 @@ getPatientpersonnesRatacheess(id: string): Observable<IPatient[]> {
     switchMap((patient) => {
       if (patient.personnesRatachees && patient.personnesRatachees.length > 0) {
         const personnesRatacheessRequests = patient.personnesRatachees.map((person) =>
-          this.getPatientById(person.id)
+          this.getPatientById(person.id!)
         );
         return forkJoin(personnesRatacheessRequests);
       } else {

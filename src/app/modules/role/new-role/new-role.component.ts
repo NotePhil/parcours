@@ -63,7 +63,7 @@ export class NewRoleComponent implements OnInit {
     if(this.forme.invalid) return;
 
     let roleTemp : IRole={
-      id: uuidv4(),
+      // id is optional now; it will be set by the backend if needed
       titre:roleInput.titre,
       description:roleInput.description,
       etat:roleInput.etat,

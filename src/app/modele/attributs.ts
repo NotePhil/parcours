@@ -2,7 +2,7 @@ import { IType } from "./type";
 
 
 export interface IAttributs {
-    id:string,
+    id?: string,
     titre:string,
     description:string,
     etat:boolean,

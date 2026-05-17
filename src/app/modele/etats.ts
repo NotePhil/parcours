@@ -1,5 +1,5 @@
 export interface IEtats {
-    id: string,
+    id?: string,
     libelle : string,
     description : string,
     dateCreation: Date

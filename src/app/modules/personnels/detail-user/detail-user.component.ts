@@ -72,7 +72,7 @@ export class DetailUserComponent implements OnInit {
 
     if (personnelInput.newPwd == personnelInput.nextPwd) {
       let personnelTemp: IPersonnel = {
-        id: uuidv4(),
+        // id optional
         nom: personnelInput.nom,
         prenom: personnelInput.prenom,
         sexe: personnelInput.sexe,

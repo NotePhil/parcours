@@ -37,7 +37,7 @@ export class PersonnelsService {
   getPersonnelsById(id: string): Observable<IPersonnel[]> {
     return this.http.get<IPersonnel[]>(this.param.api+ 'personnels').pipe(
       map((x) => {
-        return x.filter((p) => p.id.toLowerCase().startsWith(id));
+        return x.filter((p) => p.id!.toLowerCase().startsWith(id));
       })
     );
   }
@@ -50,7 +50,7 @@ export class PersonnelsService {
         // Filter by ID or name
         return patients.filter(
           (p) =>
-            p.id.toString().startsWith(query) ||
+            p.id!.toString().startsWith(query) ||
             p.nom.toLowerCase().startsWith(lowerCaseQuery)
         );
       })
@@ -65,7 +65,7 @@ export class PersonnelsService {
     return this.http.get<IPersonnel[]>(this.param.api+ 'personnels').pipe(
       map(x=>
         {
-          return x.filter(e=> e.roles?.some(r=> r.role.id.includes(idRole.toLowerCase())))
+          return x.filter(e=> e.roles?.some(r=> r.role.id!.includes(idRole.toLowerCase())))
         })
     );        
   }

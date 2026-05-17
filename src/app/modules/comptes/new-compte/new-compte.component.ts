@@ -98,7 +98,7 @@ export class NewCompteComponent {
     if (this.forme.invalid) return;
 
     let compteTemp: IComptes = {
-      id: uuidv4(),
+      // id optional
       libelle: compteInput.libelle,
       solde: compteInput.solde,
       dateCreation: new Date(),

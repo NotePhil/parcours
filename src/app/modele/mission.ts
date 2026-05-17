@@ -1,7 +1,7 @@
 import { IService } from "./service"
 
 export interface IMission {
-    id:string,
+    id?: string,
     libelle:string,
     description:string,
     etat:boolean,

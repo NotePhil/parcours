@@ -56,7 +56,7 @@ export class ModalChoixPreconisationsComponent implements OnInit {
     });
     this.dataSourcePrecoResultat.data = this.donneeDocCatService.dataDocumentPrecoMvts;
     this.ELEMENTS_TABLE_PRECONISATIONS = [...this.dataSourcePrecoResultat.data];
-    this.ELEMENTS_TABLE_PRECONISATIONS.forEach(item => this.selectedIds.add(item.id));
+  this.ELEMENTS_TABLE_PRECONISATIONS.forEach(item => this.selectedIds.add(item.id!));
     this.myControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
       if (libelle != undefined && libelle?.length > 0) {
@@ -77,11 +77,11 @@ export class ModalChoixPreconisationsComponent implements OnInit {
 
   onCheckPrecoMvtChange(event: any, element: IPrecoMvt) {
     if (event.target.checked) {
-      if (!this.selectedIds.has(element.id)) {
-        this.ajoutSelectionPrecoMvt(element.id);
+      if (!this.selectedIds.has(element.id!)) {
+        this.ajoutSelectionPrecoMvt(element.id!);
       }
     } else {
-      this.retirerSelectionPrecoMvt(element.id);
+  this.retirerSelectionPrecoMvt(element.id!);
     }
   }
 

@@ -5,7 +5,7 @@ import { IExemplaireDocument } from "./exemplaire-document";
 import { IPatient } from "./Patient";
 
 export interface IMouvementCaisses {
-    id: string,
+    id?: string,
     etat: boolean,
     montant: float,
     libelle: string,

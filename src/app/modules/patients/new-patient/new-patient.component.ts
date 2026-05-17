@@ -215,7 +215,7 @@ export class NewPatientComponent implements OnInit {
     //Todo la validation d'element non conforme passe
     if (this.forme.invalid) return;
     if (!patientInput.id) {
-      patientInput.id = uuidv4();
+  // id will be assigned by backend; do not set client-side
     }
 
     if (this.personnesRatachees.length > 0) {
