@@ -163,7 +163,7 @@
                                                     <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
                                                         {{"personnel.table.title6" | translate}}</th>
                                                     <td class="text-dark containCell" mat-cell
-                                                        *matCellDef="let element, let i = index">
+                                                        *matCellDef="let element; let i = index">
                                                         <input type="date"
                                                             (change)="verificationModificationDansTableau(element, $event, i, 'debut')"
                                                             [value]="element.dateDebut" name="dateEntreeM"
