@@ -110,6 +110,7 @@ export class MissionsRoleComponent {
         this.titreRole = this.role?.titre;
         if (this.role?.missions) {
           this.localSelectedMissions = this.role?.missions;
+          this.VERIF_TABLE = this.role?.missions;
           this.dataSourceMissionResultat.data = this.localSelectedMissions;
           this.modif = true;
         }
