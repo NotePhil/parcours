@@ -104,7 +104,7 @@ export class NewValidationComponent implements OnInit {
     if(this.forme.invalid || !validationInput.roleval) return;
 
     let validationTemp : IValidation={
-      id: uuidv4(),
+      // id optional
       code: validationInput.code,
       libelle: validationInput.libelle,
       etat: validationInput.etat,

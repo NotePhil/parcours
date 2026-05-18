@@ -1,7 +1,7 @@
 import { IRole } from "./role"
 
 export interface IValidation {
-    id: string,
+    id?: string;
     code: string,
     etat: boolean,
     role: IRole,

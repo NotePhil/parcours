@@ -126,13 +126,13 @@ export class ModalCategoriesComponent implements OnInit {
         this.tableResultatsCategoriesAffichage.data;
       //recuperation des id des attributs dans le deuxieme tableau de la modal
       listCatAtt.forEach((valeur) => {
-        listAtt.push(valeur.attributCategories.attribut.id);
+  listAtt.push(valeur.attributCategories.attribut.id!);
       });
       //comparaison avec les ids du tableau initial pour exclure ceux présents dans le second
       this.tableauAttributsTemp = [];
       let tmpTab = this.donneeDocCatService.dataDocumentAttributs;
       tmpTab.forEach((att: IAttributs) => {
-        if (!listAtt.includes(att.id)) {
+  if (!listAtt.includes(att.id!)) {
           let jointureAttCat: IAssociationCategorieAttributs = {
             ordre: 0,
             obligatoire: false,
@@ -236,7 +236,7 @@ export class ModalCategoriesComponent implements OnInit {
         return;
       } else {
         let categorieAttributsTemp: ICategorieAffichage = {
-          id: uuidv4(),
+          // id optional
           nom: categorieAttributInput.libelleCategorie,
           ordre: categorieAttributInput.ordreCategorie,
           attributCategories: attribut,
@@ -337,7 +337,7 @@ export class ModalCategoriesComponent implements OnInit {
     this.tableauAttributsTemp = [];
     let tmpTab = this.dataSourceAttributTemp.data;
     tmpTab.forEach((att: IAssociationCategorieAttributs) => {
-      if (!listAtt.includes(att.attribut.id)) {
+  if (!listAtt.includes(att.attribut.id!)) {
         this.tableauAttributsTemp.push(att);
       }
     });

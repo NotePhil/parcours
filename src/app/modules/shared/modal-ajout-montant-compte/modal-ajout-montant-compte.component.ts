@@ -63,7 +63,7 @@ export class ModalAjoutMontantCompteComponent {
 
     if(this.forme.invalid) return;
 
-    this.compteService.getCompteById(this.compte!.id).subscribe((res) => {
+  this.compteService.getCompteById(this.compte!.id!).subscribe((res) => {
 
         let compte: IComptes = {
           id: res.id,

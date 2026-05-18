@@ -62,7 +62,7 @@ export class NewDistributeurComponent implements OnInit {
     if (this.forme.invalid) return;
 
     let distributeurTemp: IDistributeur = {
-      id: uuidv4(),
+      // id optional
       raisonSociale: distributeurInput.raisonSociale,
       adresse: distributeurInput.adresse,
       telephone: distributeurInput.telephone,

@@ -292,7 +292,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         if (patientTrouve != undefined) {
           this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
               console.log('compte personne rattaché :', this.laPersonneRattachee?.id);
-          this.compteService.getCompteByUser(this.laPersonneRattachee.id).subscribe(
+          this.compteService.getCompteByUser(this.laPersonneRattachee.id!).subscribe(
             account => {
               this.compte = account;
               if (this.compte?.solde == 0 || this.compte?.solde == null) {
@@ -857,7 +857,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       return cpt;
     }
 
-    let valAttribut = this.rechercherValeurParIdAttribut(attributCategories.attribut.id);
+  let valAttribut = this.rechercherValeurParIdAttribut(attributCategories.attribut.id!);
     this.tempAttributsCpt.set(attributCategories.attribut.id, cpt + 1)
     this.tempAttributsObbligatoires.set(cpt + 1, attributCategories.attribut.titre)
     if (attributCategories.attribut.type_attribut == IType.Date && valAttribut != null) {
@@ -879,7 +879,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     if (this.numerateur >= -1 && this.numerateur >= this.totalAttributSupprime)
       return num;
 
-    let valAttribut = this.rechercherValeurParIdAttribut(attribut.id);
+  let valAttribut = this.rechercherValeurParIdAttribut(attribut.id!);
     if (attribut.type_attribut == IType.Date && valAttribut != null) {
       let date = new Date(valAttribut);
       let dateReduite = this.datePipe.transform(date, 'yyyy-MM-dd');
@@ -1042,7 +1042,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     if (this.formeExemplaire.invalid || this.isFalse == true || this.isFalseIn == true || this.isFalseOut == true) return;
 
     let exemplaireTemp: IExemplaireDocument = {
-      id: uuidv4(),
+      // id optional
       idDocument: this.document.idDocument,
       titre: this.document.titre,
       description: this.document.description,
@@ -1071,7 +1071,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     };
 
     if (this.exemplaire.id != '') {
-      exemplaireTemp.id = this.exemplaire.id;
+      exemplaireTemp.id = this.exemplaire.id!;
       exemplaireTemp.dateCreation = this.exemplaire.dateCreation
     }
     exemplaireTemp.promotion = this.promotion
@@ -1128,10 +1128,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         mouvement.ressource.id == option.id &&
         mouvement.distributeur?.id == this.distributeur?.id
       ) {
-        tabIdRessource.push(mouvement.ressource.id);
+  tabIdRessource.push(mouvement.ressource.id!);
       }
     });
-    if (!tabIdRessource.includes(option.id)) {
+  if (!tabIdRessource.includes(option.id!)) {
       let mvt: IMouvement = {
         id: uuidv4(),
         description: '',
@@ -1200,7 +1200,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   }
 
   rechercherListingAssurance(option: IDistributeur) {
-    this.servicePromo.getPromoByIdAssurance(option.id).subscribe((promo) => {
+    this.servicePromo.getPromoByIdAssurance(option.id!).subscribe((promo) => {
       this.promotion = promo!
       this.showText = false
       this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
@@ -1406,7 +1406,7 @@ calculRemise(mouvement: IMouvement): number {
     this.servicePromo.getPromosByRessource(ressource).subscribe(
       (promos) => {
         // Associer les promotions à la ressource dans le dictionnaire
-        this.promotionsByRessource[ressource.id] = promos;
+  this.promotionsByRessource[ressource.id!] = promos;
 
       }
     );
@@ -1431,7 +1431,7 @@ calculRemise(mouvement: IMouvement): number {
   }
 
   getRessource(ressource: IRessource) {
-    this.idRessource = ressource.id;
+  this.idRessource = ressource.id!;
     this.donneeEchangeService.dataRessourceMouvementCourant = ressource
   }
 

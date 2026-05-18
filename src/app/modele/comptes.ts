@@ -1,7 +1,7 @@
 import { IPatient } from "./Patient";
 
 export interface IComptes {
-    id: string,
+    id?: string,
     solde: number,
     libelle: string,
     dateCreation: Date,

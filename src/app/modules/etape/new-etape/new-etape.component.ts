@@ -121,8 +121,8 @@ export class NewEtapeComponent implements OnInit {
           etapePrecedant: idEtape.etapeprecedant
         });
         this.forme.controls['etapesprecedant'].setValue(idEtape.etapeprecedant);
-        this.etapeId = idEtape.etapeprecedant?.map((etape) => etape.id);
-        this.documentId = idEtape.document.map((doc) => doc.idDocument);
+  this.etapeId = idEtape.etapeprecedant?.map((etape) => etape.id!);
+  this.documentId = idEtape.document.map((doc) => doc.idDocument);
     } else {
       this.donneeDocCatService.dataParcoursEtapes = [];
     }
@@ -200,7 +200,7 @@ export class NewEtapeComponent implements OnInit {
       this.etapes = this.donneeDocCatService.dataParcoursEtapes;
 
       if (this.etapes.length > 0) {
-        this.etapeId = this.etapes.map((etape) => etape.id);
+        this.etapeId = this.etapes.map((etape) => etape.id!);
       }
     });
   }
@@ -216,8 +216,7 @@ export class NewEtapeComponent implements OnInit {
     if (this.forme.invalid) return;
 
     // Create etape object
-    const etapeTemp = {
-      id: uuidv4(),
+    const etapeTemp: IEtape = {
       libelle: this.f['libelle'].value,
       etat: this.f['etat'].value,
       document: this.documents,
@@ -226,7 +225,7 @@ export class NewEtapeComponent implements OnInit {
 
     // If updating existing etape, set its id
     if (this.etape.id != '') {
-      etapeTemp.id = this.etape.id;
+      etapeTemp.id = this.etape.id!;
     }
     console.log('etapeTemp', etapeTemp);
 

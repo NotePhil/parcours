@@ -112,7 +112,7 @@ export class ModalEtapesPreorsuivParcoursComponent implements OnInit {
       this.localElementTableParEtapes.forEach(
         ParEtape => {
           if ((ParEtape.id == option.id)) {
-            tabIdEtapes.push(ParEtape.id);
+            tabIdEtapes.push(ParEtape.id!);
           }
         }
       );
@@ -124,7 +124,7 @@ export class ModalEtapesPreorsuivParcoursComponent implements OnInit {
           break;
         }
       }
-      if (!tabIdEtapes.includes(option.id)) {
+  if (!tabIdEtapes.includes(option.id!)) {
         this.localElementTableParEtapes.push(option);
         this.dataSourceParEtapes.data = this.localElementTableParEtapes;
         this.selected = false;

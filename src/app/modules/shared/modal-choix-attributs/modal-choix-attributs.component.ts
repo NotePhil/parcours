@@ -82,7 +82,7 @@ export class ModalChoixAttributsComponent implements OnInit {
     let positionsAttr = new Map();
     let indexAttrCourant: number = 0;
     this.localSelectedAttributes.forEach((element: IAttributs) => {
-      listIdAttTemp.push(element.id);
+      listIdAttTemp.push(element.id!);
       positionsAttr.set(element.id, indexAttrCourant++);
     });
     if (event.target.checked) {
@@ -136,7 +136,7 @@ export class ModalChoixAttributsComponent implements OnInit {
 
   loadSelectedAttributes() {
     this.selectedAttributeIds = this.localSelectedAttributes.map(
-      (attr: IAttributs) => attr.id
+      (attr: IAttributs) => attr.id!
     );
   }
 

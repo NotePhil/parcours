@@ -69,7 +69,7 @@ export class ModalMouvementCaisseCompteComponent implements OnInit {
       }
     );
 
-    this.compteService.getCompteByUser(this.person!.id).subscribe((res) => {
+    this.compteService.getCompteByUser(this.person!.id!).subscribe((res) => {
       if (res) {
         this.compte = res;
       }
@@ -90,7 +90,7 @@ export class ModalMouvementCaisseCompteComponent implements OnInit {
     if(this.forme.invalid) return;
 
     let mvtCaisse: IMouvementCaisses = {
-      id: uuidv4(),
+      // id optional
       etat: selectItem.etat,
       montant: this.data.montant,
       libelle: selectItem.libelle,

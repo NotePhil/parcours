@@ -223,7 +223,7 @@ export class MissionsRoleComponent {
           dateFin: this.forme.value.dateFin,
         };
         
-        if (this.verificationValeursDate(element.id,newdates,-2)) {
+        if (this.verificationValeursDate(element.id!,newdates,-2)) {
           this.ajoutSelectionMission(element);
           this.datas.push({ id: element.id, event: event });
           this.verif=false;

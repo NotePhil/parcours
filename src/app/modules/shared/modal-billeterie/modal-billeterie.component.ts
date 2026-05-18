@@ -220,7 +220,7 @@ export class ModalBilleterieComponent implements OnInit {
     };
 
     let caisseTemp: ICaisses = {
-      id: uuidv4(),
+      // id optional
       libelle: this.caisse!.libelle,
       etat: this.caisse!.etat,
       solde: this.totalGeneral,

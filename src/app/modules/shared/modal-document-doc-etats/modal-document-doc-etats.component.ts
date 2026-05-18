@@ -114,7 +114,7 @@ export class ModalDocEtatsComponent implements OnInit {
     this.localElementTableDocEtats.forEach(
       docEtat => {
         if ((docEtat.etat.id == option.id)) {
-          tabIdEtats.push(docEtat.etat.id);
+          tabIdEtats.push(docEtat.etat.id!);
         }
       }
     );
@@ -126,7 +126,7 @@ export class ModalDocEtatsComponent implements OnInit {
         break;
       }
     }
-    if (!tabIdEtats.includes(option.id)) {
+    if (!tabIdEtats.includes(option.id!)) {
       let docEtat: IDocEtats = {
         id: option.id,
         etat: option,
@@ -198,15 +198,25 @@ export class ModalDocEtatsComponent implements OnInit {
   }
 
   effaceEtatCourrant(etats: IDocEtats): IDocEtats[] {
-    let etatsFinal: IDocEtats[] = [];
-    this.localElementTableDocEtats.forEach(
-      element => {
-        if (etats.etat.libelle != element.etat.libelle) {
-          etatsFinal.push(element);
+    const idToRemove = etats?.id;
+    // Filter out the provided etat by id
+    const etatsFinal: IDocEtats[] = this.localElementTableDocEtats.filter(e => e.id !== idToRemove);
+
+    // Clear any references to the removed etat as a precedent in remaining elements
+    etatsFinal.forEach(element => {
+      if (element.etat && (element.etat as any).etatPrecedant) {
+        const precedent = (element.etat as any).etatPrecedant;
+        if ((precedent as any).id === idToRemove) {
+          (element.etat as any).etatPrecedant = undefined;
         }
       }
-    );
-    return etatsFinal;
+    });
+
+    // Update local storage and table datasource
+    this.localElementTableDocEtats = [...etatsFinal];
+    this.dataSourceDocEtats.data = this.localElementTableDocEtats;
+
+    return this.localElementTableDocEtats;
   }
 
   // The onSave function to send data to donneeDocEtatService

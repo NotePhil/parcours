@@ -32,7 +32,7 @@ export class MenuComponent implements OnInit, OnChanges {
     if (this.fonctionnalites && this.fonctionnalites.length > 0) {
       for (const menu of this.fonctionnalites) {
         if (menu.elements) {
-          const matchedElement = menu.elements.find(elt => elt.lien && url.includes(elt.lien));
+          const matchedElement = menu.elements.find(elt => elt.lien && url.includes(elt.lien.substring(1)));
           if (matchedElement) {
             this.sendAction(matchedElement.action!, matchedElement.lien!);
             return; // on a trouvé, on sort

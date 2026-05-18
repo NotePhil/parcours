@@ -158,7 +158,7 @@ export class EcartCaisseComponent implements OnInit {
     }
 
     let caisseTemp: ICaisses = {
-      id: uuidv4(),
+      // id optional
       libelle: caisseInput.libelle,
       solde: this.forme.value.newsolde,
       etat: caisseInput.etat,
@@ -173,7 +173,7 @@ export class EcartCaisseComponent implements OnInit {
     let donne: IMouvementCaisses;
 
     donne = {
-      id: uuidv4(),
+      // id optional
       etat: caisseInput.etat,
       montant: this.caisse?.solde! - this.forme.value.newsolde,
       libelle: 'Ecart de caisse',

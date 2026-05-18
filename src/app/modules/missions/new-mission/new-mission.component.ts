@@ -79,7 +79,7 @@ export class NewMissionComponent implements OnInit {
     if(this.forme.invalid) return;
 
     let missionTemp : IMission={
-      id: uuidv4(),
+      // id optional
       libelle: missionInput.libelle,
       description: missionInput.description,
       etat: missionInput.etat,

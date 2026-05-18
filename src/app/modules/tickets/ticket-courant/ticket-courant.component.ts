@@ -113,7 +113,7 @@ export class TicketCourantComponent implements OnInit {
 
   sauvegardeIdentitePatient() {
     if (this.patientRecent) {
-      sessionStorage.setItem("idPatientCourant", this.patientRecent.id);
+      sessionStorage.setItem("idPatientCourant", this.patientRecent.id!);
       let nomPersonne = this.patientRecent.nom.concat(" ");
       if (this.patientRecent.prenom)
         nomPersonne = nomPersonne.concat(this.patientRecent.prenom);

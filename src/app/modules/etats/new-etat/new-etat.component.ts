@@ -53,7 +53,7 @@ export class NewEtatComponent {
     if(this.formeEtat.invalid) return;
 
     let etatTemp : IEtats={
-      id: uuidv4(),
+      // id optional
       libelle: etatsInput.libelle,
       description: etatsInput.description,
       dateCreation: new Date()

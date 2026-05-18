@@ -234,7 +234,7 @@ export class NewPromoComponent implements OnInit {
     const emetteur = this.promoForm.value.emetteur as IDistributeur;
 
     const promoTemp: IPromo = {
-      id: this.promo ? this.promo.id : uuidv4(),
+  id: this.promo ? this.promo.id : undefined,
       emetteur: emetteur,
       dateDebut: this.promoForm.value.dateDebut,
       dateFin: this.promoForm.value.dateFin,

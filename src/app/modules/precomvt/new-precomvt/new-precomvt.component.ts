@@ -480,7 +480,7 @@ export class NewPrecomvtComponent implements OnInit {
     };
     let libel = this.mettre3PointsdeSuspension(precomvtInput.famille);
     let precomvtTemp: IPrecoMvt = {
-      id: uuidv4(),
+      // id optional
       etat: precomvtInput.etat,
       libelle: libel,
       type: precomvtInput.TypeMvt,
@@ -557,10 +557,9 @@ export class NewPrecomvtComponent implements OnInit {
       id: precomvtInput.id,
       distributeur: precomvtInput.distributeur,
     };
-    let idModif = uuidv4();
-    if (precomvtInput.id !== null) idModif = precomvtInput.id;
+    // use provided id if any, otherwise leave undefined (backend will assign)
     let precomvtTemp: IPrecoMvt = {
-      id: idModif,
+      id: precomvtInput.id ? precomvtInput.id : undefined,
       etat: precomvtInput.etat,
       libelle: this.LIBELLE_PRECO + precomvtInput.libelle,
       type: precomvtInput.type,

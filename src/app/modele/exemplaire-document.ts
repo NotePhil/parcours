@@ -8,7 +8,7 @@ import { IOrdreEtat } from "./ordreEtat";
 import { IPromo } from "./promo-distributeur";
 
 export interface IExemplaireDocument extends IDocument{
-    id : string,
+    id?: string,
     code : string,
     idDocument : string,
     ordreEtats?: IOrdreEtat[],

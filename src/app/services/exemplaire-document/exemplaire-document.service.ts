@@ -57,7 +57,7 @@ export class ExemplaireDocumentService {
     return this.http.get<IExemplaireDocument[]>(this.param.api+ 'exemplaires').pipe(
       map(x=>
         {
-          return x.filter(e=> e.personneRattachee?.id.toLowerCase() == idPersonne)
+          return x.filter(e=> e.personneRattachee?.id!.toLowerCase() == idPersonne)
         })
     );        
   }

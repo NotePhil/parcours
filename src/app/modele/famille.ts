@@ -1,7 +1,7 @@
 import { IDistributeur } from "./distributeur";
 
 export interface IFamille {
-  id:string;
+  id?: string;
   libelle:string;
   description:string;
   etat:boolean;

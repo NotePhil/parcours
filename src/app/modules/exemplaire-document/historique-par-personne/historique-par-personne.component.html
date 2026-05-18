@@ -43,7 +43,7 @@
                     <div class="inputBlock" *ngFor="let attributParCategorie of attributParCategorie.attributs; let i = index">
                         <label>{{attributParCategorie.attribut.titre}} : </label>
                         <div class="valAttribut">
-                        <span>{{rechercherValeurParIdAttribut(attributParCategorie.attribut.id,attributParCategorie.attribut.type_attribut)}}</span>
+                        <span>{{rechercherValeurParIdAttribut(attributParCategorie.attribut.id!,attributParCategorie.attribut.type_attribut)}}</span>
                         </div>
                     </div>
                 </div>

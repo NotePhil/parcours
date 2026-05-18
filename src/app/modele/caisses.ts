@@ -17,7 +17,7 @@ export interface DetailsJson {
 }
 
 export interface ICaisses {
-    id: string,
+  id?: string,
     type: string,
     etat:boolean,
     solde: number,

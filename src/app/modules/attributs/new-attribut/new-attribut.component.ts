@@ -279,7 +279,7 @@ export class NewAttributComponent implements OnInit {
     if (this.errorNb == true) {
     } else {
       let attributTemp: IAttributs = {
-        id: uuidv4(),
+        // id optional
         titre: attributInput.titre,
         description: attributInput.description,
         etat: attributInput.etat,

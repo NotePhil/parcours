@@ -163,7 +163,7 @@ export class NewRessourceComponent implements OnInit {
     let styleAtt : any = this.ELEMENTS_TABLE_ATTRIBUTS_SELECT;
 
     let ressourceTemp : IRessource={
-      id: uuidv4(),
+      // id optional
       libelle: ressourceInput.libelle,
       etat: ressourceInput.etat,
       quantite: ressourceInput.quantite,

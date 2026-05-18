@@ -104,7 +104,7 @@ export class HistoriqueParPersonneComponent implements OnInit {
     
     this.serviceExemplaire.getExemplaireDocumentByIdPersonneRatachee(idPersonne).subscribe(valeurs => {
       this.dataSourceAutresExemplaires.data = valeurs;
-      idPersonne = valeurs[0].id
+      idPersonne = valeurs[0].id!;
       this.exemplaire = valeurs[0];
       if (this.exemplaire.mouvements != undefined) {
         this.dataSourceMouvements.data = this.exemplaire.mouvements

@@ -110,7 +110,7 @@ export class NewPersonnelComponent implements OnInit {
     if (this.forme.invalid) return;
 
     let personnelTemp: IPersonnel = {
-      id: uuidv4(),
+      // id is optional and will be set by backend if necessary
       nom: personnelInput.nom,
       prenom: personnelInput.prenom,
       sexe: personnelInput.sexe,

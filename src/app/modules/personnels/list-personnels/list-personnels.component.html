@@ -108,7 +108,7 @@
                                 <button mat-menu-item *ngIf="action.bouton == 'false'" [routerLink]="[action.lien,element.id]">
                                     <span>{{action.nom}}</span>
                                 </button>
-                                <button mat-menu-item *ngIf="action.bouton == 'true'" (click)="openChoixGroupDialog(element)">
+                                <button mat-menu-item *ngIf="action.bouton == 'true' && action.nom != 'Creer'" (click)="openChoixGroupDialog(element)">
                                   <span>{{action.nom}}</span>
                                 </button>
                             </ng-container>
