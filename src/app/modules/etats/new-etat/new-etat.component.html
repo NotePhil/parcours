@@ -1,22 +1,25 @@
 <div id="mainSection">
     <div class="card block" id="top2">
         <div class="card-header" class="entete pt-4 pb-4">
-          {{"services.title1" | translate}}
+            {{"services.title1" | translate}}
         </div>
         <div class="card-body">
-            <form [formGroup]="formeEtat" (ngSubmit)="onSubmit(formeEtat.value)" *ngIf="formeEtat" >
+            <form [formGroup]="formeEtat" (ngSubmit)="onSubmit(formeEtat.value)" *ngIf="formeEtat">
                 <div class="">
                     <div class="">
                         <div class="form-group">
                             <div>
                                 <div class="champs">
                                     <label for="libelle" class="label">
-                                        {{'services.form.label1' | translate}} <span style="color: red;" aria-label="required">*</span>
+                                        {{'services.form.label1' | translate}} <sup>*</sup>
                                     </label>
-                                    <input type="text" formControlName="libelle" name="libelle" id="libelle"  placeholder="{{'services.form.label1' | translate}}"  class="form-control" required>
+                                    <input type="text" formControlName="libelle" name="libelle" id="libelle"
+                                        placeholder="{{'services.form.label1' | translate}}" class="form-control"
+                                        required>
                                 </div>
-                                <div  *ngIf="submitted && f['libelle'].errors"  class="alert alert-danger" >
-                                    <div *ngIf="f['libelle'].errors['required']">{{'services.form.text1' | translate}}</div>
+                                <div *ngIf="submitted && f['libelle'].errors" class="alert alert-danger">
+                                    <div *ngIf="f['libelle'].errors['required']">{{'services.form.text1' | translate}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -24,15 +27,16 @@
                             <div>
                                 <div class="champs">
                                     <label for="description" class="label">
-                                    {{'services.form.label4' | translate}}
+                                        {{'services.form.label4' | translate}}
                                     </label>
-                                    <input type="text" formControlName="description" name="description" id="description"  placeholder="{{'services.form.label4' | translate}}"  class="form-control">
+                                    <input type="text" formControlName="description" name="description" id="description"
+                                        placeholder="{{'services.form.label4' | translate}}" class="form-control">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="actionButton valBtn" >
+                <div class="actionButton valBtn">
                     <button class="btn retour" (click)="return()" title="{{'lists.button2' | translate}}">
                         <i class="fa fa-reply mr-1" aria-hidden="true"></i>
                     </button>

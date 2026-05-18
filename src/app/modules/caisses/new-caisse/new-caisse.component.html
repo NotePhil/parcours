@@ -11,8 +11,7 @@
                             <div>
                                 <div class="champs">
                                     <label for="libelle" class="label">
-                                        {{'caisse.table.title1' | translate}}<span style="color: red;"
-                                            aria-label="required">*</span>
+                                        {{'caisse.table.title1' | translate}}<sup>*</sup>
                                     </label>
                                     <input type="text" formControlName="libelle" name="nom" id="libelle"
                                         placeholder="{{'caisse.table.title1' | translate}}" class="form-control"
@@ -28,8 +27,7 @@
                             <div>
                                 <div class="champs">
                                     <label for="solde" class="label">
-                                        {{"caisse.table.title0" | translate}}<span style="color: red;"
-                                            aria-label="required">*</span>
+                                        {{"caisse.table.title0" | translate}}<sup>*</sup>
                                     </label>
                                     <input type="number" formControlName="solde" name="solde" id="solde"
                                         [readOnly]="btnLibelle == 'Modifier' || selectedOptions == 'cash'"
@@ -80,32 +78,45 @@
                                         Découpes<!-- {{"caisse.table.title3" | translate}} -->
                                     </label>
                                     <div class="financial-table-wrapper">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x10000"
-                                            placeholder="10000" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x5000"
-                                            placeholder="5000" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x2000"
-                                            placeholder="2000" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x1000"
-                                            placeholder="1000" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x500"
-                                            placeholder="500" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x500B"
-                                            placeholder="500B" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x100"
-                                            placeholder="100" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x50"
-                                            placeholder="50" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x25"
-                                            placeholder="25" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x10"
-                                            placeholder="10" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x5"
-                                            placeholder="5" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x2"
-                                            placeholder="2" class="input-field">
-                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number" (input)="calculateTotals()" formControlName="x1"
-                                            placeholder="1" class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x10000" placeholder="10000"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x5000" placeholder="5000"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x2000" placeholder="2000"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x1000" placeholder="1000"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x500" placeholder="500"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x500B" placeholder="500B"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x100" placeholder="100"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x50" placeholder="50"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x25" placeholder="25"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x10" placeholder="10"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x5" placeholder="5"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x2" placeholder="2"
+                                            class="input-field">
+                                        <input [readOnly]="btnLibelle == 'Modifier'" type="number"
+                                            (input)="calculateTotals()" formControlName="x1" placeholder="1"
+                                            class="input-field">
                                     </div>
                                 </div><!-- 
                                 <div  *ngIf="submitted && f['detailsJson'].errors"  class="alert alert-danger" >

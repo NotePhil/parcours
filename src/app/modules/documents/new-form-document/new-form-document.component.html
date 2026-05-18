@@ -1,10 +1,10 @@
 <div id="mainSection">
     <div class="card block" id="top2">
         <div class="card-header" class="entete pt-4 pb-4">
-          {{"document.title3" | translate}}
+            {{"document.title3" | translate}}
         </div>
         <div class="card-body">
-            <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme" >
+            <form [formGroup]="forme" (ngSubmit)="onSubmit(forme.value)" *ngIf="forme">
                 <div>
                     <div>
                         <div class="form-group">
@@ -13,109 +13,129 @@
                                     <label for="titre" class="label">
                                         {{'document.table.title1' | translate}} <sup>*</sup>
                                     </label>
-                                    <input type="text" formControlName="titre" name="titre" id="titre"  placeholder="{{'document.table.title1' | translate}}" class="form-control" required>
+                                    <input title='{{"document.table.title1" | translate}}' type="text"
+                                        formControlName="titre" name="titre" id="titre"
+                                        placeholder="{{'document.table.title1' | translate}}" class="form-control"
+                                        required>
                                 </div>
-                                <div  *ngIf="submitted && f['titre'].errors"  class="alert alert-danger blockErreur" >
-                                    <div *ngIf="f['titre'].errors['required']">{{'document.form.text1' | translate}}</div>
+                                <div *ngIf="submitted && f['titre'].errors" class="alert alert-danger blockErreur">
+                                    <div *ngIf="f['titre'].errors['required']">{{'document.form.text1' | translate}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div>
                                 <div class="champs">
-                                    <label for="description" class="label" >
+                                    <label for="description" class="label">
                                         {{"document.table.title2" | translate}} <sup>*</sup>
                                     </label>
-                                    <textarea type="textarea" formControlName="description" name="description" id="description" placeholder="{{'document.table.title2' | translate}}" class="form-control"  required></textarea>
+                                    <textarea type="textarea" formControlName="description" name="description"
+                                        id="description" placeholder="{{'document.table.title2' | translate}}"
+                                        class="form-control" required></textarea>
                                 </div>
-                                <div  *ngIf="submitted && f['description'].errors"  class="alert alert-danger blockErreur" >
-                                    <div *ngIf="f['description'].errors['required']">{{'document.form.text2' | translate}}</div>
+                                <div *ngIf="submitted && f['description'].errors"
+                                    class="alert alert-danger blockErreur">
+                                    <div *ngIf="f['description'].errors['required']">{{'document.form.text2' |
+                                        translate}}</div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                          <div>
-                              <div class="champs">
-                                <label for="typeMouvement" class="label" >
-                                    {{"document.table.title22" | translate}} <sup>*</sup>
-                                </label>
-                                <select class="form-control" formControlName="typeMouvement" title="{{'document.form.text8' | translate}}">
-                                  <option class="label" *ngFor="let typeMouvement of typeMvt" value="{{ typeMouvement }}" >
-                                    {{ typeMouvement }}
-                                  </option>
-                                </select>
-                              </div>
-                          </div>
-                          <div  *ngIf="submitted && f['typeMouvement'].errors"  class="alert alert-danger blockErreur" >
-                              <div *ngIf="f['typeMouvement'].errors['required']">{{'document.form.text9' | translate}}</div>
-                          </div>
+                            <div>
+                                <div class="champs">
+                                    <label for="typeMouvement" class="label">
+                                        {{"document.table.title22" | translate}} <sup>*</sup>
+                                    </label>
+                                    <select class="form-control" formControlName="typeMouvement"
+                                        title="{{'document.form.text8' | translate}}">
+                                        <option class="label" *ngFor="let typeMouvement of typeMvt"
+                                            value="{{ typeMouvement }}">
+                                            {{ typeMouvement }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div *ngIf="submitted && f['typeMouvement'].errors" class="alert alert-danger blockErreur">
+                                <div *ngIf="f['typeMouvement'].errors['required']">{{'document.form.text9' | translate}}
+                                </div>
+                            </div>
                         </div>
 
                         <div class=" d-flex flex-wrap">
                             <div class="form-group">
-                                    <div class="">
-                                        <label for="etat" class="etat" >
-                                            {{"services.form.label2" | translate}}
-                                        </label>
-                                        <span id="etat" class="ml-2">
-                                            <input type="checkbox" checked value="true" formControlName="etat" name="etat">
-                                        </span>
-                                    </div>
+                                <div class="">
+                                    <label for="etat" class="etat">
+                                        {{"services.form.label2" | translate}}
+                                    </label>
+                                    <span id="etat" class="ml-2">
+                                        <input title='{{"services.form.label2" | translate}}' type="checkbox" checked
+                                            value="true" formControlName="etat" name="etat">
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group ml-2">
                                 <div>
-                                        <label for="estencaissable" class="estencaissable" >
-                                            {{"services.form.label5" | translate}}
-                                        </label>
-                                        <span id="estencaissable" class="ml-2">
-                                            <input type="checkbox" checked value="false" formControlName="estencaissable" name="estencaissable">
-                                        </span>
+                                    <label for="estencaissable" class="estencaissable">
+                                        {{"services.form.label5" | translate}}
+                                    </label>
+                                    <span id="estencaissable" class="ml-2">
+                                        <input title='{{"services.form.label2" | translate}}' type="checkbox" checked
+                                            value="false" formControlName="estencaissable" name="estencaissable">
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group ml-2" title="{{'document.form.text5' | translate}}">
                                 <div>
-                                        <label for="afficherPrix" class="afficherPrix" >
-                                            {{"document.table.title18" | translate}}
-                                        </label>
-                                        <span id="afficherPrix" class="w-100">
-                                            <input type="checkbox" value="true" formControlName="afficherPrix" name="afficherPrix">
-                                        </span>
+                                    <label for="afficherPrix" class="afficherPrix">
+                                        {{"document.table.title18" | translate}}
+                                    </label>
+                                    <span id="afficherPrix" class="w-100">
+                                        <input title='{{"document.table.title18" | translate}}' type="checkbox"
+                                            value="true" formControlName="afficherPrix" name="afficherPrix">
+                                    </span>
                                 </div>
                             </div>
 
                             <div class="form-group" title="{{'document.form.text6' | translate}}">
                                 <div>
-                                        <label for="contientRessources" class="contientRessources" >
-                                            {{"document.table.title19" | translate}}
-                                        </label>
-                                        <span id="contientRessources" class="w-100">
-                                            <input type="checkbox" value="false" formControlName="contientRessources" name="contientRessources" (change)="desactiveElementsLieRessource($event)">
-                                        </span>
+                                    <label for="contientRessources" class="contientRessources">
+                                        {{"document.table.title19" | translate}}
+                                    </label>
+                                    <span id="contientRessources" class="w-100">
+                                        <input title='{{"document.table.title19" | translate}}' type="checkbox"
+                                            value="false" formControlName="contientRessources" name="contientRessources"
+                                            (change)="desactiveElementsLieRessource($event)">
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group" title="{{'document.form.text7' | translate}}">
                                 <div>
-                                        <label for="afficherDistributeur" class="afficherDistributeur" >
-                                            {{"document.table.title20" | translate}}
-                                        </label>
-                                        <span id="afficherDistributeur" class="w-100">
-                                            <input type="checkbox" value="true" formControlName="afficherDistributeur" name="afficherDistributeur">
-                                        </span>
-                                    </div>
+                                    <label for="afficherDistributeur" class="afficherDistributeur">
+                                        {{"document.table.title20" | translate}}
+                                    </label>
+                                    <span id="afficherDistributeur" class="w-100">
+                                        <input title='{{"document.table.title20" | translate}}' type="checkbox"
+                                            value="true" formControlName="afficherDistributeur"
+                                            name="afficherDistributeur">
+                                    </span>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="form-group" title="{{'document.form.text12' | translate}}">
-                                <div>
-                                    <div class="champs">
-                                        <label for="beneficiaireObligatoire" class="beneficiaireObligatoire" >
-                                            {{"document.table.title26" | translate}}
-                                        </label>
-                                        <span id="beneficiaireObligatoire" class="w-100">
-                                            <input type="checkbox" checked value="true" formControlName="beneficiaireObligatoire" name="beneficiaireObligatoire">
-                                        </span>
-                                </div> 
+                        <div class="form-group" title="{{'document.form.text12' | translate}}">
+                            <div>
+                                <div class="champs">
+                                    <label for="beneficiaireObligatoire" class="beneficiaireObligatoire">
+                                        {{"document.table.title26" | translate}}
+                                    </label>
+                                    <span id="beneficiaireObligatoire" class="w-100">
+                                        <input title='{{"document.table.title26" | translate}}' type="checkbox" checked
+                                            value="true" formControlName="beneficiaireObligatoire"
+                                            name="beneficiaireObligatoire">
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="groupChamps">
@@ -123,16 +143,18 @@
 
                         <div class="form-group">
                             <div class="champs champsSelect">
-                                <label  for="_missions" class="label">
+                                <label for="_missions" class="label">
                                     {{"document.table.title3" | translate}} <sup>*</sup>
                                 </label>
                                 <div class="matSelectElement">
                                     <mat-select formControlName="_missions" multiple [compareWith]="compareItem">
-                                        <mat-option *ngFor="let missionsDocument of mission$ |async" [value]="missionsDocument">{{missionsDocument.libelle}}</mat-option>
+                                        <mat-option *ngFor="let missionsDocument of mission$ |async"
+                                            [value]="missionsDocument">{{missionsDocument.libelle}}</mat-option>
                                     </mat-select>
                                 </div>
                             </div>
-                            <div  *ngIf="submitted && f['_missions'].value.length<1"  class="alert alert-danger blockErreur" >
+                            <div *ngIf="submitted && f['_missions'].value.length<1"
+                                class="alert alert-danger blockErreur">
                                 <div>{{'document.form.text3' | translate}}</div>
                             </div>
                         </div>
@@ -145,7 +167,9 @@
                                 <div class="w-100">
                                     <!-- affichage list attributs selectiones -->
                                     <div class="listAttr">
-                                        <button type="button" class="btn p-0" title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}" (click)="openAttributDialog()">
+                                        <button type="button" class="btn p-0"
+                                            title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}"
+                                            (click)="openAttributDialog()">
                                             <i class="fas fa-plus-square"></i>
                                         </button>
                                         <p>
@@ -153,11 +177,12 @@
                                                 {{listeAttributs.titre | lowercase}}<span>, </span>
                                             </span>
                                         </p>
-                                        
+
                                     </div>
                                 </div>
                             </div>
-                            <div  *ngIf="submitted && ELEMENTS_TABLE_ATTRIBUTS.length<1"  class="alert alert-danger blockErreur" >
+                            <div *ngIf="submitted && ELEMENTS_TABLE_ATTRIBUTS.length<1"
+                                class="alert alert-danger blockErreur">
                                 <div>{{'document.form.text4' | translate}}</div>
                             </div>
                         </div>
@@ -166,20 +191,22 @@
 
                         <div class="form-group">
                             <div class="champs">
-                                <label  for="" class="label">
+                                <label for="" class="label">
                                     {{"document.table.title15" | translate}}
                                 </label>
                                 <div class="w-100">
 
                                     <!-- Ouvrir le formulair de creation des categories -->
                                     <div class="listAttr">
-                                        <button type="button" class="btn p-0" title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}" (click)="openCategorieDialog();">
+                                        <button type="button" class="btn p-0"
+                                            title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}"
+                                            (click)="openCategorieDialog();">
                                             <i class="fas fa-plus-square"></i>
                                         </button>
                                         <p>
                                             <span *ngFor="let listeCategories of TABLE_CATEGORIE_AFFICHAGE_TEMP">
                                                 {{listeCategories.libelle | lowercase}}<span>, </span>
-                                            </span> 
+                                            </span>
                                         </p>
                                     </div>
                                 </div>
@@ -190,22 +217,24 @@
 
                         <div class="form-group">
                             <div class="champs">
-                                <label  for="" class="label">
+                                <label for="" class="label">
                                     {{"document.table.title17" | translate}}
                                 </label>
                                 <div class="w-100">
 
                                     <!-- Ouvrir le formulair de creation des precoMvt -->
                                     <div class="listAttr">
-                                        <button type="button" class="btn p-0" title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}" (click)="openPrecoMvtDialog()">
+                                        <button type="button" class="btn p-0"
+                                            title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}"
+                                            (click)="openPrecoMvtDialog()">
                                             <i class="fas fa-plus-square"></i>
                                         </button>
                                         <p>
                                             <span *ngFor="let listePreconisations of ELEMENTS_TABLE_PRECONISATIONS">
                                                 {{listePreconisations.libelle | lowercase}}<span>, </span>
-                                            </span>   
+                                            </span>
                                         </p>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -215,23 +244,24 @@
 
                         <div class="form-group" title="{{'document.form.text13' | translate}}">
                             <div class="champs">
-                                <label  for="" class="label">
+                                <label for="" class="label">
                                     {{"document.title4" | translate}}
                                 </label>
                                 <div class="w-100">
 
                                     <!-- Ouvrir le formulair de selection des sous documents -->
                                     <div class="listAttr">
-                                        <button type="button" class="btn p-0" title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}"
+                                        <button type="button" class="btn p-0"
+                                            title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}"
                                             (click)="openSousDocumentDialog()" [disabled]="documentParentDesactive">
                                             <i class="fas fa-plus-square"></i>
                                         </button>
                                         <p>
                                             <span *ngFor="let listeSousDocuments of ELEMENTS_TABLE_SOUS_DOCUMENTS">
                                                 {{listeSousDocuments.titre | lowercase}}<span>, </span>
-                                            </span>  
+                                            </span>
                                         </p>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -241,22 +271,24 @@
 
                         <div class="form-group">
                             <div class="champs">
-                                <label  for="" class="label">
+                                <label for="" class="label">
                                     {{"document.title6" | translate}}
                                 </label>
                                 <div class="w-100">
 
                                     <!-- Ouvrir le formulair de creation des docEtats -->
                                     <div class="listAttr">
-                                        <button type="button" class="btn p-0" title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}" (click)="openDocEtatDialog()">
+                                        <button type="button" class="btn p-0"
+                                            title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}"
+                                            (click)="openDocEtatDialog()">
                                             <i class="fas fa-plus-square"></i>
                                         </button>
                                         <p>
                                             <span *ngFor="let listeDocEtats of ELEMENTS_TABLE_DOC_ETATS">
                                                 {{listeDocEtats.etat.libelle | lowercase}}<span>, </span>
-                                            </span> 
+                                            </span>
                                         </p>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -264,21 +296,24 @@
 
                         <!-- format de code -->
                         <div class="form-group">
-                          <div>
-                              <div class="champs">
-                                <label for="formatCode" class="label" >
-                                    {{"document.table.title25" | translate}} <sup>*</sup>
-                                </label>
-                                <select class="form-control" formControlName="formatCode" title="{{'document.form.text10' | translate}}">
-                                  <option class="label" *ngFor="let formatCode of formatsCode" value="{{ formatCode }}" >
-                                    {{ formatCode }}
-                                  </option>
-                                </select>
-                              </div>
-                          </div>
-                          <div  *ngIf="submitted && f['formatCode'].errors"  class="alert alert-danger blockErreur" >
-                              <div *ngIf="f['formatCode'].errors['required']">{{'document.form.text11' | translate}}</div>
-                          </div>
+                            <div>
+                                <div class="champs">
+                                    <label for="formatCode" class="label">
+                                        {{"document.table.title25" | translate}} <sup>*</sup>
+                                    </label>
+                                    <select class="form-control" formControlName="formatCode"
+                                        title="{{'document.form.text10' | translate}}">
+                                        <option class="label" *ngFor="let formatCode of formatsCode"
+                                            value="{{ formatCode }}">
+                                            {{ formatCode }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div *ngIf="submitted && f['formatCode'].errors" class="alert alert-danger blockErreur">
+                                <div *ngIf="f['formatCode'].errors['required']">{{'document.form.text11' | translate}}
+                                </div>
+                            </div>
                         </div>
 
                     </div>
