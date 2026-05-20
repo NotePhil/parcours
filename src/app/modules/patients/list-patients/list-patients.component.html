@@ -97,6 +97,9 @@
                     <button mat-menu-item *ngIf="action.bouton == 'false'" [routerLink]="[action.lien,element.id]">
                       <span>{{action.nom}}</span>
                     </button>
+                    <button mat-menu-item *ngIf="action.bouton == 'true' && action.nom === 'Orientation'" (click)="setIdPersonne(element.id, element.nom); openNewTicketDialog()">
+                      <span>{{action.nom}}</span>
+                    </button>
                   </ng-container>
                 </mat-menu>
               </div>

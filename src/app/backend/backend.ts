@@ -26320,7 +26320,7 @@ export class InMemDBService implements InMemoryDbService {
                     {
                       nom: 'Rechercher', lien: './patients/list-patients', bouton: 'false', action: [
                         { nom: 'Detail', lien: '../detail-patients', bouton: 'false' },
-                        { nom: 'Ticket', lien: '', bouton: 'true', type: 'global' },
+                        { nom: 'Orientation', lien: '', bouton: 'true', type: 'global' },
                         { nom: 'Modifier', lien: '../patient-nouveau', bouton: 'false' }
                       ]
                     },
@@ -26665,8 +26665,8 @@ export class InMemDBService implements InMemoryDbService {
                     },
                     {
                       nom: 'Search', lien: 'patients/list-patients', bouton: 'false', action: [
-                        { nom: 'Ticket', lien: '', bouton: 'true', type: 'global' },
                         { nom: 'Detail', lien: '/detail-patients', bouton: 'false' },
+                        { nom: 'Orientation', lien: '', bouton: 'true', type: 'global' },
                         { nom: 'Update', lien: '/patient-nouveau', bouton: 'false' }
                       ]
                     },

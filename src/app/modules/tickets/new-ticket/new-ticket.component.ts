@@ -85,7 +85,7 @@ export class NewTicketComponent implements OnInit {
         });
       });
     }
-    this.titre = this.dataEnteteMenuService.dataEnteteMenu;
+    this.titre = 'un service';
   }
 
   get f() {
@@ -129,7 +129,7 @@ export class NewTicketComponent implements OnInit {
     }
     if (this.data?.step === 1) {
       console.log("hello", this.data.step);
-      
+
       this.router.navigate(['parcours/patients/list-patient']);
       this.dialogRef?.close();
     }
@@ -148,6 +148,7 @@ export class NewTicketComponent implements OnInit {
   }
 
   togglepersonnesRatacheesSelection(personnesRatachees: IPatient) {
+    if (!personnesRatachees) return;
     if (!this.isSelected(personnesRatachees)) {
       this.btnLibelleNew = 'Continuer'; // Changer le titre du bouton si aucun associé n'est sélectionné
       this.patientsService.addSelectedpersonnesRatachees(personnesRatachees); // Add personnesRatachees if not already selected
@@ -160,6 +161,7 @@ export class NewTicketComponent implements OnInit {
   }
 
   isSelected(personnesRatachees: IPatient): boolean {
+    if (!personnesRatachees) return false;
     return this.patientsService.selectedpersonnesRatacheess.some(
       (a) => a.id === personnesRatachees.id
     );

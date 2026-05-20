@@ -1,11 +1,17 @@
-#mainSection{
+#mainSection {
     justify-content: center;
     width: 100%;
 }
-.block{
+
+.ticketSection {
+    margin-top: 5em;
+}
+
+.block {
     width: 100%;
 }
-.entete{
+
+.entete {
     background-color: #28a745;
     color: white;
     font-size: 22px;
@@ -14,57 +20,67 @@
     align-items: center;
     box-shadow: 0 0 2px #28a745;
     border-radius: 5px;
-    h2{
-        margin: auto; 
+
+    h2 {
+        margin: auto;
     }
 }
-.actionButton{
+
+.actionButton {
     width: 100%;
-    button{
+
+    button {
         width: fit-content;
     }
 }
+
 #top2 {
     border: none !important;
     box-shadow: none !important;
 }
-.blockServices div{
+
+.blockServices div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
     border: none !important;
     box-shadow: none;
-    label{
+
+    label {
         padding: 10px 5px;
         color: #28a745;
         font-weight: normal;
-        input{
+
+        input {
             margin-right: 5px;
             color: #28a745;
         }
-        input:checked{
+
+        input:checked {
             background-color: #28a745;
         }
     }
 }
+
 .blockpersonnesRatacheess {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-  }
-  
-  .personnesRatacheess-wrapper {
+}
+
+.personnesRatacheess-wrapper {
     flex-wrap: wrap;
-    gap: 10px; 
-  }
-  
-  .personnesRatacheess-wrapper label {
-    flex: 1 1 45%; 
-    min-width: 45%; 
+    gap: 10px;
+}
+
+.personnesRatacheess-wrapper label {
+    flex: 1 1 45%;
+    min-width: 45%;
     margin-bottom: 10px;
-  }
-  
-#ticketView{
+}
+
+#ticketView {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,22 +88,27 @@
     padding: 10px;
     color: #000000d4;
     width: 250px !important;
-    div{
+
+    div {
         width: 100%;
     }
-    .title{
+
+    .title {
         position: relative;
-        div{
+
+        div {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        img{
+
+        img {
             width: 45px;
             margin-right: 8px;
             margin-top: 10px;
         }
-        small{
+
+        small {
             position: absolute;
             bottom: 0;
             right: 0;
@@ -95,30 +116,36 @@
             font-size: 8px;
         }
     }
-    .objetTicket{
-        h3{
+
+    .objetTicket {
+        h3 {
             font-size: 12px;
             font-weight: bold;
         }
     }
-    #filigramme{
+
+    #filigramme {
         background: url("../../../../assets/img/logo_camnafaw.jpg") no-repeat top center;
         background-size: contain;
-        #ticketContent{
+
+        #ticketContent {
             background-color: #ffffffe5;
             width: 100%;
             height: max-content;
-            p{
+
+            p {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 font-size: 10px;
                 font-style: italic;
-                span{
+
+                span {
                     font-weight: bold;
                 }
             }
-            .barCode{
+
+            .barCode {
                 justify-content: center;
             }
         }

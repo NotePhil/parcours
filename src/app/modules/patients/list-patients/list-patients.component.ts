@@ -44,8 +44,8 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   nom_patient: string = '';
   libelle_service: string = '';
   currentDate: Date = new Date();
-  receivedActions$: Observable<IElements[]>=EMPTY;
-  actions : IElements[] | undefined;
+  receivedActions$: Observable<IElements[]> = EMPTY;
+  actions: IElements[] | undefined;
 
   myControl = new FormControl<string | IPatient>('');
 
@@ -166,16 +166,16 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     return this.servicePatient.getAllPatients();
   }
 
-  
-  public get isButton() : string {
+
+  public get isButton(): string {
     let res = this.actions!.find((a) => a.bouton == 'true' && a.type == 'global');
-    return  res ? 'true': 'false';
+    return res ? 'true' : 'false';
   }
-  
+
 
   openNewTicketDialog() {
     this.dialogDef.open(NewTicketComponent, {
-      height: '500px',
+      height: '50%',
       width: '400px',
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '1000ms',
@@ -210,9 +210,9 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public rechercherListingPersonne(option: IPatient){
+  public rechercherListingPersonne(option: IPatient) {
     this.servicePatient.getPatientsByName(option.nom.toLowerCase()).subscribe(
-        valeurs => {this.dataSource.data = valeurs;}
+      valeurs => { this.dataSource.data = valeurs; }
     )
   }
 
