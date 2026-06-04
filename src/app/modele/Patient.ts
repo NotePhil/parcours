@@ -1,6 +1,7 @@
 export interface IPatient {
   id?: string;
   nom: string;
+  raisonSociale?: string;
   prenom?: string;
   sexe?: string;
   dateNaissance?: Date;

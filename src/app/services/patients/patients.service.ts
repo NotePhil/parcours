@@ -11,11 +11,15 @@ import { GlobalVariables } from 'src/globalVariables';
 })
 export class PatientsService {
   selectedpersonnesRatacheess: IPatient[] = [];
-  constructor(private http: HttpClient, private param: GlobalVariables) {}
+  constructor(private http: HttpClient, private param: GlobalVariables) { }
 
   // Récupérer tous les patients
   getAllPatients(): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>(this.param.api+ 'personnes/personnesphysique').pipe(map((x) => x));
+    return this.http.get<IPatient[]>(this.param.api + 'personnes/personnesphysique').pipe(map((x) => x));
+  }
+  // Récupérer tous les personnes
+  getAllPersonnes(): Observable<any[]> {
+    return this.http.get<any[]>(this.param.api + 'personnes/personnes').pipe(map((x) => x));
   }
 
   // Récupérer un patient par son ID
@@ -29,7 +33,7 @@ export class PatientsService {
 
   // Récupérer des patients par leur nom
   getPatientsByName(nom: string): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>(this.param.api+ 'personnes/personnesphysique').pipe(
+    return this.http.get<IPatient[]>(this.param.api + 'personnes/personnesphysique').pipe(
       map((x) => {
         return x.filter((p) => p.nom.toLowerCase().startsWith(nom));
       })
@@ -38,7 +42,7 @@ export class PatientsService {
 
   // Récupérer des patients par leur nom ou leur ID
   getPatientsByNameOrId(query: string): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>(this.param.api+ 'personnes/personnesphysique').pipe(
+    return this.http.get<IPatient[]>(this.param.api + 'personnes/personnesphysique').pipe(
       map((patients) => {
         const lowerCaseQuery = query.toLowerCase();
 
@@ -53,7 +57,7 @@ export class PatientsService {
   }
 
   getPatientsByQrcode(query: string): Observable<IPatient[]> {
-    return this.http.get<IPatient[]>(this.param.api+ 'personnes/personnesphysique').pipe(
+    return this.http.get<IPatient[]>(this.param.api + 'personnes/personnesphysique').pipe(
       switchMap((patients) => {
         const lowerCaseQuery = query.toLowerCase();
         const matchingPatients = patients.filter((p) =>
@@ -88,10 +92,10 @@ export class PatientsService {
 
   // Helper method to get all patients who have a specific patient ID in their personnesRatachees
   private getPatientsWithPersonnesRatachees(personId: string): Observable<IPatient[]> {
-    return this.getAllPatients().pipe(
-      map((patients) => {
-        const relatedPatients = patients.filter((patient) =>
-          patient.personnesRatachees?.some((p) => p.id === personId)
+    return this.getAllPersonnes().pipe(
+      map((personnes) => {
+        const relatedPatients = personnes.filter((personne) =>
+          personne.personnesRatachees?.some((p: any) => p.id === personId)
         );
         return relatedPatients;
       })
@@ -99,36 +103,36 @@ export class PatientsService {
   }
 
 
-// Ajouter un patient
-ajouterPatient(patient: IPatient) {
-  return this.http.post(this.param.api+ 'personnes/personnesphysique', patient);
-}
-
-getPatientpersonnesRatacheess(id: string): Observable<IPatient[]> {
-  return this.getPatientById(id).pipe(
-    switchMap((patient) => {
-      if (patient.personnesRatachees && patient.personnesRatachees.length > 0) {
-        const personnesRatacheessRequests = patient.personnesRatachees.map((person) =>
-          this.getPatientById(person.id!)
-        );
-        return forkJoin(personnesRatacheessRequests);
-      } else {
-        return of([]);
-      }
-    })
-  );
-}
-
-addSelectedpersonnesRatachees(personnesRatachees: IPatient) {
-  // Check if the personnesRatachees is already in the array
-  const index = this.selectedpersonnesRatacheess.findIndex((a) => a.id === personnesRatachees.id);
-  if (index === -1) {
-    this.selectedpersonnesRatacheess.push(personnesRatachees); // Add personnesRatachees if not already present
+  // Ajouter un patient
+  ajouterPatient(patient: IPatient) {
+    return this.http.post(this.param.api + 'personnes/personnesphysique', patient);
   }
-}
 
-// Method to remove selected personnesRatachees
-removeSelectedpersonnesRatachees(personnesRatachees: IPatient) {
-  this.selectedpersonnesRatacheess = this.selectedpersonnesRatacheess.filter((a) => a.id !== personnesRatachees.id);
-}
+  getPatientpersonnesRatacheess(id: string): Observable<IPatient[]> {
+    return this.getPatientById(id).pipe(
+      switchMap((patient) => {
+        if (patient.personnesRatachees && patient.personnesRatachees.length > 0) {
+          const personnesRatacheessRequests = patient.personnesRatachees.map((person) =>
+            this.getPatientById(person.id!)
+          );
+          return forkJoin(personnesRatacheessRequests);
+        } else {
+          return of([]);
+        }
+      })
+    );
+  }
+
+  addSelectedpersonnesRatachees(personnesRatachees: IPatient) {
+    // Check if the personnesRatachees is already in the array
+    const index = this.selectedpersonnesRatacheess.findIndex((a) => a.id === personnesRatachees.id);
+    if (index === -1) {
+      this.selectedpersonnesRatacheess.push(personnesRatachees); // Add personnesRatachees if not already present
+    }
+  }
+
+  // Method to remove selected personnesRatachees
+  removeSelectedpersonnesRatachees(personnesRatachees: IPatient) {
+    this.selectedpersonnesRatacheess = this.selectedpersonnesRatacheess.filter((a) => a.id !== personnesRatachees.id);
+  }
 }

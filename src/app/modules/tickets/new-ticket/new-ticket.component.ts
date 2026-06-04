@@ -31,6 +31,8 @@ export class NewTicketComponent implements OnInit {
   strIidPersonne: string = '';
   idPersonne: string = '0';
   nomPersonne: string | null = '';
+  mainPatientId: string | null = null;
+  mainPatientNom: string | null = null;
   id_service: string = '0';
   libelleService: string | null = '';
   id_ticket: string = '0';
@@ -66,6 +68,8 @@ export class NewTicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.mainPatientId = sessionStorage.getItem('id_patient');
+    this.mainPatientNom = sessionStorage.getItem('nom_patient');
     this.personnesRatacheess$ = this.getpersonnesRatacheess();
     this.btnLibelleNew = 'Continuer';
     this.services$ = this.getAllServices();
@@ -112,6 +116,12 @@ export class NewTicketComponent implements OnInit {
         });
       }
     } else if (this.step === 2) {
+      if (this.selectedpersonnesRatachees) {
+        const nom = this.selectedpersonnesRatachees.nom || this.selectedpersonnesRatachees.raisonSociale || '';
+        sessionStorage.setItem('id_patient', this.selectedpersonnesRatachees.id || '');
+        sessionStorage.setItem('nom_patient', nom);
+        this.nomPersonne = nom;
+      }
       this.nextStep();
     } else if (this.step === 3) {
       this.ticketsService
@@ -153,10 +163,15 @@ export class NewTicketComponent implements OnInit {
       this.btnLibelleNew = 'Continuer'; // Changer le titre du bouton si aucun associé n'est sélectionné
       this.patientsService.addSelectedpersonnesRatachees(personnesRatachees); // Add personnesRatachees if not already selected
       this.selectedpersonnesRatachees = personnesRatachees;
+      const nom = personnesRatachees.nom || personnesRatachees.raisonSociale || '';
+      sessionStorage.setItem('id_patient', personnesRatachees.id || '');
+      sessionStorage.setItem('nom_patient', nom);
     } else {
       this.btnLibelleNew = 'Enregistrer'; // Réinitialiser le titre du bouton si un associé est sélectionné
       this.patientsService.removeSelectedpersonnesRatachees(personnesRatachees); // Remove personnesRatachees if already selected
       this.selectedpersonnesRatachees = null;
+      sessionStorage.setItem('id_patient', this.mainPatientId || '');
+      sessionStorage.setItem('nom_patient', this.mainPatientNom || '');
     }
   }
 

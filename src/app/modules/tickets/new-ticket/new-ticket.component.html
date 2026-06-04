@@ -27,10 +27,10 @@
                     <div class="personnesRatacheess-wrapper">
                         <label *ngFor="let personnesRatachees of personnesRatacheess$ | async">
                             <input type="checkbox" name="personnesRatacheesId" required
-                                id="{{ personnesRatachees?.id }}" value="{{ personnesRatachees?.nom }}"
+                                id="{{ personnesRatachees?.id }}" value="{{ personnesRatachees?.nom || personnesRatachees?.raisonSociale }}"
                                 [checked]="isSelected(personnesRatachees)"
                                 (click)="togglepersonnesRatacheesSelection(personnesRatachees)" />
-                            {{ personnesRatachees?.nom }}
+                            {{ personnesRatachees?.nom || personnesRatachees?.raisonSociale }}
                         </label>
                     </div>
                 </div>
