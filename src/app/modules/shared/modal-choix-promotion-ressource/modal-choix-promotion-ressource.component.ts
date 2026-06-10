@@ -18,7 +18,7 @@ import { PromoService } from 'src/app/services/promo/promo.service';
 export class ModalChoixPromotionRessourceComponent  implements OnInit{
 
   filteredOptions: IPromo[] | undefined;
-  promotionCourente : IPromo | undefined
+  promotionCourante : IPromo | undefined
   ressourceCourante: IRessource | undefined
   ELEMENTS_TABLE_PROMO: IPromo[] = [];
 
@@ -57,7 +57,7 @@ export class ModalChoixPromotionRessourceComponent  implements OnInit{
     }
     });
 
-    this.promotionCourente = this.donneeEchangeService.dataPromoMouvementCourant
+    this.promotionCourante = this.donneeEchangeService.dataPromoMouvementCourant
 
   }
 
@@ -83,12 +83,12 @@ export class ModalChoixPromotionRessourceComponent  implements OnInit{
 
   public getPromotion(option: IPromo, event: any){
     if (event.target.checked) {
-      this.promotionCourente = option
+      this.promotionCourante = option
     }
   }
   reinitialier() {
     this.formePromoRessource.reset()
-    this.promotionCourente = undefined
+    this.promotionCourante = undefined
   }
   // Annuler et fermer la boîte de dialogue
   onCancel() {
@@ -96,6 +96,6 @@ export class ModalChoixPromotionRessourceComponent  implements OnInit{
   }
   // Sauvegarder les changements et fermer la boîte de dialogue
   onSave() {
-    this.donneeEchangeService.dataPromoMouvementCourant = this.promotionCourente
+    this.donneeEchangeService.dataPromoMouvementCourant = this.promotionCourante
   }
 }

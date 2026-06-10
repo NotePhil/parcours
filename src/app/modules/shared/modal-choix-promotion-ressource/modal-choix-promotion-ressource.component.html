@@ -193,13 +193,13 @@
         </mat-paginator>
       </div>
     </div>
-    <div *ngIf="this.promotionCourente != undefined" class="affichePromo">
+    <div *ngIf="this.promotionCourante != undefined" class="affichePromo">
       <p>
         <span class="libelle">
           {{'promo-distributeur.emetteur' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.promotionCourente.emetteur.raisonSociale}}
+          {{this.promotionCourante.emetteur.raisonSociale}}
         </span>
       </p>
       <p>
@@ -207,7 +207,7 @@
           {{'promo-distributeur.date_debut' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.promotionCourente.dateDebut | date}}
+          {{this.promotionCourante.dateDebut | date}}
         </span>
       </p>
       <p>
@@ -215,7 +215,7 @@
           {{'promo-distributeur.date_fin' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.promotionCourente.dateFin | date}}
+          {{this.promotionCourante.dateFin | date}}
         </span>
       </p>
       <p>
@@ -223,7 +223,7 @@
           {{'promo-distributeur.code' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.promotionCourente.codeUnique}}
+          {{this.promotionCourante.codeUnique}}
         </span>
       </p>
       <p>
@@ -231,7 +231,7 @@
           {{'promo-distributeur.montant' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.promotionCourente.montantRemise}}
+          {{this.promotionCourante.montantRemise}}
         </span>
       </p>
       <p>
@@ -239,30 +239,30 @@
           {{'promo-distributeur.Pourcentage' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.promotionCourente.pourcentageRemise}}
+          {{this.promotionCourante.pourcentageRemise}}
         </span>
       </p>
       <p>
         <span class="libelle">
           {{'promo-distributeur.ressource' | translate}} : 
         </span>
-        <span class="resultat" *ngFor="let fam of this.promotionCourente.famille">
+        <span class="resultat" *ngFor="let fam of this.promotionCourante.famille">
             {{ fam.libelle
-            }}<span *ngIf="!isLastElement(this.promotionCourente.famille!, fam)">, </span>
+            }}<span *ngIf="!isLastElement(this.promotionCourante.famille!, fam)">, </span>
         </span>
       </p>
       <p>
         <span class="libelle">
           {{'promo-distributeur.famille' | translate}} : 
         </span>
-        <span class="resultat" *ngFor="let res of this.promotionCourente.ressource">
+        <span class="resultat" *ngFor="let res of this.promotionCourante.ressource">
             {{ res.libelle
-            }}<span *ngIf="!isLastElement(this.promotionCourente.ressource!, res)">, </span>
+            }}<span *ngIf="!isLastElement(this.promotionCourante.ressource!, res)">, </span>
         </span>
       </p>
     </div>
     <div class="actionButton valBtn mt-2">
-      <button *ngIf="this.promotionCourente != undefined"  class="btn btnValidation annuler" title="{{'lists.button15' | translate}}">
+      <button *ngIf="this.promotionCourante != undefined"  class="btn btnValidation annuler" title="{{'lists.button15' | translate}}">
         <i class="fa fa-undo" aria-hidden="true" (click)="reinitialier()"></i>
       </button>
       <button   (click)="onCancel()" class="btn btnValidation fermer" title="{{'lists.button3' | translate}}">

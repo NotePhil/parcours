@@ -19,7 +19,7 @@ export class ModalRoleValidationComponent implements OnInit{
 
   myControl = new FormControl<string | IValidation>('');
   filteredOptions: IValidation[] | undefined;
-  validationCourente : IValidation | undefined
+  validationCourante : IValidation | undefined
   personnelRole : IPersonnel[] = []
   
   constructor(
@@ -37,10 +37,10 @@ export class ModalRoleValidationComponent implements OnInit{
       this.filteredOptions = valeurs
     });
 
-    this.validationCourente = this.donneeRoleValidationService.dataRoleValidation
+    this.validationCourante = this.donneeRoleValidationService.dataRoleValidation
     
-    if (this.validationCourente != undefined) {
-      this.rechercherPersonnelDuRole(this.validationCourente.role.id!).subscribe(valeurs => {
+    if (this.validationCourante != undefined) {
+      this.rechercherPersonnelDuRole(this.validationCourante.role.id!).subscribe(valeurs => {
         this.personnelRole = valeurs
       });
     }
@@ -81,7 +81,7 @@ export class ModalRoleValidationComponent implements OnInit{
   }
 
   public rechercherListingRole(option: IValidation){
-    this.validationCourente = option
+    this.validationCourante = option
     this.serviceValidation.getValidationById(option.id!).subscribe(
         valeurs => {
           this.donneeRoleValidationService.dataRoleValidation = valeurs
@@ -96,7 +96,7 @@ export class ModalRoleValidationComponent implements OnInit{
    */
   reinitialiser(){
     this.myControl.reset()
-    this.validationCourente = undefined
+    this.validationCourante = undefined
     this.donneeRoleValidationService.dataRoleValidation = undefined
   }
 }

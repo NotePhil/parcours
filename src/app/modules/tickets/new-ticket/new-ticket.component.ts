@@ -11,6 +11,7 @@ import { ServicesService } from 'src/app/services/services/services.service';
 import { TicketsService } from 'src/app/services/tickets/tickets.service';
 import { PatientsService } from 'src/app/services/patients/patients.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { log } from 'console';
 
 @Component({
   selector: 'app-new-ticket',
@@ -25,14 +26,14 @@ export class NewTicketComponent implements OnInit {
   forme: FormGroup;
   btnLibelle: string = 'Enregistrer';
   selectedpersonnesRatachees: IPatient | null = null;
+  personneTicketCourant: IPatient | null = null; // personne associee au ticket en cours de creation
   submitted: boolean = false;
   btnLibelleNew: string = 'Enregistrer';
   currentDate = new Date();
   strIidPersonne: string = '';
   idPersonne: string = '0';
   nomPersonne: string | null = '';
-  mainPatientId: string | null = null;
-  mainPatientNom: string | null = null;
+  mainPatientId: string = ''; // id de le personne courante
   id_service: string = '0';
   libelleService: string | null = '';
   id_ticket: string = '0';
@@ -41,7 +42,6 @@ export class NewTicketComponent implements OnInit {
 
   services$: Observable<IService[]> = EMPTY;
   tickets$: Observable<ITicket[]> = EMPTY;
-  personnesRatacheess$: Observable<IPatient[]> = EMPTY;
   _ticket: ITicket = {
     id: '0',
     idUnique: '',
@@ -68,9 +68,11 @@ export class NewTicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mainPatientId = sessionStorage.getItem('id_patient');
-    this.mainPatientNom = sessionStorage.getItem('nom_patient');
-    this.personnesRatacheess$ = this.getpersonnesRatacheess();
+    this.mainPatientId = sessionStorage.getItem('id_patient')!;
+    this.patientsService.getPatientById(this.mainPatientId).subscribe((x) => {
+        this.personneTicketCourant = x;
+      })
+    // this.personnesRatacheess$ = this.getpersonnesRatacheess();
     this.btnLibelleNew = 'Continuer';
     this.services$ = this.getAllServices();
     this.libelle_service = localStorage.getItem('libelle_service') || '';
@@ -99,21 +101,18 @@ export class NewTicketComponent implements OnInit {
   onSubmit(ticketInput: any) {
     this.submitted = true;
 
-    this.nomPersonne = sessionStorage.getItem('nom_patient');
+    this.nomPersonne = this.personneTicketCourant!.nom;
     this.libelleService = sessionStorage.getItem('libelle_service');
     // Validation de l'élément non conforme
     if (this.forme.invalid) return;
     const idPatient = sessionStorage.getItem('id_patient');
     if (this.step === 1) {
       if (idPatient) {
-        this.personnesRatacheess$ = this.patientsService.getPatientpersonnesRatacheess(idPatient);
-        this.personnesRatacheess$.subscribe((personnesRatacheess) => {
-          if (personnesRatacheess.length > 0) {
+          if (this.personneTicketCourant!.personnesRatachees && this.personneTicketCourant!.personnesRatachees.length > 0) {
             this.nextStep();
           } else {
             this.step = 3; // Passer à l'étape 3 s'il n'y a pas d'associés
           }
-        });
       }
     } else if (this.step === 2) {
       if (this.selectedpersonnesRatachees) {
@@ -149,14 +148,6 @@ export class NewTicketComponent implements OnInit {
     this.step += 1;
   }
 
-  getpersonnesRatacheess(): Observable<IPatient[]> {
-    const idPatient = sessionStorage.getItem('id_patient');
-    if (idPatient) {
-      return this.patientsService.getPatientpersonnesRatacheess(idPatient);
-    }
-    return EMPTY;
-  }
-
   togglepersonnesRatacheesSelection(personnesRatachees: IPatient) {
     if (!personnesRatachees) return;
     if (!this.isSelected(personnesRatachees)) {
@@ -171,7 +162,7 @@ export class NewTicketComponent implements OnInit {
       this.patientsService.removeSelectedpersonnesRatachees(personnesRatachees); // Remove personnesRatachees if already selected
       this.selectedpersonnesRatachees = null;
       sessionStorage.setItem('id_patient', this.mainPatientId || '');
-      sessionStorage.setItem('nom_patient', this.mainPatientNom || '');
+      sessionStorage.setItem('nom_patient', this.personneTicketCourant?.nom || '');
     }
   }
 
@@ -184,13 +175,11 @@ export class NewTicketComponent implements OnInit {
 
   previousStep() {
     if (this.step === 3) {
-      this.personnesRatacheess$.subscribe((personnesRatacheess) => {
-        if (!personnesRatacheess || personnesRatacheess.length === 0) {
-          this.step = 1; // S'il n'y a pas d'associés et que l'on revient de l'étape 3, aller à l'étape 1
-        } else {
-          this.step = 2; // S'il y a des associés, revenir à l'étape précédente
-        }
-      });
+      if (this.personneTicketCourant!.personnesRatachees && this.personneTicketCourant!.personnesRatachees.length === 0) {
+        this.step = 1; // S'il n'y a pas d'associés et que l'on revient de l'étape 3, aller à l'étape 1
+      } else {
+        this.step = 2; // S'il y a des associés, revenir à l'étape précédente
+      }
     } else {
       this.step -= 1;
     }

@@ -22,10 +22,10 @@
             <div class="card-header pt-2 pb-2 entete" style="margin-bottom: 39px">
                 <h2>Sélectionnez un parent à associer</h2>
             </div>
-            <div class="card-body" id="top2">
+            <div class="card-body blockServices" id="top2">
                 <div class="container-fluid blockpersonnesRatacheess">
                     <div class="personnesRatacheess-wrapper">
-                        <label *ngFor="let personnesRatachees of personnesRatacheess$ | async">
+                        <label *ngFor="let personnesRatachees of personneTicketCourant?.personnesRatachees">
                             <input type="checkbox" name="personnesRatacheesId" required
                                 id="{{ personnesRatachees?.id }}" value="{{ personnesRatachees?.nom || personnesRatachees?.raisonSociale }}"
                                 [checked]="isSelected(personnesRatachees)"
@@ -56,7 +56,7 @@
                         <p><span>{{'tickets.form.label2' | translate}}</span>{{this._ticket.idUnique}}</p>
                         <p><span>{{'tickets.form.label3' | translate}}</span>{{this._ticket.date_heure | date:
                             'dd/MM/yyyy A hh:mm:ss'}}</p>
-                        <p><span>{{'tickets.form.label4' | translate}}</span>{{this.nomPersonne}}</p>
+                        <p><span>{{'tickets.form.label4' | translate}}</span>{{this.personneTicketCourant?.nom}}</p>
                         <p class="barCode pt-2 pb-1">
                             <i class="fa fa-barcode fa-4x" aria-hidden="true"></i>
                             <i class="fa fa-barcode fa-4x" aria-hidden="true"></i>

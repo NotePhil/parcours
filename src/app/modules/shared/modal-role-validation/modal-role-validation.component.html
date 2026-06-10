@@ -8,13 +8,13 @@
         </mat-option>
       </mat-autocomplete>
     </form>
-    <div *ngIf="this.validationCourente != undefined" class="affichePersonne">
+    <div *ngIf="this.validationCourante != undefined" class="affichePersonne">
       <p>
         <span class="libelle">
           {{'validation.form.label1' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.validationCourente.code}}
+          {{this.validationCourante.code}}
         </span>
       </p>
       <p>
@@ -22,7 +22,7 @@
           {{'services.table.title1' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.validationCourente.libelle}}
+          {{this.validationCourante.libelle}}
         </span>
       </p>
       <p>
@@ -30,7 +30,7 @@
           {{'validation.form.label6' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.validationCourente.role.titre}}
+          {{this.validationCourante.role.titre}}
         </span>
       </p>
       <p>
@@ -38,7 +38,7 @@
           {{'validation.form.label3' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.validationCourente.dateCreation | date : 'dd/mm/yyyy'}}
+          {{this.validationCourante.dateCreation | date : 'dd/mm/yyyy'}}
         </span>
       </p>
       <p>
@@ -46,7 +46,7 @@
           {{'validation.form.label2' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.validationCourente.etat}}
+          {{this.validationCourante.etat}}
         </span>
       </p>
       <p>
@@ -54,7 +54,7 @@
           {{'validation.form.label4' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.validationCourente.typeVote}}
+          {{this.validationCourante.typeVote}}
         </span>
       </p>
       <p>
@@ -62,7 +62,7 @@
           {{'validation.form.label5' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.validationCourente.dureeVote}}
+          {{this.validationCourante.dureeVote}}
         </span>
       </p>
 
@@ -76,7 +76,7 @@
       </div>
     </div>
     <div class="actionButton valBtn mt-2">
-      <button *ngIf="this.validationCourente != undefined"  (click)="reinitialiser()" class="btn btnValidation annuler" title="{{'lists.button3' | translate}}">
+      <button *ngIf="this.validationCourante != undefined"  (click)="reinitialiser()" class="btn btnValidation annuler" title="{{'lists.button3' | translate}}">
         <i class="fa fa-undo" aria-hidden="true"></i>
       </button>
         <button  [mat-dialog-close] cdkFocusInitial class="btn btnValidation">
