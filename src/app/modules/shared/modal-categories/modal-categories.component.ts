@@ -48,7 +48,6 @@ export class ModalCategoriesComponent implements OnInit {
     'actions',
     'titre',
     'description',
-    '',
     'ordreAtrParCat',
     'obligatoire',
   ];
@@ -109,31 +108,32 @@ export class ModalCategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.TABLE_CATEGORIE_AFFICHAGE_TEMP =
-     JSON.parse (JSON.stringify(this.donneeDocCatService.dataDocumentCategorie));
+    const savedCategories = this.donneeDocCatService.dataDocumentCategorie ?? [];
+    const savedAttributs = this.donneeDocCatService.dataDocumentAttributs ?? [];
+
+    this.TABLE_CATEGORIE_AFFICHAGE_TEMP = JSON.parse(JSON.stringify(savedCategories));
+    this.tableResultatsCategoriesAffichage.data = [];
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP.forEach((categorieAffiche) => {
       if (categorieAffiche.ordre != 100) {
         this.tableResultatsCategoriesAffichage.data.push(categorieAffiche);
       }
     });
-    if (
-      this.donneeDocCatService.dataDocumentCategorie != null &&
-      this.donneeDocCatService.dataDocumentCategorie.length > 0
-    ) {
-      //Création du premier tableau si le deuxième n'est pas vide
-      let listAtt: String[] = [];
-      let listCatAtt: ICategorieAffichage[] =
-        this.tableResultatsCategoriesAffichage.data;
-      //recuperation des id des attributs dans le deuxieme tableau de la modal
+
+    if (savedCategories.length > 0) {
+      // Création du premier tableau si le deuxième n'est pas vide
+      const listAtt: string[] = [];
+      const listCatAtt: ICategorieAffichage[] = this.tableResultatsCategoriesAffichage.data;
+
+      // récupération des ids des attributs déjà en catégorie
       listCatAtt.forEach((valeur) => {
-  listAtt.push(valeur.attributCategories.attribut.id!);
+        listAtt.push(valeur.attributCategories.attribut.id!);
       });
-      //comparaison avec les ids du tableau initial pour exclure ceux présents dans le second
+
+      // comparaison avec les ids du tableau initial pour exclure ceux présents dans le second
       this.tableauAttributsTemp = [];
-      let tmpTab = this.donneeDocCatService.dataDocumentAttributs;
-      tmpTab.forEach((att: IAttributs) => {
-  if (!listAtt.includes(att.id!)) {
-          let jointureAttCat: IAssociationCategorieAttributs = {
+      savedAttributs.forEach((att: IAttributs) => {
+        if (!listAtt.includes(att.id!)) {
+          const jointureAttCat: IAssociationCategorieAttributs = {
             ordre: 0,
             obligatoire: false,
             attribut: att,
@@ -141,42 +141,32 @@ export class ModalCategoriesComponent implements OnInit {
           this.tableauAttributsTemp.push(jointureAttCat);
         }
       });
-      this.dataSourceAttributTemp =
-        new MatTableDataSource<IAssociationCategorieAttributs>(
-          this.tableauAttributsTemp
-        );
+      this.dataSourceAttributTemp = new MatTableDataSource<IAssociationCategorieAttributs>(this.tableauAttributsTemp);
 
-      //suppression des valeurs dans le second tableau si les attributs ont été supprimé dans le tableau initial des attributs
-      let TABLE_CATEGORIE_AFFICHAGE_TEMP: ICategorieAffichage[] = [];
+      // suppression des éléments du second tableau si les attributs ont été retirés du tableau initial
+      const filteredCategories: ICategorieAffichage[] = [];
       listCatAtt.forEach((attCat) => {
-        for (let index = 0; index < tmpTab.length; index++) {
-          const element = tmpTab[index];
-          if (element.id == attCat.attributCategories.attribut.id) {
-            TABLE_CATEGORIE_AFFICHAGE_TEMP.push(attCat);
-            break;
-          }
+        if (savedAttributs.some((element: IAttributs) => element.id === attCat.attributCategories.attribut.id)) {
+          filteredCategories.push(attCat);
         }
       });
-      this.tableResultatsCategoriesAffichage =
-        new MatTableDataSource<ICategorieAffichage>(
-          TABLE_CATEGORIE_AFFICHAGE_TEMP
-        );
+
+      this.tableResultatsCategoriesAffichage = new MatTableDataSource<ICategorieAffichage>(filteredCategories);
       this.tableauIndexSelectionner = new Map();
-      //sauvegarde de la nouvelle valeur du 2ème tableau
-      this.donneeDocCatService.dataDocumentCategorie =
-        TABLE_CATEGORIE_AFFICHAGE_TEMP;
+      this.donneeDocCatService.dataDocumentCategorie = filteredCategories;
     } else {
-      //Création du premier tableau si le deuxième est vide
-      this.tableauAttributsTemp = this.creerTabAssociationCatAtr(
-        this.donneeDocCatService.dataDocumentAttributs
-      );
+      // Création du premier tableau si le deuxième est vide
+      this.tableauAttributsTemp = this.creerTabAssociationCatAtr(savedAttributs);
     }
+
     this.dataSourceAttributTemp.data = this.tableauAttributsTemp;
   }
 
   creerTabAssociationCatAtr(tmpTab: any): IAssociationCategorieAttributs[] {
+    this.tableauAttributsTemp = [];
+    tmpTab = tmpTab ?? [];
     tmpTab.forEach((att: IAttributs) => {
-      let jointureAttCat: IAssociationCategorieAttributs = {
+      const jointureAttCat: IAssociationCategorieAttributs = {
         ordre: 0,
         obligatoire: false,
         attribut: att,
