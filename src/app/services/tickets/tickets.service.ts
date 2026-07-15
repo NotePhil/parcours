@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, map, of, filter, EMPTY } from 'rxjs';
 import { StatutTicket } from 'src/app/modele/statut-ticket';
 import { ITicket } from 'src/app/modele/ticket';
-import {v4 as uuidv4} from 'uuid';
 import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
@@ -91,20 +90,26 @@ export class TicketsService {
   {
     return this.http.post(this.param.api+ 'tickets',ticket);
   }
-  attribuerTicket(id_patient : string | null, id_service : string | null):Observable<ITicket>
+
+  // attribuerTicket(id_patient : string | null, id_service : string | null):Observable<ITicket>
+  // {
+  //   let ticket : ITicket = {
+  //     // id optional; backend will assign unique id
+  //     idUnique: '123456',
+  //     date_heure: new Date,
+  //     idFileAttente: id_service,
+  //     idPersonne: id_patient,
+  //     statut: this.statutTicketActif
+  //   };
+
+  //   this.http.post(this.param.api+ 'tickets',ticket).subscribe();
+
+  //   return of(ticket);
+  // }
+
+  attribuerTicket(ticket : ITicket)
   {
-    let ticket : ITicket = {
-      // id optional; backend will assign unique id
-      idUnique: '123456',
-      date_heure: new Date,
-      idFileAttente: id_service,
-      idPersonne: id_patient,
-      statut: this.statutTicketActif
-    };
-
-    this.http.post(this.param.api+ 'tickets',ticket).subscribe();
-
-    return of(ticket);
+    return this.http.post(this.param.api + 'personnes/ticket', ticket);
   }
   
   modifierOuNouveauTicket(ticketRecent: ITicket):Observable < ITicket>

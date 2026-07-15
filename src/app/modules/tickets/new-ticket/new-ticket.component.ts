@@ -12,6 +12,8 @@ import { TicketsService } from 'src/app/services/tickets/tickets.service';
 import { PatientsService } from 'src/app/services/patients/patients.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { log } from 'console';
+import { StatutTicket } from 'src/app/modele/statut-ticket';
+import {v4 as uuidv4} from 'uuid';
 
 @Component({
   selector: 'app-new-ticket',
@@ -51,6 +53,7 @@ export class NewTicketComponent implements OnInit {
     statut: '',
   };
   titre: string = '';
+  statutTicketActif = StatutTicket.actif
 
   constructor(
     private formBuilder: FormBuilder,
@@ -123,16 +126,19 @@ export class NewTicketComponent implements OnInit {
       }
       this.nextStep();
     } else if (this.step === 3) {
-      this.ticketsService
-        .attribuerTicket(
-          sessionStorage.getItem('id_patient'),
-          sessionStorage.getItem('id_service')
-        )
-        .subscribe((object) => {
-          this._ticket = object;
-          sessionStorage.setItem('idFileAttente', this._ticket.idFileAttente!);
-          this._ticket.idPersonne = sessionStorage.getItem('nom_patient');
-        });
+      
+      let ticketTemp : ITicket = {
+            // id optional
+            idUnique: uuidv4(),
+            date_heure: new Date,
+            idFileAttente: "ABC",
+            idPersonne: "1",
+            statut: this.statutTicketActif
+          };
+      this.ticketsService.attribuerTicket(ticketTemp)
+      this._ticket = ticketTemp;
+      sessionStorage.setItem('idFileAttente', this._ticket.idFileAttente!);
+      this._ticket.idPersonne = sessionStorage.getItem('nom_patient');
 
       this.nextStep();
     }
