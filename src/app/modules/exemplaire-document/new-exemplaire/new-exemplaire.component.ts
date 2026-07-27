@@ -1043,7 +1043,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
     let exemplaireTemp: IExemplaireDocument = {
       // id optional
-      idDocument: this.document.idDocument,
+      idDocument: this.document.idDocument!,
       titre: this.document.titre,
       description: this.document.description,
       missions: this.document.missions,

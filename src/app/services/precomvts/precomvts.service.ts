@@ -12,7 +12,7 @@ export class PrecoMvtsService {
   constructor(private http: HttpClient, private param: GlobalVariables) {}
 
   getAllPrecomvts(): Observable<IPrecoMvt[]> {
-    return this.http.get<IPrecoMvt[]>(this.param.api+ 'PrecoMouvements').pipe(map((x) => x));
+    return this.http.get<IPrecoMvt[]>(this.param.api+ 'precoMouvements').pipe(map((x) => x));
   }
 
   getPrecomvtById(id: string): Observable<IPrecoMvt> {
@@ -24,7 +24,7 @@ export class PrecoMvtsService {
   }
 
   getPrecomvtsByLibelle(libelle: string): Observable<IPrecoMvt[]> {
-    return this.http.get<IPrecoMvt[]>(this.param.api+ 'PrecoMouvements').pipe(
+    return this.http.get<IPrecoMvt[]>(this.param.api+ 'precoMouvements').pipe(
       map((x) => {
         return x.filter((p) => p.libelle.toLowerCase().startsWith(libelle));
       })
@@ -32,6 +32,6 @@ export class PrecoMvtsService {
   }
 
   ajouterPrecomvt(precomvt: IPrecoMvt) {
-    return this.http.post(this.param.api+ 'PrecoMouvements', precomvt);
+    return this.http.post(this.param.api+ 'precoMouvements', precomvt);
   }
 }

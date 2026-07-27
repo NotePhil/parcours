@@ -6,7 +6,7 @@ import { IPrecoMvt } from "./precomvt";
 
 export interface IDocument {
     id? : string
-    idDocument:string,
+    idDocument?:string,
     titre:string,
     description:string,
     etat:boolean,

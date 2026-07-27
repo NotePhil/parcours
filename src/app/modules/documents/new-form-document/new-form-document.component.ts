@@ -392,10 +392,7 @@ export class NewFormDocumentComponent implements OnInit {
       this.ELEMENTS_TABLE_ATTRIBUTS.length < 1
     )
       return;
-      let idTemp = uuidv4()
     let documentTemp: IDocument = {
-      idDocument: idTemp,
-      id: idTemp,
       titre: documentInput.titre,
       description: documentInput.description,
       etat: documentInput.etat,
