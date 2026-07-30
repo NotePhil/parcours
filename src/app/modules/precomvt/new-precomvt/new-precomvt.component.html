@@ -213,20 +213,20 @@
         <div class="infosBoitier" (click)="chargerValeurPrecoMvt(i)" >
           <div class="boitier" id="boitierLibelle">
             <P>{{elt.libelle}}</P>
-            <P><span>Type: </span>{{elt.type}}</P>
+            <P><span>type: </span>{{elt.typeMouvement}}</P>
           </div>
           <div class="boitier">
             <div class="blockQuantite">
               <P title="Quantité maximale"><span>{{'precomvt.table.title21' | translate}} :
-                </span>{{elt.precomvtqte[0].quantiteMax}}</P>
+                </span>{{elt.precoMouvementsQtes[0].quantiteMax}}</P>
               <P title="Quantité minimale"><span>{{'precomvt.table.title22' | translate}} :
-                </span>{{elt.precomvtqte[0].quantiteMin}}</P>
+                </span>{{elt.precoMouvementsQtes[0].quantiteMin}}</P>
             </div>
             <div class="blockQuantite">
               <P title="Montant maximal"><span>{{'precomvt.table.title23' | translate}} :
-                </span>{{elt.precomvtqte[0].montantMax}}</P>
+                </span>{{elt.precoMouvementsQtes[0].montantMax}}</P>
               <P title="Montant minimal"><span>{{'precomvt.table.title24' | translate}} :
-                </span>{{elt.precomvtqte[0].montantMin}}</P>
+                </span>{{elt.precoMouvementsQtes[0].montantMin}}</P>
             </div>
           </div>
         </div>

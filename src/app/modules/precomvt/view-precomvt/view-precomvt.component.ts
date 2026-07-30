@@ -18,8 +18,8 @@ export class ViewPrecomvtComponent implements OnInit {
     id: '',
     etat:true,
     libelle:'',
-     type: '',
-    precomvtqte: [],
+     typeMouvement: '',
+    precoMouvementsQtes: [],
   }
 
   eltsPreco : IPrecoMvt[] = [];
@@ -37,7 +37,7 @@ export class ViewPrecomvtComponent implements OnInit {
       this.precoMvtService.getPrecomvtById(idPrecoMvt).subscribe(
         x =>{
           this.precoMvt = x;
-          this.precoMvt.precomvtqte.forEach(
+          this.precoMvt.precoMouvementsQtes.forEach(
             element => {
                    if (element.ressource != undefined && element.ressource != null ){
 

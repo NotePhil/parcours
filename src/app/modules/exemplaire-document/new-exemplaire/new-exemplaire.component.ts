@@ -1168,8 +1168,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
   verificationRessource(qte?: any, prixOut?: any, prixIn?: any, option?: IRessource) {
     this.document.precoMouvements.forEach((precoMvt) => {
-      if (precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id)) {
-        this.resValidate = precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id);
+      if (precoMvt.precoMouvementsQtes.find(p => p.ressource?.id == option!.id)) {
+        this.resValidate = precoMvt.precoMouvementsQtes.find(p => p.ressource?.id == option!.id);
       }
     })
     console.log("precoQte : ", this.resValidate);

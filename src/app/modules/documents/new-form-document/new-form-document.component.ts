@@ -442,7 +442,6 @@ export class NewFormDocumentComponent implements OnInit {
 
     if (this.TABLE_CATEGORIE_AFFICHAGE_TEMP.length < 1) {
       let categorieAttributs: ICategoriesAttributs = {
-        id: '',
         libelle: 'Autres',
         ordre: 100,
         attributs: [],

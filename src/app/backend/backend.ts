@@ -1825,8 +1825,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -1931,8 +1931,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -1966,8 +1966,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '3',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -2335,8 +2335,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -2440,8 +2440,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -2475,8 +2475,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -2837,8 +2837,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -2941,9 +2941,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -2976,9 +2976,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -3288,8 +3288,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -3391,9 +3391,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -3426,9 +3426,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -3734,9 +3734,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'Neutre',
+                typeMouvement: 'Neutre',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -3840,9 +3840,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -3876,8 +3876,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -4352,9 +4352,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'Neutre',
+                typeMouvement: 'Neutre',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -4457,9 +4457,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -4492,9 +4492,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -4801,9 +4801,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '1',
                 libelle: 'rachat',
-                type: 'Neutre',
+                typeMouvement: 'Neutre',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -4906,9 +4906,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -4941,9 +4941,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -5448,8 +5448,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -5553,8 +5553,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -5588,8 +5588,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -5962,8 +5962,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -6067,8 +6067,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -6102,8 +6102,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -6466,8 +6466,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -6572,8 +6572,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -6606,9 +6606,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -6918,8 +6918,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -7024,8 +7024,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -7059,8 +7059,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '3',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -7431,8 +7431,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -7536,8 +7536,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -7571,8 +7571,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -7934,8 +7934,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -8039,8 +8039,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -8074,8 +8074,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -8385,8 +8385,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -8490,8 +8490,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -8525,8 +8525,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -9020,8 +9020,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -9125,8 +9125,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -9159,9 +9159,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -9531,8 +9531,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -9636,8 +9636,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -9671,8 +9671,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -10166,8 +10166,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -10297,8 +10297,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -10332,8 +10332,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '3',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -10739,8 +10739,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -10845,8 +10845,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -10880,8 +10880,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '3',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -11191,8 +11191,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -11296,8 +11296,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -11330,9 +11330,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -11826,8 +11826,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -11931,8 +11931,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -11966,8 +11966,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -12340,8 +12340,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -12445,8 +12445,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -12480,8 +12480,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -12813,8 +12813,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -12919,8 +12919,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -12953,9 +12953,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -13475,8 +13475,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -13583,8 +13583,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -13617,9 +13617,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -14184,8 +14184,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -14288,9 +14288,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -14323,9 +14323,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -14816,8 +14816,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -14920,9 +14920,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -14955,9 +14955,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -15525,8 +15525,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -15632,9 +15632,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -15667,9 +15667,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -16070,8 +16070,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -16174,9 +16174,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -16209,9 +16209,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -16702,8 +16702,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -16807,8 +16807,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -16842,8 +16842,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -17213,8 +17213,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -17317,9 +17317,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -17353,8 +17353,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -17957,8 +17957,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -18066,8 +18066,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -18100,9 +18100,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -18669,8 +18669,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -18774,9 +18774,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -18809,9 +18809,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -19303,8 +19303,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -19408,9 +19408,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -19443,9 +19443,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -19960,8 +19960,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -20068,9 +20068,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '2',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -20103,9 +20103,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -20506,8 +20506,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -20611,9 +20611,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -20646,9 +20646,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -21019,8 +21019,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -21124,9 +21124,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -21160,8 +21160,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -21613,8 +21613,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '2',
                 quantiteMin: 30,
@@ -21672,9 +21672,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -22137,8 +22137,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -22242,9 +22242,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -22278,8 +22278,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -22860,8 +22860,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -22969,8 +22969,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -23003,9 +23003,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -23570,8 +23570,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -23675,9 +23675,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -23710,9 +23710,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -24203,8 +24203,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -24308,9 +24308,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '2',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -24343,9 +24343,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -25052,8 +25052,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '1',
             libelle: 'rachat',
             etat: true,
-            type: 'Neutre',
-            precomvtqte: [
+            typeMouvement: 'Neutre',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 10,
@@ -25158,8 +25158,8 @@ export class InMemDBService implements InMemoryDbService {
             id: '2',
             libelle: 'vente',
             etat: true,
-            type: 'Reduire',
-            precomvtqte: [
+            typeMouvement: 'Reduire',
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -25192,9 +25192,9 @@ export class InMemDBService implements InMemoryDbService {
           {
             id: '3',
             libelle: 'vente',
-            type: 'Reduire',
+            typeMouvement: 'Reduire',
             etat: true,
-            precomvtqte: [
+            precoMouvementsQtes: [
               {
                 id: '1',
                 quantiteMin: 30,
@@ -25568,9 +25568,9 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '1',
         libelle: 'rachat',
-        type: 'Neutre',
+        typeMouvement: 'Neutre',
         etat: true,
-        precomvtqte: [
+        precoMouvementsQtes: [
           {
             id: '1',
             quantiteMin: 10,
@@ -25699,9 +25699,9 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '2',
         libelle: 'vente',
-        type: 'Reduire',
+        typeMouvement: 'Reduire',
         etat: true,
-        precomvtqte: [
+        precoMouvementsQtes: [
           {
             id: '1',
             quantiteMin: 30,
@@ -25734,9 +25734,9 @@ export class InMemDBService implements InMemoryDbService {
       {
         id: '3',
         libelle: 'vente',
-        type: 'Reduire',
+        typeMouvement: 'Reduire',
         etat: true,
-        precomvtqte: [
+        precoMouvementsQtes: [
           {
             id: '1',
             quantiteMin: 30,
@@ -27423,8 +27423,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -27531,8 +27531,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -27566,8 +27566,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -27938,8 +27938,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -28044,8 +28044,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -28079,8 +28079,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -28441,8 +28441,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -28546,9 +28546,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -28581,9 +28581,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -28893,8 +28893,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -28996,9 +28996,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -29031,9 +29031,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -29339,9 +29339,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -29446,9 +29446,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -29482,8 +29482,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -29959,9 +29959,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -30066,9 +30066,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -30101,9 +30101,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -30410,9 +30410,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -30516,9 +30516,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -30551,9 +30551,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -31059,8 +31059,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -31165,8 +31165,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -31200,8 +31200,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -31575,8 +31575,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -31682,8 +31682,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -31717,8 +31717,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -32082,8 +32082,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -32189,8 +32189,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -32223,9 +32223,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -32604,8 +32604,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -32712,8 +32712,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -32747,8 +32747,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -33119,8 +33119,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -33225,8 +33225,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -33260,8 +33260,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -33622,8 +33622,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -33727,9 +33727,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -33762,9 +33762,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -34074,8 +34074,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -34177,9 +34177,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -34212,9 +34212,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -34520,9 +34520,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -34627,9 +34627,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -34663,8 +34663,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -35140,9 +35140,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -35247,9 +35247,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -35282,9 +35282,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -35591,9 +35591,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -35697,9 +35697,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -35732,9 +35732,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -36240,8 +36240,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -36346,8 +36346,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -36381,8 +36381,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -36756,8 +36756,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -36863,8 +36863,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -36898,8 +36898,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -37263,8 +37263,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -37370,8 +37370,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -37404,9 +37404,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -37785,8 +37785,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -37893,8 +37893,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -37928,8 +37928,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -38300,8 +38300,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -38406,8 +38406,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -38441,8 +38441,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -38803,8 +38803,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -38908,9 +38908,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -38943,9 +38943,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -39255,8 +39255,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -39358,9 +39358,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -39393,9 +39393,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -39701,9 +39701,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -39808,9 +39808,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -39844,8 +39844,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -40321,9 +40321,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -40428,9 +40428,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -40463,9 +40463,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -40772,9 +40772,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -40878,9 +40878,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -40913,9 +40913,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -41421,8 +41421,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -41527,8 +41527,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -41562,8 +41562,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -41937,8 +41937,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -42044,8 +42044,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -42079,8 +42079,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -42444,8 +42444,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -42551,8 +42551,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -42585,9 +42585,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -42966,8 +42966,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -43074,8 +43074,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -43109,8 +43109,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '3',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -43481,8 +43481,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -43587,8 +43587,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -43622,8 +43622,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -43984,8 +43984,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -44089,9 +44089,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -44124,9 +44124,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -44436,8 +44436,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -44539,9 +44539,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -44574,9 +44574,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -44882,9 +44882,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -44989,9 +44989,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -45025,8 +45025,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -45502,9 +45502,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -45609,9 +45609,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -45644,9 +45644,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -45953,9 +45953,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '1',
                     libelle: 'rachat',
-                    type: 'Neutre',
+                    typeMouvement: 'Neutre',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -46059,9 +46059,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '2',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -46094,9 +46094,9 @@ export class InMemDBService implements InMemoryDbService {
                   {
                     id: '3',
                     libelle: 'vente',
-                    type: 'Reduire',
+                    typeMouvement: 'Reduire',
                     etat: true,
-                    precomvtqte: [
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -46602,8 +46602,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -46708,8 +46708,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -46743,8 +46743,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -47118,8 +47118,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -47225,8 +47225,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -47260,8 +47260,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -47625,8 +47625,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '1',
                 libelle: 'rachat',
                 etat: true,
-                type: 'Neutre',
-                precomvtqte: [
+                typeMouvement: 'Neutre',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 10,
@@ -47732,8 +47732,8 @@ export class InMemDBService implements InMemoryDbService {
                 id: '2',
                 libelle: 'vente',
                 etat: true,
-                type: 'Reduire',
-                precomvtqte: [
+                typeMouvement: 'Reduire',
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -47766,9 +47766,9 @@ export class InMemDBService implements InMemoryDbService {
               {
                 id: '3',
                 libelle: 'vente',
-                type: 'Reduire',
+                typeMouvement: 'Reduire',
                 etat: true,
-                precomvtqte: [
+                precoMouvementsQtes: [
                   {
                     id: '1',
                     quantiteMin: 30,
@@ -48188,8 +48188,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -48294,8 +48294,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -48329,8 +48329,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -48640,8 +48640,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '1',
                         libelle: 'rachat',
                         etat: true,
-                        type: 'Neutre',
-                        precomvtqte: [
+                        typeMouvement: 'Neutre',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 10,
@@ -48745,8 +48745,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -48779,9 +48779,9 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         libelle: 'vente',
-                        type: 'Reduire',
+                        typeMouvement: 'Reduire',
                         etat: true,
-                        precomvtqte: [
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -49275,8 +49275,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '1',
                         libelle: 'rachat',
                         etat: true,
-                        type: 'Neutre',
-                        precomvtqte: [
+                        typeMouvement: 'Neutre',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 10,
@@ -49380,8 +49380,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -49415,8 +49415,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '3',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -49789,8 +49789,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '1',
                         libelle: 'rachat',
                         etat: true,
-                        type: 'Neutre',
-                        precomvtqte: [
+                        typeMouvement: 'Neutre',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 10,
@@ -49894,8 +49894,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -49929,8 +49929,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '3',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -50256,8 +50256,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '1',
                     libelle: 'rachat',
                     etat: true,
-                    type: 'Neutre',
-                    precomvtqte: [
+                    typeMouvement: 'Neutre',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 10,
@@ -50363,8 +50363,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '2',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -50398,8 +50398,8 @@ export class InMemDBService implements InMemoryDbService {
                     id: '3',
                     libelle: 'vente',
                     etat: true,
-                    type: 'Reduire',
-                    precomvtqte: [
+                    typeMouvement: 'Reduire',
+                    precoMouvementsQtes: [
                       {
                         id: '1',
                         quantiteMin: 30,
@@ -50770,8 +50770,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '1',
                         libelle: 'rachat',
                         etat: true,
-                        type: 'Neutre',
-                        precomvtqte: [
+                        typeMouvement: 'Neutre',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 10,
@@ -50876,8 +50876,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -50911,8 +50911,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '3',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -51274,8 +51274,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '1',
                         libelle: 'rachat',
                         etat: true,
-                        type: 'Neutre',
-                        precomvtqte: [
+                        typeMouvement: 'Neutre',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 10,
@@ -51380,8 +51380,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -51415,8 +51415,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '3',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -51726,8 +51726,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '1',
                         libelle: 'rachat',
                         etat: true,
-                        type: 'Neutre',
-                        precomvtqte: [
+                        typeMouvement: 'Neutre',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 10,
@@ -51832,8 +51832,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -51867,8 +51867,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '3',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -52363,8 +52363,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '1',
                         libelle: 'rachat',
                         etat: true,
-                        type: 'Neutre',
-                        precomvtqte: [
+                        typeMouvement: 'Neutre',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 10,
@@ -52469,8 +52469,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -52503,9 +52503,9 @@ export class InMemDBService implements InMemoryDbService {
                       {
                         id: '3',
                         libelle: 'vente',
-                        type: 'Reduire',
+                        typeMouvement: 'Reduire',
                         etat: true,
-                        precomvtqte: [
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -52879,8 +52879,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '1',
                         libelle: 'rachat',
                         etat: true,
-                        type: 'Neutre',
-                        precomvtqte: [
+                        typeMouvement: 'Neutre',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 10,
@@ -52985,8 +52985,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '2',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
@@ -53020,8 +53020,8 @@ export class InMemDBService implements InMemoryDbService {
                         id: '3',
                         libelle: 'vente',
                         etat: true,
-                        type: 'Reduire',
-                        precomvtqte: [
+                        typeMouvement: 'Reduire',
+                        precoMouvementsQtes: [
                           {
                             id: '1',
                             quantiteMin: 30,
