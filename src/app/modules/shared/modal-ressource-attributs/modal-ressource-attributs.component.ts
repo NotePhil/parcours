@@ -36,10 +36,10 @@ export class ModalRessourceAttributsComponent implements OnInit {
     id: '',
     libelle: '',
     etat: false,
-    seuil: 0,
+    seuilAlerte: 0,
     quantite: 0,
     prixEntree: 0,
-    prixDeSortie: 0,
+    prixSortie: 0,
     unite: '',
     famille: {
       id: '',

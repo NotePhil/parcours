@@ -32,13 +32,13 @@ export class PromoService {
 
   getPromoByIdAssurance(idAssurance: string): Observable<IPromo> {
     return this.getAllPromos().pipe(
-      map(x => x.find(p => p.emetteur.id!.toLowerCase() == idAssurance) as IPromo)
+      map(x => x.find(p => p.distributeur.id!.toLowerCase() == idAssurance) as IPromo)
     );
   }
 
   getPromoByRaisonSocialAssurance(raisonSocialeAssurance: string): Observable<IPromo[]> {
     return this.http.get<IPromo[]>(this.apiUrl).pipe(
-      map(x =>{ return  x.filter(p => p.emetteur.raisonSociale.toLowerCase().startsWith(raisonSocialeAssurance))})
+      map(x =>{ return  x.filter(p => p.distributeur.raisonSociale.toLowerCase().startsWith(raisonSocialeAssurance))})
     );
   }
   
@@ -47,9 +47,9 @@ export class PromoService {
       map(promos => 
         promos.filter(promo => 
           // Vérifier la correspondance des ressources
-          promo.ressource?.some(r => r.id === ressource.id) ||
+          promo.ressources?.some(r => r.id === ressource.id) ||
           // Vérifier la correspondance de la famille si disponible
-          (ressource.famille && promo.famille?.some(f => f.id === ressource.famille?.id))
+          (ressource.famille && promo.familles?.some(f => f.id === ressource.famille?.id))
         )
       ),
       catchError(error => {

@@ -27,10 +27,10 @@ export class SearchRessourceComponent implements OnInit {
     'libelle',
     'etat',
     'quantite',
-    'seuil',
+    'seuilAlerte',
     'unite',
     'prixEntree',
-    'prixDeSortie',
+    'prixSortie',
     'famille',
     'actions',
   ];

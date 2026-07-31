@@ -39,10 +39,10 @@
                         <td class="containCell" mat-cell *matCellDef="let element"> {{element.quantite}} </td>
                       </ng-container>
 
-                      <!-- seuil Column -->
-                    <ng-container matColumnDef="seuil">
+                      <!-- seuilAlerte Column -->
+                    <ng-container matColumnDef="seuilAlerte">
                         <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table.title15' | translate}}</th>
-                        <td class="containCell" mat-cell *matCellDef="let element"> {{element.seuil}} </td>
+                        <td class="containCell" mat-cell *matCellDef="let element"> {{element.seuilAlerte}} </td>
                     </ng-container>
   
                      <!-- unité Column -->
@@ -57,10 +57,10 @@
                           <td class="containCell" mat-cell *matCellDef="let element"> {{element.prixEntree}} </td>
                       </ng-container>
   
-                      <!-- prixDeSortie Column -->
-                      <ng-container matColumnDef="prixDeSortie">
+                      <!-- prixSortie Column -->
+                      <ng-container matColumnDef="prixSortie">
                           <th class="containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'ressource.table.title9' | translate}}</th>
-                          <td class="containCell" mat-cell *matCellDef="let element"> {{element.prixDeSortie}} </td>
+                          <td class="containCell" mat-cell *matCellDef="let element"> {{element.prixSortie}} </td>
                       </ng-container>
   
                         <!-- famille Column -->

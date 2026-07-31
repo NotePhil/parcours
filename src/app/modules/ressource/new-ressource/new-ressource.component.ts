@@ -66,10 +66,10 @@ export class NewRessourceComponent implements OnInit {
       ],
       etat: [true],
       quantite: ['', [Validators.required]],
-      seuil: ['', [Validators.required]],
+      seuilAlerte: ['', [Validators.required]],
       unite: ['', [Validators.required]],
       prixEntree: ['', [Validators.required]],
-      prixDeSortie: ['', [Validators.required]],
+      prixSortie: ['', [Validators.required]],
       famille: new FormControl<string | IFamille>(''),
       scanBarcode: [''],
     });
@@ -107,10 +107,10 @@ export class NewRessourceComponent implements OnInit {
             libelle: this.ressource.libelle,
             etat: this.ressource.etat,
             quantite: this.ressource.quantite,
-            seuil: this.ressource.seuil,
+            seuilAlerte: this.ressource.seuilAlerte,
             unite: this.ressource.unite,
             prixEntree: this.ressource.prixEntree,
-            prixDeSortie: this.ressource.prixDeSortie,
+            prixSortie: this.ressource.prixSortie,
             famille: this.ressource.famille,
             scanBarcode: this.ressource?.scanBarCode,
           });
@@ -168,13 +168,12 @@ export class NewRessourceComponent implements OnInit {
       etat: ressourceInput.etat,
       quantite: ressourceInput.quantite,
       unite: ressourceInput.unite,
-      seuil: ressourceInput.seuil,
+      seuilAlerte: ressourceInput.seuilAlerte,
       prixEntree: ressourceInput.prixEntree,
-      prixDeSortie: ressourceInput.prixDeSortie,
+      prixSortie: ressourceInput.prixSortie,
       famille: ressourceInput.famille,
       caracteristiques: styleAtt,
-      scanBarCode: this.forme.get('scanBarcode')?.value,
-    };
+      scanBarCode: this.forme.get('scanBarcode')?.value   };
 
     if(this.ressource != undefined){
       ressourceTemp.id = this.ressource.id

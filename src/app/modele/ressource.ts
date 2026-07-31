@@ -5,21 +5,22 @@ import { IFamille } from "./famille";
 export interface IRessource {
     id?: string,
     libelle:string,
+    dscription?:string,
     etat:boolean,
-    seuil:number,
+    seuilAlerte:number,
     quantite:number,
     prixEntree:number,
-    prixDeSortie:number,
+    prixSortie:number,
     unite:string,
     famille:IFamille,
     caracteristiques? :
     [
         {
-            attribut : IAttributs,
+            attributId : String,
             Valeur: any
         }
     ]
     scanBarCode?: any,
-   /* dateCreation:Date,
-    dateModification:Date,*/
+   dateCreation?:Date,
+    dateModification?:Date
 }

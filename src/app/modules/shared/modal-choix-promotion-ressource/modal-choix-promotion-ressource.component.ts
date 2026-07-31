@@ -62,7 +62,7 @@ export class ModalChoixPromotionRessourceComponent  implements OnInit{
   }
 
   displayFn(promo: IPromo): string {
-    return promo && promo.emetteur.raisonSociale ? promo.emetteur.raisonSociale: '';
+    return promo && promo.distributeur.raisonSociale ? promo.distributeur.raisonSociale: '';
   }
 
   ngAfterViewInit(): void {

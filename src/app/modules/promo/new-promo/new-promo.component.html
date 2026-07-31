@@ -11,15 +11,15 @@
             <div class="form-group">
               <div>
                 <div class="champs">
-                  <label for="emetteur" class="label">
+                  <label for="distributeur" class="label">
                     {{ "promo-distributeur.emetteur" | translate
                     }}<span style="color: red" aria-label="required">*</span>
                   </label>
                   <input
                     type="text"
-                    formControlName="emetteur"
-                    name="emetteur"
-                    id="emetteur"
+                    formControlName="distributeur"
+                    name="distributeur"
+                    id="distributeur"
                     placeholder="{{
                       'promo-distributeur.text1' | translate
                     }}"
@@ -40,11 +40,11 @@
                   </mat-autocomplete>
                 </div>
                 <div
-                  *ngIf="submitted && f['emetteur'].errors"
+                  *ngIf="submitted && f['distributeur'].errors"
                   class="alert alert-danger"
                 >
-                  <div *ngIf="f['emetteur'].errors['required']">
-                    {{ "promo-distributeur.emetteur_control" | translate }}
+                  <div *ngIf="f['distributeur'].errors['required']">
+                    {{ "promo-distributeur.distributeur_control" | translate }}
                   </div>
                 </div>
               </div>
