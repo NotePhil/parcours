@@ -109,7 +109,7 @@ export class TicketsService {
 
   attribuerTicket(ticket : ITicket)
   {
-    return this.http.post(this.param.api + 'personnes/ticket', ticket);
+    return this.http.post(this.param.api + 'tickets', ticket);
   }
   
   modifierOuNouveauTicket(ticketRecent: ITicket):Observable < ITicket>
