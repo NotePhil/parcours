@@ -76,7 +76,6 @@ export class NewFormDocumentComponent implements OnInit {
 
   // variables pour la gestion des categories
   categorieAttributs: ICategoriesAttributs = {
-    id: '',
     libelle: '',
     ordre: 0,
     attributs: [],
@@ -352,7 +351,6 @@ export class NewFormDocumentComponent implements OnInit {
       this.donneeDocCatService.dataDocumentCategorie;
     this.TABLE_CATEGORIE_AFFICHAGE_TEMPO.forEach((objet) => {
       let categorieAttributTemp: ICategoriesAttributs = {
-        id: '',
         libelle: '',
         ordre: 0,
         attributs: [],
@@ -392,10 +390,7 @@ export class NewFormDocumentComponent implements OnInit {
       this.ELEMENTS_TABLE_ATTRIBUTS.length < 1
     )
       return;
-      let idTemp = uuidv4()
     let documentTemp: IDocument = {
-      idDocument: idTemp,
-      id: idTemp,
       titre: documentInput.titre,
       description: documentInput.description,
       etat: documentInput.etat,
@@ -445,7 +440,6 @@ export class NewFormDocumentComponent implements OnInit {
 
     if (this.TABLE_CATEGORIE_AFFICHAGE_TEMP.length < 1) {
       let categorieAttributs: ICategoriesAttributs = {
-        id: '',
         libelle: 'Autres',
         ordre: 100,
         attributs: [],

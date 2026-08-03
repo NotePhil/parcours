@@ -4,6 +4,6 @@ export interface IPrecoMvt {
   id?: string,
   libelle:string,
   etat:boolean,
-  type:string,
-  precomvtqte:IPrecoMvtQte[]
+  typeMouvement:string,
+  precoMouvementsQtes:IPrecoMvtQte[]
 }

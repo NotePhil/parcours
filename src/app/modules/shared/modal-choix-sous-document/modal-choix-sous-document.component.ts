@@ -66,7 +66,7 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     dialogRef.afterClosed().subscribe((selectedEtat: string) => {
       this.populateSelectedEtatsMap();
       if (selectedEtat) {
-        this.selectedEtatsMap[documentChoisi.idDocument] = selectedEtat;
+        this.selectedEtatsMap[documentChoisi.idDocument!] = selectedEtat;
       }
     });
   }
@@ -102,9 +102,9 @@ export class ModalChoixSousDocumentComponent implements OnInit {
   // Remplir la carte des états sélectionnés
   private populateSelectedEtatsMap() {
     this.dataSourceDocumentResultat.data.forEach((element: IDocument) => {
-      const etat = this.serviceDocument.getSelectedEtat(element.idDocument);
+      const etat = this.serviceDocument.getSelectedEtat(element.idDocument!);
       if (etat) {
-        this.selectedEtatsMap[element.idDocument] = etat;
+        this.selectedEtatsMap[element.idDocument!] = etat;
       }
     });
   }
@@ -115,7 +115,7 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     let positionsDocument = new Map();
     let indexDocumentCourant: number = 0;
     this.ELEMENTS_TABLE_DOCUMENTS_TEMP.forEach((element: IDocument) => {
-      listidDocumentTemp.push(element.idDocument);
+      listidDocumentTemp.push(element.idDocument!);
       positionsDocument.set(element.idDocument, indexDocumentCourant++);
     });
     if (event.target.checked) {

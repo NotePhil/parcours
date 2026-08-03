@@ -38,8 +38,8 @@ export class ListRessourcesComponent implements OnInit {
     'quantite',
     'unite',
     'prixEntree',
-    'prixDeSortie',
-    'seuil',
+    'prixSortie',
+    'seuilAlerte',
     'famille',
     'actions',
   ];

@@ -53,7 +53,7 @@ export class NewPromoComponent implements OnInit {
         type: '',
         montant: ['', Validators.required],
         pourcentage: ['', [Validators.max(100)]],
-        emetteur: ['', Validators.required],
+        distributeur: ['', Validators.required],
         dateDebut: ['', Validators.required],
         dateFin: [''],
         code: ['', Validators.required],
@@ -91,7 +91,7 @@ export class NewPromoComponent implements OnInit {
           type: this.selectedOption,
           montant: promo.montantRemise,
           pourcentage: promo.pourcentageRemise,
-          emetteur: promo.emetteur,
+          distributeur: promo.distributeur,
           dateDebut: this.datePipe.transform(
             this.promo.dateDebut,
             'yyyy-MM-dd'
@@ -104,14 +104,14 @@ export class NewPromoComponent implements OnInit {
         });
 
         this.selectedBeneficiaires = [
-          ...(promo.famille || []),
-          ...(promo.ressource || []),
+          ...(promo.familles || []),
+          ...(promo.ressources || []),
         ];
       });
     }
 
     this.filteredDistributeurs = this.promoForm
-      .get('emetteur')!
+      .get('distributeur')!
       .valueChanges.pipe(
         startWith(''),
         map((value) =>
@@ -231,11 +231,11 @@ export class NewPromoComponent implements OnInit {
       return;
     }
 
-    const emetteur = this.promoForm.value.emetteur as IDistributeur;
+    const distributeur = this.promoForm.value.distributeur as IDistributeur;
 
     const promoTemp: IPromo = {
   id: this.promo ? this.promo.id : undefined,
-      emetteur: emetteur,
+      distributeur: distributeur,
       dateDebut: this.promoForm.value.dateDebut,
       dateFin: this.promoForm.value.dateFin,
       codeUnique: this.promoForm.value.code,
@@ -246,15 +246,15 @@ export class NewPromoComponent implements OnInit {
           ? this.promoForm.value.pourcentage
           : 0,
       dateCreation: this.promo ? this.promo.dateCreation : new Date(),
-      famille: [],
-      ressource: [],
+      familles: [],
+      ressources: [],
     };
 
     this.selectedBeneficiaires.forEach((beneficiaire) => {
       if ((beneficiaire as IFamille).description !== undefined) {
-        promoTemp.famille!.push(beneficiaire as IFamille);
+        promoTemp.familles!.push(beneficiaire as IFamille);
       } else if ((beneficiaire as IRessource).quantite !== undefined) {
-        promoTemp.ressource!.push(beneficiaire as IRessource);
+        promoTemp.ressources!.push(beneficiaire as IRessource);
       }
     });
 

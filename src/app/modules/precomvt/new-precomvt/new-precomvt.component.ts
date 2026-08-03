@@ -127,31 +127,29 @@ export class NewPrecomvtComponent implements OnInit {
             quantiteMin: 0,
             montantMax: 0,
             montantMin: 0,
-            id: '',
             distributeur: [],
           };
           let precoMvtTemp: IPrecoMvt = {
             id: PrecoMvtCourant.id,
             etat: PrecoMvtCourant.etat,
             libelle: this.LIBELLE_PRECO + PrecoMvtCourant.libelle,
-            type: PrecoMvtCourant.type,
-            precomvtqte: [],
+            typeMouvement: PrecoMvtCourant.typeMouvement,
+            precoMouvementsQtes: [],
           };
 
-          precoMvtTemp.precomvtqte.push(premvtqte);
+          precoMvtTemp.precoMouvementsQtes.push(premvtqte);
           this.eltsPreco.push(precoMvtTemp);
           this.saveToSessionStorage();
 
-          PrecoMvtCourant.precomvtqte.forEach((element) => {
+          PrecoMvtCourant.precoMouvementsQtes.forEach((element) => {
             let precoMvtTemp: IPrecoMvt = {
-              id: '',
               libelle: '',
               etat: true,
-              type: '',
-              precomvtqte: [],
+              typeMouvement: '',
+              precoMouvementsQtes: [],
             };
 
-            precoMvtTemp.precomvtqte.push(element);
+            precoMvtTemp.precoMouvementsQtes.push(element);
             if (element.ressource != undefined && element.ressource != null) {
               let rsrce = ' Ressource :  ';
               const ressource = element.ressource!.libelle;
@@ -216,17 +214,17 @@ export class NewPrecomvtComponent implements OnInit {
       id: this.eltsPreco[0].id,
       etat: this.eltsPreco[0].etat,
       libelle: this.eltsPreco[0].libelle.replace(this.LIBELLE_PRECO, ''),
-      type: this.eltsPreco[0].type,
-      precomvtqte: [],
+      typeMouvement: this.eltsPreco[0].typeMouvement,
+      precoMouvementsQtes: [],
     };
     this.saveToSessionStorage();
 
     if (this.eltsPreco[0].id != null && this.eltsPreco[0].id != '')
       precomvtTemp.id = this.eltsPreco[0].id;
     this.eltsPreco.forEach((valeur) => {
-      precomvtTemp.precomvtqte.push(valeur.precomvtqte[0]);
+      precomvtTemp.precoMouvementsQtes.push(valeur.precoMouvementsQtes[0]);
     });
-    if (precomvtTemp.precomvtqte.length > 1) {
+    if (precomvtTemp.precoMouvementsQtes.length > 1) {
       this.precoMvtService.ajouterPrecomvt(precomvtTemp).subscribe((object) => {
         this.router.navigate(['parcours/preconisations/list-precomvts']);
       });
@@ -405,59 +403,59 @@ export class NewPrecomvtComponent implements OnInit {
       this.forme.controls['libelle'].setValue(
         precoTmp.libelle.replace(this.LIBELLE_PRECO, '')
       );
-      this.forme.controls['type'].setValue(precoTmp.type);
+      this.forme.controls['type'].setValue(precoTmp.typeMouvement);
       this.forme.controls['etat'].setValue(precoTmp.etat);
       //ajouter un unique champ caché id pour conserver l'id en cas modification
       this.forme.controls['id'].setValue(precoTmp.id);
     }
     //si ressource absente de précoMvtQt alors par élimitation c'est une famille
     else if (
-      precoTmp.precomvtqte[0].ressource != undefined &&
-      precoTmp.precomvtqte[0].ressource != null
+      precoTmp.precoMouvementsQtes[0].ressource != undefined &&
+      precoTmp.precoMouvementsQtes[0].ressource != null
     ) {
       this.steps = 3;
       this.forme.controls['ressource'].setValue(
-        precoTmp.precomvtqte[0].ressource
+        precoTmp.precoMouvementsQtes[0].ressource
       );
-      this.forme.controls['id'].setValue(precoTmp.precomvtqte[0].id);
+      this.forme.controls['id'].setValue(precoTmp.precoMouvementsQtes[0].id);
       this.forme.controls['montantMax'].setValue(
-        precoTmp.precomvtqte[0].montantMax
+        precoTmp.precoMouvementsQtes[0].montantMax
       );
       this.forme.controls['montantMin'].setValue(
-        precoTmp.precomvtqte[0].montantMin
+        precoTmp.precoMouvementsQtes[0].montantMin
       );
       this.forme.controls['quantiteMax'].setValue(
-        precoTmp.precomvtqte[0].quantiteMax
+        precoTmp.precoMouvementsQtes[0].quantiteMax
       );
       this.forme.controls['quantiteMin'].setValue(
-        precoTmp.precomvtqte[0].quantiteMin
+        precoTmp.precoMouvementsQtes[0].quantiteMin
       );
       this.forme.controls['distributeur'].setValue(
-        precoTmp.precomvtqte[0].distributeur
+        precoTmp.precoMouvementsQtes[0].distributeur
       );
     } else if (
-      precoTmp.precomvtqte[0].famille != undefined &&
-      precoTmp.precomvtqte[0].famille != null &&
-      precoTmp.precomvtqte[0].famille.length > 0
+      precoTmp.precoMouvementsQtes[0].famille != undefined &&
+      precoTmp.precoMouvementsQtes[0].famille != null &&
+      precoTmp.precoMouvementsQtes[0].famille.length > 0
     ) {
       this.steps = 2;
-      this.forme.controls['famille'].setValue(precoTmp.precomvtqte[0].famille);
-      //this.famille.setValue(precoTmp.precomvtqte[0].famille);
-      this.forme.controls['id'].setValue(precoTmp.precomvtqte[0].id);
+      this.forme.controls['famille'].setValue(precoTmp.precoMouvementsQtes[0].famille);
+      //this.famille.setValue(precoTmp.precoMouvementsQtes[0].famille);
+      this.forme.controls['id'].setValue(precoTmp.precoMouvementsQtes[0].id);
       this.forme.controls['montantMax'].setValue(
-        precoTmp.precomvtqte[0].montantMax
+        precoTmp.precoMouvementsQtes[0].montantMax
       );
       this.forme.controls['montantMin'].setValue(
-        precoTmp.precomvtqte[0].montantMin
+        precoTmp.precoMouvementsQtes[0].montantMin
       );
       this.forme.controls['quantiteMax'].setValue(
-        precoTmp.precomvtqte[0].quantiteMax
+        precoTmp.precoMouvementsQtes[0].quantiteMax
       );
       this.forme.controls['quantiteMin'].setValue(
-        precoTmp.precomvtqte[0].quantiteMin
+        precoTmp.precoMouvementsQtes[0].quantiteMin
       );
       this.forme.controls['distributeur'].setValue(
-        precoTmp.precomvtqte[0].distributeur
+        precoTmp.precoMouvementsQtes[0].distributeur
       );
     }
     this.saveToSessionStorage();
@@ -475,7 +473,7 @@ export class NewPrecomvtComponent implements OnInit {
       quantiteMin: precomvtInput.quantiteMin,
       montantMax: precomvtInput.montantMax,
       montantMin: precomvtInput.montantMin,
-      id: '',
+      //id: '',
       distributeur: precomvtInput.distributeur,
     };
     let libel = this.mettre3PointsdeSuspension(precomvtInput.famille);
@@ -483,10 +481,10 @@ export class NewPrecomvtComponent implements OnInit {
       // id optional
       etat: precomvtInput.etat,
       libelle: libel,
-      type: precomvtInput.TypeMvt,
-      precomvtqte: [],
+      typeMouvement: precomvtInput.TypeMvt,
+      precoMouvementsQtes: [],
     };
-    precomvtTemp.precomvtqte.push(premvtqte);
+    precomvtTemp.precoMouvementsQtes.push(premvtqte);
     return precomvtTemp;
   }
 
@@ -534,10 +532,10 @@ export class NewPrecomvtComponent implements OnInit {
       id: precomvtInput.id,
       etat: precomvtInput.etat,
       libelle: 'Ressource : ' + precomvtInput.ressource.libelle,
-      type: precomvtInput.TypeMvt,
-      precomvtqte: [],
+      typeMouvement: precomvtInput.TypeMvt,
+      precoMouvementsQtes: [],
     };
-    precomvtTemp.precomvtqte.push(premvtqte);
+    precomvtTemp.precoMouvementsQtes.push(premvtqte);
     return precomvtTemp;
   }
 
@@ -562,10 +560,10 @@ export class NewPrecomvtComponent implements OnInit {
       id: precomvtInput.id ? precomvtInput.id : undefined,
       etat: precomvtInput.etat,
       libelle: this.LIBELLE_PRECO + precomvtInput.libelle,
-      type: precomvtInput.type,
-      precomvtqte: [],
+      typeMouvement: precomvtInput.typeMouvement,
+      precoMouvementsQtes: [],
     };
-    precomvtTemp.precomvtqte.push(premvtqte);
+    precomvtTemp.precoMouvementsQtes.push(premvtqte);
     return precomvtTemp;
   }
   compareItem(famille1: IFamille, famille2: IFamille) {

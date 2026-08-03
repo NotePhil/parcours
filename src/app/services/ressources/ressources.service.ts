@@ -17,7 +17,7 @@ export class RessourcesService {
 
   getAllRessourcesBySeuil(): Observable<IRessource[]> {
     return this.http.get<IRessource[]>(this.param.api+'ressources').pipe(map((x) => {
-      return x.sort((r1, r2) => Math.abs(r1.quantite - r1.seuil) - Math.abs(r2.quantite - r2.seuil))
+      return x.sort((r1, r2) => Math.abs(r1.quantite - r1.seuilAlerte) - Math.abs(r2.quantite - r2.seuilAlerte))
     }));
   }
 

@@ -754,7 +754,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       let montantCharge: string = "montantCharge"
       let montant: string = "montant total"
       if (this.document.typeMouvement == TypeMouvement.Reduire) {
-        prix = "prixDeSortie"
+        prix = "prixSortie"
       } else if (this.document.typeMouvement == TypeMouvement.Ajout) {
         prix = "prixEntrée"
       } else {
@@ -1043,7 +1043,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
     let exemplaireTemp: IExemplaireDocument = {
       // id optional
-      idDocument: this.document.idDocument,
+      idDocument: this.document.idDocument!,
       titre: this.document.titre,
       description: this.document.description,
       missions: this.document.missions,
@@ -1145,7 +1145,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       if (this.document.typeMouvement == TypeMouvement.Ajout) {
         mvt.prix = option.prixEntree
       } else if (this.document.typeMouvement == TypeMouvement.Reduire) {
-        mvt.prix = option.prixDeSortie
+        mvt.prix = option.prixSortie
       } else {
         mvt.prix = option.prixEntree
       }
@@ -1168,8 +1168,8 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
   verificationRessource(qte?: any, prixOut?: any, prixIn?: any, option?: IRessource) {
     this.document.precoMouvements.forEach((precoMvt) => {
-      if (precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id)) {
-        this.resValidate = precoMvt.precomvtqte.find(p => p.ressource?.id == option!.id);
+      if (precoMvt.precoMouvementsQtes.find(p => p.ressource?.id == option!.id)) {
+        this.resValidate = precoMvt.precoMouvementsQtes.find(p => p.ressource?.id == option!.id);
       }
     })
     console.log("precoQte : ", this.resValidate);
@@ -1238,12 +1238,12 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       let familleCouverte: boolean = false;
 
       // Vérification des Ressources et Familles : La promotion est appliquée si la ressource ou la famille de la ressource est couverte par la promotion.
-      if (mouvement.promotion.ressource) {
-        ressourceCouverte = mouvement.promotion.ressource?.some(r => r.id === mouvement.ressource.id);
+      if (mouvement.promotion.ressources) {
+        ressourceCouverte = mouvement.promotion.ressources?.some(r => r.id === mouvement.ressource.id);
         ressourceOk = true
       }
-      if (mouvement.promotion.famille) {
-        familleCouverte = mouvement.promotion.famille?.some(f => f.id === mouvement.ressource.famille.id);
+      if (mouvement.promotion.familles) {
+        familleCouverte = mouvement.promotion.familles?.some(f => f.id === mouvement.ressource.famille.id);
         familleOk = true
       }
     }
@@ -1282,8 +1282,8 @@ calculRemise(mouvement: IMouvement): number {
   
       const dateValide = today >= new Date(promotion.dateDebut) && today <= new Date(promotion.dateFin);
   
-      const ressourceConcernee = promotion.ressource?.some(r => r.id === ressource.id) ?? false;
-      const familleConcernee = promotion.famille?.some(f => f.id === famille.id) ?? false;
+      const ressourceConcernee = promotion.ressources?.some(r => r.id === ressource.id) ?? false;
+      const familleConcernee = promotion.familles?.some(f => f.id === famille.id) ?? false;
   
       // On applique la promo uniquement si la date est valide et la ressource OU la famille est concernée
       if (dateValide && (ressourceConcernee || familleConcernee)) {
@@ -1455,7 +1455,7 @@ calculRemise(mouvement: IMouvement): number {
         if (this.idMouvement == element.id) {
           element.promotion = this.donneeEchangeService.dataPromoMouvementCourant
           if (this.donneeEchangeService.dataPromoMouvementCourant) {
-            element.distributeur = element.promotion?.emetteur
+            element.distributeur = element.promotion?.distributeur
           }
           this.idMouvement = ''
           break

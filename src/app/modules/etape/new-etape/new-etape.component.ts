@@ -122,7 +122,7 @@ export class NewEtapeComponent implements OnInit {
         });
         this.forme.controls['etapesprecedant'].setValue(idEtape.etapeprecedant);
   this.etapeId = idEtape.etapeprecedant?.map((etape) => etape.id!);
-  this.documentId = idEtape.document.map((doc) => doc.idDocument);
+  this.documentId = idEtape.document.map((doc) => doc.idDocument!);
     } else {
       this.donneeDocCatService.dataParcoursEtapes = [];
     }
@@ -175,7 +175,7 @@ export class NewEtapeComponent implements OnInit {
       this.documents = this.donneeDocCatService.dataDocumentSousDocuments;
 
       if (this.documents.length > 0) {
-        this.documentId = this.documents.map((doc) => doc.idDocument);
+        this.documentId = this.documents.map((doc) => doc.idDocument!);
       }
     });
   }

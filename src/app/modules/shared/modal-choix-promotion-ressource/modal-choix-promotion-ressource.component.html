@@ -196,10 +196,10 @@
     <div *ngIf="this.promotionCourante != undefined" class="affichePromo">
       <p>
         <span class="libelle">
-          {{'promo-distributeur.emetteur' | translate}} : 
+          {{'promo-distributeur.distributeur' | translate}} : 
         </span>
         <span class="resultat">
-          {{this.promotionCourante.emetteur.raisonSociale}}
+          {{this.promotionCourante.distributeur.raisonSociale}}
         </span>
       </p>
       <p>
@@ -246,18 +246,18 @@
         <span class="libelle">
           {{'promo-distributeur.ressource' | translate}} : 
         </span>
-        <span class="resultat" *ngFor="let fam of this.promotionCourante.famille">
+        <span class="resultat" *ngFor="let fam of this.promotionCourante.familles">
             {{ fam.libelle
-            }}<span *ngIf="!isLastElement(this.promotionCourante.famille!, fam)">, </span>
+            }}<span *ngIf="!isLastElement(this.promotionCourante.familles!, fam)">, </span>
         </span>
       </p>
       <p>
         <span class="libelle">
           {{'promo-distributeur.famille' | translate}} : 
         </span>
-        <span class="resultat" *ngFor="let res of this.promotionCourante.ressource">
+        <span class="resultat" *ngFor="let res of this.promotionCourante.ressources">
             {{ res.libelle
-            }}<span *ngIf="!isLastElement(this.promotionCourante.ressource!, res)">, </span>
+            }}<span *ngIf="!isLastElement(this.promotionCourante.ressources!, res)">, </span>
         </span>
       </p>
     </div>
