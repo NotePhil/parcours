@@ -198,7 +198,7 @@
           </button>
           <button type="button" class="btn openformStep" (click)="blocklibelle(2)">{{'precomvt.table.title4' | translate}}</button>
           <button type="button" class="btn openformStep" (click)="blocklibelle(3)">{{'precomvt.table.title5' | translate}}</button>
-          <button type="button" class="btn btnValidation" (click)="validerControleStep(2,forme.value);" title="{{'lists.button9' | translate}}"><i class="fa fa-arrow-right mr-1" aria-hidden="true"></i></button>
+          <button type="button" class="btn btnValidation" (click)="validerControleStep(steps,forme.value);" title="{{'lists.button9' | translate}}"><i class="fa fa-arrow-right mr-1" aria-hidden="true"></i></button>
         </div>
       </form>
     </div>
@@ -214,6 +214,7 @@
           <div class="boitier" id="boitierLibelle">
             <P>{{elt.libelle}}</P>
             <P><span>type: </span>{{elt.typeMouvement}}</P>
+            <P><span>état: </span>{{elt.etat ? 'Actif' : 'Inactif'}}</P>
           </div>
           <div class="boitier">
             <div class="blockQuantite">
@@ -227,6 +228,13 @@
                 </span>{{elt.precoMouvementsQtes[0].montantMax}}</P>
               <P title="Montant minimal"><span>{{'precomvt.table.title24' | translate}} :
                 </span>{{elt.precoMouvementsQtes[0].montantMin}}</P>
+            </div>
+          </div>
+          <!-- NOTE (modification): bloc ajouté pour afficher l'état et la liste
+               des distributeurs formatée via `getDistributeurLabel(elt)` -->
+          <div class="boitier">
+            <div class="blockQuantite">
+              <P title="Distributeurs"><span>Distributeurs : </span>{{ getDistributeurLabel(elt) }}</P>
             </div>
           </div>
         </div>

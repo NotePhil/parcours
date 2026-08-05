@@ -115,6 +115,8 @@ export class NewPrecomvtComponent implements OnInit {
     });
     let idPrecoMvt = this.infosPath.snapshot.paramMap.get('idPrecoMvt');
     if (idPrecoMvt != null && idPrecoMvt !== '') {
+      // Si une préconisation existe déjà, on la recharge puis on la reconstruit
+      // sous forme de lignes dans le tableau de droite pour permettre l'édition.
       this.precoMvtService
         .getPrecomvtById(idPrecoMvt)
         .subscribe((PrecoMvtCourant) => {
@@ -127,7 +129,7 @@ export class NewPrecomvtComponent implements OnInit {
             quantiteMin: 0,
             montantMax: 0,
             montantMin: 0,
-            distributeur: [],
+            distributeurs: [],
           };
           let precoMvtTemp: IPrecoMvt = {
             id: PrecoMvtCourant.id,
@@ -205,31 +207,35 @@ export class NewPrecomvtComponent implements OnInit {
    *
    */
   enregistrerPreco() {
-    if (this.eltsPreco.length === 0) {
+    // On reconstruit la liste des lignes à envoyer au backend à partir du tableau de droite.
+    // L'élément d'en-tête (index 0) est utilisé uniquement comme conteneur du libellé et du type.
+    const qtes = this.eltsPreco
+      .slice(1)
+      .map((valeur) => valeur.precoMouvementsQtes?.[0])
+      .filter((qte): qte is IPrecoMvtQte => Boolean(qte));
+
+    if (qtes.length === 0) {
       alert('vous devez enregistrer au moins une ressource ou une famille');
       return;
     }
 
     let precomvtTemp: IPrecoMvt = {
-      id: this.eltsPreco[0].id,
-      etat: this.eltsPreco[0].etat,
-      libelle: this.eltsPreco[0].libelle.replace(this.LIBELLE_PRECO, ''),
-      typeMouvement: this.eltsPreco[0].typeMouvement,
+      id: this.eltsPreco[0]?.id,
+      etat: this.eltsPreco[0]?.etat,
+      libelle: this.eltsPreco[0]?.libelle.replace(this.LIBELLE_PRECO, ''),
+      typeMouvement: this.eltsPreco[0]?.typeMouvement,
       precoMouvementsQtes: [],
     };
     this.saveToSessionStorage();
 
-    if (this.eltsPreco[0].id != null && this.eltsPreco[0].id != '')
+    if (this.eltsPreco[0]?.id != null && this.eltsPreco[0]?.id != '')
       precomvtTemp.id = this.eltsPreco[0].id;
-    this.eltsPreco.forEach((valeur) => {
-      precomvtTemp.precoMouvementsQtes.push(valeur.precoMouvementsQtes[0]);
+
+    precomvtTemp.precoMouvementsQtes = qtes;
+
+    this.precoMvtService.ajouterPrecomvt(precomvtTemp).subscribe((object) => {
+      this.router.navigate(['parcours/preconisations/list-precomvts']);
     });
-    if (precomvtTemp.precoMouvementsQtes.length > 1) {
-      this.precoMvtService.ajouterPrecomvt(precomvtTemp).subscribe((object) => {
-        this.router.navigate(['parcours/preconisations/list-precomvts']);
-      });
-    } else
-      alert('vous devez enregistrer au moins une ressource ou une famille');
   }
   //fonction onSubmit fin
 
@@ -322,8 +328,12 @@ export class NewPrecomvtComponent implements OnInit {
       }
     }
     if (controleVerif) {
-      this.steps = etape;
-      this.enregistrerValeurPrecomvtqte(valeurs);
+      const nextStep = this.steps === 1 ? 2 : this.steps;
+      this.steps = nextStep;
+        // NOTE (modification): avant d'ajouter/modifier la ligne du tableau, on normalise
+        // les distributeurs fournis par le formulaire pour conserver une structure
+        // cohérente (propriété canonique `distributeur`) dans les éléments du tableau.
+        this.enregistrerValeurPrecomvtqte(valeurs);
     }
     this.saveStepToSession();
   }
@@ -342,6 +352,27 @@ export class NewPrecomvtComponent implements OnInit {
     return ressource && ressource.libelle ? ressource.libelle : '';
   }
 
+  // NOTE (modification): méthode ajoutée pour formater l'affichage des distributeurs
+  // dans la vue du tableau de droite. Cette méthode centralise le formatage afin
+  // d'éviter des expressions complexes dans le template et d'assurer la compatibilité
+  // en utilisant la propriété canonique `distributeur` (acceptation rétrocompatible
+  // avec `distributeurs` si présent dans des données plus anciennes).
+  getDistributeurLabel(elt: IPrecoMvt): string {
+    // Normaliser directement depuis la ligne (préférer `distributeur`).
+    const qte0 = elt.precoMouvementsQtes?.[0] as any;
+    let raw = qte0?.distributeur ?? qte0?.distributeurs ?? [];
+    const distributeurs = Array.isArray(raw) ? raw : raw ? [raw] : [];
+
+    if (distributeurs.length === 0) {
+      return 'Aucun';
+    }
+
+    return distributeurs
+      .map((distributeur) => distributeur?.raisonSociale || distributeur?.id)
+      .filter((value): value is string => Boolean(value))
+      .join(', ');
+  }
+
   reset(): void {
     this.forme.reset();
     //reset de l'index pour laisser le choix à l'utilisateur de remplir des nouvelles precoMvtQte
@@ -353,34 +384,52 @@ export class NewPrecomvtComponent implements OnInit {
    * @param precomvtqteInput
    * @returns
    */
+  // NOTE (modification): Cette méthode assemble le payload à partir des valeurs
+  // du formulaire et normalise explicitement la(s) valeur(s) `distributeur` afin
+  // de toujours attacher un tableau d'`IDistributeur` aux lignes créées. Le champ
+  // canonique utilisé est `distributeur` (tableau).
   enregistrerValeurPrecomvtqte(precomvtInput: any) {
-    //sauvegarde des valeurs de precoMvt <=> premier ecran
-    if (precomvtInput.libelle != null && precomvtInput.libelle != '') {
+    // On rassemble les valeurs du formulaire courant avant de les convertir en ligne
+    // du tableau de droite, selon l'étape active du processus.
+    // Normaliser la valeur `distributeur(s)` fournie par le formulaire
+    const raw = precomvtInput?.distributeur ?? precomvtInput?.distributeurs ?? [];
+    const distributeurs = Array.isArray(raw) ? raw : raw ? [raw] : [];
+
+    // Payload contient la propriété canonique `distributeur` (tableau)
+    const payload = {
+      ...precomvtInput,
+      distributeur: distributeurs,
+      typeMouvement: this.getTypeMouvementValue(precomvtInput),
+    };
+
+    // Lorsque l'utilisateur modifie une ligne déjà présente, on remplace cette ligne
+    // à l'index correspondant ; sinon on ajoute une nouvelle ligne au tableau.
+    if (payload.libelle != null && payload.libelle != '') {
       if (this.indexModification == -1)
         //si vaut -1 alors création
-        this.eltsPreco.push(this.creerPrecoMvtQteLibelle(precomvtInput));
+        this.eltsPreco.push(this.creerPrecoMvtQteLibelle(payload));
       //si différent de -1 alors modification
       else
         this.eltsPreco[this.indexModification] =
-          this.creerPrecoMvtQteLibelle(precomvtInput);
+          this.creerPrecoMvtQteLibelle(payload);
     } else if (
-      precomvtInput.ressource != null &&
-      precomvtInput.ressource != ''
+      payload.ressource != null &&
+      payload.ressource != ''
     ) {
       if (this.indexModification == -1)
-        this.eltsPreco.push(this.creerPrecoMvtQteRessource(precomvtInput));
+        this.eltsPreco.push(this.creerPrecoMvtQteRessource(payload));
       else
         this.eltsPreco[this.indexModification] =
-          this.creerPrecoMvtQteRessource(precomvtInput);
+          this.creerPrecoMvtQteRessource(payload);
     } else if (
-      precomvtInput.famille != null &&
-      precomvtInput.famille.length > 0
+      payload.famille != null &&
+      payload.famille.length > 0
     ) {
       if (this.indexModification == -1)
-        this.eltsPreco.push(this.creerPrecoMvtQteFamille(precomvtInput));
+        this.eltsPreco.push(this.creerPrecoMvtQteFamille(payload));
       else
         this.eltsPreco[this.indexModification] =
-          this.creerPrecoMvtQteFamille(precomvtInput);
+          this.creerPrecoMvtQteFamille(payload);
     }
 
     this.reset();
@@ -392,7 +441,8 @@ export class NewPrecomvtComponent implements OnInit {
    * @param i
    */
   chargerValeurPrecoMvt(i: number): void {
-    //on reset pour éviter d'écraser les autres step car on teste l'existence du libelle
+    // On réinitialise le formulaire puis on charge les données de la ligne sélectionnée
+    // dans le formulaire afin de permettre une modification directe.
     this.reset();
 
     this.indexModification = i;
@@ -430,9 +480,14 @@ export class NewPrecomvtComponent implements OnInit {
       this.forme.controls['quantiteMin'].setValue(
         precoTmp.precoMouvementsQtes[0].quantiteMin
       );
-      this.forme.controls['distributeur'].setValue(
-        precoTmp.precoMouvementsQtes[0].distributeur
-      );
+      // NOTE (modification): on recharge la sélection des distributeurs en
+      // normalisant la valeur depuis la ligne (préférer `distributeur`, tolérance
+      // pour `distributeurs` présent dans d'anciennes données).
+      // Normaliser la valeur `distributeur(s)` provenant de la ligne
+      const qte1 = precoTmp.precoMouvementsQtes[0] as any;
+      const rawD1 = qte1?.distributeur ?? qte1?.distributeurs ?? [];
+      const distribs1 = Array.isArray(rawD1) ? rawD1 : rawD1 ? [rawD1] : [];
+      this.forme.controls['distributeur'].setValue(distribs1);
     } else if (
       precoTmp.precoMouvementsQtes[0].famille != undefined &&
       precoTmp.precoMouvementsQtes[0].famille != null &&
@@ -454,9 +509,13 @@ export class NewPrecomvtComponent implements OnInit {
       this.forme.controls['quantiteMin'].setValue(
         precoTmp.precoMouvementsQtes[0].quantiteMin
       );
-      this.forme.controls['distributeur'].setValue(
-        precoTmp.precoMouvementsQtes[0].distributeur
-      );
+      // NOTE (modification): idem pour les lignes de type 'famille' : restauration
+      // des distributeurs dans le formulaire à partir de la ligne sélectionnée.
+      // Normaliser la valeur `distributeur(s)` provenant de la ligne
+      const qte2 = precoTmp.precoMouvementsQtes[0] as any;
+      const rawD2 = qte2?.distributeur ?? qte2?.distributeurs ?? [];
+      const distribs2 = Array.isArray(rawD2) ? rawD2 : rawD2 ? [rawD2] : [];
+      this.forme.controls['distributeur'].setValue(distribs2);
     }
     this.saveToSessionStorage();
   }
@@ -466,22 +525,28 @@ export class NewPrecomvtComponent implements OnInit {
    * @param precomvtInput
    * @returns
    */
+  // NOTE (modification): Lors de la création d'une ligne famille, on récupère
+  // et normalise les distributeurs provenant du formulaire et on les attache
+  // à la structure `IPrecoMvtQte` sous la clé canonique `distributeur` afin
+  // d'assurer la persistance et la compatibilité.
   creerPrecoMvtQteFamille(precomvtInput: any): IPrecoMvt {
+    // Normaliser la sélection des distributeurs fournie par le formulaire
+    const rawD = precomvtInput?.distributeur ?? precomvtInput?.distributeurs ?? [];
+    const distributeurs = Array.isArray(rawD) ? rawD : rawD ? [rawD] : [];
     let premvtqte: IPrecoMvtQte = {
       famille: precomvtInput.famille,
       quantiteMax: precomvtInput.quantiteMax,
       quantiteMin: precomvtInput.quantiteMin,
       montantMax: precomvtInput.montantMax,
       montantMin: precomvtInput.montantMin,
-      //id: '',
-      distributeur: precomvtInput.distributeur,
+      distributeurs: distributeurs,
     };
     let libel = this.mettre3PointsdeSuspension(precomvtInput.famille);
     let precomvtTemp: IPrecoMvt = {
       // id optional
       etat: precomvtInput.etat,
       libelle: libel,
-      typeMouvement: precomvtInput.TypeMvt,
+      typeMouvement: this.getTypeMouvementValue(precomvtInput),
       precoMouvementsQtes: [],
     };
     precomvtTemp.precoMouvementsQtes.push(premvtqte);
@@ -518,21 +583,25 @@ export class NewPrecomvtComponent implements OnInit {
    * @param precomvtInput
    * @returns
    */
+  // NOTE (modification): idem pour les ressources — normalisation des
+  // distributeurs et duplication des champs pour le backend.
   creerPrecoMvtQteRessource(precomvtInput: any): IPrecoMvt {
+    const rawD = precomvtInput?.distributeur ?? precomvtInput?.distributeurs ?? [];
+    const distributeurs = Array.isArray(rawD) ? rawD : rawD ? [rawD] : [];
     let premvtqte: IPrecoMvtQte = {
       ressource: precomvtInput.ressource,
       quantiteMax: precomvtInput.quantiteMax,
       quantiteMin: precomvtInput.quantiteMin,
       montantMax: precomvtInput.montantMax,
       montantMin: precomvtInput.montantMin,
+      distributeurs: distributeurs,
       id: precomvtInput.id,
-      distributeur: precomvtInput.distributeur,
     };
     let precomvtTemp: IPrecoMvt = {
       id: precomvtInput.id,
       etat: precomvtInput.etat,
       libelle: 'Ressource : ' + precomvtInput.ressource.libelle,
-      typeMouvement: precomvtInput.TypeMvt,
+      typeMouvement: this.getTypeMouvementValue(precomvtInput),
       precoMouvementsQtes: [],
     };
     precomvtTemp.precoMouvementsQtes.push(premvtqte);
@@ -545,22 +614,27 @@ export class NewPrecomvtComponent implements OnInit {
    * @param precomvtInput
    * @returns
    */
+  // NOTE (modification): pour l'élément d'en-tête (libellé) on conserve aussi
+  // la sélection des distributeurs si fournie, pour cohérence avec les autres
+  // lignes et pour que la soumission finale contienne l'information.
   creerPrecoMvtQteLibelle(precomvtInput: any): IPrecoMvt {
+    const rawD = precomvtInput?.distributeur ?? precomvtInput?.distributeurs ?? [];
+    const distributeurs = Array.isArray(rawD) ? rawD : rawD ? [rawD] : [];
     let premvtqte: IPrecoMvtQte = {
       ressource: undefined,
       quantiteMax: 0,
       quantiteMin: 0,
       montantMax: 0,
       montantMin: 0,
-      id: precomvtInput.id,
-      distributeur: precomvtInput.distributeur,
+      // id: precomvtInput.id,
+      distributeurs: distributeurs,
     };
     // use provided id if any, otherwise leave undefined (backend will assign)
     let precomvtTemp: IPrecoMvt = {
       id: precomvtInput.id ? precomvtInput.id : undefined,
       etat: precomvtInput.etat,
       libelle: this.LIBELLE_PRECO + precomvtInput.libelle,
-      typeMouvement: precomvtInput.typeMouvement,
+      typeMouvement: this.getTypeMouvementValue(precomvtInput),
       precoMouvementsQtes: [],
     };
     precomvtTemp.precoMouvementsQtes.push(premvtqte);
@@ -583,5 +657,9 @@ export class NewPrecomvtComponent implements OnInit {
   }
   onReturn() {
     this.router.navigate(['parcours/preconisations/list-precomvts']);
+  }
+
+  private getTypeMouvementValue(precomvtInput: any): string {
+    return precomvtInput?.typeMouvement ?? precomvtInput?.type ?? '';
   }
 }

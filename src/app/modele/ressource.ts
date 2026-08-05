@@ -8,6 +8,7 @@ export interface IRessource {
     dscription?:string,
     etat:boolean,
     seuilAlerte:number,
+    version?:number,
     quantite:number,
     prixEntree:number,
     prixSortie:number,

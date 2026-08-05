@@ -9,7 +9,7 @@ export interface IPrecoMvtQte {
   quantiteMax:number,
   montantMin:number,
   montantMax:number,
-  distributeur?:IDistributeur[],
+  distributeurs?:IDistributeur[],
   ressource?:IRessource,
   famille?:IFamille[],
 }
