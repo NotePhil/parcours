@@ -411,6 +411,7 @@ export class NewFormDocumentComponent implements OnInit {
 
     if (this.document.id != undefined) {
       documentTemp.id = this.document.id;
+      documentTemp.idDocument = this.document.id;
     }
 
     this.ELEMENTS_TABLE_ATTRIBUTS.forEach((a) =>

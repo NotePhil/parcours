@@ -209,7 +209,7 @@
       <h2 class="rigth">{{'precomvt.table.title19' | translate}}</h2>
     </div>
     <div class="contentBlock">
-      <div *ngFor="let elt of eltsPreco let i=index " class="coloredBlock" >
+      <div *ngFor="let elt of eltsPreco; let i=index" class="coloredBlock" >
         <div class="infosBoitier" (click)="chargerValeurPrecoMvt(i)" >
           <div class="boitier" id="boitierLibelle">
             <P>{{elt.libelle}}</P>

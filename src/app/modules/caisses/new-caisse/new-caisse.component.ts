@@ -153,12 +153,12 @@ export class NewCaisseComponent implements OnInit {
     }
 
     let caisseTemp: ICaisses = {
-      id: uuidv4(),
       libelle: caisseInput.libelle,
       solde: caisseInput.solde,
       etat: caisseInput.etat,
       type: this.selectedOptions,
       detailsJson: billets!,
+      version: this.caisse?.version
     };
 
     if (this.caisse != undefined) {

@@ -22,5 +22,6 @@ export interface IRessource {
     ]
     scanBarCode?: any,
    dateCreation?:Date,
-    dateModification?:Date
+    dateModification?:Date,
+    version?: string
 }

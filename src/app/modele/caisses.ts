@@ -22,5 +22,6 @@ export interface ICaisses {
     etat:boolean,
     solde: number,
     libelle: string,
-    detailsJson?: DetailsJson
+    detailsJson?: DetailsJson,
+    version?: string
 }
