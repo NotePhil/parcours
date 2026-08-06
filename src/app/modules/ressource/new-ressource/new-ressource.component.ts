@@ -34,7 +34,7 @@ export class NewRessourceComponent implements OnInit {
   filteredOptions: IFamille[] | undefined;
   dataSource = new MatTableDataSource<IFamille>();
   familleDeRessource: IFamille = {
-    id: '',
+    id: undefined,
     libelle: '',
     description: '',
     etat: false,
