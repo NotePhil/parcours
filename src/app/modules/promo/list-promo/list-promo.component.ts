@@ -26,7 +26,7 @@ export class ListPromoComponent implements OnInit, AfterViewInit {
   receivedActions$: Observable<IElements[]>=EMPTY;
   actions : IElements[] | undefined;
 
-  displayedColumns: string[] = ['emetteur', 'dateDebut', 'dateFin', 'codeUnique', 'montantRemise', 'pourcentageRemise', 'famille', 'ressource', 'actions'];
+  displayedColumns: string[] = ['distributeur', 'dateDebut', 'dateFin', 'codeUnique', 'montantRemise', 'pourcentageRemise', 'famille', 'ressource', 'actions'];
   dataSource = new MatTableDataSource<IPromo>(this.ELEMENTS_TABLE);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -90,7 +90,8 @@ export class ListPromoComponent implements OnInit, AfterViewInit {
     });
   }
 
-  isLastElement(array: any[], element: any): boolean {
+  isLastElement(array: any[] | undefined, element: any): boolean {
+    if (!array) return true;
     return array.indexOf(element) === array.length - 1;
   }
   

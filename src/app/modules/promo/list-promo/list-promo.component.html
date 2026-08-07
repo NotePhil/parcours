@@ -31,8 +31,8 @@
           matSort
           (matSortChange)="announceSortChange($event)"
         >
-          <!-- Emetteur Column -->
-          <ng-container matColumnDef="emetteur">
+          <!-- distributeur Column -->
+          <ng-container matColumnDef="distributeur">
             <th
               class="containHead"
               mat-header-cell
@@ -46,7 +46,7 @@
               mat-cell
               *matCellDef="let element"
             >
-              {{ element.emetteur.raisonSociale }}
+              {{ element.distributeur.raisonSociale }}
             </td>
           </ng-container>
 
@@ -152,16 +152,16 @@
               mat-header-cell
               *matHeaderCellDef
             >
-              {{ "promo-distributeur.famille" | translate }}
+              {{ "precomvt.table.title4" | translate }}s
             </th>
             <td
               class="containCell"
               mat-cell
               *matCellDef="let element"
             >
-              <span *ngFor="let fam of element.famille">
+              <span *ngFor="let fam of element.familles">
                 {{ fam.libelle
-                }}<span *ngIf="!isLastElement(element.famille, fam)">, </span>
+                }}<span *ngIf="!isLastElement(element.familles, fam)">, </span>
               </span>
             </td>
           </ng-container>
@@ -180,9 +180,9 @@
               mat-cell
               *matCellDef="let element"
             >
-              <span *ngFor="let res of element.ressource">
+              <span *ngFor="let res of element.ressources">
                 {{ res.libelle
-                }}<span *ngIf="!isLastElement(element.ressource, res)">, </span>
+                }}<span *ngIf="!isLastElement(element.ressources, res)">, </span>
               </span>
             </td>
           </ng-container>
