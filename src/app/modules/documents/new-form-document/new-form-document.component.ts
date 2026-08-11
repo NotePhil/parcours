@@ -40,7 +40,6 @@ import { IDocEtats } from 'src/app/modele/doc-etats';
 })
 export class NewFormDocumentComponent implements OnInit {
   document: IDocument = {
-    idDocument: '',
     titre: '',
     description: '',
     etat: false,
@@ -409,9 +408,9 @@ export class NewFormDocumentComponent implements OnInit {
       formatCode: documentInput.formatCode
     }
 
-    if (this.document.id != undefined) {
-      documentTemp.id = this.document.id;
-      documentTemp.idDocument = this.document.id;
+    if (this.document.idDocument != undefined && this.document.idDocument != '') {
+      documentTemp.id = this.document.idDocument;
+      documentTemp.idDocument = this.document.idDocument;
     }
 
     this.ELEMENTS_TABLE_ATTRIBUTS.forEach((a) =>
@@ -463,7 +462,7 @@ export class NewFormDocumentComponent implements OnInit {
       );
     }
 
-    documentTemp.idDocument = documentTemp.id!
+    
 
     this.serviceDocument.ajouterDocument(documentTemp).subscribe((object) => {
       this.router.navigate(['parcours/documents/list-documents']);

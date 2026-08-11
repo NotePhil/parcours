@@ -59,13 +59,11 @@ export class ModalCategoriesComponent implements OnInit {
     new MatTableDataSource<IAssociationCategorieAttributs>();
 
   categorieAttributs: ICategoriesAttributs = {
-    id: '',
     libelle: '',
     ordre: 0,
     attributs: [],
   };
   attributTemp: IAttributs = {
-    id: '',
     titre: '',
     description: '',
     etat: false,
@@ -380,14 +378,12 @@ export class ModalCategoriesComponent implements OnInit {
   ajouterCategorieParDefaut() {
     this.dataSourceAttributTemp.data.forEach((element) => {
       let categorieAttributs: ICategorieAffichage = {
-        id: '',
         nom: 'Autres',
         ordre: 100,
         attributCategories: {
           ordre: 0,
           obligatoire: false,
           attribut: {
-            id: '',
             titre: '',
             description: '',
             etat: false,
