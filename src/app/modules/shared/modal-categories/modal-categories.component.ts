@@ -149,7 +149,8 @@ export class ModalCategoriesComponent implements OnInit {
         }
       });
 
-      this.tableResultatsCategoriesAffichage = new MatTableDataSource<ICategorieAffichage>(filteredCategories);
+      this.TABLE_CATEGORIE_AFFICHAGE_TEMP = filteredCategories;
+      this.tableResultatsCategoriesAffichage.data = filteredCategories;
       this.tableauIndexSelectionner = new Map();
       this.donneeDocCatService.dataDocumentCategorie = filteredCategories;
     } else {

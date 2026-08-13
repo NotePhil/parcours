@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IAttributs } from 'src/app/modele/attributs';
+import { ICategorieAffichage } from 'src/app/modele/categorie-affichage';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -165,6 +166,17 @@ export class ModalChoixAttributsComponent implements OnInit {
 
   onSave() {
     this.donneeDocCatService.dataDocumentAttributs = [...this.localSelectedAttributes];
+    const selectedIds = this.localSelectedAttributes.map((attr) => attr.id);
+    if (Array.isArray(this.donneeDocCatService.dataDocumentCategorie)) {
+      this.donneeDocCatService.dataDocumentCategorie =
+        this.donneeDocCatService.dataDocumentCategorie.filter(
+          (catItem: ICategorieAffichage) =>
+            catItem &&
+            catItem.attributCategories &&
+            catItem.attributCategories.attribut &&
+            selectedIds.includes(catItem.attributCategories.attribut.id)
+        );
+    }
     this.dialogDef.closeAll();
   }
 }

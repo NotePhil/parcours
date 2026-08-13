@@ -265,6 +265,7 @@ export class NewFormDocumentComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.ELEMENTS_TABLE_ATTRIBUTS =
         this.donneeDocCatService.dataDocumentAttributs;
+      this.syntheseCategorieAttribut();
     });
   }
 
@@ -346,8 +347,23 @@ export class NewFormDocumentComponent implements OnInit {
     let categorieAttributsFinal: ICategoriesAttributs[] = [];
 
     //récupération des données du service
-    this.TABLE_CATEGORIE_AFFICHAGE_TEMPO =
-      this.donneeDocCatService.dataDocumentCategorie;
+    const rawCategories: ICategorieAffichage[] =
+      this.donneeDocCatService.dataDocumentCategorie ?? [];
+
+    const activeAttributIds = (
+      this.donneeDocCatService.dataDocumentAttributs ?? []
+    ).map((att: IAttributs) => att.id);
+
+    this.TABLE_CATEGORIE_AFFICHAGE_TEMPO = rawCategories.filter(
+      (objet) =>
+        objet &&
+        objet.attributCategories &&
+        objet.attributCategories.attribut &&
+        activeAttributIds.includes(objet.attributCategories.attribut.id)
+    );
+
+    this.donneeDocCatService.dataDocumentCategorie =
+      this.TABLE_CATEGORIE_AFFICHAGE_TEMPO;
     this.TABLE_CATEGORIE_AFFICHAGE_TEMPO.forEach((objet) => {
       let categorieAttributTemp: ICategoriesAttributs = {
         libelle: '',
