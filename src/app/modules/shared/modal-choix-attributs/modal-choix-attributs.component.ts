@@ -102,15 +102,30 @@ export class ModalChoixAttributsComponent implements OnInit {
   }
 
   ajoutSelectionAttribut(idAttribut: string) {
-    this.serviceAttribut.getAttributById(idAttribut).subscribe((val) => {
-      this.localSelectedAttributes.push(val);
-      this.dataSourceAttributResultat.data = this.localSelectedAttributes;
-    });
+    if (!this.localSelectedAttributes.some((attr) => attr.id === idAttribut)) {
+      this.serviceAttribut.getAttributById(idAttribut).subscribe((val) => {
+        this.localSelectedAttributes.push(val);
+        this.dataSourceAttributResultat.data = [...this.localSelectedAttributes];
+        this.loadSelectedAttributes();
+      });
+    }
   }
 
-  retirerSelectionAttribut(index: number) {
-    this.localSelectedAttributes.splice(index, 1);
-    this.dataSourceAttributResultat.data = this.localSelectedAttributes;
+  retirerSelectionAttribut(target: IAttributs | number | string) {
+    let index = -1;
+    if (typeof target === 'number') {
+      index = target;
+    } else if (typeof target === 'string') {
+      index = this.localSelectedAttributes.findIndex((attr) => attr.id === target);
+    } else if (target && target.id) {
+      index = this.localSelectedAttributes.findIndex((attr) => attr.id === target.id);
+    }
+
+    if (index !== -1 && index < this.localSelectedAttributes.length) {
+      this.localSelectedAttributes.splice(index, 1);
+      this.dataSourceAttributResultat.data = [...this.localSelectedAttributes];
+      this.loadSelectedAttributes();
+    }
   }
 
   private getAllAttributs() {
