@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IAttributs } from 'src/app/modele/attributs';
+import { ICategorieAffichage } from 'src/app/modele/categorie-affichage';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -102,15 +103,30 @@ export class ModalChoixAttributsComponent implements OnInit {
   }
 
   ajoutSelectionAttribut(idAttribut: string) {
-    this.serviceAttribut.getAttributById(idAttribut).subscribe((val) => {
-      this.localSelectedAttributes.push(val);
-      this.dataSourceAttributResultat.data = this.localSelectedAttributes;
-    });
+    if (!this.localSelectedAttributes.some((attr) => attr.id === idAttribut)) {
+      this.serviceAttribut.getAttributById(idAttribut).subscribe((val) => {
+        this.localSelectedAttributes.push(val);
+        this.dataSourceAttributResultat.data = [...this.localSelectedAttributes];
+        this.loadSelectedAttributes();
+      });
+    }
   }
 
-  retirerSelectionAttribut(index: number) {
-    this.localSelectedAttributes.splice(index, 1);
-    this.dataSourceAttributResultat.data = this.localSelectedAttributes;
+  retirerSelectionAttribut(target: IAttributs | number | string) {
+    let index = -1;
+    if (typeof target === 'number') {
+      index = target;
+    } else if (typeof target === 'string') {
+      index = this.localSelectedAttributes.findIndex((attr) => attr.id === target);
+    } else if (target && target.id) {
+      index = this.localSelectedAttributes.findIndex((attr) => attr.id === target.id);
+    }
+
+    if (index !== -1 && index < this.localSelectedAttributes.length) {
+      this.localSelectedAttributes.splice(index, 1);
+      this.dataSourceAttributResultat.data = [...this.localSelectedAttributes];
+      this.loadSelectedAttributes();
+    }
   }
 
   private getAllAttributs() {
@@ -150,6 +166,17 @@ export class ModalChoixAttributsComponent implements OnInit {
 
   onSave() {
     this.donneeDocCatService.dataDocumentAttributs = [...this.localSelectedAttributes];
+    const selectedIds = this.localSelectedAttributes.map((attr) => attr.id);
+    if (Array.isArray(this.donneeDocCatService.dataDocumentCategorie)) {
+      this.donneeDocCatService.dataDocumentCategorie =
+        this.donneeDocCatService.dataDocumentCategorie.filter(
+          (catItem: ICategorieAffichage) =>
+            catItem &&
+            catItem.attributCategories &&
+            catItem.attributCategories.attribut &&
+            selectedIds.includes(catItem.attributCategories.attribut.id)
+        );
+    }
     this.dialogDef.closeAll();
   }
 }
