@@ -11,5 +11,5 @@ export interface IPrecoMvtQte {
   montantMax:number,
   distributeurs?:IDistributeur[],
   ressource?:IRessource,
-  famille?:IFamille[],
+  familles?:IFamille[],
 }

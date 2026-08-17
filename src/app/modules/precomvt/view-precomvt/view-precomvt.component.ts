@@ -43,7 +43,7 @@ export class ViewPrecomvtComponent implements OnInit {
 
                      this.eltRessource.push(element)
                    }
-                  else if (element.famille != null && element.famille.length>0 ){
+                  else if (element.familles != null && element.familles.length>0 ){
                      this.eltFamille.push(element)
                  }
                }

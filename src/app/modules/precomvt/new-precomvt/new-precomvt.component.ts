@@ -160,9 +160,9 @@ export class NewPrecomvtComponent implements OnInit {
               precoMvtTemp.libelle = rsrce;
               this.eltsPreco.push(precoMvtTemp);
               this.saveToSessionStorage();
-            } else if (element.famille != null && element.famille.length > 0) {
+            } else if (element.familles != null && element.familles.length > 0) {
               precoMvtTemp.libelle = this.mettre3PointsdeSuspension(
-                element.famille
+                element.familles
               );
               this.eltsPreco.push(precoMvtTemp);
               this.saveToSessionStorage();
@@ -489,12 +489,12 @@ export class NewPrecomvtComponent implements OnInit {
       const distribs1 = Array.isArray(rawD1) ? rawD1 : rawD1 ? [rawD1] : [];
       this.forme.controls['distributeur'].setValue(distribs1);
     } else if (
-      precoTmp.precoMouvementsQtes[0].famille != undefined &&
-      precoTmp.precoMouvementsQtes[0].famille != null &&
-      precoTmp.precoMouvementsQtes[0].famille.length > 0
+      precoTmp.precoMouvementsQtes[0].familles != undefined &&
+      precoTmp.precoMouvementsQtes[0].familles != null &&
+      precoTmp.precoMouvementsQtes[0].familles.length > 0
     ) {
       this.steps = 2;
-      this.forme.controls['famille'].setValue(precoTmp.precoMouvementsQtes[0].famille);
+      this.forme.controls['famille'].setValue(precoTmp.precoMouvementsQtes[0].familles);
       //this.famille.setValue(precoTmp.precoMouvementsQtes[0].famille);
       this.forme.controls['id'].setValue(precoTmp.precoMouvementsQtes[0].id);
       this.forme.controls['montantMax'].setValue(
@@ -534,7 +534,7 @@ export class NewPrecomvtComponent implements OnInit {
     const rawD = precomvtInput?.distributeur ?? precomvtInput?.distributeurs ?? [];
     const distributeurs = Array.isArray(rawD) ? rawD : rawD ? [rawD] : [];
     let premvtqte: IPrecoMvtQte = {
-      famille: precomvtInput.famille,
+      familles: precomvtInput.famille,
       quantiteMax: precomvtInput.quantiteMax,
       quantiteMin: precomvtInput.quantiteMin,
       montantMax: precomvtInput.montantMax,
