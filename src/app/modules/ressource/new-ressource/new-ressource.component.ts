@@ -174,9 +174,9 @@ export class NewRessourceComponent implements OnInit {
       famille: ressourceInput.famille,
       caracteristiques: styleAtt,
       scanBarCode: this.forme.get('scanBarcode')?.value   };
-      version: this.ressource?.version
     if(this.ressource != undefined){
       ressourceTemp.id = this.ressource.id
+      ressourceTemp.version = this.ressource?.version;
     }
     this.ressourceService
       .ajouterRessource(ressourceTemp)

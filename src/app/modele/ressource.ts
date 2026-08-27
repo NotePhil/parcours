@@ -16,7 +16,7 @@ export interface IRessource {
     caracteristiques? :
     [
         {
-            attributId : String,
+            attribut : IAttributs,
             Valeur: any
         }
     ]
