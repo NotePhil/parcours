@@ -26,6 +26,12 @@ export class ModalDocEtatsComponent implements OnInit {
   filteredOptions: IEtats[] | undefined;
   ELEMENTS_TABLE_DOC_ETATS: IDocEtats[] = [];
   localElementTableDocEtats: IDocEtats[] = []; // Local variable to hold the changes
+  
+  // Premier tableau : tous les etats disponibles
+  dataSourceEtats = new MatTableDataSource<IEtats>();
+  displayedEtatsColumns: string[] = ['actions', 'libelle', 'description'];
+
+  // Deuxieme tableau : etats selectionnes pour le document (dataSourceDocEtats)
   dataSourceDocEtats = new MatTableDataSource<IDocEtats>(this.ELEMENTS_TABLE_DOC_ETATS);
   displayedDocEtatsColumns: string[] = [
     'actions',
@@ -64,11 +70,13 @@ export class ModalDocEtatsComponent implements OnInit {
     this.serviceEtat.getAllEtats().subscribe(
       (resultat) => {
         this.filteredOptions = resultat;
+        // Alimentation de la source de donnees du premier tableau avec la liste complete des etats
+        this.dataSourceEtats.data = resultat;
       }
     );
-    this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocEtatService.dataDocumentEtats;
+    this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocEtatService.dataDocumentEtats || [];
     this.localElementTableDocEtats = [...this.ELEMENTS_TABLE_DOC_ETATS]; // Initialize the local variable with the existing data
-    this.dataSourceDocEtats.data = this.ELEMENTS_TABLE_DOC_ETATS;
+    this.dataSourceDocEtats.data = this.localElementTableDocEtats;
 
     this.etatControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
@@ -77,12 +85,14 @@ export class ModalDocEtatsComponent implements OnInit {
           .getEtatByLibelle(libelle.toLowerCase() as string)
           .subscribe((reponse) => {
             this.filteredOptions = reponse;
+            this.dataSourceEtats.data = reponse;
           });
       } else {
         this.filteredOptions = [];
         this.serviceEtat.getAllEtats().subscribe(
           (resultat) => {
             this.filteredOptions = resultat;
+            this.dataSourceEtats.data = resultat;
           }
         );
       }
@@ -107,6 +117,9 @@ export class ModalDocEtatsComponent implements OnInit {
     }
   }
 
+  /**
+   * Ajoute un etat selectionne dans le deuxieme tableau (dataSourceDocEtats)
+   */
   public rechercherListingEtat(option: IEtats) {
     this.selected = true;
     this.etatExiste = false;
@@ -133,9 +146,32 @@ export class ModalDocEtatsComponent implements OnInit {
         ordre: 0,
         dateCreation: new Date()
       };
+      // Ajout dans la liste locale des etats du document
       this.localElementTableDocEtats.push(docEtat);
-      this.dataSourceDocEtats.data = this.localElementTableDocEtats;
+      // Mise a jour du 2eme tableau (dataSourceDocEtats)
+      this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
       this.selected = false;
+    }
+  }
+
+  /**
+   * Verifie si un etat est deja selectionne dans la liste du document
+   */
+  isEtatSelected(etatId: string): boolean {
+    return this.localElementTableDocEtats.some(docEtat => docEtat.etat && docEtat.etat.id === etatId);
+  }
+
+  /**
+   * Gestion du clic/cochage d'un etat dans le premier tableau
+   */
+  onCheckEtatChange(event: any, etat: IEtats) {
+    if (event.target.checked) {
+      this.rechercherListingEtat(etat);
+    } else {
+      const index = this.localElementTableDocEtats.findIndex(docEtat => docEtat.etat && docEtat.etat.id === etat.id);
+      if (index !== -1) {
+        this.retirerSelectionEtat(index);
+      }
     }
   }
 
@@ -151,10 +187,16 @@ export class ModalDocEtatsComponent implements OnInit {
     return preco && preco.libelle ? preco.libelle : '';
   }
 
+  /**
+   * Retire un etat selectionne du deuxieme tableau (dataSourceDocEtats)
+   */
   retirerSelectionEtat(index: number) {
-    this.localElementTableDocEtats.splice(index, 1); // Remove the element from the local array
-    this.localElementTableDocEtats[0].etat.etatPrecedant = undefined
-    this.dataSourceDocEtats.data = this.localElementTableDocEtats; // Update the data source with the modified local array
+    this.localElementTableDocEtats.splice(index, 1); // Retire l'element de la liste locale
+    if (this.localElementTableDocEtats.length > 0 && this.localElementTableDocEtats[0].etat) {
+      this.localElementTableDocEtats[0].etat.etatPrecedant = undefined;
+    }
+    // Mise a jour de la source de donnees du 2eme tableau
+    this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
   }
 
 
@@ -162,6 +204,7 @@ export class ModalDocEtatsComponent implements OnInit {
     this.serviceEtat.getAllEtats().subscribe(
       (resultat) => {
         this.filteredOptions = resultat;
+        this.dataSourceEtats.data = resultat;
       }
     );
     this.etatControl.reset();
@@ -186,7 +229,7 @@ export class ModalDocEtatsComponent implements OnInit {
 
         if (element.id == this.idDOCEtat) {
           element.validation = this.donneeDocEtatService.dataRoleValidation;
-          this.dataSourceDocEtats.data = this.localElementTableDocEtats;
+          this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
           break;
         }
       }
@@ -197,29 +240,16 @@ export class ModalDocEtatsComponent implements OnInit {
     this.donneeDocEtatService.dataRoleValidation = validation;
   }
 
+  /**
+   * Retourne la liste des etats precedents eligibles en excluant l'etat courant
+   */
   effaceEtatCourrant(etats: IDocEtats): IDocEtats[] {
     const idToRemove = etats?.id;
-    // Filter out the provided etat by id
-    const etatsFinal: IDocEtats[] = this.localElementTableDocEtats.filter(e => e.id !== idToRemove);
-
-    // Clear any references to the removed etat as a precedent in remaining elements
-    etatsFinal.forEach(element => {
-      if (element.etat && (element.etat as any).etatPrecedant) {
-        const precedent = (element.etat as any).etatPrecedant;
-        if ((precedent as any).id === idToRemove) {
-          (element.etat as any).etatPrecedant = undefined;
-        }
-      }
-    });
-
-    // Update local storage and table datasource
-    this.localElementTableDocEtats = [...etatsFinal];
-    this.dataSourceDocEtats.data = this.localElementTableDocEtats;
-
-    return this.localElementTableDocEtats;
+    // Filtrage sans mutation de l'etat global pendant le cycle Angular
+    return this.localElementTableDocEtats.filter(e => e.id !== idToRemove);
   }
 
-  // The onSave function to send data to donneeDocEtatService
+  // Sauvegarde des etats selectionnes dans le service de donnees
   onSave() {
     this.donneeDocEtatService.dataDocumentEtats = this.localElementTableDocEtats;
   }
