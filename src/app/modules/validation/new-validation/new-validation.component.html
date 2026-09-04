@@ -12,7 +12,7 @@
                                 <div class="champs">
                                     <label for="code" class="label">
                                         {{ "validation.form.label1" | translate
-                                        }}<span style="color: red" aria-label="required">*</span>
+                                        }}<sup aria-label="required">*</sup>
                                     </label>
                                     <input type="text" formControlName="code" name="code" id="code"
                                         placeholder="{{ 'validation.form.label1' | translate }}" class="form-control"
@@ -30,7 +30,7 @@
                                 <div class="champs">
                                     <label for="libelle" class="label">
                                         {{ "services.table.title1" | translate
-                                        }}<span style="color: red" aria-label="required">*</span>
+                                        }}<sup aria-label="required">*</sup>
                                     </label>
                                     <input type="text" formControlName="libelle" name="libelle" id="libelle"
                                         placeholder="{{ 'services.table.title1' | translate }}" class="form-control"
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <div class="champs">
                                 <label for="typeVote" class="label">
-                                    {{ "validation.form.label4" | translate }}<span style="color: red" aria-label="required">*</span>
+                                    {{ "validation.form.label4" | translate }}<sup aria-label="required">*</sup>
                                 </label>
                                 <select class="form-control" formControlName="typeVote" name="typeVote" id="typeVote" required>
                                     <option value="unitaire" selected="selected">unitaire</option>
@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <div class="champs">
                                 <label for="dureeVote" class="label">
-                                    {{ "validation.form.label5" | translate }} {{ "validation.form.label8" | translate }}<span style="color: red" aria-label="required">*</span>
+                                    {{ "validation.form.label5" | translate }} {{ "validation.form.label8" | translate }}<sup aria-label="required">*</sup>
                                 </label>
                                 <input type="number" required formControlName="dureeVote" name="dureeVote" id="dureeVote"
                                      class="form-control" />
@@ -104,7 +104,7 @@
                         <div class="form-group">
                             <div class="champs">
                                 <label for="typeValidation" class="label">
-                                    {{ "validation.form.label7" | translate }}<span style="color: red" aria-label="required">*</span>
+                                    {{ "validation.form.label7" | translate }}<sup aria-label="required">*</sup>
                                 </label>
                                 <select class="form-control" formControlName="typeValidation" name="typeValidation" id="typeValidation" required>
                                     <option class="label" *ngFor="let typeValidation of typeValidations" value="{{ typeValidation }}" >
@@ -121,7 +121,7 @@
                         <div class="form-group">
                             <div class="champs">
                                 <label  for="roleval"  class="label" >
-                                  {{'validation.form.label6' | translate}} <span style="color: red" aria-label="required">*</span>
+                                  {{'validation.form.label6' | translate}} <sup aria-label="required">*</sup>
                                 </label>
                                 <input required type="text" matInput [matAutocomplete]="auto"  aria-label="roleval" formControlName="roleval" name="roleval" id="roleval" class="champsAutocomplate">
                                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
