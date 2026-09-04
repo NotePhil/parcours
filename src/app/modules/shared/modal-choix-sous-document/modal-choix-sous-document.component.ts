@@ -53,21 +53,37 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // Ouvrir le modal pour choisir l'état du document
+  /**
+   * Ouvrir le modal pour choisir l'état d'un sous-document
+   * Transmet le document choisi ainsi que sa liste d'etats (docEtats)
+   */
   openModal(documentChoisi: IDocument) {
     const dialogRef = this.dialog.open(ModalChoixDocEtatComponent, {
       width: '600px',
       data: {
         documentChoisi: documentChoisi,
+        EtatsChoisi: documentChoisi.docEtats || [], // Transmission explicite des etats du sous-document
         documentId: documentChoisi.idDocument,
       },
     });
 
-    dialogRef.afterClosed().subscribe((selectedEtat: string) => {
-      this.populateSelectedEtatsMap();
+    dialogRef.afterClosed().subscribe((selectedEtat: any) => {
       if (selectedEtat) {
-        this.selectedEtatsMap[documentChoisi.idDocument!] = selectedEtat;
+        // Extraction du libelle de l'etat (gestion d'un objet IDocEtats ou d'une chaine de caracteres)
+        const libelleEtat = typeof selectedEtat === 'string' 
+          ? selectedEtat 
+          : (selectedEtat.etat?.libelle || selectedEtat.libelle || '');
+
+        // Enregistrement du libelle dans le dictionnaire des etats pour affichage dans le tableau
+        this.selectedEtatsMap[documentChoisi.idDocument!] = libelleEtat;
+
+        // Persistance de l'etat choisi dans le service DocumentService
+        this.serviceDocument.setSelectedEtat(documentChoisi.idDocument!, libelleEtat);
+
+        // Sauvegarde de l'etat selectionne dans le service de donnees d'echange
+        this.donneeDocCatService.saveEtatModal(selectedEtat);
       }
+      this.populateSelectedEtatsMap();
     });
   }
 

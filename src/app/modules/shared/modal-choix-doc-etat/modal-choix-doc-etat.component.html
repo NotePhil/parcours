@@ -1,26 +1,26 @@
 <div class="modal">
     <div class="modal-content">
         <div class="result">
-            <h2>Document Etats - {{ data.documentChoisi.titre }}</h2>
+            <h2>Document Etats - {{ data.documentChoisi?.titre }}</h2>
         </div>
+        <!-- Premier tableau : Liste des etats disponibles pour le document -->
         <div class="card">
             <div class="card-body p-0 tableBlock" id="tableResultats" matSort>
                 <div class='table-responsive w-100 m-0 modaleTableConteneur'>
                     <table class='table table-sm table-centered table-striped w-100' mat-table
-                        [dataSource]="data.EtatsChoisi" matSort>
+                        [dataSource]="etatsChoisiList" matSort>
                         <!-- Libelle Column -->
                         <ng-container matColumnDef="libelle">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'famille.table.title1' | translate}}
                             </th>
-                            <td class="text-dark containCell" mat-cell *matCellDef="let etat"> {{ etat.etat.libelle }}
+                            <td class="text-dark containCell" mat-cell *matCellDef="let etat"> {{ etat.etat?.libelle }}
                             </td>
                         </ng-container>
 
                         <!-- Description Column -->
                         <ng-container matColumnDef="description">
                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'document.table.title2' | translate}} </th>
-                            <td class="text-dark containCell" mat-cell *matCellDef="let etat"> {{ etat.etat.description
-                                }} </td>
+                            <td class="text-dark containCell" mat-cell *matCellDef="let etat"> {{ etat.etat?.description }} </td>
                         </ng-container>
 
                         <!-- Select Column -->
@@ -29,7 +29,7 @@
                             <td class="text-dark containCell" mat-cell *matCellDef="let etat">
                                 <mat-radio-group [(ngModel)]="selectedEtat"
                                     (change)="onRadioChange(etat)">
-                                    <mat-radio-button [value]="etat" [checked]="etat.checked"></mat-radio-button>
+                                    <mat-radio-button [value]="etat" [checked]="selectedEtatsMap?.id === etat.id || etat.checked"></mat-radio-button>
                                 </mat-radio-group>
                             </td>
                         </ng-container>
@@ -44,6 +44,36 @@
                 </div>
             </div>
         </div>
+
+        <!-- Deuxieme tableau : Affichage des etats selectionnes -->
+        <!-- Ce tableau presente l'etat choisi dans le premier tableau ci-dessus -->
+        <div class="result mt-3">
+            <h2>{{ 'document.title1' | translate }}</h2>
+            <div class="card">
+                <div class="card-body p-0 tableBlock" id="tableResultatsSelection">
+                    <div class='table-responsive w-100 m-0 modaleTableConteneur'>
+                        <table class='table table-sm table-centered table-striped w-100' mat-table
+                            [dataSource]="selectedEtatsList">
+                            <!-- Libelle Column -->
+                            <ng-container matColumnDef="libelle">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'famille.table.title1' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let etat"> {{ etat.etat?.libelle }} </td>
+                            </ng-container>
+
+                            <!-- Description Column -->
+                            <ng-container matColumnDef="description">
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'document.table.title2' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let etat"> {{ etat.etat?.description }} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="['libelle', 'description']"></tr>
+                            <tr mat-row *matRowDef="let row; columns: ['libelle', 'description']"></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="actionButton valBtn mt-2">
             <button class="btn btnValidation fermer" mat-raised-button
                 (click)="onCancel()" title="{{'lists.button10' | translate}}">

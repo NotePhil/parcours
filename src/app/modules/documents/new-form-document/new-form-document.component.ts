@@ -173,8 +173,8 @@ export class NewFormDocumentComponent implements OnInit {
           this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.document.sousDocuments;
         }
 
-        // Initialisation du tableau des etats du document
-        this.ELEMENTS_TABLE_DOC_ETATS = this.document.docEtats
+        // Initialisation du tableau des etats du document avec securisation si docEtats est indefini
+        this.ELEMENTS_TABLE_DOC_ETATS = this.document.docEtats ? this.document.docEtats : [];
 
         // Initialisation du tableau de categories temp du document qui reconstitue
         // le deuxieme tableau de la modal
@@ -212,7 +212,8 @@ export class NewFormDocumentComponent implements OnInit {
         this.donneeDocCatService.dataDocumentPrecoMvts = this.document.precoMouvements
         this.donneeDocCatService.dataDocumentAttributs = this.document.attributs
         this.donneeDocCatService.dataDocumentSousDocuments = this.document.sousDocuments
-        this.donneeDocCatService.dataDocumentEtats = this.document.docEtats
+        // Affectation explicite des etats dans le service d'echange
+        this.donneeDocCatService.dataDocumentEtats = this.ELEMENTS_TABLE_DOC_ETATS
 
         // synthese du tableau de categories du document pour afficher les differentes categories dans l'espace dedie
         this.syntheseCategorieAttribut();
@@ -333,8 +334,10 @@ export class NewFormDocumentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      // Affectation des etats mis a jour depuis la modale au tableau du composant et au document
       this.ELEMENTS_TABLE_DOC_ETATS =
-        this.donneeDocCatService.dataDocumentEtats;
+        this.donneeDocCatService.dataDocumentEtats || [];
+      this.document.docEtats = this.ELEMENTS_TABLE_DOC_ETATS;
     });
   }
 
@@ -447,12 +450,15 @@ export class NewFormDocumentComponent implements OnInit {
       documentTemp.afficherDistributeur = false
     }
 
-    if (this.ELEMENTS_TABLE_DOC_ETATS) {
-        
+    // Affectation explicite et securisee des etats selectionnes au document temporaire avant enregistrement
+    documentTemp.docEtats = [];
+    if (this.ELEMENTS_TABLE_DOC_ETATS && this.ELEMENTS_TABLE_DOC_ETATS.length > 0) {
       this.ELEMENTS_TABLE_DOC_ETATS.forEach(
         docEtat => documentTemp.docEtats.push(docEtat)
-      )
+      );
     }
+    // Affectation egalement a l'objet document local pour assurer la coherence des donnees
+    this.document.docEtats = documentTemp.docEtats;
 
     if (this.TABLE_CATEGORIE_AFFICHAGE_TEMP.length < 1) {
       let categorieAttributs: ICategoriesAttributs = {
