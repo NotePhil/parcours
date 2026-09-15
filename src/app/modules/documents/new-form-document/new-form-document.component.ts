@@ -20,7 +20,6 @@ import { DocumentService } from 'src/app/services/documents/document.service';
 import { MissionsService } from 'src/app/services/missions/missions.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalCategoriesComponent } from '../../shared/modal-categories/modal-categories.component';
-import { v4 as uuidv4 } from 'uuid';
 import { ICategorieAffichage } from 'src/app/modele/categorie-affichage';
 import { IType } from 'src/app/modele/type';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
@@ -182,14 +181,12 @@ export class NewFormDocumentComponent implements OnInit {
         this.document.categories.forEach((catAttribut) => {
           catAttribut.attributs.forEach((att) => {
             let categorieAfficheTemp: ICategorieAffichage = {
-              id: '',
               nom: '',
               ordre: 0,
               attributCategories: {
                 ordre: 0,
                 obligatoire: false,
                 attribut: {
-                  id: '',
                   titre: '',
                   description: '',
                   etat: false,

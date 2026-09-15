@@ -28,7 +28,7 @@ export class ModalChoixSousDocumentComponent implements OnInit {
 
   dataSourceDocument = new MatTableDataSource<IDocument>(this.ELEMENTS_TABLE_DOCUMENTS);
   dataSourceDocumentResultat = new MatTableDataSource<IDocument>();
-  idDocument: string = '';
+  idDocument!: string;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
