@@ -44,6 +44,10 @@ export class DocumentService {
       );
   }
 
+  getAllEtatsPossiblesByDocumentId(documentId: string): Observable<string[]> {
+    return this.http.get<string[]>(this.param.api+ 'documents' + '/' + documentId+ '/etats-possibles');
+  }
+
   setSelectedEtat(documentId: string, etat: string) {
     this.selectedEtats[documentId] = etat;
   }
