@@ -109,8 +109,8 @@
                                                     <button class="btn" title="{{'preconisation.table.title4' | translate}}">
                                                         <i class="fa fa-info-circle text-info ml-1" aria-hidden="true"></i>
                                                     </button>
-                                                    <!-- MODIFICATION: Passage de element.etat?.id à getIdDocEtat au lieu de element.id (docEtat ne contient pas d'id) -->
-                                                    <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(); getIdDocEtat(element.etat?.id!); initialiseValidationControl(element.validation)">
+                                                    <!-- MODIFICATION: Appel simplifié et synchrone de openRoleValidationDialog(element) avec l'élément docEtat -->
+                                                    <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(element)">
                                                         <i class="fa fa-plus text-warning" aria-hidden="true"></i>
                                                     </button>
                                                 </div>

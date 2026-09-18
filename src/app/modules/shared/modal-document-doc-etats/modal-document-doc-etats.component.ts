@@ -211,7 +211,12 @@ export class ModalDocEtatsComponent implements OnInit {
     this.etatControl.reset();
   }
 
-  openRoleValidationDialog() {
+  // MODIFICATION: Refactorisation synchrone pour transmettre le docEtat et sa validation à la modale de rôle de validation
+  openRoleValidationDialog(docEtat: IDocEtats) {
+    const targetEtatId = docEtat.etat?.id || docEtat.etat?.libelle || '';
+    this.idDOCEtat = targetEtatId;
+    this.donneeDocEtatService.dataRoleValidation = docEtat.validation;
+
     const dialogRef = this.dialogDef.open(ModalRoleValidationComponent,
       {
         maxWidth: '100vw',
@@ -220,17 +225,18 @@ export class ModalDocEtatsComponent implements OnInit {
         width: '100%',
         enterAnimationDuration: '1000ms',
         exitAnimationDuration: '1000ms',
-        data: {}
+        data: { validation: docEtat.validation }
       }
     );
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: IValidation | undefined) => {
+      const selectedValidation = result !== undefined ? result : this.donneeDocEtatService.dataRoleValidation;
       for (let index = 0; index < this.localElementTableDocEtats.length; index++) {
         const element = this.localElementTableDocEtats[index];
+        const elemId = element.etat?.id || element.etat?.libelle;
 
-        // MODIFICATION: Identification du docEtat via l'id de l'état (element.etat.id) au lieu de element.id (car docEtat ne contient plus d'identifiant)
-        if (element.etat?.id == this.idDOCEtat) {
-          element.validation = this.donneeDocEtatService.dataRoleValidation;
+        if (elemId === targetEtatId) {
+          element.validation = selectedValidation;
           this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
           break;
         }

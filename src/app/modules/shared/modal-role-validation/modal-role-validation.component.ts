@@ -37,15 +37,15 @@ export class ModalRoleValidationComponent implements OnInit{
       this.filteredOptions = valeurs
     });
 
-    this.validationCourante = this.donneeRoleValidationService.dataRoleValidation
+    // MODIFICATION: Récupération prioritaire de la validation transmise via MAT_DIALOG_DATA ou le service d'échange
+    this.validationCourante = this.data?.validation || this.donneeRoleValidationService.dataRoleValidation;
     
-    if (this.validationCourante != undefined) {
-      this.rechercherPersonnelDuRole(this.validationCourante.role.id!).subscribe(valeurs => {
+    if (this.validationCourante != undefined && this.validationCourante.role?.id) {
+      this.rechercherPersonnelDuRole(this.validationCourante.role.id).subscribe(valeurs => {
         this.personnelRole = valeurs
       });
+      this.myControl.setValue(this.validationCourante);
     }
-
-    this.myControl.setValue(this.donneeRoleValidationService.dataRoleValidation)
     
     this.myControl.valueChanges.subscribe(
       value => {
@@ -81,15 +81,23 @@ export class ModalRoleValidationComponent implements OnInit{
   }
 
   public rechercherListingRole(option: IValidation){
-    this.validationCourante = option
-    this.serviceValidation.getValidationById(option.id!).subscribe(
+    this.validationCourante = option;
+    this.donneeRoleValidationService.dataRoleValidation = option;
+    if (option.id) {
+      this.serviceValidation.getValidationById(option.id).subscribe(
         valeurs => {
-          this.donneeRoleValidationService.dataRoleValidation = valeurs
+          if (valeurs) {
+            this.validationCourante = valeurs;
+            this.donneeRoleValidationService.dataRoleValidation = valeurs;
+          }
         }
-    )
-    this.rechercherPersonnelDuRole(option.role.id!).subscribe(valeurs => {
-      this.personnelRole = valeurs
-    });
+      );
+    }
+    if (option.role?.id) {
+      this.rechercherPersonnelDuRole(option.role.id).subscribe(valeurs => {
+        this.personnelRole = valeurs;
+      });
+    }
   }
   /**
    * Methode permettant de reinitialiser la barre de recherche et le contenu de la variable personne
@@ -97,6 +105,7 @@ export class ModalRoleValidationComponent implements OnInit{
   reinitialiser(){
     this.myControl.reset()
     this.validationCourante = undefined
+    this.personnelRole = [];
     this.donneeRoleValidationService.dataRoleValidation = undefined
   }
 }
