@@ -11,6 +11,6 @@ export interface IDocEtats {
   validation?: IValidation;
   etape?: IEtape;
   document?: IDocument;
-  predecesseurDocEtats?: IDocEtats[];
+  predecesseurDocEtat?: IDocEtats[];
   checked?: boolean;
 }

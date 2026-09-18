@@ -157,7 +157,7 @@ export class NewFormDocumentComponent implements OnInit {
           beneficiaireObligatoire: true,
           _missions: this.document.missions,
           _attributs: [],
-          formatCode: "this.document.formatCode"
+          formatCode: this.document.formatCode
         });
         this.forme.controls['_missions'].setValue(this.document.missions);
 
