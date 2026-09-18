@@ -141,7 +141,8 @@ export class ModalDocEtatsComponent implements OnInit {
     }
     if (!tabIdEtats.includes(option.id!)) {
       let docEtat: IDocEtats = {
-        id: option.id,
+        // MODIFICATION: Un id ne doit pas être attribué à docEtat lors de sa création. Le docEtat à enregistrer ne doit pas contenir d'identifiant.
+        // id: option.id,
         etat: option,
         ordre: 0,
         dateCreation: new Date()
@@ -227,7 +228,8 @@ export class ModalDocEtatsComponent implements OnInit {
       for (let index = 0; index < this.localElementTableDocEtats.length; index++) {
         const element = this.localElementTableDocEtats[index];
 
-        if (element.id == this.idDOCEtat) {
+        // MODIFICATION: Identification du docEtat via l'id de l'état (element.etat.id) au lieu de element.id (car docEtat ne contient plus d'identifiant)
+        if (element.etat?.id == this.idDOCEtat) {
           element.validation = this.donneeDocEtatService.dataRoleValidation;
           this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
           break;
@@ -244,9 +246,10 @@ export class ModalDocEtatsComponent implements OnInit {
    * Retourne la liste des etats precedents eligibles en excluant l'etat courant
    */
   effaceEtatCourrant(etats: IDocEtats): IDocEtats[] {
-    const idToRemove = etats?.id;
-    // Filtrage sans mutation de l'etat global pendant le cycle Angular
-    return this.localElementTableDocEtats.filter(e => e.id !== idToRemove);
+    // MODIFICATION: Utilisation de etats.etat.id au lieu de etats.id car docEtat ne contient plus d'identifiant
+    const idToRemove = etats?.etat?.id;
+    // MODIFICATION: Filtrage par l'id de l'état (e.etat.id) au lieu de e.id
+    return this.localElementTableDocEtats.filter(e => e.etat?.id !== idToRemove);
   }
 
   // Sauvegarde des etats selectionnes dans le service de donnees

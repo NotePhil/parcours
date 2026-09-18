@@ -102,13 +102,15 @@
                                             <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
                                             <td class="text-dark containCell" mat-cell *matCellDef="let element; let i = index">
                                                 <div class="actions">
-                                                    <button class="btn" [value]="element.id" title="{{'lists.button3' | translate}}" (click)="retirerSelectionEtat(i)">
+                                                    <!-- MODIFICATION: Remplacement de element.id par element.etat?.id car docEtat n'a plus d'id -->
+                                                    <button class="btn" [value]="element.etat?.id" title="{{'lists.button3' | translate}}" (click)="retirerSelectionEtat(i)">
                                                         <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                                     </button>
                                                     <button class="btn" title="{{'preconisation.table.title4' | translate}}">
                                                         <i class="fa fa-info-circle text-info ml-1" aria-hidden="true"></i>
                                                     </button>
-                                                    <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(); getIdDocEtat(element.id); initialiseValidationControl(element.validation)">
+                                                    <!-- MODIFICATION: Passage de element.etat?.id à getIdDocEtat au lieu de element.id (docEtat ne contient pas d'id) -->
+                                                    <button mat-button class="btn btnAddValidation" title="{{'doc-etats.button2' | translate}}" (click)="openRoleValidationDialog(); getIdDocEtat(element.etat?.id!); initialiseValidationControl(element.validation)">
                                                         <i class="fa fa-plus text-warning" aria-hidden="true"></i>
                                                     </button>
                                                 </div>

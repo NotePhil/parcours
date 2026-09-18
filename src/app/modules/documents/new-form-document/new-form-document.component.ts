@@ -111,7 +111,7 @@ export class NewFormDocumentComponent implements OnInit {
     this.forme = this.formBuilder.group({
       _missions: new FormControl<string | IMission[]>(''),
       _attributs: new FormArray([]),
-      titre: [ '', [ Validators.required]],
+      titre: ['', [Validators.required]],
       description: [''],
       typeMouvement: ['', [Validators.required]],
       etat: new FormControl(true),
@@ -120,21 +120,21 @@ export class NewFormDocumentComponent implements OnInit {
       contientRessources: new FormControl(false),
       afficherDistributeur: new FormControl(false),
       beneficiaireObligatoire: new FormControl(true),
-      formatCode: [ '', [ Validators.required]]
+      formatCode: ['', [Validators.required]]
     });
   }
   ngOnInit(): void {
     this.mission$ = this.getAllMissions();
     this.forme.controls['afficherPrix'].disable()
-    this.forme.controls['afficherDistributeur'].disable()    
+    this.forme.controls['afficherDistributeur'].disable()
     this.documentParentDesactive = true
     this.donneeDocCatService.getTypeMvt().subscribe((x) => (this.typeMvt = x.type));
     this.donneeDocCatService.getFormatCode().subscribe((f) => (this.formatsCode = f.type));
 
     // chargement de la page a partir d'un Id pour la modification d'un document
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
-    console.log('id ',this.infosPath.snapshot.paramMap.get('idDocument'));
-    
+    console.log('id ', this.infosPath.snapshot.paramMap.get('idDocument'));
+
     if (idDocument != null && idDocument !== '') {
       this.btnLibelle = 'Modifier';
       this.titre = 'Document à Modifier';
@@ -142,7 +142,7 @@ export class NewFormDocumentComponent implements OnInit {
         this.document = x;
         if (this.document.contientRessources == true) {
           this.forme.controls['afficherPrix'].enable()
-          this.forme.controls['afficherDistributeur'].enable()    
+          this.forme.controls['afficherDistributeur'].enable()
           this.documentParentDesactive = false
         }
         this.forme.setValue({
@@ -157,7 +157,7 @@ export class NewFormDocumentComponent implements OnInit {
           beneficiaireObligatoire: true,
           _missions: this.document.missions,
           _attributs: [],
-          formatCode : "this.document.formatCode"
+          formatCode: "this.document.formatCode"
         });
         this.forme.controls['_missions'].setValue(this.document.missions);
 
@@ -295,26 +295,26 @@ export class NewFormDocumentComponent implements OnInit {
     if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
       dialogConfig.data = { documentIds: this.ELEMENTS_TABLE_SOUS_DOCUMENTS.map(doc => doc.idDocument) };
     }
-  
+
     dialogConfig.maxWidth = '100vw';
     dialogConfig.maxHeight = '100vh';
     dialogConfig.width = '100%';
     dialogConfig.height = '100%';
     dialogConfig.enterAnimationDuration = '1000ms';
     dialogConfig.exitAnimationDuration = '1000ms';
-  
+
     const dialogRef = this.dialogDef.open(ModalChoixSousDocumentComponent, dialogConfig);
-  
+
     dialogRef.afterClosed().subscribe((result) => {
       this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.donneeDocCatService.dataDocumentSousDocuments;
-  
+
       if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
         this.document.sousDocuments = this.ELEMENTS_TABLE_SOUS_DOCUMENTS;
-        
+
       }
     });
   }
-  
+
 
   /**
    * Methode permettant d'ouvrir la modal de manipullation des etats du document
@@ -394,7 +394,7 @@ export class NewFormDocumentComponent implements OnInit {
     });
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP = categorieAttributsFinal;
   }
-  return(){
+  return() {
     this.router.navigate(['parcours/documents/list-documents']);
   }
   onSubmit(documentInput: any) {
@@ -481,11 +481,11 @@ export class NewFormDocumentComponent implements OnInit {
       );
     }
 
-    
+
 
     this.serviceDocument.ajouterDocument(documentTemp).subscribe((object) => {
       this.router.navigate(['parcours/documents/list-documents']);
-      
+
     });
     this.donneeDocCatService.dataDocumentAttributs = [];
     this.donneeDocCatService.dataDocumentCategorie = [];
@@ -504,12 +504,12 @@ export class NewFormDocumentComponent implements OnInit {
       ? mission2.id === mission1.id
       : mission2 === mission1;
   }
-  desactiveElementsLieRessource(event: any){
+  desactiveElementsLieRessource(event: any) {
     if (!event.target.checked) {
       this.forme.controls['afficherPrix'].disable()
-      this.forme.controls['afficherDistributeur'].disable()    
+      this.forme.controls['afficherDistributeur'].disable()
       this.documentParentDesactive = true
-    }else{
+    } else {
       this.forme.controls['afficherPrix'].enable()
       this.forme.controls['afficherDistributeur'].enable()
       this.documentParentDesactive = false
