@@ -129,7 +129,7 @@ export class NewTicketComponent implements OnInit {
       
       let ticketTemp : ITicket = {
             // id optional
-            idUnique: uuidv4(),
+            idUnique: "",
             date_heure: new Date,
             idFileAttente: "ABC",
             idPersonne: "1",

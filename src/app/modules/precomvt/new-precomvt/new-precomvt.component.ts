@@ -7,7 +7,6 @@ import {
   FormGroupDirective,
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { v4 as uuidv4 } from 'uuid';
 import { EMPTY, Observable } from 'rxjs';
 
 import { PrecoMvtsService } from 'src/app/services/precomvts/precomvts.service';

@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IAttributs } from 'src/app/modele/attributs';
 import { AttributService } from 'src/app/services/attributs/attribut.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-new-attribut',

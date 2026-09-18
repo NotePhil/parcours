@@ -14,7 +14,6 @@ import { IPromo } from 'src/app/modele/promo-distributeur';
 import { IDistributeur } from 'src/app/modele/distributeur';
 import { IFamille } from 'src/app/modele/famille';
 import { IRessource } from 'src/app/modele/ressource';
-import { v4 as uuidv4 } from 'uuid';
 import { Observable, forkJoin, of } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';

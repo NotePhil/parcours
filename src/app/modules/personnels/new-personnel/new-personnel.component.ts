@@ -6,7 +6,6 @@ import { IPersonnel } from 'src/app/modele/personnel';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { PersonnelsService } from 'src/app/services/personnels/personnels.service';
 import { UtilisateurService } from 'src/app/services/utilisateurs/utilisateur.service';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-new-personnel',
@@ -122,40 +121,6 @@ export class NewPersonnelComponent implements OnInit {
       qrCodeValue: personnelInput.qrCodeValue,
       type: 'personnel'
     };
-
-    // if (this.personnel != undefined) {
-    //   personnelTemp.id = this.personnel.id;
-    //   this.personnelService
-    //     .updatePersonnel(personnelTemp)
-    //     .subscribe((object) => {
-    //       this.userService.getUserById(this.personnel!.id).subscribe((res) => {
-    //         let userTemp: IUtilisateurs = {
-    //           id: res.id,
-    //           login: res.login,
-    //           passWord: res.passWord,
-    //           groupe: res.groupe,
-    //           menu: res.menu,
-    //           user: personnelTemp,
-    //         };
-    //         this.userService.updateUser(userTemp).subscribe((obj) => {});
-    //         console.log('User update :', userTemp);
-    //       });
-    //     });
-    // } else {
-    //   // Save personnel data
-    //   this.personnelService
-    //     .ajouterPersonnel(personnelTemp)
-    //     .subscribe((object) => {
-    //       let userTemp: IUtilisateurs = {
-    //         id: uuidv4(),
-    //         login: personnelTemp.mail,
-    //         passWord: personnelTemp.nom + '_' + personnelTemp.id,
-    //         user: personnelTemp,
-    //       };
-    //       this.userService.ajouterUser(userTemp).subscribe((obj) => {});
-    //       console.log('User create :', userTemp);
-    //     });
-    // }
     
     if (this.personnel != undefined) {
       personnelTemp.id = this.personnel.id;

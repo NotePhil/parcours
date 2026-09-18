@@ -3,7 +3,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-import { v4 as uuidv4 } from 'uuid';
 import { DetailsJson, ICaisses } from 'src/app/modele/caisses';
 import { CaissesService } from 'src/app/services/caisses/caisses.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';

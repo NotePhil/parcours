@@ -17,7 +17,6 @@ import { AttributService } from 'src/app/services/attributs/attribut.service';
 import { CategorieAttributService } from 'src/app/services/categorie-attribut/categorie-attribut.service';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { IType } from 'src/app/modele/type';
-import { v4 as uuidv4 } from 'uuid';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { IAssociationCategorieAttributs } from 'src/app/modele/association-categorie-attributs';
 

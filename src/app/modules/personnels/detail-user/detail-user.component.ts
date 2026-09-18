@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPersonnel } from 'src/app/modele/personnel';
 import { IUtilisateurs } from 'src/app/modele/utilisateurs';
 import { AuthentificationService } from 'src/app/services/authentifications/authentification.service';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-detail-user',

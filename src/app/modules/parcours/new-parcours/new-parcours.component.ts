@@ -13,7 +13,6 @@ import { IParcours } from 'src/app/modele/parcours';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { EtapesService } from 'src/app/services/etapes/etapes.service';
 import { ParcoursService } from 'src/app/services/parcours/parcours.service';
-import { v4 as uuidv4 } from 'uuid';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewEtapeComponent } from '../../etape/new-etape/new-etape.component';
 import { IAfficheEtape } from 'src/app/modele/affiche-etape';

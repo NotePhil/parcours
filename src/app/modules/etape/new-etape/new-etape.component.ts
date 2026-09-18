@@ -12,7 +12,6 @@ import { MatSort } from '@angular/material/sort';
 import { IEtape } from 'src/app/modele/etape';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { EtapesService } from 'src/app/services/etapes/etapes.service';
-import { v4 as uuidv4 } from 'uuid';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';

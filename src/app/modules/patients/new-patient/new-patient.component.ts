@@ -9,7 +9,6 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { PatientsService } from 'src/app/services/patients/patients.service';
 import { IPatient } from '../../../modele/Patient';
-import { v4 as uuidv4 } from 'uuid';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';

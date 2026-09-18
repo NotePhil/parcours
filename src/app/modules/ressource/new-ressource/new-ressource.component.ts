@@ -9,7 +9,6 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 import { IRessource } from 'src/app/modele/ressource';
 import { RessourcesService } from 'src/app/services/ressources/ressources.service';
-import { v4 as uuidv4 } from 'uuid';
 import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';

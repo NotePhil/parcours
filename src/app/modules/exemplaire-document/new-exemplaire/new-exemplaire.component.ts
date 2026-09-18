@@ -1133,7 +1133,6 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     });
   if (!tabIdRessource.includes(option.id!)) {
       let mvt: IMouvement = {
-        id: uuidv4(),
         description: '',
         quantite: option.quantite,
         prix: 0,

@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { v4 as uuidv4 } from 'uuid';
 import { MatSort, Sort } from '@angular/material/sort';
 import { ICaisses } from 'src/app/modele/caisses';
 import { IComptes } from 'src/app/modele/comptes';

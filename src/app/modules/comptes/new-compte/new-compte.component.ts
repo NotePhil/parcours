@@ -7,7 +7,6 @@ import {
   FormControl,
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { v4 as uuidv4 } from 'uuid';
 import { IComptes } from 'src/app/modele/comptes';
 import { ComptesService } from 'src/app/services/comptes/comptes.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
