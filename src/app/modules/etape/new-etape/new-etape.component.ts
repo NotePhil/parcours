@@ -27,7 +27,7 @@ import { IParcours } from 'src/app/modele/parcours';
   styleUrls: ['./new-etape.component.scss'],
 })
 export class NewEtapeComponent implements OnInit {
-[x: string]: any;
+  [x: string]: any;
   // : IEtape |undefined;
   forme: FormGroup;
   btnLibelle: string = 'Ajouter';
@@ -44,10 +44,10 @@ export class NewEtapeComponent implements OnInit {
     document: [],
     etapeprecedant: []
   };
-      etapeControl = new FormControl<string | IEtape>('');
-      filteredOptions: IEtape[] | undefined;
-      ELEMENTS_TABLE_PAR_ETAPES: IEtape[] | undefined = [];
-      localElementTableParEtapes: IEtape[] = []; // Local variable to hold the changes
+  etapeControl = new FormControl<string | IEtape>('');
+  filteredOptions: IEtape[] | undefined;
+  ELEMENTS_TABLE_PAR_ETAPES: IEtape[] | undefined = [];
+  localElementTableParEtapes: IEtape[] = []; // Local variable to hold the changes
   // variables Document, pour afficher le tableau d'Document sur l'IHM
   ELEMENTS_TABLE_DOCUMENTS: IDocument[] = [];
   dataSourceDocument = new MatTableDataSource<IDocument>(
@@ -93,8 +93,8 @@ export class NewEtapeComponent implements OnInit {
   }
 
   ngOnInit() {
-    let idEtape : IEtape = this.data?.idEtape;
-    let etapes : IEtape[] = this.data.etapes;
+    let idEtape: IEtape = this.data?.idEtape;
+    let etapes: IEtape[] = this.data.etapes;
     this.etapeService.getAllEtapes().subscribe(
       (resultat) => {
         this.filteredOptions = resultat;
@@ -107,21 +107,21 @@ export class NewEtapeComponent implements OnInit {
       this.btnLibelle = 'Modifier';
 
       //trouver un autre moyen d'initialiser avec des valeurs
-        console.log('x', idEtape);
+      console.log('x', idEtape);
 
-        this.etape = idEtape;
-        this.documents = idEtape.document;
-        this.etapes = idEtape.etapeprecedant!;
-        this.donneeDocCatService.dataParcoursEtapes = idEtape.etapeprecedant!;
+      this.etape = idEtape;
+      this.documents = idEtape.document;
+      this.etapes = idEtape.etapeprecedant!;
+      this.donneeDocCatService.dataParcoursEtapes = idEtape.etapeprecedant!;
 
-        this.forme.patchValue({
-          libelle: idEtape.libelle,
-          etat: idEtape.etat,
-          etapePrecedant: idEtape.etapeprecedant
-        });
-        this.forme.controls['etapesprecedant'].setValue(idEtape.etapeprecedant);
-  this.etapeId = idEtape.etapeprecedant?.map((etape) => etape.id!);
-  this.documentId = idEtape.document.map((doc) => doc.idDocument!);
+      this.forme.patchValue({
+        libelle: idEtape.libelle,
+        etat: idEtape.etat,
+        etapePrecedant: idEtape.etapeprecedant
+      });
+      this.forme.controls['etapesprecedant'].setValue(idEtape.etapeprecedant);
+      this.etapeId = idEtape.etapeprecedant?.map((etape) => etape.id!);
+      this.documentId = idEtape.document.map((doc) => doc.idDocument!);
     } else {
       this.donneeDocCatService.dataParcoursEtapes = [];
     }
@@ -132,10 +132,10 @@ export class NewEtapeComponent implements OnInit {
   }
 
   compareItem(etape1: IEtape, etape2: IEtape) {
-      return etape2 && etape1
-        ? etape2.id === etape1.id
-        : etape2 === etape1;
-    }
+    return etape2 && etape1
+      ? etape2.id === etape1.id
+      : etape2 === etape1;
+  }
 
   effaceEtapeCourrant(etape: IEtape): IEtape[] {
     let etapesFinal: IEtape[] = [];
@@ -160,7 +160,7 @@ export class NewEtapeComponent implements OnInit {
     }
     console.log('Preparing to open dialog with document IDs:', this.documentId);
 
-      (dialogConfig.width = '90%'),
+    (dialogConfig.width = '90%'),
       (dialogConfig.height = '90%'),
       (dialogConfig.enterAnimationDuration = '1000ms'),
       (dialogConfig.exitAnimationDuration = '1000ms');
@@ -171,7 +171,7 @@ export class NewEtapeComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.documents = this.donneeDocCatService.dataDocumentSousDocuments;
+      this.documents = this.donneeDocCatService.dataDocumentDocumentsAssocies;
 
       if (this.documents.length > 0) {
         this.documentId = this.documents.map((doc) => doc.idDocument!);
@@ -186,9 +186,9 @@ export class NewEtapeComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
 
     (dialogConfig.width = '80%'),
-    (dialogConfig.height = '80%'),
-    (dialogConfig.enterAnimationDuration = '1000ms'),
-    (dialogConfig.exitAnimationDuration = '1000ms');
+      (dialogConfig.height = '80%'),
+      (dialogConfig.enterAnimationDuration = '1000ms'),
+      (dialogConfig.exitAnimationDuration = '1000ms');
 
     const dialogRef = this.dialogDef.open(
       ModalEtapesPreorsuivParcoursComponent,

@@ -168,8 +168,8 @@ export class NewFormDocumentComponent implements OnInit {
         this.ELEMENTS_TABLE_PRECONISATIONS = this.document.precoMouvements;
 
         // Initialisation du tableau de sous documents du document
-        if (this.document.sousDocuments != undefined) {
-          this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.document.sousDocuments;
+        if (this.document.documentsAssocies != undefined) {
+          this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.document.documentsAssocies;
         }
 
         // Initialisation du tableau des etats du document avec securisation si docEtats est indefini
@@ -208,7 +208,8 @@ export class NewFormDocumentComponent implements OnInit {
         this.donneeDocCatService.dataDocumentCategorie = categorieAfficheFinal
         this.donneeDocCatService.dataDocumentPrecoMvts = this.document.precoMouvements
         this.donneeDocCatService.dataDocumentAttributs = this.document.attributs
-        this.donneeDocCatService.dataDocumentSousDocuments = this.document.sousDocuments
+        // MODIFICATION: Initialisation sécurisée avec un tableau vide si documentsAssocies est indéfini
+        this.donneeDocCatService.dataDocumentDocumentsAssocies = this.document.documentsAssocies || [];
         // Affectation explicite des etats dans le service d'echange
         this.donneeDocCatService.dataDocumentEtats = this.ELEMENTS_TABLE_DOC_ETATS
 
@@ -219,7 +220,7 @@ export class NewFormDocumentComponent implements OnInit {
       this.donneeDocCatService.dataDocumentAttributs = [];
       this.donneeDocCatService.dataDocumentCategorie = [];
       this.donneeDocCatService.dataDocumentPrecoMvts = [];
-      this.donneeDocCatService.dataDocumentSousDocuments = [];
+      this.donneeDocCatService.dataDocumentDocumentsAssocies = [];
       this.donneeDocCatService.dataDocumentEtats = [];
     }
     this.titre = this.dataEnteteMenuService.dataEnteteMenu;
@@ -292,8 +293,11 @@ export class NewFormDocumentComponent implements OnInit {
    */
   openSousDocumentDialog() {
     const dialogConfig = new MatDialogConfig();
-    if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
-      dialogConfig.data = { documentIds: this.ELEMENTS_TABLE_SOUS_DOCUMENTS.map(doc => doc.idDocument) };
+    // MODIFICATION: Récupération sécurisée des identifiants (idDocument ou id) des sous-documents déjà sélectionnés
+    if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS && this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
+      dialogConfig.data = { documentIds: this.ELEMENTS_TABLE_SOUS_DOCUMENTS.map(doc => doc.idDocument || doc.id) };
+    } else {
+      dialogConfig.data = { documentIds: [] };
     }
 
     dialogConfig.maxWidth = '100vw';
@@ -306,12 +310,9 @@ export class NewFormDocumentComponent implements OnInit {
     const dialogRef = this.dialogDef.open(ModalChoixSousDocumentComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.donneeDocCatService.dataDocumentSousDocuments;
-
-      if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
-        this.document.sousDocuments = this.ELEMENTS_TABLE_SOUS_DOCUMENTS;
-
-      }
+      // MODIFICATION: Mise à jour du tableau local avec la sélection issue de la modale ou du service d'échange
+      this.ELEMENTS_TABLE_SOUS_DOCUMENTS = result || this.donneeDocCatService.dataDocumentDocumentsAssocies || [];
+      this.document.documentsAssocies = this.ELEMENTS_TABLE_SOUS_DOCUMENTS;
     });
   }
 
@@ -415,7 +416,7 @@ export class NewFormDocumentComponent implements OnInit {
       attributs: [],
       categories: [],
       precoMouvements: [],
-      sousDocuments: [],
+      documentsAssocies: [],
       afficherPrix: documentInput.afficherPrix,
       contientRessources: documentInput.contientRessources,
       afficherDistributeur: documentInput.afficherDistributeur,
@@ -437,12 +438,17 @@ export class NewFormDocumentComponent implements OnInit {
       documentTemp.precoMouvements.push(preco)
     );
 
-    this.ELEMENTS_TABLE_SOUS_DOCUMENTS.forEach((doc) =>
-      documentTemp.sousDocuments?.push(doc)
-    );
+    // MODIFICATION: Transmission explicite de la liste des sous-documents au document temporaire
+    documentTemp.documentsAssocies = [];
+    if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS && this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
+      this.ELEMENTS_TABLE_SOUS_DOCUMENTS.forEach((doc) =>
+        documentTemp.documentsAssocies?.push(doc)
+      );
+    }
+    this.document.documentsAssocies = documentTemp.documentsAssocies;
 
     if (this.documentParentDesactive == true) {
-      documentTemp.sousDocuments = undefined
+      // MODIFICATION: Suppression de 'documentTemp.documentsAssocies = undefined' qui réinitialisait à tort la liste des sous-documents lors de la validation du formulaire
       documentTemp.afficherPrix = false
       documentTemp.afficherDistributeur = false
     }
@@ -490,7 +496,7 @@ export class NewFormDocumentComponent implements OnInit {
     this.donneeDocCatService.dataDocumentAttributs = [];
     this.donneeDocCatService.dataDocumentCategorie = [];
     this.donneeDocCatService.dataDocumentPrecoMvts = [];
-    this.donneeDocCatService.dataDocumentSousDocuments = [];
+    this.donneeDocCatService.dataDocumentDocumentsAssocies = [];
     this.donneeDocCatService.dataDocumentEtats = [];
   }
   get f() {

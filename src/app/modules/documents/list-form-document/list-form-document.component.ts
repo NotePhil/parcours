@@ -21,8 +21,8 @@ import { DocumentService } from 'src/app/services/documents/document.service';
 export class ListFormDocumentComponent implements OnInit, AfterViewInit {
 
   myControl = new FormControl<string | IDocument>('');
-  receivedActions$: Observable<IElements[]>=EMPTY;
-  actions : IElements[] | undefined;
+  receivedActions$: Observable<IElements[]> = EMPTY;
+  actions: IElements[] | undefined;
 
   ELEMENTS_TABLE: IAfficheDocument[] = [];
   filteredOptions: IDocument[] | undefined;
@@ -36,10 +36,10 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  tableDocuments : IAfficheDocument[] = []
+  tableDocuments: IAfficheDocument[] = []
 
 
-  afficheDocument : IAfficheDocument = {
+  afficheDocument: IAfficheDocument = {
     idDocument: '',
     titre: '',
     description: '',
@@ -51,8 +51,8 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     listCategories: '',
     listPrecoMouvements: '',
     precoMouvements: [],
-    sousDocuments: [],
-    listSousDocuments: '',
+    documentsAssocies: [],
+    listDocumentsAssocies: '',
     etat: false,
     estencaissable: false,
     typeMouvement: 'Neutre',
@@ -65,8 +65,8 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     beneficiaireObligatoire: false
   }
 
-  constructor(private translate: TranslateService, private router:Router,
-    private serviceDocument: DocumentService,  private _liveAnnouncer: LiveAnnouncer,
+  constructor(private translate: TranslateService, private router: Router,
+    private serviceDocument: DocumentService, private _liveAnnouncer: LiveAnnouncer,
     private actionsview: PassActionService
   ) { }
 
@@ -83,10 +83,10 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
 
     });
     this.getAllDocuments().subscribe(valeurs => {
-     const tableDocuments : IAfficheDocument[] = [];
+      const tableDocuments: IAfficheDocument[] = [];
 
       valeurs.forEach(
-        x =>{
+        x => {
           tableDocuments.push(this.convertDocToDocAffiche(x))
         }
       )
@@ -97,16 +97,16 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     this.myControl.valueChanges.subscribe(
       value => {
         const titre = typeof value === 'string' ? value : value?.titre;
-        if(titre != undefined && titre?.length >0){
+        if (titre != undefined && titre?.length > 0) {
           this.serviceDocument.getDocumentByTitre(titre.toLowerCase() as string).subscribe(
             reponse => {
               this.filteredOptions = reponse;
             }
           )
         }
-        else{
+        else {
           this.serviceDocument.getAllDocuments().subscribe(
-            (resultat) =>{
+            (resultat) => {
               this.filteredOptions = resultat
             }
           )
@@ -121,17 +121,17 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  public rechercherListingDocument(option: IDocument){
+  public rechercherListingDocument(option: IDocument) {
     this.serviceDocument.getDocumentByTitre(option.titre.toLowerCase()).subscribe(
-        valeurs => {
-          const tableDocuments : IAfficheDocument[] = [];
-          valeurs.forEach(
-            x =>{
-              tableDocuments.push(this.convertDocToDocAffiche(x))
-            }
-          )
-          this.dataSource.data = tableDocuments;
-        }
+      valeurs => {
+        const tableDocuments: IAfficheDocument[] = [];
+        valeurs.forEach(
+          x => {
+            tableDocuments.push(this.convertDocToDocAffiche(x))
+          }
+        )
+        this.dataSource.data = tableDocuments;
+      }
     )
   }
   announceSortChange(sortState: Sort) {
@@ -142,63 +142,63 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private getAllDocuments(){
+  private getAllDocuments() {
     return this.serviceDocument.getAllDocuments();
   }
 
-  private convertDocToDocAffiche(x: IDocument) : IAfficheDocument {
-   let  afficheDocument  : IAfficheDocument = {
-     listeMissions: '',
-     listAttributs: '',
-     listCategories: '',
-     listPrecoMouvements: '',
-     listSousDocuments: '',
-     listDocEtats: '',
-     idDocument: x.idDocument,
-     titre: x.titre,
-     description: x.description,
-     etat: x.etat,
-     estencaissable: x.estencaissable,
-     typeMouvement: x.typeMouvement,
-     afficherPrix:  x.afficherPrix,
-     contientRessources:  x.contientRessources,
-     afficherDistributeur:  x.afficherDistributeur,
-     missions:  x.missions,
-     attributs:  x.attributs,
-     categories:  x.categories,
-     precoMouvements:  x.precoMouvements,
-     docEtats:  x.docEtats,
-     formatCode:  x.formatCode,
-     beneficiaireObligatoire:  x.beneficiaireObligatoire
-   }
+  private convertDocToDocAffiche(x: IDocument): IAfficheDocument {
+    let afficheDocument: IAfficheDocument = {
+      listeMissions: '',
+      listAttributs: '',
+      listCategories: '',
+      listPrecoMouvements: '',
+      listDocumentsAssocies: '',
+      listDocEtats: '',
+      idDocument: x.idDocument,
+      titre: x.titre,
+      description: x.description,
+      etat: x.etat,
+      estencaissable: x.estencaissable,
+      typeMouvement: x.typeMouvement,
+      afficherPrix: x.afficherPrix,
+      contientRessources: x.contientRessources,
+      afficherDistributeur: x.afficherDistributeur,
+      missions: x.missions,
+      attributs: x.attributs,
+      categories: x.categories,
+      precoMouvements: x.precoMouvements,
+      docEtats: x.docEtats,
+      formatCode: x.formatCode,
+      beneficiaireObligatoire: x.beneficiaireObligatoire
+    }
 
-   if (x.missions) {
+    if (x.missions) {
       x.missions.forEach(
         m => {
           afficheDocument.listeMissions += m.libelle + ", ";
         }
       )
-   }
-   if (x.attributs) {
+    }
+    if (x.attributs) {
       x.attributs.forEach(
         a => afficheDocument.listAttributs += a.titre + ", "
       )
-   }
-   if (x.categories) {
+    }
+    if (x.categories) {
       x.categories.forEach(
         c => afficheDocument.listCategories += c.libelle + ", "
       )
-   }
-   if (x.precoMouvements) {
+    }
+    if (x.precoMouvements) {
       x.precoMouvements.forEach(
         p => afficheDocument.listPrecoMouvements += p.libelle + ", "
       )
-   }
-   if (x.docEtats) {
-    x.docEtats.forEach(
-      de => afficheDocument.listDocEtats += de.etat.libelle + ", "
-    )
-   }
+    }
+    if (x.docEtats) {
+      x.docEtats.forEach(
+        de => afficheDocument.listDocEtats += de.etat.libelle + ", "
+      )
+    }
     return afficheDocument;
   }
 }

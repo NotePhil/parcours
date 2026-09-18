@@ -26,7 +26,7 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
     'titre',
     'description'
   ]; // structure du tableau presentant les Exemplaires de documents
-  
+
   dataSourceExemplaireDocument = new MatTableDataSource<IExemplaireDocument>(
     this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS
   );
@@ -41,9 +41,9 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
     private serviceExemplaire: ExemplaireDocumentService,
     private serviceDocument: DocumentService,
     private _liveAnnouncer: LiveAnnouncer,
-    private donneeExemplaireDocService:DonneesEchangeService,
+    private donneeExemplaireDocService: DonneesEchangeService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
       this.dataSourceExemplaireDocument.data = valeurs;
       this.filteredOptions = valeurs
     });
-    this.dataSourceExemplaireDocumentResultat.data = this.donneeExemplaireDocService.dataDocumentSousDocuments
+    this.dataSourceExemplaireDocumentResultat.data = this.donneeExemplaireDocService.dataDocumentDocumentsAssocies
     this.myControl.valueChanges.subscribe((value) => {
       const titre = typeof value === 'string' ? value : value?.titre;
       if (titre != undefined && titre?.length > 0) {
@@ -62,22 +62,22 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
           });
       } else {
         this.serviceExemplaire.getAllExemplaireDocuments().subscribe(
-          (reponse) =>{
-            this.filteredOptions=reponse
+          (reponse) => {
+            this.filteredOptions = reponse
           }
         )
       }
     });
   }
   onCheckDocumentChange(event: any) {
-    let listidDocumentTemp : string[] = []
+    let listidDocumentTemp: string[] = []
     let positionsDocument = new Map()
-    let indexDocumentCourant : number = 0
-    this.donneeExemplaireDocService.dataDocumentSousDocuments?.forEach(
+    let indexDocumentCourant: number = 0
+    this.donneeExemplaireDocService.dataDocumentDocumentsAssocies?.forEach(
       (element: IExemplaireDocument) => {
-  listidDocumentTemp.push(element.id!)
+        listidDocumentTemp.push(element.id!)
         positionsDocument.set(element.id, indexDocumentCourant++)
-    });
+      });
     if (event.target.checked) {
       if (!listidDocumentTemp.includes(this.idDocument)) {
         this.ajoutSelectionDocument(this.idDocument);
@@ -93,21 +93,21 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
     this.idDocument = idDocument;
   }
 
-  choisirDocument(){
-    let valeurIdDocument  = sessionStorage.getItem("idDocumentPourExemplaire")
-    let documentSource : IDocument | undefined
+  choisirDocument() {
+    let valeurIdDocument = sessionStorage.getItem("idDocumentPourExemplaire")
+    let documentSource: IDocument | undefined
     this.serviceDocument.getDocumentById(valeurIdDocument!).subscribe(
-      x =>{
+      x => {
         documentSource = x
         console.log('doc : ', documentSource)
-    if (documentSource != undefined) {
-        this.router.navigate(['parcours/missions/exemplaire-nouveau/'.concat(valeurIdDocument!)]);
-      // if (documentSource.beneficiaireObligatoire == true) {
-      //   this.router.navigate(['page-intermedaire']);
-      // }else{
-      // }
-    }
-    })
+        if (documentSource != undefined) {
+          this.router.navigate(['parcours/missions/exemplaire-nouveau/'.concat(valeurIdDocument!)]);
+          // if (documentSource.beneficiaireObligatoire == true) {
+          //   this.router.navigate(['page-intermedaire']);
+          // }else{
+          // }
+        }
+      })
   }
 
   ajoutSelectionDocument(idDocument: string) {
@@ -115,7 +115,7 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
       this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS = this.dataSourceExemplaireDocumentResultat.data;
       this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS.push(val);
       this.dataSourceExemplaireDocumentResultat.data = this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS;
-      this.donneeExemplaireDocService.dataDocumentSousDocuments = this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS
+      this.donneeExemplaireDocService.dataDocumentDocumentsAssocies = this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS
     });
   }
 
@@ -123,7 +123,7 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
     this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS = this.dataSourceExemplaireDocumentResultat.data;
     this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     this.dataSourceExemplaireDocumentResultat.data = this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS;
-    this.donneeExemplaireDocService.dataDocumentSousDocuments = this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS
+    this.donneeExemplaireDocService.dataDocumentDocumentsAssocies = this.ELEMENTS_TABLE_EXEMPLAIRE_DOCUMENTS
   }
   private getAllExemplaireDocument() {
     return this.serviceExemplaire.getAllExemplaireDocuments();
@@ -153,7 +153,7 @@ export class ModalChoixSousExemplairesComponent implements OnInit {
     }
   }
 
-  cancel(){
-    this.donneeExemplaireDocService.dataDocumentSousDocuments = []
+  cancel() {
+    this.donneeExemplaireDocService.dataDocumentDocumentsAssocies = []
   }
 }

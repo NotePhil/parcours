@@ -2041,7 +2041,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        sousDocuments: [
+        documentsAssocies: [
           {
             idDocument: '1',
             titre: 'Note intervention',
@@ -7134,7 +7134,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        sousDocuments: [
+        documentsAssocies: [
           {
             idDocument: '1',
             titre: 'Note intervention',
@@ -10955,7 +10955,7 @@ export class InMemDBService implements InMemoryDbService {
             ],
           },
         ],
-        sousDocuments: [
+        documentsAssocies: [
           {
             idDocument: '3',
             titre: 'Fiche de soin',
@@ -13890,7 +13890,7 @@ export class InMemDBService implements InMemoryDbService {
             value: 'Noir',
           },
         ],
-        sousDocuments: [
+        documentsAssocies: [
           {
             idDocument: '1',
             titre: 'Note intervention',
@@ -15835,7 +15835,7 @@ export class InMemDBService implements InMemoryDbService {
             value: 'oignon, lait, mangue',
           },
         ],
-        sousDocuments: [
+        documentsAssocies: [
           {
             idDocument: '3',
             titre: 'Fiche de soin',
@@ -18374,7 +18374,7 @@ export class InMemDBService implements InMemoryDbService {
             value: 'Blanc',
           },
         ],
-        sousDocuments: [
+        documentsAssocies: [
           {
             idDocument: '1',
             titre: 'Note intervention',
@@ -20271,7 +20271,7 @@ export class InMemDBService implements InMemoryDbService {
             value: 'fruits de mer, ail, mangue',
           },
         ],
-        sousDocuments: [
+        documentsAssocies: [
           {
             idDocument: '3',
             titre: 'Fiche de soin',
@@ -21840,7 +21840,7 @@ export class InMemDBService implements InMemoryDbService {
             value: 'fruits de mer, ail, mangue',
           },
         ],
-        sousDocuments: [
+        documentsAssocies: [
           {
             idDocument: '5',
             titre: 'ordonnance',
@@ -23276,7 +23276,7 @@ export class InMemDBService implements InMemoryDbService {
             value: 'Noir',
           },
         ],
-        sousDocuments: [
+        documentsAssocies: [
           {
             idDocument: '1',
             titre: 'Note intervention',
@@ -27641,7 +27641,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            sousDocuments: [
+            documentsAssocies: [
               {
                 idDocument: '1',
                 titre: 'Note intervention',
@@ -32822,7 +32822,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            sousDocuments: [
+            documentsAssocies: [
               {
                 idDocument: '1',
                 titre: 'Note intervention',
@@ -38003,7 +38003,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            sousDocuments: [
+            documentsAssocies: [
               {
                 idDocument: '1',
                 titre: 'Note intervention',
@@ -43184,7 +43184,7 @@ export class InMemDBService implements InMemoryDbService {
                 ],
               },
             ],
-            sousDocuments: [
+            documentsAssocies: [
               {
                 idDocument: '1',
                 titre: 'Note intervention',
@@ -48404,7 +48404,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                sousDocuments: [
+                documentsAssocies: [
                   {
                     idDocument: '3',
                     titre: 'Fiche de soin',
@@ -50473,7 +50473,7 @@ export class InMemDBService implements InMemoryDbService {
                     ],
                   },
                 ],
-                sousDocuments: [
+                documentsAssocies: [
                   {
                     idDocument: '1',
                     titre: 'Note intervention',

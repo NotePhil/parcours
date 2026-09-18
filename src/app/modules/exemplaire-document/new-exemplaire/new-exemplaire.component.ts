@@ -194,10 +194,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   //montant total à payer avant remise
   montantTotal: number = 0;
   //Montant total à payer
-  montantTotalAPayer: number  = 0;
+  montantTotalAPayer: number = 0;
   //solde compte après retrait de la fraction utilisée
-  soldeCompte:number = 0;
- //Solde Compte - réprésente la fraction du solde utilisé dans le paiement
+  soldeCompte: number = 0;
+  //Solde Compte - réprésente la fraction du solde utilisé dans le paiement
   soldeCompteUtiliser: number = 0;
   //Montant versé selon le mode de paiement 
   montantVerser: number = 0;
@@ -237,7 +237,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   reponse: any;
   courant: string = '';
   req: boolean = false;
-  
+
   /**cette variable sert à enregistrer les informations de caisse pour exemplaire, 
    * et sa valeur finale sera affectée à l'objet mouvementDeCaisse à l'exemplaire lors de l'enregistrement
    * */
@@ -291,15 +291,15 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         this.laPersonneRattachee = patientTrouve;
         if (patientTrouve != undefined) {
           this.nomPatientCourant = this.laPersonneRattachee.nom + " " + this.laPersonneRattachee.prenom
-              console.log('compte personne rattaché :', this.laPersonneRattachee?.id);
+          console.log('compte personne rattaché :', this.laPersonneRattachee?.id);
           this.compteService.getCompteByUser(this.laPersonneRattachee.id!).subscribe(
             account => {
               this.compte = account;
               if (this.compte?.solde == 0 || this.compte?.solde == null) {
                 this.formeExemplaire.controls['use'].disable()
               }
-              else if(this.compte?.solde > 0){
-                this.fCaisse['solde'].setValue(this.compte?.solde); 
+              else if (this.compte?.solde > 0) {
+                this.fCaisse['solde'].setValue(this.compte?.solde);
                 this.soldeCompte = this.compte?.solde!;
               }
             }
@@ -345,11 +345,11 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
     // recuperation de l'id de l'exemplaire
     this.idExemplaire = this.infosPath.snapshot.paramMap.get('idExemplaire');
-        console.log('id ',this.infosPath.snapshot.paramMap.get('idExemplaire'));
+    console.log('id ', this.infosPath.snapshot.paramMap.get('idExemplaire'));
 
     // recuperation de l'id du document
     this.idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
-    
+
     this.initialiseFormExemplaire();
     this.cdr.detectChanges();
     this.titre = this.donneeEchangeService.dataEnteteMenu
@@ -484,7 +484,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        let montantMultiPaiement = 0; 
+        let montantMultiPaiement = 0;
         this.modalResult = result.data;
         this.modalResult.forEach((element) => {
           if (element.montant) {
@@ -502,10 +502,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    * Methode permettant de retenir chaque ligne du tableau modalResult ayant un montant non nul et de les ajouter
    * au tableau final de mouvements caisses
    */
-  convertModalResultInFinalMvtCaisse(){
+  convertModalResultInFinalMvtCaisse() {
 
     this.modalResult.forEach((element) => {
-      let mvtDeCaisse : IMouvementCaisses = {
+      let mvtDeCaisse: IMouvementCaisses = {
         id: '',
         etat: false,
         montant: 0,
@@ -592,7 +592,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           }
           if (this.exemplaire.mouvementDeCaisse) {
             this.ELEMENTS_TABLE_MOUVEMENTCAISSES = this.exemplaire.mouvementDeCaisse
-            
+
             this.fCaisse['sommeMontantTotalVerse'].setValue(this.sommeTtVerse());
           }
 
@@ -638,7 +638,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
           this.formerEnteteTableauMissions()
           let dateExemplaire = new Date()
           this.codeControl.setValue(this.setCode(dateExemplaire))
-          if (this.donneeEchangeService.dataDocumentSousDocuments != undefined) {
+          if (this.donneeEchangeService.dataDocumentDocumentsAssocies != undefined) {
             this.concatMouvementsSousExemplaireDocument()
           }
           if (this.document.beneficiaireObligatoire) {
@@ -698,11 +698,11 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    */
   concatMouvementsSousExemplaireDocument() {
     let sousExelplaires: IExemplaireDocument[] = [];
-    console.log("données echanges :", this.donneeEchangeService.dataDocumentSousDocuments, JSON.parse(localStorage.getItem("mvtExempl")!));
+    console.log("données echanges :", this.donneeEchangeService.dataDocumentDocumentsAssocies, JSON.parse(localStorage.getItem("mvtExempl")!));
 
-    if (this.donneeEchangeService.dataDocumentSousDocuments != undefined) {
-      sousExelplaires = this.donneeEchangeService.dataDocumentSousDocuments;
-      localStorage.setItem("mvtExempl", JSON.stringify(this.donneeEchangeService.dataDocumentSousDocuments));
+    if (this.donneeEchangeService.dataDocumentDocumentsAssocies != undefined) {
+      sousExelplaires = this.donneeEchangeService.dataDocumentDocumentsAssocies;
+      localStorage.setItem("mvtExempl", JSON.stringify(this.donneeEchangeService.dataDocumentDocumentsAssocies));
     } else {
       sousExelplaires = JSON.parse(localStorage.getItem("mvtExempl")!);
     }
@@ -857,7 +857,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       return cpt;
     }
 
-  let valAttribut = this.rechercherValeurParIdAttribut(attributCategories.attribut.id!);
+    let valAttribut = this.rechercherValeurParIdAttribut(attributCategories.attribut.id!);
     this.tempAttributsCpt.set(attributCategories.attribut.id, cpt + 1)
     this.tempAttributsObbligatoires.set(cpt + 1, attributCategories.attribut.titre)
     if (attributCategories.attribut.type_attribut == IType.Date && valAttribut != null) {
@@ -879,7 +879,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     if (this.numerateur >= -1 && this.numerateur >= this.totalAttributSupprime)
       return num;
 
-  let valAttribut = this.rechercherValeurParIdAttribut(attribut.id!);
+    let valAttribut = this.rechercherValeurParIdAttribut(attribut.id!);
     if (attribut.type_attribut == IType.Date && valAttribut != null) {
       let date = new Date(valAttribut);
       let dateReduite = this.datePipe.transform(date, 'yyyy-MM-dd');
@@ -924,27 +924,27 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
    */
   useSolde(res: boolean) {
     if (res) {
-      if(this.restAPayer <= this.compte?.solde!){
-        this.soldeCompteUtiliser =  this.restAPayer;
+      if (this.restAPayer <= this.compte?.solde!) {
+        this.soldeCompteUtiliser = this.restAPayer;
         this.soldeCompte = this.compte?.solde! - this.soldeCompteUtiliser;
       }
-      else{
-        this.soldeCompteUtiliser = this.compte?.solde! ;
+      else {
+        this.soldeCompteUtiliser = this.compte?.solde!;
         this.soldeCompte = 0;
       }
 
-    this.montantVerser += this.soldeCompteUtiliser;
+      this.montantVerser += this.soldeCompteUtiliser;
     } else {
       this.soldeCompte = this.compte?.solde!;
       this.montantVerser -= this.soldeCompteUtiliser;
       this.soldeCompteUtiliser = 0;
     }
-    
+
     this.fCaisse['solde'].setValue(this.soldeCompte);
     this.fCaisse['montant'].setValue(this.montantVerser);
     this.resteApayerReel();
-    console.log(' this.dataSourceMouvementcaisses.data :',  this.dataSourceMouvementcaisses.data);
-    
+    console.log(' this.dataSourceMouvementcaisses.data :', this.dataSourceMouvementcaisses.data);
+
   }
 
   /**
@@ -956,17 +956,17 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
   }
 
   //à la perte du focus dans le champ montant versé on recalcul les montants (à verser, ...)
-  calculerMontantVerser(montantVerserSaisi : number){
+  calculerMontantVerser(montantVerserSaisi: number) {
     this.calculerMontantVerserGeneral(montantVerserSaisi);
   }
 
 
   //méthode commune pour tous les types de paiement
-  calculerMontantVerserGeneral(nouveauMontantVerser : number){
+  calculerMontantVerserGeneral(nouveauMontantVerser: number) {
     let useIsTrue = false;
-    if(this.fCaisse['use'].value){
-        useIsTrue = true;
-       //reset virtuel temporaire du solde 
+    if (this.fCaisse['use'].value) {
+      useIsTrue = true;
+      //reset virtuel temporaire du solde 
       this.soldeCompte = this.compte?.solde!;
       this.soldeCompteUtiliser = 0;
     }
@@ -975,23 +975,23 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     this.fCaisse['montant'].setValue(this.montantVerser);
     this.resteApayerReel();
 
-    if(useIsTrue)
+    if (useIsTrue)
       this.useSolde(useIsTrue);
 
   }
 
-  calculerResteAPayerSoldeActifOuNon(){
+  calculerResteAPayerSoldeActifOuNon() {
     let useIsTrue = false;
-    if(this.fCaisse['use'].value){
+    if (this.fCaisse['use'].value) {
       useIsTrue = true;
-       //reset virtuel temporaire du solde 
+      //reset virtuel temporaire du solde 
       this.soldeCompte = this.compte?.solde!;
       this.montantVerser -= this.soldeCompteUtiliser;
       this.soldeCompteUtiliser = 0;
     }
     this.resteApayerReel();
 
-    if(useIsTrue)
+    if (useIsTrue)
       this.useSolde(useIsTrue);
 
   }
@@ -1079,12 +1079,12 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     if (this.compte) {
       this.compte.solde = this.soldeCompte;
     }
-    
+
     this.convertModalResultInFinalMvtCaisse()
     exemplaireTemp.mouvementDeCaisse = this.ELEMENTS_TABLE_MOUVEMENTCAISSES
 
     if (this.fCaisse['use'].value) {
-      let mvtDeCaisse : IMouvementCaisses = {
+      let mvtDeCaisse: IMouvementCaisses = {
         id: '',
         etat: false,
         montant: this.soldeCompteUtiliser,
@@ -1096,12 +1096,12 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         personnel: this.exemplaire.personneRattachee!
       }
 
-       exemplaireTemp.mouvementDeCaisse!.push(mvtDeCaisse)
+      exemplaireTemp.mouvementDeCaisse!.push(mvtDeCaisse)
     }
 
     this.serviceExemplaire.ajouterExemplaireDocument(exemplaireTemp).subscribe((object) => {
       console.log("exemplaireTemp", exemplaireTemp);
-      
+
       this.router.navigate(['parcours/missions/list-exemplaire']);
     });
   }
@@ -1128,10 +1128,10 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
         mouvement.ressource.id == option.id &&
         mouvement.distributeur?.id == this.distributeur?.id
       ) {
-  tabIdRessource.push(mouvement.ressource.id!);
+        tabIdRessource.push(mouvement.ressource.id!);
       }
     });
-  if (!tabIdRessource.includes(option.id!)) {
+    if (!tabIdRessource.includes(option.id!)) {
       let mvt: IMouvement = {
         description: '',
         quantite: option.quantite,
@@ -1252,21 +1252,21 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       return false
     }
   }
-    
-calculRemise(mouvement: IMouvement): number {
-  if (!mouvement.promotion) return mouvement.prix;
 
-  let remise = 0;
+  calculRemise(mouvement: IMouvement): number {
+    if (!mouvement.promotion) return mouvement.prix;
 
-  if (mouvement.promotion.pourcentageRemise > 0) {
-    remise = mouvement.prix * (mouvement.promotion.pourcentageRemise / 100);
-  } else if (mouvement.promotion.montantRemise > 0) {
-    remise = mouvement.promotion.montantRemise;
+    let remise = 0;
+
+    if (mouvement.promotion.pourcentageRemise > 0) {
+      remise = mouvement.prix * (mouvement.promotion.pourcentageRemise / 100);
+    } else if (mouvement.promotion.montantRemise > 0) {
+      remise = mouvement.promotion.montantRemise;
+    }
+
+    remise = Math.min(remise, mouvement.prix);
+    return mouvement.prix - remise;
   }
-
-  remise = Math.min(remise, mouvement.prix);
-  return mouvement.prix - remise;
-}
 
   /**
    * Ce code permet d'appliquer les promotions en tenant compte des ressources et des familles de ressources concernées dans les mouvements.
@@ -1274,29 +1274,29 @@ calculRemise(mouvement: IMouvement): number {
    * @param promo promotion à apliquer
    * @returns mouvement soldés
    */
-  appliquerPromotion(promotion: IPromo, mouvement: IMouvement): IMouvement {    
+  appliquerPromotion(promotion: IPromo, mouvement: IMouvement): IMouvement {
     const today = new Date();
     const ressource = mouvement.ressource;
-      const famille = ressource.famille;
-  
-      const dateValide = today >= new Date(promotion.dateDebut) && today <= new Date(promotion.dateFin);
-  
-      const ressourceConcernee = promotion.ressources?.some(r => r.id === ressource.id) ?? false;
-      const familleConcernee = promotion.familles?.some(f => f.id === famille.id) ?? false;
-  
-      // On applique la promo uniquement si la date est valide et la ressource OU la famille est concernée
-      if (dateValide && (ressourceConcernee || familleConcernee)) {
-        mouvement.promotion = promotion;
-      } else {
-        mouvement.promotion = undefined; // Pas concerné, on enlève la promo si existante
-      }
-  
-      return mouvement;
+    const famille = ressource.famille;
+
+    const dateValide = today >= new Date(promotion.dateDebut) && today <= new Date(promotion.dateFin);
+
+    const ressourceConcernee = promotion.ressources?.some(r => r.id === ressource.id) ?? false;
+    const familleConcernee = promotion.familles?.some(f => f.id === famille.id) ?? false;
+
+    // On applique la promo uniquement si la date est valide et la ressource OU la famille est concernée
+    if (dateValide && (ressourceConcernee || familleConcernee)) {
+      mouvement.promotion = promotion;
+    } else {
+      mouvement.promotion = undefined; // Pas concerné, on enlève la promo si existante
+    }
+
+    return mouvement;
   }
   /**----- autre version-------- */
 
   appliquerPromotionSurMouvementsConcernés(promotion: IPromo, mouvements: IMouvement[]): IMouvement[] {
-   
+
     return mouvements.map(mvt => {
       return this.appliquerPromotion(promotion, mvt)
     });
@@ -1309,8 +1309,8 @@ calculRemise(mouvement: IMouvement): number {
   reinitialliseAssuranceControl() {
     this.ELEMENTS_TABLE_MOUVEMENTS.forEach(
       current => {
-      current.promotion = undefined
-    });
+        current.promotion = undefined
+      });
     this.assuranceControl.reset();
     this.promotion = undefined
   }
@@ -1405,7 +1405,7 @@ calculRemise(mouvement: IMouvement): number {
     this.servicePromo.getPromosByRessource(ressource).subscribe(
       (promos) => {
         // Associer les promotions à la ressource dans le dictionnaire
-  this.promotionsByRessource[ressource.id!] = promos;
+        this.promotionsByRessource[ressource.id!] = promos;
 
       }
     );
@@ -1430,7 +1430,7 @@ calculRemise(mouvement: IMouvement): number {
   }
 
   getRessource(ressource: IRessource) {
-  this.idRessource = ressource.id!;
+    this.idRessource = ressource.id!;
     this.donneeEchangeService.dataRessourceMouvementCourant = ressource
   }
 

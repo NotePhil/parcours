@@ -5,22 +5,22 @@ import { IMission } from "./mission";
 import { IPrecoMvt } from "./precomvt";
 
 export interface IDocument {
-    id? : string
-    idDocument?:string,
-    titre:string,
-    description:string,
-    etat:boolean,
+    id?: string
+    idDocument?: string,
+    titre: string,
+    description: string,
+    etat: boolean,
     typeMouvement: string,
-    afficherPrix:boolean,
-    contientRessources:boolean,
-    afficherDistributeur:boolean,
-    beneficiaireObligatoire:boolean,
+    afficherPrix: boolean,
+    contientRessources: boolean,
+    afficherDistributeur: boolean,
+    beneficiaireObligatoire: boolean,
     estencaissable: boolean
-    missions : IMission[],
-    attributs : IAttributs[],
-    categories : ICategoriesAttributs[],
-    precoMouvements : IPrecoMvt[],
-    sousDocuments? : IDocument[],
-    docEtats : IDocEtats[],
-    formatCode : string,
+    missions: IMission[],
+    attributs: IAttributs[],
+    categories: ICategoriesAttributs[],
+    precoMouvements: IPrecoMvt[],
+    documentsAssocies?: IDocument[],
+    docEtats: IDocEtats[],
+    formatCode: string,
 }

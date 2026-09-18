@@ -83,7 +83,7 @@ export class ModalChoixDocumentsComponent implements OnInit {
     let listidDocumentTemp: string[] = [];
     let positionsDocument = new Map();
     let indexDocumentCourant: number = 0;
-    this.donneeEtapCatService.dataDocumentSousDocuments?.forEach(
+    this.donneeEtapCatService.dataDocumentDocumentsAssocies?.forEach(
       (element: IDocument) => {
         listidDocumentTemp.push(element.idDocument!);
         positionsDocument.set(element.idDocument, indexDocumentCourant++);
@@ -109,7 +109,7 @@ export class ModalChoixDocumentsComponent implements OnInit {
       this.ELEMENTS_TABLE_DOCUMENTS = this.dataSourceDocumentResultat.data;
       this.ELEMENTS_TABLE_DOCUMENTS.push(val);
       this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
-      this.donneeEtapCatService.dataDocumentSousDocuments =
+      this.donneeEtapCatService.dataDocumentDocumentsAssocies =
         this.ELEMENTS_TABLE_DOCUMENTS;
     });
   }
@@ -118,7 +118,7 @@ export class ModalChoixDocumentsComponent implements OnInit {
     this.ELEMENTS_TABLE_DOCUMENTS = this.dataSourceDocumentResultat.data;
     this.ELEMENTS_TABLE_DOCUMENTS.splice(index, 1); // je supprime un seul element du tableau a la position 'index'
     this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
-    this.donneeEtapCatService.dataDocumentSousDocuments =
+    this.donneeEtapCatService.dataDocumentDocumentsAssocies =
       this.ELEMENTS_TABLE_DOCUMENTS;
   }
   private getAllDocument() {

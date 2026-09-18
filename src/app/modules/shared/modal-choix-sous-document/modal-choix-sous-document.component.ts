@@ -47,7 +47,6 @@ export class ModalChoixSousDocumentComponent implements OnInit {
 
   // Annuler et fermer la boîte de dialogue
   onCancel() {
-    this.donneeDocCatService.dataDocumentSousDocuments = this.ELEMENTS_TABLE_DOCUMENTS;
     this.ELEMENTS_TABLE_DOCUMENTS = [];
     this.ELEMENTS_TABLE_DOCUMENTS_TEMP = [];
     this.dialogRef.close();
@@ -63,22 +62,23 @@ export class ModalChoixSousDocumentComponent implements OnInit {
       data: {
         documentChoisi: documentChoisi,
         EtatsChoisi: documentChoisi.docEtats || [], // Transmission explicite des etats du sous-document
-        documentId: documentChoisi.idDocument,
+        documentId: documentChoisi.idDocument || documentChoisi.id,
       },
     });
 
     dialogRef.afterClosed().subscribe((selectedEtat: any) => {
       if (selectedEtat) {
+        const docId = documentChoisi.idDocument || documentChoisi.id;
         // Extraction du libelle de l'etat (gestion d'un objet IDocEtats ou d'une chaine de caracteres)
-        const libelleEtat = typeof selectedEtat === 'string' 
-          ? selectedEtat 
+        const libelleEtat = typeof selectedEtat === 'string'
+          ? selectedEtat
           : (selectedEtat.etat?.libelle || selectedEtat.libelle || '');
 
         // Enregistrement du libelle dans le dictionnaire des etats pour affichage dans le tableau
-        this.selectedEtatsMap[documentChoisi.idDocument!] = libelleEtat;
-
-        // Persistance de l'etat choisi dans le service DocumentService
-        this.serviceDocument.setSelectedEtat(documentChoisi.idDocument!, libelleEtat);
+        if (docId) {
+          this.selectedEtatsMap[docId] = libelleEtat;
+          this.serviceDocument.setSelectedEtat(docId, libelleEtat);
+        }
 
         // Sauvegarde de l'etat selectionne dans le service de donnees d'echange
         this.donneeDocCatService.saveEtatModal(selectedEtat);
@@ -94,9 +94,15 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     });
 
     this.populateSelectedEtatsMap();
-    if (this.documentIds.length > 0) {
-      this.ELEMENTS_TABLE_DOCUMENTS_TEMP = [...this.donneeDocCatService.dataDocumentSousDocuments]; // Charger les données initiales dans temp
-      this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS_TEMP;
+    // MODIFICATION: Chargement sécurisé du tableau temporaire avec données d'échange
+    if (this.donneeDocCatService.dataDocumentDocumentsAssocies && Array.isArray(this.donneeDocCatService.dataDocumentDocumentsAssocies)) {
+      this.ELEMENTS_TABLE_DOCUMENTS_TEMP = [...this.donneeDocCatService.dataDocumentDocumentsAssocies];
+    } else {
+      this.ELEMENTS_TABLE_DOCUMENTS_TEMP = [];
+    }
+    this.dataSourceDocumentResultat.data = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP];
+
+    if (this.documentIds && this.documentIds.length > 0) {
       this.loadDocuments(this.documentIds);
     }
   }
@@ -109,18 +115,29 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     of(...documentObservables)
       .pipe(mergeMap((obs) => obs))
       .subscribe((document) => {
-        this.ELEMENTS_TABLE_DOCUMENTS.push(document);
-        this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS;
-        this.populateSelectedEtatsMap();
+        if (document) {
+          const docId = document.idDocument || document.id;
+          // MODIFICATION: Ajout dans ELEMENTS_TABLE_DOCUMENTS_TEMP si absent pour ne pas perdre la sélection lors de la sauvegarde
+          const exists = this.ELEMENTS_TABLE_DOCUMENTS_TEMP.some(d => (d.idDocument || d.id) === docId);
+          if (!exists) {
+            this.ELEMENTS_TABLE_DOCUMENTS_TEMP.push(document);
+          }
+          this.ELEMENTS_TABLE_DOCUMENTS = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP];
+          this.dataSourceDocumentResultat.data = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP];
+          this.populateSelectedEtatsMap();
+        }
       });
   }
 
   // Remplir la carte des états sélectionnés
   private populateSelectedEtatsMap() {
     this.dataSourceDocumentResultat.data.forEach((element: IDocument) => {
-      const etat = this.serviceDocument.getSelectedEtat(element.idDocument!);
-      if (etat) {
-        this.selectedEtatsMap[element.idDocument!] = etat;
+      const docId = element.idDocument || element.id;
+      if (docId) {
+        const etat = this.serviceDocument.getSelectedEtat(docId);
+        if (etat) {
+          this.selectedEtatsMap[docId] = etat;
+        }
       }
     });
   }
@@ -131,17 +148,22 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     let positionsDocument = new Map();
     let indexDocumentCourant: number = 0;
     this.ELEMENTS_TABLE_DOCUMENTS_TEMP.forEach((element: IDocument) => {
-      listidDocumentTemp.push(element.idDocument!);
-      positionsDocument.set(element.idDocument, indexDocumentCourant++);
+      const docId = element.idDocument || element.id;
+      if (docId) {
+        listidDocumentTemp.push(docId);
+        positionsDocument.set(docId, indexDocumentCourant++);
+      }
     });
     if (event.target.checked) {
-      if (!listidDocumentTemp.includes(this.idDocument)) {
+      if (this.idDocument && !listidDocumentTemp.includes(this.idDocument)) {
         this.ajoutSelectionDocument(this.idDocument);
       }
     } else {
-      if (listidDocumentTemp.includes(this.idDocument)) {
+      if (this.idDocument && listidDocumentTemp.includes(this.idDocument)) {
         const index = positionsDocument.get(this.idDocument);
-        this.retirerSelectionDocument(index);
+        if (index !== undefined) {
+          this.retirerSelectionDocument(index);
+        }
       }
     }
   }
@@ -154,15 +176,17 @@ export class ModalChoixSousDocumentComponent implements OnInit {
   // Ajouter un document à la sélection
   ajoutSelectionDocument(idDocument: string) {
     this.serviceDocument.getDocumentById(idDocument).subscribe((val) => {
-      this.ELEMENTS_TABLE_DOCUMENTS_TEMP.push(val);
-      this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS_TEMP;
+      if (val) {
+        this.ELEMENTS_TABLE_DOCUMENTS_TEMP.push(val);
+        this.dataSourceDocumentResultat.data = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP];
+      }
     });
   }
 
   // Retirer un document de la sélection
   retirerSelectionDocument(index: number) {
     this.ELEMENTS_TABLE_DOCUMENTS_TEMP.splice(index, 1);
-    this.dataSourceDocumentResultat.data = this.ELEMENTS_TABLE_DOCUMENTS_TEMP;
+    this.dataSourceDocumentResultat.data = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP];
   }
 
   // Obtenir tous les documents
@@ -200,12 +224,16 @@ export class ModalChoixSousDocumentComponent implements OnInit {
 
   // Vérifier si un document est sélectionné
   isDocumentSelected(documentId: string): boolean {
-    return this.ELEMENTS_TABLE_DOCUMENTS_TEMP.some((doc) => doc.idDocument === documentId);
+    if (!documentId) return false;
+    // MODIFICATION: Vérification flexible par idDocument ou id
+    return this.ELEMENTS_TABLE_DOCUMENTS_TEMP.some((doc) => (doc.idDocument || doc.id) === documentId);
   }
 
   // Sauvegarder les changements et fermer la boîte de dialogue
   onSave() {
-    this.ELEMENTS_TABLE_DOCUMENTS = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP]; // Finaliser les changements
-    this.onCancel();
+    // MODIFICATION: Sauvegarde explicite des sous-documents sélectionnés dans le service de données d'échange
+    this.ELEMENTS_TABLE_DOCUMENTS = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP];
+    this.donneeDocCatService.dataDocumentDocumentsAssocies = this.ELEMENTS_TABLE_DOCUMENTS;
+    this.dialogRef.close(this.ELEMENTS_TABLE_DOCUMENTS);
   }
 }

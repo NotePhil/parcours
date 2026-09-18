@@ -84,16 +84,16 @@ export class NewParcoursComponent implements OnInit {
   openNewEtape(etape?: IEtape) {
     const dialogConfig = new MatDialogConfig();
     (dialogConfig.enterAnimationDuration = '1000ms'),
-    (dialogConfig.exitAnimationDuration = '1000ms'),
-    (dialogConfig.data = {etapes: this.etapes, idEtape: etape})
+      (dialogConfig.exitAnimationDuration = '1000ms'),
+      (dialogConfig.data = { etapes: this.etapes, idEtape: etape })
 
     const dialogRef = this.dialog.open(NewEtapeComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result: IEtape) => {
       console.log("result modal :", result);
-      
+
       if (result) {
-        
+
         const index = this.etapes.findIndex((et) => et.id === result.id);
         if (index >= 0) {
           this.etapes[index] = result;
@@ -107,7 +107,7 @@ export class NewParcoursComponent implements OnInit {
           this.convertEtapToEtapAffiche(etape)
         );
         console.log("all element :", this.etapes);
-        
+
       }
     });
   }
@@ -181,7 +181,7 @@ export class NewParcoursComponent implements OnInit {
       .subscribe((etapes) => {
         if (etapes.length > 0) {
           const etape = etapes[0];
-    this.serviceEtape.getEtapeById(etape.id!).subscribe((documents) => {
+          this.serviceEtape.getEtapeById(etape.id!).subscribe((documents) => {
             const tableDocuments: IAfficheEtape[] = [];
             tableDocuments.push(this.convertEtapToEtapAffiche(etape));
             this.dataSource.data = tableDocuments;
@@ -206,7 +206,7 @@ export class NewParcoursComponent implements OnInit {
 
   private convertEtapToEtapAffiche(x: IEtape): IAfficheEtape {
     console.log("donnee send :", x);
-    
+
 
     let afficheEtape: IAfficheEtape = {
       id: '',
@@ -214,7 +214,7 @@ export class NewParcoursComponent implements OnInit {
       etat: false,
       etapeprecedant: [],
       document: [],
-      listSousDocuments: '',
+      listDocumentsAssocies: '',
       listEtapeprecedantes: ''
     };
     afficheEtape.id = x.id;
@@ -224,9 +224,9 @@ export class NewParcoursComponent implements OnInit {
     afficheEtape.etapeprecedant = x.etapeprecedant;
 
     x.document.forEach(
-      (d) => (afficheEtape.listSousDocuments += d.titre + ', ')
+      (d) => (afficheEtape.listDocumentsAssocies += d.titre + ', ')
     );
-    afficheEtape.listSousDocuments = afficheEtape.listSousDocuments.replace(
+    afficheEtape.listDocumentsAssocies = afficheEtape.listDocumentsAssocies.replace(
       /,\s*$/,
       ''
     );
@@ -239,10 +239,10 @@ export class NewParcoursComponent implements OnInit {
     );
 
     console.log("affichage :", afficheEtape);
-    
+
     return afficheEtape;
   }
-  return(){
+  return() {
     this.router.navigate(['parcours/parcours/list-parcours']);
   }
 
