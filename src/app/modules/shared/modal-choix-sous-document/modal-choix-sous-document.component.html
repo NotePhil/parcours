@@ -1,4 +1,4 @@
-<div id="mainSection" class="bg-light card modalCategorie modalContentScroll">
+<div id="mainSection" class="bg-light card modalCategorie modalContentScroll mainModaleSection">
     <form class="w-100">
         <div class="form-group mt-5">
             <div class='card-hearder'>
@@ -7,10 +7,9 @@
             <div class="newAttSection">
                 <div class="searchBlock">
                     <form class="example-form-entete">
-                        <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher" [formControl]="myControl"
-                            [matAutocomplete]="auto">
-                        <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete"
-                            [displayWith]="displayFn">
+                        <input placeholder="{{'patient.search-bar' | translate}}" type="text" matInput
+                            aria-label="Rechercher" [formControl]="myControl" [matAutocomplete]="auto">
+                        <mat-autocomplete class="blockAutocomplate" #auto="matAutocomplete" [displayWith]="displayFn">
                             <mat-option class="options" *ngFor="let option of filteredOptions" [value]="option"
                                 (onSelectionChange)="rechercherListingDocuments(option)">
                                 {{option.titre}}
@@ -142,15 +141,16 @@
                                 </mat-paginator>
                             </div>
 
-                                <div class="actionButton valBtn mt-2" style="justify-content: center;">
-                                    <button class="btn retour" (click)="onCancel()" title="{{'lists.button2' | translate}}">
-                                        <i class="fa fa-undo"></i>
-                                    </button>
-                                    <button  (click)="onSave()" [mat-dialog-close] cdkFocusInitial class="btn btnValidation" title="{{'lists.button6' | translate}}">
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                </div>
-                                
+                            <div class="actionButton valBtn mt-2" style="justify-content: center;">
+                                <button class="btn retour" (click)="onCancel()" title="{{'lists.button2' | translate}}">
+                                    <i class="fa fa-undo"></i>
+                                </button>
+                                <button (click)="onSave()" [mat-dialog-close] cdkFocusInitial class="btn btnValidation"
+                                    title="{{'lists.button6' | translate}}">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

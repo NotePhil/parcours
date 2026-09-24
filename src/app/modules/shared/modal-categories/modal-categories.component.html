@@ -1,4 +1,4 @@
-<div id="mainSection" class="bg-light card modalCategorie modalContentScroll">
+<div id="mainSection" class="bg-light card modalCategorie modalContentScroll mainModaleSection">
     <form [formGroup]="formeCategorieAttribut" *ngIf="formeCategorieAttribut" class="w-100">
 
         <div class="form-group mt-5">
@@ -8,10 +8,12 @@
                         <label for="categories" class="label">
                             {{'document.table.title8' | translate}}
                         </label>
-                        <input type="text" formControlName="libelleCategorie" name="categories" id="categories"  placeholder="{{'document.table.title9' | translate}}"  class="form-control" required>
+                        <input type="text" formControlName="libelleCategorie" name="categories" id="categories"
+                            placeholder="{{'document.table.title9' | translate}}" class="form-control" required>
                     </div>
-                    <div  *ngIf="validation && f['libelleCategorie'].errors"  class="alert alert-danger blockErreur" >
-                        <div *ngIf="f['libelleCategorie'].errors['required']">{{'attributs.form.text5' | translate}}</div>
+                    <div *ngIf="validation && f['libelleCategorie'].errors" class="alert alert-danger blockErreur">
+                        <div *ngIf="f['libelleCategorie'].errors['required']">{{'attributs.form.text5' | translate}}
+                        </div>
                     </div>
                 </div>
                 <div class="content">
@@ -19,9 +21,10 @@
                         <label for="ordreCategorie" class="label">
                             {{'document.table.title10' | translate}}
                         </label>
-                        <input type="number" formControlName="ordreCategorie" name="ordreCategorie" id="ordreCategorie" class="form-control" required>
+                        <input type="number" formControlName="ordreCategorie" name="ordreCategorie" id="ordreCategorie"
+                            class="form-control" required>
                     </div>
-                    <div  *ngIf="validation && f['ordreCategorie'].errors"  class="alert alert-danger blockErreur" >
+                    <div *ngIf="validation && f['ordreCategorie'].errors" class="alert alert-danger blockErreur">
                         <div *ngIf="f['ordreCategorie'].errors['required']">{{'attributs.form.text5' | translate}}</div>
                     </div>
                 </div>
@@ -39,25 +42,33 @@
             <div class="card">
                 <div class="card-body p-0 tableBlock" id="tableResultats">
                     <div class='table-responsive w-100 m-0 modaleTableConteneur'>
-                        <table class='table w-100' mat-table [dataSource]="dataSourceAttributTemp" matSort (matSortChange)="announceSortChange($event)">
+                        <table class='table w-100' mat-table [dataSource]="dataSourceAttributTemp" matSort
+                            (matSortChange)="announceSortChange($event)">
                             <!-- titre Column -->
                             <ng-container matColumnDef="titre">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title1' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attribut.titre}} </td>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'attributs.table.title1' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    {{element.attribut.titre}} </td>
                             </ng-container>
                             <!-- description Column -->
                             <ng-container matColumnDef="description">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title2' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attribut.description}} </td>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'attributs.table.title2' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    {{element.attribut.description}} </td>
                             </ng-container>
                             <!--  Column -->
                             <ng-container matColumnDef="type_attribut">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title6' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attribut.type_attribut}} </td>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'attributs.table.title6' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    {{element.attribut.type_attribut}} </td>
                             </ng-container>
                             <!-- ordre Column -->
                             <ng-container matColumnDef="ordreAtrParCat">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title13' | translate}} </th>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'document.table.title13' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                     <div class="blockOrdreAttribut p-0">
                                         <input type="number" [(ngModel)]="element.ordre">
@@ -67,10 +78,13 @@
 
                             <!-- obligatoire Column -->
                             <ng-container matColumnDef="obligatoire">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title8' | translate}} </th>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'attributs.table.title8' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
-                                    <label class="custom-control custom-checkbox controlObligatoire" for="element.obligatoire">
-                                        <input class="" type="checkbox" [(ngModel)]="element.obligatoire" [ngModelOptions]="{standalone: true}" value="true">
+                                    <label class="custom-control custom-checkbox controlObligatoire"
+                                        for="element.obligatoire">
+                                        <input class="" type="checkbox" [(ngModel)]="element.obligatoire"
+                                            [ngModelOptions]="{standalone: true}" value="true">
                                         {{element.obligatoire}}
                                     </label>
                                 </td>
@@ -78,11 +92,16 @@
 
                             <!-- actions Column -->
                             <ng-container matColumnDef="actions">
-                                <th class="containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
-                                <td class="text-dark containCell"  mat-cell *matCellDef="let element;  let i=index">
+                                <th class="containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" |
+                                    translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element;  let i=index">
                                     <div class="actions">
-                                        <button class="btn p-0" name=""  [value]="element.attribut.id" id="" title="clicker pour ajouter un attributs a la categorie"  (change)="selectionnerCategorieCheck(formeCategorieAttribut.value,element, i, $event);">
-                                            <span><input type="checkbox" [disabled] = "((formeCategorieAttribut.value.ordreCategorie < 0 ) || (formeCategorieAttribut.value.ordreCategorie == 0 )  || (formeCategorieAttribut.value.libelleCategorie == '' ) )" name="" id="" class=""></span>
+                                        <button class="btn p-0" name="" [value]="element.attribut.id" id=""
+                                            title="clicker pour ajouter un attributs a la categorie"
+                                            (change)="selectionnerCategorieCheck(formeCategorieAttribut.value,element, i, $event);">
+                                            <span><input type="checkbox"
+                                                    [disabled]="((formeCategorieAttribut.value.ordreCategorie < 0 ) || (formeCategorieAttribut.value.ordreCategorie == 0 )  || (formeCategorieAttribut.value.libelleCategorie == '' ) )"
+                                                    name="" id="" class=""></span>
                                         </button>
                                     </div>
                                 </td>
@@ -90,15 +109,15 @@
                             <tr mat-header-row *matHeaderRowDef="displayedCategoriesColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedCategoriesColumns;"></tr>
                         </table>
-                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                                    showFirstLastButtons
-                                    aria-label="Select page of periodic elements">
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                            aria-label="Select page of periodic elements">
                         </mat-paginator>
                     </div>
                 </div>
             </div>
             <div class="d-flex w-100 align-items-center justify-content-end actionButton valBtn">
-                <button type="btn" class="btn btnValidation" (click)="AjouterCategorieTemp()" title="{{'lists.button9' | translate}}"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <button type="btn" class="btn btnValidation" (click)="AjouterCategorieTemp()"
+                    title="{{'lists.button9' | translate}}"><i class="fa fa-plus" aria-hidden="true"></i></button>
             </div>
         </div>
 
@@ -111,39 +130,53 @@
             <div class="card">
                 <div class="card-body p-0 tableBlock" id="tableResultats">
                     <div class='table-responsive w-100 m-0 modaleTableConteneur'>
-                        <table class='table table-sm table-centered table-striped w-100' mat-table [dataSource]="tableResultatsCategoriesAffichage" matSort (matSortChange)="announceSortChange($event)">
+                        <table class='table table-sm table-centered table-striped w-100' mat-table
+                            [dataSource]="tableResultatsCategoriesAffichage" matSort
+                            (matSortChange)="announceSortChange($event)">
                             <!-- libelleCategorie Column -->
                             <ng-container matColumnDef="libelleCategorie">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title8' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.nom}} </td>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'document.table.title8' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.nom}}
+                                </td>
                             </ng-container>
                             <!-- libelleAttribut Column -->
                             <ng-container matColumnDef="libelleAttribut">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title16' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attributCategories.attribut.titre}} </td>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'document.table.title16' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    {{element.attributCategories.attribut.titre}} </td>
                             </ng-container>
                             <!-- ordre par categorie Column -->
                             <ng-container matColumnDef="ordreAtrParCat">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title13' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attributCategories.ordre}} </td>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'document.table.title13' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    {{element.attributCategories.ordre}} </td>
                             </ng-container>
                             <!-- ordre Column -->
                             <ng-container matColumnDef="ordreCat">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'document.table.title14' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.ordre}} </td>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'document.table.title14' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.ordre}}
+                                </td>
                             </ng-container>
                             <!-- obligatoire Column -->
                             <ng-container matColumnDef="obligatoire">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header> {{'attributs.table.title11' | translate}} </th>
-                                <td class="text-dark containCell" mat-cell *matCellDef="let element"> {{element.attributCategories.obligatoire}} </td>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'attributs.table.title11' | translate}} </th>
+                                <td class="text-dark containCell" mat-cell *matCellDef="let element">
+                                    {{element.attributCategories.obligatoire}} </td>
                             </ng-container>
                             <!-- actions Column -->
                             <ng-container matColumnDef="actions">
-                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{"patient.table.title8" | translate}} </th>
+                                <th class="text-dark containHead" mat-header-cell *matHeaderCellDef>
+                                    {{"patient.table.title8" | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element;  let i=index">
                                     <div class="actions">
-                                        <button class="btn p-0" name="attributs"  [value]="element" id="attributs" title="clicker pour annuler la selection"
-                                                (click)="supprimerCategorieAffiche(element, i)">
+                                        <button class="btn p-0" name="attributs" [value]="element" id="attributs"
+                                            title="clicker pour annuler la selection"
+                                            (click)="supprimerCategorieAffiche(element, i)">
                                             <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -156,13 +189,15 @@
                 </div>
             </div>
         </div>
-        <div class="actionButton valBtn" >
+        <div class="actionButton valBtn">
             <button class="btn retour" type="button" [mat-dialog-close] title="{{'lists.button2' | translate}}">
                 <i class="fa fa-undo" aria-hidden="true"></i>
             </button>
-            <button  type="submit" [mat-dialog-close]="tableResultatsCategoriesAffichage.data" cdkFocusInitial class="btn btnValidation" (click)="onSave(); ajouterCategorieParDefaut()" title="{{'lists.button11' | translate}}">
+            <button type="submit" [mat-dialog-close]="tableResultatsCategoriesAffichage.data" cdkFocusInitial
+                class="btn btnValidation" (click)="onSave(); ajouterCategorieParDefaut()"
+                title="{{'lists.button11' | translate}}">
                 <i class="fa fa-check" aria-hidden="true"></i>
             </button>
-        </div>       
+        </div>
     </div>
 </div>

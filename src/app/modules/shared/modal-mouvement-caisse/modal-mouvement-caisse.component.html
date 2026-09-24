@@ -1,42 +1,45 @@
-<div id="mainSection">
-    <div class="card block">
-      <!--<div class="card-header" class="entete pt-4 pb-4">{{ titre }}</div>-->
-        <div class="card-header" class="entete pt-4 pb-4">
-          {{"attributs.title1" | translate}}
-        </div>
-        <div class="card-body">
-            <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
-              <div class="table-responsive w-100">
-                  <table class="table table-sm table-centered table-striped table-bordered w-100">
-                      <thead>
-                        <tr>
-                          <th scope="col">Moyen de Paiement</th>
-                          <th scope="col">Montant a Régler</th>
-                          <th scope="col">Reférence de Paiement</th>
-                        </tr>
-                      </thead>
-                      <tbody formArrayName="elements">
-                        <tr *ngFor="let element of elements.controls; let i = index" [formGroupName]="i">
-                          <th scope="row">
-                            <input type="text" matInput [matAutocomplete]="auto" class="form-control" formControlName="moyen">
-                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                            </mat-autocomplete>
-                          </th>
-                          <td><input id="montant-{{i}}" (click)="openModalBilleterieDialog(element, i)" placeholder="Entrer le montant" formControlName="montant" pattern="^[0-9]*$" (input)="onInput($event)" type="number" class="form-control"></td>
-                          <td><input id="reference-{{i}}" placeholder="Entrer la reference" formControlName="reference" type="text" class="form-control"></td>
-                        </tr>
-                      </tbody>
-                    </table>
-              </div>
-              <div class="actionButton valBtn">
-                <button class="btn retour" [mat-dialog-close]="" title="{{'lists.button2' | translate}}">
-                    <i class="fa fa-undo"></i>
-                </button>
-                <button type="submit" cdkFocusInitial class="btn btnValidation" title="{{btnLibelle}}">
-                    <i class="fa fa-check"></i>
-                </button>
-              </div>
-          </form>
-        </div>
+<div id="mainSection" class="mainModaleSection">
+  <div class="card block">
+    <!--<div class="card-header" class="entete pt-4 pb-4">{{ titre }}</div>-->
+    <div class="card-header" class="entete pt-4 pb-4">
+      {{"attributs.title1" | translate}}
     </div>
+    <div class="card-body">
+      <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+        <div class="table-responsive w-100">
+          <table class="table table-sm table-centered table-striped table-bordered w-100">
+            <thead>
+              <tr>
+                <th scope="col">Moyen de Paiement</th>
+                <th scope="col">Montant a Régler</th>
+                <th scope="col">Reférence de Paiement</th>
+              </tr>
+            </thead>
+            <tbody formArrayName="elements">
+              <tr *ngFor="let element of elements.controls; let i = index" [formGroupName]="i">
+                <th scope="row">
+                  <input type="text" matInput [matAutocomplete]="auto" class="form-control" formControlName="moyen">
+                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                  </mat-autocomplete>
+                </th>
+                <td><input id="montant-{{i}}" (click)="openModalBilleterieDialog(element, i)"
+                    placeholder="Entrer le montant" formControlName="montant" pattern="^[0-9]*$"
+                    (input)="onInput($event)" type="number" class="form-control"></td>
+                <td><input id="reference-{{i}}" placeholder="Entrer la reference" formControlName="reference"
+                    type="text" class="form-control"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="actionButton valBtn">
+          <button class="btn retour" [mat-dialog-close]="" title="{{'lists.button2' | translate}}">
+            <i class="fa fa-undo"></i>
+          </button>
+          <button type="submit" cdkFocusInitial class="btn btnValidation" title="{{btnLibelle}}">
+            <i class="fa fa-check"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
