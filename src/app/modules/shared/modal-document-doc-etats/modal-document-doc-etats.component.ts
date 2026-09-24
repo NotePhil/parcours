@@ -1,8 +1,9 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { IDocEtats } from 'src/app/modele/doc-etats';
 import { IEtats } from 'src/app/modele/etats';
@@ -17,9 +18,11 @@ import mermaid from 'mermaid';
   templateUrl: './modal-document-doc-etats.component.html',
   styleUrls: ['./modal-document-doc-etats.component.scss']
 })
-export class ModalDocEtatsComponent implements OnInit {
+export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
   @ViewChild('mermaidDivEtatsDoc', { static: false })
   mermaidDivEtatsDoc!: ElementRef;
+
+  @ViewChildren(MatPaginator) paginators!: QueryList<MatPaginator>;
 
   formeDocEtats: FormGroup;
   etatControl = new FormControl<string | IEtats>('');
@@ -100,6 +103,8 @@ export class ModalDocEtatsComponent implements OnInit {
   }
 
   public async ngAfterViewInit(): Promise<void> {
+    this.paginators.changes.subscribe(() => this.assignPaginators());
+    this.assignPaginators();
 
     const element: any = this.mermaidDivEtatsDoc.nativeElement;
 
@@ -261,5 +266,15 @@ export class ModalDocEtatsComponent implements OnInit {
   // Sauvegarde des etats selectionnes dans le service de donnees
   onSave() {
     this.donneeDocEtatService.dataDocumentEtats = this.localElementTableDocEtats;
+  }
+
+  private assignPaginators() {
+    const paginatorArray = this.paginators.toArray();
+    if (paginatorArray.length > 0) {
+      this.dataSourceEtats.paginator = paginatorArray[0];
+    }
+    if (paginatorArray.length > 1) {
+      this.dataSourceDocEtats.paginator = paginatorArray[1];
+    }
   }
 }
