@@ -1,6 +1,7 @@
 import { IAttributs } from "./attributs";
 import { ICategoriesAttributs } from "./categories-attributs";
 import { IDocEtats } from "./doc-etats";
+import { IDocumentsAssocies } from "./documents-associes";
 import { IMission } from "./mission";
 import { IPrecoMvt } from "./precomvt";
 
@@ -20,7 +21,8 @@ export interface IDocument {
     attributs: IAttributs[],
     categories: ICategoriesAttributs[],
     precoMouvements: IPrecoMvt[],
-    documentsAssocies?: IDocument[],
+    // REMPLACEMENT: Utilisation de l'objet IDocumentsAssocies[] au lieu de IDocument[] pour supporter la structure document + etat
+    documentsAssocies?: IDocumentsAssocies[],
     docEtats: IDocEtats[],
     formatCode: string,
 }

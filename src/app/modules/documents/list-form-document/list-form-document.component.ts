@@ -199,6 +199,18 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
         de => afficheDocument.listDocEtats += de.etat.libelle + ", "
       )
     }
+    // MODIFICATION: Formatage des documents associés à partir de la structure IDocumentsAssocies (da.document.titre)
+    if (x.documentsAssocies) {
+      x.documentsAssocies.forEach(
+        da => {
+          const docTitre = da.document?.titre || '';
+          const etatLibelle = da.etat?.libelle ? ` (${da.etat.libelle})` : '';
+          if (docTitre) {
+            afficheDocument.listDocumentsAssocies += docTitre + etatLibelle + ", ";
+          }
+        }
+      );
+    }
     return afficheDocument;
   }
 }

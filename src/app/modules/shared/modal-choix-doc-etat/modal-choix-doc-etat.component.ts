@@ -74,19 +74,31 @@ export class ModalChoixDocEtatComponent implements OnInit, AfterViewInit {
     // Initialisation de la liste des etats disponibles depuis les donnees passees a la modale ou depuis le document choisi
     this.etatsChoisiList.data = this.data.EtatsChoisi || this.data.documentChoisi?.docEtats || [];
 
-    // Charge l'état précédemment sélectionné depuis DocumentService si disponible
-    if (this.data.documentChoisi && this.data.documentChoisi.idDocument) {
-      this.selectedEtat = this.documentService.getSelectedEtat(
-        this.data.documentChoisi.idDocument!
-      );
+    const docId = (this.data as any).documentId || this.data.documentChoisi?.idDocument || this.data.documentChoisi?.id;
+
+    // Si les états ne sont pas encore chargés dans l'objet document, chargement via DocumentService
+    if ((!this.etatsChoisiList.data || this.etatsChoisiList.data.length === 0) && docId) {
+      this.documentService.getDocumentById(docId).subscribe(doc => {
+        if (doc && doc.docEtats) {
+          this.etatsChoisiList.data = doc.docEtats;
+          this.checkPreselectedEtat();
+        }
+      });
     }
 
-    // Si un etat est passe initialement ou pre-selectionne, alimenter le 2eme tableau
-    if (this.data.selectedEtat) {
+    // Charge l'état précédemment sélectionné depuis DocumentService si disponible
+    if (docId) {
+      this.selectedEtat = this.documentService.getSelectedEtat(docId);
+    }
+
+    this.checkPreselectedEtat();
+  }
+
+  private checkPreselectedEtat() {
+    if (this.data?.selectedEtat) {
       this.selectedEtatsMap = this.data.selectedEtat;
       this.selectedEtatsList.data = [this.data.selectedEtat];
     } else if (this.etatsChoisiList.data.length > 0 && this.selectedEtat) {
-      // Recherche de l'etat correspondant au libelle pre-enregistre
       const found = this.etatsChoisiList.data.find(e => e.etat && e.etat.libelle === this.selectedEtat);
       if (found) {
         this.selectedEtatsMap = found;

@@ -14,6 +14,7 @@ import { Observable, EMPTY } from 'rxjs';
 import { IAttributs } from 'src/app/modele/attributs';
 import { ICategoriesAttributs } from 'src/app/modele/categories-attributs';
 import { IDocument } from 'src/app/modele/document';
+import { IDocumentsAssocies } from 'src/app/modele/documents-associes';
 import { IMission } from 'src/app/modele/mission';
 import { IService } from 'src/app/modele/service';
 import { DocumentService } from 'src/app/services/documents/document.service';
@@ -46,6 +47,7 @@ export class NewFormDocumentComponent implements OnInit {
     attributs: [],
     categories: [],
     precoMouvements: [],
+    documentsAssocies: [],
     afficherPrix: false,
     estencaissable: false,
     contientRessources: false,
@@ -81,13 +83,13 @@ export class NewFormDocumentComponent implements OnInit {
   TABLE_CATEGORIE_AFFICHAGE_TEMP: ICategoriesAttributs[] = []; // tableau qui doit contenir la synthese des categories du doc
   TABLE_CATEGORIE_AFFICHAGE_TEMPO: ICategorieAffichage[] = []; // tableau contenant les categories creees dans la modale
 
-  //tableau contenent les precoMouvements
+  //tableau contenant les precoMouvements
   ELEMENTS_TABLE_PRECONISATIONS: IPrecoMvt[] = [];
 
-  //tableau contenent les sous documents
-  ELEMENTS_TABLE_SOUS_DOCUMENTS: IDocument[] = [];
+  // MODIFICATION: Remplacement de ELEMENTS_TABLE_SOUS_DOCUMENTS par le tableau d'objets IDocumentsAssocies
+  ELEMENTS_TABLE_DOCUMENTS_ASSOCIES: IDocumentsAssocies[] = [];
 
-  //tableau contenent les etats du documents
+  //tableau contenant les etats du documents
   ELEMENTS_TABLE_DOC_ETATS: IDocEtats[] = [];
 
   @ViewChild(MatPaginator)
@@ -96,7 +98,7 @@ export class NewFormDocumentComponent implements OnInit {
 
   typeMvt: string[] = [];
   formatsCode: string[] = [];
-  documentParentDesactive = false
+  documentParentDesactive = false;
 
   constructor(
     private router: Router,
@@ -123,11 +125,12 @@ export class NewFormDocumentComponent implements OnInit {
       formatCode: ['', [Validators.required]]
     });
   }
+
   ngOnInit(): void {
     this.mission$ = this.getAllMissions();
-    this.forme.controls['afficherPrix'].disable()
-    this.forme.controls['afficherDistributeur'].disable()
-    this.documentParentDesactive = true
+    this.forme.controls['afficherPrix'].disable();
+    this.forme.controls['afficherDistributeur'].disable();
+    this.documentParentDesactive = true;
     this.donneeDocCatService.getTypeMvt().subscribe((x) => (this.typeMvt = x.type));
     this.donneeDocCatService.getFormatCode().subscribe((f) => (this.formatsCode = f.type));
 
@@ -141,9 +144,9 @@ export class NewFormDocumentComponent implements OnInit {
       this.serviceDocument.getDocumentById(idDocument).subscribe((x) => {
         this.document = x;
         if (this.document.contientRessources == true) {
-          this.forme.controls['afficherPrix'].enable()
-          this.forme.controls['afficherDistributeur'].enable()
-          this.documentParentDesactive = false
+          this.forme.controls['afficherPrix'].enable();
+          this.forme.controls['afficherDistributeur'].enable();
+          this.documentParentDesactive = false;
         }
         this.forme.setValue({
           titre: this.document.titre,
@@ -167,9 +170,11 @@ export class NewFormDocumentComponent implements OnInit {
         // Initialisation du tableau de precoMouvements du document
         this.ELEMENTS_TABLE_PRECONISATIONS = this.document.precoMouvements;
 
-        // Initialisation du tableau de sous documents du document
+        // MODIFICATION: Initialisation du tableau de documents associés
         if (this.document.documentsAssocies != undefined) {
-          this.ELEMENTS_TABLE_SOUS_DOCUMENTS = this.document.documentsAssocies;
+          this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES = this.document.documentsAssocies;
+        } else {
+          this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES = [];
         }
 
         // Initialisation du tableau des etats du document avec securisation si docEtats est indefini
@@ -204,14 +209,16 @@ export class NewFormDocumentComponent implements OnInit {
             categorieAfficheFinal.push(categorieAfficheTemp);
           });
         });
-        //sauvegarde dans le service pour le communiquer à la modale
-        this.donneeDocCatService.dataDocumentCategorie = categorieAfficheFinal
-        this.donneeDocCatService.dataDocumentPrecoMvts = this.document.precoMouvements
-        this.donneeDocCatService.dataDocumentAttributs = this.document.attributs
-        // MODIFICATION: Initialisation sécurisée avec un tableau vide si documentsAssocies est indéfini
+
+        // sauvegarde dans le service pour le communiquer aux modales
+        this.donneeDocCatService.dataDocumentCategorie = categorieAfficheFinal;
+        this.donneeDocCatService.dataDocumentPrecoMvts = this.document.precoMouvements;
+        this.donneeDocCatService.dataDocumentAttributs = this.document.attributs;
+        // MODIFICATION: Initialisation sécurisée avec le tableau de IDocumentsAssocies dans dataDocumentRessourcesAttributs
+        this.donneeDocCatService.dataDocumentRessourcesAttributs = this.document.documentsAssocies || [];
         this.donneeDocCatService.dataDocumentDocumentsAssocies = this.document.documentsAssocies || [];
         // Affectation explicite des etats dans le service d'echange
-        this.donneeDocCatService.dataDocumentEtats = this.ELEMENTS_TABLE_DOC_ETATS
+        this.donneeDocCatService.dataDocumentEtats = this.ELEMENTS_TABLE_DOC_ETATS;
 
         // synthese du tableau de categories du document pour afficher les differentes categories dans l'espace dedie
         this.syntheseCategorieAttribut();
@@ -220,6 +227,7 @@ export class NewFormDocumentComponent implements OnInit {
       this.donneeDocCatService.dataDocumentAttributs = [];
       this.donneeDocCatService.dataDocumentCategorie = [];
       this.donneeDocCatService.dataDocumentPrecoMvts = [];
+      this.donneeDocCatService.dataDocumentRessourcesAttributs = [];
       this.donneeDocCatService.dataDocumentDocumentsAssocies = [];
       this.donneeDocCatService.dataDocumentEtats = [];
     }
@@ -227,11 +235,9 @@ export class NewFormDocumentComponent implements OnInit {
   }
 
   /**
-   * Methode permettant d'ouvrir la modal de creation des categories du dociment
+   * Methode permettant d'ouvrir la modal de creation des categories du document
    */
   openCategorieDialog() {
-    //envoi des données à la fenetre enfant
-
     const dialogRef = this.dialogDef.open(ModalCategoriesComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -269,7 +275,7 @@ export class NewFormDocumentComponent implements OnInit {
   }
 
   /**
-   * Methode permettant d'ouvrir la modal de selection des precoMouvements du dociment
+   * Methode permettant d'ouvrir la modal de selection des precoMouvements du document
    */
   openPrecoMvtDialog() {
     const dialogRef = this.dialogDef.open(ModalChoixPreconisationsComponent, {
@@ -289,13 +295,16 @@ export class NewFormDocumentComponent implements OnInit {
   }
 
   /**
-   * Methode permettant d'ouvrir la modal permettant d'associer des sous documents au document
+   * MODIFICATION: Méthode permettant d'ouvrir la modale de choix des documents associés (IDocumentsAssocies)
    */
   openSousDocumentDialog() {
     const dialogConfig = new MatDialogConfig();
-    // MODIFICATION: Récupération sécurisée des identifiants (idDocument ou id) des sous-documents déjà sélectionnés
-    if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS && this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
-      dialogConfig.data = { documentIds: this.ELEMENTS_TABLE_SOUS_DOCUMENTS.map(doc => doc.idDocument || doc.id) };
+    // Extrait les IDs des documents sous-jacents déjà associés
+    if (this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES && this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES.length > 0) {
+      const documentIds = this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES
+        .map(item => item.document ? (item.document.idDocument || item.document.id) : item.id)
+        .filter((id): id is string => !!id);
+      dialogConfig.data = { documentIds: documentIds };
     } else {
       dialogConfig.data = { documentIds: [] };
     }
@@ -310,15 +319,15 @@ export class NewFormDocumentComponent implements OnInit {
     const dialogRef = this.dialogDef.open(ModalChoixSousDocumentComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result) => {
-      // MODIFICATION: Mise à jour du tableau local avec la sélection issue de la modale ou du service d'échange
-      this.ELEMENTS_TABLE_SOUS_DOCUMENTS = result || this.donneeDocCatService.dataDocumentDocumentsAssocies || [];
-      this.document.documentsAssocies = this.ELEMENTS_TABLE_SOUS_DOCUMENTS;
+      // MODIFICATION: Recupration des objets IDocumentsAssocies depuis dataDocumentRessourcesAttributs ou la valeur retournee
+      const res = result || this.donneeDocCatService.dataDocumentRessourcesAttributs || this.donneeDocCatService.dataDocumentDocumentsAssocies || [];
+      this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES = res;
+      this.document.documentsAssocies = this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES;
     });
   }
 
-
   /**
-   * Methode permettant d'ouvrir la modal de manipullation des etats du document
+   * Methode permettant d'ouvrir la modal de manipulation des etats du document
    */
   openDocEtatDialog() {
     const dialogRef = this.dialogDef.open(ModalDocEtatsComponent, {
@@ -332,7 +341,6 @@ export class NewFormDocumentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      // Affectation des etats mis a jour depuis la modale au tableau du composant et au document
       this.ELEMENTS_TABLE_DOC_ETATS =
         this.donneeDocCatService.dataDocumentEtats || [];
       this.document.docEtats = this.ELEMENTS_TABLE_DOC_ETATS;
@@ -340,14 +348,12 @@ export class NewFormDocumentComponent implements OnInit {
   }
 
   /**
-   * methode qui permet de fusionner les categories en fontion du meme nom tout en regroupant leurs attributs
-   * ceci permet de former le tableau d'objets ICategoriesAttriut qui sera rattache au document lors de l'enregistrement
+   * methode qui permet de fusionner les categories en fonction du meme nom tout en regroupant leurs attributs
    */
   syntheseCategorieAttribut() {
     let tmpCatAtt = new Map();
     let categorieAttributsFinal: ICategoriesAttributs[] = [];
 
-    //récupération des données du service
     const rawCategories: ICategorieAffichage[] =
       this.donneeDocCatService.dataDocumentCategorie ?? [];
 
@@ -371,7 +377,6 @@ export class NewFormDocumentComponent implements OnInit {
         ordre: 0,
         attributs: [],
       };
-      //si la map ne contient pas la catégorie courante
       if (tmpCatAtt.get(objet.nom) == null) {
         categorieAttributTemp.id = objet.id;
         categorieAttributTemp.libelle = objet.nom;
@@ -380,12 +385,10 @@ export class NewFormDocumentComponent implements OnInit {
           objet.attributCategories
         );
 
-        // sauvegarde de l'indice de l'élément enregistré
         let index: number = categorieAttributsFinal.push(categorieAttributTemp);
         tmpCatAtt.set(objet.nom, index - 1);
       } else {
-        //si la valeur est trouvée dans la map
-        let index: number = tmpCatAtt.get(objet.nom); // récuperation de l'indice de l'élément enregistré
+        let index: number = tmpCatAtt.get(objet.nom);
         categorieAttributTemp = categorieAttributsFinal[index];
         categorieAttributTemp.attributs.push(
           objet.attributCategories
@@ -395,9 +398,11 @@ export class NewFormDocumentComponent implements OnInit {
     });
     this.TABLE_CATEGORIE_AFFICHAGE_TEMP = categorieAttributsFinal;
   }
+
   return() {
     this.router.navigate(['parcours/documents/list-documents']);
   }
+
   onSubmit(documentInput: any) {
     this.submitted = true;
     if (
@@ -406,6 +411,7 @@ export class NewFormDocumentComponent implements OnInit {
       this.ELEMENTS_TABLE_ATTRIBUTS.length < 1
     )
       return;
+
     let documentTemp: IDocument = {
       titre: documentInput.titre,
       description: documentInput.description,
@@ -423,7 +429,7 @@ export class NewFormDocumentComponent implements OnInit {
       beneficiaireObligatoire: documentInput.beneficiaireObligatoire,
       docEtats: [],
       formatCode: documentInput.formatCode
-    }
+    };
 
     if (this.document.idDocument != undefined && this.document.idDocument != '') {
       documentTemp.id = this.document.idDocument;
@@ -438,19 +444,18 @@ export class NewFormDocumentComponent implements OnInit {
       documentTemp.precoMouvements.push(preco)
     );
 
-    // MODIFICATION: Transmission explicite de la liste des sous-documents au document temporaire
+    // MODIFICATION: Affectation de la liste des documents associés (IDocumentsAssocies) au document temporaire
     documentTemp.documentsAssocies = [];
-    if (this.ELEMENTS_TABLE_SOUS_DOCUMENTS && this.ELEMENTS_TABLE_SOUS_DOCUMENTS.length > 0) {
-      this.ELEMENTS_TABLE_SOUS_DOCUMENTS.forEach((doc) =>
-        documentTemp.documentsAssocies?.push(doc)
+    if (this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES && this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES.length > 0) {
+      this.ELEMENTS_TABLE_DOCUMENTS_ASSOCIES.forEach((docAssoc) =>
+        documentTemp.documentsAssocies?.push(docAssoc)
       );
     }
     this.document.documentsAssocies = documentTemp.documentsAssocies;
 
     if (this.documentParentDesactive == true) {
-      // MODIFICATION: Suppression de 'documentTemp.documentsAssocies = undefined' qui réinitialisait à tort la liste des sous-documents lors de la validation du formulaire
-      documentTemp.afficherPrix = false
-      documentTemp.afficherDistributeur = false
+      documentTemp.afficherPrix = false;
+      documentTemp.afficherDistributeur = false;
     }
 
     // Affectation explicite et securisee des etats selectionnes au document temporaire avant enregistrement
@@ -460,7 +465,6 @@ export class NewFormDocumentComponent implements OnInit {
         docEtat => documentTemp.docEtats.push(docEtat)
       );
     }
-    // Affectation egalement a l'objet document local pour assurer la coherence des donnees
     this.document.docEtats = documentTemp.docEtats;
 
     if (this.TABLE_CATEGORIE_AFFICHAGE_TEMP.length < 1) {
@@ -479,7 +483,6 @@ export class NewFormDocumentComponent implements OnInit {
           associationCategorieAttributs
         );
       });
-      // ajout d'une categorie par defaut dans le document
       documentTemp.categories.push(categorieAttributs);
     } else {
       this.TABLE_CATEGORIE_AFFICHAGE_TEMP.forEach((cat) =>
@@ -487,11 +490,8 @@ export class NewFormDocumentComponent implements OnInit {
       );
     }
 
-
-
     this.serviceDocument.ajouterDocument(documentTemp).subscribe((object) => {
       this.router.navigate(['parcours/documents/list-documents']);
-
     });
     this.donneeDocCatService.dataDocumentAttributs = [];
     this.donneeDocCatService.dataDocumentCategorie = [];
@@ -499,6 +499,7 @@ export class NewFormDocumentComponent implements OnInit {
     this.donneeDocCatService.dataDocumentDocumentsAssocies = [];
     this.donneeDocCatService.dataDocumentEtats = [];
   }
+
   get f() {
     return this.forme.controls;
   }
@@ -512,13 +513,13 @@ export class NewFormDocumentComponent implements OnInit {
   }
   desactiveElementsLieRessource(event: any) {
     if (!event.target.checked) {
-      this.forme.controls['afficherPrix'].disable()
-      this.forme.controls['afficherDistributeur'].disable()
-      this.documentParentDesactive = true
+      this.forme.controls['afficherPrix'].disable();
+      this.forme.controls['afficherDistributeur'].disable();
+      this.documentParentDesactive = true;
     } else {
-      this.forme.controls['afficherPrix'].enable()
-      this.forme.controls['afficherDistributeur'].enable()
-      this.documentParentDesactive = false
+      this.forme.controls['afficherPrix'].enable();
+      this.forme.controls['afficherDistributeur'].enable();
+      this.documentParentDesactive = false;
     }
   }
 }

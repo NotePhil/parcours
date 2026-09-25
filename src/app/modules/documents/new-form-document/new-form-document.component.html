@@ -240,7 +240,7 @@
                             </div>
                         </div>
 
-                        <!-- sous documents ------------------------------------------------- -->
+                        <!-- documents associés ------------------------------------------------- -->
 
                         <div class="form-group" title="{{'document.form.text13' | translate}}">
                             <div class="champs">
@@ -249,7 +249,7 @@
                                 </label>
                                 <div class="w-100">
 
-                                    <!-- Ouvrir le formulair de selection des sous documents -->
+                                    <!-- Ouvrir le formulaire de sélection des documents associés -->
                                     <div class="listAttr">
                                         <button type="button" class="btn p-0"
                                             title="{{'lists.button9' | translate}} / {{'lists.button8' | translate}}"
@@ -257,8 +257,10 @@
                                             <i class="fas fa-plus-square"></i>
                                         </button>
                                         <p>
-                                            <span *ngFor="let listeDocumentsAssocies of ELEMENTS_TABLE_SOUS_DOCUMENTS">
-                                                {{listeDocumentsAssocies.titre | lowercase}}<span>, </span>
+                                            <!-- MODIFICATION: Affichage des donnees via item.document.titre et de l'etat via item.etat.libelle -->
+                                            <span *ngFor="let item of ELEMENTS_TABLE_DOCUMENTS_ASSOCIES">
+                                                {{(item.document?.titre || item.document?.description || '') | lowercase}}
+                                                <span *ngIf="item.etat?.libelle"> ({{item.etat.libelle}})</span><span>, </span>
                                             </span>
                                         </p>
 
@@ -318,11 +320,12 @@
 
                     </div>
                 </div>
+                <!-- Boutons d'action de fin de formulaire uniformisés ronds et colorés -->
                 <div class="actionButton valBtn">
-                    <button class="retour" (click)="return()" title="{{'lists.button2' | translate}}">
+                    <button class="btn retour" type="button" (click)="return()" title="{{'lists.button2' | translate}}">
                         <i class="fa fa-reply mr-1"></i>
                     </button>
-                    <button type="submit" class="btnValidation" title="{{btnLibelle}}">
+                    <button type="submit" class="btn btnValidation" title="{{btnLibelle}}">
                         <i class="fa fa-check"></i>
                     </button>
                 </div>

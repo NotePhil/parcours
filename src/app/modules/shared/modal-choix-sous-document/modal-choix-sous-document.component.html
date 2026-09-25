@@ -101,9 +101,8 @@
                                         </th>
                                         <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                             <div class="actions">
-
                                                 <span style="font-size: small; min-width: 67px;">{{
-                                                    selectedEtatsMap[element.idDocument] }}</span>
+                                                    selectedEtatsMap[element.idDocument || element.id] }}</span>
                                             </div>
                                         </td>
                                     </ng-container>
@@ -116,7 +115,7 @@
                                         <td class="text-dark containCell" mat-cell
                                             *matCellDef="let element;  let i=index">
                                             <div class="actions">
-                                                <button class="btn p-0" name="PrecoMvts" [value]="element.idDocument"
+                                                <button class="btn p-0" name="PrecoMvts" [value]="element.idDocument || element.id"
                                                     id="PrecoMvts" title="clicker pour annuler la selection"
                                                     (click)="retirerSelectionDocument(i)">
                                                     <i class="fa fa-trash text-danger"></i>
@@ -141,11 +140,12 @@
                                 </mat-paginator>
                             </div>
 
+                            <!-- MODIFICATION: Boutons d'action uniformises ronds et meubles avec les classes retour et btnValidation -->
                             <div class="actionButton valBtn mt-2" style="justify-content: center;">
-                                <button class="btn retour" (click)="onCancel()" title="{{'lists.button2' | translate}}">
+                                <button type="button" class="btn retour" (click)="onCancel()" title="{{'lists.button2' | translate}}">
                                     <i class="fa fa-undo"></i>
                                 </button>
-                                <button (click)="onSave()" [mat-dialog-close] cdkFocusInitial class="btn btnValidation"
+                                <button type="button" (click)="onSave()" cdkFocusInitial class="btn btnValidation"
                                     title="{{'lists.button6' | translate}}">
                                     <i class="fa fa-check"></i>
                                 </button>

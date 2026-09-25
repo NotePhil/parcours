@@ -77,11 +77,18 @@ table,
   border-top: none;
 }
 
-.cdk-overlay-container,
-.cdk-overlay-pane {
+.cdk-overlay-container {
   z-index: 9999 !important;
-  display: flex;
 }
+
+// .cdk-overlay-pane {
+//   z-index: 9999;
+// }
+
+// .modal-choix-doc-etat-pane,
+// .cdk-overlay-pane.modal-choix-doc-etat-pane {
+//   z-index: 10005 !important;
+// }
 
 .modalContentScroll {
   opacity: 1;
@@ -94,7 +101,7 @@ mat-dialog-container {
 
 .mat-mdc-dialog-surface {
   background-color: transparent !important;
-  backdrop-filter: blur(3px);
+  // backdrop-filter: blur(3px);
   border: none;
 }
 

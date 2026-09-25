@@ -15,8 +15,8 @@ export class DonneesEchangeService {
   dataDocumentPrecoMvts: any;
   dataDocumentAttributs: any;
   dataDocumentRessourcesAttributs: any;
-  dataDocumentCodebarre: any;
   dataEtatSelectionner: any;
+  // Stocke le tableau d'objets IDocumentsAssocies (document + etat) pour l'échange entre formulaires et modales
   dataDocumentDocumentsAssocies: any;
   dataDocumentSousExemplaireDocuments: any;
   dataDocumentEtats: any;

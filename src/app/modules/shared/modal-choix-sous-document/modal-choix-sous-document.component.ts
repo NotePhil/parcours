@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IDocument } from 'src/app/modele/document';
+import { IDocumentsAssocies } from 'src/app/modele/documents-associes';
+import { IEtats } from 'src/app/modele/etats';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-echange.service';
 import { ModalChoixDocEtatComponent } from '../modal-choix-doc-etat/modal-choix-doc-etat.component';
@@ -17,10 +19,13 @@ import { Observable, mergeMap, of } from 'rxjs';
 })
 export class ModalChoixSousDocumentComponent implements OnInit {
   formeDocument: FormGroup;
+  // MODIFICATION: Stockage des etats associes sous forme d'objet IEtats par ID de document
+  associedEtatsMap: { [documentId: string]: IEtats } = {};
+  // Stockage du libelle de l'etat pour affichage dans la colonne etat du tableau
   selectedEtatsMap: { [documentId: string]: string } = {};
   myControl = new FormControl<string | IDocument>('');
   ELEMENTS_TABLE_DOCUMENTS: IDocument[] = [];
-  ELEMENTS_TABLE_DOCUMENTS_TEMP: IDocument[] = []; // Stockage temporaire pour les changements
+  ELEMENTS_TABLE_DOCUMENTS_TEMP: IDocument[] = []; // Stockage temporaire pour la selection des documents
   filteredOptions: IDocument[] | undefined;
   displayedDocumentsColumns: string[] = ['actions', 'titre', 'description'];
   documentIds: string[];
@@ -53,31 +58,37 @@ export class ModalChoixSousDocumentComponent implements OnInit {
   }
 
   /**
-   * Ouvrir le modal pour choisir l'état d'un sous-document
-   * Transmet le document choisi ainsi que sa liste d'etats (docEtats)
+   * MODIFICATION: Ouvrir le modal pour choisir l'état d'un sous-document
+   * Transmet le document choisi et la liste de ses etats.
+   * Utilise panelClass 'modal-choix-doc-etat-pane' pour que la modale d'etat s'ouvre au premier plan.
    */
   openModal(documentChoisi: IDocument) {
+    const docId = documentChoisi.idDocument || documentChoisi.id;
     const dialogRef = this.dialog.open(ModalChoixDocEtatComponent, {
       width: '600px',
+      panelClass: 'modal-choix-doc-etat-pane', // Positionne la modale d'etat au-dessus de la modale de choix de document
+      hasBackdrop: true,
       data: {
         documentChoisi: documentChoisi,
-        EtatsChoisi: documentChoisi.docEtats || [], // Transmission explicite des etats du sous-document
-        documentId: documentChoisi.idDocument || documentChoisi.id,
+        EtatsChoisi: documentChoisi.docEtats || [], // Transmission des etats du sous-document
+        documentId: docId,
+        selectedEtat: docId && this.associedEtatsMap[docId] ? { etat: this.associedEtatsMap[docId] } : undefined
       },
     });
 
     dialogRef.afterClosed().subscribe((selectedEtat: any) => {
       if (selectedEtat) {
-        const docId = documentChoisi.idDocument || documentChoisi.id;
-        // Extraction du libelle de l'etat (gestion d'un objet IDocEtats ou d'une chaine de caracteres)
-        const libelleEtat = typeof selectedEtat === 'string'
-          ? selectedEtat
-          : (selectedEtat.etat?.libelle || selectedEtat.libelle || '');
-
-        // Enregistrement du libelle dans le dictionnaire des etats pour affichage dans le tableau
         if (docId) {
-          this.selectedEtatsMap[docId] = libelleEtat;
-          this.serviceDocument.setSelectedEtat(docId, libelleEtat);
+          // MODIFICATION: Affectation de l'objet IEtats au document selectionne
+          const iEtat: IEtats | undefined = selectedEtat.etat ? selectedEtat.etat : (selectedEtat.libelle ? selectedEtat : undefined);
+          if (iEtat) {
+            this.associedEtatsMap[docId] = iEtat;
+            this.selectedEtatsMap[docId] = iEtat.libelle || '';
+          } else if (typeof selectedEtat === 'string') {
+            this.selectedEtatsMap[docId] = selectedEtat;
+            this.associedEtatsMap[docId] = { libelle: selectedEtat, description: '', dateCreation: new Date() };
+          }
+          this.serviceDocument.setSelectedEtat(docId, this.selectedEtatsMap[docId]);
         }
 
         // Sauvegarde de l'etat selectionne dans le service de donnees d'echange
@@ -93,14 +104,33 @@ export class ModalChoixSousDocumentComponent implements OnInit {
       this.filteredOptions = valeurs;
     });
 
-    this.populateSelectedEtatsMap();
-    // MODIFICATION: Chargement sécurisé du tableau temporaire avec données d'échange
-    if (this.donneeDocCatService.dataDocumentDocumentsAssocies && Array.isArray(this.donneeDocCatService.dataDocumentDocumentsAssocies)) {
-      this.ELEMENTS_TABLE_DOCUMENTS_TEMP = [...this.donneeDocCatService.dataDocumentDocumentsAssocies];
+    // MODIFICATION: Chargement des documents associes preexistants a partir de dataDocumentRessourcesAttributs / dataDocumentDocumentsAssocies
+    const sourceAssoc = this.donneeDocCatService.dataDocumentRessourcesAttributs || this.donneeDocCatService.dataDocumentDocumentsAssocies;
+    if (sourceAssoc && Array.isArray(sourceAssoc)) {
+      this.ELEMENTS_TABLE_DOCUMENTS_TEMP = [];
+      sourceAssoc.forEach((item: any) => {
+        // Extraction du document (compatibilite objet IDocumentsAssocies ou IDocument direct)
+        const doc: IDocument = item.document ? item.document : item;
+        const docId = doc?.idDocument || doc?.id || item.id;
+        if (doc && docId) {
+          const exists = this.ELEMENTS_TABLE_DOCUMENTS_TEMP.some(d => (d.idDocument || d.id) === docId);
+          if (!exists) {
+            this.ELEMENTS_TABLE_DOCUMENTS_TEMP.push(doc);
+          }
+          // Stockage de l'etat associe preexistant
+          if (item.etat) {
+            const etatObj: IEtats = item.etat.etat ? item.etat.etat : item.etat;
+            this.associedEtatsMap[docId] = etatObj;
+            this.selectedEtatsMap[docId] = etatObj.libelle || '';
+          }
+        }
+      });
     } else {
       this.ELEMENTS_TABLE_DOCUMENTS_TEMP = [];
     }
+
     this.dataSourceDocumentResultat.data = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP];
+    this.populateSelectedEtatsMap();
 
     if (this.documentIds && this.documentIds.length > 0) {
       this.loadDocuments(this.documentIds);
@@ -117,7 +147,7 @@ export class ModalChoixSousDocumentComponent implements OnInit {
       .subscribe((document) => {
         if (document) {
           const docId = document.idDocument || document.id;
-          // MODIFICATION: Ajout dans ELEMENTS_TABLE_DOCUMENTS_TEMP si absent pour ne pas perdre la sélection lors de la sauvegarde
+          // MODIFICATION: Ajout dans ELEMENTS_TABLE_DOCUMENTS_TEMP si absent pour ne pas perdre la sélection
           const exists = this.ELEMENTS_TABLE_DOCUMENTS_TEMP.some(d => (d.idDocument || d.id) === docId);
           if (!exists) {
             this.ELEMENTS_TABLE_DOCUMENTS_TEMP.push(document);
@@ -134,9 +164,13 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     this.dataSourceDocumentResultat.data.forEach((element: IDocument) => {
       const docId = element.idDocument || element.id;
       if (docId) {
-        const etat = this.serviceDocument.getSelectedEtat(docId);
-        if (etat) {
-          this.selectedEtatsMap[docId] = etat;
+        if (this.associedEtatsMap[docId] && this.associedEtatsMap[docId].libelle) {
+          this.selectedEtatsMap[docId] = this.associedEtatsMap[docId].libelle;
+        } else {
+          const etat = this.serviceDocument.getSelectedEtat(docId);
+          if (etat) {
+            this.selectedEtatsMap[docId] = etat;
+          }
         }
       }
     });
@@ -185,6 +219,14 @@ export class ModalChoixSousDocumentComponent implements OnInit {
 
   // Retirer un document de la sélection
   retirerSelectionDocument(index: number) {
+    const docRetire = this.ELEMENTS_TABLE_DOCUMENTS_TEMP[index];
+    if (docRetire) {
+      const docId = docRetire.idDocument || docRetire.id;
+      if (docId) {
+        delete this.associedEtatsMap[docId];
+        delete this.selectedEtatsMap[docId];
+      }
+    }
     this.ELEMENTS_TABLE_DOCUMENTS_TEMP.splice(index, 1);
     this.dataSourceDocumentResultat.data = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP];
   }
@@ -229,11 +271,28 @@ export class ModalChoixSousDocumentComponent implements OnInit {
     return this.ELEMENTS_TABLE_DOCUMENTS_TEMP.some((doc) => (doc.idDocument || doc.id) === documentId);
   }
 
-  // Sauvegarder les changements et fermer la boîte de dialogue
+  /**
+   * MODIFICATION: Sauvegarder les changements: forme les objets IDocumentsAssocies avec le document et l'etat choisi,
+   * puis affecte le tableau resultat a dataDocumentRessourcesAttributs qui sera utilise dans le formulaire de document.
+   */
   onSave() {
-    // MODIFICATION: Sauvegarde explicite des sous-documents sélectionnés dans le service de données d'échange
-    this.ELEMENTS_TABLE_DOCUMENTS = [...this.ELEMENTS_TABLE_DOCUMENTS_TEMP];
-    this.donneeDocCatService.dataDocumentDocumentsAssocies = this.ELEMENTS_TABLE_DOCUMENTS;
-    this.dialogRef.close(this.ELEMENTS_TABLE_DOCUMENTS);
+    // MODIFICATION: Construction du tableau d'objets IDocumentsAssocies
+    const resultDocumentsAssocies: IDocumentsAssocies[] = this.ELEMENTS_TABLE_DOCUMENTS_TEMP.map((doc) => {
+      const docId = doc.idDocument || doc.id || '';
+      const etatAssocie = this.associedEtatsMap[docId];
+      return {
+        id: docId,
+        document: doc,
+        etat: etatAssocie
+      };
+    });
+
+    // MODIFICATION: Affectation du resultat du tableau final a dataDocumentRessourcesAttributs et dataDocumentDocumentsAssocies
+    this.donneeDocCatService.dataDocumentRessourcesAttributs = resultDocumentsAssocies;
+    this.donneeDocCatService.dataDocumentDocumentsAssocies = resultDocumentsAssocies;
+
+    // Fermeture de la modale en renvoyant le tableau des documents associes
+    this.dialogRef.close(resultDocumentsAssocies);
   }
 }
+
