@@ -81,15 +81,6 @@ table,
   z-index: 9999 !important;
 }
 
-// .cdk-overlay-pane {
-//   z-index: 9999;
-// }
-
-// .modal-choix-doc-etat-pane,
-// .cdk-overlay-pane.modal-choix-doc-etat-pane {
-//   z-index: 10005 !important;
-// }
-
 .modalContentScroll {
   opacity: 1;
 }
@@ -101,7 +92,7 @@ mat-dialog-container {
 
 .mat-mdc-dialog-surface {
   background-color: transparent !important;
-  // backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   border: none;
 }
 

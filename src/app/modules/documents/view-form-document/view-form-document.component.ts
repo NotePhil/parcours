@@ -78,36 +78,36 @@ export class ViewFormDocumentComponent implements OnInit {
     let idDocument = this.infosPath.snapshot.paramMap.get('idDocument');
     if (idDocument != null && idDocument !== '') {
       this.serviceDocument.getDocumentById(idDocument).subscribe(async (x) => {
-        
+
         if (x.docEtats && x.docEtats.length > 0) {
           let line = `graph LR;`;
           let AllEtats = x.docEtats.length;
           console.log(AllEtats, x.docEtats.length);
-          
-          for (let i = 0; i < x.docEtats.length; i++) {
 
-            if (x.docEtats[i].etat.etatPrecedant != null && x.docEtats[i].etat.etatPrecedant!.length > 0) {
-              for (let j = 0; j < x.docEtats[i].etat.etatPrecedant!.length; j++) {
-                console.log("j++:", j);
+          // for (let i = 0; i < x.docEtats.length; i++) {
 
-                line =
-                  line +
-                  `${x.docEtats[i].etat.etatPrecedant![j].id}[${x.docEtats[i].etat.etatPrecedant![j].libelle}]-->${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}];`;
-              }
-              console.log("PREi++:", i);
-            }
-            if (x.docEtats[i].etat.etatSuivant != null && x.docEtats[i].etat.etatSuivant!.length > 0) {
-              for (let j = 0; j < x.docEtats[i].etat.etatSuivant!.length; j++) {
-                console.log("j++:", j);
+          //   if (x.docEtats[i].etat.etatPrecedant != null && x.docEtats[i].etat.etatPrecedant!.length > 0) {
+          //     for (let j = 0; j < x.docEtats[i].etat.etatPrecedant!.length; j++) {
+          //       console.log("j++:", j);
 
-                line =
-                  line +
-                  `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i].etat.etatSuivant![j].id}[${x.docEtats[i].etat.etatSuivant![j].libelle}];`;
-              }
-              console.log("SUIi++:", i);
-            }
+          //       line =
+          //         line +
+          //         `${x.docEtats[i].etat.etatPrecedant![j].id}[${x.docEtats[i].etat.etatPrecedant![j].libelle}]-->${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}];`;
+          //     }
+          //     console.log("PREi++:", i);
+          //   }
+          //   if (x.docEtats[i].etat.etatSuivant != null && x.docEtats[i].etat.etatSuivant!.length > 0) {
+          //     for (let j = 0; j < x.docEtats[i].etat.etatSuivant!.length; j++) {
+          //       console.log("j++:", j);
 
-          }
+          //       line =
+          //         line +
+          //         `${x.docEtats[i].etat.id}[${x.docEtats[i].etat.libelle}]-->${x.docEtats[i].etat.etatSuivant![j].id}[${x.docEtats[i].etat.etatSuivant![j].libelle}];`;
+          //     }
+          //     console.log("SUIi++:", i);
+          //   }
+
+          // }
           const graphDefinition =
             `graph LR;
     style 1 fill:#aaffff,stroke:#333,stroke-width:4px

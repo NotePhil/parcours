@@ -2761,7 +2761,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -3230,7 +3230,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -3246,7 +3246,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -5186,7 +5186,7 @@ export class InMemDBService implements InMemoryDbService {
                   etat: true,
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
-  
+
                   type_attribut: IType.Double,
                   valeurParDefaut: '',
                 },
@@ -5218,7 +5218,7 @@ export class InMemDBService implements InMemoryDbService {
                   etat: true,
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
-  
+
                   type_attribut: IType.Date,
                   valeurParDefaut: '',
                 },
@@ -5229,7 +5229,7 @@ export class InMemDBService implements InMemoryDbService {
                   etat: true,
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
-  
+
                   type_attribut: IType.Date,
                   valeurParDefaut: '',
                 },
@@ -5240,7 +5240,7 @@ export class InMemDBService implements InMemoryDbService {
                   etat: true,
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
-  
+
                   type_attribut: IType.Date,
                   valeurParDefaut: '',
                 },
@@ -5261,7 +5261,7 @@ export class InMemDBService implements InMemoryDbService {
                   etat: true,
                   dateCreation: new Date('07/03/2000'),
                   dateModification: new Date('07/03/1990'),
-  
+
                   type_attribut: IType.Textarea,
                   valeurParDefaut: '',
                 },
@@ -5283,7 +5283,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.String,
                         valeurParDefaut: '',
                       },
@@ -5299,7 +5299,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -5315,7 +5315,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -5338,7 +5338,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.String,
                         valeurParDefaut: '',
                       },
@@ -5392,7 +5392,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Date,
                         valeurParDefaut: '',
                       },
@@ -5408,7 +5408,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Date,
                         valeurParDefaut: '',
                       },
@@ -5424,7 +5424,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Date,
                         valeurParDefaut: '',
                       },
@@ -5455,7 +5455,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Textarea,
                         valeurParDefaut: '',
                       },
@@ -5888,7 +5888,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -5904,7 +5904,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -7866,7 +7866,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -7882,7 +7882,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -8351,7 +8351,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -8367,7 +8367,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -8891,7 +8891,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -8907,7 +8907,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -9473,7 +9473,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -9489,7 +9489,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -10479,14 +10479,6 @@ export class InMemDBService implements InMemoryDbService {
             etat: {
               id: '2',
               libelle: 'etat 2',
-              etatSuivant: [
-                {
-                  id: '3',
-                  libelle: 'etat 3',
-                  description: 'troisième état du document',
-                  dateCreation: new Date('07/21/2024'),
-                },
-              ],
               description: 'deuxième état du document',
               dateCreation: new Date('07/21/2024'),
             },
@@ -10516,14 +10508,6 @@ export class InMemDBService implements InMemoryDbService {
             etat: {
               id: '3',
               libelle: 'etat 3',
-              etatPrecedant: [
-                {
-                  id: '1',
-                  libelle: 'etat 1',
-                  description: 'premièr état du document',
-                  dateCreation: new Date('07/21/2024'),
-                },
-              ],
               description: 'troisième état du document',
               dateCreation: new Date('07/21/2024'),
             },
@@ -11166,7 +11150,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -11182,7 +11166,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -11706,7 +11690,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -11722,7 +11706,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -12290,7 +12274,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -12306,7 +12290,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -14706,7 +14690,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -14722,7 +14706,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -16060,7 +16044,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -16076,7 +16060,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -16598,7 +16582,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -16614,7 +16598,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -17179,7 +17163,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -17195,7 +17179,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -19208,7 +19192,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -19224,7 +19208,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -20511,7 +20495,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -20527,7 +20511,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -20997,7 +20981,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -21013,7 +20997,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -22118,7 +22102,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -22134,7 +22118,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -24123,7 +24107,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -24139,7 +24123,7 @@ export class InMemDBService implements InMemoryDbService {
                         etat: true,
                         dateCreation: new Date('07/03/2000'),
                         dateModification: new Date('07/03/1990'),
-  
+
                         type_attribut: IType.Double,
                         valeurParDefaut: '',
                       },
@@ -28449,7 +28433,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -28919,7 +28903,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -28935,7 +28919,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -30150,7 +30134,7 @@ export class InMemDBService implements InMemoryDbService {
                             prixEntree: 2000,
                             prixSortie: 2050,
                             unite: 'Litre',
-  
+
                             famille: {
                               id: '3',
                               libelle: 'pediatrie',
@@ -30880,7 +30864,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Double,
                       valeurParDefaut: '',
                     },
@@ -30912,7 +30896,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -30923,7 +30907,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -30934,7 +30918,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -30955,7 +30939,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Textarea,
                       valeurParDefaut: '',
                     },
@@ -30977,7 +30961,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.String,
                             valeurParDefaut: '',
                           },
@@ -30993,7 +30977,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -31009,7 +30993,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -31032,7 +31016,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.String,
                             valeurParDefaut: '',
                           },
@@ -31086,7 +31070,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -31102,7 +31086,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -31119,7 +31103,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -31150,7 +31134,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Textarea,
                             valeurParDefaut: '',
                           },
@@ -31585,7 +31569,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -31601,7 +31585,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -31774,7 +31758,7 @@ export class InMemDBService implements InMemoryDbService {
                             prixEntree: 2000,
                             prixSortie: 2050,
                             unite: 'Litre',
-  
+
                             famille: {
                               id: '3',
                               libelle: 'pediatrie',
@@ -33654,7 +33638,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -34124,7 +34108,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -34140,7 +34124,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -35355,7 +35339,7 @@ export class InMemDBService implements InMemoryDbService {
                             prixEntree: 2000,
                             prixSortie: 2050,
                             unite: 'Litre',
-  
+
                             famille: {
                               id: '3',
                               libelle: 'pediatrie',
@@ -36085,7 +36069,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Double,
                       valeurParDefaut: '',
                     },
@@ -36117,7 +36101,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -36128,7 +36112,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -36139,7 +36123,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -36160,7 +36144,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Textarea,
                       valeurParDefaut: '',
                     },
@@ -36182,7 +36166,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.String,
                             valeurParDefaut: '',
                           },
@@ -36198,7 +36182,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -36214,7 +36198,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -36237,7 +36221,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.String,
                             valeurParDefaut: '',
                           },
@@ -36291,7 +36275,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -36307,7 +36291,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -36324,7 +36308,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -36355,7 +36339,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Textarea,
                             valeurParDefaut: '',
                           },
@@ -36790,7 +36774,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -36806,7 +36790,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -36979,7 +36963,7 @@ export class InMemDBService implements InMemoryDbService {
                             prixEntree: 2000,
                             prixSortie: 2050,
                             unite: 'Litre',
-  
+
                             famille: {
                               id: '3',
                               libelle: 'pediatrie',
@@ -38859,7 +38843,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -39329,7 +39313,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -39345,7 +39329,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -40560,7 +40544,7 @@ export class InMemDBService implements InMemoryDbService {
                             prixEntree: 2000,
                             prixSortie: 2050,
                             unite: 'Litre',
-  
+
                             famille: {
                               id: '3',
                               libelle: 'pediatrie',
@@ -41290,7 +41274,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Double,
                       valeurParDefaut: '',
                     },
@@ -41322,7 +41306,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -41333,7 +41317,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -41344,7 +41328,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -41365,7 +41349,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Textarea,
                       valeurParDefaut: '',
                     },
@@ -41387,7 +41371,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.String,
                             valeurParDefaut: '',
                           },
@@ -41403,7 +41387,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -41419,7 +41403,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -41442,7 +41426,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.String,
                             valeurParDefaut: '',
                           },
@@ -41496,7 +41480,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -41512,7 +41496,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -41529,7 +41513,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -41560,7 +41544,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Textarea,
                             valeurParDefaut: '',
                           },
@@ -41995,7 +41979,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -42011,7 +41995,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -42184,7 +42168,7 @@ export class InMemDBService implements InMemoryDbService {
                             prixEntree: 2000,
                             prixSortie: 2050,
                             unite: 'Litre',
-  
+
                             famille: {
                               id: '3',
                               libelle: 'pediatrie',
@@ -44064,7 +44048,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -44534,7 +44518,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -44550,7 +44534,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -45765,7 +45749,7 @@ export class InMemDBService implements InMemoryDbService {
                             prixEntree: 2000,
                             prixSortie: 2050,
                             unite: 'Litre',
-  
+
                             famille: {
                               id: '3',
                               libelle: 'pediatrie',
@@ -46495,7 +46479,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Double,
                       valeurParDefaut: '',
                     },
@@ -46527,7 +46511,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -46538,7 +46522,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -46549,7 +46533,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Date,
                       valeurParDefaut: '',
                     },
@@ -46570,7 +46554,7 @@ export class InMemDBService implements InMemoryDbService {
                       etat: true,
                       dateCreation: new Date('07/03/2000'),
                       dateModification: new Date('07/03/1990'),
-  
+
                       type_attribut: IType.Textarea,
                       valeurParDefaut: '',
                     },
@@ -46592,7 +46576,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.String,
                             valeurParDefaut: '',
                           },
@@ -46608,7 +46592,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -46624,7 +46608,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -46647,7 +46631,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.String,
                             valeurParDefaut: '',
                           },
@@ -46701,7 +46685,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -46717,7 +46701,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -46734,7 +46718,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Date,
                             valeurParDefaut: '',
                           },
@@ -46765,7 +46749,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Textarea,
                             valeurParDefaut: '',
                           },
@@ -47200,7 +47184,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -47216,7 +47200,7 @@ export class InMemDBService implements InMemoryDbService {
                             etat: true,
                             dateCreation: new Date('07/03/2000'),
                             dateModification: new Date('07/03/1990'),
-  
+
                             type_attribut: IType.Double,
                             valeurParDefaut: '',
                           },
@@ -47389,7 +47373,7 @@ export class InMemDBService implements InMemoryDbService {
                             prixEntree: 2000,
                             prixSortie: 2050,
                             unite: 'Litre',
-  
+
                             famille: {
                               id: '3',
                               libelle: 'pediatrie',
@@ -48069,14 +48053,6 @@ export class InMemDBService implements InMemoryDbService {
                     etat: {
                       id: '2',
                       libelle: 'etat 2',
-                      etatSuivant: [
-                        {
-                          id: '3',
-                          libelle: 'etat 3',
-                          description: 'troisième état du document',
-                          dateCreation: new Date('07/21/2024'),
-                        },
-                      ],
                       description: 'deuxième état du document',
                       dateCreation: new Date('07/21/2024'),
                     },
@@ -48106,14 +48082,6 @@ export class InMemDBService implements InMemoryDbService {
                     etat: {
                       id: '3',
                       libelle: 'etat 3',
-                      etatPrecedant: [
-                        {
-                          id: '1',
-                          libelle: 'etat 1',
-                          description: 'premièr état du document',
-                          dateCreation: new Date('07/21/2024'),
-                        },
-                      ],
                       description: 'troisième état du document',
                       dateCreation: new Date('07/21/2024'),
                     },
@@ -48756,7 +48724,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -48772,7 +48740,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -49296,7 +49264,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -49312,7 +49280,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -49880,7 +49848,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -49896,7 +49864,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -51371,7 +51339,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -51387,7 +51355,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -51857,7 +51825,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -51873,7 +51841,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -52398,7 +52366,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -52414,7 +52382,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -52985,7 +52953,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },
@@ -53001,7 +52969,7 @@ export class InMemDBService implements InMemoryDbService {
                                 etat: true,
                                 dateCreation: new Date('07/03/2000'),
                                 dateModification: new Date('07/03/1990'),
-  
+
                                 type_attribut: IType.Double,
                                 valeurParDefaut: '',
                               },

@@ -105,7 +105,7 @@
                                                 *matCellDef="let element, let i = index">
                                                 <div class="matSelectElement selectInputTab">
                                                     <mat-select [disabled]="i == 0"
-                                                        [(ngModel)]="element.etat.etatPrecedant"
+                                                        [(ngModel)]="element.predecesseurDocEtat"
                                                         [ngModelOptions]="{standalone: true}" multiple>
                                                         <mat-option *ngFor="let etat of effaceEtatCourrant(element)"
                                                             (click)="ngAfterViewInit()"

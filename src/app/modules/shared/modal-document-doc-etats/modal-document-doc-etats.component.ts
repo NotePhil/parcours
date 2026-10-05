@@ -29,7 +29,7 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
   filteredOptions: IEtats[] | undefined;
   ELEMENTS_TABLE_DOC_ETATS: IDocEtats[] = [];
   localElementTableDocEtats: IDocEtats[] = []; // Local variable to hold the changes
-  
+
   // Premier tableau : tous les etats disponibles
   dataSourceEtats = new MatTableDataSource<IEtats>();
   displayedEtatsColumns: string[] = ['actions', 'libelle', 'description'];
@@ -199,7 +199,7 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
   retirerSelectionEtat(index: number) {
     this.localElementTableDocEtats.splice(index, 1); // Retire l'element de la liste locale
     if (this.localElementTableDocEtats.length > 0 && this.localElementTableDocEtats[0].etat) {
-      this.localElementTableDocEtats[0].etat.etatPrecedant = undefined;
+      // this.localElementTableDocEtats[0].etat.etatPrecedant = undefined;
     }
     // Mise a jour de la source de donnees du 2eme tableau
     this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];

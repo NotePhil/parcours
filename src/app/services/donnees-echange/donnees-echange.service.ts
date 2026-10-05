@@ -124,25 +124,25 @@ export class DonneesEchangeService {
 
     let line = `graph TB;`;
 
-    if (etats) {
-      for (let i = 0; i < etats.length; i++) {
-        if (etats[i].etat.etatPrecedant != null && etats[i].etat.etatPrecedant!.length > 0) {
-          for (let j = 0; j < etats[i].etat.etatPrecedant!.length; j++) {
+    // if (etats) {
+    //   for (let i = 0; i < etats.length; i++) {
+    //     if (etats[i].etat.etatPrecedant != null && etats[i].etat.etatPrecedant!.length > 0) {
+    //       for (let j = 0; j < etats[i].etat.etatPrecedant!.length; j++) {
 
-            line =
-              line +
-              `${etats[i].etat.etatPrecedant![j].id}[${etats[i].etat.etatPrecedant![j].libelle}]-->${etats[i].etat.id}[${etats[i].etat.libelle}];`;
-          }
-        }
-        if (etats[i].etat.etatSuivant != null && etats[i].etat.etatSuivant!.length > 0) {
-          for (let j = 0; j < etats[i].etat.etatSuivant!.length; j++) {
-            line =
-              line +
-              `${etats[i].etat.id}[${etats[i].etat.libelle}]-->${etats[i].etat.etatSuivant![j].id}[${etats[i].etat.etatSuivant![j].libelle}];`;
-          }
-        }
-      }
-    }
+    //         line =
+    //           line +
+    //           `${etats[i].etat.etatPrecedant![j].id}[${etats[i].etat.etatPrecedant![j].libelle}]-->${etats[i].etat.id}[${etats[i].etat.libelle}];`;
+    //       }
+    //     }
+    //     if (etats[i].etat.etatSuivant != null && etats[i].etat.etatSuivant!.length > 0) {
+    //       for (let j = 0; j < etats[i].etat.etatSuivant!.length; j++) {
+    //         line =
+    //           line +
+    //           `${etats[i].etat.id}[${etats[i].etat.libelle}]-->${etats[i].etat.etatSuivant![j].id}[${etats[i].etat.etatSuivant![j].libelle}];`;
+    //       }
+    //     }
+    //   }
+    // }
     if (etapes) {
       for (let i = 0; i < etapes.length; i++) {
         if (etapes[i].etapeprecedant != null && etapes[i].etapeprecedant!.length > 0) {
