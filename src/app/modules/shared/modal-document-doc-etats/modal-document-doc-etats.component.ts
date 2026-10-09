@@ -44,7 +44,6 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
   ]; // structure du tableau presentant les doc etats
   selected: boolean = false;
   etatExiste: boolean = false;
-  idDOCEtat: string = "";
 
   constructor(
     private serviceEtat: EtatService,
@@ -185,10 +184,6 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
     return this.formeDocEtats.controls;
   }
 
-  getIdDocEtat(idDocEtat: string) {
-    this.idDOCEtat = idDocEtat;
-  }
-
   displayFn(preco: IEtats): string {
     return preco && preco.libelle ? preco.libelle : '';
   }
@@ -219,7 +214,6 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
   // MODIFICATION: Refactorisation synchrone pour transmettre le docEtat et sa validation à la modale de rôle de validation
   openRoleValidationDialog(docEtat: IDocEtats) {
     const targetEtatId = docEtat.etat?.id || docEtat.etat?.libelle || '';
-    this.idDOCEtat = targetEtatId;
     this.donneeDocEtatService.dataRoleValidation = docEtat.validation;
 
     const dialogRef = this.dialogDef.open(ModalRoleValidationComponent,
