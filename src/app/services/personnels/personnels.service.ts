@@ -44,14 +44,16 @@ export class PersonnelsService {
   
   getPersonelsByNameOrId(query: string): Observable<IPersonnel[]> {
     return this.http.get<IPersonnel[]>(this.param.api+ 'personnels').pipe(
-      map((patients) => {
+      map((personnels) => {
         const lowerCaseQuery = query.toLowerCase();
 
-        // Filter by ID or name
-        return patients.filter(
+        // Filter by ID, name, prenom, or qrCodeValue (barcode)
+        return personnels.filter(
           (p) =>
-            p.id!.toString().startsWith(query) ||
-            p.nom.toLowerCase().startsWith(lowerCaseQuery)
+            (p.id && p.id.toString().toLowerCase().startsWith(lowerCaseQuery)) ||
+            (p.nom && p.nom.toLowerCase().startsWith(lowerCaseQuery)) ||
+            (p.prenom && p.prenom.toLowerCase().startsWith(lowerCaseQuery)) ||
+            (p.qrCodeValue && p.qrCodeValue.toLowerCase().startsWith(lowerCaseQuery))
         );
       })
     );

@@ -79,8 +79,9 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
     return this.personnelService.getAllPersonnels();
   }
 
-  displayFn(user: IPersonnel): string {
-    return user && user.nom ? user.nom : '';
+  displayFn(user: any): string {
+    if (!user) return '';
+    return typeof user === 'string' ? user : (user.nom || '');
   }
 
   ngAfterViewInit() {
@@ -122,24 +123,30 @@ export class ListPersonnelsComponent implements OnInit, AfterViewInit {
     });
     
     this.barService.getCode().subscribe((dt) => {
+      if (!dt) return;
       this.scan_val = dt;
       this.myControl.setValue(this.scan_val); // Set the initial value in the search bar
 
-      if (this.scan_val) {
-        // If scan_val is set, perform a search to get the corresponding libelle
-        this.personnelService
-          .getPersonelsByNameOrId(this.scan_val)
-          .subscribe((response) => {
-            this.filteredOptions = response;
-            const selectedOption = this.filteredOptions.find(
-              (option) => option.id === this.scan_val
+      // Perform a search to get the corresponding personnel by barcode / qrCodeValue / ID / nom
+      this.personnelService
+        .getPersonelsByNameOrId(this.scan_val)
+        .subscribe((response) => {
+          this.filteredOptions = response;
+          if (response && response.length > 0) {
+            this.dataSource.data = response;
+            const selectedOption = response.find(
+              (option) =>
+                option.id === this.scan_val ||
+                option.qrCodeValue === this.scan_val
             );
             if (selectedOption) {
-              this.filteredOptions = [selectedOption];
+              this.myControl.setValue(selectedOption);
               this.dataSource.data = [selectedOption];
             }
-          });
-      }
+          } else {
+            this.dataSource.data = [];
+          }
+        });
     });
 
     this.getAllPersonnels().subscribe((valeurs) => {

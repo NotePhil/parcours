@@ -102,18 +102,10 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
 
     });
     this.barService.getCode().subscribe((dt) => {
+      if (!dt) return;
       this.scan_val = dt;
       this.myControl.setValue(this.scan_val); // Définit la valeur initiale dans la barre de recherche
       this.handleScanValChange(); // Déclenche la recherche lorsque scan_val change
-
-      this.myControl.valueChanges.subscribe(() => {
-        this.handleScanValChange();
-      });
-
-      if (this.scan_val) {
-        // Si scan_val est défini, effectuez une recherche pour obtenir la libelle correspondante
-        this.handleScanValChange
-      }
     });
 
     this.getAllPatients().subscribe((valeurs) => {
@@ -122,11 +114,11 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     });
 
     this.myControl.valueChanges.subscribe((value) => {
-      const query = value?.toString().toLowerCase(); // Convert to lower case for case-insensitive search
+      const query = typeof value === 'string' ? value.toLowerCase() : value?.nom?.toLowerCase();
       if (query && query.length > 0) {
-        // Search by name or ID
+        // Search by name, ID or barcode
         this.servicePatient
-          .getPatientsByName(query)
+          .getPatientsByNameOrId(query)
           .subscribe((reponse) => {
             this.filteredOptions = reponse;
           });
@@ -134,8 +126,6 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
         this.filteredOptions = [];
       }
     });
-    const defaultValue = 'YourDefaultSearchValue'; // Remplacez par la valeur par défaut souhaitée
-    this.myControl.setValue(defaultValue);
   }
 
   openBarcodeScanner(): void {
@@ -182,8 +172,9 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  displayFn(user: IPatient): string {
-    return user && user.nom ? user.nom : '';
+  displayFn(user: any): string {
+    if (!user) return '';
+    return typeof user === 'string' ? user : (user.nom || '');
   }
 
   ngAfterViewInit() {
@@ -198,13 +189,20 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
 
   private handleScanValChange() {
     if (this.scan_val) {
-      this.servicePatient.getPatientsByQrcode(this.scan_val).subscribe((response) => {
+      this.servicePatient.getPatientsByNameOrId(this.scan_val).subscribe((response) => {
         if (response && response.length > 0) {
-          const mainPatient = response[0];
-          const relatedPatients = response.slice(1); // Assuming related patients are included in the response
-
-          this.dataSource.data = [mainPatient, ...relatedPatients]; // Combine main patient and related patients
-          this.filteredOptions = this.dataSource.data; // Update filtered options
+          this.dataSource.data = response;
+          this.filteredOptions = response;
+          const exactMatch = response.find(
+            (p) => p.id === this.scan_val || p.qrCodeValue === this.scan_val
+          );
+          if (exactMatch) {
+            this.myControl.setValue(exactMatch);
+            this.dataSource.data = [exactMatch];
+          }
+        } else {
+          this.dataSource.data = [];
+          this.filteredOptions = [];
         }
       });
     }

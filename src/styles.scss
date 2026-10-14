@@ -97,8 +97,22 @@ mat-dialog-container {
 }
 
 .mat-mdc-dialog-surface .mainModaleSection {
+  /* Semi‑transparent background to give a frosted‑glass feel without using backdrop-filter */
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
   border: #00000031 solid 2px;
   box-shadow: 0 0 6px #00000082;
+}
+/* Pseudo‑element that provides a subtle blur effect behind the content */
+.mat-mdc-dialog-surface .mainModaleSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  /* Adjust blur intensity as needed; this does not affect child elements */
+  filter: blur(2px);
+  pointer-events: none;
+  z-index: -1; /* Keep behind the modal content */
 }
 
 .modalExemplairecDePersonne .mat-dialog-container {

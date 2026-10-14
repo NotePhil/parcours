@@ -1,6 +1,24 @@
-<div class="video-container">
-  <div class="video-content">
-    <video #video></video>
+<div
+  class="scanner-modal-draggable"
+  [style.display]="isCameraOpen ? 'block' : 'none'"
+  cdkDrag
+  cdkDragBoundary="body"
+>
+  <div class="scanner-header" cdkDragHandle>
+    <div class="scanner-title">
+      <i class="fas fa-barcode"></i>
+      <span>Scanner Code-barre</span>
+    </div>
+    <button
+      type="button"
+      class="scanner-close-btn"
+      (click)="stopScanner()"
+      title="Fermer la caméra"
+    >
+      ✕
+    </button>
   </div>
-  <div *ngIf="isCameraOpen" class="close-button" (click)="stopScanner()">✕</div>
+  <div class="scanner-body">
+    <video #video autoplay playsinline muted></video>
+  </div>
 </div>

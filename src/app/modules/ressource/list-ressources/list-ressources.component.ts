@@ -144,8 +144,9 @@ export class ListRessourcesComponent implements OnInit {
     inputElement.value = inputElement.value.replace(/[^0-9]/g, ''); // Supprime les caractères non numériques
   }
 
-  displayFn(attribue: IRessource): string {
-    return attribue && attribue.libelle ? attribue.libelle : '';
+  displayFn(attribue: any): string {
+    if (!attribue) return '';
+    return typeof attribue === 'string' ? attribue : (attribue.libelle || '');
   }
 
   displayFnFamille(attribue: IFamille): string {

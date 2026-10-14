@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { PatientsService } from 'src/app/services/patients/patients.service';
 import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
 import { DocumentService } from 'src/app/services/documents/document.service';
 import { ModalChoixSousExemplairesComponent } from '../modal-choix-sous-exemplaires/modal-choix-sous-exemplaires.component';
+import { ModalCodebarreScanContinueComponent } from '../modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
 
 @Component({
   selector: 'app-modal-choix-personne',
@@ -22,6 +23,14 @@ export class ModalChoixPersonneComponent  implements OnInit{
   personne : IPatient | undefined
   scan_val: any | undefined;
   url : string =""
+
+  @ViewChild('barcodeScanner') barcodeScanner!: ModalCodebarreScanContinueComponent;
+
+  openBarcodeScanner(): void {
+    if (this.barcodeScanner) {
+      this.barcodeScanner.createMediaStream();
+    }
+  }
   
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
@@ -36,43 +45,21 @@ export class ModalChoixPersonneComponent  implements OnInit{
   
   ngOnInit(): void {
     this.barService.getCode().subscribe((dt) => {
+      if (!dt) return;
       this.scan_val = dt;
       this.myControl.setValue(this.scan_val); // Set the initial value in the search bar
-
       this.handleScanValChange(); // Trigger the search when scan_val changes
-
-      this.myControl.valueChanges.subscribe(() => {
-        this.handleScanValChange();
-      });
-
-      if (this.scan_val) {
-        // If scan_val is set, perform a search to get the corresponding libelle
-        this.servicePersonne
-          .getPatientsByNameOrId(this.scan_val)
-          .subscribe((response) => {
-            this.filteredOptions = response;
-
-            // Manually set the selected option in filteredOptions
-            const selectedOption = this.filteredOptions.find(
-              (option) => option.id === this.scan_val
-            );
-            if (selectedOption) {
-              this.filteredOptions = [selectedOption];
-              // this.dataSource.data = [selectedOption]; // Update the dataSource with the selected option
-            }
-          });
-      }
     });
 
     this.getAllPatients().subscribe(valeurs => {
-      this.filteredOptions = valeurs
+      this.filteredOptions = valeurs;
     });
 
     this.myControl.valueChanges.subscribe(
       value => {
-        const query = value?.toString().toLowerCase(); // Convert to lower case for case-insensitive search
+        const query = typeof value === 'string' ? value.toLowerCase() : value?.nom?.toLowerCase();
         if (query && query.length > 0) {
-          // Search by name or ID
+          // Search by name, ID or barcode
           this.servicePersonne
             .getPatientsByNameOrId(query)
             .subscribe((reponse) => {
@@ -82,18 +69,17 @@ export class ModalChoixPersonneComponent  implements OnInit{
         else{
           this.servicePersonne.getAllPatients().subscribe(
             (reponse) =>{
-              this.filteredOptions=reponse
+              this.filteredOptions=reponse;
             }
-          )
+          );
         }
-
       }
     );
-    const defaultValue = 'YourDefaultSearchValue'; // Replace with your desired default value
-    this.myControl.setValue(defaultValue);
   }
-  displayFn(user: IPatient): string {
-    return user && user.nom ? user.nom: '';
+
+  displayFn(user: any): string {
+    if (!user) return '';
+    return typeof user === 'string' ? user : (user.nom || '');
   }
 
   private getAllPatients(){
@@ -162,13 +148,17 @@ export class ModalChoixPersonneComponent  implements OnInit{
         .getPatientsByNameOrId(this.scan_val)
         .subscribe((response) => {
           this.filteredOptions = response;
-
-          // Manually set the selected option in filteredOptions
-          const selectedOption = this.filteredOptions.find(
-            (option) => option.id === this.scan_val
-          );
-          if (selectedOption) {
-            this.filteredOptions = [selectedOption];
+          if (response && response.length > 0) {
+            const selectedOption = response.find(
+              (option) =>
+                option.id === this.scan_val ||
+                option.qrCodeValue === this.scan_val
+            );
+            if (selectedOption) {
+              this.rechercherListingPersonnes(selectedOption);
+              this.myControl.setValue(selectedOption);
+              this.filteredOptions = [selectedOption];
+            }
           }
         });
     }

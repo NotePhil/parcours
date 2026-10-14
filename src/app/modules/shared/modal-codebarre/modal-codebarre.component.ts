@@ -128,6 +128,7 @@ export class ModalCodebarreComponent implements AfterViewInit, OnDestroy {
   }
 
   closeModal(): void {
+    this.stopScanner();
     this.dialogRef.close(); // Close the modal
   }
 }

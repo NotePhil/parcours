@@ -4,6 +4,9 @@ import {
   ViewChild,
   AfterViewInit,
   OnDestroy,
+  Output,
+  Input,
+  EventEmitter,
 } from '@angular/core';
 import { BrowserMultiFormatReader, DecodeHintType } from '@zxing/library';
 import { Subscription } from 'rxjs';
@@ -18,17 +21,21 @@ export class ModalCodebarreScanContinueComponent
   implements AfterViewInit, OnDestroy
 {
   @ViewChild('video', { static: false }) video!: ElementRef;
+  @Input() autoCloseOnScan: boolean = false;
+  @Output() close = new EventEmitter<void>();
+
   isCameraOpen = false;
   mediaStream: MediaStream | undefined;
   scannerSubscription: Subscription | undefined;
+  private codeReader: BrowserMultiFormatReader = new BrowserMultiFormatReader(undefined, 500);
 
   constructor(private barService: ModalCodebarreService) {}
 
   ngAfterViewInit(): void {
-    // Initially, the camera is not opened. You can call createMediaStream() externally to open it.
+    // Initial state: camera is closed until createMediaStream() is called
   }
 
-  // Make this method public so it can be called from outside
+  // Ouvre le flux vidéo et lance la lecture des codes-barres
   createMediaStream(): void {
     if (!this.isCameraOpen) {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -50,30 +57,59 @@ export class ModalCodebarreScanContinueComponent
   }
 
   scanMultipleCodes(): void {
-    const codeReader = new BrowserMultiFormatReader(undefined, 500);
     const hints = new Map<DecodeHintType, any[]>();
     hints.set(DecodeHintType.TRY_HARDER, [true]);
-    codeReader.hints = hints;
+    this.codeReader.hints = hints;
 
-    codeReader
+    this.codeReader
       .decodeFromInputVideoDevice(undefined, this.video.nativeElement)
       .then((result) => {
-        // Handle successful scan
+        // Traitement du résultat scanné
         this.handleScanResult(result.getText());
         this.playBeep();
+        if (this.autoCloseOnScan) {
+          this.stopScanner();
+        } else if (this.isCameraOpen) {
+          // Relance après un court délai pour scan continu
+          setTimeout(() => {
+            if (this.isCameraOpen) {
+              this.scanMultipleCodes();
+            }
+          }, 1500);
+        }
       })
       .catch((err) => {
         console.error('Error while scanning:', err);
       });
   }
 
+  // Désactive complètement la caméra et masque l'interface de scan
   stopScanner(): void {
     this.isCameraOpen = false;
-    const tracks: MediaStreamTrack[] | null =
-      this.video.nativeElement.srcObject?.getTracks();
-    if (tracks) {
-      tracks.forEach((track: MediaStreamTrack) => track.stop()); // Stop all tracks in the stream
+    if (this.codeReader) {
+      try {
+        this.codeReader.reset();
+      } catch (e) {
+        console.warn('Error resetting codeReader', e);
+      }
     }
+    const tracks: MediaStreamTrack[] | null =
+      this.video?.nativeElement?.srcObject?.getTracks();
+    if (tracks) {
+      tracks.forEach((track: MediaStreamTrack) => track.stop());
+    }
+    if (this.mediaStream) {
+      this.mediaStream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
+      this.mediaStream = undefined;
+    }
+    if (this.video?.nativeElement) {
+      this.video.nativeElement.srcObject = null;
+    }
+    this.close.emit();
+  }
+
+  closeScanner(): void {
+    this.stopScanner();
   }
 
   ngOnDestroy(): void {
@@ -81,7 +117,6 @@ export class ModalCodebarreScanContinueComponent
   }
 
   private handleScanResult(data: string): void {
-    // Process the scanned result
     this.barService.setCode(data);
   }
 

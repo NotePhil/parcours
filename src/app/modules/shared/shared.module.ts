@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -91,6 +92,7 @@ import { ModalGrapheParcoursComponent } from './modal-graphe-parcours/modal-grap
     ModalRoleValidationComponent,
     ModalRessourceAttributsComponent,
     ModalChoixDocumentsComponent,
+    DragDropModule,
   ],
   imports: [
     CommonModule,
@@ -111,6 +113,7 @@ import { ModalGrapheParcoursComponent } from './modal-graphe-parcours/modal-grap
     MatSelectModule,
     MatButtonModule,
     MatMenuModule,
+    DragDropModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

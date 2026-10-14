@@ -46,11 +46,13 @@ export class PatientsService {
       map((patients) => {
         const lowerCaseQuery = query.toLowerCase();
 
-        // Filtrer par ID ou nom
+        // Filtrer par ID, nom, prenom ou qrCodeValue (code-barre)
         return patients.filter(
           (p) =>
-            p.id!.toString().startsWith(query) ||
-            p.nom.toLowerCase().startsWith(lowerCaseQuery)
+            (p.id && p.id.toString().toLowerCase().startsWith(lowerCaseQuery)) ||
+            (p.nom && p.nom.toLowerCase().startsWith(lowerCaseQuery)) ||
+            (p.prenom && p.prenom.toLowerCase().startsWith(lowerCaseQuery)) ||
+            (p.qrCodeValue && p.qrCodeValue.toLowerCase().startsWith(lowerCaseQuery))
         );
       })
     );
@@ -61,7 +63,7 @@ export class PatientsService {
       switchMap((patients) => {
         const lowerCaseQuery = query.toLowerCase();
         const matchingPatients = patients.filter((p) =>
-          p.qrCodeValue.toLowerCase().startsWith(lowerCaseQuery)
+          p.qrCodeValue && p.qrCodeValue.toLowerCase().startsWith(lowerCaseQuery)
         );
 
         console.log("Matching patients by QR code:", matchingPatients);

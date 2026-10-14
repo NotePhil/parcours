@@ -1,4 +1,7 @@
-<div>
-  <video #video class="modal-vid"></video>
-  <button class="close-button" (click)="closeModal()">Close</button>
+<div #dialogContainer class="draggable-modal" cdkDrag style="position: absolute; top: 100px; left: 100px; background: white; border: 1px solid #ccc; padding: 5px; z-index: 10000; border-radius: 6px;">
+  <div class="drag-handle" cdkDragHandle style="cursor: move; background: #28a745; color: white; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; border-radius: 4px;">
+    <span><i class="fas fa-barcode mr-1"></i> Scanner Code-barre</span>
+    <button class="close-button" (click)="closeModal()" style="background: none; border: none; color: white; font-weight: bold; cursor: pointer;">✕</button>
+  </div>
+  <video #video class="modal-vid" autoplay playsinline muted></video>
 </div>

@@ -2,7 +2,7 @@
   <h2>{{'document.exemplaire.text8' | translate}}</h2>
   <form class="example-form-entete champsSelect w-100">
     <input class="w-100" placeholder="{{'patient.search-bar' | translate}}" type="text" matInput aria-label="Rechercher"
-      [formControl]="myControl" [value]="scan_val" [matAutocomplete]="auto">
+      [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
       <mat-option *ngFor="let option of filteredOptions" [value]="option"
         (onSelectionChange)="rechercherListingPersonnes(option)"
@@ -11,7 +11,10 @@
         'dd-mm-yyyy'}}
       </mat-option>
     </mat-autocomplete>
-    <div class="cameraBlock"><app-modal-codebarre-scan-continue></app-modal-codebarre-scan-continue></div>
+    <div class="cameraBlock d-flex align-items-center">
+      <app-modal-codebarre-scan-continue #barcodeScanner></app-modal-codebarre-scan-continue>
+      <i class="fas fa-camera fa-2x icon text-success ml-2" style="cursor: pointer;" (click)="openBarcodeScanner()" title="Scanner un code-barre"></i>
+    </div>
   </form>
   <div *ngIf="this.personne != undefined" class="affichePersonne">
     <p>
