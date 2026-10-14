@@ -87,11 +87,12 @@ export class RessourcesService {
       map((resources) => {
         const lowerCaseQuery = query.toLowerCase();
 
-        // Filter by ID or name
+        // Filter by ID, libelle, or scanBarCode
         return resources.filter(
           (p) =>
-            p.libelle.toLowerCase().startsWith(query.toLowerCase()) ||
-            p.scanBarCode.toLowerCase().startsWith(lowerCaseQuery)
+            (p.id && p.id.toString().toLowerCase().startsWith(lowerCaseQuery)) ||
+            (p.libelle && p.libelle.toLowerCase().startsWith(lowerCaseQuery)) ||
+            (p.scanBarCode && p.scanBarCode.toString().toLowerCase().startsWith(lowerCaseQuery))
         );
       })
     );

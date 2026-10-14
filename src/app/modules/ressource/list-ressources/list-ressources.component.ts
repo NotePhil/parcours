@@ -13,6 +13,8 @@ import { IFamille } from 'src/app/modele/famille';
 import { FamillesService } from 'src/app/services/familles/familles.service';
 import { IElements } from 'src/app/modele/elements';
 import { PassActionService } from 'src/app/services/actions-view/pass-action.service';
+import { ModalCodebarreService } from '../../shared/modal-codebarre/modal-codebarre.service';
+import { ModalCodebarreScanContinueComponent } from '../../shared/modal-codebarre-scan-continue/modal-codebarre-scan-continue.component';
 
 @Component({
   selector: 'app-list-ressources',
@@ -51,6 +53,16 @@ export class ListRessourcesComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
+  @ViewChild('barcodeScanner', { static: false })
+  barcodeScanner!: ModalCodebarreScanContinueComponent;
+  scan_val: any | undefined;
+
+  openBarcodeScanner(): void {
+    if (this.barcodeScanner) {
+      this.barcodeScanner.createMediaStream();
+    }
+  }
+
   constructor(
     private translate: TranslateService,
     private router: Router,
@@ -58,7 +70,8 @@ export class ListRessourcesComponent implements OnInit {
     private serviceFamille:FamillesService,
     private serviceRessource: RessourcesService,
     private _liveAnnouncer: LiveAnnouncer,
-    private actionsview: PassActionService
+    private actionsview: PassActionService,
+    private barService: ModalCodebarreService
   ) {
     this.forme = formBuilder.group({
           min: [undefined],
@@ -111,11 +124,18 @@ export class ListRessourcesComponent implements OnInit {
 
     });
 
+    this.barService.getCode().subscribe((dt) => {
+      if (!dt) return;
+      this.scan_val = dt;
+      this.myControl.setValue(this.scan_val);
+      this.handleScanValChange();
+    });
+
     this.myControl.valueChanges.subscribe((value) => {
-      const libelle = typeof value === 'string' ? value : value?.libelle;
-      if (libelle != undefined && libelle?.length > 0) {
+      const query = typeof value === 'string' ? value.toLowerCase() : value?.libelle?.toLowerCase();
+      if (query != undefined && query.length > 0) {
         this.serviceRessource
-          .getRessourcesByLibelle(libelle.toLowerCase() as string)
+          .getRessourcesByScanBarCodeorLibelle(query)
           .subscribe((reponse) => {
             this.filteredOptions = reponse;
           });
@@ -125,6 +145,32 @@ export class ListRessourcesComponent implements OnInit {
         });
       }
     });
+  }
+
+  private handleScanValChange() {
+    if (this.scan_val) {
+      this.serviceRessource
+        .getRessourcesByScanBarCodeorLibelle(this.scan_val)
+        .subscribe((response) => {
+          if (response && response.length > 0) {
+            this.dataSource.data = response;
+            this.filteredOptions = response;
+            const exactMatch = response.find(
+              (r) =>
+                r.id === this.scan_val ||
+                (r.scanBarCode && r.scanBarCode.toString() === this.scan_val) ||
+                r.libelle.toLowerCase() === this.scan_val.toLowerCase()
+            );
+            if (exactMatch) {
+              this.myControl.setValue(exactMatch);
+              this.dataSource.data = [exactMatch];
+            }
+          } else {
+            this.dataSource.data = [];
+            this.filteredOptions = [];
+          }
+        });
+    }
   }
 
   private getAllRessources() {
