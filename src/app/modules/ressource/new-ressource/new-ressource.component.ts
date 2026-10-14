@@ -25,10 +25,10 @@ import { ModalRessourceAttributsComponent } from '../../shared/modal-ressource-a
 export class NewRessourceComponent implements OnInit {
   ressource: IRessource | undefined;
   forme: FormGroup;
-  btnLibelle: string="Enregistrer";
-  submitted: boolean=false;
-  unites : String[] = [];
-  IdRessource:string= ""
+  btnLibelle: string = "Enregistrer";
+  submitted: boolean = false;
+  unites: String[] = [];
+  IdRessource: string = ""
   ELEMENTS_TABLE_ATTRIBUTS_SELECT: any[] = [];
   filteredOptions: IFamille[] | undefined;
   dataSource = new MatTableDataSource<IFamille>();
@@ -50,7 +50,7 @@ export class NewRessourceComponent implements OnInit {
     private serviceRessource: RessourcesService,
     private serviceFamille: FamillesService,
     private router: Router,
-    private dialogDef : MatDialog,
+    private dialogDef: MatDialog,
     private infosPath: ActivatedRoute,
     private datePipe: DatePipe
   ) {
@@ -113,10 +113,10 @@ export class NewRessourceComponent implements OnInit {
             famille: this.ressource.famille,
             scanBarcode: this.ressource?.scanBarCode,
           });
-          if (this.ressource.caracteristiques != undefined) {
-            this.ELEMENTS_TABLE_ATTRIBUTS_SELECT = this.ressource.caracteristiques
-          }
-          this.dataEnteteMenuService.dataDocumentRessourcesAttributs = this.ELEMENTS_TABLE_ATTRIBUTS_SELECT;
+        if (this.ressource.caracteristiques != undefined) {
+          this.ELEMENTS_TABLE_ATTRIBUTS_SELECT = this.ressource.caracteristiques
+        }
+        this.dataEnteteMenuService.dataDocumentRessourcesAttributs = this.ELEMENTS_TABLE_ATTRIBUTS_SELECT;
       });
     } else {
       this.dataEnteteMenuService.dataDocumentRessourcesAttributs = []
@@ -134,34 +134,36 @@ export class NewRessourceComponent implements OnInit {
   /**
    * Methode permettant d'ouvrir la modal de selection des attributs de la ressource
    */
-  openAttributDialog(){
+  openAttributDialog() {
     this.dataEnteteMenuService.dataDocumentRessourcesAttributs = this.ELEMENTS_TABLE_ATTRIBUTS_SELECT;
 
     const dialogRef = this.dialogDef.open(ModalRessourceAttributsComponent,
-    {
-      width:'100%',
-      height:'100%',
-      enterAnimationDuration:'1000ms',
-      exitAnimationDuration:'1000ms'
-    }
+      {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        width: '100%',
+        height: '100%',
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '1000ms'
+      }
     )
 
     dialogRef.afterClosed().subscribe(result => {
-      this.ELEMENTS_TABLE_ATTRIBUTS_SELECT =  this.dataEnteteMenuService.dataDocumentRessourcesAttributs      
+      this.ELEMENTS_TABLE_ATTRIBUTS_SELECT = this.dataEnteteMenuService.dataDocumentRessourcesAttributs
     });
-    
+
   }
-  return(){
+  return() {
     this.router.navigate(['parcours/ressources/list-ressources']);
   }
 
-  onSubmit(ressourceInput:IRessource){
-    this.submitted=true;
-    if(this.forme.invalid) return console.log("error azertyuiop", this.forme.invalid);
+  onSubmit(ressourceInput: IRessource) {
+    this.submitted = true;
+    if (this.forme.invalid) return console.log("error azertyuiop", this.forme.invalid);
 
-    let styleAtt : any = this.ELEMENTS_TABLE_ATTRIBUTS_SELECT;
+    let styleAtt: any = this.ELEMENTS_TABLE_ATTRIBUTS_SELECT;
 
-    let ressourceTemp : IRessource={
+    let ressourceTemp: IRessource = {
       // id optional
       libelle: ressourceInput.libelle,
       etat: ressourceInput.etat,
@@ -172,8 +174,9 @@ export class NewRessourceComponent implements OnInit {
       prixSortie: ressourceInput.prixSortie,
       famille: ressourceInput.famille,
       caracteristiques: styleAtt,
-      scanBarCode: this.forme.get('scanBarcode')?.value   };
-    if(this.ressource != undefined){
+      scanBarCode: this.forme.get('scanBarcode')?.value
+    };
+    if (this.ressource != undefined) {
       ressourceTemp.id = this.ressource.id
       ressourceTemp.version = this.ressource?.version;
     }
@@ -182,7 +185,7 @@ export class NewRessourceComponent implements OnInit {
       .subscribe((object) => {
         this.router.navigate(['parcours/ressources/list-ressources']);
       }
-    )
+      )
     this.dataEnteteMenuService.dataDocumentRessourcesAttributs = []
 
   }
