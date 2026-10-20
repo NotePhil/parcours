@@ -109,7 +109,7 @@
                                                         [ngModelOptions]="{standalone: true}" multiple>
                                                         <mat-option *ngFor="let etat of effaceEtatCourrant(element)"
                                                             (click)="ngAfterViewInit()"
-                                                            [value]="etat.etat">{{etat.etat?.libelle}}</mat-option>
+                                                            [value]="etat">{{etat.etat.libelle}}</mat-option>
                                                     </mat-select>
                                                 </div>
                                                 <div class="coverFull" *ngIf="i == 0">

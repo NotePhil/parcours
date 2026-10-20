@@ -259,7 +259,25 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
 
   // Sauvegarde des etats selectionnes dans le service de donnees
   onSave() {
-    this.donneeDocEtatService.dataDocumentEtats = this.localElementTableDocEtats;
+    this.donneeDocEtatService.dataDocumentEtats = this.localElementTableDocEtats.map(
+      (docEtat) => this.withDirectPredecessors(docEtat)
+    );
+  }
+
+  private withDirectPredecessors(docEtat: IDocEtats): IDocEtats {
+    const { predecesseurDocEtat, ...docEtatWithoutPredecessors } = docEtat;
+
+    if (!predecesseurDocEtat || predecesseurDocEtat.length === 0) {
+      return docEtatWithoutPredecessors;
+    }
+
+    return {
+      ...docEtatWithoutPredecessors,
+      predecesseurDocEtat: predecesseurDocEtat.map((predecesseur) => {
+        const { predecesseurDocEtat: _, ...directPredecesseur } = predecesseur;
+        return directPredecesseur;
+      }),
+    };
   }
 
   private assignPaginators() {
