@@ -77,6 +77,21 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
     );
     this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocEtatService.dataDocumentEtats || [];
     this.localElementTableDocEtats = [...this.ELEMENTS_TABLE_DOC_ETATS]; // Initialize the local variable with the existing data
+    this.localElementTableDocEtats.forEach(docEtat => {
+      if (docEtat.predecesseurDocEtat && docEtat.predecesseurDocEtat.length > 0) {
+        docEtat.predecesseurDocEtat = docEtat.predecesseurDocEtat.map((pred: any) => {
+          if (pred && !pred.etat) {
+            const match = this.localElementTableDocEtats.find(de => de.etat?.id === pred.id);
+            return match || {
+              etat: pred,
+              ordre: 0,
+              dateCreation: new Date()
+            };
+          }
+          return pred;
+        });
+      }
+    });
     this.dataSourceDocEtats.data = this.localElementTableDocEtats;
 
     this.etatControl.valueChanges.subscribe((value) => {
@@ -156,10 +171,8 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
     }
     if (!tabIdEtats.includes(option.id!)) {
       let docEtat: IDocEtats = {
-        // MODIFICATION: Un id ne doit pas être attribué à docEtat lors de sa création. Le docEtat à enregistrer ne doit pas contenir d'identifiant.
-        // id: option.id,
         etat: option,
-        ordre: 0,
+        ordre: this.localElementTableDocEtats.length + 1,
         dateCreation: new Date()
       };
       // Ajout dans la liste locale des etats du document
@@ -204,10 +217,22 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
    * Retire un etat selectionne du deuxieme tableau (dataSourceDocEtats)
    */
   retirerSelectionEtat(index: number) {
+    const removedItem = this.localElementTableDocEtats[index];
+    const removedEtatId = removedItem?.etat?.id;
+
     this.localElementTableDocEtats.splice(index, 1); // Retire l'element de la liste locale
-    if (this.localElementTableDocEtats.length > 0 && this.localElementTableDocEtats[0].etat) {
-      // this.localElementTableDocEtats[0].etat.etatPrecedant = undefined;
+
+    if (removedEtatId) {
+      this.localElementTableDocEtats.forEach(docEtat => {
+        if (docEtat.predecesseurDocEtat) {
+          docEtat.predecesseurDocEtat = docEtat.predecesseurDocEtat.filter(pred => {
+            const predId = pred.etat?.id || pred.id;
+            return predId !== removedEtatId;
+          });
+        }
+      });
     }
+
     // Mise a jour de la source de donnees du 2eme tableau
     this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
     this.renderMermaidGraph();

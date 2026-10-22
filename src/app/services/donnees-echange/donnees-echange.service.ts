@@ -157,24 +157,34 @@ export class DonneesEchangeService {
         return '';
       }
     }
-    if (etapes) {
+    if (etapes && etapes.length > 0) {
+      let hasEtapeTransitions = false;
       for (let i = 0; i < etapes.length; i++) {
-        if (etapes[i].etapeprecedant != null && etapes[i].etapeprecedant!.length > 0) {
-          for (let j = 0; j < etapes[i].etapeprecedant!.length; j++) {
+        const curr = etapes[i];
+        const currId = 'etape_' + (curr.id || `curr_${i}`).replace(/[^a-zA-Z0-9_]/g, '_');
+        const currLabel = escapeDocs(curr.libelle, curr.document).replace(/"/g, "'");
 
-            const label = escapeDocs(etapes[i].etapeprecedant![j].libelle, etapes[i].etapeprecedant![j].document);
-            const label1 = escapeDocs(etapes[i].libelle, etapes[i].document);
-            line += `${etapes[i].etapeprecedant![j].id}["${etapes[i].etapeprecedant![j].libelle}<br>${etapes[i].etapeprecedant![j].document?.map(doc => `- ${doc.titre}`).join('<br>')}"]-->${etapes[i].id}["${label1}"];`;
-            console.log("labels modal:", `${etapes[i].etapeprecedant![j].libelle}<br>${etapes[i].etapeprecedant![j].document?.map(doc => `- ${doc.titre}`).join('<br>')}`, label1);
+        if (curr.etapeprecedant != null && curr.etapeprecedant.length > 0) {
+          for (let j = 0; j < curr.etapeprecedant.length; j++) {
+            const pred = curr.etapeprecedant[j];
+            const predId = 'etape_' + (pred.id || `pred_${j}`).replace(/[^a-zA-Z0-9_]/g, '_');
+            const predLabel = escapeDocs(pred.libelle, pred.document).replace(/"/g, "'");
+            line += `${predId}["${predLabel}"]-->${currId}["${currLabel}"];\n`;
+            hasEtapeTransitions = true;
           }
         }
-        if (etapes[i].etapesuivant != null && etapes[i].etapesuivant!.length > 0) {
-          for (let j = 0; j < etapes[i].etapesuivant!.length; j++) {
-            line =
-              line +
-              `${etapes[i].id}[${etapes[i].libelle}]-->${etapes[i].etapesuivant![j].id}[${etapes[i].etapesuivant![j].libelle}];`;
+        if (curr.etapesuivant != null && curr.etapesuivant.length > 0) {
+          for (let j = 0; j < curr.etapesuivant.length; j++) {
+            const suiv = curr.etapesuivant[j];
+            const suivId = 'etape_' + (suiv.id || `suiv_${j}`).replace(/[^a-zA-Z0-9_]/g, '_');
+            const suivLabel = escapeDocs(suiv.libelle, suiv.document).replace(/"/g, "'");
+            line += `${currId}["${currLabel}"]-->${suivId}["${suivLabel}"];\n`;
+            hasEtapeTransitions = true;
           }
         }
+      }
+      if (!hasEtapeTransitions) {
+        return '';
       }
     }
     return line;

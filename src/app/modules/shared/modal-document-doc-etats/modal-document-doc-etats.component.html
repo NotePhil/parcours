@@ -109,8 +109,8 @@
                                                         [compareWith]="compareEtats"
                                                         (selectionChange)="renderMermaidGraph()"
                                                         [ngModelOptions]="{standalone: true}" multiple>
-                                                        <mat-option *ngFor="let etat of effaceEtatCourrant(element)"
-                                                            [value]="etat.etat">{{etat.etat?.libelle}}</mat-option>
+                                                        <mat-option *ngFor="let docEtatOption of effaceEtatCourrant(element)"
+                                                            [value]="docEtatOption">{{docEtatOption.etat?.libelle}}</mat-option>
                                                     </mat-select>
                                                 </div>
                                                 <div class="coverFull" *ngIf="i == 0">

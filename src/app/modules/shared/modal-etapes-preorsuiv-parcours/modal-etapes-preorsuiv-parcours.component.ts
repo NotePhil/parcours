@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,7 +15,7 @@ import { EtapesService } from 'src/app/services/etapes/etapes.service';
   templateUrl: './modal-etapes-preorsuiv-parcours.component.html',
   styleUrls: ['./modal-etapes-preorsuiv-parcours.component.scss']
 })
-export class ModalEtapesPreorsuivParcoursComponent implements OnInit {
+export class ModalEtapesPreorsuivParcoursComponent implements OnInit, AfterViewInit {
   @ViewChild('mermaidDivEtapesPar', { static: false })
     mermaidDivEtapesPar!: ElementRef;
   
@@ -58,15 +58,14 @@ export class ModalEtapesPreorsuivParcoursComponent implements OnInit {
           wrappingWidth: 150,
         },
       });
-      mermaid.run();
       this.serviceEtape.getAllEtapes().subscribe(
         (resultat) => {
           this.filteredOptions = resultat;
         }
       );
-      this.ELEMENTS_TABLE_PAR_ETAPES = this.donneeParEtapeService.dataParcoursEtapes;
+      this.ELEMENTS_TABLE_PAR_ETAPES = this.donneeParEtapeService.dataParcoursEtapes || [];
       this.localElementTableParEtapes = [...this.ELEMENTS_TABLE_PAR_ETAPES]; // Initialize the local variable with the existing data
-      this.dataSourceParEtapes.data = this.ELEMENTS_TABLE_PAR_ETAPES;
+      this.dataSourceParEtapes.data = this.localElementTableParEtapes;
   
       this.etapeControl.valueChanges.subscribe((value) => {
         const libelle = typeof value === 'string' ? value : value?.libelle;
@@ -86,23 +85,35 @@ export class ModalEtapesPreorsuivParcoursComponent implements OnInit {
         }
       });
     }
+
+    public async renderMermaidGraph(): Promise<void> {
+      if (!this.mermaidDivEtapesPar || !this.mermaidDivEtapesPar.nativeElement) {
+        return;
+      }
+      const element: HTMLElement = this.mermaidDivEtapesPar.nativeElement;
+
+      if (!this.localElementTableParEtapes || this.localElementTableParEtapes.length === 0) {
+        element.innerHTML = '';
+        return;
+      }
+
+      try {
+        const graphDefinition = this.donneeParEtapeService.genratedgraphe(undefined, this.localElementTableParEtapes);
+        if (!graphDefinition || graphDefinition.trim() === '' || graphDefinition.trim() === 'graph TB;') {
+          element.innerHTML = '';
+          return;
+        }
+        const uniqueId = 'mermaidEtapes_' + Math.random().toString(36).substring(2, 9);
+        const { svg, bindFunctions } = await mermaid.render(uniqueId, graphDefinition);
+        element.innerHTML = svg;
+        bindFunctions?.(element);
+      } catch (error) {
+        console.error('Erreur Mermaid modal-etapes-preorsuiv-parcours:', error);
+      }
+    }
   
     public async ngAfterViewInit(): Promise<void> {
-  
-      const element: any = this.mermaidDivEtapesPar.nativeElement;
-  
-  
-      if (this.localElementTableParEtapes != null && this.localElementTableParEtapes.length !== 0) {
-        if (this.localElementTableParEtapes.length > 0) {
-  
-          /* const { svg, bindFunctions } = await mermaid.render(
-            'graphDiv',
-            this.donneeParEtapeService.genratedgraphe(this.localElementTableParEtapes)
-          );
-          element.innerHTML = svg;
-          bindFunctions?.(element); */
-        }
-      }
+      await this.renderMermaidGraph();
     }
   
     public rechercherListingEtape(option: IEtape) {
@@ -124,10 +135,11 @@ export class ModalEtapesPreorsuivParcoursComponent implements OnInit {
           break;
         }
       }
-  if (!tabIdEtapes.includes(option.id!)) {
+      if (!tabIdEtapes.includes(option.id!)) {
         this.localElementTableParEtapes.push(option);
         this.dataSourceParEtapes.data = this.localElementTableParEtapes;
         this.selected = false;
+        this.renderMermaidGraph();
       }
     }
   
@@ -142,11 +154,19 @@ export class ModalEtapesPreorsuivParcoursComponent implements OnInit {
     displayFn(preco: IEtape): string {
       return preco && preco.libelle ? preco.libelle : '';
     }
+
+    compareEtapes(e1: any, e2: any): boolean {
+      if (!e1 || !e2) return e1 === e2;
+      return e1.id === e2.id;
+    }
   
     retirerSelectionEtape(index: number) {
       this.localElementTableParEtapes.splice(index, 1); // Remove the element from the local array
-      this.localElementTableParEtapes[0].etapeprecedant = undefined
+      if (this.localElementTableParEtapes.length > 0) {
+        this.localElementTableParEtapes[0].etapeprecedant = undefined;
+      }
       this.dataSourceParEtapes.data = this.localElementTableParEtapes; // Update the data source with the modified local array
+      this.renderMermaidGraph();
     }
   
   

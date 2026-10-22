@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import mermaid from 'mermaid';
@@ -12,7 +12,7 @@ import { DonneesEchangeService } from 'src/app/services/donnees-echange/donnees-
   templateUrl: './modal-graphe-parcours.component.html',
   styleUrls: ['./modal-graphe-parcours.component.scss']
 })
-export class ModalGrapheParcoursComponent implements OnInit {
+export class ModalGrapheParcoursComponent implements OnInit, AfterViewInit {
   @ViewChild('mermaidDivEtatsDoc', { static: false })
   mermaidDivEtatsDoc!: ElementRef;
 
@@ -35,7 +35,6 @@ export class ModalGrapheParcoursComponent implements OnInit {
         wrappingWidth: 150,
       },
     });
-    mermaid.run();
   }
 
   closeModal() {
@@ -43,18 +42,30 @@ export class ModalGrapheParcoursComponent implements OnInit {
   }
 
   public async ngAfterViewInit(): Promise<void> {
-
+    if (!this.mermaidDivEtatsDoc || !this.mermaidDivEtatsDoc.nativeElement) {
+      return;
+    }
     const element: any = this.mermaidDivEtatsDoc.nativeElement;
     let parcours: IParcours = this.data.parcour;
     console.log('Data modal :', parcours);
     if (parcours.etape != null && parcours.etape.length !== 0) {
       if (parcours.etape.length > 0) {
-        const { svg, bindFunctions } = await mermaid.render(
-          'graphDiv',
-          this.donneeDocEtatService.genratedgraphe(undefined, parcours.etape)
-        );
-        element.innerHTML = svg;
-        bindFunctions?.(element);
+        try {
+          const graphDefinition = this.donneeDocEtatService.genratedgraphe(undefined, parcours.etape);
+          if (!graphDefinition || graphDefinition.trim() === '' || graphDefinition.trim() === 'graph TB;') {
+            element.innerHTML = '';
+            return;
+          }
+          const uniqueId = 'mermaidParcours_' + Math.random().toString(36).substring(2, 9);
+          const { svg, bindFunctions } = await mermaid.render(
+            uniqueId,
+            graphDefinition
+          );
+          element.innerHTML = svg;
+          bindFunctions?.(element);
+        } catch (error) {
+          console.error('Erreur Mermaid modal-graphe-parcours:', error);
+        }
       }
     }
   }
