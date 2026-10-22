@@ -196,7 +196,7 @@ export class ListFormDocumentComponent implements OnInit, AfterViewInit {
     }
     if (x.docEtats) {
       x.docEtats.forEach(
-        de => afficheDocument.listDocEtats += de.etat.libelle + ", "
+        de => afficheDocument.listDocEtats += de.etat?.libelle + ", "
       )
     }
     // MODIFICATION: Formatage des documents associés à partir de la structure IDocumentsAssocies (da.document.titre)

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IDocument } from 'src/app/modele/document';
+import { IEtats } from 'src/app/modele/etats';
 import { GlobalVariables } from 'src/globalVariables';
 
 @Injectable({
@@ -44,8 +45,8 @@ export class DocumentService {
       );
   }
 
-  getAllEtatsPossiblesByDocumentId(documentId: string): Observable<string[]> {
-    return this.http.get<string[]>(this.param.api+ 'documents' + '/' + documentId+ '/etats-possibles');
+  getAllEtatsPossiblesByDocumentId(documentId: string): Observable<IEtats[]> {
+    return this.http.get<IEtats[]>(this.param.api+ 'documents' + '/' + documentId+ '/etats-possibles');
   }
 
   setSelectedEtat(documentId: string, etat: string) {

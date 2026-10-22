@@ -287,7 +287,7 @@
                                         </button>
                                         <p>
                                             <span *ngFor="let listeDocEtats of ELEMENTS_TABLE_DOC_ETATS">
-                                                {{listeDocEtats.etat.libelle | lowercase}}<span>, </span>
+                                                {{listeDocEtats.etat?.libelle | lowercase}}<span>, </span>
                                             </span>
                                         </p>
 
