@@ -1,4 +1,4 @@
-<div id="mainBlock" class="bg-light d-flex flex-wrap mainModaleSection">
+<div id="mainBlock" class="bg-light modalContentScroll mainModaleSection">
     <div>
         <form class="w-100" id="mainBlockDockEtat">
             <div class="form-group mt-5">
@@ -106,9 +106,10 @@
                                                 <div class="matSelectElement selectInputTab">
                                                     <mat-select [disabled]="i == 0"
                                                         [(ngModel)]="element.predecesseurDocEtat"
+                                                        [compareWith]="compareEtats"
+                                                        (selectionChange)="renderMermaidGraph()"
                                                         [ngModelOptions]="{standalone: true}" multiple>
                                                         <mat-option *ngFor="let etat of effaceEtatCourrant(element)"
-                                                            (click)="ngAfterViewInit()"
                                                             [value]="etat.etat">{{etat.etat?.libelle}}</mat-option>
                                                     </mat-select>
                                                 </div>
@@ -166,5 +167,5 @@
             </div>
         </form>
     </div>
-    <div class="d-flex align-items-center" #mermaidDivEtatsDoc></div>
+    <div class="d-flex justify-content-center align-items-center w-100 my-4" #mermaidDivEtatsDoc></div>
 </div>

@@ -122,27 +122,41 @@ export class DonneesEchangeService {
       return docLines ? `${libelle}<br>${docLines}` : libelle;
     };
 
-    let line = `graph TB;`;
+    let line = `graph TB;\n`;
 
-    // if (etats) {
-    //   for (let i = 0; i < etats.length; i++) {
-    //     if (etats[i].etat.etatPrecedant != null && etats[i].etat.etatPrecedant!.length > 0) {
-    //       for (let j = 0; j < etats[i].etat.etatPrecedant!.length; j++) {
+    if (etats && etats.length > 0) {
+      let hasTransitions = false;
 
-    //         line =
-    //           line +
-    //           `${etats[i].etat.etatPrecedant![j].id}[${etats[i].etat.etatPrecedant![j].libelle}]-->${etats[i].etat.id}[${etats[i].etat.libelle}];`;
-    //       }
-    //     }
-    //     if (etats[i].etat.etatSuivant != null && etats[i].etat.etatSuivant!.length > 0) {
-    //       for (let j = 0; j < etats[i].etat.etatSuivant!.length; j++) {
-    //         line =
-    //           line +
-    //           `${etats[i].etat.id}[${etats[i].etat.libelle}]-->${etats[i].etat.etatSuivant![j].id}[${etats[i].etat.etatSuivant![j].libelle}];`;
-    //       }
-    //     }
-    //   }
-    // }
+      // Créer uniquement les transitions depuis les prédécesseurs vers l'état courant
+      for (let i = 0; i < etats.length; i++) {
+        const current = etats[i];
+        const currentEtat = current.etat;
+        if (!currentEtat) continue;
+
+        const currentId = currentEtat.id || `etat_${i}`;
+        const currentCleanId = 'node_' + currentId.replace(/[^a-zA-Z0-9_]/g, '_');
+        const currentCleanLibelle = (currentEtat.libelle || '').replace(/"/g, "'");
+
+        if (current.predecesseurDocEtat && current.predecesseurDocEtat.length > 0) {
+          for (let j = 0; j < current.predecesseurDocEtat.length; j++) {
+            const pred: any = current.predecesseurDocEtat[j];
+            const predEtat = pred.etat ? pred.etat : pred;
+            if (predEtat) {
+              const predId = predEtat.id || `pred_${j}`;
+              const predCleanId = 'node_' + predId.replace(/[^a-zA-Z0-9_]/g, '_');
+              const predCleanLibelle = (predEtat.libelle || '').replace(/"/g, "'");
+              line += `${predCleanId}["${predCleanLibelle}"]-->${currentCleanId}["${currentCleanLibelle}"];\n`;
+              hasTransitions = true;
+            }
+          }
+        }
+      }
+
+      // S'il n'y a aucune transition définie (aucun prédécesseur), aucun graphe ne doit être affiché
+      if (!hasTransitions) {
+        return '';
+      }
+    }
     if (etapes) {
       for (let i = 0; i < etapes.length; i++) {
         if (etapes[i].etapeprecedant != null && etapes[i].etapeprecedant!.length > 0) {

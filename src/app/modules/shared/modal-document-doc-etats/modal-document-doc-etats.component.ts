@@ -68,7 +68,6 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
         wrappingWidth: 150,
       },
     });
-    mermaid.run();
     this.serviceEtat.getAllEtats().subscribe(
       (resultat) => {
         this.filteredOptions = resultat;
@@ -101,24 +100,36 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  public async renderMermaidGraph(): Promise<void> {
+    if (!this.mermaidDivEtatsDoc || !this.mermaidDivEtatsDoc.nativeElement) {
+      return;
+    }
+    const element: HTMLElement = this.mermaidDivEtatsDoc.nativeElement;
+
+    if (!this.localElementTableDocEtats || this.localElementTableDocEtats.length === 0) {
+      element.innerHTML = '';
+      return;
+    }
+
+    try {
+      const graphDefinition = this.donneeDocEtatService.genratedgraphe(this.localElementTableDocEtats);
+      if (!graphDefinition || graphDefinition.trim() === '' || graphDefinition.trim() === 'graph TB;') {
+        element.innerHTML = '';
+        return;
+      }
+      const uniqueId = 'mermaidEtats_' + Math.random().toString(36).substring(2, 9);
+      const { svg, bindFunctions } = await mermaid.render(uniqueId, graphDefinition);
+      element.innerHTML = svg;
+      bindFunctions?.(element);
+    } catch (error) {
+      console.error('Erreur lors du rendu du graphe Mermaid :', error);
+    }
+  }
+
   public async ngAfterViewInit(): Promise<void> {
     this.paginators.changes.subscribe(() => this.assignPaginators());
     this.assignPaginators();
-
-    const element: any = this.mermaidDivEtatsDoc.nativeElement;
-
-
-    if (this.localElementTableDocEtats != null && this.localElementTableDocEtats.length !== 0) {
-      if (this.localElementTableDocEtats.length > 0) {
-
-        const { svg, bindFunctions } = await mermaid.render(
-          'graphDiv',
-          this.donneeDocEtatService.genratedgraphe(this.localElementTableDocEtats)
-        );
-        element.innerHTML = svg;
-        bindFunctions?.(element);
-      }
-    }
+    await this.renderMermaidGraph();
   }
 
   /**
@@ -156,6 +167,7 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
       // Mise a jour du 2eme tableau (dataSourceDocEtats)
       this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
       this.selected = false;
+      this.renderMermaidGraph();
     }
   }
 
@@ -198,6 +210,7 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
     }
     // Mise a jour de la source de donnees du 2eme tableau
     this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
+    this.renderMermaidGraph();
   }
 
 
@@ -237,10 +250,20 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
         if (elemId === targetEtatId) {
           element.validation = selectedValidation;
           this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
+          this.renderMermaidGraph();
           break;
         }
       }
     });
+  }
+
+  compareEtats(e1: any, e2: any): boolean {
+    if (!e1 || !e2) {
+      return e1 === e2;
+    }
+    const id1 = e1.id || e1.etat?.id;
+    const id2 = e2.id || e2.etat?.id;
+    return id1 !== undefined && id2 !== undefined ? id1 === id2 : e1 === e2;
   }
 
   initialiseValidationControl(validation: IValidation) {
