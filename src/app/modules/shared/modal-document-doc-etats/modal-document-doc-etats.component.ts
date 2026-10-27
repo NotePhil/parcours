@@ -76,23 +76,30 @@ export class ModalDocEtatsComponent implements OnInit, AfterViewInit {
       }
     );
     this.ELEMENTS_TABLE_DOC_ETATS = this.donneeDocEtatService.dataDocumentEtats || [];
-    this.localElementTableDocEtats = [...this.ELEMENTS_TABLE_DOC_ETATS]; // Initialize the local variable with the existing data
+    // Copie independante de chaque docEtat pour eviter les mutations sur l'original
+    this.localElementTableDocEtats = this.ELEMENTS_TABLE_DOC_ETATS.map(docEtat => ({
+      ...docEtat,
+      predecesseurDocEtat: Array.isArray(docEtat.predecesseurDocEtat)
+        ? [...docEtat.predecesseurDocEtat]
+        : []
+    }));
+    // Re-mapper les predecesseurDocEtat vers les instances locales :
+    // le mat-select compare par reference (ou via compareWith), donc les options affichees
+    // et les valeurs selectionnees doivent pointer vers les memes objets de localElementTableDocEtats
     this.localElementTableDocEtats.forEach(docEtat => {
       if (docEtat.predecesseurDocEtat && docEtat.predecesseurDocEtat.length > 0) {
         docEtat.predecesseurDocEtat = docEtat.predecesseurDocEtat.map((pred: any) => {
-          if (pred && !pred.etat) {
-            const match = this.localElementTableDocEtats.find(de => de.etat?.id === pred.id);
-            return match || {
-              etat: pred,
-              ordre: 0,
-              dateCreation: new Date()
-            };
-          }
-          return pred;
+          // Recuperer l'id du predecesseur qu'il soit un IDocEtats complet ou un objet partiel
+          const predEtatId = pred.etat?.id ?? pred.id;
+          // Rechercher l'instance locale correspondante dans localElementTableDocEtats
+          const localMatch = this.localElementTableDocEtats.find(
+            de => de.etat?.id === predEtatId
+          );
+          return localMatch ?? pred;
         });
       }
     });
-    this.dataSourceDocEtats.data = this.localElementTableDocEtats;
+    this.dataSourceDocEtats.data = [...this.localElementTableDocEtats];
 
     this.etatControl.valueChanges.subscribe((value) => {
       const libelle = typeof value === 'string' ? value : value?.libelle;
