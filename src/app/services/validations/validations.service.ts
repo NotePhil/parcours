@@ -18,12 +18,7 @@ export class ValidationsService {
   }
 
   getValidationById(id:string):Observable<IValidation >{
-    return this.getAllValidations().pipe(
-      map(x=>
-        {
-          return x.find(m=>m.id==id) as IValidation 
-        })
-    );
+    return this.http.get<IValidation>(this.param.api + 'validations/' + id).pipe(map((x) => x));
   }
   
   getValidationByCode(code:string): Observable<IValidation[]> {

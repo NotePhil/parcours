@@ -19,11 +19,7 @@ export class EtapesService {
   }
 
   getEtapeById(id: string): Observable<IEtape> {
-    return this.getAllEtapes().pipe(
-      map((x) => {
-        return x.find((p) => p.id === id) as IEtape;
-      })
-    );
+    return this.http.get<IEtape>(this.param.api + 'etapes/' + id).pipe(map((x) => x));
   }
 
   getEtapesBylibelle(libelle: string): Observable<IEtape[]> {

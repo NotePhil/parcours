@@ -19,11 +19,7 @@ export class PersonnelsService {
   }
 
   getPersonnelById(id: string): Observable<IPersonnel> {
-    return this.getAllPersonnels().pipe(
-      map((x) => {
-        return x.find((p) => p.id == id) as IPersonnel;
-      })
-    );
+    return this.http.get<IPersonnel>(this.param.api + 'personnels/' + id).pipe(map((x) => x));
   }
 
   getPersonnelsByName(nom: string): Observable<IPersonnel[]> {

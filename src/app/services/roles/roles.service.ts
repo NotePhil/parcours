@@ -19,12 +19,7 @@ export class RolesService {
   }
 
   getRoleById(id:string):Observable<IRole>{
-    return this.getAllRoles().pipe(
-      map(x=>
-        {
-          return x.find(p=>p.id==id) as IRole
-        })
-    );
+    return this.http.get<IRole>(this.param.api + 'roles/' + id).pipe(map((x) => x));
   }
 
    getRolesBytitre(titre:string): Observable<IRole[]> {

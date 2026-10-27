@@ -27,11 +27,7 @@ export class ExemplaireDocumentService {
   }
 
   getExemplaireDocumentById(id: string): Observable<IExemplaireDocument> {
-    return this.getAllExemplaireDocuments().pipe(
-      map((x) => {
-        return x.find((d) => d.id == id) as IExemplaireDocument;
-      })
-    );
+    return this.http.get<IExemplaireDocument>(this.param.api + 'exemplaires/' + id).pipe(map((x) => x));
   }
 
   getExemplaireDocumentByOrder(exemplaire: IExemplaireDocument, doc: IDocument) {

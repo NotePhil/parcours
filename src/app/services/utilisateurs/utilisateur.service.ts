@@ -19,11 +19,7 @@ export class UtilisateurService {
   }
 
   getUtilisateurById(id: string): Observable<IUtilisateurs> {
-    return this.getAllUtilisateurs().pipe(
-      map((x) => {
-        return x.find((p) => p.id == id) as IUtilisateurs;
-      })
-    );
+    return this.http.get<IUtilisateurs>('api/utilisateurs/' + id).pipe(map((x) => x));
   }
 
   getUtilisateurByMail(mail: string): Observable<IUtilisateurs> {

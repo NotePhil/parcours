@@ -22,11 +22,7 @@ export class RessourcesService {
   }
 
   getRessourceById(id: string): Observable<IRessource> {
-    return this.getAllRessources().pipe(
-      map((x) => {
-        return x.find((p) => p.id == id) as IRessource;
-      })
-    );
+    return this.http.get<IRessource>(this.param.api + 'ressources/' + id).pipe(map((x) => x));
   }
 
   getRessourcesByLibelle(libelle: string): Observable<IRessource[]> {

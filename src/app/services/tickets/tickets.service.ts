@@ -22,12 +22,7 @@ export class TicketsService {
   }
 
   getTicketById(id:string):Observable<ITicket>{
-    return this.getAllTickets().pipe(
-      map(x=>
-        {
-          return x.find(p=>p.id==id) as ITicket
-        })
-    );
+    return this.http.get<ITicket>(this.param.api + 'tickets/' + id).pipe(map((x) => x));
   }
   getTicketByIdUnique(uniqueId:string): Observable<ITicket[]> {
    return this.http.get<ITicket[]>(this.param.api+ 'tickets').pipe(

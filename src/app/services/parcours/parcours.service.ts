@@ -17,11 +17,7 @@ export class ParcoursService {
   }
 
   getParcoursById(id: string): Observable<IParcours> {
-    return this.getAllParcours().pipe(
-      map((x) => {
-        return x.find((p) => p.id == id) as IParcours;
-      })
-    );
+    return this.http.get<IParcours>(this.param.api + 'parcours/' + id).pipe(map((x) => x));
   }
 
   getParcoursBylibelle(libelle: string): Observable<IParcours[]> {

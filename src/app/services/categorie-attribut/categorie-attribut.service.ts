@@ -17,12 +17,7 @@ export class CategorieAttributService {
   }
 
   getCategoriesAttributsById(id:string):Observable<ICategoriesAttributs>{
-    return this.getAllCategoriesAttributs().pipe(
-      map(x=>
-        {
-          return x.find(d=>d.id==id) as ICategoriesAttributs 
-        })
-    );
+    return this.http.get<ICategoriesAttributs>(this.param.api + 'categoriesAttributs/' + id).pipe(map((x) => x));
   }
   
   getCategoriesAttributsByLibelle(libelle:string): Observable<ICategoriesAttributs[]> {

@@ -17,12 +17,7 @@ export class MouvementCaisseService {
   }
 
   getMvtCaisseById(id:string):Observable<IMouvementCaisses>{
-    return this.getAllMvtCaisse().pipe(
-      map(x=>
-        {
-          return x.find(p=>p.id==id) as IMouvementCaisses
-        })
-    );
+    return this.http.get<IMouvementCaisses>('api/mvtCaisses/' + id).pipe(map((x) => x));
   }
 
   getMvtCaisseByUser(idUser:string):Observable<IMouvementCaisses>{

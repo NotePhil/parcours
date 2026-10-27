@@ -17,12 +17,7 @@ export class MissionsService {
   }
 
   getMissionById(id:string):Observable<IMission >{
-    return this.getAllMissions().pipe(
-      map(x=>
-        {
-          return x.find(m=>m.id==id) as IMission 
-        })
-    );
+    return this.http.get<IMission>(this.param.api + 'missions/' + id).pipe(map((x) => x));
   }
   
   getMissionByLibelle(libelle:string): Observable<IMission[]> {

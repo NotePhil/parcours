@@ -16,11 +16,7 @@ export class PrecoMvtsService {
   }
 
   getPrecomvtById(id: string): Observable<IPrecoMvt> {
-    return this.getAllPrecomvts().pipe(
-      map((x) => {
-        return x.find((p) => p.id == id) as IPrecoMvt;
-      })
-    );
+    return this.http.get<IPrecoMvt>(this.param.api + 'precoMouvements/' + id).pipe(map((x) => x));
   }
 
   getPrecomvtsByLibelle(libelle: string): Observable<IPrecoMvt[]> {

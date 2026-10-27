@@ -15,11 +15,7 @@ export class GroupesService {
   }
 
   getGroupeById(id: string): Observable<IGroupes> {
-    return this.getAllGroups().pipe(
-      map((x) => {
-        return x.find((p) => p.id == id) as IGroupes;
-      })
-    );
+    return this.http.get<IGroupes>('api/groupes/' + id).pipe(map((x) => x));
   }
 
   ajouterGroupe(groupe: IGroupes) {

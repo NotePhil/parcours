@@ -19,12 +19,7 @@ export class DistributeursService {
   }
 
   getDistributeurById(id:string):Observable<IDistributeur>{
-    return this.getAllDistributeurs().pipe(
-      map(x=>
-        {
-          return x.find(p=>p.id==id) as IDistributeur
-        })
-    );
+    return this.http.get<IDistributeur>(this.param.api + 'distributeurs/' + id).pipe(map((x) => x));
   }
 
    getDistributeursByraisonSociale(raisonSociale:string): Observable<IDistributeur[]> {

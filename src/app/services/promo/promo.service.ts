@@ -19,9 +19,7 @@ export class PromoService {
   }
 
   getPromoById(id: string): Observable<IPromo> {
-    return this.getAllPromos().pipe(
-      map(x => x.find(p => p.id === id) as IPromo)
-    );
+    return this.http.get<IPromo>(this.apiUrl + '/' + id).pipe(map((x) => x));
   }
 
   getPromosByCodeUnique(codeUnique: string): Observable<IPromo[]> {

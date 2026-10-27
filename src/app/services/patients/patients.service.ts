@@ -24,11 +24,7 @@ export class PatientsService {
 
   // Récupérer un patient par son ID
   getPatientById(id: string): Observable<IPatient> {
-    return this.getAllPatients().pipe(
-      map((x) => {
-        return x.find((p) => p.id == id) as IPatient;
-      })
-    );
+    return this.http.get<IPatient>(this.param.api + 'personnes/personnesphysique/' + id).pipe(map((x) => x));
   }
 
   // Récupérer des patients par leur nom

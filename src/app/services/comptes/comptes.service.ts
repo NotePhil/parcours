@@ -17,12 +17,7 @@ export class ComptesService {
   }
 
   getCompteById(id:string):Observable<IComptes>{
-    return this.getAllComptes().pipe(
-      map(x=>
-        {
-          return x.find(p=>p.id==id) as IComptes
-        })
-    );
+    return this.http.get<IComptes>(this.param.api + 'comptes/' + id).pipe(map((x) => x));
   }
 
   getCompteByUser(idUser:string):Observable<IComptes>{

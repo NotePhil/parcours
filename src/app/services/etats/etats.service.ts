@@ -17,12 +17,7 @@ export class EtatService {
   }
 
   getEtatById(id:string):Observable<IEtats>{
-    return this.getAllEtats().pipe(
-      map(x=>
-        {
-          return x.find(p=>p.id==id) as IEtats
-        })
-    );
+    return this.http.get<IEtats>(this.param.api + 'etats/' + id).pipe(map((x) => x));
   }
 
    getEtatByLibelle(libelle:string): Observable<IEtats[]> {

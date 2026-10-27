@@ -17,12 +17,7 @@ export class ServicesService {
   }
 
   getServiceById(id:string):Observable<IService >{
-    return this.getAllServices().pipe(
-      map(x=>
-        {
-          return x.find(p=>p.id==id) as IService 
-        })
-    );
+    return this.http.get<IService>(this.param.api + 'services/' + id).pipe(map((x) => x));
   }
   getServiceByLibelle(libelle:string): Observable<IService[]> {
    return this.http.get<IService[]>(this.param.api+'services').pipe(

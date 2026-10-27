@@ -18,12 +18,7 @@ export class AttributService {
   }
 
   getAttributById(id:string):Observable<IAttributs>{
-    return this.getAllAttributs().pipe(
-      map(x=>
-        {
-          return x.find(p=>p.id==id) as IAttributs
-        })
-    );
+    return this.http.get<IAttributs>(this.param.api + 'attributs/' + id).pipe(map((x) => x));
   }
 
   getAttributsByTitre(titre:string): Observable<IAttributs[]> {
