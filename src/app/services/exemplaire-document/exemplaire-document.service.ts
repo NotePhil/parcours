@@ -15,6 +15,7 @@ export class ExemplaireDocumentService {
   res!: boolean;
   i!: number;
   ordreEtat!: IOrdreEtat;
+  API_EXEMPLAIRE: string = 'exemplaire/exemplaires';
   constructor(
     private http: HttpClient,
     private param: GlobalVariables,
@@ -23,11 +24,11 @@ export class ExemplaireDocumentService {
   ) {}
 
   getAllExemplaireDocuments(): Observable<IExemplaireDocument[]> {
-    return this.http.get<IExemplaireDocument[]>(this.param.api+ 'exemplaires');
+    return this.http.get<IExemplaireDocument[]>(this.param.api+ this.API_EXEMPLAIRE);
   }
 
   getExemplaireDocumentById(id: string): Observable<IExemplaireDocument> {
-    return this.http.get<IExemplaireDocument>(this.param.api + 'exemplaires/' + id).pipe(map((x) => x));
+    return this.http.get<IExemplaireDocument>(this.param.api + this.API_EXEMPLAIRE + '/' + id).pipe(map((x) => x));
   }
 
   getExemplaireDocumentByOrder(exemplaire: IExemplaireDocument, doc: IDocument) {
@@ -50,7 +51,7 @@ export class ExemplaireDocumentService {
   }
   
   getExemplaireDocumentByIdPersonneRatachee(idPersonne:string): Observable<IExemplaireDocument[]> {
-    return this.http.get<IExemplaireDocument[]>(this.param.api+ 'exemplaires').pipe(
+    return this.http.get<IExemplaireDocument[]>(this.param.api+ this.API_EXEMPLAIRE).pipe(
       map(x=>
         {
           return x.filter(e=> e.personneRattachee?.id!.toLowerCase() == idPersonne)
@@ -61,7 +62,7 @@ export class ExemplaireDocumentService {
   getExemplaireDocumentByTitre(
     titre: string
   ): Observable<IExemplaireDocument[]> {
-    return this.http.get<IExemplaireDocument[]>(this.param.api+ 'exemplaires').pipe(
+    return this.http.get<IExemplaireDocument[]>(this.param.api+ this.API_EXEMPLAIRE).pipe(
       map((x) => {
         return x.filter((e) => e.titre.toLowerCase().startsWith(titre));
       })
@@ -69,7 +70,7 @@ export class ExemplaireDocumentService {
   }
 
   ajouterExemplaireDocument(exemplaire: IExemplaireDocument) {
-    return this.http.post(this.param.api+ 'exemplaires', exemplaire);
+    return this.http.post(this.param.api+ this.API_EXEMPLAIRE, exemplaire);
   }
 
   // Methode permettant de creer le code de l'exemplaire en fonction du format de code
