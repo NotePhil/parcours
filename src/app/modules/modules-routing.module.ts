@@ -29,6 +29,17 @@ import { CaissesRoutingModule } from './caisses/caisses-routing.module';
 const routes: Routes = [
   { path: 'parcours', component: ModulesComponent, canActivate: [AuthGuard],
     children: [
+      // Redirection par défaut de "/parcours" vers la page d'accueil
+      {
+        path: '',
+        redirectTo: 'accueil',
+        pathMatch: 'full'
+      },
+      // Module de la page d'accueil (accessible à tout utilisateur authentifié)
+      {
+        path: 'accueil',
+        loadChildren: () => import('./accueil/accueil.module').then(m => m.AccueilModule)
+      },
       {
         path: 'attributs',
         loadChildren: () => import('./attributs/attributs.module').then(m => m.AttributsModule),
@@ -124,6 +135,14 @@ const routes: Routes = [
         path: 'caisses',
         loadChildren: () => import('./caisses/caisses.module').then(m => m.CaissesModule),
         canActivate: [RoleAuthGuard] 
+      },
+      {
+        path: 'erreur/:code',
+        component: NotFoundComponent
+      },
+      {
+        path: 'erreur',
+        component: NotFoundComponent
       },
       {
         path: '**',

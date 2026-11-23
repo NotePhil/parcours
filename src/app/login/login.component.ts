@@ -30,14 +30,20 @@ export class LoginComponent {
       ]
     });
   }
+  /** URL de la page d'accueil par défaut après connexion */
+  private readonly defaultHomeUrl = '/parcours/accueil';
+
   ngOnInit() {
-    
-    // rediriger vers la page d'accueil si déjà connecté
+    // Redirige directement vers la page d'accueil si l'utilisateur est déjà connecté
     if (this.authService.currentUserValue) {
-      this.router.navigate(['/parcours']);
+      this.router.navigate([this.defaultHomeUrl]);
     } else {
-      // obtenir l'URL de retour ou rediriger vers l'accueil
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/parcours';
+      // Récupère l'URL demandée avant connexion, ou bascule sur la page d'accueil
+      const requestedUrl = this.route.snapshot.queryParams['returnUrl'];
+      this.returnUrl =
+        requestedUrl && requestedUrl !== '/' && requestedUrl !== '/parcours'
+          ? requestedUrl
+          : this.defaultHomeUrl;
     }
   }
 
@@ -54,7 +60,8 @@ export class LoginComponent {
         res => {
           console.log("response :", res);
           
-          this.router.navigate([this.returnUrl]);
+          // Redirige vers l'URL cible ou la page d'accueil après authentification réussie
+          this.router.navigateByUrl(this.returnUrl || this.defaultHomeUrl);
         },
         error => {
           this.error = error;

@@ -21,7 +21,8 @@ export class RoleAuthGuard implements CanActivate {
     if (lienUse || 'personnels/detail-user' == route.routeConfig?.path+'/'+route.children[0].routeConfig?.path || 'documents/historique-par-personne' == route.routeConfig?.path+'/'+route.children[0].routeConfig?.path || 'missions/executer-missions' == route.routeConfig?.path+'/'+route.children[0].routeConfig?.path || 'missions/exemplaire-nouveau' == route.routeConfig?.path+'/'+route.children[0].routeConfig?.path) {
       return true;
     } else {
-      this.router.navigate(['/parcours']);
+      // Redirige vers la page d'accueil en cas d'accès non autorisé
+      this.router.navigate(['/parcours/accueil']);
       return false;
     }
   }

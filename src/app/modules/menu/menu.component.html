@@ -1,5 +1,12 @@
 <nav class="mt-2" >
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+        <!-- Entrée directe vers la page d'accueil en tête du menu latéral -->
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/parcours/accueil" routerLinkActive="activeLinkCSS" [routerLinkActiveOptions]="{ exact: true }">
+                <i class="nav-icon fas fa-home"></i>
+                <p>{{"accueil.header.nav-top.nav-link1" | translate}}</p>
+            </a>
+        </li>
         <li *ngFor="let menu; let i = index of fonctionnalites"  class="nav-item {{ i ? '' : 'menu-open' }}" (click)="getElementMenu(menu.fonction)">
             <a href="#" class="nav-link">
                 <i class="nav-icon {{ menu.icone }}"></i>

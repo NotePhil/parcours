@@ -1,0 +1,71 @@
+<!-- Conteneur principal de la page d'accueil -->
+<div class="accueil-container">
+
+  <!-- 1. Carte de bienvenue personnalisée aux couleurs de l'application -->
+  <section class="card accueil-hero">
+    <div class="accueil-hero-content">
+      <div class="hero-identity">
+        <img
+          src="assets/img/logo_camnafaw.jpg"
+          alt="Logo CAMNAFAW"
+          class="hero-logo" />
+        <div class="hero-text">
+          <span class="hero-date">{{ dateDuJour | titlecase }}</span>
+          <h1 class="hero-title">{{ salutation }}, {{ nomComplet }}</h1>
+          <p class="hero-subtitle">
+            Bienvenue sur votre espace de gestion du parcours clinique CAMNAFAW.
+          </p>
+        </div>
+      </div>
+
+      <!-- Badge de rôle et accès direct au profil -->
+      <div class="hero-actions">
+        <span class="role-badge" *ngIf="groupe">
+          <i class="fas fa-user-shield mr-1" aria-hidden="true"></i>
+          {{ groupe }}
+        </span>
+        <a routerLink="/parcours/personnels/detail-user" class="btn btn-profil">
+          <i class="fas fa-user-circle mr-2" aria-hidden="true"></i>
+          Mon profil
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Grille d'accès rapides générée selon les autorisations de l'utilisateur -->
+  <section class="accueil-section" *ngIf="raccourcis.length > 0">
+    <div class="section-header">
+      <h2 class="section-title">Accès rapides</h2>
+      <span class="section-meta" *ngIf="nombreModulesDisponibles > 0">
+        {{ nombreModulesDisponibles }} modules accessibles dans le menu
+      </span>
+    </div>
+
+    <div class="shortcuts-grid">
+      <button
+        type="button"
+        class="card shortcut-card"
+        *ngFor="let item of raccourcis"
+        [ngClass]="'accent-' + item.accent"
+        (click)="ouvrirRaccourci(item)">
+        <div class="shortcut-icon">
+          <i [class]="item.icone" aria-hidden="true"></i>
+        </div>
+        <div class="shortcut-body">
+          <span class="shortcut-title">{{ item.titre }}</span>
+          <span class="shortcut-action">{{ item.libelleAction }}</span>
+        </div>
+        <i class="fas fa-chevron-right shortcut-arrow" aria-hidden="true"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- 3. Bandeau d'information discret en pied de page -->
+  <section class="card accueil-info-bar">
+    <i class="fas fa-info-circle info-icon" aria-hidden="true"></i>
+    <span>
+      Utilisez le menu latéral gauche pour parcourir l'ensemble de vos modules, ou la barre supérieure pour changer de langue et de thème.
+    </span>
+  </section>
+
+</div>

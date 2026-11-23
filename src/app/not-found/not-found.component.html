@@ -1,1 +1,55 @@
-<p>not-found works!</p>
+<div id="mainSection" class="error-page-wrapper">
+  <div class="card error-card">
+    <div class="card-header entete error-header">
+      <i class="fas {{ errorInfo.icon }} mr-2" aria-hidden="true"></i>
+      <span>{{ errorInfo.titre }}</span>
+    </div>
+
+    <div class="card-body error-body">
+      <div class="error-code-badge" [ngClass]="'severity-' + errorInfo.severity">
+        <span class="error-code">{{ errorInfo.code }}</span>
+      </div>
+
+      <p class="error-meaning">{{ errorInfo.signification }}</p>
+
+      <div class="error-suggestion" *ngIf="errorInfo.suggestion">
+        <i class="fas fa-lightbulb suggestion-icon" aria-hidden="true"></i>
+        <span>{{ errorInfo.suggestion }}</span>
+      </div>
+
+      <div class="error-actions">
+        <button type="button" class="btn btn-error-retour" (click)="retour()">
+          <i class="fas fa-reply mr-2" aria-hidden="true"></i>
+          Retour
+        </button>
+
+        <button
+          *ngIf="errorInfo.canRetry"
+          type="button"
+          class="btn btn-error-retry"
+          (click)="reessayer()">
+          <i class="fas fa-sync-alt mr-2" aria-hidden="true"></i>
+          Réessayer
+        </button>
+
+        <button
+          *ngIf="errorInfo.code === '401'"
+          type="button"
+          class="btn btn-error-home"
+          (click)="allerConnexion()">
+          <i class="fas fa-sign-in-alt mr-2" aria-hidden="true"></i>
+          Connexion
+        </button>
+
+        <button
+          *ngIf="errorInfo.code !== '401'"
+          type="button"
+          class="btn btn-error-home"
+          (click)="allerAccueil()">
+          <i class="fas fa-home mr-2" aria-hidden="true"></i>
+          Accueil
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
