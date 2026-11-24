@@ -63,82 +63,79 @@
                             </div>
                         </div>
 
-                        <div class=" d-flex flex-wrap">
+                        <!-- Groupe des options booléennes : 3 éléments par ligne et responsive -->
+                        <div class="groupChamps">
                             <div class="form-group">
-                                <div class="">
-                                    <label for="etat" class="etat">
+                                <div class="checkbox-item">
+                                    <input id="etat" class="checkbox-input"
+                                        title='{{"services.form.label2" | translate}}' type="checkbox"
+                                        formControlName="etat" name="etat">
+                                    <label for="etat" class="checkbox-label etat">
                                         {{"services.form.label2" | translate}}
                                     </label>
-                                    <span id="etat" class="ml-2">
-                                        <input title='{{"services.form.label2" | translate}}' type="checkbox" checked
-                                            value="true" formControlName="etat" name="etat">
-                                    </span>
                                 </div>
                             </div>
-                            <div class="form-group ml-2">
-                                <div>
-                                    <label for="estencaissable" class="estencaissable">
+                            <div class="form-group">
+                                <div class="checkbox-item">
+                                    <input id="estencaissable" class="checkbox-input"
+                                        title='{{"services.form.label5" | translate}}' type="checkbox"
+                                        formControlName="estencaissable" name="estencaissable">
+                                    <label for="estencaissable" class="checkbox-label estencaissable">
                                         {{"services.form.label5" | translate}}
                                     </label>
-                                    <span id="estencaissable" class="ml-2">
-                                        <input title='{{"services.form.label2" | translate}}' type="checkbox" checked
-                                            value="false" formControlName="estencaissable" name="estencaissable">
-                                    </span>
                                 </div>
                             </div>
-                            <div class="form-group ml-2" title="{{'document.form.text5' | translate}}">
-                                <div>
-                                    <label for="afficherPrix" class="afficherPrix">
+                            <div class="form-group" title="{{'document.form.text5' | translate}}">
+                                <div class="checkbox-item">
+                                    <input id="afficherPrix" class="checkbox-input"
+                                        title='{{"document.table.title18" | translate}}' type="checkbox"
+                                        formControlName="afficherPrix" name="afficherPrix">
+                                    <label for="afficherPrix" class="checkbox-label afficherPrix">
                                         {{"document.table.title18" | translate}}
                                     </label>
-                                    <span id="afficherPrix" class="w-100">
-                                        <input title='{{"document.table.title18" | translate}}' type="checkbox"
-                                            value="true" formControlName="afficherPrix" name="afficherPrix">
-                                    </span>
                                 </div>
                             </div>
-
                             <div class="form-group" title="{{'document.form.text6' | translate}}">
-                                <div>
-                                    <label for="contientRessources" class="contientRessources">
+                                <div class="checkbox-item">
+                                    <input id="contientRessources" class="checkbox-input"
+                                        title='{{"document.table.title19" | translate}}' type="checkbox"
+                                        formControlName="contientRessources" name="contientRessources"
+                                        (change)="desactiveElementsLieRessource($event)">
+                                    <label for="contientRessources" class="checkbox-label contientRessources">
                                         {{"document.table.title19" | translate}}
                                     </label>
-                                    <span id="contientRessources" class="w-100">
-                                        <input title='{{"document.table.title19" | translate}}' type="checkbox"
-                                            value="false" formControlName="contientRessources" name="contientRessources"
-                                            (change)="desactiveElementsLieRessource($event)">
-                                    </span>
                                 </div>
                             </div>
                             <div class="form-group" title="{{'document.form.text7' | translate}}">
-                                <div>
-                                    <label for="afficherDistributeur" class="afficherDistributeur">
+                                <div class="checkbox-item">
+                                    <input id="afficherDistributeur" class="checkbox-input"
+                                        title='{{"document.table.title20" | translate}}' type="checkbox"
+                                        formControlName="afficherDistributeur" name="afficherDistributeur">
+                                    <label for="afficherDistributeur" class="checkbox-label afficherDistributeur">
                                         {{"document.table.title20" | translate}}
                                     </label>
-                                    <span id="afficherDistributeur" class="w-100">
-                                        <input title='{{"document.table.title20" | translate}}' type="checkbox"
-                                            value="true" formControlName="afficherDistributeur"
-                                            name="afficherDistributeur">
-                                    </span>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group" title="{{'document.form.text12' | translate}}">
-                            <div>
-                                <div class="champs">
-                                    <label for="beneficiaireObligatoire" class="beneficiaireObligatoire">
+                            <div class="form-group" title="{{'document.form.text12' | translate}}">
+                                <div class="checkbox-item">
+                                    <input id="beneficiaireObligatoire" class="checkbox-input"
+                                        title='{{"document.table.title26" | translate}}' type="checkbox"
+                                        formControlName="beneficiaireObligatoire" name="beneficiaireObligatoire">
+                                    <label for="beneficiaireObligatoire" class="checkbox-label beneficiaireObligatoire">
                                         {{"document.table.title26" | translate}}
                                     </label>
-                                    <span id="beneficiaireObligatoire" class="w-100">
-                                        <input title='{{"document.table.title26" | translate}}' type="checkbox" checked
-                                            value="true" formControlName="beneficiaireObligatoire"
-                                            name="beneficiaireObligatoire">
-                                    </span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="groupChamps">
+                            <div class="form-group" title="{{'document.form.text14' | translate}}">
+                                <div class="checkbox-item">
+                                    <input id="prixEditable" class="checkbox-input"
+                                        title='{{"document.table.title27" | translate}}' type="checkbox"
+                                        formControlName="prixEditable" name="prixEditable">
+                                    <label for="prixEditable" class="checkbox-label prixEditable">
+                                        {{"document.table.title27" | translate}}
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -259,8 +256,10 @@
                                         <p>
                                             <!-- MODIFICATION: Affichage des donnees via item.document.titre et de l'etat via item.etat.libelle -->
                                             <span *ngFor="let item of ELEMENTS_TABLE_DOCUMENTS_ASSOCIES">
-                                                {{(item.document?.titre || item.document?.description || '') | lowercase}}
-                                                <span *ngIf="item.etat?.libelle"> ({{item.etat.libelle}})</span><span>, </span>
+                                                {{(item.document?.titre || item.document?.description || '') |
+                                                lowercase}}
+                                                <span *ngIf="item.etat?.libelle"> ({{item.etat.libelle}})</span><span>,
+                                                </span>
                                             </span>
                                         </p>
 

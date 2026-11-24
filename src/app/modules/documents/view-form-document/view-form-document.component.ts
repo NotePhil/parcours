@@ -27,6 +27,7 @@ export class ViewFormDocumentComponent implements OnInit {
     etat: false,
     estencaissable: false,
     afficherPrix: false,
+    prixEditable: false,
     contientRessources: false,
     afficherDistributeur: false,
     typeMouvement: TypeMouvement.Neutre,

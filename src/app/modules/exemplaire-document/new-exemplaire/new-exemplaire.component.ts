@@ -69,6 +69,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     precoMouvements: [],
     mouvements: [],
     afficherPrix: false,
+    prixEditable: false,
     estencaissable: false,
     contientRessources: false,
     afficherDistributeur: false,
@@ -103,6 +104,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     categories: [],
     precoMouvements: [],
     afficherPrix: true,
+    prixEditable: false,
     estencaissable: false,
     contientRessources: true,
     afficherDistributeur: true,
@@ -731,8 +733,11 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
     this.serviceDocument.getDocumentById(idDocument).subscribe(
       value => {
         this.document.afficherPrix = value.afficherPrix
+        this.document.prixEditable = value.prixEditable ?? false
         this.document.contientRessources = value.contientRessources
+        this.document.estencaissable = value.estencaissable
         this.document.afficherDistributeur = value.afficherDistributeur
+        this.document.beneficiaireObligatoire = value.beneficiaireObligatoire
         this.document.typeMouvement = value.typeMouvement
         this.formerEnteteTableauMissions();
       })
@@ -740,34 +745,46 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
 
   /**
    * Methode qui permet de rajouter les colones de prix et montants si affichePrix a la valeur true
+   * en garantissant une correspondance exacte avec les *ngIf des colonnes dans le template HTML.
    */
   formerEnteteTableauMissions() {
+    // Réinitialise les colonnes de base pour éviter les doublons
+    this.displayedRessourcesColumns = [
+      'actions',
+      'libelle',
+      'quantite',
+      'unite'
+    ];
+
+    // Synchronise les colonnes du tableau des mouvements de caisse avec afficherPrix
+    this.displayedMouvementsColumns = this.document.afficherPrix == true
+      ? ['reférence', 'moyen de paiement', 'date', 'montant']
+      : ['reférence', 'moyen de paiement', 'date'];
+
     if (this.document.afficherDistributeur == true && !this.document.beneficiaireObligatoire) {
-      let distributeur: string = "distributeur"
-      this.displayedRessourcesColumns.includes('distributeur')
-      this.displayedRessourcesColumns.push(distributeur)
+      this.displayedRessourcesColumns.push('distributeur');
     }
-    if ((this.document.afficherPrix == true)) {
-      let prix: string = "prix"
-      let pourcentageCharge: string = "pourcentageCharge"
-      let pourcentageChargeRssource: string = "pourcentageChargeRssource"
-      let montantCharge: string = "montantCharge"
-      let montant: string = "montant total"
+
+    if (this.document.afficherPrix == true) {
+      let prix: string = 'prix';
       if (this.document.typeMouvement == TypeMouvement.Reduire) {
-        prix = "prixSortie"
+        prix = 'prixDeSortie';
       } else if (this.document.typeMouvement == TypeMouvement.Ajout) {
-        prix = "prixEntrée"
-      } else {
-        prix = "prix"
+        prix = 'prixEntrée';
       }
-      this.displayedRessourcesColumns.push(prix)
-      if (this.document.beneficiaireObligatoire) {
-        this.displayedRessourcesColumns.push(pourcentageCharge)
-      } else {
-        this.displayedRessourcesColumns.push(pourcentageChargeRssource)
+      this.displayedRessourcesColumns.push(prix);
+
+      // Colonnes de prise en charge affichées uniquement lorsque le type de mouvement n'est pas Neutre
+      if (this.document.typeMouvement != TypeMouvement.Neutre) {
+        if (this.document.beneficiaireObligatoire) {
+          this.displayedRessourcesColumns.push('pourcentageCharge');
+        } else {
+          this.displayedRessourcesColumns.push('pourcentageChargeRssource');
+        }
+        this.displayedRessourcesColumns.push('montantCharge');
       }
-      this.displayedRessourcesColumns.push(montantCharge)
-      this.displayedRessourcesColumns.push(montant)
+
+      this.displayedRessourcesColumns.push('montant total');
     }
   }
   /**
@@ -1055,6 +1072,7 @@ export class NewExemplaireComponent implements OnInit, AfterViewInit {
       mouvements: this.ELEMENTS_TABLE_MOUVEMENTS,
       etat: this.document.etat,
       afficherPrix: this.document.afficherPrix,
+      prixEditable: this.document.prixEditable ?? false,
       contientRessources: this.document.contientRessources,
       afficherDistributeur: this.document.afficherDistributeur,
       typeMouvement: this.document.typeMouvement,

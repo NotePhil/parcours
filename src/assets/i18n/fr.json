@@ -364,7 +364,8 @@
       "title23": "Etats du document",
       "title24": "Etat",
       "title25": "format de code",
-      "title26": "Associer un béneficiaire ?"
+      "title26": "Associer un béneficiaire ?",
+      "title27": "Prix éditable ?"
 
     },
     "form": {
@@ -380,7 +381,8 @@
       "text10": "Le Format de code",
       "text11": "Le Format de code est obligatoire",
       "text12": "Si cette case est cochée, une personne bénéficiaire sera demandée à la création du document",
-      "text13": "Les documents présents ici ne seront pas prix en compte si la case 'lier des ressources' est désactivée"
+      "text13": "Les documents présents ici ne seront pas prix en compte si la case 'lier des ressources' est désactivée",
+      "text14": "Si cette case est cochée, le champ du prix d'entrée sera désactivé dans le tableau des mouvements de l'exemplaire"
     },
     "view": {
       "title": "Modele ",

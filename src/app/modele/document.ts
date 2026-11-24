@@ -13,6 +13,7 @@ export interface IDocument {
     etat: boolean,
     typeMouvement: string,
     afficherPrix: boolean,
+    prixEditable: boolean,
     contientRessources: boolean,
     afficherDistributeur: boolean,
     beneficiaireObligatoire: boolean,
@@ -21,7 +22,6 @@ export interface IDocument {
     attributs: IAttributs[],
     categories: ICategoriesAttributs[],
     precoMouvements: IPrecoMvt[],
-    // REMPLACEMENT: Utilisation de l'objet IDocumentsAssocies[] au lieu de IDocument[] pour supporter la structure document + etat
     documentsAssocies?: IDocumentsAssocies[],
     docEtats: IDocEtats[],
     formatCode: string,

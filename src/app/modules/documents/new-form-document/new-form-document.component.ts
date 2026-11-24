@@ -49,6 +49,7 @@ export class NewFormDocumentComponent implements OnInit {
     precoMouvements: [],
     documentsAssocies: [],
     afficherPrix: false,
+    prixEditable: false,
     estencaissable: false,
     contientRessources: false,
     afficherDistributeur: false,
@@ -119,6 +120,7 @@ export class NewFormDocumentComponent implements OnInit {
       etat: new FormControl(true),
       estencaissable: new FormControl(true),
       afficherPrix: new FormControl(false),
+      prixEditable: new FormControl(false),
       contientRessources: new FormControl(false),
       afficherDistributeur: new FormControl(false),
       beneficiaireObligatoire: new FormControl(true),
@@ -129,6 +131,7 @@ export class NewFormDocumentComponent implements OnInit {
   ngOnInit(): void {
     this.mission$ = this.getAllMissions();
     this.forme.controls['afficherPrix'].disable();
+    this.forme.controls['prixEditable'].disable();
     this.forme.controls['afficherDistributeur'].disable();
     this.documentParentDesactive = true;
     this.donneeDocCatService.getTypeMvt().subscribe((x) => (this.typeMvt = x.type));
@@ -145,6 +148,7 @@ export class NewFormDocumentComponent implements OnInit {
         this.document = x;
         if (this.document.contientRessources == true) {
           this.forme.controls['afficherPrix'].enable();
+          this.forme.controls['prixEditable'].enable();
           this.forme.controls['afficherDistributeur'].enable();
           this.documentParentDesactive = false;
         }
@@ -155,9 +159,10 @@ export class NewFormDocumentComponent implements OnInit {
           estencaissable: this.document.estencaissable,
           typeMouvement: this.document.typeMouvement,
           afficherPrix: this.document.afficherPrix,
+          prixEditable: this.document.prixEditable ?? false,
           contientRessources: this.document.contientRessources,
           afficherDistributeur: this.document.afficherDistributeur,
-          beneficiaireObligatoire: true,
+          beneficiaireObligatoire: this.document.beneficiaireObligatoire ?? true,
           _missions: this.document.missions,
           _attributs: [],
           formatCode: this.document.formatCode
@@ -423,9 +428,10 @@ export class NewFormDocumentComponent implements OnInit {
       categories: [],
       precoMouvements: [],
       documentsAssocies: [],
-      afficherPrix: documentInput.afficherPrix,
+      afficherPrix: documentInput.afficherPrix ?? false,
+      prixEditable: documentInput.prixEditable ?? false,
       contientRessources: documentInput.contientRessources,
-      afficherDistributeur: documentInput.afficherDistributeur,
+      afficherDistributeur: documentInput.afficherDistributeur ?? false,
       beneficiaireObligatoire: documentInput.beneficiaireObligatoire,
       docEtats: [],
       formatCode: documentInput.formatCode
@@ -455,6 +461,7 @@ export class NewFormDocumentComponent implements OnInit {
 
     if (this.documentParentDesactive == true) {
       documentTemp.afficherPrix = false;
+      documentTemp.prixEditable = false;
       documentTemp.afficherDistributeur = false;
     }
 
@@ -514,10 +521,12 @@ export class NewFormDocumentComponent implements OnInit {
   desactiveElementsLieRessource(event: any) {
     if (!event.target.checked) {
       this.forme.controls['afficherPrix'].disable();
+      this.forme.controls['prixEditable'].disable();
       this.forme.controls['afficherDistributeur'].disable();
       this.documentParentDesactive = true;
     } else {
       this.forme.controls['afficherPrix'].enable();
+      this.forme.controls['prixEditable'].enable();
       this.forme.controls['afficherDistributeur'].enable();
       this.documentParentDesactive = false;
     }

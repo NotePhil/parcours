@@ -177,7 +177,8 @@
                                 <th class="text-dark containHead" mat-header-cell *matHeaderCellDef> {{'ressource.table.title5' | translate}} </th>
                                 <td class="text-dark containCell" mat-cell *matCellDef="let element">
                                     <label class="custom-control">
-                                        <input class="form-control" type="number" (change)="verificationRessource(null, null, element.ressource!.prixEntree, element.ressource)" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
+                                        <!-- Désactive la modification du prix d'entrée lorsque prixEditable est à true dans le document -->
+                                        <input class="form-control" type="number" [disabled]="document.prixEditable == true" (change)="verificationRessource(null, null, element.ressource!.prixEntree, element.ressource)" [(ngModel)]="element.prix" [ngModelOptions]="{standalone: true}">
                                     </label>
                                     <p *ngIf="isFalseIn && resValidate?.ressource!.id == element.ressource.id" class="text-sm text-danger">
                                         {{ errorText }}
@@ -296,8 +297,10 @@
                         </mat-paginator>
                     </div>
                 </div>
+            </div>
 
-                <!-- tableau de mouvement d'une caisse -->
+            <!-- tableau de mouvement d'une caisse : masqué lorsque estencaissable est à false -->
+            <div *ngIf="document.estencaissable == true" class="block2 card mt-2 pt-1" id="sectionMouvementCaisse">
                 <h2 class="m-2">{{'lists.text5' | translate}}</h2>
                 <div class="card-body d-flex flex-wrap gap-2 justify-content-between flex-lg-row flex-column">
                         <div class="m-2">

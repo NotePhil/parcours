@@ -341,7 +341,8 @@
       "title23": "Document's Status",
       "title24": "Status",
       "title25": "Code format",
-      "title26": "Associate people ?"
+      "title26": "Associate people ?",
+      "title27": "Editable price ?"
     },
     "form": {
       "text1": "Title is required.",
@@ -354,7 +355,8 @@
       "text8": "Mouvement's nature applied to thid document",
       "text9": "Mouvement's nature to apply to this document is required",
       "text12": "If this box is checked, people would be asked when we create document",
-      "text13": "If documents are here, they will be not considerated if 'link ressources' is disabled"
+      "text13": "If documents are here, they will be not considerated if 'link ressources' is disabled",
+      "text14": "If this box is checked, the entry price field will be disabled in the movements table of the copy"
     },
     "view": {
       "title": "Document's Model",

@@ -32,6 +32,7 @@ export class ViewExemplaireComponent implements OnInit {
     ordreEtats: [],
     etat: false,
     afficherPrix: false,
+    prixEditable: false,
     contientRessources: false,
     afficherDistributeur: false,
     typeMouvement: TypeMouvement.Neutre,
